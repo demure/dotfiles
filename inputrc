@@ -1,0 +1,36 @@
+# completion stuffs
+set completion-ignore-case on
+set show-all-if-ambiguous on
+set page-completions off 
+"\t": menu-complete
+
+# keyboard
+"\e[3~": delete-char
+
+# history stuffs
+#set mark-modified-lines on
+##set history-preserve-point on
+
+# editing mode
+##set editing-mode vi
+##set keymap vi-insert
+ ##vi-command vi-insert
+
+# for other languages
+set meta-flag on
+set input-meta on
+set output-meta on
+set convert-meta off
+
+
+## testing ##
+
+# shift-TAB to menu-complete backwards
+# cf. http://www.tikirobot.net/wp/2006/03/29/reverse-menu-complete-in-bash/
+\C-y:"\M--\C-i"
+
+# add the missing slash when tab-completing symbolic links to directories
+#set mark-symlinked-directories on
+
+# append symbol for file, in tab completion
+set visible-stats on
