@@ -2,6 +2,8 @@
 set nocompatible  "" choose no compatibility with legacy vi
 " End first "
 
+set t_Co=256
+
 if &t_Co > 1
    syntax enable "" Adds vim color based on file
 endif
@@ -21,6 +23,7 @@ set list
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 set virtualedit=onemore
 set spell
+hi SpellBad cterm=underline ctermfg=red
 set showmatch                   "" show matching brackets/parenthesis
 set wildmenu                    "" show list instead of just completing
 set wildmode=list:longest,full  "" command <Tab> completion, list matches, then longest common part, then all.
