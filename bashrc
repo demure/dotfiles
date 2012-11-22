@@ -1,11 +1,17 @@
 # Univeral Exports #
   export CLICOLOR="YES"
-  export TERM='xterm-color'
+#  export TERM='xterm-color'
   export HISTFILESIZE=10000
   export HISTSIZE=10000
   export HISTCONTROL=erasedups
-  export EDITOR=vi
+  export EDITOR=vim
   shopt -s histappend
+
+  if [ -e /usr/share/terminfo/x/xterm-256color ]; then
+    export TERM='xterm-256color'
+  else
+    export TERM='xterm-color'
+  fi
 
   ### this changes the PS1 ###
   if [ $HOSTNAME == 'moving-computer-of-doom' ]; then
