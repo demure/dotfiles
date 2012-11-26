@@ -1,27 +1,33 @@
-# completion stuffs
+# Completion Stuffs #
 set completion-ignore-case on
 set show-all-if-ambiguous on
 set page-completions off 
 "\t": menu-complete
+# End Completion Stuffs #
 
-# keyboard
+# Keyboard #
 "\e[3~": delete-char
+# End Keyboard #
 
-# history stuffs
+# History Stuffs #
+## ended up disabling these as the prompt got a bit wonky
 #set mark-modified-lines on
-##set history-preserve-point on
+#set history-preserve-point on
+# End History Stuffs #
 
-# editing mode
-##set editing-mode vi
-##set keymap vi-insert
- ##vi-command vi-insert
+# Editing Mode #
+## I prefer some of the emacs key bindings since OS X uses them.
+#set editing-mode vi
+#set keymap vi-insert
+#vi-command vi-insert
+# End Editing Mode #
 
-# for other languages
+# For Other Languages #
 set meta-flag on
 set input-meta on
 set output-meta on
 set convert-meta off
-
+# End Other Languages #
 
 ## testing ##
 
