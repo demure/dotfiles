@@ -42,7 +42,6 @@
 
 # Universal Aliases #
   alias rmds='find . -name ".DS_Store" -depth -exec rm -i {} \;'
-  alias google='ping -c 1 www.google.com && growlnotify -m "google pinged"'
   alias bashrc='vim ~/.bashrc'
 # end Universal Aliases #
 
@@ -52,6 +51,7 @@
 # For Mac
   if [ $OSTYPE == 'darwin12' ]; then
     # Mac Aliases
+    alias google='ping -c 1 www.google.com && growlnotify -m "google pinged"'
     alias ardrestart='sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -restart -agent -menu'
     alias manga='find ~/Desktop/manga|cut -d/ -f6-7|grep "\/[cov0-9][0-9]*$"'
     alias vi='vim'
