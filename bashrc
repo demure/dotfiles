@@ -43,6 +43,7 @@
 # Universal Aliases #
   alias rmds='find . -name ".DS_Store" -depth -exec rm -i {} \;'
   alias bashrc='vim ~/.bashrc'
+  alias filetree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'"
 # end Universal Aliases #
 
 # "Hand-Made" Commands #
