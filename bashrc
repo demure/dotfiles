@@ -24,7 +24,7 @@
     if [ $LOGNAME != 'root' ]; then
       export PS1="\`if [ \$? != 0 ]; then echo \[\e[31m\]\$?\[\e[0m\]; fi\`\[\e[34m\]\W -> \[\e[0m\]"
     fi
-  elif [[ $HOSTNAME =~ .*\.sdf\.org || $HOSTNAME == "otaku" ]]; then
+  elif [[ $HOSTNAME =~ .*\.sdf\.org || $HOSTNAME == "otaku" || $HOSTNAME == "sdf" ]]; then
     if [ $LOGNAME != 'root' ]; then
       export PS1="\`if [ \$? != 0 ]; then echo \[\e[31m\]\$?\[\e[0m\]; fi\`\[\e[33m\]\W -> \[\e[0m\]"
     fi
