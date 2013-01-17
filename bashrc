@@ -8,7 +8,7 @@
   export EDITOR=vim
   shopt -s histappend
 
-  ## for term color
+  ## For term color
   if [ -e /usr/share/terminfo/x/xterm-256color ]; then
     export TERM='xterm-256color'
   else
@@ -39,7 +39,7 @@
     fi
 
   ## for Netbook
-  elif [[ MACHTYPE == i486-pc-linux-gnu ]]; then
+  elif [[ MACHTYPE == 'i486-pc-linux-gnu' ]]; then
     if [ $LOGNAME != 'root' ]; then
       export PS1="\`if [ \$? != 0 ]; then echo \[\e[31m\]\$?\[\e[0m\]; fi\`\[\e[1;30m\]\W -> \[\e[0m\]"
      else
