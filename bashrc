@@ -21,6 +21,7 @@
     else
       export PS1='\[\e[0;31m\]\W ->\[\e[m\] '
     fi
+
   ## for MetaArray
   elif [ $HOSTNAME == 'ma.sdf.org' ]; then
     if [ $LOGNAME != 'root' ]; then
@@ -30,7 +31,15 @@
   ## for iOS
   if [[ MACHTYPE =~ arm-apple-darwin ]]; then
     if [ $LOGNAME != 'root' ]; then
-      export PS1="\`if [ \$? != 0 ]; then echo \[\e[31m\]\$?\[\e[0m\]; fi\`\[\e[36m\]\h \W -> \[\e[0m\]"
+      export PS1="\`if [ \$? != 0 ]; then echo \[\e[31m\]\$?\[\e[0m\]; fi\`\[\e[32m\]\W -> \[\e[0m\]"
+    else
+      export PS1='\[\e[0;31m\]\h \W ->\[\e[m\] '
+    fi
+
+  ## for Netbook
+  if [[ MACHTYPE =~ i486-pc-linux-gnu ]]; then
+    if [ $LOGNAME != 'root' ]; then
+      export PS1="\`if [ \$? != 0 ]; then echo \[\e[31m\]\$?\[\e[0m\]; fi\`\[\e[1;30m\]\W -> \[\e[0m\]"
     else
       export PS1='\[\e[0;31m\]\h \W ->\[\e[m\] '
     fi
@@ -40,6 +49,7 @@
     if [ $LOGNAME != 'root' ]; then
       export PS1="\`if [ \$? != 0 ]; then echo \[\e[31m\]\$?\[\e[0m\]; fi\`\[\e[33m\]\W -> \[\e[0m\]"
     fi
+
   ## if not designated, use catch-all
   else
     export PS1="\h \W -> "
@@ -97,8 +107,19 @@
   fi
 # End For Mac #
 
+# For iOS #
+  if [ $OSTYPE == 'darwin9' ]; then
+    alias svi='sudo vi'
+  fi
+# End For iOS #
+
+# For Netbook #
+  if [ $OSTYPE == 'linux-gnu' ]; then
+    #blah
+  fi
+# End For Netbook #
 # For SDF #
-  if [[ $HOSTNAME =~ .*\.sdf\.org || $HOSTNAME == "otaku" ]]; then
+  if [[ $HOSTNAME =~ .*\.sdf\.org || $HOSTNAME == "otaku" || $HOSTNAME == "sdf" ]]; then
     #LSCOLORS='exfxcxdxbxegedabagacad'
     export TZ=EST5EDT
     alias help='/usr/local/bin/help'
