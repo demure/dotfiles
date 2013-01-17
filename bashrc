@@ -14,20 +14,33 @@
   fi
 
   ### this changes the PS1 ###
+  ## for main computer
   if [ $HOSTNAME == 'moving-computer-of-doom' ]; then
     if [ $LOGNAME != 'root' ]; then
       export PS1="\`if [ \$? != 0 ]; then echo \[\e[31m\]\$?\[\e[0m\]; fi\`\[\e[36m\]\W -> \[\e[0m\]"
     else
       export PS1='\[\e[0;31m\]\W ->\[\e[m\] '
     fi
+  ## for MetaArray
   elif [ $HOSTNAME == 'ma.sdf.org' ]; then
     if [ $LOGNAME != 'root' ]; then
       export PS1="\`if [ \$? != 0 ]; then echo \[\e[31m\]\$?\[\e[0m\]; fi\`\[\e[34m\]\W -> \[\e[0m\]"
     fi
+
+  ## for iOS
+  if [[ MACHTYPE =~ arm-apple-darwin ]]; then
+    if [ $LOGNAME != 'root' ]; then
+      export PS1="\`if [ \$? != 0 ]; then echo \[\e[31m\]\$?\[\e[0m\]; fi\`\[\e[36m\]\h \W -> \[\e[0m\]"
+    else
+      export PS1='\[\e[0;31m\]\h \W ->\[\e[m\] '
+    fi
+
+  ## for main cluster
   elif [[ $HOSTNAME =~ .*\.sdf\.org || $HOSTNAME == "otaku" || $HOSTNAME == "sdf" ]]; then
     if [ $LOGNAME != 'root' ]; then
       export PS1="\`if [ \$? != 0 ]; then echo \[\e[31m\]\$?\[\e[0m\]; fi\`\[\e[33m\]\W -> \[\e[0m\]"
     fi
+  ## if not designated, use catch-all
   else
     export PS1="\h \W -> "
   fi
