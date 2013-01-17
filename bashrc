@@ -29,7 +29,7 @@
     fi
 
   ## for iOS
-  if [[ MACHTYPE =~ arm-apple-darwin ]]; then
+  elif [[ MACHTYPE =~ arm-apple-darwin ]]; then
     if [ $LOGNAME != 'root' ]; then
       export PS1="\`if [ \$? != 0 ]; then echo \[\e[31m\]\$?\[\e[0m\]; fi\`\[\e[32m\]\W -> \[\e[0m\]"
     else
@@ -37,7 +37,7 @@
     fi
 
   ## for Netbook
-  if [[ MACHTYPE =~ i486-pc-linux-gnu ]]; then
+  elif [[ MACHTYPE =~ i486-pc-linux-gnu ]]; then
     if [ $LOGNAME != 'root' ]; then
       export PS1="\`if [ \$? != 0 ]; then echo \[\e[31m\]\$?\[\e[0m\]; fi\`\[\e[1;30m\]\W -> \[\e[0m\]"
     else
@@ -115,7 +115,7 @@
 
 # For Netbook #
   if [ $OSTYPE == 'linux-gnu' ]; then
-    #blah
+    alias ls='ls --color'
   fi
 # End For Netbook #
 # For SDF #
