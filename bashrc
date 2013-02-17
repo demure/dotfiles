@@ -31,7 +31,7 @@
     fi
 
   ## for iOS
-  elif [[ MACHTYPE =~ arm-apple-darwin ]]; then
+  elif [[ $MACHTYPE =~ arm-apple-darwin ]]; then
     if [ $LOGNAME != 'root' ]; then
       export PS1="\`if [ \$? != 0 ]; then echo \[\e[31m\]\$?\[\e[0m\]; fi\`\[\e[32m\]\W -> \[\e[0m\]"
      else
@@ -39,7 +39,7 @@
     fi
 
   ## for Netbook
-  elif [[ MACHTYPE == 'i486-pc-linux-gnu' ]]; then
+  elif [ $MACHTYPE == 'i486-pc-linux-gnu' ]; then
     if [ $LOGNAME != 'root' ]; then
       export PS1="\`if [ \$? != 0 ]; then echo \[\e[31m\]\$?\[\e[0m\]; fi\`\[\e[1;30m\]\W -> \[\e[0m\]"
      else
