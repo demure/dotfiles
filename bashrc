@@ -24,6 +24,14 @@
       export PS1='\[\e[0;31m\]\W ->\[\e[m\] '
     fi
 
+  ## for pi
+  if [ $HOSTTYPE == 'arm']; then
+    if [ $LOGNAME != 'root' ]; then
+      export PS1="\`if [ \$? != 0 ]; then echo \[\e[31m\]\$?\[\e[0m\]; fi\`\[\e[32m\]\W -> \[\e[0m\]"
+     else
+      export PS1='\[\e[0;31m\]\W ->\[\e[m\] '
+    fi
+
   ## for MetaArray
   elif [ $HOSTNAME == 'ma.sdf.org' ]; then
     if [ $LOGNAME != 'root' ]; then
@@ -131,6 +139,13 @@
     ### end fortune ###
   fi
   ### End Mac Settings ###
+
+  ### For pi ###
+  if [ $HOSTTYPE == 'arm']; then
+    alias vi='vim'
+    alias svi='sudo vim'
+  fi
+  ### End For pi ###
 
   ### For iOS ###
   if [ $OSTYPE == 'darwin9' ]; then
