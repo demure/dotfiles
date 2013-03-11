@@ -25,11 +25,11 @@
     fi
 
   ## for pi
-  if [ $HOSTTYPE == 'arm']; then
+  elif [ $HOSTTYPE == 'arm' ]; then
     if [ $LOGNAME != 'root' ]; then
       export PS1="\`if [ \$? != 0 ]; then echo \[\e[31m\]\$?\[\e[0m\]; fi\`\[\e[32m\]\W -> \[\e[0m\]"
      else
-      export PS1='\[\e[0;31m\]\W ->\[\e[m\] '
+      export PS1='\[\e[0;31m\]\h \W ->\[\e[m\] '
     fi
 
   ## for MetaArray
