@@ -141,7 +141,7 @@
   ### End Mac Settings ###
 
   ### For pi ###
-  if [ $HOSTTYPE == 'arm']; then
+  if [ $HOSTTYPE == 'arm' ]; then
     alias vi='vim'
     alias svi='sudo vim'
   fi
