@@ -1,0 +1,43 @@
+host sdf
+HostName tty.sdf.org
+Port 22
+User demure
+
+host ma
+HostName ma.sdf.org
+Port 22
+User demure
+#ForwardAgent no
+#ForwardX11 yes
+#ForwardX11Timeout 596h
+#ForwardX11Trusted no
+
+host net
+HostName moving-netbook-of-doom.local
+Port 22
+User demure
+
+host device
+HostName moving-device-of-doom.local
+Port 22
+User mobile
+
+host tv
+HostName tv-of-doom.local
+Port 22
+User mobile
+
+host tiny
+HostName tiny-computer-of-doom.local
+Port 22
+User demure
+
+host comp
+hostName moving-computer-of-doom.local
+Port 22
+User demure
+
+host remote
+hostName localhost
+Port 63753
+User demure
