@@ -144,6 +144,7 @@
   if [ $HOSTTYPE == 'arm' ]; then
     alias vi='vim'
     alias svi='sudo vim'
+    alias vnc='vncserver :1 -geometry 1024x700 -depth 24'
   fi
   ### End For pi ###
 
