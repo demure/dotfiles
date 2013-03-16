@@ -168,11 +168,24 @@
     #alias ls='colorls -G'
   fi
 
+  ## for resyncing DISPLAY
+  # used to refresh ssh connection for tmux 
+  # http://justinchouinard.com/blog/2010/04/10/fix-stale-ssh-environment-variables-in-gnu-screen-and-tmux
+
+function r() {   
+  if [[ -n $TMUX ]]; then
+    NEW_DISPLAY=`tmux showenv|grep ^DISPLAY|cut -d = -f 2`
+    if [[ -n $NEW_DISPLAY ]] && [[ -S $NEW_DISPLAY ]]; then 
+      DISPLAY=$NEW_DISPLAY  
+    fi
+  fi
+}
+
   ## Fix tmux DISPLAY
-  # "Yubinkim.com totally wrote this one herself"
-  # "Run this script outside of tmux!"
-  for name in `tmux ls -F '#{session_name}'`; do
-    tmux setenv -g -t $name DISPLAY $DISPLAY #set display for all sessions
-  done
+#  # "Yubinkim.com totally wrote this one herself"
+#  # "Run this script outside of tmux!"
+#  for name in `tmux ls -F '#{session_name}'`; do
+#    tmux setenv -g -t $name DISPLAY $DISPLAY #set display for all sessions
+#  done
   ### End For sdf main cluster ###
 ### End Settings ###
