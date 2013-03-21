@@ -103,7 +103,20 @@
         echo "'$1' is not a valid file"
       fi
     }
-  ##End Universal Commands ###
+
+  ## color man pages with less (is a most way too...)
+    man() {
+      env \
+      LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+      LESS_TERMCAP_md=$(printf "\e[1;31m") \
+      LESS_TERMCAP_me=$(printf "\e[0m") \
+      LESS_TERMCAP_se=$(printf "\e[0m") \
+      LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+      LESS_TERMCAP_ue=$(printf "\e[0m") \
+      LESS_TERMCAP_us=$(printf "\e[1;32m") \
+      man "$@"
+    }
+  ###End Universal Commands ###
 
   ### Mac Settings ###
   if [ $OSTYPE == 'darwin12' ]; then
