@@ -155,6 +155,7 @@
 
   ### For pi ###
   if [ $HOSTTYPE == 'arm' ]; then
+    alias ls='ls --color=auto'
     alias vi='vim'
     alias svi='sudo vim'
     alias vnc='vncserver :1 -geometry 1024x700 -depth 24'
