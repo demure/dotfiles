@@ -1,30 +1,36 @@
 ### Exports ###
-  ### Univeral Exports ###
+  ### Universal Exports ###
   export CLICOLOR="YES"
-  #export TERM='xterm-color'
+#  export TERM='xterm-color'
   export HISTFILESIZE=10000
   export HISTSIZE=10000
   export HISTCONTROL=erasedups
   export EDITOR=vim
   shopt -s histappend
+  ### End Universal Exports ###
 
-  ## For term color
+  ## Coloring Greps
+  if echo hello | grep --color=auto l >/dev/null 2>&1; then
+    export GREP_OPTIONS='--color=auto' GREP_COLOR='1;31'
+  fi
+
+  ## For term color.
   if [ -e /usr/share/terminfo/x/xterm-256color ]; then
     export TERM='xterm-256color'
   else
     export TERM='xterm-color'
   fi
 
-  ### this changes the PS1 ###
-  ## for main computer
+  ### This Changes The PS1 ###
+  ## For main computer
   if [ $HOSTNAME == 'moving-computer-of-doom' ]; then
     if [ $LOGNAME != 'root' ]; then
       export PS1="\`if [ \$? != 0 ]; then echo \[\e[31m\]\$?\[\e[0m\]; fi\`\[\e[36m\]\W -> \[\e[0m\]"
      else
       export PS1='\[\e[0;31m\]\W ->\[\e[m\] '
     fi
-
-  ## for pi
+  
+  ## For pi
   elif [ $HOSTTYPE == 'arm' ]; then
     if [ $LOGNAME != 'root' ]; then
       export PS1="\`if [ \$? != 0 ]; then echo \[\e[31m\]\$?\[\e[0m\]; fi\`\[\e[32m\]\W -> \[\e[0m\]"
@@ -32,13 +38,13 @@
       export PS1='\[\e[0;31m\]\h \W ->\[\e[m\] '
     fi
 
-  ## for MetaArray
+  ## For MetaArray
   elif [ $HOSTNAME == 'ma.sdf.org' ]; then
     if [ $LOGNAME != 'root' ]; then
       export PS1="\`if [ \$? != 0 ]; then echo \[\e[31m\]\$?\[\e[0m\]; fi\`\[\e[34m\]\W -> \[\e[0m\]"
     fi
 
-  ## for iOS
+  ## For iOS
   elif [[ $MACHTYPE =~ arm-apple-darwin ]]; then
     if [ $LOGNAME != 'root' ]; then
       export PS1="\`if [ \$? != 0 ]; then echo \[\e[31m\]\$?\[\e[0m\]; fi\`\[\e[32m\]\W -> \[\e[0m\]"
@@ -46,7 +52,7 @@
       export PS1='\[\e[0;31m\]\h \W ->\[\e[m\] '
     fi
 
-  ## for Netbook
+  ## For Netbook
   elif [ $MACHTYPE == 'i486-pc-linux-gnu' ]; then
     if [ $LOGNAME != 'root' ]; then
       export PS1="\`if [ \$? != 0 ]; then echo \[\e[31m\]\$?\[\e[0m\]; fi\`\[\e[1;30m\]\W -> \[\e[0m\]"
@@ -54,23 +60,17 @@
       export PS1='\[\e[0;31m\]\h \W ->\[\e[m\] '
     fi
 
-  ## for main cluster
+  ## For main cluster
   elif [[ $HOSTNAME =~ .*\.sdf\.org || $HOSTNAME == "otaku" || $HOSTNAME == "sdf" ]]; then
     if [ $LOGNAME != 'root' ]; then
       export PS1="\`if [ \$? != 0 ]; then echo \[\e[31m\]\$?\[\e[0m\]; fi\`\[\e[33m\]\W -> \[\e[0m\]"
     fi
 
-  ## if not designated, use catch-all
+  ## If not designated, use catch-all
   else
     export PS1="\h \W -> "
   fi
-  ### end PS1 ###
-
-  ### this is for coloring greps ###
-  if echo hello | grep --color=auto l >/dev/null 2>&1; then
-    export GREP_OPTIONS='--color=auto' GREP_COLOR='1;31'
-  fi
-  ### end of coloring grep ###
+  ### End PS1 ###
 ### End Exports ###
 
 ### Setttings ###
@@ -117,6 +117,18 @@
       LESS_TERMCAP_us=$(printf "\e[1;32m") \
       man "$@"
     }
+
+  ## for resyncing DISPLAY
+  # used to refresh ssh connection for tmux 
+  # http://justinchouinard.com/blog/2010/04/10/fix-stale-ssh-environment-variables-in-gnu-screen-and-tmux
+    function r() {   
+      if [[ -n $TMUX ]]; then
+        NEW_DISPLAY=`tmux showenv|grep ^DISPLAY|cut -d = -f 2`
+        if [[ -n $NEW_DISPLAY ]] && [[ -S $NEW_DISPLAY ]]; then 
+          DISPLAY=$NEW_DISPLAY  
+        fi
+      fi
+    }
   ###End Universal Commands ###
 
   ### Mac Settings ###
@@ -129,20 +141,17 @@
     alias svi='sudo vi'
     alias rebuild_open_with='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user;killall Finder;echo "Open With has been rebuilt, Finder will relaunch"'
 
-      ### MPlayer ###
-      alias mp='mplayer'
-      alias np='sudo nice -n -10 mplayer'
-      ### End MPlayer ###
+    ## MPlayer
+    alias mp='mplayer'
+    alias np='sudo nice -n -10 mplayer'
 
-      ### view invisible things in finder on/off ###
-      alias visible='defaults write com.apple.finder AppleShowAllFiles Yes; killall Finder'
-      alias invisible='defaults write com.apple.finder AppleShowAllFiles No; killall Finder'
-      ### end view invisible ###
+    ## View invisible things in finder on/off
+    alias visible='defaults write com.apple.finder AppleShowAllFiles Yes; killall Finder'
+    alias invisible='defaults write com.apple.finder AppleShowAllFiles No; killall Finder'
 
-      ### aliases for nicing ###
-      alias fast='sudo nice -n -10'
-      alias slow='nice -n 20'
-      ### end nicing ###
+    ## Aliases for nicing
+    alias fast='sudo nice -n -10'
+    alias slow='nice -n 20'
   ### End Mac Aliases ###
 
     ### fortune at term ###
@@ -183,25 +192,14 @@
     alias help='/usr/local/bin/help'
     #alias ls='colorls -G'
   fi
+  ### End For sdf main cluster ###
 
-  ## for resyncing DISPLAY
-  # used to refresh ssh connection for tmux 
-  # http://justinchouinard.com/blog/2010/04/10/fix-stale-ssh-environment-variables-in-gnu-screen-and-tmux
-
-function r() {   
-  if [[ -n $TMUX ]]; then
-    NEW_DISPLAY=`tmux showenv|grep ^DISPLAY|cut -d = -f 2`
-    if [[ -n $NEW_DISPLAY ]] && [[ -S $NEW_DISPLAY ]]; then 
-      DISPLAY=$NEW_DISPLAY  
-    fi
-  fi
-}
-
+  ### Testing ###
   ## Fix tmux DISPLAY
-#  # "Yubinkim.com totally wrote this one herself"
-#  # "Run this script outside of tmux!"
+  # "Yubinkim.com totally wrote this one herself"
+  # "Run this script outside of tmux!"
 #  for name in `tmux ls -F '#{session_name}'`; do
 #    tmux setenv -g -t $name DISPLAY $DISPLAY #set display for all sessions
 #  done
-  ### End For sdf main cluster ###
+  ### End Testing ###
 ### End Settings ###
