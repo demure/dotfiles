@@ -5,7 +5,7 @@
   "\t": menu-complete
 
   ## shift-TAB to menu-complete backwards
-  ## cf. http://www.tikirobot.net/wp/2006/03/29/reverse-menu-complete-in-bash/
+  # cf. http://www.tikirobot.net/wp/2006/03/29/reverse-menu-complete-in-bash/
 #  \C-y:"\M--\C-i"
 
   ## append symbol for file, in tab completion
