@@ -78,6 +78,7 @@
   alias rmds='find . -name ".DS_Store" -depth -exec rm -i {} \;'
   alias bashrc='vim ~/.bashrc'
   alias filetree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'"
+  alias reset_display='export DISPLAY=$(tmux showenv|grep ^DISPLAY|cut -d = -f 2)'
   ### End Universal Aliases ###
 
   ### Universal Custom Commands ###
