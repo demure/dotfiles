@@ -1,42 +1,42 @@
-# Completion Stuffs #
-set completion-ignore-case on
-set show-all-if-ambiguous on
-set page-completions off 
-"\t": menu-complete
-# End Completion Stuffs #
+### Completion Stuffs ###
+  set completion-ignore-case on
+  set show-all-if-ambiguous on
+  set page-completions off 
+  "\t": menu-complete
 
-# Keyboard #
-"\e[3~": delete-char
-# End Keyboard #
+  ## shift-TAB to menu-complete backwards
+  ## cf. http://www.tikirobot.net/wp/2006/03/29/reverse-menu-complete-in-bash/
+#  \C-y:"\M--\C-i"
 
-# History Stuffs #
-## ended up disabling these as the prompt got a bit wonky
-#set mark-modified-lines on
-#set history-preserve-point on
-# End History Stuffs #
+  ## append symbol for file, in tab completion
+  set visible-stats on
+### End Completion Stuffs ###
 
-# Editing Mode #
-## I prefer some of the emacs key bindings since OS X uses them.
-#set editing-mode vi
-#set keymap vi-insert
-#vi-command vi-insert
-# End Editing Mode #
+### Keyboard ###
+  "\e[3~": delete-char
+### End Keyboard ###
 
-# For Other Languages #
-set meta-flag on
-set input-meta on
-set output-meta on
-set convert-meta off
-# End Other Languages #
+### History Stuffs ###
+  ## ended up disabling these as the prompt got a bit wonky
+#   set mark-modified-lines on
+#   set history-preserve-point on
+### End History Stuffs ###
 
-## testing ##
+### Editing Mode ###
+  ## I prefer some of the emacs key bindings since OS X uses them.
+#   set editing-mode vi
+#   set keymap vi-insert
+#   vi-command vi-insert
+### End Editing Mode ###
 
-# shift-TAB to menu-complete backwards
-# cf. http://www.tikirobot.net/wp/2006/03/29/reverse-menu-complete-in-bash/
-\C-y:"\M--\C-i"
+### For Other Languages ###
+  set meta-flag on
+  set input-meta on
+  set output-meta on
+  set convert-meta off
+### End Other Languages ###
 
-# add the missing slash when tab-completing symbolic links to directories
-#set mark-symlinked-directories on
-
-# append symbol for file, in tab completion
-set visible-stats on
+### Testing ###
+  ## add the missing slash when tab-completing symbolic links to directories
+#  set mark-symlinked-directories on
+### End Testing ###
