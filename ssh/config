@@ -32,7 +32,7 @@ HostName tiny-computer-of-doom.local
 Port 22
 User demure
 
-host comp
+host comp doom
 hostName moving-computer-of-doom.local
 Port 22
 User demure
