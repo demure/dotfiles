@@ -28,6 +28,7 @@
 "### End Commands at Start ###
 
 "### Options ###
+	"### Assorted ###
 	set number						"## Adds line numbers
 	set showcmd						"## Show incomplete cmds down the bottom
 	set ruler						"## show possition in bottom right
@@ -42,6 +43,7 @@
 	set backspace=indent,eol,start	"## Allow backspace in insert mode
 	set scrolloff=3					"## Show next three lines scrolling
 	set sidescrolloff=2				"## Show next two columns scrolling
+	"### End Assorted ###
 
 	"### Show Hidden Chars ###
 	set list						"## Shows certain hidden chars
