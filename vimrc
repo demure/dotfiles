@@ -86,6 +86,7 @@
 
 "### Key Bindings ###
 	let mapleader=","				"## Change the mapleader from '\\' to ','
+	map ,h :noh<return>				"## ',h' will clear search hilights!
 
 	"### Quickly edit/reload the vimrc file ###
 	"##  maps the ,ev and ,sv keys to edit/reload .vimrc.
