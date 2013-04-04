@@ -1,26 +1,26 @@
 ### Exports ###
 	### Universal Exports ###
-	export CLICOLOR="YES"
+	export CLICOLOR="YES"				## Color 'ls', etc.
 #	export TERM='xterm-color'
 	export HISTFILESIZE=10000
 	export HISTSIZE=10000
-	export HISTCONTROL=erasedups
+	export HISTCONTROL=ignoreboth:erasedups
 	export EDITOR=vim
 	shopt -s histappend
 	### End Universal Exports ###
-	
+
 	## Colored Greps
 	if echo hello | grep --color=auto l >/dev/null 2>&1; then
 		export GREP_OPTIONS='--color=auto' GREP_COLOR='1;31'
 	fi
-	
+
 	## For term color.
 	if [ -e /usr/share/terminfo/x/xterm-256color ]; then
 		export TERM='xterm-256color'
 	  else
 		export TERM='xterm-color'
 	fi
-	
+
 	### This Changes The PS1 ###
 	## For Main Computer
 	if [ $HOSTNAME == 'moving-computer-of-doom' ]; then
@@ -29,7 +29,7 @@
 		  else
 			export PS1='\[\e[0;31m\]\W ->\[\e[m\] '
 		fi
-	
+
 	## For pi
 	elif [ $HOSTTYPE == 'arm' ]; then
 		if [ $LOGNAME != 'root' ]; then
@@ -37,13 +37,13 @@
 		  else
 			export PS1='\[\e[0;31m\]\h \W ->\[\e[m\] '
 		fi
-	
+
 	## For MetaArray
 	elif [ $HOSTNAME == 'ma.sdf.org' ]; then
 		if [ $LOGNAME != 'root' ]; then
 			export PS1="\`if [ \$? != 0 ]; then echo \[\e[31m\]\$?\[\e[0m\]; fi\`\[\e[34m\]\W -> \[\e[0m\]"
 		fi
-	
+
 	## For iOS
 	elif [[ $MACHTYPE =~ arm-apple-darwin ]]; then
 		if [ $LOGNAME != 'root' ]; then
@@ -51,7 +51,7 @@
 		  else
 			export PS1='\[\e[0;31m\]\h \W ->\[\e[m\] '
 		fi
-	
+
 	## For Netbook
 	elif [ $MACHTYPE == 'i486-pc-linux-gnu' ]; then
 		if [ $LOGNAME != 'root' ]; then
@@ -59,13 +59,13 @@
 		  else
 			export PS1='\[\e[0;31m\]\h \W ->\[\e[m\] '
 		fi
-	
+
 	## For Main Cluster
 	elif [[ $HOSTNAME =~ .*\.sdf\.org || $HOSTNAME == "otaku" || $HOSTNAME == "sdf" ]]; then
 		if [ $LOGNAME != 'root' ]; then
 			export PS1="\`if [ \$? != 0 ]; then echo \[\e[31m\]\$?\[\e[0m\]; fi\`\[\e[33m\]\W -> \[\e[0m\]"
 		fi
-	
+
 	## If not designated, use catch-all
 	else
 	  export PS1="\h \W -> "
@@ -143,6 +143,7 @@
 
 		## MPlayer
 		alias mp='mplayer'
+		alias mp2='mplayer2'
 		alias np='sudo nice -n -10 mplayer'
 
 		## View invisible things in finder on/off
