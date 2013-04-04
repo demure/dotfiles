@@ -1,9 +1,9 @@
 "### Commands at Start ###
 	"### Needs to be First ###
-	set nocompatible				"## choose no compatibility with legacy vi
+	set nocompatible				"## Choose no compatibility with legacy vi
 	"### End first ###
 
-	set t_Co=256					"## enable 256 colors in vim
+	set t_Co=256					"## Enable 256 colors in vim
 
 	if has("syntax")
 		syntax on					"## Adds vim color based on file
@@ -22,23 +22,23 @@
 "#		set foldmethod=indent
 "#	endif
 
-	"## stop auto comment on new line
+	"## Stop auto comment on new line
 	autocmd FileType * setlocal formatoptions-=cro
 	set shortmess+=T
 "### End Commands at Start ###
 
 "### Options ###
-	set number						"## adds line numbers
+	set number						"## Adds line numbers
 	set showcmd						"## Show incomplete cmds down the bottom
 	set ruler						"## show possition in bottom right
 	set autoread					"## Reload files changed outside vim
 	set encoding=utf8				"## Sets encoding View
-"#	set virtualedit=block,onemore "## Cursor can move one past EOL, and free in Visual mode
+"#	set virtualedit=block,onemore	"## Cursor can move one past EOL, and free in Visual mode
 	set virtualedit=all				"## Allow virtual editing, all modes.
-	set showmatch					"## show matching brackets/parenthesis
-	set wildmenu					"## show list instead of just completing
-	set wildmode=list:longest,full	"## command <Tab> completion, list matches, then longest common part, then all.
-	set mouse=a						"## enable mouse, all modes
+	set showmatch					"## Show matching brackets/parenthesis
+	set wildmenu					"## Show list instead of just completing
+	set wildmode=list:longest,full	"## Command <Tab> completion, list matches, then longest common part, then all.
+	set mouse=a						"## Enable mouse, all modes
 	set backspace=indent,eol,start	"## Allow backspace in insert mode
 	set scrolloff=3					"## Show next three lines scrolling
 	set sidescrolloff=2				"## Show next two columns scrolling
@@ -46,8 +46,8 @@
 	"### Show Hidden Chars ###
 	set list						"## Shows certain hidden chars
 	set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
-	hi NonText ctermfg=darkgray     "## Makes trailing darkgray
-	hi SpecialKey ctermfg=darkgray  "## Makes Leading darkgray
+	hi NonText ctermfg=darkgray		"## Makes trailing darkgray
+	hi SpecialKey ctermfg=darkgray	"## Makes Leading darkgray
 	"### End Hidden Chars ###
 
 	"### Spelling ###
@@ -64,24 +64,24 @@
 	"## prefer tabs now...
 	"#  set expandtab   "## use spaces, not tabs
 	set tabstop=4					"## Set Tab length
-"#	set shiftwidth=4
-	set smarttab					"## insert Tabs start of line per to shiftwidth, not tabstop
-	set autoindent					"## always set autoindenting on
-	set copyindent					"## copy the previous indentation on autoindenting
+	set shiftwidth=4				"## Affects when you press >>, << or ==. And auto indent.
+	set smarttab					"## Insert Tabs start of line per to shiftwidth, not tabstop
+	set autoindent					"## Always set autoindenting on
+	set copyindent					"## Copy the previous indentation on autoindenting
 	"### End Tab Key ###
 
 	"### Searching ###
-	set hlsearch					"## highlight matches
-	set incsearch					"## incremental searching
-	set ignorecase					"## searches are case insensitive...
+	set hlsearch					"## Highlight matches
+	set incsearch					"## Incremental searching
+	set ignorecase					"## Searches are case insensitive...
 	set smartcase					"## ... unless they contain at least one capital letter
 	"### End Searching ###
 
-	"### backup Settings ###
+	"### Backup Settings ###
 	set backup						"## backup on
 	set backupdir=~/.backup/back
 	set directory=~/.backup/swap	"## swap files
-	"### End backup Settings ###
+	"### End Backup Settings ###
 "### End Options ###
 
 "### Key Bindings ###
