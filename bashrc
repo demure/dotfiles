@@ -1,3 +1,6 @@
+###### My (demuredemeanor) bashrc
+# https://github.com/demure/dotfiles
+
 ### Exports ###
 	### Universal Exports ###
 	export CLICOLOR="YES"				## Color 'ls', etc.
