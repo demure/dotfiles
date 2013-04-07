@@ -31,18 +31,19 @@
 	"### Assorted ###
 	set number						"## Adds line numbers
 	set showcmd						"## Show incomplete cmds down the bottom
+	set showmode					"## Indicates input or replace mode at bottom
 	set ruler						"## show possition in bottom right
 	set autoread					"## Reload files changed outside vim
 	set encoding=utf8				"## Sets encoding View
 "#	set virtualedit=block,onemore	"## Cursor can move one past EOL, and free in Visual mode
 	set virtualedit=all				"## Allow virtual editing, all modes.
-	set showmatch					"## Show matching brackets/parenthesis
 	set wildmenu					"## Show list instead of just completing
 	set wildmode=list:longest,full	"## Command <Tab> completion, list matches, then longest common part, then all.
 	set mouse=a						"## Enable mouse, all modes
 	set backspace=indent,eol,start	"## Allow backspace in insert mode
 	set scrolloff=3					"## Show next three lines scrolling
 	set sidescrolloff=2				"## Show next two columns scrolling
+	set ttyfast						"## Indicates a fast terminal connection
 	"### End Assorted ###
 
 	"### Show Hidden Chars ###
@@ -73,10 +74,14 @@
 	"### End Tab Key ###
 
 	"### Searching ###
+	nnoremap / /\v
+	vnoremap / /\v
 	set hlsearch					"## Highlight matches
 	set incsearch					"## Incremental searching
 	set ignorecase					"## Searches are case insensitive...
 	set smartcase					"## ... unless they contain at least one capital letter
+	set showmatch					"## Show matching brackets/parenthesis
+	set gdefault					"## Applies substitutions globally on lines. append 'g' to invert back. 
 	"### End Searching ###
 
 	"### Backup Settings ###
@@ -88,7 +93,7 @@
 
 "### Key Bindings ###
 	let mapleader=","				"## Change the mapleader from '\\' to ','
-	map ,h :noh<return>				"## ',h' will clear search hilights!
+	map <leader>/ :noh<return>				"## <leader>/ will clear search hilights!
 
 	"### Quickly edit/reload the vimrc file ###
 	"##  maps the ,ev and ,sv keys to edit/reload .vimrc.
@@ -99,8 +104,9 @@
 	"### Paste Toggle, for stopping formating of pastes ###
 	nnoremap <F2> :set invpaste paste?<CR>
 	set pastetoggle=<F2>
+	nmap <leader>P :set invpaste paste?<CR>
 	"### End Paste Toggle ###
-
+ 
 	"### Vim Tab Window Keysbindings ###
 "#	nnoremap <C-Left> :tabprevious<CR>
 "#	nnoremap <C-Right> :tabnext<CR>
@@ -120,6 +126,13 @@
 	map <leader> <Up> :wincmd k<CR>
 	map <leader> <Right> :wincmd l<CR>
 	"### End Navigate Splits ###
+
+	"### Cross Hairs ###
+	hi CursorLine   cterm=NONE ctermbg=darkgrey ctermfg=white guibg=darkred guifg=white
+	hi CursorColumn cterm=NONE ctermbg=darkgrey ctermfg=white guibg=darkred guifg=white
+	nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
+    "### End Cross Hair ###
+
 "### End Key Bindings ###
 
 "### Plugins ###
