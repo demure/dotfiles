@@ -224,6 +224,7 @@
 	nnoremap <silent> <F3> :YRShow<CR>
 	inoremap <silent> <F3> <ESC>:YRShow<CR>
 	map <silent> <prefix>y :YRShow<CR>
+	let g:yankring_history_dir = '~/.vim'
 	""" End YankRing """
 
 	""" Solarized Theme """
