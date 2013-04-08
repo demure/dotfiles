@@ -195,6 +195,9 @@
 	Bundle 'YankRing.vim'
 	Bundle 'altercation/vim-colors-solarized'
 	Bundle 'tpope/vim-fugitive'
+	Bundle 'SearchComplete'
+	Bundle 'bufexplorer.zip'
+	Bundle 'Gundo'
 	""...All your other bundles...
 	if iCanHazVundle == 0
 		echo "Installing Bundles, please ignore key map error messages"
@@ -231,6 +234,10 @@
 		set background=dark
 	endif
 	""" End Solarized """
+
+	""" Gundo Conf """
+	nnoremap <F5> :GundoToggle<CR>
+	""" End Gundo """
 """ End Plugins """
 
 """ Notes To Self """
