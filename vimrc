@@ -109,10 +109,21 @@
 	""" End Searching """
 
 	""" Backup Settings """
+		""" Dir Validation """
+		if !isdirectory(expand("~/.vim/back/"))
+			call mkdir(expand("~/.vim/back/"), "p")
+		endif
+		if !isdirectory(expand("~/.vim/swap/"))
+			call mkdir(expand("~/.vim/swap/"), "p")
+		endif
+		if !isdirectory(expand("~/.vim/undo/"))
+			call mkdir(expand("~/.vim/undo/"), "p")
+		endif
+		""" End Dir """
 	set backup						" Enable backups
-	set backupdir=~/.backup/back
-	set directory=~/.backup/swap	" swap files
-	set undodir=~/.backup/undo/		" undo files
+	set backupdir=~/.vim/back/
+	set directory=~/.vim/swap/		" swap files
+	set undodir=~/.vim/undo/		" undo files
 	set undofile
 	set undoreload=10000
 	""" End Backup Settings """
