@@ -183,6 +183,7 @@
 	Bundle 'scrooloose/nerdcommenter'
 	Bundle 'YankRing.vim'
 	Bundle 'altercation/vim-colors-solarized'
+	Bundle 'tpope/vim-fugitive'
 	""...All your other bundles...
 	if iCanHazVundle == 0
 		echo "Installing Bundles, please ignore key map error messages"
@@ -190,14 +191,6 @@
 		:BundleInstall
 	endif
 	""" End Setting Up Vundle """
-
-	""" Bundles Load """
-	"Bundle 'scrooloose/nerdtree'
-	"Bundle 'tpope/vim-repeat'
-	"Bundle 'Rainbow-Parenthsis-Bundle'
-	"Bundle 'scrooloose/nerdcommenter'
-	"Bundle 'YankRing.vim'
-	""" End Bundles """
 
 	""" NERDtree config """
 	"" Starts NERDtree if no file is give to vim at start 
