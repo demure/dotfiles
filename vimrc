@@ -195,7 +195,7 @@
 	Bundle 'YankRing.vim'
 	Bundle 'altercation/vim-colors-solarized'
 	Bundle 'tpope/vim-fugitive'
-	Bundle 'SearchComplete'
+	"Bundle 'SearchComplete'		"" Disabled due to killing UP arrow in search
 	Bundle 'bufexplorer.zip'
 	Bundle 'Gundo'
 	""...All your other bundles...
