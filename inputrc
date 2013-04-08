@@ -1,3 +1,6 @@
+##### My (demuredemeanor) .inputrc
+# http://github.com/demure/dotfiles
+
 ### Main Settings ###
 	### Completion Stuffs ###
 	set completion-ignore-case on
