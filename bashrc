@@ -1,5 +1,5 @@
-###### My (demuredemeanor) bashrc
-# https://github.com/demure/dotfiles
+##### My (demuredemeanor) bashrc
+# http://github.com/demure/dotfiles
 
 ### Exports ###
 	### Universal Exports ###
