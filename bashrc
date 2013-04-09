@@ -18,11 +18,11 @@
 	fi
 
 	## For term color.
-	if [ -e /usr/share/terminfo/x/xterm-256color ]; then
-		export TERM='xterm-256color'
-	  else
-		export TERM='xterm-color'
-	fi
+	#if [ -e /usr/share/terminfo/x/xterm-256color ]; then
+		#export TERM='xterm-256color'
+	  #else
+		#export TERM='xterm-color'
+	#fi
 
 	### This Changes The PS1 ###
 	## For Main Computer
