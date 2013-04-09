@@ -198,6 +198,10 @@
 	"Bundle 'SearchComplete'		"" Disabled due to killing UP arrow in search
 	Bundle 'bufexplorer.zip'
 	Bundle 'Gundo'
+	Bundle 'scrooloose/syntastic'
+	Bundle 'uguu-org/vim-matrix-screensaver'
+	"" vim-indent-guides default binding: <Leader>ig
+	Bundle 'mutewinter/vim-indent-guides'
 	""...All your other bundles...
 	if iCanHazVundle == 0
 		echo "Installing Bundles, please ignore key map error messages"
