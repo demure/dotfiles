@@ -29,7 +29,7 @@
 
 """ Options """
 	""" Assorted """
-	set t_Co=256					" FORCE 256 colors in vim
+	"set t_Co=256					" FORCE 256 colors in vim
 	set number						" Adds line numbers
 	set showcmd						" Show incomplete cmds down the bottom
 	set showmode					" Indicates input or replace mode at bottom
