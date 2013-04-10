@@ -7,7 +7,6 @@ I am in the process of revamping all of my files, adding useful plugins,
 organizing snippets, commenting, and making one conf work for all my systems.
 
 ######Improved:
-Improved:
 I think my vimrc has improved a good deal ^__^
 It will now auto install Vundle if missing, and create undo/backup/swap paths.
 
