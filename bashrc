@@ -28,6 +28,7 @@ export GREP_OPTIONS
 
 	## For term color.
 	## Disabled, as forcing is kind of bad >_>
+	## http://blog.sanctum.geek.nz/term-strings/
 #	if [ -e /usr/share/terminfo/x/xterm-256color ]; then
 #		export TERM='xterm-256color'
 #	  else
@@ -44,13 +45,8 @@ export GREP_OPTIONS
 	##PS1=">\[\033[s\]\[\033[1;\$((COLUMNS-4))f\]\$(date +%H:%M)\[\033[u\]"
 	##The environment variable COLUMNS contains the number of columns of the terminal. The above example substracts 4 from its value in order to justify the five character wide output of date at the right border.
 	######
-	## PS_CYAN
-	## COLOR_RED='\[\e[31m\]'
-	## COLOR_BLUE='\[\e[34m\]'
-	## COLOR_RESET='\[\e[0m\]'
-
-	##PS1=${COLOR_RED}'\u'${COLOR_RESET}'@'${COLOR_BLUE}'\h'${COLOR_RESET}
 	######
+	## Inspired by http://wiki.archlinux.org/index.php/Color_Bash_Prompt#List_of_colors_for_prompt_and_Bash
 	# Reset
 	RCol='\[\e[0m\]'	# Text Reset
 
@@ -114,7 +110,7 @@ export GREP_OPTIONS
 	  export PS1="\h \W -> "
 	fi
 	
-	#unset -v {,B,U,I,BI,On_,On_I}{Bla,Red,Gre,Yel,Blu,Pur,Cya,Whi} RCol
+	unset -v {,B,U,I,BI,On_,On_I}{Bla,Red,Gre,Yel,Blu,Pur,Cya,Whi} RCol
 	### End PS1 ###
 ### End Exports ###
 
