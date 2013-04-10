@@ -25,6 +25,14 @@
 	#fi
 
 	### This Changes The PS1 ###
+	######
+	## COLOR_RED='\[\e[31m\]'
+	## COLOR_BLUE='\[\e[34m\]'
+	## COLOR_RESET='\[\e[0m\]'
+
+	##PS1=${COLOR_RED}'\u'${COLOR_RESET}'@'${COLOR_BLUE}'\h'${COLOR_RESET}
+	######
+
 	## For Main Computer
 	if [ $HOSTNAME == 'moving-computer-of-doom' ]; then
 		if [ $LOGNAME != 'root' ]; then
@@ -82,6 +90,7 @@
 	alias bashrc='vim ~/.bashrc'
 	alias filetree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'"
 	alias reset_display='export DISPLAY=$(tmux showenv|grep ^DISPLAY|cut -d = -f 2)'
+	alias ed='ed -p:'
 	### End Universal Aliases ###
 
 	### Universal Custom Commands ###
