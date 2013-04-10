@@ -12,10 +12,19 @@
 	shopt -s histappend
 	### End Universal Exports ###
 
+	### Grep Options ###
+	GREP_OPTIONS=
 	## Colored Greps
 	if echo hello | grep --color=auto l >/dev/null 2>&1; then
-		export GREP_OPTIONS='--color=auto' GREP_COLOR='1;31'
+		export GREP_OPTIONS="$GREP_OPTIONS --color=auto" GREP_COLOR='1;31'
 	fi
+	if grep --help | grep -- --exclude-dir &>/dev/null; then
+		for PATTERN in .cvs .git .hg .svn; do
+			GREP_OPTIONS="$GREP_OPTIONS --exclude-dir=$PATTERN"
+		done
+	fi
+export GREP_OPTIONS
+	### End Grep Options ###
 
 	## For term color.
 	#if [ -e /usr/share/terminfo/x/xterm-256color ]; then
