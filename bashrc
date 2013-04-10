@@ -18,6 +18,8 @@
 	if echo hello | grep --color=auto l >/dev/null 2>&1; then
 		export GREP_OPTIONS="$GREP_OPTIONS --color=auto" GREP_COLOR='1;31'
 	fi
+	## Exclude annoying dirs
+	## http://blog.sanctum.geek.nz/default-grep-options/
 	if grep --help | grep -- --exclude-dir &>/dev/null; then
 		for PATTERN in .cvs .git .hg .svn; do
 			GREP_OPTIONS="$GREP_OPTIONS --exclude-dir=$PATTERN"
