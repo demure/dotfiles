@@ -20,11 +20,9 @@
 	fi
 	## Exclude annoying dirs
 	## http://blog.sanctum.geek.nz/default-grep-options/
-	if grep --help | grep -- --exclude-dir &>/dev/null; then
 		for PATTERN in .cvs .git .hg .svn; do
 			GREP_OPTIONS="$GREP_OPTIONS --exclude-dir=$PATTERN"
 		done
-	fi
 export GREP_OPTIONS
 	### End Grep Options ###
 
