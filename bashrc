@@ -70,7 +70,7 @@ export GREP_OPTIONS
 		if [ $LOGNAME != 'root' ]; then
 			export PS1="\`if [ \$? != 0 ]; then echo \[\e[31m\]\$?${RCol}; fi\`${Cya}\W -> ${RCol}"
 		  else
-			export PS1='${Red}\h \W ->${RCol} '
+			export PS1="${Red}\h \W ->${RCol} "
 		fi
 
 	## For pi
@@ -78,7 +78,7 @@ export GREP_OPTIONS
 		if [ $LOGNAME != 'root' ]; then
 			export PS1="\`if [ \$? != 0 ]; then echo \[\e[31m\]\$?${RCol}; fi\`${Gre}\W -> ${RCol}"
 		  else
-			export PS1='${Red}\h \W ->${RCol} '
+			export PS1="${Red}\h \W ->${RCol} "
 		fi
 
 	## For MetaArray
@@ -92,7 +92,7 @@ export GREP_OPTIONS
 		if [ $LOGNAME != 'root' ]; then
 			export PS1="\`if [ \$? != 0 ]; then echo \[\e[31m\]\$?${RCol}; fi\`${Gre}\W -> ${RCol}"
 		  else
-			export PS1='${Red}\h \W ->${RCol} '
+			export PS1="${Red}\h \W ->${RCol} "
 		fi
 
 	## For Netbook
@@ -100,7 +100,7 @@ export GREP_OPTIONS
 		if [ $LOGNAME != 'root' ]; then
 			export PS1="\`if [ \$? != 0 ]; then echo \[\e[31m\]\$?${RCol}; fi\`${BBla}\W -> ${RCol}"
 		  else
-			export PS1='${Red}\h \W ->${RCol} '
+			export PS1="${Red}\h \W ->${RCol} "
 		fi
 
 	## For Main Cluster
