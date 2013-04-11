@@ -1,4 +1,5 @@
 """"" My (demuredemeanor) .vimrc
+"" Uses shiftwidth=4 for tabs
 "" https://github.com/demure/dotfiles
 
 """ Commands at Start """
@@ -50,6 +51,10 @@
 	""" Wild Stuffs... """
 	set wildmenu					" Show list instead of just completing
 	set wildmode=list:longest,full	" Command <Tab> completion, list matches, then longest common part, then all.
+	"" From http://blog.sanctum.geek.nz/lazier-tab-completion/
+	if exists("&wildignorecase")
+	    set wildignorecase			" Ignore case in file name completion
+	    endif
 	"" From http://bitbucket.org/sjl/dotfiles/overview
 	set wildignore+=.hg,.git,.svn						" Version control
 	set wildignore+=*.aux,*.out,*.toc					" LaTeX intermediate files
