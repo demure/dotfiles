@@ -1,16 +1,17 @@
 ##### My (demuredemeanor) bashrc
+# Uses shiftwidth=4 for tabs
 # http://github.com/demure/dotfiles
 
 ### Exports ###
 	### Universal Exports ###
 	export CLICOLOR="YES"				## Color 'ls', etc.
-#	export TERM='xterm-color'
 	export HISTFILESIZE=10000
 	export HISTSIZE=10000
 	export HISTCONTROL=ignoreboth:erasedups
 	export EDITOR=vim
 	shopt -s histappend
 	shopt -s cdspell		## Will fix minor spelling errors in cd paths
+	shopt -s no_empty_cmd_completion
 	### End Universal Exports ###
 
 	### Grep Options ###
