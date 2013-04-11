@@ -4,17 +4,23 @@
 
 ### Main Settings ###
 	### Completion Stuffs ###
-	set completion-ignore-case on	## Tab complete ignores case
-	set show-all-if-ambiguous on	## Complete longest explicit match, then print remaining values
-	set completion-map-case on		## With ignore on, will ignore diff between '-' and '_'
-	set page-completions off		## Disable more-like pager of completion list
-	"\t": menu-complete				## Steps through list, can give n first
+	## Tab complete ignores case
+	set completion-ignore-case on
+	## Complete longest explicit match, then print remaining values
+	set show-all-if-ambiguous on
+	## With ignore on, will ignore diff between '-' and '_'
+	set completion-map-case on
+	## Disable more-like pager of completion list
+	set page-completions off
+	## Steps through list, can give n first
+	"\t": menu-complete
 	
 	## Shift-TAB to menu-complete backwards
 	# cf. http://www.tikirobot.net/wp/2006/03/29/reverse-menu-complete-in-bash/
 #	\C-y:"\M--\C-i"
 
-	set visible-stats on			## Append symbol for file, in tab completion
+	## Append symbol for file, in tab completion
+	set visible-stats on
 	### End Completion Stuffs ###
 
 	### Keyboard ###
@@ -35,10 +41,14 @@
 	### End Editing Mode ###
 
 	### For Other Languages ###
-	set meta-flag on		## Enable 8 bit input (doesn't clear eighth bit in chars it reads)
-	set input-meta on		## Same flag...
-	set output-meta on		## Display chars' eighth bit set directly, instead of esc sequence
-	set convert-meta off	## Prevent 8th bit strip
+	## Enable 8 bit input (doesn't clear eighth bit in chars it reads)
+	set meta-flag on
+	## Same flag...
+	set input-meta on
+	## Display chars' eighth bit set directly, instead of esc sequence
+	set output-meta on
+	## Prevent 8th bit strip
+	set convert-meta off
 	### End Other Languages ###
 ### End Main Settings ###
 
