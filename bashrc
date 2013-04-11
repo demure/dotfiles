@@ -10,6 +10,7 @@
 	export HISTCONTROL=ignoreboth:erasedups
 	export EDITOR=vim
 	shopt -s histappend
+	shopt -s cdspell		## Will fix minor spelling errors in cd paths
 	### End Universal Exports ###
 
 	### Grep Options ###
