@@ -19,11 +19,13 @@
 
 	"" Enable folds
 	if has("folding")
-		set foldenable
+		set foldenable				" Enable folds
 		set foldmethod=marker
-		set foldmarker={,}
-		set foldlevelstart=99
-		"au BufWinLeave * mkview
+		set foldmarker={,}			" Use '{}'s for folds
+		set foldlevelstart=99		" Effectively disable auto folding
+		"" These next two would save which folds are open/close,
+		"" as well as view location, but had side effect
+		"au BufWinLeave * mkviewi
 		"au BufWinEnter * silent loadview
 	endif
 
