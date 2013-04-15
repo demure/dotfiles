@@ -2,8 +2,8 @@
 # Uses shiftwidth=4 tabs
 # http://github.com/demure/dotfiles
 
-### Main Settings ###
-	### Completion Stuffs ###
+### Main Settings ### {
+	### Completion Stuffs ### {
 	## Tab complete ignores case
 	set completion-ignore-case on
 	## Complete longest explicit match, then print remaining values
@@ -21,26 +21,26 @@
 
 	## Append symbol for file, in tab completion
 	set visible-stats on
-	### End Completion Stuffs ###
+	### End Completion Stuffs ### }
 
-	### Keyboard ###
+	### Keyboard ### {
 	"\e[3~": delete-char
-	### End Keyboard ###
+	### End Keyboard ### }
 
-	### History Stuffs ###
+	### History Stuffs ### {
 	## Ended up disabling these as the prompt got a bit wonky
 #	set mark-modified-lines on
 #	set history-preserve-point on
-	### End History Stuffs ###
+	### End History Stuffs ### }
 
-	### Editing Mode ###
+	### Editing Mode ### {
 	## I prefer some of the emacs key bindings since OS X uses them.
 #	set editing-mode vi
 #	set keymap vi-insert
 #	vi-command vi-insert
-	### End Editing Mode ###
+	### End Editing Mode ### }
 
-	### For Other Languages ###
+	### For Other Languages ### {
 	## Enable 8 bit input (doesn't clear eighth bit in chars it reads)
 	set meta-flag on
 	## Same flag...
@@ -49,10 +49,10 @@
 	set output-meta on
 	## Prevent 8th bit strip
 	set convert-meta off
-	### End Other Languages ###
-### End Main Settings ###
+	### End Other Languages ### }
+### End Main Settings ### }
 
-### Testing ###
+### Testing ### {
 	## Add the missing slash when tab-completing symbolic links to directories
 #	set mark-symlinked-directories on
-### End Testing ###
+### End Testing ### }
