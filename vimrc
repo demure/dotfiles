@@ -151,6 +151,9 @@
 	""" End Paste Toggle """
  
 	""" Vim Tab Window Keysbindings """
+	"" Yeah, the next two aren't bindings... will figure out later
+	set showtabline=2				" shows the tab bar at all times
+	set tabpagemax=10				" max num of tabs to open on startup
 "	nnoremap <C-Left> :tabprevious<CR>
 "	nnoremap <C-Right> :tabnext<CR>
 "	nnoremap <silent> <A-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
