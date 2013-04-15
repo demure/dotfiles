@@ -2,8 +2,8 @@
 # Uses shiftwidth=4 for tabs
 # http://github.com/demure/dotfiles
 
-### Exports ###
-	### Universal Exports ###
+### Exports ### {
+	### Universal Exports ### {
 	export CLICOLOR="YES"				## Color 'ls', etc.
 	export HISTFILESIZE=10000
 	export HISTSIZE=10000
@@ -12,9 +12,9 @@
 	shopt -s histappend
 	shopt -s cdspell		## Will fix minor spelling errors in cd paths
 	shopt -s no_empty_cmd_completion
-	### End Universal Exports ###
+	### End Universal Exports ### }
 
-	### Grep Options ###
+	### Grep Options ### {
 	GREP_OPTIONS=
 	## Colored Greps
 	if echo hello | grep --color=auto l >/dev/null 2>&1; then
@@ -26,7 +26,7 @@
 			GREP_OPTIONS="$GREP_OPTIONS --exclude-dir=$PATTERN"
 		done
 export GREP_OPTIONS
-	### End Grep Options ###
+	### End Grep Options ### }
 
 	## For term color.
 	## Disabled, as forcing is kind of bad >_>
@@ -37,7 +37,7 @@ export GREP_OPTIONS
 #		export TERM='xterm-color'
 #	fi
 
-	### This Changes The PS1 ###
+	### This Changes The PS1 ### {
 	######
 	##Positioning the cursor
 	##The following sequence sets the cursor position: \[\033[<row>;<column>f\]
@@ -113,19 +113,19 @@ export GREP_OPTIONS
 	fi
 	
 	unset -v {,B,U,I,BI,On_,On_I}{Bla,Red,Gre,Yel,Blu,Pur,Cya,Whi} RCol
-	### End PS1 ###
-### End Exports ###
+	### End PS1 ### }
+### End Exports ### }
 
-### Settings ###
-	### Universal Aliases ###
+### Settings ### {
+	### Universal Aliases ### {
 	alias rmds='find . -name ".DS_Store" -depth -exec rm -i {} \;'
 	alias bashrc='vim ~/.bashrc'
 	alias filetree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'"
 	alias reset_display='export DISPLAY=$(tmux showenv|grep ^DISPLAY|cut -d = -f 2)'
 	alias ed='ed -p:'
-	### End Universal Aliases ###
+	### End Universal Aliases ### }
 
-	### Universal Custom Commands ###
+	### Universal Custom Commands ### {
 	## Extract most types of compressed files
 	function extract {
 		echo Extracting $1 ...
@@ -173,11 +173,11 @@ export GREP_OPTIONS
 			fi
 		fi
 	}
-	###End Universal Commands ###
+	###End Universal Commands ### }
 
-	### Mac Settings ###
+	### Mac Settings ### {
 	if [ $OSTYPE == 'darwin12' ]; then
-		### Mac Aliases ###
+		### Mac Aliases ### {
 		alias google='ping -c 1 www.google.com && growlnotify -m "google pinged"'
 		alias ardrestart='sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -restart -agent -menu'
 		alias manga='find ~/Desktop/manga|cut -d/ -f6-7|grep "\/[cov0-9][0-9]*$"'
@@ -197,54 +197,54 @@ export GREP_OPTIONS
 		## Aliases for nicing
 		alias fast='sudo nice -n -10'
 		alias slow='nice -n 20'
-		### End Mac Aliases ###
+		### End Mac Aliases ### }
 
-		### Fortune At Term ###
+		### Fortune At Term ### {
 		if [ `find $(echo $PATH | tr \: \  ) -name fortune` ]; then
 			if [ $LOGNAME != 'root' ]; then
 				echo `fortune -a`
 			fi
 		fi
-		### End Fortune ###
+		### End Fortune ### }
 	fi
-	### End Mac Settings ###
+	### End Mac Settings ### }
 
-	### For pi ###
+	### For pi ### {
 	if [ $HOSTTYPE == 'arm' ]; then
 		alias ls='ls --color=auto'
 		alias vi='vim'
 		alias svi='sudo vim'
 		alias vnc='vncserver :1 -geometry 1024x700 -depth 24'
 	fi
-	### End For pi ###
+	### End For pi ### }
 
-	### For iOS ###
+	### For iOS ### {
 	if [ $OSTYPE == 'darwin9' ]; then
 		alias svi='sudo vi'
 	fi
-	### End For iOS ###
+	### End For iOS ### }
 
-	### For Netbook ###
+	### For Netbook ### {
 	if [ $OSTYPE == 'linux-gnu' ]; then
 		alias ls='ls --color'
 	fi
-	### End For Netbook ###
+	### End For Netbook ### }
 
-	### For SDF Main Cluster ###
+	### For SDF Main Cluster ### {
 	if [[ $HOSTNAME =~ .*\.sdf\.org || $HOSTNAME == "otaku" || $HOSTNAME == "sdf" ]]; then
 		#LSCOLORS='exfxcxdxbxegedabagacad'
 		export TZ=EST5EDT
 		alias help='/usr/local/bin/help'
 		#alias ls='colorls -G'
 	fi
-	### End For SDF Main Cluster ###
+	### End For SDF Main Cluster ### }
 
-	### Testing ###
+	### Testing ### {
 	## Fix tmux DISPLAY
 	# "Yubinkim.com totally wrote this one herself"
 	# "Run this script outside of tmux!"
 #	for name in `tmux ls -F '#{session_name}'`; do
 #		tmux setenv -g -t $name DISPLAY $DISPLAY #set display for all sessions
 #	done
-	### End Testing ###
-### End Settings ###
+	### End Testing ### }
+### End Settings ### }
