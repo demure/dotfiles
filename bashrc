@@ -11,7 +11,7 @@
 	export EDITOR=vim
 	shopt -s histappend
 	shopt -s cdspell		## Will fix minor spelling errors in cd paths
-	shopt -s no_empty_cmd_completion
+	shopt -s no_empty_cmd_completion	## Stops empty line tab comp
 	### End Universal Exports ### }
 
 	### Grep Options ### {
@@ -25,7 +25,7 @@
 		for PATTERN in .cvs .git .hg .svn; do
 			GREP_OPTIONS="$GREP_OPTIONS --exclude-dir=$PATTERN"
 		done
-export GREP_OPTIONS
+	export GREP_OPTIONS
 	### End Grep Options ### }
 
 	## For term color.
@@ -37,19 +37,17 @@ export GREP_OPTIONS
 #		export TERM='xterm-color'
 #	fi
 
+	### Fortune At Term ### {
+	if [ `which fortune 2>/dev/null` ]; then
+		if [ $LOGNAME != 'root' ]; then
+			echo `fortune -a`
+		fi
+	fi
+	### End Fortune ### }
+
 	### This Changes The PS1 ### {
-	######
-	##Positioning the cursor
-	##The following sequence sets the cursor position: \[\033[<row>;<column>f\]
-	##The current cursor position can be saved using: \[\033[s\]
-	##To restore a position, use the following sequence: \[\033[u\]
-	##The following example uses these sequences to display the time in the upper right corner:
-	##PS1=">\[\033[s\]\[\033[1;\$((COLUMNS-4))f\]\$(date +%H:%M)\[\033[u\]"
-	##The environment variable COLUMNS contains the number of columns of the terminal. The above example substracts 4 from its value in order to justify the five character wide output of date at the right border.
-	######
-	######
+	### Colors to Vars ### {
 	## Inspired by http://wiki.archlinux.org/index.php/Color_Bash_Prompt#List_of_colors_for_prompt_and_Bash
-	# Reset
 	RCol='\[\e[0m\]'	# Text Reset
 
 	# Regular			Bold					Underline				High Intensity			BoldHigh Intensity	Background				High Intensity Backgrounds
@@ -61,8 +59,8 @@ export GREP_OPTIONS
 	Pur='\[\e[0;35m\]';	BPur='\[\e[1;35m\]';	UPur='\[\e[4;35m\]';	IPur='\[\e[0;95m\]';	BIPur='\[\e[1;95m\]';	On_Pur='\e[45m';	On_IPur='\[\e[0;105m\]';
 	Cya='\[\e[0;36m\]';	BCya='\[\e[1;36m\]';	UCya='\[\e[4;36m\]';	ICya='\[\e[0;96m\]';	BICya='\[\e[1;96m\]';	On_Cya='\e[46m';	On_ICya='\[\e[0;106m\]';
 	Whi='\[\e[0;37m\]';	BWhi='\[\e[1;37m\]';	UWhi='\[\e[4;37m\]';	IWhi='\[\e[0;97m\]';	BIWhi='\[\e[1;97m\]';	On_Whi='\e[47m';	On_IWhi='\[\e[0;107m\]';
+	### End Color Vars ### }
 
-	#####
 	## For Main Computer
 	if [ $HOSTNAME == 'moving-computer-of-doom' ]; then
 		if [ $LOGNAME != 'root' ]; then
@@ -190,22 +188,10 @@ export GREP_OPTIONS
 		alias mp2='mplayer2'
 		alias np='sudo nice -n -10 mplayer'
 
-		## View invisible things in finder on/off
-		alias visible='defaults write com.apple.finder AppleShowAllFiles Yes; killall Finder'
-		alias invisible='defaults write com.apple.finder AppleShowAllFiles No; killall Finder'
-
 		## Aliases for nicing
 		alias fast='sudo nice -n -10'
 		alias slow='nice -n 20'
 		### End Mac Aliases ### }
-
-		### Fortune At Term ### {
-		if [ `find $(echo $PATH | tr \: \  ) -name fortune` ]; then
-			if [ $LOGNAME != 'root' ]; then
-				echo `fortune -a`
-			fi
-		fi
-		### End Fortune ### }
 	fi
 	### End Mac Settings ### }
 
@@ -226,12 +212,12 @@ export GREP_OPTIONS
 
 	### For Netbook ### {
 	if [ $OSTYPE == 'linux-gnu' ]; then
-		alias ls='ls --color'
+		alias ls='ls --color=auto'
 	fi
 	### End For Netbook ### }
 
 	### For SDF Main Cluster ### {
-	if [[ $HOSTNAME =~ .*\.sdf\.org || $HOSTNAME == "otaku" || $HOSTNAME == "sdf" ]]; then
+	if [[ $HOSTNAME =~ .*\.sdf\.org || $HOSTNAME == "otaku" || $HOSTNAME == "sdf" || $HOSTNAME == "faeroes" ]]; then
 		#LSCOLORS='exfxcxdxbxegedabagacad'
 		export TZ=EST5EDT
 		alias help='/usr/local/bin/help'
