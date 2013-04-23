@@ -6,7 +6,7 @@
 	### Completion Stuffs ### {
 	## Tab complete ignores case
 	set completion-ignore-case on
-	## Complete longest explicit match, then print remaining values
+	## Comp longest explicit match, then print remaining values
 	set show-all-if-ambiguous on
 	## With ignore on, will ignore diff between '-' and '_'
 	set completion-map-case on
@@ -34,18 +34,18 @@
 	### End History Stuffs ### }
 
 	### Editing Mode ### {
-	## I prefer some of the emacs key bindings since OS X uses them.
+	## I prefer some of emacs key bindings as OS X uses them.
 #	set editing-mode vi
 #	set keymap vi-insert
 #	vi-command vi-insert
 	### End Editing Mode ### }
 
 	### For Other Languages ### {
-	## Enable 8 bit input (doesn't clear eighth bit in chars it reads)
+	## Enable 8 bit input (doesn't clear 8th bit in chars it reads)
 	set meta-flag on
 	## Same flag...
 	set input-meta on
-	## Display chars' eighth bit set directly, instead of esc sequence
+	## Display chars' 8th bit set directly, instead of esc sequence
 	set output-meta on
 	## Prevent 8th bit strip
 	set convert-meta off
@@ -53,6 +53,6 @@
 ### End Main Settings ### }
 
 ### Testing ### {
-	## Add the missing slash when tab-completing symbolic links to directories
+	## Add missing / when tab-completing symbolic links to dirs
 #	set mark-symlinked-directories on
 ### End Testing ### }
