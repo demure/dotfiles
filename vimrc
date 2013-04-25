@@ -251,12 +251,13 @@
 	""" End YankRing """ }
 
 	""" Solarized Theme """ {
-	"colorscheme solarized
+	"call togglebg#map("<F6>")
 	"if has('gui_running')
 		"set background=light
 	  "else
 		"set background=dark
 	"endif
+	"colorscheme solarized
 	""" End Solarized """ }
 
 	""" Gundo Conf """ {
