@@ -88,14 +88,15 @@
 	set list						" Shows certain hidden chars
 	set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 	""Disabled for Solarized test
-"	hi NonText ctermfg=darkgray		" Makes trailing darkgray
-"	hi SpecialKey ctermfg=darkgray	" Makes Leading darkgray
+	hi NonText ctermfg=darkgray		" Makes trailing darkgray
+	hi SpecialKey ctermfg=darkgray	" Makes Leading darkgray
 	""" End Hidden Chars """ }
 
 	""" Spelling """ {
 	set spell						" Spelling hilight on
 "	highlight SpellBad cterm=underline ctermfg=red
 	hi SpellBad cterm=underline ctermbg=NONE
+	hi SpellCap cterm=underline ctermbg=NONE
 	""" End Spelling """ }
 
 	""" Tab Windows """ {
@@ -211,7 +212,7 @@
 	Bundle 'Rainbow-Parenthsis-Bundle'
 	Bundle 'scrooloose/nerdcommenter'
 	Bundle 'YankRing.vim'
-	Bundle 'altercation/vim-colors-solarized'
+	"Bundle 'altercation/vim-colors-solarized'
 	Bundle 'tpope/vim-fugitive'
 	"Bundle 'SearchComplete'		"" Disabled due to killing UP arrow in search
 	Bundle 'bufexplorer.zip'
@@ -250,12 +251,12 @@
 	""" End YankRing """ }
 
 	""" Solarized Theme """ {
-	colorscheme solarized
-	if has('gui_running')
-		set background=light
-	  else
-		set background=dark
-	endif
+	"colorscheme solarized
+	"if has('gui_running')
+		"set background=light
+	  "else
+		"set background=dark
+	"endif
 	""" End Solarized """ }
 
 	""" Gundo Conf """ {
