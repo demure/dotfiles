@@ -4,15 +4,22 @@
 
 ### Exports ### {
 	### Universal Exports ### {
+	export PROMPT_COMMAND=__prompt_command
 	export CLICOLOR="YES"				## Color 'ls', etc.
 	export HISTFILESIZE=10000
 	export HISTSIZE=10000
 	export HISTCONTROL=ignoreboth:erasedups
 	export EDITOR=vim
 	shopt -s histappend
-	shopt -s cdspell		## Will fix minor spelling errors in cd paths
+	shopt -s cdspell		## Fixes minor spelling errors in cd paths
 	shopt -s no_empty_cmd_completion	## Stops empty line tab comp
 	### End Universal Exports ### }
+
+	### Fortune At Login ### {
+	if [[ `which fortune 2>/dev/null` && $UID != '0' && $- == *i* ]]; then
+		fortune -a
+	fi
+	### End Fortune ### }
 
 	### Grep Options ### {
 	GREP_OPTIONS=
@@ -20,15 +27,16 @@
 	if echo hello | grep --color=auto l >/dev/null 2>&1; then
 		export GREP_OPTIONS="$GREP_OPTIONS --color=auto" GREP_COLOR='1;31'
 	fi
+
 	## Exclude annoying dirs
 	## http://blog.sanctum.geek.nz/default-grep-options/
-		for PATTERN in .cvs .git .hg .svn; do
-			GREP_OPTIONS="$GREP_OPTIONS --exclude-dir=$PATTERN"
-		done
+	for PATTERN in .cvs .git .hg .svn; do
+		GREP_OPTIONS="$GREP_OPTIONS --exclude-dir=$PATTERN"
+	done
 	export GREP_OPTIONS
 	### End Grep Options ### }
 
-	## For term color.
+	### TERM color ### {
 	## Disabled, as forcing is kind of bad >_>
 	## http://blog.sanctum.geek.nz/term-strings/
 #	if [ -e /usr/share/terminfo/x/xterm-256color ]; then
@@ -36,83 +44,8 @@
 #	  else
 #		export TERM='xterm-color'
 #	fi
-
-	### Fortune At Term ### {
-	if [ `which fortune 2>/dev/null` ]; then
-		if [ $LOGNAME != 'root' ]; then
-			echo `fortune -a`
-		fi
-	fi
-	### End Fortune ### }
-
-	### This Changes The PS1 ### {
-	### Colors to Vars ### {
-	## Inspired by http://wiki.archlinux.org/index.php/Color_Bash_Prompt#List_of_colors_for_prompt_and_Bash
-	RCol='\[\e[0m\]'	# Text Reset
-
-	# Regular			Bold					Underline				High Intensity			BoldHigh Intensity	Background				High Intensity Backgrounds
-	Bla='\[\e[0;30m\]';	BBla='\[\e[1;30m\]';	UBla='\[\e[4;30m\]';	IBla='\[\e[0;90m\]';	BIBla='\[\e[1;90m\]';	On_Bla='\e[40m';	On_IBla='\[\e[0;100m\]';
-	Red='\[\e[0;31m\]';	BRed='\[\e[1;31m\]';	URed='\[\e[4;31m\]';	IRed='\[\e[0;91m\]';	BIRed='\[\e[1;91m\]';	On_Red='\e[41m';	On_IRed='\[\e[0;101m\]';
-	Gre='\[\e[0;32m\]';	BGre='\[\e[1;32m\]';	UGre='\[\e[4;32m\]';	IGre='\[\e[0;92m\]';	BIGre='\[\e[1;92m\]';	On_Gre='\e[42m';	On_IGre='\[\e[0;102m\]';
-	Yel='\[\e[0;33m\]';	BYel='\[\e[1;33m\]';	UYel='\[\e[4;33m\]';	IYel='\[\e[0;93m\]';	BIYel='\[\e[1;93m\]';	On_Yel='\e[43m';	On_IYel='\[\e[0;103m\]';
-	Blu='\[\e[0;34m\]';	BBlu='\[\e[1;34m\]';	UBlu='\[\e[4;34m\]';	IBlu='\[\e[0;94m\]';	BIBlu='\[\e[1;94m\]';	On_Blu='\e[44m';	On_IBlu='\[\e[0;104m\]';
-	Pur='\[\e[0;35m\]';	BPur='\[\e[1;35m\]';	UPur='\[\e[4;35m\]';	IPur='\[\e[0;95m\]';	BIPur='\[\e[1;95m\]';	On_Pur='\e[45m';	On_IPur='\[\e[0;105m\]';
-	Cya='\[\e[0;36m\]';	BCya='\[\e[1;36m\]';	UCya='\[\e[4;36m\]';	ICya='\[\e[0;96m\]';	BICya='\[\e[1;96m\]';	On_Cya='\e[46m';	On_ICya='\[\e[0;106m\]';
-	Whi='\[\e[0;37m\]';	BWhi='\[\e[1;37m\]';	UWhi='\[\e[4;37m\]';	IWhi='\[\e[0;97m\]';	BIWhi='\[\e[1;97m\]';	On_Whi='\e[47m';	On_IWhi='\[\e[0;107m\]';
-	### End Color Vars ### }
-
-	## For Main Computer
-	if [ $HOSTNAME == 'moving-computer-of-doom' ]; then
-		if [ $LOGNAME != 'root' ]; then
-			export PS1="\`if [ \$? != 0 ]; then echo \[\e[31m\]\$?${RCol}; fi\`${Cya}\W -> ${RCol}"
-		  else
-			export PS1="${Red}\h \W ->${RCol} "
-		fi
-
-	## For pi
-	elif [ $HOSTTYPE == 'arm' ]; then
-		if [ $LOGNAME != 'root' ]; then
-			export PS1="\`if [ \$? != 0 ]; then echo \[\e[31m\]\$?${RCol}; fi\`${Gre}\W -> ${RCol}"
-		  else
-			export PS1="${Red}\h \W ->${RCol} "
-		fi
-
-	## For MetaArray
-	elif [ $HOSTNAME == 'ma.sdf.org' ]; then
-		if [ $LOGNAME != 'root' ]; then
-			export PS1="\`if [ \$? != 0 ]; then echo \[\e[31m\]\$?${RCol}; fi\`${Blu}\W -> ${RCol}"
-		fi
-
-	## For iOS
-	elif [[ $MACHTYPE =~ arm-apple-darwin ]]; then
-		if [ $LOGNAME != 'root' ]; then
-			export PS1="\`if [ \$? != 0 ]; then echo \[\e[31m\]\$?${RCol}; fi\`${Gre}\W -> ${RCol}"
-		  else
-			export PS1="${Red}\h \W ->${RCol} "
-		fi
-
-	## For Netbook
-	elif [ $MACHTYPE == 'i486-pc-linux-gnu' ]; then
-		if [ $LOGNAME != 'root' ]; then
-			export PS1="\`if [ \$? != 0 ]; then echo \[\e[31m\]\$?${RCol}; fi\`${BBla}\W -> ${RCol}"
-		  else
-			export PS1="${Red}\h \W ->${RCol} "
-		fi
-
-	## For Main Cluster
-	elif [[ $HOSTNAME =~ .*\.sdf\.org || $HOSTNAME == "otaku" || $HOSTNAME == "sdf" || $HOSTNAME == "faeroes" ]]; then
-		if [ $LOGNAME != 'root' ]; then
-			export PS1="\`if [ \$? != 0 ]; then echo \[\e[31m\]\$?${RCol}; fi\`${Yel}\W -> ${RCol}"
-		fi
-
-	## If not designated, use catch-all
-	else
-	  export PS1="\h \W -> "
-	fi
-	
-	unset -v {,B,U,I,BI,On_,On_I}{Bla,Red,Gre,Yel,Blu,Pur,Cya,Whi} RCol
-	### End PS1 ### }
-### End Exports ### }
+	### End TERM ### }
+#### End Exports ### }
 
 ### Settings ### {
 	### Universal Aliases ### {
@@ -234,3 +167,54 @@
 #	done
 	### End Testing ### }
 ### End Settings ### }
+
+### Big Function ### {
+	### This Changes The PS1 ### {
+	function __prompt_command()
+	{
+		EXIT="$?"								## This needs to be first
+		PS1=""
+		### Colors to Vars ### {
+		## Inspired by http://wiki.archlinux.org/index.php/Color_Bash_Prompt#List_of_colors_for_prompt_and_Bash
+		## Can unset with `unset -v {,B,U,I,BI,On_,On_I}{Bla,Red,Gre,Yel,Blu,Pur,Cya,Whi} RCol`
+		RCol='\[\e[0m\]'	# Text Reset
+
+		# Regular			Bold					Underline				High Intensity			BoldHigh Intensity	Background				High Intensity Backgrounds
+		Bla='\[\e[0;30m\]';	BBla='\[\e[1;30m\]';	UBla='\[\e[4;30m\]';	IBla='\[\e[0;90m\]';	BIBla='\[\e[1;90m\]';	On_Bla='\e[40m';	On_IBla='\[\e[0;100m\]';
+		Red='\[\e[0;31m\]';	BRed='\[\e[1;31m\]';	URed='\[\e[4;31m\]';	IRed='\[\e[0;91m\]';	BIRed='\[\e[1;91m\]';	On_Red='\e[41m';	On_IRed='\[\e[0;101m\]';
+		Gre='\[\e[0;32m\]';	BGre='\[\e[1;32m\]';	UGre='\[\e[4;32m\]';	IGre='\[\e[0;92m\]';	BIGre='\[\e[1;92m\]';	On_Gre='\e[42m';	On_IGre='\[\e[0;102m\]';
+		Yel='\[\e[0;33m\]';	BYel='\[\e[1;33m\]';	UYel='\[\e[4;33m\]';	IYel='\[\e[0;93m\]';	BIYel='\[\e[1;93m\]';	On_Yel='\e[43m';	On_IYel='\[\e[0;103m\]';
+		Blu='\[\e[0;34m\]';	BBlu='\[\e[1;34m\]';	UBlu='\[\e[4;34m\]';	IBlu='\[\e[0;94m\]';	BIBlu='\[\e[1;94m\]';	On_Blu='\e[44m';	On_IBlu='\[\e[0;104m\]';
+		Pur='\[\e[0;35m\]';	BPur='\[\e[1;35m\]';	UPur='\[\e[4;35m\]';	IPur='\[\e[0;95m\]';	BIPur='\[\e[1;95m\]';	On_Pur='\e[45m';	On_IPur='\[\e[0;105m\]';
+		Cya='\[\e[0;36m\]';	BCya='\[\e[1;36m\]';	UCya='\[\e[4;36m\]';	ICya='\[\e[0;96m\]';	BICya='\[\e[1;96m\]';	On_Cya='\e[46m';	On_ICya='\[\e[0;106m\]';
+		Whi='\[\e[0;37m\]';	BWhi='\[\e[1;37m\]';	UWhi='\[\e[4;37m\]';	IWhi='\[\e[0;97m\]';	BIWhi='\[\e[1;97m\]';	On_Whi='\e[47m';	On_IWhi='\[\e[0;107m\]';
+		### End Color Vars ### }
+
+		if [ $UID -eq "0" ];then
+			PS1+="${Red}\h \W ->${RCol} "		## Set prompt for root
+		  else
+			if [ $EXIT != 0 ]; then
+				PS1+="${Red}${EXIT}${RCol}"		## Add exit code, if non 0
+			fi
+
+			if [ $HOSTNAME == 'moving-computer-of-doom' ]; then
+				PS1+="${Cya}"					## For Main Computer
+			elif [ $HOSTTYPE == 'arm' ]; then
+				PS1+="${Gre}"					## For pi
+			elif [ $HOSTNAME == 'ma.sdf.org' ]; then
+				PS1+="${Blu}"					## For MetaArray
+			elif [[ $MACHTYPE =~ arm-apple-darwin ]]; then
+				PS1+="${Gre}"					## For iOS
+			elif [ $MACHTYPE == 'i486-pc-linux-gnu' ]; then
+				PS1+="${BBla}"					## For Netbook
+			elif [[ $HOSTNAME =~ .*\.sdf\.org || $HOSTNAME == "otaku" || $HOSTNAME == "sdf" || $HOSTNAME == "faeroes" ]]; then
+				PS1="${Yel}"					## For Main Cluster
+			  else
+				PS1+="\h "						## Un-designated catch-all
+			fi
+
+			PS1+="\W -> ${RCol}"				## Main part of PS1
+		fi
+	}
+	### End PS1 ### }
+### End Big Function ### }
