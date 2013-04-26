@@ -6,8 +6,8 @@
 	### Universal Exports ### {
 	export PROMPT_COMMAND=__prompt_command
 	export CLICOLOR="YES"				## Color 'ls', etc.
-	export HISTFILESIZE=10000
-	export HISTSIZE=10000
+	export HISTFILESIZE=10000			## Size of Hist file
+	export HISTSIZE=10000				## Size of shell's hist
 	export HISTCONTROL=ignoreboth:erasedups
 	export EDITOR=vim
 	shopt -s histappend
@@ -16,6 +16,7 @@
 	### End Universal Exports ### }
 
 	### Fortune At Login ### {
+	## Tests for fortune, root, interactive shell, and dumb term
 	if [[ `which fortune 2>/dev/null` && $UID != '0' && $- == *i* && $TERM != 'dumb' ]]; then
 		fortune -a
 	fi
@@ -80,7 +81,7 @@
 		fi
 	}
 
-	## Color man pages with less (is a most way too...)
+	## Color man pages with less (is a `most` way too...)
 	man() {
 		env \
 		LESS_TERMCAP_mb=$(printf "\e[1;31m") \
@@ -111,7 +112,6 @@
 		### Mac Aliases ### {
 		alias google='ping -c 1 www.google.com && growlnotify -m "google pinged"'
 		alias ardrestart='sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -restart -agent -menu'
-		alias manga='find ~/Desktop/manga|cut -d/ -f6-7|grep "\/[cov0-9][0-9]*$"'
 		alias vi='vim'
 		alias svi='sudo vi'
 		alias rebuild_open_with='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user;killall Finder;echo "Open With has been rebuilt, Finder will relaunch"'
