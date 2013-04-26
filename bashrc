@@ -109,6 +109,13 @@
 
 	### Mac Settings ### {
 	if [ $OSTYPE == 'darwin12' ]; then
+		### Mac Sourcing ### {
+		## Add git completion
+		if [ -f `brew --prefix`/etc/bash_completion ]; then
+			source `brew --prefix`/etc/bash_completion
+		fi
+		### End Mac Sourcing ### }
+
 		### Mac Aliases ### {
 		alias google='ping -c 1 www.google.com && growlnotify -m "google pinged"'
 		alias ardrestart='sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -restart -agent -menu'
@@ -128,8 +135,15 @@
 	fi
 	### End Mac Settings ### }
 
+	### MA Settings ### {
+	if [ $HOSTNAME == 'ma.sdf.org' ]; then
+		source /etc/bash_completion.d/git		## Add git completion
+	fi
+	### End MA Settings ### }
+
 	### For pi ### {
 	if [ $HOSTTYPE == 'arm' ]; then
+		source /etc/bash_completion.d/git		## Add git completion
 		alias ls='ls --color=auto'
 		alias vi='vim'
 		alias svi='sudo vim'
