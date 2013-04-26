@@ -103,6 +103,11 @@
 	set hidden						" Hides buffers, instead of closing, or forcing save
 	set showtabline=2				" shows the tab bar at all times
 	set tabpagemax=10				" max num of tabs to open on startup
+	hi TabLineSel ctermbg=Yellow
+	hi TabLine ctermfg=Grey ctermbg=DarkGrey
+	"hi TabLineFill ctermfg=DarkCyan
+	hi TabLineFill ctermfg=Black
+	hi Title ctermfg=DarkBlue ctermbg=None
 	""" End Tab Windows """ }
 
 	""" Tab Key Settings """ {
