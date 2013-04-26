@@ -186,28 +186,29 @@
 	### This Changes The PS1 ### {
 	function __prompt_command()
 	{
-		EXIT="$?"								## This needs to be first
+		local EXIT="$?"							## This needs to be first
 		PS1=""
 		### Colors to Vars ### {
 		## Inspired by http://wiki.archlinux.org/index.php/Color_Bash_Prompt#List_of_colors_for_prompt_and_Bash
 		## Can unset with `unset -v {,B,U,I,BI,On_,On_I}{Bla,Red,Gre,Yel,Blu,Pur,Cya,Whi} RCol`
 		RCol='\[\e[0m\]'	# Text Reset
 
-		# Regular			Bold					Underline				High Intensity			BoldHigh Intensity	Background				High Intensity Backgrounds
-		Bla='\[\e[0;30m\]';	BBla='\[\e[1;30m\]';	UBla='\[\e[4;30m\]';	IBla='\[\e[0;90m\]';	BIBla='\[\e[1;90m\]';	On_Bla='\e[40m';	On_IBla='\[\e[0;100m\]';
-		Red='\[\e[0;31m\]';	BRed='\[\e[1;31m\]';	URed='\[\e[4;31m\]';	IRed='\[\e[0;91m\]';	BIRed='\[\e[1;91m\]';	On_Red='\e[41m';	On_IRed='\[\e[0;101m\]';
-		Gre='\[\e[0;32m\]';	BGre='\[\e[1;32m\]';	UGre='\[\e[4;32m\]';	IGre='\[\e[0;92m\]';	BIGre='\[\e[1;92m\]';	On_Gre='\e[42m';	On_IGre='\[\e[0;102m\]';
-		Yel='\[\e[0;33m\]';	BYel='\[\e[1;33m\]';	UYel='\[\e[4;33m\]';	IYel='\[\e[0;93m\]';	BIYel='\[\e[1;93m\]';	On_Yel='\e[43m';	On_IYel='\[\e[0;103m\]';
-		Blu='\[\e[0;34m\]';	BBlu='\[\e[1;34m\]';	UBlu='\[\e[4;34m\]';	IBlu='\[\e[0;94m\]';	BIBlu='\[\e[1;94m\]';	On_Blu='\e[44m';	On_IBlu='\[\e[0;104m\]';
-		Pur='\[\e[0;35m\]';	BPur='\[\e[1;35m\]';	UPur='\[\e[4;35m\]';	IPur='\[\e[0;95m\]';	BIPur='\[\e[1;95m\]';	On_Pur='\e[45m';	On_IPur='\[\e[0;105m\]';
-		Cya='\[\e[0;36m\]';	BCya='\[\e[1;36m\]';	UCya='\[\e[4;36m\]';	ICya='\[\e[0;96m\]';	BICya='\[\e[1;96m\]';	On_Cya='\e[46m';	On_ICya='\[\e[0;106m\]';
-		Whi='\[\e[0;37m\]';	BWhi='\[\e[1;37m\]';	UWhi='\[\e[4;37m\]';	IWhi='\[\e[0;97m\]';	BIWhi='\[\e[1;97m\]';	On_Whi='\e[47m';	On_IWhi='\[\e[0;107m\]';
+		# Regular					Bold						Underline					High Intensity				BoldHigh Intensity			Background				High Intensity Backgrounds
+		local Bla='\[\e[0;30m\]';	local BBla='\[\e[1;30m\]';	local UBla='\[\e[4;30m\]';	local IBla='\[\e[0;90m\]';	local BIBla='\[\e[1;90m\]';	local On_Bla='\e[40m';	local On_IBla='\[\e[0;100m\]';
+		local Red='\[\e[0;31m\]';	local BRed='\[\e[1;31m\]';	local URed='\[\e[4;31m\]';	local IRed='\[\e[0;91m\]';	local BIRed='\[\e[1;91m\]';	local On_Red='\e[41m';	local On_IRed='\[\e[0;101m\]';
+		local Gre='\[\e[0;32m\]';	local BGre='\[\e[1;32m\]';	local UGre='\[\e[4;32m\]';	local IGre='\[\e[0;92m\]';	local BIGre='\[\e[1;92m\]';	local On_Gre='\e[42m';	local On_IGre='\[\e[0;102m\]';
+		local Yel='\[\e[0;33m\]';	local BYel='\[\e[1;33m\]';	local UYel='\[\e[4;33m\]';	local IYel='\[\e[0;93m\]';	local BIYel='\[\e[1;93m\]';	local On_Yel='\e[43m';	local On_IYel='\[\e[0;103m\]';
+		local Blu='\[\e[0;34m\]';	local BBlu='\[\e[1;34m\]';	local UBlu='\[\e[4;34m\]';	local IBlu='\[\e[0;94m\]';	local BIBlu='\[\e[1;94m\]';	local On_Blu='\e[44m';	local On_IBlu='\[\e[0;104m\]';
+		local Pur='\[\e[0;35m\]';	local BPur='\[\e[1;35m\]';	local UPur='\[\e[4;35m\]';	local IPur='\[\e[0;95m\]';	local BIPur='\[\e[1;95m\]';	local On_Pur='\e[45m';	local On_IPur='\[\e[0;105m\]';
+		local Cya='\[\e[0;36m\]';	local BCya='\[\e[1;36m\]';	local UCya='\[\e[4;36m\]';	local ICya='\[\e[0;96m\]';	local BICya='\[\e[1;96m\]';	local On_Cya='\e[46m';	local On_ICya='\[\e[0;106m\]';
+		local Whi='\[\e[0;37m\]';	local BWhi='\[\e[1;37m\]';	local UWhi='\[\e[4;37m\]';	local IWhi='\[\e[0;97m\]';	local BIWhi='\[\e[1;97m\]';	local On_Whi='\e[47m';	local On_IWhi='\[\e[0;107m\]';
 		### End Color Vars ### }
 
 		if [ $UID -eq "0" ];then
 			PS1+="${Red}\h \W ->${RCol} "		## Set prompt for root
 		  else
 			if [ $EXIT != 0 ]; then
+				## can add `kill -l $?` to test to filter backgrounded
 				PS1+="${Red}${EXIT}${RCol}"		## Add exit code, if non 0
 			fi
 
@@ -228,6 +229,31 @@
 			fi
 
 			PS1+="\W -> ${RCol}"				## Main part of PS1
+
+			#### {
+			# check if inside git repo
+			local git_status="`git status -unormal 2>&1`"
+			if ! [[ "$git_status" =~ Not\ a\ git\ repo ]]; then
+				# parse the porcelain output of git status
+				if [[ "$git_status" =~ nothing\ to\ commit ]]; then
+					local Git_Color=$Gre
+				elif [[ "$git_status" =~ nothing\ added\ to\ commit\ but\ untracked\ files\ present ]]; then
+					local Git_Color=$Pur
+				else
+					local Git_Color=$Red
+				fi
+
+				if [[ "$git_status" =~ On\ branch\ ([^[:space:]]+) ]]; then
+					local branch=${BASH_REMATCH[1]}
+				else
+					# Detached HEAD. (branch=HEAD is a faster alternative.)
+					local branch="(`git describe --all --contains --abbrev=4 HEAD 2> /dev/null || echo HEAD`)"
+				fi
+
+				# add the result to prompt
+				PS1+="$Git_Color[$branch]${RCol} "
+			fi
+			#### }
 		fi
 	}
 	### End PS1 ### }
