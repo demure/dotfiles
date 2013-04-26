@@ -16,7 +16,7 @@
 	### End Universal Exports ### }
 
 	### Fortune At Login ### {
-	if [[ `which fortune 2>/dev/null` && $UID != '0' && $- == *i* ]]; then
+	if [[ `which fortune 2>/dev/null` && $UID != '0' && $- == *i* && $TERM != 'dumb' ]]; then
 		fortune -a
 	fi
 	### End Fortune ### }
