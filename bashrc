@@ -187,6 +187,7 @@
 	function __prompt_command()
 	{
 		local EXIT="$?"							## This needs to be first
+		local PSCol=""							## Declare so null var fine
 		PS1=""
 		### Colors to Vars ### {
 		## Inspired by http://wiki.archlinux.org/index.php/Color_Bash_Prompt#List_of_colors_for_prompt_and_Bash
@@ -212,48 +213,66 @@
 				PS1+="${Red}${EXIT}${RCol}"		## Add exit code, if non 0
 			fi
 
+			### Machine Test ### {
 			if [ $HOSTNAME == 'moving-computer-of-doom' ]; then
-				PS1+="${Cya}"					## For Main Computer
+				local PSCol="$Cya"				## For Main Computer
 			elif [ $HOSTTYPE == 'arm' ]; then
-				PS1+="${Gre}"					## For pi
+				local PSCol="$Gre"				## For pi
 			elif [ $HOSTNAME == 'ma.sdf.org' ]; then
-				PS1+="${Blu}"					## For MetaArray
+				local PSCol="$Blu"				## For MetaArray
 			elif [[ $MACHTYPE =~ arm-apple-darwin ]]; then
-				PS1+="${Gre}"					## For iOS
+				local PSCol="$Gre"				## For iOS
 			elif [ $MACHTYPE == 'i486-pc-linux-gnu' ]; then
-				PS1+="${BBla}"					## For Netbook
+				local PSCol="$BBla"			## For Netbook
 			elif [[ $HOSTNAME =~ .*\.sdf\.org || $HOSTNAME == "otaku" || $HOSTNAME == "sdf" || $HOSTNAME == "faeroes" ]]; then
-				PS1="${Yel}"					## For Main Cluster
+				local PSCol="$Yel"				## For Main Cluster
 			  else
 				PS1+="\h "						## Un-designated catch-all
 			fi
+			### End Machine Test ### }
 
-			PS1+="\W -> ${RCol}"				## Main part of PS1
+			PS1+="${PSCol}\W ${RCol}"				## Current working dir
 
-			#### {
-			# check if inside git repo
+			### Add Git Status ### {
+			## Based on http://www.terminally-incoherent.com/blog/2013/01/14/whats-in-your-bash-prompt/
 			local git_status="`git status -unormal 2>&1`"
 			if ! [[ "$git_status" =~ Not\ a\ git\ repo ]]; then
-				# parse the porcelain output of git status
+				### Test For Changes ### {
 				if [[ "$git_status" =~ nothing\ to\ commit ]]; then
-					local Git_Color=$Gre
+					local GitCol=$Gre
 				elif [[ "$git_status" =~ nothing\ added\ to\ commit\ but\ untracked\ files\ present ]]; then
-					local Git_Color=$Pur
-				else
-					local Git_Color=$Red
+					local GitCol=$Pur
+				  else
+					local GitCol=$Red
 				fi
+				### End Test Changes ### }
 
+				### Find Branch ### {
 				if [[ "$git_status" =~ On\ branch\ ([^[:space:]]+) ]]; then
 					local branch=${BASH_REMATCH[1]}
-				else
-					# Detached HEAD. (branch=HEAD is a faster alternative.)
+				  else
+					## Detached HEAD (branch=HEAD is a faster alternative).
 					local branch="(`git describe --all --contains --abbrev=4 HEAD 2> /dev/null || echo HEAD`)"
 				fi
+				### End Branch ### }
 
-				# add the result to prompt
-				PS1+="$Git_Color[$branch]${RCol} "
+				PS1+="$GitCol[$branch]${RCol}"		## Add result to prompt
+
+				### Test Ahead ### {
+				## Add test for ahead here
+				#Use:
+				# Your branch is ahead of 'origin/master' by 1 commit.
+				# Your branch is ahead of 'origin/master' by 2 commits.
+				#if [[ "$git_status" =~ Your\ branch\ is\ ahead\ of\ (.*)\ by\ ([0-9][0-9]*)\ commit ]]; then
+				if [[ "$git_status" =~ is\ ahead\ of\ (.*)\ by\ ([0-9][0-9]*) ]]; then
+					PS1+="${BBla}:${RCol}${BASH_REMATCH[2]}"
+				fi
+				### End Ahead ### }
+
 			fi
-			#### }
+			### End Git Status ### }
+
+			PS1+=" ${PSCol}-> ${RCol}"				## End of PS1
 		fi
 	}
 	### End PS1 ### }
