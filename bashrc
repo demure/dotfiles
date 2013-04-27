@@ -259,11 +259,6 @@
 				PS1+="$GitCol[$branch]${RCol}"		## Add result to prompt
 
 				### Test Ahead ### {
-				## Add test for ahead here
-				#Use:
-				# Your branch is ahead of 'origin/master' by 1 commit.
-				# Your branch is ahead of 'origin/master' by 2 commits.
-				#if [[ "$git_status" =~ Your\ branch\ is\ ahead\ of\ (.*)\ by\ ([0-9][0-9]*)\ commit ]]; then
 				if [[ "$git_status" =~ is\ ahead\ of\ (.*)\ by\ ([0-9][0-9]*) ]]; then
 					PS1+="${BBla}:${RCol}${BASH_REMATCH[2]}"
 				fi
