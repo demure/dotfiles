@@ -17,7 +17,7 @@
 		"filetype indent on
 	endif
 
-	"" Enable folds
+	""" Folds Settings """ {
 	if has("folding")
 		set foldenable				" Enable folds
 		"" These next two would save which folds are open/close,
@@ -28,6 +28,7 @@
 		set foldmarker={,}			" Use '{}'s for folds
 		set foldlevelstart=99		" Effectively disable auto folding
 	endif
+	""" End Folds Settings """ }
 
 	"" Stop auto comment on new line
 	autocmd FileType * setlocal formatoptions-=cro
@@ -38,8 +39,8 @@
 	""" Assorted """ {
 	set number						" Adds line numbers
 	set showcmd						" Show incomplete cmds down the bottom
-	set showmode					" Indicates input or replace mode at bottom
-	set ruler						" show possition in bottom right
+	set showmode					" Shows input or replace mode at bottom
+	set ruler						" Show possition in bottom right
 	set autoread					" Reload files changed outside vim
 	set encoding=utf8				" Sets encoding View
 	set virtualedit=block,onemore	" Cursor can move one past EOL, and free in Visual mode
@@ -103,11 +104,11 @@
 	set hidden						" Hides buffers, instead of closing, or forcing save
 	set showtabline=2				" shows the tab bar at all times
 	set tabpagemax=10				" max num of tabs to open on startup
-	hi TabLineSel ctermbg=Yellow
-	hi TabLine ctermfg=Grey ctermbg=DarkGrey
+	hi TabLineSel ctermbg=Yellow	" Current Tab
+	hi TabLine ctermfg=Grey ctermbg=DarkGrey	" Other Tabs
 	"hi TabLineFill ctermfg=DarkCyan
-	hi TabLineFill ctermfg=Black
-	hi Title ctermfg=DarkBlue ctermbg=None
+	hi TabLineFill ctermfg=Black	" Rest of line
+	hi Title ctermfg=DarkBlue ctermbg=None	" Windows in Tab
 	""" End Tab Windows """ }
 
 	""" Tab Key Settings """ {
@@ -121,15 +122,16 @@
 	""" End Tab Key """ }
 
 	""" Searching """ {
+	" Use real regex search
 	nnoremap / /\v
-	vnoremap / /\v
+	vnoremap / /\vi
 	set hlsearch					" Highlight matches
 	set incsearch					" Incremental searching
 	set ignorecase					" Searches are case insensitive...
-	set smartcase					" ... unless they contain at least one capital letter
+	set smartcase					" ...unless contains oneplus Cap letter
 	set showmatch					" Show matching brackets/parenthesis
-	set gdefault					" Applies substitutions globally on lines. append 'g' to invert back. 
-	set synmaxcol=800				" Don't try to highlight lines longer than 800 characters.
+	set gdefault					" Applies substitutions globally on lines. Append 'g' to invert back. 
+	set synmaxcol=800				" Don't highlight lines longer than 800 chars
 	""" End Searching """ }
 
 	""" Backup Settings """ {
@@ -145,11 +147,11 @@
 		endif
 		""" End Dir """ }
 	set backup						" Enable backups
+	set undofile
+	set undoreload=10000
 	set backupdir=~/.vim/back/
 	set directory=~/.vim/swap/		" swap files
 	set undodir=~/.vim/undo/		" undo files
-	set undofile
-	set undoreload=10000
 	""" End Backup Settings """ }
 """ End Options """ }
 
@@ -188,6 +190,19 @@
 	map <leader> <Up> :wincmd k<CR>
 	map <leader> <Right> :wincmd l<CR>
 	""" End Navigate Splits """ }
+
+	""" Toggle colorcolumn """ {
+	highlight ColorColumn ctermbg=Brown
+	function! g:ToggleColorColumn()
+		if &colorcolumn != ''
+			setlocal colorcolumn&
+		  else
+			setlocal colorcolumn=77
+		endif
+	endfunction
+ 
+	nnoremap <silent> <leader>l :call g:ToggleColorColumn()<CR>
+	""" End Toggle colorcolumn """ }
 
 	""" Cross Hairs """ {
 	hi CursorLine   cterm=NONE ctermbg=darkgrey ctermfg=white guibg=darkred guifg=white
