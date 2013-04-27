@@ -20,13 +20,13 @@
 	"" Enable folds
 	if has("folding")
 		set foldenable				" Enable folds
+		"" These next two would save which folds are open/close,
+		"" as well as view location, but had side effect
+		"au BufWinLeave ?* mkview
+		"au BufWinEnter ?* silent loadview
 		set foldmethod=marker
 		set foldmarker={,}			" Use '{}'s for folds
 		set foldlevelstart=99		" Effectively disable auto folding
-		"" These next two would save which folds are open/close,
-		"" as well as view location, but had side effect
-		"au BufWinLeave * mkviewi
-		"au BufWinEnter * silent loadview
 	endif
 
 	"" Stop auto comment on new line
@@ -268,7 +268,7 @@
 	""" Gundo Conf """ {
 	nnoremap <F5> :GundoToggle<CR>
 	""" End Gundo """ }
-""" End Plugins """ {
+""" End Plugins """ }
 
 """ Notes To Self """ {
 "" Consider:
