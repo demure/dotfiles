@@ -7,7 +7,7 @@
 	export PROMPT_COMMAND=__prompt_command
 	export CLICOLOR="YES"				## Color 'ls', etc.
 	export HISTFILESIZE=10000			## Size of Hist file
-	export HISTSIZE=10000				## Size of shell's hist
+	export HISTSIZE=10000				## Size of shell\'s hist
 	export HISTCONTROL=ignoreboth:erasedups
 	export EDITOR=vim
 	shopt -s histappend
