@@ -11,13 +11,13 @@
 	export HISTCONTROL=ignoreboth:erasedups
 	export EDITOR=vim
 	shopt -s histappend
-	shopt -s cdspell		## Fixes minor spelling errors in cd paths
+	shopt -s cdspell					## Fixes minor spelling errors in cd paths
 	shopt -s no_empty_cmd_completion	## Stops empty line tab comp
 	### End Universal Exports ### }
 
 	### Fortune At Login ### {
 	## Tests for fortune, root, interactive shell, and dumb term
-	if [[ `which fortune 2>/dev/null` && $UID != '0' && $- == *i* && $TERM != 'dumb' ]]; then
+	if [[ `command -v fortune` && $UID != '0' && $- == *i* && $TERM != 'dumb' ]]; then
 		fortune -a
 	fi
 	### End Fortune ### }
@@ -26,14 +26,18 @@
 	GREP_OPTIONS=
 	## Colored Greps
 	if echo hello | grep --color=auto l >/dev/null 2>&1; then
-		export GREP_OPTIONS="$GREP_OPTIONS --color=auto" GREP_COLOR='1;31'
+		#GREP_OPTIONS="$GREP_OPTIONS --color=auto" GREP_COLOR='1;31'
+		GREP_OPTIONS+="--color=auto " GREP_COLOR='1;31'
 	fi
 
 	## Exclude annoying dirs
 	## http://blog.sanctum.geek.nz/default-grep-options/
-	for PATTERN in .cvs .git .hg .svn; do
-		GREP_OPTIONS="$GREP_OPTIONS --exclude-dir=$PATTERN"
-	done
+	if echo hello | grep --exclude-dir=a l >/dev/null 2>&1; then
+		for PATTERN in .cvs .git .hg .svn; do
+			#GREP_OPTIONS="$GREP_OPTIONS --exclude-dir=$PATTERN"
+			GREP_OPTIONS+="--exclude-dir=$PATTERN "
+		done
+	fi
 	export GREP_OPTIONS
 	### End Grep Options ### }
 
