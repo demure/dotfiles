@@ -26,7 +26,7 @@
 		"au BufWinEnter ?* silent loadview
 		set foldmethod=marker
 		set foldmarker={,}			" Use '{}'s for folds
-		set foldlevelstart=99		" Effectively disable auto folding
+		"set foldlevelstart=99		" Effectively disable auto folding
 	endif
 	""" End Folds Settings """ }
 
