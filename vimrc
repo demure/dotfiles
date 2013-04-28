@@ -1,6 +1,6 @@
 """"" My (demuredemeanor) .vimrc
 "" Uses shiftwidth=4 for tabs
-"" https://github.com/demure/dotfiles
+"" http://github.com/demure/dotfiles
 
 """ Commands at Start """ {
 	"" This one needs to be first
@@ -20,8 +20,8 @@
 	""" Folds Settings """ {
 	if has("folding")
 		set foldenable				" Enable folds
-		"" These next two would save which folds are open/close,
-		"" as well as view location, but had side effect
+		"" These next two would save which folds are open/close, as well
+		"" as view location, but seems to force set foldmethod=indent...
 		"au BufWinLeave ?* mkview
 		"au BufWinEnter ?* silent loadview
 		set foldmethod=marker
@@ -37,22 +37,28 @@
 
 """ Options """ {
 	""" Assorted """ {
-	set number						" Adds line numbers
-	set showcmd						" Show incomplete cmds down the bottom
-	set showmode					" Shows input or replace mode at bottom
-	set ruler						" Show possition in bottom right
 	set autoread					" Reload files changed outside vim
 	set encoding=utf8				" Sets encoding View
-	set virtualedit=block,onemore	" Cursor can move one past EOL, and free in Visual mode
-"	set virtualedit=all				" Allow virtual editing, all modes.
-	set mouse=a						" Enable mouse, all modes
-	set backspace=indent,eol,start	" Allow backspace in insert mode
 	set scrolloff=3					" Show next three lines scrolling
 	set sidescrolloff=2				" Show next two columns scrolling
 	set ttyfast						" Indicates a fast terminal connection
 	set splitbelow					" New horizontal splits are below
 	set splitright					" New vertical splits are to the right
 	""" End Assorted """ }
+
+	""" HUD """ {
+	set number						" Adds line numbers
+	set showcmd						" Show incomplete cmds down the bottom
+	set showmode					" Shows input or replace mode at bottom
+	set ruler						" Show position in bottom right
+	""" End HUD """ }
+
+	""" Input """{
+	set virtualedit=block,onemore	" Cursor can move one past EOL, and free in Visual mode
+"	set virtualedit=all				" Allow virtual editing, all modes.
+	set mouse=a						" Enable mouse, all modes
+	set backspace=indent,eol,start	" Allow backspace in insert mode
+	""" End Input """ }
 
 	""" Mac kill damn bold """ {
 	if has('mac')
@@ -116,8 +122,8 @@
 "	set expandtab   "" use spaces, not tabs
 	set tabstop=4					" Set Tab length
 	set shiftwidth=4				" Affects when you press >>, << or ==. And auto indent.
-	set smarttab					" Insert Tabs start of line per to shiftwidth, not tabstop
-	set autoindent					" Always set autoindenting on
+	set smarttab					" Insert Tabs at ^ per shiftwidth, not tabstop
+	set autoindent					" Always set auto indenting on
 	set copyindent					" Copy the previous indentation on autoindenting
 	""" End Tab Key """ }
 
@@ -190,6 +196,18 @@
 	map <leader> <Up> :wincmd k<CR>
 	map <leader> <Right> :wincmd l<CR>
 	""" End Navigate Splits """ }
+
+	""" Toggle RelativeNumber """ {
+	function! g:NumberToggle()
+		if(&relativenumber == 1)
+			setlocal number
+		  else
+			setlocal relativenumber
+		endif
+	endfunc
+
+	nnoremap <leader>n :call g:NumberToggle()<CR>
+	""" End Toggle RelativeNumber """}
 
 	""" Toggle colorcolumn """ {
 	highlight ColorColumn ctermbg=Brown
