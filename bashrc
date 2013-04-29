@@ -6,14 +6,29 @@
 	### Universal Exports ### {
 	export PROMPT_COMMAND=__prompt_command
 	export CLICOLOR="YES"				## Color 'ls', etc.
-	export HISTFILESIZE=10000			## Size of Hist file
-	export HISTSIZE=10000				## Size of shell\'s hist
-	export HISTCONTROL=ignoreboth:erasedups
 	export EDITOR=vim
-	shopt -s histappend
+
+		### History Settings ### {
+		export HISTSIZE=10000				## Size of shell\'s hist
+		export HISTFILESIZE=10000			## Size of Hist file
+		export HISTCONTROL=ignoreboth:erasedups
+		export HISTTIMEFORMAT="%F %T "		## Adds time to history
+		export HISTIGNORE='ls:bg:fg:history'	## Hist ignores exact match
+		### End History Settings ### }
+	### End Universal Exports ### }
+
+	### Universal Shopts ### {
+	shopt -s histappend					## Appends hist on exit
+	shopt -s cmdhist					## Save multi-line hist as one line
+	shopt -s checkwinsize				## Update col/lines after commands
+
+		### Completion ### {
+	shopt -s autocd						## Can change dir without `cd`
 	shopt -s cdspell					## Fixes minor spelling errors in cd paths
 	shopt -s no_empty_cmd_completion	## Stops empty line tab comp
-	### End Universal Exports ### }
+	shopt -s dirspell					## Tab comp can fix dir name typos
+		### End Completion ### }
+	### End Universal Shopts ### }
 
 	### Fortune At Login ### {
 	## Tests for fortune, root, interactive shell, and dumb term
