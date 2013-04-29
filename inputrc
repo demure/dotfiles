@@ -2,57 +2,55 @@
 # Uses shiftwidth=4 tabs
 # http://github.com/demure/dotfiles
 
-### Main Settings ### {
-	### Completion Stuffs ### {
-	## Tab complete ignores case
-	set completion-ignore-case on
-	## Comp longest explicit match, then print remaining values
-	set show-all-if-ambiguous on
-	## With ignore on, will ignore diff between '-' and '_'
-	set completion-map-case on
-	## Disable more-like pager of completion list
-	set page-completions off
-	## Steps through list, can give n first
-	"\t": menu-complete
-	
-	## Shift-TAB to menu-complete backwards
-	# cf. http://www.tikirobot.net/wp/2006/03/29/reverse-menu-complete-in-bash/
+### Completion Stuffs ### {
+## Tab complete ignores case
+set completion-ignore-case on
+## Comp longest explicit match, then print remaining values
+set show-all-if-ambiguous on
+## With ignore on, will ignore diff between '-' and '_'
+set completion-map-case on
+## Disable more-like pager of completion list
+set page-completions off
+## Steps through list, can give n first
+"\t": menu-complete
+
+## Shift-TAB to menu-complete backwards
+# cf. http://www.tikirobot.net/wp/2006/03/29/reverse-menu-complete-in-bash/
 #	\C-y:"\M--\C-i"
 
-	## Append symbol for file, in tab completion
-	set visible-stats on
-	### End Completion Stuffs ### }
+## Append symbol for file, in tab completion
+set visible-stats on
+### End Completion Stuffs ### }
 
-	### Keyboard ### {
-	"\e[3~": delete-char
-	"\e[A": history-search-backward
-	"\e[B": history-search-forward
-	### End Keyboard ### }
+### Keyboard ### {
+"\e[3~": delete-char
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+### End Keyboard ### }
 
-	### History Stuffs ### {
-	## Ended up disabling these as the prompt got a bit wonky
+### History Stuffs ### {
+## Ended up disabling these as the prompt got a bit wonky
 #	set mark-modified-lines on
 #	set history-preserve-point on
-	### End History Stuffs ### }
+### End History Stuffs ### }
 
-	### Editing Mode ### {
-	## I prefer some of emacs key bindings as OS X uses them.
+### Editing Mode ### {
+## I prefer some of emacs key bindings as OS X uses them.
 #	set editing-mode vi
 #	set keymap vi-insert
 #	vi-command vi-insert
-	### End Editing Mode ### }
+### End Editing Mode ### }
 
-	### For Other Languages ### {
-	## Enable 8 bit input (doesn't clear 8th bit in chars it reads)
-	set meta-flag on
-	## Same flag...
-	set input-meta on
-	## Display chars' 8th bit set directly, instead of esc sequence
-	set output-meta on
-	## Prevent 8th bit strip
-	set convert-meta off
-	### End Other Languages ### }
-### End Main Settings ### }
+### For Other Languages ### {
+## Enable 8 bit input (doesn't clear 8th bit in chars it reads)
+set meta-flag on
+## Same flag...
+set input-meta on
+## Display chars' 8th bit set directly, instead of esc sequence
+set output-meta on
+## Prevent 8th bit strip
+set convert-meta off
+### End Other Languages ### }
 
 ### Testing ### {
 	## Add missing / when tab-completing symbolic links to dirs
