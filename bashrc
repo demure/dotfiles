@@ -5,28 +5,28 @@
 ### Exports ### {
 	### Universal Exports ### {
 	export PROMPT_COMMAND=__prompt_command
-	export CLICOLOR="YES"				## Color 'ls', etc.
+	export CLICOLOR="YES"				# Color 'ls', etc.
 	export EDITOR=vim
 
 		### History Settings ### {
-		export HISTSIZE=10000				## Size of shell\'s hist
-		export HISTFILESIZE=10000			## Size of Hist file
+		export HISTSIZE=10000			# Size of shell\'s hist
+		export HISTFILESIZE=10000		# Size of Hist file
 		export HISTCONTROL=ignoreboth:erasedups
-		export HISTTIMEFORMAT="%F %T "		## Adds time to history
-		export HISTIGNORE='ls:bg:fg:history'	## Hist ignores exact match
+		export HISTTIMEFORMAT="%F %T "	# Adds time to history
+		export HISTIGNORE='ls:bg:fg:history'	# Hist ignores exact match
 		### End History Settings ### }
 	### End Universal Exports ### }
 
 	### Universal Shopts ### {
-	shopt -s histappend					## Appends hist on exit
-	shopt -s cmdhist					## Save multi-line hist as one line
-	shopt -s checkwinsize				## Update col/lines after commands
+	shopt -s histappend					# Appends hist on exit
+	shopt -s cmdhist					# Save multi-line hist as one line
+	shopt -s checkwinsize				# Update col/lines after commands
 
 		### Completion ### {
-	shopt -s autocd						## Can change dir without `cd`
-	shopt -s cdspell					## Fixes minor spelling errors in cd paths
-	shopt -s no_empty_cmd_completion	## Stops empty line tab comp
-	shopt -s dirspell					## Tab comp can fix dir name typos
+		shopt -s autocd					# Can change dir without `cd`
+		shopt -s cdspell				# Fixes minor spelling errors in cd paths
+		shopt -s no_empty_cmd_completion	# Stops empty line tab comp
+		shopt -s dirspell				# Tab comp can fix dir name typos
 		### End Completion ### }
 	### End Universal Shopts ### }
 
@@ -203,10 +203,9 @@
 
 ### Big Function ### {
 	### This Changes The PS1 ### {
-	function __prompt_command()
-	{
-		local EXIT="$?"							## This needs to be first
-		local PSCol=""							## Declare so null var fine
+	function __prompt_command() {
+		local EXIT="$?"							# This needs to be first
+		local PSCol=""							# Declare so null var fine
 		PS1=""
 		### Colors to Vars ### {
 		## Inspired by http://wiki.archlinux.org/index.php/Color_Bash_Prompt#List_of_colors_for_prompt_and_Bash
@@ -225,32 +224,32 @@
 		### End Color Vars ### }
 
 		if [ $UID -eq "0" ];then
-			PS1+="${Red}\h \W ->${RCol} "		## Set prompt for root
+			PS1+="${Red}\h \W ->${RCol} "		# Set prompt for root
 		  else
 			if [ $EXIT != 0 ]; then
 				## can add `kill -l $?` to test to filter backgrounded
-				PS1+="${Red}${EXIT}${RCol}"		## Add exit code, if non 0
+				PS1+="${Red}${EXIT}${RCol}"		# Add exit code, if non 0
 			fi
 
 			### Machine Test ### {
 			if [ $HOSTNAME == 'moving-computer-of-doom' ]; then
-				local PSCol="$Cya"				## For Main Computer
+				local PSCol="$Cya"				# For Main Computer
 			elif [ $HOSTTYPE == 'arm' ]; then
-				local PSCol="$Gre"				## For pi
+				local PSCol="$Gre"				# For pi
 			elif [ $HOSTNAME == 'ma.sdf.org' ]; then
-				local PSCol="$Blu"				## For MetaArray
+				local PSCol="$Blu"				# For MetaArray
 			elif [[ $MACHTYPE =~ arm-apple-darwin ]]; then
-				local PSCol="$Gre"				## For iOS
+				local PSCol="$Gre"				# For iOS
 			elif [ $MACHTYPE == 'i486-pc-linux-gnu' ]; then
-				local PSCol="$BBla"			## For Netbook
+				local PSCol="$BBla"				# For Netbook
 			elif [[ $HOSTNAME =~ .*\.sdf\.org || $HOSTNAME == "otaku" || $HOSTNAME == "sdf" || $HOSTNAME == "faeroes" ]]; then
-				local PSCol="$Yel"				## For Main Cluster
+				local PSCol="$Yel"				# For Main Cluster
 			  else
-				PS1+="\h "						## Un-designated catch-all
+				PS1+="\h "						# Un-designated catch-all
 			fi
 			### End Machine Test ### }
 
-			PS1+="${PSCol}\W ${RCol}"				## Current working dir
+			PS1+="${PSCol}\W ${RCol}"			# Current working dir
 
 			### Add Git Status ### {
 			## Based on http://www.terminally-incoherent.com/blog/2013/01/14/whats-in-your-bash-prompt/
@@ -273,9 +272,12 @@
 					## Detached HEAD (branch=HEAD is a faster alternative).
 					local branch="(`git describe --all --contains --abbrev=4 HEAD 2> /dev/null || echo HEAD`)"
 				fi
+				if [ $branch == "master" ]; then
+					local branch="M"			# Because why waste space
+				fi
 				### End Branch ### }
 
-				PS1+="$GitCol[$branch]${RCol}"		## Add result to prompt
+				PS1+="$GitCol[$branch]${RCol}"	# Add result to prompt
 
 				### Test Ahead ### {
 				if [[ "$git_status" =~ is\ ahead\ of\ (.*)\ by\ ([0-9][0-9]*) ]]; then
@@ -286,7 +288,7 @@
 			fi
 			### End Git Status ### }
 
-			PS1+=" ${PSCol}-> ${RCol}"				## End of PS1
+			PS1+=" ${PSCol}-> ${RCol}"			## End of PS1
 		fi
 	}
 	### End PS1 ### }
