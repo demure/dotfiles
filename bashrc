@@ -205,7 +205,6 @@
 	### This Changes The PS1 ### {
 	function __prompt_command() {
 		local EXIT="$?"							# This needs to be first
-		local PSCol=""							# Declare so null var fine
 		PS1=""
 		### Colors to Vars ### {
 		## Inspired by http://wiki.archlinux.org/index.php/Color_Bash_Prompt#List_of_colors_for_prompt_and_Bash
@@ -226,6 +225,8 @@
 		if [ $UID -eq "0" ];then
 			PS1+="${Red}\h \W ->${RCol} "		# Set prompt for root
 		  else
+			local PSCol=""						# Declare so null var fine
+
 			if [ $EXIT != 0 ]; then
 				## can add `kill -l $?` to test to filter backgrounded
 				PS1+="${Red}${EXIT}${RCol}"		# Add exit code, if non 0
@@ -249,12 +250,22 @@
 			fi
 			### End Machine Test ### }
 
-			PS1+="${PSCol}\W ${RCol}"			# Current working dir
+			PS1+="${PSCol}\W${RCol}"			# Current working dir
 
 			### Add Git Status ### {
 			## Based on http://www.terminally-incoherent.com/blog/2013/01/14/whats-in-your-bash-prompt/
 			local git_status="`git status -unormal 2>&1`"
 			if ! [[ "$git_status" =~ Not\ a\ git\ repo ]]; then
+
+				### Test for cd ### {
+				## This way, dont waste time on fetching
+				local LAST=`history | tail -1 | cut -d: -f 3 | cut -c4-`
+				if [[ "$LAST" =~ ^cd ]]; then
+					git fetch 2>/dev/null
+					LASTR=`date`				# Debug info
+				fi
+				### End cd ### }
+
 				### Test For Changes ### {
 				if [[ "$git_status" =~ nothing\ to\ commit ]]; then
 					local GitCol=$Gre
@@ -277,13 +288,21 @@
 				fi
 				### End Branch ### }
 
-				PS1+="$GitCol[$branch]${RCol}"	# Add result to prompt
+				PS1+=" $GitCol[$branch]${RCol}"	# Add result to prompt
 
 				### Test Ahead ### {
 				if [[ "$git_status" =~ is\ ahead\ of\ (.*)\ by\ ([0-9][0-9]*) ]]; then
-					PS1+="${BBla}:${RCol}${BASH_REMATCH[2]}"
+					PS1+="${BBla}↑${RCol}${BASH_REMATCH[2]}"
 				fi
 				### End Ahead ### }
+
+				### Test Behind ### {
+				## Use (must add a `git fetch`):
+				# Your branch is behind 'origin/master' by 4 commits, and can be fast-forwarded.│
+				if [[ "$git_status" =~ is\ behind\ (.*)\ by\ ([0-9][0-9]*) ]]; then
+					PS1+="${BBla}↓${RCol}${BASH_REMATCH[2]}"
+				fi
+				### End Behind ### }
 
 			fi
 			### End Git Status ### }
@@ -291,5 +310,23 @@
 			PS1+=" ${PSCol}-> ${RCol}"			## End of PS1
 		fi
 	}
+
+		### Maybe Add ### {
+#		# Backgrounded running jobs
+#		local BKGJBS=$(jobs -r | wc -l )
+#		if [ ${BKGJBS} -gt 2 ]; then
+#			PS1="${PS1}\[${COLOR_RED}\][bg:${BKGJBS}]"
+#		elif [ ${BKGJBS} -gt 0 ]; then
+#			PS1="${PS1}\[${COLOR_YELLOW}\][bg:${BKGJBS}] "
+#		fi
+
+#		# Stopped Jobs
+#		local STPJBS=$(jobs -s | wc -l )
+#		if [ ${STPJBS} -gt 2 ]; then
+#			PS1="${PS1}\[${COLOR_RED}\][stp:${STPJBS}]"
+#		elif [ ${STPJBS} -gt 0 ]; then
+#			PS1="${PS1}\[${COLOR_YELLOW}\][stp:${STPJBS}] "
+#		fi
+		### End Maybe ### }
 	### End PS1 ### }
 ### End Big Function ### }
