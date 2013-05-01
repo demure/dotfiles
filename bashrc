@@ -268,8 +268,8 @@
 				### Test For Changes ### {
 				if [[ "$git_status" =~ nothing\ to\ commit ]]; then
 					local GitCol=$Gre
-				elif [[ "$git_status" =~ nothing\ added\ to\ commit\ but\ untracked\ files\ present ]]; then
-					local GitCol=$Pur
+				#elif [[ "$git_status" =~ nothing\ added\ to\ commit\ but\ untracked\ files\ present ]]; then
+					#local GitCol=$Pur
 				  else
 					local GitCol=$Red
 				fi
@@ -291,17 +291,22 @@
 
 				### Find Commit Status ### {
 				if [[ "$git_status" =~ is\ ahead\ of\ (.*)\ by\ ([0-9][0-9]*) ]]; then
-					PS1+="${BBla}↑${RCol}${BASH_REMATCH[2]}"	# Ahead
+					PS1+="${Gre}↑${RCol}${BASH_REMATCH[2]}"	# Ahead
 				fi
 
 				## Needs a `git fetch`
 				if [[ "$git_status" =~ is\ behind\ (.*)\ by\ ([0-9][0-9]*) ]]; then
-					PS1+="${BBla}↓${RCol}${BASH_REMATCH[2]}"	# Behind
+					PS1+="${Red}↓${RCol}${BASH_REMATCH[2]}"	# Behind
+				fi
+
+				if [[ "$git_status" =~ Changes\ not\ staged\ for\ commit\: ]]; then
+				local UnCom=`git ls-files --exclude-standard -m 2>/dev/null | wc -l | tr -d ' '`
+					PS1+="${Pur}≠${RCol}${UnCom}"				# Modified
 				fi
 
 				if [[ "$git_status" =~ Untracked\ files\: ]]; then
-					local UnTrac=`git ls-files --exclude-standard --others 2>/dev/null | wc -l`
-					PS1+="${BBla}+${RCol}${UnTrac}"				# Added
+					local UnTrac=`git ls-files --exclude-standard -o 2>/dev/null | wc -l | tr -d ' '`
+					PS1+="${Yel}+${RCol}${UnTrac}"				# Added
 				fi
 				### End Commit Status ### }
 			fi
