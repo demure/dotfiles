@@ -256,14 +256,14 @@
 			## Based on http://www.terminally-incoherent.com/blog/2013/01/14/whats-in-your-bash-prompt/
 			local git_status="`git status -unormal 2>&1`"
 			if ! [[ "$git_status" =~ Not\ a\ git\ repo ]]; then
-				### Test for cd ### {
+				### Test For cd Last Command ### {
 				## This way, dont waste time on fetching
+				# Added ! $PATH test?
 				local LAST=`history | tail -1 | cut -d: -f 3 | cut -c4-`
 				if [[ "$LAST" =~ ^cd ]]; then
 					git fetch 2>/dev/null
-					LASTR=`date`				# Debug info
 				fi
-				### End cd ### }
+				### End cd Last  ### }
 
 				### Test For Changes ### {
 				if [[ "$git_status" =~ nothing\ to\ commit ]]; then
@@ -289,29 +289,21 @@
 
 				PS1+=" $GitCol[$branch]${RCol}"	# Add result to prompt
 
-				### Test Ahead ### {
+				### Find Commit Status ### {
 				if [[ "$git_status" =~ is\ ahead\ of\ (.*)\ by\ ([0-9][0-9]*) ]]; then
-					PS1+="${BBla}↑${RCol}${BASH_REMATCH[2]}"
+					PS1+="${BBla}↑${RCol}${BASH_REMATCH[2]}"	# Ahead
 				fi
-				### End Ahead ### }
 
-				### Test Behind ### {
-				## Use (must add a `git fetch`):
+				## Needs a `git fetch`
 				if [[ "$git_status" =~ is\ behind\ (.*)\ by\ ([0-9][0-9]*) ]]; then
-					PS1+="${BBla}↓${RCol}${BASH_REMATCH[2]}"
+					PS1+="${BBla}↓${RCol}${BASH_REMATCH[2]}"	# Behind
 				fi
-				### End Behind ### }
 
-				### Test Added ### {
-				## Use:
-				# Untracked files:
 				if [[ "$git_status" =~ Untracked\ files\: ]]; then
 					local UnTrac=`git ls-files --exclude-standard --others 2>/dev/null | wc -l`
-					PS1+="${BBla}+${RCol}${UnTrac}"
+					PS1+="${BBla}+${RCol}${UnTrac}"				# Added
 				fi
-
-				### End Added ### }
-
+				### End Commit Status ### }
 			fi
 			### End Git Status ### }
 
