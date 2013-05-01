@@ -256,7 +256,6 @@
 			## Based on http://www.terminally-incoherent.com/blog/2013/01/14/whats-in-your-bash-prompt/
 			local git_status="`git status -unormal 2>&1`"
 			if ! [[ "$git_status" =~ Not\ a\ git\ repo ]]; then
-
 				### Test for cd ### {
 				## This way, dont waste time on fetching
 				local LAST=`history | tail -1 | cut -d: -f 3 | cut -c4-`
@@ -298,11 +297,20 @@
 
 				### Test Behind ### {
 				## Use (must add a `git fetch`):
-				# Your branch is behind 'origin/master' by 4 commits, and can be fast-forwarded.│
 				if [[ "$git_status" =~ is\ behind\ (.*)\ by\ ([0-9][0-9]*) ]]; then
 					PS1+="${BBla}↓${RCol}${BASH_REMATCH[2]}"
 				fi
 				### End Behind ### }
+
+				### Test Added ### {
+				## Use:
+				# Untracked files:
+				if [[ "$git_status" =~ Untracked\ files\: ]]; then
+					local UnTrac=`git ls-files --exclude-standard --others 2>/dev/null | wc -l`
+					PS1+="${BBla}+${RCol}${UnTrac}"
+				fi
+
+				### End Added ### }
 
 			fi
 			### End Git Status ### }
