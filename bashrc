@@ -158,6 +158,29 @@
 	### MA Settings ### {
 	if [ $HOSTNAME == 'ma.sdf.org' ]; then
 		source /etc/bash_completion.d/git		## Add git completion
+
+			### SSH Agent ### {
+			SSH_ENV="$HOME/.ssh/environment"
+
+			function start_agent {
+				echo "Initialising new SSH agent..."
+				/usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+				echo succeeded
+				chmod 600 "${SSH_ENV}"
+				. "${SSH_ENV}" > /dev/null
+				/usr/bin/ssh-add;
+			}
+
+			## Source SSH settings, if applicable
+			if [ -f "${SSH_ENV}" ]; then
+				. "${SSH_ENV}" > /dev/null
+				ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+					start_agent;
+				}
+			  else
+				start_agent;
+			fi
+		### End SSH Agent ### }
 	fi
 	### End MA Settings ### }
 
@@ -202,7 +225,7 @@
 	### End Testing ### }
 ### End Settings ### }
 
-### Big Function ### {
+### Big Functions ### {
 	### This Changes The PS1 ### {
 	function __prompt_command() {
 		local EXIT="$?"							# This needs to be first
@@ -335,4 +358,11 @@
 #		fi
 		### End Maybe ### }
 	### End PS1 ### }
-### End Big Function ### }
+
+#	### SSH Agent ### {
+#	## Might move from MA to here
+#	__ssh_agent() {
+#
+#	}
+#	### End SSH Agent ### }
+### End Big Functions ### }
