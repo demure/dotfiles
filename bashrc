@@ -277,17 +277,20 @@
 			PS1+="${PSCol}\W${RCol}"			# Current working dir
 
 			### Add Git Status ### {
-			## Based on http://www.terminally-incoherent.com/blog/2013/01/14/whats-in-your-bash-prompt/
+			## Inspired by http://www.terminally-incoherent.com/blog/2013/01/14/whats-in-your-bash-prompt/
 			local git_status="`git status -unormal 2>&1`"
 			if ! [[ "$git_status" =~ Not\ a\ git\ repo ]]; then
-				### Test For cd Last Command ### {
-				## This way, dont waste time on fetching
-				# Added ! $PATH test?
-				local LAST=`history | tail -1 | cut -d: -f 3 | cut -c4-`
-				if [[ "$LAST" =~ ^cd ]]; then
-					git fetch 2>/dev/null
+				### Fetch Time Check ### {
+				local LAST=`stat -c %Y .git/FETCH_HEAD 2>/dev/null`
+				if [ "${LAST}" ]; then
+					local TIME=$(echo $(date +"%s") - ${LAST} | bc)
+					## Check if more than ten minutes since last
+					if [ "${TIME}" -gt "600" ]; then
+						git fetch 2>/dev/null
+						PS1+=' +'
+					fi
 				fi
-				### End cd Last  ### }
+				### End Fetch Check ### }
 
 				### Test For Changes ### {
 				if [[ "$git_status" =~ nothing\ to\ commit ]]; then
