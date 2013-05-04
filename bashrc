@@ -2,42 +2,42 @@
 # Uses shiftwidth=4 for tabs
 # http://github.com/demure/dotfiles
 
-### Exports ### {
-	### Universal Exports ### {
+### Exports ### {{{
+	### Universal Exports ### {{{
 	export PROMPT_COMMAND=__prompt_command
 	export CLICOLOR="YES"				# Color 'ls', etc.
 	export EDITOR=vim
 
-		### History Settings ### {
+		### History Settings ### {{{
 		export HISTSIZE=10000			# Size of shell\'s hist
 		export HISTFILESIZE=10000		# Size of Hist file
 		export HISTCONTROL=ignoreboth:erasedups
 		export HISTTIMEFORMAT="%F %T "	# Adds time to history
 		export HISTIGNORE='ls:bg:fg:history'	# Hist ignores exact match
-		### End History Settings ### }
-	### End Universal Exports ### }
+		### End History Settings ### }}}
+	### End Universal Exports ### }}}
 
-	### Universal Shopts ### {
+	### Universal Shopts ### {{{
 	shopt -s histappend					# Appends hist on exit
 	shopt -s cmdhist					# Save multi-line hist as one line
 	shopt -s checkwinsize				# Update col/lines after commands
 
-		### Completion ### {
+		### Completion ### {{{
 		shopt -s autocd					# Can change dir without `cd`
 		shopt -s cdspell				# Fixes minor spelling errors in cd paths
 		shopt -s no_empty_cmd_completion	# Stops empty line tab comp
 		shopt -s dirspell				# Tab comp can fix dir name typos
-		### End Completion ### }
-	### End Universal Shopts ### }
+		### End Completion ### }}}
+	### End Universal Shopts ### }}}
 
-	### Fortune At Login ### {
+	### Fortune At Login ### {{{
 	## Tests for fortune, root, interactive shell, and dumb term
 	if [[ `command -v fortune` && $UID != '0' && $- == *i* && $TERM != 'dumb' ]]; then
 		fortune -a
 	fi
-	### End Fortune ### }
+	### End Fortune ### }}}
 
-	### Grep Options ### {
+	### Grep Options ### {{{
 	GREP_OPTIONS=
 	## Colored Greps
 	if echo hello | grep --color=auto l >/dev/null 2>&1; then
@@ -54,9 +54,9 @@
 		done
 	fi
 	export GREP_OPTIONS
-	### End Grep Options ### }
+	### End Grep Options ### }}}
 
-	### TERM color ### {
+	### TERM color ### {{{
 	## Disabled, as forcing is kind of bad >_>
 	## http://blog.sanctum.geek.nz/term-strings/
 #	if [ -e /usr/share/terminfo/x/xterm-256color ]; then
@@ -64,19 +64,19 @@
 #	  else
 #		export TERM='xterm-color'
 #	fi
-	### End TERM ### }
-#### End Exports ### }
+	### End TERM ### }}}
+#### End Exports ### }}}
 
-### Settings ### {
-	### Universal Aliases ### {
+### Settings ### {{{
+	### Universal Aliases ### {{{
 	alias rmds='find . -name ".DS_Store" -depth -exec rm -i {} \;'
 	alias bashrc='vim ~/.bashrc'
 	alias filetree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'"
 	alias reset_display='export DISPLAY=$(tmux showenv|grep ^DISPLAY|cut -d = -f 2)'
 	alias ed='ed -p:'
-	### End Universal Aliases ### }
+	### End Universal Aliases ### }}}
 
-	### Universal Custom Commands ### {
+	### Universal Custom Commands ### {{{
 	## Extract most types of compressed files
 	function extract {
 		echo Extracting $1 ...
@@ -124,18 +124,18 @@
 			fi
 		fi
 	}
-	###End Universal Commands ### }
+	###End Universal Commands ### }}}
 
-	### Mac Settings ### {
+	### Mac Settings ### {{{
 	if [ $OSTYPE == 'darwin12' ]; then
-		### Mac Sourcing ### {
+		### Mac Sourcing ### {{{
 		## Add git completion
 		if [ -f `brew --prefix`/etc/bash_completion ]; then
 			source `brew --prefix`/etc/bash_completion
 		fi
-		### End Mac Sourcing ### }
+		### End Mac Sourcing ### }}}
 
-		### Mac Aliases ### {
+		### Mac Aliases ### {{{
 		alias google='ping -c 1 www.google.com && growlnotify -m "google pinged"'
 		alias ardrestart='sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -restart -agent -menu'
 		alias vi='vim'
@@ -151,15 +151,15 @@
 		## Aliases for nicing
 		alias fast='sudo nice -n -10'
 		alias slow='nice -n 20'
-		### End Mac Aliases ### }
+		### End Mac Aliases ### }}}
 	fi
-	### End Mac Settings ### }
+	### End Mac Settings ### }}}
 
-	### MA Settings ### {
+	### MA Settings ### {{{
 	if [ $HOSTNAME == 'ma.sdf.org' ]; then
 		source /etc/bash_completion.d/git		## Add git completion
 
-			### SSH Agent ### {
+			### SSH Agent ### {{{
 			SSH_ENV="$HOME/.ssh/environment"
 
 			function start_agent {
@@ -180,11 +180,11 @@
 			  else
 				start_agent;
 			fi
-		### End SSH Agent ### }
+		### End SSH Agent ### }}}
 	fi
-	### End MA Settings ### }
+	### End MA Settings ### }}}
 
-	### For pi ### {
+	### For pi ### {{{
 	if [ $HOSTTYPE == 'arm' ]; then
 		source /etc/bash_completion.d/git		## Add git completion
 		alias ls='ls --color=auto'
@@ -192,45 +192,45 @@
 		alias svi='sudo vim'
 		alias vnc='vncserver :1 -geometry 1024x700 -depth 24'
 	fi
-	### End For pi ### }
+	### End For pi ### }}}
 
-	### For iOS ### {
+	### For iOS ### {{{
 	if [ $OSTYPE == 'darwin9' ]; then
 		alias svi='sudo vi'
 	fi
-	### End For iOS ### }
+	### End For iOS ### }}}
 
-	### For Netbook ### {
+	### For Netbook ### {{{
 	if [ $OSTYPE == 'linux-gnu' ]; then
 		alias ls='ls --color=auto'
 	fi
-	### End For Netbook ### }
+	### End For Netbook ### }}}
 
-	### For SDF Main Cluster ### {
+	### For SDF Main Cluster ### {{{
 	if [[ $HOSTNAME =~ .*\.sdf\.org || $HOSTNAME == "otaku" || $HOSTNAME == "sdf" || $HOSTNAME == "faeroes" ]]; then
 		#LSCOLORS='exfxcxdxbxegedabagacad'
 		export TZ=EST5EDT
 		alias help='/usr/local/bin/help'
 		#alias ls='colorls -G'
 	fi
-	### End For SDF Main Cluster ### }
+	### End For SDF Main Cluster ### }}}
 
-	### Testing ### {
+	### Testing ### {{{
 	## Fix tmux DISPLAY
 	# "Yubinkim.com totally wrote this one herself"
 	# "Run this script outside of tmux!"
 #	for name in `tmux ls -F '#{session_name}'`; do
 #		tmux setenv -g -t $name DISPLAY $DISPLAY #set display for all sessions
 #	done
-	### End Testing ### }
-### End Settings ### }
+	### End Testing ### }}}
+### End Settings ### }}}
 
-### Big Functions ### {
-	### This Changes The PS1 ### {
+### Big Functions ### {{{
+	### This Changes The PS1 ### {{{
 	function __prompt_command() {
 		local EXIT="$?"							# This needs to be first
 		PS1=""
-		### Colors to Vars ### {
+		### Colors to Vars ### {{{
 		## Inspired by http://wiki.archlinux.org/index.php/Color_Bash_Prompt#List_of_colors_for_prompt_and_Bash
 		## Can unset with `unset -v {,B,U,I,BI,On_,On_I}{Bla,Red,Gre,Yel,Blu,Pur,Cya,Whi} RCol`
 		RCol='\[\e[0m\]'	# Text Reset
@@ -244,7 +244,7 @@
 		local Pur='\[\e[0;35m\]';	local BPur='\[\e[1;35m\]';	local UPur='\[\e[4;35m\]';	local IPur='\[\e[0;95m\]';	local BIPur='\[\e[1;95m\]';	local On_Pur='\e[45m';	local On_IPur='\[\e[0;105m\]';
 		local Cya='\[\e[0;36m\]';	local BCya='\[\e[1;36m\]';	local UCya='\[\e[4;36m\]';	local ICya='\[\e[0;96m\]';	local BICya='\[\e[1;96m\]';	local On_Cya='\e[46m';	local On_ICya='\[\e[0;106m\]';
 		local Whi='\[\e[0;37m\]';	local BWhi='\[\e[1;37m\]';	local UWhi='\[\e[4;37m\]';	local IWhi='\[\e[0;97m\]';	local BIWhi='\[\e[1;97m\]';	local On_Whi='\e[47m';	local On_IWhi='\[\e[0;107m\]';
-		### End Color Vars ### }
+		### End Color Vars ### }}}
 
 		if [ $UID -eq "0" ];then
 			PS1+="${Red}\h \W ->${RCol} "		# Set prompt for root
@@ -256,7 +256,7 @@
 				PS1+="${Red}${EXIT}${RCol}"		# Add exit code, if non 0
 			fi
 
-			### Machine Test ### {
+			### Machine Test ### {{{
 			if [ $HOSTNAME == 'moving-computer-of-doom' ]; then
 				local PSCol="$Cya"				# For Main Computer
 			elif [ $HOSTTYPE == 'arm' ]; then
@@ -272,16 +272,17 @@
 			  else
 				PS1+="\h "						# Un-designated catch-all
 			fi
-			### End Machine Test ### }
+			### End Machine Test ### }}}
 
 			PS1+="${PSCol}\W${RCol}"			# Current working dir
 
-			### Add Git Status ### {
+			### Add Git Status ### {{{
 			## Inspired by http://www.terminally-incoherent.com/blog/2013/01/14/whats-in-your-bash-prompt/
-			local git_status="`git status -unormal 2>&1`"
-			if ! [[ "$git_status" =~ Not\ a\ git\ repo ]]; then
-				### Fetch Time Check ### {
-				local LAST=`stat -c %Y .git/FETCH_HEAD 2>/dev/null`
+			local GStat="$(git status --porcelain -b 2>/dev/null | tr '\n' ':')"
+
+			if [ "$GStat" ]; then
+				### Fetch Time Check ### {{{
+				local LAST=$(stat -c %Y $(git rev-parse --git-dir 2>/dev/null)/FETCH_HEAD 2>/dev/null)
 				if [ "${LAST}" ]; then
 					local TIME=$(echo $(date +"%s") - ${LAST} | bc)
 					## Check if more than ten minutes since last
@@ -290,60 +291,63 @@
 						PS1+=' +'
 					fi
 				fi
-				### End Fetch Check ### }
+				### End Fetch Check ### }}}
 
-				### Test For Changes ### {
-				if [[ "$git_status" =~ nothing\ to\ commit ]]; then
+				### Test For Changes ### {{{
+				local GChanges="$(echo ${GStat} | tr ':' '\n' | grep -v "^$" | wc -l | tr -d ' ')"
+				if [ "$GChanges" == "1" ]; then
 					local GitCol=$Gre
-				#elif [[ "$git_status" =~ nothing\ added\ to\ commit\ but\ untracked\ files\ present ]]; then
-					#local GitCol=$Pur
 				  else
 					local GitCol=$Red
 				fi
-				### End Test Changes ### }
+				### End Test Changes ### }}}
 
-				### Find Branch ### {
-				if [[ "$git_status" =~ On\ branch\ ([^[:space:]]+) ]]; then
-					local branch=${BASH_REMATCH[1]}
+				### Find Branch ### {{{
+				local GBra="$(echo ${GStat} | tr ':' '\n' | grep "^##" | cut -c4- | grep -o "^[a-zA-Z]\{1,\}[^\.]")"
+				if [ "$GBra" ]; then
+					if [ "$GBra" == "master" ]; then
+						local GBra="M"			# Because why waste space
+					fi
 				  else
-					## Detached HEAD (branch=HEAD is a faster alternative).
-					local branch="(`git describe --all --contains --abbrev=4 HEAD 2> /dev/null || echo HEAD`)"
+					local GBra="ERROR"			# It could happen supposedly?
 				fi
-				if [ $branch == "master" ]; then
-					local branch="M"			# Because why waste space
-				fi
-				### End Branch ### }
+				### End Branch ### }}}
 
-				PS1+=" $GitCol[$branch]${RCol}"	# Add result to prompt
+				PS1+=" ${GitCol}[$GBra]${RCol}"	# Add result to prompt
 
-				### Find Commit Status ### {
-				if [[ "$git_status" =~ is\ ahead\ of\ (.*)\ by\ ([0-9][0-9]*) ]]; then
-					PS1+="${Gre}↑${RCol}${BASH_REMATCH[2]}"	# Ahead
+				### Find Commit Status ### {{{
+					## Test Modified and Untracked for "0"
+#					# local GDel="$(echo ${GStat} | tr ':' '\n' | grep -c "^[ MARC]D")"
+
+				local GAhe="$(echo ${GStat} | tr ':' '\n' | grep "^##" | grep -o "ahead [0-9]\{1,\}" | grep -o "[0-9]\{1,\}")"
+				if [ "$GAhe" ]; then
+					PS1+="${Gre}↑${RCol}${GAhe}"	# Ahead
 				fi
 
 				## Needs a `git fetch`
-				if [[ "$git_status" =~ is\ behind\ (.*)\ by\ ([0-9][0-9]*) ]]; then
-					PS1+="${Red}↓${RCol}${BASH_REMATCH[2]}"	# Behind
+				local GBeh="$(echo ${GStat} | tr ':' '\n' | grep "^##" | grep -o "behind [0-9]\{1,\}" | grep -o "[0-9]\{1,\}")"
+				if [ "$GBeh" ]; then
+					PS1+="${Red}↓${RCol}${GBeh}"	# Behind
 				fi
 
-				if [[ "$git_status" =~ Changes\ not\ staged\ for\ commit\: ]]; then
-				local UnCom=`git ls-files --exclude-standard -m 2>/dev/null | wc -l | tr -d ' '`
-					PS1+="${Pur}≠${RCol}${UnCom}"				# Modified
+				local GMod="$(echo ${GStat} | tr ':' '\n' | grep -c "^[ MARC]M")"
+				if [ "$GMod" -gt "0" ]; then
+					PS1+="${Pur}≠${RCol}${GMod}"	# Modified
 				fi
 
-				if [[ "$git_status" =~ Untracked\ files\: ]]; then
-					local UnTrac=`git ls-files --exclude-standard -o 2>/dev/null | wc -l | tr -d ' '`
-					PS1+="${Yel}+${RCol}${UnTrac}"				# Added
+				local GUnt="$(echo ${GStat} | tr ':' '\n' | grep -c "^\?")"
+				if [ "$GUnt" -gt "0" ]; then
+					PS1+="${Yel}?${RCol}${GUnt}"	# Untracked
 				fi
-				### End Commit Status ### }
+				### End Commit Status ### }}}
 			fi
-			### End Git Status ### }
+			### End Git Status ### }}}
 
 			PS1+=" ${PSCol}-> ${RCol}"			## End of PS1
 		fi
 	}
 
-		### Maybe Add ### {
+		### Maybe Add ### {{{
 #		# Backgrounded running jobs
 #		local BKGJBS=$(jobs -r | wc -l )
 #		if [ ${BKGJBS} -gt 2 ]; then
@@ -359,13 +363,13 @@
 #		elif [ ${STPJBS} -gt 0 ]; then
 #			PS1="${PS1}\[${COLOR_YELLOW}\][stp:${STPJBS}] "
 #		fi
-		### End Maybe ### }
-	### End PS1 ### }
+		### End Maybe ### }}}
+	### End PS1 ### }}}
 
-#	### SSH Agent ### {
+#	### SSH Agent ### {{{
 #	## Might move from MA to here
 #	__ssh_agent() {
 #
 #	}
-#	### End SSH Agent ### }
-### End Big Functions ### }
+#	### End SSH Agent ### }}}
+### End Big Functions ### }}}
