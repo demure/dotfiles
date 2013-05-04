@@ -1,6 +1,6 @@
 <!--
 ##### My (demuredemeanor) attempt to codify my formatting
-# Uses shiftwidth=4 for tabs
+# Uses shiftwidth=4 for tabs; foldmarker={{{,}}} for folds;
 # http://github.com/demure/dotfiles
 -->
 My Formatting
@@ -17,7 +17,7 @@ File Start:
 ```
 #!/bin/something	# If relevant
 ##### My (demuredemeanor) attempt to codify my formatting
-# Uses shiftwidth=4 for tabs
+# Uses shiftwidth=4 for tabs; foldmarker={{{,}}} for folds;
 # http://github.com/demure/dotfiles
 ```
 
@@ -35,9 +35,9 @@ Code Block:
 	B. Can truncate block name
 	
 ```
-### Title Block ### {
+### Title Block ### {{{
 Contents
-### End Title ### }
+### End Title ### }}}
 ```
 
 
@@ -96,15 +96,15 @@ Indentation:
 	B. Neighboring Blocks will be on the same indent level
 
 	```
-	### Parent Block ### {
-		### Child Block ### {
+	### Parent Block ### {{{
+		### Child Block ### {{{
 		content
-		### End Child ### }
+		### End Child ### }}}
 
-		### Other Nested ### {
+		### Other Nested ### {{{
 		other content
-		### End Nested ### }
-	### End Parent ### }
+		### End Nested ### }}}
+	### End Parent ### }}}
 	```
 
 2. 'If' test indents
@@ -125,15 +125,15 @@ Line Spacing:
 	A. Nested blocks will not be
 
 	```		
-	### Parent Block ### {
-		### Child Block ### {
+	### Parent Block ### {{{
+		### Child Block ### {{{
 		content
-		### End Child ### }
+		### End Child ### }}}
 
-		### Other Nested ### {
+		### Other Nested ### {{{
 		other content
-		### End Nested ### }
-	### End Parent ### }
+		### End Nested ### }}}
+	### End Parent ### }}}
 	```
 
 2. Comment lines used to identify a Section will have blank line prior

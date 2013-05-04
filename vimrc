@@ -1,8 +1,8 @@
 """"" My (demuredemeanor) .vimrc
-"" Uses shiftwidth=4 for tabs
+"" Uses shiftwidth=4 tabs; foldmarker={{{,}}};
 "" http://github.com/demure/dotfiles
 
-""" Commands at Start """ {
+""" Commands at Start """ {{{
 	"" This one needs to be first
 	set nocompatible				" Choose no comp with legacy vi
 
@@ -17,7 +17,7 @@
 		"filetype indent on
 	endif
 
-	""" Folds Settings """ {
+	""" Folds Settings """ {{{
 	if has("folding")
 		set foldenable				" Enable folds
 		"" These next two would save which folds are open/close, as well
@@ -25,18 +25,18 @@
 		"au BufWinLeave ?* mkview
 		"au BufWinEnter ?* silent loadview
 		set foldmethod=marker
-		set foldmarker={,}			" Use '{}'s for folds
+		"set foldmarker={,}			" Use '{}'s for folds
 		"set foldlevelstart=99		" Effectively disable auto folding
 	endif
-	""" End Folds Settings """ }
+	""" End Folds Settings """ }}}
 
 	"" Stop auto comment on new line
 	autocmd FileType * setlocal formatoptions-=cro
 	set shortmess+=T
-""" End Commands at Start """ }
+""" End Commands at Start """ }}}
 
-""" Options """ {
-	""" Assorted """ {
+""" Options """ {{{
+	""" Assorted """ {{{
 	set autoread					" Reload files changed outside vim
 	set encoding=utf8				" Sets encoding View
 	set scrolloff=3					" Show next three lines scrolling
@@ -44,29 +44,29 @@
 	set ttyfast						" Indicates a fast terminal connection
 	set splitbelow					" New horizontal splits are below
 	set splitright					" New vertical splits are to the right
-	""" End Assorted """ }
+	""" End Assorted """ }}}
 
-	""" HUD """ {
+	""" HUD """ {{{
 	set number						" Adds line numbers
 	set showcmd						" Show incomplete cmds down the bottom
 	set showmode					" Shows input or replace mode at bottom
 	set ruler						" Show position in bottom right
-	""" End HUD """ }
+	""" End HUD """ }}}
 
-	""" Input """{
+	""" Input """ {{{
 	set virtualedit=block,onemore	" Cursor can move one past EOL, and free in Visual mode
 "	set virtualedit=all				" Allow virtual editing, all modes.
 	set mouse=a						" Enable mouse, all modes
 	set backspace=indent,eol,start	" Allow backspace in insert mode
-	""" End Input """ }
+	""" End Input """ }}}
 
-	""" Mac kill damn bold """ {
+	""" Mac kill damn bold """ {{{
 	if has('mac')
 		set t_Co=256				" FORCE 256 colors in vim
 	endif
-	""" End Mac """ }
+	""" End Mac """ }}}
 
-	""" Wild Stuffs... """ {
+	""" Wild Stuffs... """ {{{
 	set wildmenu					" Show list instead of just completing
 	set wildmode=list:longest,full	" Command <Tab> completion, list matches, then longest common part, then all.
 	"" From http://blog.sanctum.geek.nz/lazier-tab-completion/
@@ -89,24 +89,24 @@
 	"" Clojure/Leiningen
 	set wildignore+=classes
 	set wildignore+=lib
-	""" End Wild """ }
+	""" End Wild """ }}}
 
-	""" Show Hidden Chars """ {
+	""" Show Hidden Chars """ {{{
 	set list						" Shows certain hidden chars
 	set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 	""Disabled for Solarized test
 	hi NonText ctermfg=darkgray		" Makes trailing darkgray
 	hi SpecialKey ctermfg=darkgray	" Makes Leading darkgray
-	""" End Hidden Chars """ }
+	""" End Hidden Chars """ }}}
 
-	""" Spelling """ {
+	""" Spelling """ {{{
 	set spell						" Spelling hilight on
 "	highlight SpellBad cterm=underline ctermfg=red
 	hi SpellBad cterm=underline ctermbg=NONE
 	hi SpellCap cterm=underline ctermbg=NONE
-	""" End Spelling """ }
+	""" End Spelling """ }}}
 
-	""" Tab Windows """ {
+	""" Tab Windows """ {{{
 	set hidden						" Hides buffers, instead of closing, or forcing save
 	set showtabline=2				" shows the tab bar at all times
 	set tabpagemax=10				" max num of tabs to open on startup
@@ -115,9 +115,9 @@
 	"hi TabLineFill ctermfg=DarkCyan
 	hi TabLineFill ctermfg=Black	" Rest of line
 	hi Title ctermfg=DarkBlue ctermbg=None	" Windows in Tab
-	""" End Tab Windows """ }
+	""" End Tab Windows """ }}}
 
-	""" Tab Key Settings """ {
+	""" Tab Key Settings """ {{{
 	"" prefer tabs now...
 "	set expandtab   "" use spaces, not tabs
 	set tabstop=4					" Set Tab length
@@ -125,9 +125,9 @@
 	set smarttab					" Insert Tabs at ^ per shiftwidth, not tabstop
 	set autoindent					" Always set auto indenting on
 	set copyindent					" Copy the previous indentation on autoindenting
-	""" End Tab Key """ }
+	""" End Tab Key """ }}}
 
-	""" Searching """ {
+	""" Searching """ {{{
 	" Use real regex search
 	nnoremap / /\v
 	vnoremap / /\vi
@@ -138,10 +138,10 @@
 	set showmatch					" Show matching brackets/parenthesis
 	set gdefault					" Applies substitutions globally on lines. Append 'g' to invert back. 
 	set synmaxcol=800				" Don't highlight lines longer than 800 chars
-	""" End Searching """ }
+	""" End Searching """ }}}
 
-	""" Backup Settings """ {
-		""" Dir Validation """ {
+	""" Backup Settings """ {{{
+		""" Dir Validation """ {{{
 		if !isdirectory(expand("~/.vim/back/"))
 			call mkdir(expand("~/.vim/back/"), "p")
 		endif
@@ -151,40 +151,40 @@
 		if !isdirectory(expand("~/.vim/undo/"))
 			call mkdir(expand("~/.vim/undo/"), "p")
 		endif
-		""" End Dir """ }
+		""" End Dir """ }}}
 	set backup						" Enable backups
 	set undofile
 	set undoreload=10000
 	set backupdir=~/.vim/back/
 	set directory=~/.vim/swap/		" swap files
 	set undodir=~/.vim/undo/		" undo files
-	""" End Backup Settings """ }
-""" End Options """ }
+	""" End Backup Settings """ }}}
+""" End Options """ }}}
 
-""" Key Bindings """ {
+""" Key Bindings """ {{{
 	let mapleader=","				" Change the mapleader from '\\' to ','
 	map <leader>/ :noh<return>		" <leader>/ will clear search hilights!
 
-	""" Quickly edit/reload the vimrc file """ {
+	""" Quickly edit/reload the vimrc file """ {{{
 	""  maps the ,ev and ,sv keys to edit/reload .vimrc.
 	nmap <silent> <leader>ev :e $MYVIMRC<CR>
 	nmap <silent> <leader>sv :so $MYVIMRC<CR>
-	""" End reload """ }
+	""" End reload """ }}}
 
-	""" Paste Toggle, for stopping formating of pastes """ {
+	""" Paste Toggle, for stopping formating of pastes """ {{{
 	nnoremap <F2> :set invpaste paste?<CR>
 	set pastetoggle=<F2>
 	nmap <leader>p :set invpaste paste?<CR>
-	""" End Paste Toggle """ }
+	""" End Paste Toggle """ }}}
  
-	""" Vim Tab Window Keysbindings """ {
+	""" Vim Tab Window Keysbindings """ {{{
 "	nnoremap <C-Left> :tabprevious<CR>
 "	nnoremap <C-Right> :tabnext<CR>
 "	nnoremap <silent> <A-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
 "	nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . tabpagenr()<CR>
-	""" End Tab Window Keys """ }
+	""" End Tab Window Keys """ }}}
 
-	""" Navigate Splits """ {
+	""" Navigate Splits """ {{{
 	"" uses ',' key first
 	map <leader>h :wincmd h<CR>
 	map <leader>j :wincmd j<CR>
@@ -195,9 +195,9 @@
 	map <leader> <Down> :wincmd j<CR>
 	map <leader> <Up> :wincmd k<CR>
 	map <leader> <Right> :wincmd l<CR>
-	""" End Navigate Splits """ }
+	""" End Navigate Splits """ }}}
 
-	""" Toggle RelativeNumber """ {
+	""" Toggle RelativeNumber """ {{{
 	function! g:NumberToggle()
 		if(&relativenumber == 1)
 			setlocal number
@@ -209,7 +209,7 @@
 	nnoremap <leader>n :call g:NumberToggle()<CR>
 	""" End Toggle RelativeNumber """}
 
-	""" Toggle colorcolumn """ {
+	""" Toggle colorcolumn """ {{{
 	highlight ColorColumn ctermbg=Brown
 	function! g:ToggleColorColumn()
 		if &colorcolumn != ''
@@ -220,17 +220,17 @@
 	endfunction
  
 	nnoremap <silent> <leader>l :call g:ToggleColorColumn()<CR>
-	""" End Toggle colorcolumn """ }
+	""" End Toggle colorcolumn """ }}}
 
-	""" Cross Hairs """ {
+	""" Cross Hairs """ {{{
 	hi CursorLine   cterm=NONE ctermbg=darkgrey ctermfg=white guibg=darkred guifg=white
 	hi CursorColumn cterm=NONE ctermbg=darkgrey ctermfg=white guibg=darkred guifg=white
 	nnoremap <Leader>+ :set cursorline! cursorcolumn!<CR>
-    """ End Cross Hair """ }
-""" End Key Bindings """ }
+    """ End Cross Hair """ }}}
+""" End Key Bindings """ }}}
 
-""" Plugins """ {
-	""" Setting up Vundle """ {
+""" Plugins """ {{{
+	""" Setting up Vundle """ {{{
 	"" From http://www.erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc/
 	let iCanHazVundle=1
 	let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
@@ -265,30 +265,30 @@
 		echo ""
 		:BundleInstall
 	endif
-	""" End Setting Up Vundle """ }
+	""" End Setting Up Vundle """ }}}
 
-	""" NERDtree config """ {
+	""" NERDtree config """ {{{
 	"" Starts NERDtree if no file is give to vim at start 
 	autocmd vimenter * if !argc() | NERDTree | endif
-	""" End NERDtree """ }
+	""" End NERDtree """ }}}
 
-	""" Vim Repeat Conf """ {
+	""" Vim Repeat Conf """ {{{
 	"" This is to make repeat work for plugins too
 	silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
-	""" End Vim Repeat """ }
+	""" End Vim Repeat """ }}}
 
-	""" Rainbow Parenthesis Conf """ {
+	""" Rainbow Parenthesis Conf """ {{{
 	nmap <prefix>[ :ToggleRaibowParenthesis <CR>
-	""" End Rainbow Parenthesis """ }
+	""" End Rainbow Parenthesis """ }}}
 
-	""" YankRing Conf """ {
+	""" YankRing Conf """ {{{
 	nnoremap <silent> <F3> :YRShow<CR>
 	inoremap <silent> <F3> <ESC>:YRShow<CR>
 	map <silent> <prefix>y :YRShow<CR>
 	let g:yankring_history_dir = '~/.vim'
-	""" End YankRing """ }
+	""" End YankRing """ }}}
 
-	""" Solarized Theme """ {
+	""" Solarized Theme """ {{{
 	"call togglebg#map("<F6>")
 	"if has('gui_running')
 		"set background=light
@@ -296,18 +296,18 @@
 		"set background=dark
 	"endif
 	"colorscheme solarized
-	""" End Solarized """ }
+	""" End Solarized """ }}}
 
-	""" Gundo Conf """ {
+	""" Gundo Conf """ {{{
 	nnoremap <F5> :GundoToggle<CR>
-	""" End Gundo """ }
-""" End Plugins """ }
+	""" End Gundo """ }}}
+""" End Plugins """ }}}
 
-""" Notes To Self """ {
+""" Notes To Self """ {{{
 "" Consider:
 	"" Time out on key codes but not mappings.
 	"" Basically this makes terminal Vim work sanely.
 	"set notimeout
 	"set ttimeout
 	"set ttimeoutlen=10
-""" End Notes """ }
+""" End Notes """ }}}
