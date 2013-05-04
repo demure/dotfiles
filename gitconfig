@@ -3,3 +3,5 @@
 	email = demuredemeanor@gmail.com
 [push]
 	default = simple
+[color]
+	ui = true
