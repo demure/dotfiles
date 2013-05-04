@@ -10,9 +10,12 @@ organizing snippets, commenting, and making one conf work for all my systems.
 I think my vimrc has improved a good deal ^__^
 It will now auto install Vundle if missing, and create undo/backup/swap paths.
 
+My PS1 is much simpl.... Err, neater?
+The machine test is much more consise, and the git check quite useful.
+
 ######Plans:
 For tmux, I am still debating to use powerline or not...
-If I do decide I like it, I will probably try vim-powerline as well.
+~~If I do decide I like it, I will probably try vim-powerline as well.~~ _projects mereged_
 One of the annoying issues is that the hacked fonts for mac don't look very good
 without anti-aliasing... And I don't like to use anti-aliasing...
 
@@ -20,4 +23,4 @@ without anti-aliasing... And I don't like to use anti-aliasing...
 **PS.** If you happen to have advice, I certainly would be interested in ways to
 improve my setup.
 
-08APR2013
+04MAY2013
