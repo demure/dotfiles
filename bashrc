@@ -1,5 +1,5 @@
 ##### My (demuredemeanor) bashrc
-# Uses shiftwidth=4 for tabs
+# Uses shiftwidth=4 tabs; foldmarker={{{,}}};
 # http://github.com/demure/dotfiles
 
 ### Exports ### {{{
@@ -207,7 +207,8 @@
 	### End For Netbook ### }}}
 
 	### For SDF Main Cluster ### {{{
-	if [[ $HOSTNAME =~ .*\.sdf\.org || $HOSTNAME == "otaku" || $HOSTNAME == "sdf" || $HOSTNAME == "faeroes" ]]; then
+	if [[ "$MACHTYPE" == "x86_64--netbsd" && "$OSTYPE" == "netbsd" ]]; then
+	#if [[ $HOSTNAME =~ .*\.sdf\.org || $HOSTNAME == "otaku" || $HOSTNAME == "sdf" || $HOSTNAME == "faeroes" || $HOSTNAME == "ukato" ]]; then
 		#LSCOLORS='exfxcxdxbxegedabagacad'
 		export TZ=EST5EDT
 		alias help='/usr/local/bin/help'
@@ -267,7 +268,8 @@
 				local PSCol="$Gre"				# For iOS
 			elif [ $MACHTYPE == 'i486-pc-linux-gnu' ]; then
 				local PSCol="$BBla"				# For Netbook
-			elif [[ $HOSTNAME =~ .*\.sdf\.org || $HOSTNAME == "otaku" || $HOSTNAME == "sdf" || $HOSTNAME == "faeroes" ]]; then
+			elif [[ "$MACHTYPE" == "x86_64--netbsd" && "$OSTYPE" == "netbsd" ]]; then
+			#elif [[ $HOSTNAME =~ .*\.sdf\.org || $HOSTNAME == "otaku" || $HOSTNAME == "sdf" || $HOSTNAME == "faeroes" || $HOSTNAME == "ukato" ]]; then
 				local PSCol="$Yel"				# For Main Cluster
 			  else
 				PS1+="\h "						# Un-designated catch-all
