@@ -5,3 +5,6 @@
 	default = simple
 [color]
 	ui = true
+[alias]
+	st = status -sb
+	cmm = commit -m
