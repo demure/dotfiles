@@ -291,6 +291,8 @@
 					if [ "${TIME}" -gt "600" ]; then
 						git fetch 2>/dev/null
 						PS1+=' +'
+						## Refresh var
+						local GStat="$(git status --porcelain -b 2>/dev/null | tr '\n' ':')"
 					fi
 				fi
 				### End Fetch Check ### }}}
