@@ -198,16 +198,20 @@
 	""" End Navigate Splits """ }}}
 
 	""" Toggle RelativeNumber """ {{{
-	function! g:NumberToggle()
-		if(&relativenumber == 1)
-			setlocal number
-		  else
-			setlocal relativenumber
-		endif
-	endfunc
+	"" Using number.vim now
+	"function! g:NumberToggle()
+		"if(&relativenumber == 1)
+			"setlocal number
+		  "else
+			"setlocal relativenumber
+		"endif
+	"endfunc
 
-	nnoremap <leader>n :call g:NumberToggle()<CR>
-	""" End Toggle RelativeNumber """}
+	"nnoremap <leader>n :call g:NumberToggle()<CR>
+
+	"" Switch to f num key...
+	nnoremap <keader>n :NumbersToggle<CR>
+	""" End Toggle RelativeNumber """ }}}
 
 	""" Toggle colorcolumn """ {{{
 	highlight ColorColumn ctermbg=Brown
@@ -243,6 +247,8 @@
 	endif
 	set rtp+=~/.vim/bundle/vundle/
 	call vundle#rc()
+	"" Use git instead of http 
+	let g:vundle_default_git_proto = 'git'
 	Bundle 'gmarik/vundle'
 	""Add your bundles here
 	Bundle 'scrooloose/nerdtree'
@@ -259,6 +265,9 @@
 	Bundle 'uguu-org/vim-matrix-screensaver'
 	"" vim-indent-guides default binding: <Leader>ig
 	Bundle 'mutewinter/vim-indent-guides'
+	Bundle 'myusuf3/numbers.vim'
+	"" <prefix><prefix>motion
+	Bundle 'Lokaltog/vim-easymotion'
 	""...All your other bundles...
 	if iCanHazVundle == 0
 		echo "Installing Bundles, please ignore key map error messages"
