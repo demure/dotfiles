@@ -242,7 +242,9 @@
 		echo "Installing Vundle.."
 		echo ""
 		silent !mkdir -p ~/.vim/bundle
-		silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+		"" Disabled for git url
+		"silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+		silent !git clone git://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 		let iCanHazVundle=0
 	endif
 	set rtp+=~/.vim/bundle/vundle/
@@ -268,6 +270,7 @@
 	Bundle 'myusuf3/numbers.vim'
 	"" <prefix><prefix>motion
 	Bundle 'Lokaltog/vim-easymotion'
+	Bundle 'syntax-highlighting-for-tintinttpp'
 	""...All your other bundles...
 	if iCanHazVundle == 0
 		echo "Installing Bundles, please ignore key map error messages"
