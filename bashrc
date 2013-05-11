@@ -278,6 +278,24 @@
 
 			PS1+="${PSCol}\W${RCol}"			# Current working dir
 
+			### Check Jobs ### {{{
+			## Backgrounded running jobs
+			local BKGJBS=$(jobs -r | wc -l | tr -d ' ')
+			if [ ${BKGJBS} -gt 2 ]; then
+				PS1+=" ${Red}[bg:${BKGJBS}]${RCol}"
+			elif [ ${BKGJBS} -gt 0 ]; then
+				PS1+=" ${Yel}[bg:${BKGJBS}]${RCol}"
+			fi
+
+			## Stopped Jobs
+			local STPJBS=$(jobs -s | wc -l | tr -d ' ')
+			if [ ${STPJBS} -gt 2 ]; then
+				PS1+=" ${Red}[stp:${STPJBS}]${RCol}"
+			elif [ ${STPJBS} -gt 0 ]; then
+				PS1+=" ${Yel}[stp:${STPJBS}]${RCol}"
+			fi
+			### End Jobs ### }}}
+
 			### Add Git Status ### {{{
 			## Inspired by http://www.terminally-incoherent.com/blog/2013/01/14/whats-in-your-bash-prompt/
 			local GStat="$(git status --porcelain -b 2>/dev/null | tr '\n' ':')"
@@ -351,23 +369,6 @@
 		fi
 	}
 
-		### Maybe Add ### {{{
-#		# Backgrounded running jobs
-#		local BKGJBS=$(jobs -r | wc -l )
-#		if [ ${BKGJBS} -gt 2 ]; then
-#			PS1="${PS1}\[${COLOR_RED}\][bg:${BKGJBS}]"
-#		elif [ ${BKGJBS} -gt 0 ]; then
-#			PS1="${PS1}\[${COLOR_YELLOW}\][bg:${BKGJBS}] "
-#		fi
-
-#		# Stopped Jobs
-#		local STPJBS=$(jobs -s | wc -l )
-#		if [ ${STPJBS} -gt 2 ]; then
-#			PS1="${PS1}\[${COLOR_RED}\][stp:${STPJBS}]"
-#		elif [ ${STPJBS} -gt 0 ]; then
-#			PS1="${PS1}\[${COLOR_YELLOW}\][stp:${STPJBS}] "
-#		fi
-		### End Maybe ### }}}
 	### End PS1 ### }}}
 
 #	### SSH Agent ### {{{
