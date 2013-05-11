@@ -271,6 +271,7 @@
 	"" <prefix><prefix>motion
 	Bundle 'Lokaltog/vim-easymotion'
 	Bundle 'syntax-highlighting-for-tintinttpp'
+	Bundle 'Tail-Bundle'
 	""...All your other bundles...
 	if iCanHazVundle == 0
 		echo "Installing Bundles, please ignore key map error messages"
