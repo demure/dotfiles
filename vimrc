@@ -234,6 +234,7 @@
 """ End Key Bindings """ }}}
 
 """ Plugins """ {{{
+if $MACHTYPE != 'arm-apple-darwin9'
 	""" Setting up Vundle """ {{{
 	"" From http://www.erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc/
 	let iCanHazVundle=1
@@ -249,9 +250,11 @@
 	endif
 	set rtp+=~/.vim/bundle/vundle/
 	call vundle#rc()
-	"" Use git instead of http 
+	"" Use git instead of http
 	let g:vundle_default_git_proto = 'git'
+	"" Have vundle first...
 	Bundle 'gmarik/vundle'
+
 	""Add your bundles here
 	Bundle 'scrooloose/nerdtree'
 	Bundle 'tpope/vim-repeat'
@@ -278,7 +281,7 @@
 		echo ""
 		:BundleInstall
 	endif
-	""" End Setting Up Vundle """ }}}
+""" End Setting Up Vundle """ }}}
 
 	""" NERDtree config """ {{{
 	"" Starts NERDtree if no file is give to vim at start 
@@ -314,6 +317,7 @@
 	""" Gundo Conf """ {{{
 	nnoremap <F5> :GundoToggle<CR>
 	""" End Gundo """ }}}
+endif
 """ End Plugins """ }}}
 
 """ Notes To Self """ {{{
