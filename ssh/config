@@ -41,3 +41,8 @@ host remote
 hostName localhost
 Port 63753
 User demure
+
+host sleep
+hostName sleepermud.net
+Port 22
+User demure
