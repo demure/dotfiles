@@ -28,6 +28,8 @@
 		"au BufWinLeave ?* mkview
 		"au BufWinEnter ?* silent loadview
 		set foldmethod=marker
+		set fillchars=fold:.
+		highlight Folded ctermfg=Black ctermbg=DarkGray
 		"set foldlevelstart=99		" Effectively disable auto folding
 
 			""" Test """ {{{
@@ -38,21 +40,26 @@
 			"" Inspired by http://www.gregsexton.org/2011/03/improving-the-text-displayed-in-a-fold/
 			set foldtext=CustomFoldText()
 			function! CustomFoldText()
+				"" Process line
 				let fs = v:foldstart
+				let fLinePrep = substitute(getline(fs), '\t', '+---', 'g')
+				let fLine = substitute(fLinePrep, ' {\{3}', '', 'g')
 
-				let line_prep = substitute(getline(fs), '\t', '+---', 'g')
-				let line = substitute(line_prep, ' {\{3}', '', 'g')
+				"" Process line count and fold precentage
+				let fSize = 1 + v:foldend - v:foldstart
+				let fSizeStr = " " . fSize . " lines "
+				let fLineCount = line("$")
+				let fPercent = printf("[%.1f", (fSize*1.0)/fLineCount*100) . "%] "
 
+				"" Process fold level
+				let fLevel = "{".v:foldlevel."} "
+
+				"" Process filler string
 				let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
-				let foldSize = 1 + v:foldend - v:foldstart
-				let foldSizeStr = " " . foldSize . " lines "
-				let lineCount = line("$")
-				let foldPercentage = printf("[%.1f", (foldSize*1.0)/lineCount*100) . "%] "
-				let foldLevel = "{".v:foldlevel."} "
-				let expansionString = repeat(".", w - strwidth(foldSizeStr.line.foldPercentage.foldLevel))
+				let expansionString = repeat(".", w - strwidth(fSizeStr.fLine.fPercent.fLevel))
 
-				""return line . expansionString . foldSizeStr . foldPercentage . foldLevelStr
-				return line . expansionString . foldSizeStr . foldPercentage . foldLevel
+				"return fLine . expansionString . fSizeStr . foldPercent . foldLevel
+				return fLine . fSizeStr . fPercent . fLevel
 			endfunction
 			""" End Foldtext """ }}}
 	endif
