@@ -316,8 +316,8 @@
 				### End Fetch Check ### }}}
 
 				### Test For Changes ### {{{
-				local GChanges="$(echo ${GStat} | tr ':' '\n' | grep -v "^$" | grep -E -v "(ahead|behind)" | wc -l | tr -d ' ')"
-				if [ "$GChanges" == "1" ]; then
+				local GChanges="$(echo ${GStat} | tr ':' '\n' | grep -v "^$" | grep -v "^\#\#" | wc -l | tr -d ' ')"
+				if [ "$GChanges" == "0" ]; then
 					local GitCol=$Gre
 				  else
 					local GitCol=$Red
