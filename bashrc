@@ -1,5 +1,5 @@
 ##### My (demuredemeanor) bashrc
-# Uses shiftwidth=4 tabs; foldmarker={{{,}}};
+# Uses tabstop=4; shiftwidth=4 tabs; foldmarker={{{,}}};
 # http://github.com/demure/dotfiles
 
 ### Exports ### {{{
@@ -9,7 +9,7 @@
 	export EDITOR=vim
 
 		### History Settings ### {{{
-		export HISTSIZE=10000			# Size of shell\'s hist
+		export HISTSIZE=10000			# Size of shells hist
 		export HISTFILESIZE=10000		# Size of Hist file
 		export HISTCONTROL=ignoreboth:erasedups
 		export HISTTIMEFORMAT="%F %T "	# Adds time to history
