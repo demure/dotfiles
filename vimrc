@@ -1,5 +1,8 @@
 """"" My (demuredemeanor) .vimrc
-"" Uses shiftwidth=4 tabs; foldmarker={{{,}}};
+"" Uses tabstop=4; shiftwidth=4; foldmarker={{{,}}};
+""""""""vim: set tabstop=4 shiftwidth=4:
+"" Above is an attempt at a modeline, which seems to have a issue
+"" where long pastes get a new line...
 "" http://github.com/demure/dotfiles
 
 """ Commands at Start """ {{{
@@ -25,8 +28,33 @@
 		"au BufWinLeave ?* mkview
 		"au BufWinEnter ?* silent loadview
 		set foldmethod=marker
-		"set foldmarker={,}			" Use '{}'s for folds
 		"set foldlevelstart=99		" Effectively disable auto folding
+
+			""" Test """ {{{
+			" Blah
+			""" End Test """ }}}
+
+			""" Foldtext """ {{{
+			"" Inspired by http://www.gregsexton.org/2011/03/improving-the-text-displayed-in-a-fold/
+			set foldtext=CustomFoldText()
+			function! CustomFoldText()
+				let fs = v:foldstart
+
+				let line_prep = substitute(getline(fs), '\t', '+---', 'g')
+				let line = substitute(line_prep, ' {\{3}', '', 'g')
+
+				let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
+				let foldSize = 1 + v:foldend - v:foldstart
+				let foldSizeStr = " " . foldSize . " lines "
+				let lineCount = line("$")
+				let foldPercentage = printf("[%.1f", (foldSize*1.0)/lineCount*100) . "%] "
+				let foldLevel = "{".v:foldlevel."} "
+				let expansionString = repeat(".", w - strwidth(foldSizeStr.line.foldPercentage.foldLevel))
+
+				""return line . expansionString . foldSizeStr . foldPercentage . foldLevelStr
+				return line . expansionString . foldSizeStr . foldPercentage . foldLevel
+			endfunction
+			""" End Foldtext """ }}}
 	endif
 	""" End Folds Settings """ }}}
 
@@ -93,7 +121,7 @@
 
 	""" Show Hidden Chars """ {{{
 	set list						" Shows certain hidden chars
-	set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
+	set listchars=eol:¬,tab:▶-,trail:~,extends:>,precedes:<
 	""Disabled for Solarized test
 	hi NonText ctermfg=darkgray		" Makes trailing darkgray
 	hi SpecialKey ctermfg=darkgray	" Makes Leading darkgray
@@ -167,7 +195,7 @@
 
 	""" Quickly edit/reload the vimrc file """ {{{
 	""  maps the ,ev and ,sv keys to edit/reload .vimrc.
-	nmap <silent> <leader>ev :e $MYVIMRC<CR>
+	nmap <silent> <leader>ev :tabedit $MYVIMRC<CR>
 	nmap <silent> <leader>sv :so $MYVIMRC<CR>
 	""" End reload """ }}}
 
@@ -176,7 +204,7 @@
 	set pastetoggle=<F2>
 	nmap <leader>p :set invpaste paste?<CR>
 	""" End Paste Toggle """ }}}
- 
+
 	""" Vim Tab Window Keysbindings """ {{{
 "	nnoremap <C-Left> :tabprevious<CR>
 "	nnoremap <C-Right> :tabnext<CR>
@@ -210,7 +238,7 @@
 	"nnoremap <leader>n :call g:NumberToggle()<CR>
 
 	"" Switch to f num key...
-	nnoremap <keader>n :NumbersToggle<CR>
+	nnoremap <leader>n :NumbersToggle<CR>
 	""" End Toggle RelativeNumber """ }}}
 
 	""" Toggle colorcolumn """ {{{
@@ -223,7 +251,7 @@
 		endif
 	endfunction
  
-	nnoremap <silent> <leader>l :call g:ToggleColorColumn()<CR>
+	nnoremap <silent> <leader>L :call g:ToggleColorColumn()<CR>
 	""" End Toggle colorcolumn """ }}}
 
 	""" Cross Hairs """ {{{
