@@ -76,12 +76,11 @@
 	alias ed='ed -p:'
 
 		### Git Aliases ### {{{
-		alias git_files_hist='git log --pretty=%h | while read hash; do git ls-tree -r $hash | awk '{print $4}'; done | sort -u'
 		alias git_force_reset='git fetch --all && git reset --hard origin/master'
 		### End Git Aliases ### }}}
 	### End Universal Aliases ### }}}
 
-	### Universal Custom Commands ### {{{
+	### Univezarsal Custom Commands ### {{{
 	## Extract most types of compressed files
 	function extract {
 		echo Extracting $1 ...
@@ -129,6 +128,10 @@
 			fi
 		fi
 	}
+
+	function git_files_hist() {
+	git log --pretty=%h | while read hash; do git ls-tree -r $hash | awk '{print $4}'; done | sort -u
+}
 	###End Universal Commands ### }}}
 
 	### Mac Settings ### {{{
