@@ -67,7 +67,10 @@
 
 	"" Stop auto comment on new line
 	autocmd FileType * setlocal formatoptions-=cro
-	set shortmess+=T
+	"" Stop message at vim launch
+	set shortmess+=atIT
+	"" expand '%' matching to if/elsif/else/end
+	runtime macros/matchit.vim
 """ End Commands at Start """ }}}
 
 """ Options """ {{{
@@ -79,6 +82,7 @@
 	set ttyfast						" Indicates a fast terminal connection
 	set splitbelow					" New horizontal splits are below
 	set splitright					" New vertical splits are to the right
+	set history=1000				" Increase command/search history
 	""" End Assorted """ }}}
 
 	""" HUD """ {{{
