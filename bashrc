@@ -74,6 +74,11 @@
 	alias filetree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'"
 	alias reset_display='export DISPLAY=$(tmux showenv|grep ^DISPLAY|cut -d = -f 2)'
 	alias ed='ed -p:'
+
+		### Git Aliases ### {{{
+		alias git_files_hist='git log --pretty=%h | while read hash; do git ls-tree -r $hash | awk '{print $4}'; done | sort -u'
+		alias git_force_reset='git fetch --all && git reset --hard origin/master'
+		### End Git Aliases ### }}}
 	### End Universal Aliases ### }}}
 
 	### Universal Custom Commands ### {{{
