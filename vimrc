@@ -67,10 +67,8 @@
 
 	"" Stop auto comment on new line
 	autocmd FileType * setlocal formatoptions-=cro
-	"" Stop message at vim launch
-	set shortmess+=atIT
-	"" expand '%' matching to if/elsif/else/end
-	runtime macros/matchit.vim
+	set shortmess+=atIT				" Stop messages at vim launch
+	runtime macros/matchit.vim		" Add '%' matching to if/elsif/else/end
 """ End Commands at Start """ }}}
 
 """ Options """ {{{
@@ -133,7 +131,6 @@
 	""" Show Hidden Chars """ {{{
 	set list						" Shows certain hidden chars
 	set listchars=eol:¬,tab:▶-,trail:~,extends:>,precedes:<
-	""Disabled for Solarized test
 	hi NonText ctermfg=darkgray		" Makes trailing darkgray
 	hi SpecialKey ctermfg=darkgray	" Makes Leading darkgray
 	""" End Hidden Chars """ }}}
@@ -151,7 +148,6 @@
 	set tabpagemax=10				" max num of tabs to open on startup
 	hi TabLineSel ctermbg=Yellow	" Current Tab
 	hi TabLine ctermfg=Grey ctermbg=DarkGrey	" Other Tabs
-	"hi TabLineFill ctermfg=DarkCyan
 	hi TabLineFill ctermfg=Black	" Rest of line
 	hi Title ctermfg=DarkBlue ctermbg=None	" Windows in Tab
 	""" End Tab Windows """ }}}
@@ -163,7 +159,7 @@
 	set shiftwidth=4				" Affects when you press >>, << or ==. And auto indent.
 	set smarttab					" Insert Tabs at ^ per shiftwidth, not tabstop
 	set autoindent					" Always set auto indenting on
-	set copyindent					" Copy the previous indentation on autoindenting
+	set copyindent					" Copy prior indentation on autoindent
 	""" End Tab Key """ }}}
 
 	""" Searching """ {{{
@@ -192,7 +188,7 @@
 		endif
 		""" End Dir """ }}}
 	set backup						" Enable backups
-	set undofile
+	set undofile					" Enable undo file
 	set undoreload=10000
 	set backupdir=~/.vim/back/
 	set directory=~/.vim/swap/		" swap files
@@ -201,7 +197,7 @@
 """ End Options """ }}}
 
 """ Key Bindings """ {{{
-	let mapleader=","				" Change the mapleader from '\\' to ','
+	let mapleader=","				" Change the mapleader from '\' to ','
 	map <leader>/ :noh<return>		" <leader>/ will clear search hilights!
 
 	""" Quickly edit/reload the vimrc file """ {{{
@@ -236,22 +232,6 @@
 	map <leader> <Right> :wincmd l<CR>
 	""" End Navigate Splits """ }}}
 
-	""" Toggle RelativeNumber """ {{{
-	"" Using number.vim now
-	"function! g:NumberToggle()
-		"if(&relativenumber == 1)
-			"setlocal number
-		  "else
-			"setlocal relativenumber
-		"endif
-	"endfunc
-
-	"nnoremap <leader>n :call g:NumberToggle()<CR>
-
-	"" Switch to f num key...
-	nnoremap <leader>n :NumbersToggle<CR>
-	""" End Toggle RelativeNumber """ }}}
-
 	""" Toggle colorcolumn """ {{{
 	highlight ColorColumn ctermbg=Brown
 	function! g:ToggleColorColumn()
@@ -269,7 +249,14 @@
 	hi CursorLine   cterm=NONE ctermbg=darkgrey ctermfg=white guibg=darkred guifg=white
 	hi CursorColumn cterm=NONE ctermbg=darkgrey ctermfg=white guibg=darkred guifg=white
 	nnoremap <Leader>+ :set cursorline! cursorcolumn!<CR>
-    """ End Cross Hair """ }}}
+	""" End Cross Hair """ }}}
+
+	""" DiffOrig """ {{{
+	"command DiffOrig let g:diffline = line('.') | vert new | set bt=nofile | r # | 0d_ | diffthis | :exe "norm! ".g:diffline."G" | wincmd p | diffthis | wincmd p
+	command! DiffOrig let g:diffline = line('.') | vert new | set bt=nofile | r # | 0d_ | diffthis | :exe 'norm! '.g:diffline.'G' | wincmd p | diffthis | wincmd p
+	nnoremap <Leader>do :DiffOrig<cr>
+	nnoremap <leader>dc :q<cr>:diffoff<cr>:exe "norm! ".g:diffline."G"<cr>
+	""" End DiffOrig """ }}}
 """ End Key Bindings """ }}}
 
 """ Plugins """ {{{
@@ -333,7 +320,7 @@ if $MACHTYPE != 'arm-apple-darwin9'
 	""" End Vim Repeat """ }}}
 
 	""" Rainbow Parenthesis Conf """ {{{
-	nmap <prefix>[ :ToggleRaibowParenthesis <CR>
+	nmap <leader>[ :ToggleRaibowParenthesis <CR>
 	""" End Rainbow Parenthesis """ }}}
 
 	""" YankRing Conf """ {{{
@@ -356,6 +343,10 @@ if $MACHTYPE != 'arm-apple-darwin9'
 	""" Gundo Conf """ {{{
 	nnoremap <F5> :GundoToggle<CR>
 	""" End Gundo """ }}}
+
+	""" numbers.vim Conf""" {{{
+	nnoremap <leader>n :NumbersToggle<CR>
+	""" End nunmbers.vim """ }}}
 endif
 """ End Plugins """ }}}
 
