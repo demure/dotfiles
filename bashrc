@@ -4,7 +4,7 @@
 
 ### Exports ### {{{
 	### Universal Exports ### {{{
-	export PROMPT_COMMAND=__prompt_command
+	export PROMPT_COMMAND=__prompt_command	# Func to gen PS1 after CMDs
 	export CLICOLOR="YES"				# Color 'ls', etc.
 	export EDITOR=vim
 
@@ -38,10 +38,8 @@
 	### End Fortune ### }}}
 
 	### Grep Options ### {{{
-	GREP_OPTIONS=
 	## Colored Greps
 	if echo hello | grep --color=auto l >/dev/null 2>&1; then
-		#GREP_OPTIONS="$GREP_OPTIONS --color=auto" GREP_COLOR='1;31'
 		GREP_OPTIONS+="--color=auto " GREP_COLOR='1;31'
 	fi
 
@@ -49,7 +47,6 @@
 	## http://blog.sanctum.geek.nz/default-grep-options/
 	if echo hello | grep --exclude-dir=a l >/dev/null 2>&1; then
 		for PATTERN in .cvs .git .hg .svn; do
-			#GREP_OPTIONS="$GREP_OPTIONS --exclude-dir=$PATTERN"
 			GREP_OPTIONS+="--exclude-dir=$PATTERN "
 		done
 	fi
@@ -216,7 +213,6 @@
 
 	### For SDF Main Cluster ### {{{
 	if [[ "$MACHTYPE" == "x86_64--netbsd" && "$OSTYPE" == "netbsd" ]]; then
-	#if [[ $HOSTNAME =~ .*\.sdf\.org || $HOSTNAME == "otaku" || $HOSTNAME == "sdf" || $HOSTNAME == "faeroes" || $HOSTNAME == "ukato" ]]; then
 		#LSCOLORS='exfxcxdxbxegedabagacad'
 		export TZ=EST5EDT
 		alias help='/usr/local/bin/help'
@@ -277,7 +273,6 @@
 			elif [ $MACHTYPE == 'i486-pc-linux-gnu' ]; then
 				local PSCol="$BBla"				# For Netbook
 			elif [[ "$MACHTYPE" == "x86_64--netbsd" && "$OSTYPE" == "netbsd" ]]; then
-			#elif [[ $HOSTNAME =~ .*\.sdf\.org || $HOSTNAME == "otaku" || $HOSTNAME == "sdf" || $HOSTNAME == "faeroes" || $HOSTNAME == "ukato" ]]; then
 				local PSCol="$Yel"				# For Main Cluster
 			  else
 				PS1+="\h "						# Un-designated catch-all
