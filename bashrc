@@ -138,6 +138,9 @@
 		if [ -f `brew --prefix`/etc/bash_completion ]; then
 			source `brew --prefix`/etc/bash_completion
 		fi
+
+		## Brew completion
+		source `brew --prefix`/Library/Contributions/brew_bash_completion.sh
 		### End Mac Sourcing ### }}}
 
 		### Mac Aliases ### {{{
