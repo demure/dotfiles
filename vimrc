@@ -260,7 +260,7 @@
 """ End Key Bindings """ }}}
 
 """ Plugins """ {{{
-if $MACHTYPE != 'arm-apple-darwin9'
+if $USER != 'mobile'
 	""" Setting up Vundle """ {{{
 	"" From http://www.erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc/
 	let iCanHazVundle=1
