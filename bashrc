@@ -165,6 +165,7 @@
 
 	### MA Settings ### {{{
 	if [ $HOSTNAME == 'ma.sdf.org' ]; then
+		export TZ=EST5EDT
 		source /etc/bash_completion.d/git		## Add git completion
 
 			### SSH Agent ### {{{
