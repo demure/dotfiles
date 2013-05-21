@@ -8,3 +8,4 @@
 [alias]
 	st = status -sb
 	cmm = commit -m
+	d = difftool --tool=vimdiff --no-prompt
