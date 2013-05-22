@@ -77,7 +77,7 @@
 		### End Git Aliases ### }}}
 	### End Universal Aliases ### }}}
 
-	### Univezarsal Custom Commands ### {{{
+	### Universal Custom Commands ### {{{
 	## Extract most types of compressed files
 	function extract {
 		echo Extracting $1 ...
@@ -167,6 +167,8 @@
 	if [ $HOSTNAME == 'ma.sdf.org' ]; then
 		export TZ=EST5EDT
 		source /etc/bash_completion.d/git		## Add git completion
+
+		alias bb='bboard'
 
 			### SSH Agent ### {{{
 			SSH_ENV="$HOME/.ssh/environment"
