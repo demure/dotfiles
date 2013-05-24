@@ -1,6 +1,9 @@
 ##### My (demuredemeanor) bashrc
 # Uses tabstop=4; shiftwidth=4 tabs; foldmarker={{{,}}};
 # http://github.com/demure/dotfiles
+#
+# Add, to start using sub sourcing
+# source $HOME/.bash/bashrc
 
 ### Exports ### {{{
 	### Universal Exports ### {{{
@@ -23,10 +26,10 @@
 	shopt -s checkwinsize				# Update col/lines after commands
 
 		### Completion ### {{{
-		shopt -s autocd					# Can change dir without `cd`
+		shopt -sq autocd					# Can change dir without `cd`
 		shopt -s cdspell				# Fixes minor spelling errors in cd paths
 		shopt -s no_empty_cmd_completion	# Stops empty line tab comp
-		shopt -s dirspell				# Tab comp can fix dir name typos
+		shopt -sq dirspell				# Tab comp can fix dir name typos
 		### End Completion ### }}}
 	### End Universal Shopts ### }}}
 
@@ -244,7 +247,7 @@
 		### Colors to Vars ### {{{
 		## Inspired by http://wiki.archlinux.org/index.php/Color_Bash_Prompt#List_of_colors_for_prompt_and_Bash
 		## Can unset with `unset -v {,B,U,I,BI,On_,On_I}{Bla,Red,Gre,Yel,Blu,Pur,Cya,Whi} RCol`
-		RCol='\[\e[0m\]'	# Text Reset
+		local RCol='\[\e[0m\]'	# Text Reset
 
 		# Regular					Bold						Underline					High Intensity				BoldHigh Intensity			Background				High Intensity Backgrounds
 		local Bla='\[\e[0;30m\]';	local BBla='\[\e[1;30m\]';	local UBla='\[\e[4;30m\]';	local IBla='\[\e[0;90m\]';	local BIBla='\[\e[1;90m\]';	local On_Bla='\e[40m';	local On_IBla='\[\e[0;100m\]';
