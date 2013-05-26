@@ -1,0 +1,16 @@
+##### My (demuredemeanor) bashrc sub source alias script
+# Uses tabstop=4; shiftwidth=4 tabs; foldmarker={{{,}}};
+# http://github.com/demure/dotfiles
+# vim:set syntax=sh:
+
+### Universal Aliases ### {{{
+alias rmds='find . -name ".DS_Store" -depth -exec rm -i {} \;'
+alias bashrc='vim ~/.bashrc'
+alias filetree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'"
+alias reset_display='export DISPLAY=$(tmux showenv|grep ^DISPLAY|cut -d = -f 2)'
+alias ed='ed -p:'
+
+	### Git Aliases ### {{{
+	alias git_force_reset='git fetch --all && git reset --hard origin/master'
+	### End Git Aliases ### }}}
+### End Universal Aliases ### }}}
