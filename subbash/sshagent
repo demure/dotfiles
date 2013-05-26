@@ -1,0 +1,31 @@
+##### My (demuredemeanor) sub source ssh-agent script
+# Uses tabstop=4; shiftwidth=4 tabs; foldmarker={{{,}}};
+# http://github.com/demure/dotfiles
+# vim:set syntax=sh:
+
+### SSH Agent ### {{{
+function __ssh_agent() {
+	### SSH Agent ### {{{
+	SSH_ENV="$HOME/.ssh/environment"
+
+	function __start_agent {
+		echo "Initialising new SSH agent..."
+		/usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+		echo succeeded
+		chmod 600 "${SSH_ENV}"
+		. "${SSH_ENV}" > /dev/null
+		/usr/bin/ssh-add;
+	}
+
+	## Source SSH settings, if applicable
+	if [ -f "${SSH_ENV}" ]; then
+		. "${SSH_ENV}" > /dev/null
+		ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+			__start_agent;
+		}
+	  else
+		__start_agent;
+	fi
+### End SSH Agent ### }}}
+}
+### End SSH Agent ### }}}
