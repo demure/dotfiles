@@ -1,0 +1,88 @@
+##### My (demuredemeanor) bashrc sub source machine settings script
+# Uses tabstop=4; shiftwidth=4 tabs; foldmarker={{{,}}};
+# http://github.com/demure/dotfiles
+# vim:set syntax=sh:
+
+### Settings ### {{{
+	### Mac Settings ### {{{
+	if [ $OSTYPE == 'darwin12' ]; then
+		### Mac Sourcing ### {{{
+		## Add git completion
+		if [ -f `brew --prefix`/etc/bash_completion ]; then
+			source `brew --prefix`/etc/bash_completion
+		fi
+
+		## Brew completion
+		source `brew --prefix`/Library/Contributions/brew_bash_completion.sh
+		### End Mac Sourcing ### }}}
+
+		### Mac Aliases ### {{{
+		alias google='ping -c 1 www.google.com && growlnotify -m "google pinged"'
+		alias ardrestart='sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -restart -agent -menu'
+		alias vi='vim'
+		alias svi='sudo vi'
+		alias fvreboot='sudo fdesetup authrestart'
+		alias rebuild_open_with='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user;killall Finder;echo "Open With has been rebuilt, Finder will relaunch"'
+
+		## MPlayer
+		alias mp='mplayer'
+		alias mp2='mplayer2'
+		alias np='sudo nice -n -10 mplayer'
+
+		## Aliases for nicing
+		alias fast='sudo nice -n -10'
+		alias slow='nice -n 20'
+		### End Mac Aliases ### }}}
+	fi
+	### End Mac Settings ### }}}
+
+	### MA Settings ### {{{
+	if [ $HOSTNAME == 'ma.sdf.org' ]; then
+		export TZ=EST5EDT
+		source /etc/bash_completion.d/git		## Add git completion
+
+		alias bb='bboard'
+		__ssh_agent
+	fi
+	### End MA Settings ### }}}
+
+	### For pi ### {{{
+	if [ $HOSTTYPE == 'arm' ]; then
+		source /etc/bash_completion.d/git		## Add git completion
+		alias ls='ls --color=auto'
+		alias vi='vim'
+		alias svi='sudo vim'
+		alias vnc='vncserver :1 -geometry 1024x700 -depth 24'
+	fi
+	### End For pi ### }}}
+
+	### For iOS ### {{{
+	if [ $OSTYPE == 'darwin9' ]; then
+		alias svi='sudo vi'
+	fi
+	### End For iOS ### }}}
+
+	### For Netbook ### {{{
+	if [ $OSTYPE == 'linux-gnu' ]; then
+		alias ls='ls --color=auto'
+	fi
+	### End For Netbook ### }}}
+
+	### For SDF Main Cluster ### {{{
+	if [[ "$MACHTYPE" == "x86_64--netbsd" && "$OSTYPE" == "netbsd" ]]; then
+		#LSCOLORS='exfxcxdxbxegedabagacad'
+		export TZ=EST5EDT
+		alias help='/usr/local/bin/help'
+		#alias ls='colorls -G'
+	fi
+	### End For SDF Main Cluster ### }}}
+
+	### Testing ### {{{
+	## Fix tmux DISPLAY
+	# "Yubinkim.com totally wrote this one herself"
+	# "Run this script outside of tmux!"
+#	for name in `tmux ls -F '#{session_name}'`; do
+#		tmux setenv -g -t $name DISPLAY $DISPLAY #set display for all sessions
+#	done
+	### End Testing ### }}}
+### End Settings ### }}}
