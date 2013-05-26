@@ -93,6 +93,7 @@ function __prompt_command() {
 			### End Fetch Check ### }}}
 
 			### Test For Changes ### {{{
+			## Change this to test for 'ahead' or 'behind'!
 			local GChanges="$(echo ${GStat} | tr ':' '\n' | grep -v "^$" | grep -v "^\#\#" | wc -l | tr -d ' ')"
 			if [ "$GChanges" == "0" ]; then
 				local GitCol=$Gre
