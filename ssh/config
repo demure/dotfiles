@@ -1,48 +1,49 @@
+host *
+	User demure
+	Port 22
+	GSSAPIAuthentication no
+
 host sdf
-HostName tty.sdf.org
-Port 22
-User demure
+	HostName tty.sdf.org
 
 host ma
-HostName ma.sdf.org
-Port 22
-User demure
-#ForwardAgent no
-#ForwardX11 yes
-#ForwardX11Timeout 596h
-#ForwardX11Trusted no
+	HostName ma.sdf.org
+
+host max
+	HostName ma.sdf.org
+	#ForwardAgent no
+	ForwardX11 yes
+	ForwardX11Timeout 596h
+	ForwardX11Trusted no
+
+host tmux
+	HostName ma.sdf.org
+	LocalCommand /usr/pkg/bin/tmux attach
 
 host net
-HostName moving-netbook-of-doom.local
-Port 22
-User demure
+	HostName moving-netbook-of-doom.local
 
 host device
-HostName moving-device-of-doom.local
-Port 22
-User mobile
+	HostName moving-device-of-doom.local
+	User mobile
 
 host tv
-HostName tv-of-doom.local
-Port 22
-User mobile
+	HostName tv-of-doom.local
+	User mobile
 
 host tiny
-HostName tiny-computer-of-doom.local
-Port 22
-User demure
+	HostName tiny-computer-of-doom.local
 
 host comp doom
-hostName moving-computer-of-doom.local
-Port 22
-User demure
+	hostName moving-computer-of-doom.local
 
 host remote
-hostName localhost
-Port 63753
-User demure
+	hostName localhost
+	Port 63753
 
 host sleep
-hostName sleepermud.net
-Port 22
-User demure
+	hostName sleepermud.net
+
+host cork
+	hostName ma.sdf.org
+	ProxyCommand corkscrew proxy.example.com 8080 %h %p
