@@ -13,7 +13,7 @@ host max
 	HostName ma.sdf.org
 	#ForwardAgent no
 	ForwardX11 yes
-	ForwardX11Timeout 596h
+	#ForwardX11Timeout 596h
 	ForwardX11Trusted no
 
 host tmux
