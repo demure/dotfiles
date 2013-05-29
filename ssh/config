@@ -1,8 +1,3 @@
-host *
-	User demure
-	Port 22
-	GSSAPIAuthentication no
-
 host sdf
 	HostName tty.sdf.org
 
@@ -47,3 +42,9 @@ host sleep
 host cork
 	hostName ma.sdf.org
 	ProxyCommand corkscrew proxy.example.com 8080 %h %p
+
+host *
+	User demure
+	Port 22
+	GSSAPIAuthentication no
+
