@@ -47,4 +47,4 @@ host *
 	User demure
 	Port 22
 	GSSAPIAuthentication no
-
+	VisualHostKey yes
