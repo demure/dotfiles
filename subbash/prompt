@@ -11,6 +11,8 @@ function __prompt_command() {
 	PS1=""
 	### Colors to Vars ### {{{
 	## Inspired by http://wiki.archlinux.org/index.php/Color_Bash_Prompt#List_of_colors_for_prompt_and_Bash
+	## Terminal Control Escape Sequences: http://www.termsys.demon.co.uk/vtansi.htm
+	## Consider using some of: https://gist.github.com/bcap/5682077#file-terminal-control-sh
 	## Can unset with `unset -v {,B,U,I,BI,On_,On_I}{Bla,Red,Gre,Yel,Blu,Pur,Cya,Whi} RCol`
 	local RCol='\[\e[0m\]'	# Text Reset
 
