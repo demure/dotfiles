@@ -13,7 +13,17 @@
 		fi
 
 		## Brew completion
-		source `brew --prefix`/Library/Contributions/brew_bash_completion.sh
+		if [ -f `brew --prefix`/Library/Contributions/brew_bash_completion.sh ]; then
+			source `brew --prefix`/Library/Contributions/brew_bash_completion.sh
+		fi
+
+		### stderred ###
+		if [ -f /Projects/git/stderred/build/libstderred.dylib${DYLD_INSERT_LIBRARIES:+:$DYLD_INSERT_LIBRARIES} ]; then
+
+			export DYLD_INSERT_LIBRARIES="/Projects/git/stderred/build/libstderred.dylib${DYLD_INSERT_LIBRARIES:+:$DYLD_INSERT_LIBRARIES}"
+			export STDERRED_ESC_CODE=$(printf "\e[1;31m")
+		fi
+		### End stderred ###
 		### End Mac Sourcing ### }}}
 
 		### Mac Aliases ### {{{
