@@ -287,7 +287,7 @@ if $USER != 'mobile'
 	Bundle 'Rainbow-Parenthsis-Bundle'
 	Bundle 'scrooloose/nerdcommenter'
 	Bundle 'YankRing.vim'
-	"Bundle 'altercation/vim-colors-solarized'
+	Bundle 'altercation/vim-colors-solarized'
 	Bundle 'tpope/vim-fugitive'
 	"Bundle 'SearchComplete'		"" Disabled due to killing UP arrow in search
 	Bundle 'bufexplorer.zip'
@@ -301,6 +301,8 @@ if $USER != 'mobile'
 	Bundle 'Lokaltog/vim-easymotion'
 	Bundle 'syntax-highlighting-for-tintinttpp'
 	Bundle 'Tail-Bundle'
+	Bundle 'maciakl/vim-neatstatus'
+	Bundle 'mikewest/vimroom'
 	""...All your other bundles...
 	if iCanHazVundle == 0
 		echo "Installing Bundles, please ignore key map error messages"
@@ -332,12 +334,10 @@ if $USER != 'mobile'
 
 	""" Solarized Theme """ {{{
 	"call togglebg#map("<F6>")
-	"if has('gui_running')
-		"set background=light
-	  "else
-		"set background=dark
-	"endif
-	"colorscheme solarized
+	if has('gui_running')
+		set background=light
+	colorscheme solarized
+	endif
 	""" End Solarized """ }}}
 
 	""" Gundo Conf """ {{{
