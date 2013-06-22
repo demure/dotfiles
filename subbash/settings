@@ -21,7 +21,7 @@
 		if [ -f /Projects/git/stderred/build/libstderred.dylib${DYLD_INSERT_LIBRARIES:+:$DYLD_INSERT_LIBRARIES} ]; then
 
 			export DYLD_INSERT_LIBRARIES="/Projects/git/stderred/build/libstderred.dylib${DYLD_INSERT_LIBRARIES:+:$DYLD_INSERT_LIBRARIES}"
-			export STDERRED_ESC_CODE=$(printf "\e[1;31m")
+			#export STDERRED_ESC_CODE=$(printf "\e[1;31m")
 		fi
 		### End stderred ###
 		### End Mac Sourcing ### }}}
