@@ -1,4 +1,4 @@
-##### My (demuredemeanor) sub source prompt script
+##### My (demuredemeanor) bashrc sub source prompt script
 # Uses tabstop=4; shiftwidth=4 tabs; foldmarker={{{,}}};
 # http://github.com/demure/dotfiles
 # vim:set syntax=sh:
