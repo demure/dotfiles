@@ -169,7 +169,8 @@
 	set hlsearch					" Highlight matches
 	set incsearch					" Incremental searching
 	set ignorecase					" Searches are case insensitive...
-	set smartcase					" ...unless contains oneplus Cap letter
+	"" Disabled as was annoying with command completion
+	"set smartcase					" ...unless contains oneplus Cap letter
 	set showmatch					" Show matching brackets/parenthesis
 	set gdefault					" Applies substitutions globally on lines. Append 'g' to invert back. 
 	set synmaxcol=800				" Don't highlight lines longer than 800 chars
@@ -195,6 +196,10 @@
 	set undodir=~/.vim/undo/		" undo files
 	""" End Backup Settings """ }}}
 """ End Options """ }}}
+
+""" Aliases """ {{{
+	command BI BundleInstall
+""" End Aliases """ }}}
 
 """ Key Bindings """ {{{
 	let mapleader=","				" Change the mapleader from '\' to ','
@@ -303,6 +308,7 @@ if $USER != 'mobile'
 	Bundle 'Tail-Bundle'
 	Bundle 'maciakl/vim-neatstatus'
 	Bundle 'mikewest/vimroom'
+	Bundle 'FredKSchott/CoVim'
 	""...All your other bundles...
 	if iCanHazVundle == 0
 		echo "Installing Bundles, please ignore key map error messages"
@@ -313,7 +319,7 @@ if $USER != 'mobile'
 
 	""" NERDtree config """ {{{
 	"" Starts NERDtree if no file is give to vim at start 
-	autocmd vimenter * if !argc() | NERDTree | endif
+	"autocmd vimenter * if !argc() | NERDTree | endif
 	""" End NERDtree """ }}}
 
 	""" Vim Repeat Conf """ {{{
