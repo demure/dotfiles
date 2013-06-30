@@ -9,6 +9,7 @@ alias bashrc='vim ~/.bashrc'
 alias filetree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'"
 alias reset_display='export DISPLAY=$(tmux showenv|grep ^DISPLAY|cut -d = -f 2)'
 alias ed='ed -p:'
+alias qm='qmv --format=destination-only'
 
 	### Git Aliases ### {{{
 	alias git_force_reset='git fetch --all && git reset --hard origin/master'
