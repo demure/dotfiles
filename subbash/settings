@@ -63,6 +63,7 @@
 		alias vi='vim'
 		alias svi='sudo vim'
 		alias vnc='vncserver :1 -geometry 1024x700 -depth 24'
+		alias cdtrans='cd /var/lib/transmission-daemon/downloads'
 	fi
 	### End For pi ### }}}
 
