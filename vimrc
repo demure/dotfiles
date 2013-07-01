@@ -32,10 +32,6 @@
 		highlight Folded ctermfg=Black ctermbg=DarkGray
 		"set foldlevelstart=99		" Effectively disable auto folding
 
-			""" Test """ {{{
-			" Blah
-			""" End Test """ }}}
-
 			""" Foldtext """ {{{
 			"" Inspired by http://www.gregsexton.org/2011/03/improving-the-text-displayed-in-a-fold/
 			set foldtext=CustomFoldText()
@@ -81,6 +77,7 @@
 	set splitbelow					" New horizontal splits are below
 	set splitright					" New vertical splits are to the right
 	set history=1000				" Increase command/search history
+	set confirm						" Vim prompts for :q/:qa/:w issues
 	""" End Assorted """ }}}
 
 	""" HUD """ {{{
@@ -198,7 +195,7 @@
 """ End Options """ }}}
 
 """ Aliases """ {{{
-	command BI BundleInstall
+	command! BI BundleInstall
 """ End Aliases """ }}}
 
 """ Key Bindings """ {{{
@@ -286,30 +283,61 @@ if $USER != 'mobile'
 	"" Have vundle first...
 	Bundle 'gmarik/vundle'
 
-	""Add your bundles here
-	Bundle 'scrooloose/nerdtree'
-	Bundle 'tpope/vim-repeat'
-	Bundle 'Rainbow-Parenthsis-Bundle'
-	Bundle 'scrooloose/nerdcommenter'
-	Bundle 'YankRing.vim'
-	Bundle 'altercation/vim-colors-solarized'
-	Bundle 'tpope/vim-fugitive'
-	"Bundle 'SearchComplete'		"" Disabled due to killing UP arrow in search
-	Bundle 'bufexplorer.zip'
-	Bundle 'Gundo'
-	Bundle 'scrooloose/syntastic'
-	Bundle 'uguu-org/vim-matrix-screensaver'
-	"" vim-indent-guides default binding: <Leader>ig
-	Bundle 'mutewinter/vim-indent-guides'
-	Bundle 'myusuf3/numbers.vim'
-	"" <prefix><prefix>motion
-	Bundle 'Lokaltog/vim-easymotion'
-	Bundle 'syntax-highlighting-for-tintinttpp'
-	Bundle 'Tail-Bundle'
-	Bundle 'maciakl/vim-neatstatus'
-	Bundle 'mikewest/vimroom'
-	Bundle 'FredKSchott/CoVim'
-	""...All your other bundles...
+		""" Bundles """ {{{
+		""Add your bundles here
+			""" Style """ {{{
+			"" Solarized theme
+			Bundle 'altercation/vim-colors-solarized'
+			"" Tintin++ syntax
+			Bundle 'syntax-highlighting-for-tintinttpp'
+			"" Can imitate writeroom sytle
+			Bundle 'mikewest/vimroom'
+			"" Add a powerline like status
+			Bundle 'maciakl/vim-neatstatus'
+			"" vim-indent-guides default binding: <Leader>ig
+			Bundle 'nathanaelkane/vim-indent-guides'
+			"" Colorize parentheses and similar chars
+			Bundle 'kien/rainbow_parentheses.vim'
+			"" Make num ruler auto switch absolute/rel for insert/norm
+			Bundle 'myusuf3/numbers.vim'
+			""" End Style """ }}}
+
+			""" Added Interface """ {{{
+			"" File browser
+			Bundle 'scrooloose/nerdtree'
+			"" buffer browser
+			Bundle 'bufexplorer.zip'
+			"" Undo history tree
+			Bundle 'Gundo'
+			""" End Interface """ }}}
+
+			""" Added Functionality """ {{{
+			"" Makes '.' repeat work with plugins
+			Bundle 'tpope/vim-repeat'
+			"" Make commenting easy
+			Bundle 'scrooloose/nerdcommenter'
+			"" Improves copy/paste
+			Bundle 'YankRing.vim'
+			"" git from vim
+			Bundle 'tpope/vim-fugitive'
+			"" Code syntax checker
+			Bundle 'scrooloose/syntastic'
+			"" Collaborative vim
+			Bundle 'FredKSchott/CoVim'
+			"" Tail inside of vim
+			Bundle 'Tail-Bundle'
+			"Bundle 'SearchComplete'		"" Disabled due to killing UP arrow in search
+			"" <prefix><prefix>motion
+			Bundle 'Lokaltog/vim-easymotion'
+			""" End Functionality """ }}}
+
+			""" Misc """ {{{
+			"" Add unnecessary matrix screen saver
+			Bundle 'uguu-org/vim-matrix-screensaver'
+			""" End Misc """ }}}
+		""...All your other bundles...
+		""" End Bundles """ }}}
+
 	if iCanHazVundle == 0
 		echo "Installing Bundles, please ignore key map error messages"
 		echo ""
@@ -317,42 +345,62 @@ if $USER != 'mobile'
 	endif
 """ End Setting Up Vundle """ }}}
 
-	""" NERDtree config """ {{{
-	"" Starts NERDtree if no file is give to vim at start 
-	"autocmd vimenter * if !argc() | NERDTree | endif
-	""" End NERDtree """ }}}
+	""" Plugin Confs """ {{{
+		""" NERDtree config """ {{{
+		"" Starts NERDtree if no file is give to vim at start 
+		"autocmd vimenter * if !argc() | NERDTree | endif
+		""" End NERDtree """ }}}
 
-	""" Vim Repeat Conf """ {{{
-	"" This is to make repeat work for plugins too
-	silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
-	""" End Vim Repeat """ }}}
+		""" Vim Repeat Conf """ {{{
+		"" This is to make repeat work for plugins too
+		silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
+		""" End Vim Repeat """ }}}
 
-	""" Rainbow Parenthesis Conf """ {{{
-	nmap <leader>[ :ToggleRaibowParenthesis <CR>
-	""" End Rainbow Parenthesis """ }}}
+		""" Better Rainbow Parentheses """ {{{
+		"" https://github.com/kien/rainbow_parentheses.vim
+			""" Auto Rainbow """ {{{
+			au VimEnter * RainbowParenthesesToggle
+			au Syntax * RainbowParenthesesLoadRound
+			au Syntax * RainbowParenthesesLoadSquare
+			au Syntax * RainbowParenthesesLoadBraces
+			""" End Auto """ }}}
+		nmap <leader>[ :RainbowParenthesesToggle <CR>
+		""" End Rainbow Parenthesis """ }}}
 
-	""" YankRing Conf """ {{{
-	nnoremap <silent> <F3> :YRShow<CR>
-	inoremap <silent> <F3> <ESC>:YRShow<CR>
-	map <silent> <prefix>y :YRShow<CR>
-	let g:yankring_history_dir = '~/.vim'
-	""" End YankRing """ }}}
+		""" YankRing Conf """ {{{
+		"" :h yankring-tutorial
+		nnoremap <silent> <F3> :YRShow<CR>
+		inoremap <silent> <F3> <ESC>:YRShow<CR>
+		map <silent> <prefix>y :YRShow<CR>
+		let g:yankring_history_dir = '~/.vim'
+		""" End YankRing """ }}}
 
-	""" Solarized Theme """ {{{
-	"call togglebg#map("<F6>")
-	if has('gui_running')
-		set background=light
-	colorscheme solarized
-	endif
-	""" End Solarized """ }}}
+		""" Solarized Theme """ {{{
+		"call togglebg#map("<F6>")
+		if has('gui_running')
+			set background=light
+		colorscheme solarized
+		endif
+		""" End Solarized """ }}}
 
-	""" Gundo Conf """ {{{
-	nnoremap <F5> :GundoToggle<CR>
-	""" End Gundo """ }}}
+		""" Gundo Conf """ {{{
+		"" http://sjl.bitbucket.org/gundo.vim/
+		nnoremap <F5> :GundoToggle<CR>
+		""" End Gundo """ }}}
 
-	""" numbers.vim Conf""" {{{
-	nnoremap <leader>n :NumbersToggle<CR>
-	""" End nunmbers.vim """ }}}
+		""" numbers.vim Conf""" {{{
+		"" https://github.com/myusuf3/numbers.vim
+		nnoremap <leader>n :NumbersToggle<CR>
+		""" End nunmbers.vim """ }}}
+
+		""" vim indent guides """ {{{
+		"" https://github.com/nathanaelkane/vim-indent-guides
+		"" <Leader>ig
+		let g:indent_guides_auto_colors = 0
+		autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
+		autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
+		""" End vim indent guides """ }}}
+	""" End Plugin Confs """ }}}
 endif
 """ End Plugins """ }}}
 
