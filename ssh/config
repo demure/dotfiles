@@ -37,7 +37,7 @@ host remote
 	Port 63753
 
 host mdns
-	hostName demure.mnds.org
+	hostName demure.mdns.org
 
 host sleep
 	hostName sleepermud.net
