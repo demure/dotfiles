@@ -78,12 +78,14 @@
 	set splitright					" New vertical splits are to the right
 	set history=1000				" Increase command/search history
 	set confirm						" Vim prompts for :q/:qa/:w issues
+	set backspace=indent,eol,start	" Force 'normal' delete operation
 	""" End Assorted """ }}}
 
 	""" HUD """ {{{
 	set number						" Adds line numbers
 	set showcmd						" Show incomplete cmds down the bottom
-	set showmode					" Shows input or replace mode at bottom
+	"" Disabled for air-line
+	"set showmode					" Shows input or replace mode at bottom
 	set ruler						" Show position in bottom right
 	""" End HUD """ }}}
 
@@ -171,6 +173,7 @@
 	set showmatch					" Show matching brackets/parenthesis
 	set gdefault					" Applies substitutions globally on lines. Append 'g' to invert back. 
 	set synmaxcol=800				" Don't highlight lines longer than 800 chars
+	set wrapscan					" Scan wraps around the file
 	""" End Searching """ }}}
 
 	""" Backup Settings """ {{{
@@ -192,6 +195,13 @@
 	set directory=~/.vim/swap/		" swap files
 	set undodir=~/.vim/undo/		" undo files
 	""" End Backup Settings """ }}}
+
+	""" Timeout Settings """ {{{
+	set timeout						" :mapping time out
+	set timeoutlen=1000				" :mapping time out length
+	set ttimeout					" Key code time out
+	set ttimeoutlen=50				" key code time out length
+	""" End Timeout """ }}}
 """ End Options """ }}}
 
 """ Aliases """ {{{
@@ -292,14 +302,19 @@ if $USER != 'mobile'
 			Bundle 'syntax-highlighting-for-tintinttpp'
 			"" Can imitate writeroom sytle
 			Bundle 'mikewest/vimroom'
+			"" Even better than powerline/neatstatus
+			Bundle 'bling/vim-airline'
 			"" Add a powerline like status
-			Bundle 'maciakl/vim-neatstatus'
+			"" Disabled as airline is better
+			"Bundle 'maciakl/vim-neatstatus'
 			"" vim-indent-guides default binding: <Leader>ig
 			Bundle 'nathanaelkane/vim-indent-guides'
 			"" Colorize parentheses and similar chars
 			Bundle 'kien/rainbow_parentheses.vim'
 			"" Make num ruler auto switch absolute/rel for insert/norm
 			Bundle 'myusuf3/numbers.vim'
+			"" Add git diff
+			Bundle 'mhinz/vim-signify'
 			""" End Style """ }}}
 
 			""" Added Interface """ {{{
@@ -329,11 +344,15 @@ if $USER != 'mobile'
 			"Bundle 'SearchComplete'		"" Disabled due to killing UP arrow in search
 			"" <prefix><prefix>motion
 			Bundle 'Lokaltog/vim-easymotion'
+			" Good CVS file handling
+			Bundle 'chrisbra/csv.vim'
 			""" End Functionality """ }}}
 
 			""" Misc """ {{{
 			"" Add unnecessary matrix screen saver
 			Bundle 'uguu-org/vim-matrix-screensaver'
+			"" Plugin to break bad movement habits
+			Bundle 'takac/vim-hardtime'
 			""" End Misc """ }}}
 		""...All your other bundles...
 		""" End Bundles """ }}}
@@ -400,15 +419,24 @@ if $USER != 'mobile'
 		autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
 		autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
 		""" End vim indent guides """ }}}
+
+		""" Airline Conf """ {{{
+		"" Added to fix airline (forces status visibility)
+		set laststatus=2
+		"" Disable auto echo?
+		let g:bufferline_echo = 0
+		"" Remove default mode indicator
+		set noshowmode
+		""" End Airline Conf """ }}}
+
+		""" Hardtime Conf """ {{{
+		let g:hardtime_default_on = 1
+		""" End Hadtime """ }}}
 	""" End Plugin Confs """ }}}
 endif
 """ End Plugins """ }}}
 
 """ Notes To Self """ {{{
 "" Consider:
-	"" Time out on key codes but not mappings.
-	"" Basically this makes terminal Vim work sanely.
-	"set notimeout
-	"set ttimeout
-	"set ttimeoutlen=10
+	" set foldopen=
 """ End Notes """ }}}
