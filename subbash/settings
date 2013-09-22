@@ -7,6 +7,8 @@
 	### Mac Settings ### {{{
 	if [ $OSTYPE == 'darwin12' ]; then
 		### Mac Sourcing ### {{{
+		__ssh_agent
+
 		## Add git completion
 		if [ -f `brew --prefix`/etc/bash_completion ]; then
 			source `brew --prefix`/etc/bash_completion
@@ -17,13 +19,13 @@
 			source `brew --prefix`/Library/Contributions/brew_bash_completion.sh
 		fi
 
-		### stderred ###
-		#if [ -f /Projects/git/stderred/build/libstderred.dylib${DYLD_INSERT_LIBRARIES:+:$DYLD_INSERT_LIBRARIES} ]; then
+			### stderred ### {{{
+			#if [ -f /Projects/git/stderred/build/libstderred.dylib${DYLD_INSERT_LIBRARIES:+:$DYLD_INSERT_LIBRARIES} ]; then
 
-			#export DYLD_INSERT_LIBRARIES="/Projects/git/stderred/build/libstderred.dylib${DYLD_INSERT_LIBRARIES:+:$DYLD_INSERT_LIBRARIES}"
-			##export STDERRED_ESC_CODE=$(printf "\e[1;31m")
-		#fi
-		### End stderred ###
+				#export DYLD_INSERT_LIBRARIES="/Projects/git/stderred/build/libstderred.dylib${DYLD_INSERT_LIBRARIES:+:$DYLD_INSERT_LIBRARIES}"
+				##export STDERRED_ESC_CODE=$(printf "\e[1;31m")
+			#fi
+			### End stderred ### }}}
 		### End Mac Sourcing ### }}}
 
 		### Mac Aliases ### {{{
@@ -64,6 +66,7 @@
 		alias svi='sudo vim'
 		alias vnc='vncserver :1 -geometry 1024x700 -depth 24'
 		alias cdtrans='cd /var/lib/transmission-daemon/downloads'
+		__ssh_agent
 	fi
 	### End For pi ### }}}
 
@@ -76,6 +79,7 @@
 	### For Netbook ### {{{
 	if [ $OSTYPE == 'linux-gnu' ]; then
 		alias ls='ls --color=auto'
+		__ssh_agent
 	fi
 	### End For Netbook ### }}}
 
