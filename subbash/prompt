@@ -51,7 +51,7 @@ function __prompt_command() {
 		elif [[ "$MACHTYPE" == "x86_64--netbsd" && "$OSTYPE" == "netbsd" ]]; then
 			local PSCol="$Yel"				# For Main Cluster
 		  else
-			PS1+="\h "						# Un-designated catch-all
+			PS1+="${Pur}\h "						# Un-designated catch-all
 		fi
 		### End Machine Test ### }}}
 
