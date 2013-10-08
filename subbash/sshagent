@@ -5,7 +5,6 @@
 
 ### SSH Agent ### {{{
 function __ssh_agent() {
-	### SSH Agent ### {{{
 	SSH_ENV="$HOME/.ssh/environment"
 
 	function __start_agent {
@@ -26,6 +25,5 @@ function __ssh_agent() {
 	  else
 		__start_agent;
 	fi
-### End SSH Agent ### }}}
 }
 ### End SSH Agent ### }}}
