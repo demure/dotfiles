@@ -2,6 +2,7 @@
 ##### My (demuredemeanor) attempt to codify my formatting
 # Uses shiftwidth=4 for tabs; foldmarker={{{,}}} for folds;
 # http://github.com/demure/dotfiles
+# https://gitorious.org/demure/dotfiles/
 -->
 My Formatting
 ===

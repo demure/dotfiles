@@ -1,6 +1,7 @@
 ##### My (demuredemeanor) bashrc sub source alias script
 # Uses tabstop=4; shiftwidth=4 tabs; foldmarker={{{,}}};
 # http://github.com/demure/dotfiles
+# https://gitorious.org/demure/dotfiles/
 # vim:set syntax=sh:
 
 ### Universal Aliases ### {{{

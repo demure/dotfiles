@@ -4,6 +4,7 @@
 "" Above is an attempt at a modeline, which seems to have a issue
 "" where long pastes get a new line...
 "" http://github.com/demure/dotfiles
+"" https://gitorious.org/demure/dotfiles/
 
 """ Commands at Start """ {{{
 	"" This one needs to be first

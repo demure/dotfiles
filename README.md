@@ -1,5 +1,7 @@
 <!--My (demuredemeanor) readme
-http://github.com/demure/dotfiles-->
+http://github.com/demure/dotfiles
+https://gitorious.org/demure/dotfiles/
+-->
 #Demure's Dotfiles
 This is a repo of my dot files, to help me keep them organized, and in sync.
 
