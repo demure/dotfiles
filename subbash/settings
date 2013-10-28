@@ -5,7 +5,7 @@
 
 ### Settings ### {{{
 	### Mac Settings ### {{{
-	if [ $OSTYPE == 'darwin12' ]; then
+	if [ $OSTYPE == 'darwin13' ]; then
 		### Mac Sourcing ### {{{
 		__ssh_agent
 
