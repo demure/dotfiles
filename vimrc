@@ -30,7 +30,7 @@
 		"au BufWinEnter ?* silent loadview
 		set foldmethod=marker
 		set fillchars=fold:.
-		highlight Folded ctermfg=Black ctermbg=DarkGray
+		highlight Folded ctermfg=Grey ctermbg=Black
 		"set foldlevelstart=99		" Effectively disable auto folding
 
 			""" Foldtext """ {{{
@@ -433,6 +433,10 @@ if $USER != 'mobile'
 		""" Hardtime Conf """ {{{
 		let g:hardtime_default_on = 1
 		""" End Hadtime """ }}}
+
+		""" Syntastic Conf """ {{{
+		let g:syntastic_auto_loc_list=1
+		""" End Syntastic """ }}}
 	""" End Plugin Confs """ }}}
 endif
 """ End Plugins """ }}}
