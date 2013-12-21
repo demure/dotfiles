@@ -325,6 +325,8 @@ if $USER != 'mobile'
 			Bundle 'bufexplorer.zip'
 			"" Undo history tree
 			Bundle 'Gundo'
+			"" Notational Velocity like
+			Bundle 'cwoac/nvim'
 			""" End Interface """ }}}
 
 			""" Added Functionality """ {{{
@@ -405,7 +407,7 @@ if $USER != 'mobile'
 
 		""" Gundo Conf """ {{{
 		"" http://sjl.bitbucket.org/gundo.vim/
-		nnoremap <F5> :GundoToggle<CR>
+		nnoremap <F4> :GundoToggle<CR>
 		""" End Gundo """ }}}
 
 		""" numbers.vim Conf""" {{{
