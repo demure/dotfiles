@@ -4,6 +4,9 @@
 # https://gitorious.org/demure/dotfiles/
 # vim:set syntax=sh:
 
+# Add check for key exists first
+# Add check -> Y/N for ssh_env existing? might not need, if using __ssh_agent right
+
 ### SSH Agent ### {{{
 function __ssh_agent() {
 	SSH_ENV="$HOME/.ssh/environment"
