@@ -96,6 +96,12 @@
 	fi
 	### End For SDF Main Cluster ### }}}
 
+	### For OpenWrt ### {{{
+		if [ "$(uname -a)" == "OpenWrt" ]; then
+			alias opkgup="eval \$(opkg list_installed | sed 's/ - .*//' | sed 's/^/opkg upgrade /')"
+		fi
+	### End FOr OpenWrt ### }}}
+
 	### Testing ### {{{
 	## Fix tmux DISPLAY
 	# "Yubinkim.com totally wrote this one herself"
