@@ -77,12 +77,15 @@
 	fi
 	### End For iOS ### }}}
 
-	### For Netbook ### {{{
+	### For #! Including Laptop and Netbook ### {{{
 	if [ $OSTYPE == 'linux-gnu' ]; then
 		alias ls='ls --color=auto'
+		alias vi='vim'
+		alias svi='sudo vi'
+		alias mp='mplayer'
 		__ssh_agent
 	fi
-	### End For Netbook ### }}}
+	### End For #! ### }}}
 
 	### For SDF Main Cluster ### {{{
 	if [[ "$MACHTYPE" == "x86_64--netbsd" && "$OSTYPE" == "netbsd" ]]; then
