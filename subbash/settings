@@ -78,7 +78,7 @@
 	### End For iOS ### }}}
 
 	### For #! Including Laptop and Netbook ### {{{
-	if [ $OSTYPE == 'linux-gnu' ]; then
+	if [[ $MACHTYPE == 'x86_64-pc-linux-gnu' || $MACHTYPE == 'i486-pc-linux-gnu' ]]; then
 		alias ls='ls --color=auto'
 		alias vi='vim'
 		alias svi='sudo vi'
@@ -97,7 +97,7 @@
 	### End For SDF Main Cluster ### }}}
 
 	### For OpenWrt ### {{{
-		if [ "$(uname -a)" == "OpenWrt" ]; then
+		if [ "$MACHTYPE" == "mips-openwrt-linux-gnu" ]; then
 			alias opkgup="eval \$(opkg list_installed | sed 's/ - .*//' | sed 's/^/opkg upgrade /')"
 		fi
 	### End FOr OpenWrt ### }}}

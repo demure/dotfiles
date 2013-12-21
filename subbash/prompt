@@ -51,7 +51,7 @@ function __prompt_command() {
 			local PSCol="$BBla"				# For Netbook
 		elif [[ "$MACHTYPE" == "x86_64--netbsd" && "$OSTYPE" == "netbsd" ]]; then
 			local PSCol="$Yel"				# For Main Cluster
-		elif [ "$(uname -n)" == 'OpenWrt' ]; then
+		elif [ "$MACHTYPE" == "mips-openwrt-linux-gnu" ]; then
 			local PSCol="$On_Pur"			# For OpenWrt
 		  else
 			PS1+="${Pur}\h "						# Un-designated catch-all
