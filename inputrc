@@ -53,6 +53,10 @@ set output-meta on
 set convert-meta off
 ### End Other Languages ### }}}
 
+### For Bell ### {{{
+set bell-style audible
+### End Bell ### }}}
+
 ### Testing ### {{{
 	## Add missing / when tab-completing symbolic links to dirs
 #	set mark-symlinked-directories on
