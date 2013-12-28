@@ -38,6 +38,7 @@ host remote
 
 host mdns
 	hostName demure.mdns.org
+	Port 8080
 
 host sleep
 	hostName sleepermud.net
