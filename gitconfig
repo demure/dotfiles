@@ -11,3 +11,4 @@
 	d = difftool --tool=vimdiff --no-prompt
 	report = "log --author=demure --since='2 sunday ago' --until='1 sunday ago' --format='%Cgreen%ci%Creset %s%Creset' --no-merges"
 	glog = log --all --pretty='format:%d %Cgreen%h%Creset %an - %s' --graph
+	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
