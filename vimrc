@@ -327,6 +327,8 @@ if $USER != 'mobile'
 			Bundle 'Gundo'
 			"" Notational Velocity like
 			Bundle 'cwoac/nvim'
+			"" Super buffer controlness
+			Bundle "szw/vim-ctrlspace" 
 			""" End Interface """ }}}
 
 			""" Added Functionality """ {{{
@@ -439,6 +441,12 @@ if $USER != 'mobile'
 		""" Syntastic Conf """ {{{
 		let g:syntastic_auto_loc_list=1
 		""" End Syntastic """ }}}
+
+		""" Vim-CtrlSpace Conf """ {{{
+		"" https://github.com/szw/vim-ctrlspace
+		"" Make work with airline
+		let g:airline_exclude_preview = 1
+		""" End Vim-CtrlSpace """ }}}
 	""" End Plugin Confs """ }}}
 endif
 """ End Plugins """ }}}
