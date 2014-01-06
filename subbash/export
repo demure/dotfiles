@@ -1,7 +1,7 @@
 ##### My (demuredemeanor) bashrc sub source export script
 # Uses tabstop=4; shiftwidth=4 tabs; foldmarker={{{,}}};
-# http://github.com/demure/dotfiles
 # https://gitorious.org/demure/dotfiles/
+# legacy repo http://github.com/demure/dotfiles
 # vim:set syntax=sh:
 
 ### Exports ### {{{
