@@ -209,6 +209,22 @@
 	command! BI BundleInstall
 """ End Aliases """ }}}
 
+""" Functions """ {{{ current vs saved version
+	""" DiffSaved """ {{{
+	"" To compare
+	"" http://vim.wikia.com/wiki/Diff_current_buffer_and_the_original_file
+	"" To get out of diff view you can use the :diffoff command. 
+	function! s:DiffWithSaved()
+		let filetype=&ft
+		diffthis
+		vnew | r # | normal! 1Gdd
+		diffthis
+		exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+	endfunction
+	com! DiffSaved call s:DiffWithSaved()
+	"""End DiffSaved """ }}}
+""" End Functions """ }}}
+
 """ Key Bindings """ {{{
 	let mapleader=","				" Change the mapleader from '\' to ','
 	map <leader>/ :noh<return>		" <leader>/ will clear search hilights!
