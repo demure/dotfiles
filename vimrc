@@ -359,7 +359,7 @@ if $USER != 'mobile'
 			"" Code syntax checker
 			Bundle 'scrooloose/syntastic'
 			"" Collaborative vim
-			Bundle 'FredKSchott/CoVim'
+			""Bundle 'FredKSchott/CoVim'
 			"" Tail inside of vim
 			Bundle 'Tail-Bundle'
 			"Bundle 'SearchComplete'		"" Disabled due to killing UP arrow in search
