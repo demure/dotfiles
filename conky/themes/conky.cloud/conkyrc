@@ -1,0 +1,50 @@
+background no
+update_interval 1
+
+override_utf8_locale yes
+
+double_buffer yes
+no_buffers yes
+
+text_buffer_size 2048
+imlib_cache_size 0
+
+
+own_window yes
+own_window_type override
+own_window_transparent yes
+own_window_hints undecorated,sticky,skip_taskbar,skip_pager,below
+
+border_inner_margin 0
+border_outer_margin 0
+
+minimum_size 1366
+
+alignment ml
+gap_x 528
+gap_y 21
+
+draw_shades yes
+draw_outline no
+draw_borders no
+draw_graph_borders no
+
+use_xft yes
+xftfont Droid sans:size=6.6
+xftalpha 0.1
+
+uppercase no
+
+default_color ffffff
+		
+
+# — Lua Load — #
+	lua_load /home/demure/.conky/themes/conky.cloud/rings.lua
+	lua_draw_hook_pre ring_stats
+
+TEXT
+${goto 100}${voffset 201}${offset 8.5}${time %A %d.%m.%Y}   | ${offset 4}${voffset 0}${uptime_short}
+
+
+
+
