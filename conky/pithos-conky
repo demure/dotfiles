@@ -1,0 +1,24 @@
+# TEXT code block 6: START
+############################################################################################
+#                                                                                          #
+#  Sixth TEXT code block displays Music info from Pithos:                                  #
+#   -> Requires installation of pithos and php5-cli to run a php script                    #
+#        http://kevinmehall.net/p/pithos/                                                  #
+#        sudo apt-get install php5-cli                                                     #
+#                                                                                          #
+############################################################################################
+
+default_color 00b2b2
+color1 eeeeee
+
+TEXT
+
+###${color}${if_empty ${exec pgrep pithos}}${else}
+#${color1}${font Heydings Icons:size=10}m${font}${color} Pithos
+${color1}m${font}${color} Pithos
+${color1}Title:${color} ${execp php ~/.conky/scripts/pithos.php 'title'}
+#${font Alfios:size=9}${color1}Title:${color} ${execp php ~/.conky/scripts/pithos.php 'title'}
+${color1}Artist:${color} ${execp php ~/.conky/scripts/pithos.php 'artist'}
+${color1}Album:${color} ${execp php ~/.conky/scripts/pithos.php 'album'}
+###${endif}
+# TEXT code block 6: END
