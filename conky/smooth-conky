@@ -1,0 +1,124 @@
+# Use Xft?
+use_xft yes
+xftfont DejaVu Sans:size=8
+xftalpha 0.8
+text_buffer_size 2048
+
+# Update interval in seconds
+update_interval 1
+
+# This is the number of times Conky will update before quitting.
+# Set to zero to run forever.
+total_run_times 0
+
+# Create own window instead of using desktop (required in nautilus)
+own_window yes
+own_window_transparent yes
+own_window_type override
+own_window_hints undecorate,sticky,skip_taskbar,skip_pager
+
+# Use double buffering (reduces flicker, may not work for everyone)
+double_buffer yes
+
+# Minimum size of text area
+minimum_size 200 0
+#maximum_width 200
+
+# Draw shades?
+draw_shades no
+
+# Draw outlines?
+draw_outline no
+
+# Draw borders around text
+draw_borders no
+
+# Stippled borders?
+stippled_borders 0
+
+# border margins
+border_margin 5
+
+# border width
+border_width 1
+
+# Default colors and also border colors
+default_color D9D4CC
+#default_shade_color black
+#default_outline_color white
+own_window_colour white
+
+# Text alignment, other possible values are commented
+#alignment top_left
+alignment top_right
+#alignment bottom_left
+#alignment bottom_right
+
+# Gap between borders of screen and text
+# same thing as passing -x at command line
+gap_x 45
+gap_y 45
+
+# Subtract file system buffers from used memory?
+no_buffers yes
+
+# set to yes if you want all text to be in uppercase
+uppercase no
+
+# number of cpu samples to average
+# set to 1 to disable averaging
+cpu_avg_samples 1
+
+# number of net samples to average
+# set to 1 to disable averaging
+net_avg_samples 1
+
+# Force UTF8? note that UTF8 support required XFT
+override_utf8_locale yes
+
+# Add spaces to keep things from moving about?  This only affects certain objects.
+use_spacer none
+
+TEXT
+${font :size=10:style=bold}SYSTEM${font} ${hr 1}
+${voffset 8}${font OpenLogos:size=16}${color 7B9494}u${color}${font}   ${voffset -6}User:  ${alignr 20}${exec users | cut -d " " -f1}@${nodename}
+${voffset 3}         Release:  ${alignr 20}${pre_exec lsb_release -r -s} (${pre_exec lsb_release -c -s})
+${voffset 3}         Kernel:  ${alignr 20}${kernel}
+${voffset 3}         Updates: ${alignr 20}${execi 28800 ~/.conky/scripts/OSUpdate} available
+${voffset 8}${font StyleBats:size=16}${color 7B9494}A${color}${font}   ${voffset -5}CPU1: ${cpu cpu1}% / ${color 7B9494}${exec sensors | grep "Core0" | cut -d "+" -f2 | cut -c1-6}C${color}${alignr}${color 7B9494}${cpubar cpu1 8,60}${color}
+#${font StyleBats:size=16}${color 7B9494}A${color}${font}   CPU2: ${cpu cpu2}% ${alignr}${cpubar cpu2 8,60}
+${voffset 5}${font StyleBats:size=16}${color 7B9494}g${color}${font}   ${voffset -5}RAM: $memperc% ${alignr}${color 7B9494}${membar 8,60}${color}
+${voffset 5}${font StyleBats:size=16}${color 7B9494}j${color}${font}   ${voffset -5}SWAP: $swapperc% ${alignr}${color 7B9494}${swapbar 8,60}${color}
+${voffset 5}${font Webdings:size=16}${color 7B9494}~${color}${font}  ${voffset -5}Battery: ${battery_percent BAT1}% ${alignr}${color 7B9494}${battery_bar 8,60 BAT1}${color}
+${voffset 5}${font StyleBats:size=16}${color 7B9494}q${color}${font}   ${voffset -5}Uptime: ${alignr}${uptime}
+${voffset 5}${font StyleBats:size=16}${color 7B9494}k${color}${font}   ${voffset -5}Processes: ${alignr}$processes ($running_processes running)
+${voffset 10}${font :size=10:style=bold}FILE SYSTEM${font} ${hr 1}
+${voffset 8} ${color 7B9494}${font Weather:size=17}yz${font}${color}    ${voffset -4}Temperatur: ${color 7B9494}${hddtemp /dev/sda}°C${color}${alignr}/dev/sda
+${voffset 8}${font Poky:size=15}${color 7B9494}y${color}${font}${offset 6}${voffset -7}Root: ${font Liberation Sans:size=8}${color 7B9494}${fs_used_perc /}%${font}${color}
+${color 7B9494}${voffset 2}${fs_bar 4,20 /}${offset 8}${voffset -2}${color}Free: ${fs_free /}${alignr}Used: ${fs_used /}
+${voffset 8}${font Poky:size=15}${color 7B9494}y${color}${font}${offset 6}${voffset -7}Home: ${font Liberation Sans:size=8}${color 7B9494}${fs_used_perc /home}%${font}${color}
+${color 7B9494}${voffset 2}${fs_bar 4,20 /home}${offset 8}${voffset -2}${color}Free: ${fs_free /home}${alignr}Used: ${fs_used /home}
+${voffset 8}${font :size=10:style=bold}NETWORK${font} ${hr 1}
+${if_existing /proc/net/route wlan0}
+${voffset 2}${color 7B9494}${voffset -6}${font PizzaDude Bullets:size=14}O${color}${font}   ${voffset -2}Up: ${upspeed wlan0} kb/s ${alignr}${color 7B9494}${upspeedgraph wlan0 8,60}${color}
+${voffset 2}${color 7B9494}${voffset 4}${font PizzaDude Bullets:size=14}U${color}${font}   ${voffset -2}Down: ${downspeed wlan0} kb/s ${alignr}${color 7B9494}${downspeedgraph wlan0 8,60}${color}
+${voffset 2}${color 7B9494}${voffset 4}${font PizzaDude Bullets:size=14}N${color}${font}   ${voffset -2}Upload: ${alignr}${totalup wlan0}
+${voffset 2}${color 7B9494}${voffset 4}${font PizzaDude Bullets:size=14}T${color}${font}   ${voffset -2}Download: ${alignr}${totaldown wlan0}
+${voffset 2}${color 7B9494}${voffset 4}${font PizzaDude Bullets:size=14}Z${color}${font}   ${voffset -2}Signal: ${wireless_link_qual wlan0}% ${alignr}${wireless_link_bar 8,60 wlan0}
+${voffset 2}${color 7B9494}${voffset 4}${font PizzaDude Bullets:size=14}a${color}${font}   ${voffset -2}Local Ip: ${alignr}${addr wlan0}
+${voffset 2}${color 7B9494}${voffset 4}${font PizzaDude Bullets:size=14}b${color}${font}   ${voffset -2}Public Ip: ${alignr}${execi 1 ~/.conky/scripts/ip.sh}
+${else}${if_existing /proc/net/route eth0}
+${voffset 2}${color 7B9494}${voffset -6}${font PizzaDude Bullets:size=14}O${color}${font}   ${voffset -2}Up: ${upspeed eth0} kb/s ${alignr}${color 7B9494}${upspeedgraph eth0 8,60}${color}
+${voffset 2}${color 7B9494}${voffset 4}${font PizzaDude Bullets:size=14}U${color}${font}   ${voffset -2}Down: ${downspeed eth0} kb/s ${alignr}${color 7B9494}${downspeedgraph eth0 8,60}${color}
+${voffset 2}${color 7B9494}${voffset 4}${font PizzaDude Bullets:size=14}N${color}${font}   ${voffset -2}Upload: ${alignr}${totalup eth0}
+${voffset 2}${color 7B9494}${voffset 4}${font PizzaDude Bullets:size=14}T${color}${font}   ${voffset -2}Download: ${alignr}${totaldown eth0}
+${voffset 2}${color 7B9494}${voffset 4}${font PizzaDude Bullets:size=14}a${color}${font}   ${voffset -2}Local Ip: ${alignr}${addr eth0}
+${voffset 2}${color 7B9494}${voffset 4}${font PizzaDude Bullets:size=14}b${color}${font}   ${voffset -2}Public Ip: ${alignr}${execi 1 ~/Conky/scripts/ip.sh}
+${endif}${else}
+${font PizzaDude Bullets:size=14}4${font}   Network Unavailable
+${endif}
+
+
+
+
+
