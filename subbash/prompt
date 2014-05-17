@@ -87,8 +87,8 @@ function __prompt_command() {
 			local LAST=$(stat -c %Y $(git rev-parse --git-dir 2>/dev/null)/FETCH_HEAD 2>/dev/null)
 			if [ "${LAST}" ]; then
 				local TIME=$(echo $(date +"%s") - ${LAST} | bc)
-				## Check if more than ten minutes since last
-				if [ "${TIME}" -gt "600" ]; then
+				## Check if more than 60 minutes since last
+				if [ "${TIME}" -gt "3600" ]; then
 					git fetch 2>/dev/null
 					PS1+=' +'
 					## Refresh var
