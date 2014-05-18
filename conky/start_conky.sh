@@ -1,4 +1,9 @@
 #!/bin/bash
+##### My (demuredemeanor) script for multiple conkys at the same time
+# Uses tabstop=4; shiftwidth=4 tabs; foldmarker={{{,}}};
+# https://gitorious.org/demure/dotfiles/
+# legacy repo http://github.com/demure/dotfiles
+
 
 sleep 6s &&
 conky -d -c ~/.conky/dist-conky &
