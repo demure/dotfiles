@@ -1,0 +1,19 @@
+out_to_x no
+out_to_console yes
+
+update_interval 1.0
+total_run_times 0
+draw_graph_borders no
+
+no_buffers yes
+
+#imlib_cache_size 0*/
+
+
+TEXT
+#${alignc} Local ${addr wlan0}   IP ${execi 1 ~/.conky/scripts/ip.sh}   Home ${fs_used /home}/${fs_size /home} / Free ${fs_free_perc /home}%   Cpu  ${cpu cpu0}%  ${freq}MHz ${cpu cpu1}% ${cpu cpu2}% ${cpu cpu3}% ${cpu cpu4}%   Mem $mem/$memmax / $memperc%   Down ${downspeed wlan0}   Up ${upspeed wlan0}
+
+#UpTime:${uptime_short} | Temp:${hwmon tempf 1}F | RAM:$memperc% | CPU:${cpu cpu 0}% | ESSID: ${wireless_essid wlan0} |  wlan0: ${if_up wlan0}${addr wlan0}${endif} | Strength: ${wireless_link_qual_perc wlan0}%  | eth0: ${if_up eth0}${addr eth0}${endif} | Bat:${battery_percent BAT0}% |
+
+${if_up wlan0}Local:${addr wlan0} | Signal:${wireless_link_qual_perc wlan0}% |${endif} IP:${execi 1 ~/.conky/scripts/ip.sh} | Temp:${hwmon tempf 1}F | RAM:$memperc% | CPU:${cpu cpu0}% ${cpu cpu1}% ${cpu cpu2}% ${cpu cpu3}% ${cpu cpu4}% | Free:${fs_free}/${fs_size} ${fs_free_perc}% | eth0:${if_up eth0}${addr eth0}${endif} | Bat:${battery_percent BAT1}% | Down ${downspeed wlan0}  Up ${upspeed wlan0}
+#${if_up wlan0}⌂:${addr wlan0} | Signal:${wireless_link_qual_perc wlan0}% |${endif} ☸:${execi 1 ~/.conky/scripts/ip.sh} | ♨:${hwmon tempf 1}F | RAM:$memperc% | ☢:${cpu cpu0}% ${cpu cpu1}% ${cpu cpu2}% ${cpu cpu3}% ${cpu cpu4}% | Free:${fs_free}/${fs_size} ${fs_free_perc}% | eth0:${if_up eth0}${addr eth0}${endif} | Bat:${battery_percent BAT1}% | ↓ ${downspeed wlan0}  ↑ ${upspeed wlan0}
