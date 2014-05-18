@@ -1,3 +1,8 @@
+##### My (demuredemeanor) conky for spectrwm
+# Uses tabstop=4; shiftwidth=4 tabs; foldmarker={{{,}}};
+# https://gitorious.org/demure/dotfiles/
+# legacy repo http://github.com/demure/dotfiles
+
 out_to_x no
 out_to_console yes
 
