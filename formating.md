@@ -19,7 +19,8 @@ File Start:
 #!/bin/something	# If relevant
 ##### My (demuredemeanor) attempt to codify my formatting
 # Uses shiftwidth=4 for tabs; foldmarker={{{,}}} for folds;
-# http://github.com/demure/dotfiles
+# https://gitorious.org/demure/dotfiles/
+# legacy repo http://github.com/demure/dotfiles
 ```
 
 
@@ -27,7 +28,7 @@ Code Block:
 ---
 1. Start
 	A. Three comment symbols
-	B. Cap first letters of title's words
+	B. Cap first letters of title words
 	C. Three comment symbols
 	D. Vim fold symbol
 2. Contents
@@ -52,11 +53,11 @@ Comments
 	E. Use Cases:
 		* Identity Code
 		* Give long description and details
-		* If 'short' description can't fit on same line
+		* If 'short' description can not fit on same line
 
 	```
 	## Some comment...
-	# ...and it's second line
+	# ...and its second line
 	some code
 	```
 
@@ -138,7 +139,7 @@ Line Spacing:
 	```
 
 2. Comment lines used to identify a Section will have blank line prior
-	A. Comment lines used for details/desc need not
+	A. Comment lines used for details/description need not
 	
 		```
 		if other_test
