@@ -1,0 +1,33 @@
+#from http://dotshare.it/dots/787/
+out_to_x no
+out_to_console yes
+double_buffer yes
+#own_window yes
+#own_window_transparent no
+#own_window_type normal
+#own_window_hints undecorate,sticky,skip_taskbar,skip_pager 
+#draw_borders no
+#draw_graph_borders no
+#draw_shades yes
+#gap_x 0
+#gap_y 0
+#alignment bottom_left
+update_interval 1
+#default_color  8f8f8f
+#own_window_colour 333333
+use_xft yes
+xftfont droid sans:size=9
+override_utf8_locale yes
+use_spacer none
+#minimum_size 1366 0
+#maximum_width 1360 0
+# Solarized 6 Numix Colors
+#color1 e0e0e0 #white
+#color2 5f8700 #green
+#color3 af8700 #yellow
+#color4 d70000 #red
+#color5 0087ff #blue
+#color6 d64937 #Numix red
+TEXT
+#${goto 10}${voffset -2}${font FontAwesome:size=9}${goto 30}${font}${color1}${font droid sans:size=9}${time %d/%m/%y}${goto 90}${color}${font}${voffset -1}${font FontAwesome:size=9}${font}${goto 105}${color1}${font droid sans:size=9}${time %H:%M}${goto 145}${color}${font FontAwesome:size=9}${font}${goto 160}${voffset -1}${color1}${font droid sans:size=9}$kernel${color}${font}${goto 250}${font FontAwesome:size9}${font}${goto 275}${color1}${voffset -2}${font droid sans:size=9}${cpu cpu0}%${color1}${font}${goto 305}${voffset -1}${color}${font FontAwesome:size=9}${font}${goto 320}${color1}${exec sensors | grep 'Physical id 0:' | sed -n 1p | awk -F'+' '{print $2}' | awk -F' ' '{print $1}'}${color}${goto 365}${font FontAwesome:size=9}${font}${color1}${voffset -1}${goto 385}${platform thinkpad_hwmon fan 1}${color}${goto 415}rpm${goto 445}${font FontAwesome:size=9}${font}${goto 465}${voffset -1}${color1}${font droid sans:size=9}${memperc}%${color}${goto 490}${voffset -1}${font FontAwesome:size=9}${font}${goto 510}${voffset 0}${color1}${font droid sans:size=9}${swapperc}%${goto 537}${color}${font FontAwesome:size=9} ${goto 555}${color1}${voffset -1}${font}${fs_used /}${goto 600}${color}/${goto 605}${fs_size /}${goto 652}${voffset -1}${font FontAwesome:size=9}${font}${goto 667}${color1}${fs_used /media/Data}${goto 707}${color}/${goto 713}${fs_size /media/Data}${goto 760}${if_existing /proc/net/route enp0s25}${color}${voffset -1}${font FontAwesome:size=9}${font}${goto 775}${color1}${upspeed enp0s25}${voffset -1}${goto 825}${color}${font FontAwesome:size=9}${font}${goto 840}${color1}${downspeed enp0s25}${color}${else}${goto 760}${if_existing /proc/net/route wlp3s0}${color}${voffset -1}${font FontAwesome:size=9}${font}${goto 775}${color1}${upspeed wlp3s0}${voffset -1}${goto 825}${color}${font FontAwesome:size=9}${font}${goto 840}${color1}${downspeed wlp3s0}${color}${else}${goto 760}${color6}Network Unavailable${endif}${endif}${color}${goto 890}${voffset -1}${font FontAwesome:size=9}${font}${goto 910}${color1}${execi 300 curl -s "http://weather.yahooapis.com/forecastrss?w=676757&u=c" -o ~/.cache/weather.xml}${execi 300 grep "yweather:forecast" ~/.cache/weather.xml | grep -o "low=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*" | awk 'NR==1'}°${goto 925}${color}/${goto 935}${color1}${execi 300 grep "yweather:forecast" ~/.cache/weather.xml | grep -o "high=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*" | awk 'NR==1'}°${color}${goto 967}${font FontAwesome:size=9}${font}${goto 985}${voffset -1}${color1}${if_mpd_playing}${mpd_artist}${color} - ${color1}${mpd_title}${endif}
+${goto 10}${voffset -2}${font FontAwesome:size=9}${goto 30}${font}${font droid sans:size=9}${time %d/%m/%y}${goto 90}${font}${voffset -1}${font FontAwesome:size=9}${font}${goto 105}${font droid sans:size=9}${time %H:%M}${goto 145}${font FontAwesome:size=9}${font}${goto 160}${voffset -1}${font droid sans:size=9}$kernel${font}${goto 250}${font FontAwesome:size9}${font}${goto 275}${voffset -2}${font droid sans:size=9}${cpu cpu0}%${font}${goto 305}${voffset -1}${font FontAwesome:size=9}${font}${goto 320}${exec sensors | grep 'Physical id 0:' | sed -n 1p | awk -F'+' '{print $2}' | awk -F' ' '{print $1}'}${goto 365}${font FontAwesome:size=9}${font}${voffset -1}${goto 385}${platform thinkpad_hwmon fan 1}${goto 415}rpm${goto 445}${font FontAwesome:size=9}${font}${goto 465}${voffset -1}${font droid sans:size=9}${memperc}%${goto 490}${voffset -1}${font FontAwesome:size=9}${font}${goto 510}${voffset 0}${font droid sans:size=9}${swapperc}%${goto 537}${font FontAwesome:size=9} ${goto 555}${voffset -1}${font}${fs_used /}${goto 600}/${goto 605}${fs_size /}${goto 652}${voffset -1}${font FontAwesome:size=9}${font}${goto 667}${fs_used /media/Data}${goto 707}/${goto 713}${fs_size /media/Data}${goto 760}${if_existing /proc/net/route enp0s25}${voffset -1}${font FontAwesome:size=9}${font}${goto 775}${upspeed enp0s25}${voffset -1}${goto 825}${font FontAwesome:size=9}${font}${goto 840}${downspeed enp0s25}${else}${goto 760}${if_existing /proc/net/route wlp3s0}${voffset -1}${font FontAwesome:size=9}${font}${goto 775}${upspeed wlp3s0}${voffset -1}${goto 825}${font FontAwesome:size=9}${font}${goto 840}${downspeed wlp3s0}${else}${goto 760}${color6}Network Unavailable${endif}${endif}${goto 890}${voffset -1}${font FontAwesome:size=9}${font}${goto 910}${execi 300 curl -s "http://weather.yahooapis.com/forecastrss?w=676757&u=c" -o ~/.cache/weather.xml}${execi 300 grep "yweather:forecast" ~/.cache/weather.xml | grep -o "low=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*" | awk 'NR==1'}°${goto 925}/${goto 935}${execi 300 grep "yweather:forecast" ~/.cache/weather.xml | grep -o "high=\"[^\"]*\"" | grep -o "\"[^\"]*\"" | grep -o "[^\"]*" | awk 'NR==1'}°${goto 967}${font FontAwesome:size=9}${font}${goto 985}${voffset -1}${if_mpd_playing}${mpd_artist} - ${mpd_title}${endif}
