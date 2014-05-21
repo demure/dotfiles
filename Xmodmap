@@ -1,3 +1,8 @@
+!!!!! My (demuredemeanor) Xmodmap
+! Uses tabstop=4; shiftwidth=4 tabs; foldmarker={{{,}}};
+! https://gitorious.org/demure/dotfiles/
+! legacy repo http://github.com/demure/dotfiles
+
 remove Lock = Caps_Lock
 keysym Caps_Lock = Escape
 add Lock = Caps_Lock
