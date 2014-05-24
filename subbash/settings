@@ -78,12 +78,13 @@
 	fi
 	### End For iOS ### }}}
 
-	### For #! Including Laptop and Netbook ### {{{
+	### For #!, and debian Including Laptop and Netbook ### {{{
 	if [[ $MACHTYPE == 'x86_64-pc-linux-gnu' || $MACHTYPE == 'i486-pc-linux-gnu' ]]; then
 		alias ls='ls --color=auto'
 		alias vi='vim'
 		alias svi='sudo vi'
 		alias mp='mplayer'
+		alias ssht='sshuttle --dns -vr ma 0/0'
 		__ssh_agent
 	fi
 	### End For #! ### }}}
