@@ -33,7 +33,7 @@
 		alias google='ping -c 1 www.google.com && growlnotify -m "google pinged"'
 		alias ardrestart='sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -restart -agent -menu'
 		alias vi='vim'
-		alias svi='sudo vi'
+		alias svi='sudo -E vim'
 		alias fvreboot='sudo fdesetup authrestart'
 		alias rebuild_open_with='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user;killall Finder;echo "Open With has been rebuilt, Finder will relaunch"'
 
@@ -65,7 +65,7 @@
 		source /etc/bash_completion.d/git		## Add git completion
 		alias ls='ls --color=auto'
 		alias vi='vim'
-		alias svi='sudo vim'
+		alias svi='sudo -E vim'
 		alias vnc='vncserver :1 -geometry 1024x700 -depth 24'
 		alias cdtrans='cd /var/lib/transmission-daemon/downloads'
 		__ssh_agent
@@ -74,7 +74,7 @@
 
 	### For iOS ### {{{
 	if [ $OSTYPE == 'darwin9' ]; then
-		alias svi='sudo vi'
+		alias svi='sudo -E vi'
 	fi
 	### End For iOS ### }}}
 
@@ -82,7 +82,7 @@
 	if [[ $MACHTYPE == 'x86_64-pc-linux-gnu' || $MACHTYPE == 'i486-pc-linux-gnu' ]]; then
 		alias ls='ls --color=auto'
 		alias vi='vim'
-		alias svi='sudo vi'
+		alias svi='sudo -E vim'
 		alias mp='mplayer'
 		alias ssht='sshuttle --dns -vr ma 0/0'
 		alias hdmi='xrandr --output HDMI1 --mode 1366x768'
