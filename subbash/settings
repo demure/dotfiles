@@ -85,6 +85,7 @@
 		alias svi='sudo vi'
 		alias mp='mplayer'
 		alias ssht='sshuttle --dns -vr ma 0/0'
+		alias hdmi='xrandr --output HDMI1 --mode 1366x768'
 		__ssh_agent
 	fi
 	### End For #! ### }}}
