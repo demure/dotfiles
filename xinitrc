@@ -18,4 +18,5 @@ fi
 /usr/bin/xfce4-power-manager &
 
 ## Uses spectrwm instead of distasteful gnome 3 :p
-exec ck-launch-session dbus-launch /usr/local/bin/spectrwm
+#exec ck-launch-session dbus-launch /usr/local/bin/spectrwm
+exec ck-launch-session dbus-launch --sh-syntax --exit-with-session /usr/local/bin/spectrwm
