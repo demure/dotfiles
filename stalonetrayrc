@@ -27,17 +27,18 @@ dockapp_mode none
 
 ## geometry <geometry>
 # tray's geometry in standard X notation; width and height are specified in slot_size multiples
-geometry 1x1+1301+19
+#geometry 1x1+1301+19
+geometry 8x1+1237+1
 
 ## grow_gravity <gravity>
 # one of N, S, E, W, NW, NE, SW, SE; tray will grow in the direction
 # opposite to one specified by grow_gravity; if horizontal or vertical
 # direction is not specified, tray will not grow in that direction
-grow_gravity W
+grow_gravity NE
 
 ## icon_gravity <gravity>
 # icon placement gravity, one of NW, NE, SW, SE (goes same direction)
-icon_gravity E
+icon_gravity NE
 
 ## icon_size <int>
 # specifies dimensions of typical icon slot
