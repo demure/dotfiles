@@ -85,7 +85,9 @@
 		alias svi='sudo -E vim'
 		alias mp='mplayer'
 		alias ssht='sshuttle --dns -vr ma 0/0'
-		alias hdmi='xrandr --output HDMI1 --mode 1366x768'
+		alias hdmi-mirror='xrandr --output HDMI1 --mode 1360x768'
+		alias hdmi-second='xrandr --output HDMI1 --mode 1360x768 --right-of LVDS1'
+		alias hdmi-off='xrandr --output HDMI1 --off'
 		__ssh_agent
 	fi
 	### End For #! ### }}}
