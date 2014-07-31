@@ -7,6 +7,9 @@
 ## So I have a background other than the one from update-alternitives
 sh ~/.fehbg &
 
+## Fix my sound? damn pusle per user
+pulseaudio --start
+
 ## To make my keyboard better
 usermodmap=$HOME/.Xmodmap
 if [ -f $usermodmap ]; then
