@@ -5,55 +5,105 @@
 # vim:set syntax=sh:
 
 ### Universal Custom Commands ### {{{
-## Extract most types of compressed files
-function extract {
-	echo Extracting $1 ...
-	if [ -f $1 ] ; then
-		case $1 in
-			*.tar.bz2)	tar xjf $1		;;
-			*.tar.gz)	tar xzf $1		;;
-			*.bz2)		bunzip2 $1		;;
-			*.rar)		rar x $1		;;
-			*.gz) 		gunzip $1		;;
-			*.tar)		tar xf $1		;;
-			*.tbz2)		tar xjf $1		;;
-			*.tgz)		tar xzf $1		;;
-			*.zip)		unzip $1		;;
-			*.Z)		uncompress $1	;;
-			*.7z)		7z x $1			;;
-			*)			echo "'$1' cannot be extracted via extract()" ;;
-		esac
-	  else
-		echo "'$1' is not a valid file"
-	fi
-}
-
-## Color man pages with less (is a `most` way too...)
-man() {
-	env \
-	LESS_TERMCAP_mb=$(printf "\e[1;31m") \
-	LESS_TERMCAP_md=$(printf "\e[1;31m") \
-	LESS_TERMCAP_me=$(printf "\e[0m") \
-	LESS_TERMCAP_se=$(printf "\e[0m") \
-	LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
-	LESS_TERMCAP_ue=$(printf "\e[0m") \
-	LESS_TERMCAP_us=$(printf "\e[1;32m") \
-	man "$@"
-}
-
-## For resyncing DISPLAY
-# used to refresh ssh connection for tmux
-# http://justinchouinard.com/blog/2010/04/10/fix-stale-ssh-environment-variables-in-gnu-screen-and-tmux
-function r() {
-	if [[ -n $TMUX ]]; then
-		NEW_DISPLAY=`tmux showenv|grep ^DISPLAY|cut -d = -f 2`
-		if [[ -n $NEW_DISPLAY ]] && [[ -S $NEW_DISPLAY ]]; then
-			DISPLAY=$NEW_DISPLAY
+	### Extract Function ### {{{
+	## Extract most types of compressed files
+	function extract {
+		echo Extracting $1 ...
+		if [ -f $1 ] ; then
+			case $1 in
+				*.tar.bz2)	tar xjf $1		;;
+				*.tar.gz)	tar xzf $1		;;
+				*.bz2)		bunzip2 $1		;;
+				*.rar)		rar x $1		;;
+				*.gz) 		gunzip $1		;;
+				*.tar)		tar xf $1		;;
+				*.tbz2)		tar xjf $1		;;
+				*.tgz)		tar xzf $1		;;
+				*.zip)		unzip $1		;;
+				*.Z)		uncompress $1	;;
+				*.7z)		7z x $1			;;
+				*)			echo "'$1' cannot be extracted via extract()" ;;
+			esac
+		  else
+			echo "'$1' is not a valid file"
 		fi
-	fi
-}
+	}
+	### End Extract ### }}}
+
+	### Man Function ### {{{
+	## Color man pages with less (is a `most` way too...)
+	man() {
+		env \
+		LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+		LESS_TERMCAP_md=$(printf "\e[1;31m") \
+		LESS_TERMCAP_me=$(printf "\e[0m") \
+		LESS_TERMCAP_se=$(printf "\e[0m") \
+		LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+		LESS_TERMCAP_ue=$(printf "\e[0m") \
+		LESS_TERMCAP_us=$(printf "\e[1;32m") \
+		man "$@"
+	}
+	### End Man ### }}}
+
+	### Tmux Display Funtion ### {{{
+	## For resyncing $DISPLAY
+	# used to refresh ssh connection for tmux
+	# http://justinchouinard.com/blog/2010/04/10/fix-stale-ssh-environment-variables-in-gnu-screen-and-tmux
+	function r() {
+		if [[ -n $TMUX ]]; then
+			NEW_DISPLAY=`tmux showenv|grep ^DISPLAY|cut -d = -f 2`
+			if [[ -n $NEW_DISPLAY ]] && [[ -S $NEW_DISPLAY ]]; then
+				DISPLAY=$NEW_DISPLAY
+			fi
+		fi
+	}
+	### End Tmux Display ### }}}
 
 function git_files_hist() {
 git log --pretty=%h | while read hash; do git ls-tree -r $hash | awk '{print $4}'; done | sort -u
+}
+
+## Set up HDMI
+hdmi() {
+## source https://wiki.archlinux.org/index.php/xrandr
+####!/bin/bash
+
+XRANDR="xrandr"
+CMD="${XRANDR}"
+declare -A VOUTS
+eval VOUTS=$(${XRANDR}|awk 'BEGIN {printf("(")} /^\S.*connected/{printf("[%s]=%s ", $1, $2)} END{printf(")")}')
+declare -A POS
+#XPOS=0
+#YPOS=0
+#POS="${XPOS}x${YPOS}"
+
+POS=([X]=0 [Y]=0)
+
+find_mode() {
+  echo $(${XRANDR} |grep ${1} -A1|awk '{FS="[ x]"} /^\s/{printf("WIDTH=%s\nHEIGHT=%s", $4,$5)}')
+}
+
+xrandr_params_for() {
+  if [ "${2}" == 'connected' ]
+  then
+    eval $(find_mode ${1})  #sets ${WIDTH} and ${HEIGHT}
+    MODE="${WIDTH}x${HEIGHT}"
+    CMD="${CMD} --output ${1} --mode ${MODE} --pos ${POS[X]}x${POS[Y]}"
+    POS[X]=$((${POS[X]}+${WIDTH}))
+    return 0
+  else
+    CMD="${CMD} --output ${1} --off"
+    return 1
+  fi
+}
+
+for VOUT in ${!VOUTS[*]}
+do
+  xrandr_params_for ${VOUT} ${VOUTS[${VOUT}]}
+done
+#set -x
+${CMD}
+#set +x
+
 }
 ###End Universal Commands ### }}}
