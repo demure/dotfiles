@@ -12,7 +12,9 @@ draw_graph_borders no
 
 no_buffers yes
 
-override_utf8_locale yes
+override_utf8_locale yes	# Make UTF8 supposedly work
+
+if_up_strictness address	# Make if_up work correctly for eth0
 
 #imlib_cache_size 0*/
 
@@ -22,5 +24,23 @@ TEXT
 
 #UpTime:${uptime_short} | Temp:${hwmon tempf 1}F | RAM:$memperc% | CPU:${cpu cpu 0}% | ESSID: ${wireless_essid wlan0} |  wlan0: ${if_up wlan0}${addr wlan0}${endif} | Strength: ${wireless_link_qual_perc wlan0}%  | eth0: ${if_up eth0}${addr eth0}${endif} | Bat:${battery_percent BAT0}% |
 
-${if_up wlan0}Local:${addr wlan0} | Wifi:${wireless_link_qual_perc wlan0}% |${endif} IP:${execi 1 ~/.conky/scripts/ip.sh} | Temp:${hwmon tempf 1}F | RAM:$memperc% | CPU:${cpu cpu0}% ${cpu cpu1}% ${cpu cpu2}% ${cpu cpu3}% ${cpu cpu4}% | HD:${fs_free}/${fs_size} ${fs_free_perc}% | eth:${if_up eth0}${addr eth0}${endif} | Bat:${battery_percent BAT1}% | Down ${downspeed wlan0} Up ${upspeed wlan0}
-#${if_up wlan0}⌂⟰:${addr wlan0} | ⚶Wifi:${wireless_link_qual_perc wlan0}% |${endif} ☸:${execi 1 ~/.conky/scripts/ip.sh} | ♨:${hwmon tempf 1}F | RAM:$memperc% | ☢:${cpu cpu0}% ${cpu cpu1}% ${cpu cpu2}% ${cpu cpu3}% ${cpu cpu4}% | HD:${fs_free}/${fs_size} ${fs_free_perc}% | eth:${if_up eth0}${addr eth0}${endif} | Bat:${battery_percent BAT1}% | ↓${downspeed wlan0} ↑${upspeed wlan0}
+## Without Unicode
+###${if_up eth0}eth:${addr eth0} |${endif}${if_up wlan0}Local:${addr wlan0} | Wifi:${wireless_link_qual_perc wlan0}% |${endif} IP:${execi 1 ~/.conky/scripts/ip.sh} | Temp:${hwmon tempf 1}F | RAM:$memperc% | CPU:${cpu cpu0}% ${cpu cpu1}% ${cpu cpu2}% ${cpu cpu3}% ${cpu cpu4}% | HD:${fs_free}/${fs_size} ${fs_free_perc}% | Bat:${battery_percent BAT1}% | Down ${downspeed wlan0} Up ${upspeed wlan0}
+
+## With Unicode
+${if_up eth0}eth:${addr eth0} |${endif}${if_up wlan0}Local:${addr wlan0} | Wifi:${wireless_link_qual_perc wlan0}% |${endif} ☏:${execi 1 ~/.conky/scripts/ip.sh} | ♨:${hwmon tempf 1}F | RAM:$memperc% | CPU:${cpu cpu0}% ${cpu cpu1}% ${cpu cpu2}% ${cpu cpu3}% ${cpu cpu4}% | HD:${fs_free}/${fs_size} ${fs_free_perc}% | Bat:${battery_percent BAT1}% | ↓${downspeed wlan0} ↑${upspeed wlan0}
+
+### Testing Section ### {{{
+### ${iconv_start UTF-8 ISO_8859-1}° ${iconv_stop}
+
+### Chars the work
+##  ★ ☆ ☎ ☏  ☜ ☞ ♀ ♂  ♠ ♡ ♣ ♤ ♥ ♧ ♨ ♩ ♪ ♬ ♭ ♯ ← ↑ → ↓ ↔ ↕ ↖ ↗ ↘ ↙ ⇒ ⇔ 
+
+### Chars that don't work
+## ⌂ ⟰  ⚶ ☸ ✇ ⚠ ⚡ ☢ ⚓ ⚙ ⚛ ⌖ ☀ ☁ ☂ ☃ ☄ ☇ ☈ ☉ ☊ ☋ ☌ ☍  ☐ ☑ ☒ ☓ ☔ ☕ ☖ ☗ ☘ ☙ ☚ ☛ ☝ ☟ ☠ ☡ ☢ ☣ ☤ ☥ ☦ ☧ ☨ ☩ ☪ ☫ ☬ ☭ ☮ ☯ ☰ ☱ ☲ ☳ ☴ ☵ ☶ ☷ ☸ ☹ ☺ ☻ ☼ ☽ ☾ ☿ ♁ ♄ ♅ ♆ ♇ ♈ ♉ ♊ ♋ ♌ ♍ ♎ ♏ ♐ ♑ ♒ ♓ ♔ ♕ ♖ ♗ ♘ ♙ ♚ ♛ ♜ ♝ ♞ ♟ ♢ ♦ ♃ ♫ ♮ ♰ ♱ ♲ ♳ ♴ ♵ ♶ ♷ ♸ ♹ ♺ ♻ ♼ ♽ ♾ ♿ ⚀ ⚁ ⚂ ⚃ ⚄ ⚅ ⚆ ⚇ ⚈ ⚉ ⚊ ⚋ ⚌ ⚍ ⚎ ⚏ ⚐ ⚑ ⚒ ⚓ ⚔ ⚕ ⚖ ⚗ ⚘ ⚙ ⚚ ⚛ ⚜ ⚝ ⚞ ⚟ ⚠ ⚡ ⚢ ⚣ ⚤ ⚥ ⚦ ⚧ ⚨ ⚩ ⚪ ⚫ ⚬ ⚭ ⚮ ⚯ ⚰ ⚱ ⚲ ⚳ ⚴ ⚵ ⚶ ⚷ ⚸ ⚹ ⚺ ⚻ ⚼ ⚽ ⚾ ⚿ ⛀ ⛁ ⛂ ⛃ ⛄ ⛅ ⛆ ⛇ ⛈ ⛉ ⛊ ⛋ ⛌ ⛍ ⛎ ⛏ ⛐ ⛑ ⛒ ⛓ ⛔ ⛕ ⛖ ⛗ ⛘ ⛙ ⛚ ⛛ ⛜ ⛝ ⛞ ⛟ ⛠ ⛡ ⛢ ⛣ ⛤ ⛥ ⛦ ⛧ ⛨ ⛩ ⛪ ⛫ ⛬ ⛭ ⛮ ⛯ ⛰ ⛱ ⛲ ⛳ ⛴ ⛵ ⛶ ⛷ ⛸ ⛹ ⛺ ⛻ ⛼ ⛽ ⛾ ⛿
+## ✀ ✁ ✂ ✃ ✄ ✅ ✆ ✇ ✈ ✉ ✊ ✋ ✌ ✍ ✎ ✏ ✐ ✑ ✒ ✓ ✔ ✕ ✖ ✗ ✘ ✙ ✚ ✛ ✜ ✝ ✞ ✟ ✠ ✡ ✢ ✣ ✤ ✥ ✦ ✧ ✨ ✩ ✪ ✫ ✬ ✭ ✮ ✯ ✰ ✱ ✲ ✳ ✴ ✵ ✶ ✷ ✸ ✹ ✺ ✻ ✼ ✽ ✾ ✿ ❀ ❁ ❂ ❃ ❄ ❅ ❆ ❇ ❈ ❉ ❊ ❋ ❌ ❍ ❎ ❏ ❐ ❑ ❒ ❓ ❔ ❕ ❖ ❗ ❘ ❙ ❚ ❛ ❜ ❝ ❞ ❟ ❠ ❡ ❢ ❣ ❤ ❥ ❦ ❧ ❨ ❩ ❪ ❫ ❬ ❭ ❮ ❯ ❰ ❱ ❲ ❳ ❴ ❵ ❶ ❷ ❸ ❹ ❺ ❻ ❼ ❽ ❾ ❿ ➀ ➁ ➂ ➃ ➄ ➅ ➆ ➇ ➈ ➉ ➊ ➋ ➌ ➍ ➎ ➏ ➐ ➑ ➒ ➓ ➔ ➕ ➖ ➗ ➘ ➙ ➚ ➛ ➜ ➝ ➞ ➟ ➠ ➡ ➢ ➣ ➤ ➥ ➦ ➧ ➨ ➩ ➪ ➫ ➬ ➭ ➮ ➯ ➰ ➱ ➲ ➳ ➴ ➵ ➶ ➷ ➸ ➹ ➺ ➻ ➼ ➽ ➾ ➿
+## ↚ ↛ ↜ ↝ ↞ ↟ ↠ ↡ ↢ ↣ ↤ ↥ ↦ ↧ ↨ ↩ ↪ ↫ ↬ ↭ ↮ ↯ ↰ ↱ ↲ ↳ ↴ ↵ ↶ ↷ ↸ ↹ ↺ ↻ ↼ ↽ ↾ ↿ ⇀ ⇁ ⇂ ⇃ ⇄ ⇅ ⇆ ⇇ ⇈ ⇉ ⇊ ⇋ ⇌ ⇍ ⇎ ⇏ ⇐ ⇑ ⇓ ⇕ ⇖ ⇗ ⇘ ⇙ ⇚ ⇛ ⇜ ⇝ ⇞ ⇟ ⇠ ⇡ ⇢ ⇣ ⇤ ⇥ ⇦ ⇧ ⇨ ⇩ ⇪ ⇫ ⇬ ⇭ ⇮ ⇯ ⇰ ⇱ ⇲ ⇳ ⇴ ⇵ ⇶ ⇷ ⇸ ⇹ ⇺ ⇻ ⇼ ⇽ ⇾ ⇿
+
+
+
+### End Testing ### }}}
