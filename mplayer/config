@@ -1,0 +1,21 @@
+##### My (demuredemeanor) mplayer conf
+# Uses tabstop=4; shiftwidth=4 tabs; foldmarker={{{,}}};
+# https://gitorious.org/demure/dotfiles/
+# legacy repo http://github.com/demure/dotfiles
+
+fs=yes		# Fullscreen
+
+## subtile stuff
+ass=true	# Better subs
+unicode=yes
+utf8=yes
+slang=en,eng,jpn,ja,jn
+alang=jpn,ja,jn,en,eng
+
+
+## Misc
+idx=yes			# can seek in file still downloading
+
+## Volume
+softvol=1		# Endable softvol and softvol-max
+softvol-max=600		# normally 10 - 10000
