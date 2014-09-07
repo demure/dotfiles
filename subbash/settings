@@ -37,11 +37,6 @@
 		alias fvreboot='sudo fdesetup authrestart'
 		alias rebuild_open_with='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user;killall Finder;echo "Open With has been rebuilt, Finder will relaunch"'
 
-		## MPlayer
-		alias mp='mplayer'
-		alias mp2='mplayer2'
-		alias np='sudo nice -n -10 mplayer'
-
 		## Aliases for nicing
 		alias fast='sudo nice -n -10'
 		alias slow='nice -n 20'
@@ -83,7 +78,7 @@
 		alias ls='ls --color=auto'
 		alias vi='vim'
 		alias svi='sudo -E vim'
-		alias mp='mplayer'
+		alias mp='mpv'
 		alias ssht='sshuttle --dns -vr ma 0/0'
 		alias hdmi-mirror='xrandr --output HDMI1 --mode 1360x768'
 		alias hdmi-second='xrandr --output HDMI1 --mode 1360x768 --right-of LVDS1'
