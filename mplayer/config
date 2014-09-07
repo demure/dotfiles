@@ -4,6 +4,7 @@
 # legacy repo http://github.com/demure/dotfiles
 
 fs=yes		# Fullscreen
+zoom=yes	# Allow upscale
 
 ## subtile stuff
 ass=true	# Better subs
