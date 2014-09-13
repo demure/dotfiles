@@ -20,15 +20,17 @@ if_up_strictness address	# Make if_up work correctly for eth0
 
 
 TEXT
-#${alignc} Local ${addr wlan0}   IP ${execi 1 ~/.conky/scripts/ip.sh}   Home ${fs_used /home}/${fs_size /home} / Free ${fs_free_perc /home}%   Cpu  ${cpu cpu0}%  ${freq}MHz ${cpu cpu1}% ${cpu cpu2}% ${cpu cpu3}% ${cpu cpu4}%   Mem $mem/$memmax / $memperc%   Down ${downspeed wlan0}   Up ${upspeed wlan0}
+### Old ### {{{
+#${alignc} Local ${addr wlan0}   IP ${execi 300 ~/.conky/scripts/ip.sh}   Home ${fs_used /home}/${fs_size /home} / Free ${fs_free_perc /home}%   Cpu  ${cpu cpu0}%  ${freq}MHz ${cpu cpu1}% ${cpu cpu2}% ${cpu cpu3}% ${cpu cpu4}%   Mem $mem/$memmax / $memperc%   Down ${downspeed wlan0}   Up ${upspeed wlan0}
 
 #UpTime:${uptime_short} | Temp:${hwmon tempf 1}F | RAM:$memperc% | CPU:${cpu cpu 0}% | ESSID: ${wireless_essid wlan0} |  wlan0: ${if_up wlan0}${addr wlan0}${endif} | Strength: ${wireless_link_qual_perc wlan0}%  | eth0: ${if_up eth0}${addr eth0}${endif} | Bat:${battery_percent BAT0}% |
+### End Old ### }}}
 
 ## Without Unicode
-###${if_up eth0}eth:${addr eth0} |${endif}${if_up wlan0}Local:${addr wlan0} | Wifi:${wireless_link_qual_perc wlan0}% |${endif} IP:${execi 1 ~/.conky/scripts/ip.sh} | Temp:${hwmon tempf 1}F | RAM:$memperc% | CPU:${cpu cpu0}% ${cpu cpu1}% ${cpu cpu2}% ${cpu cpu3}% ${cpu cpu4}% | HD:${fs_free}/${fs_size} ${fs_free_perc}% | Bat:${battery_percent BAT1}% | Down ${downspeed wlan0} Up ${upspeed wlan0}
+###${if_up eth0}eth:${addr eth0} |${endif}${if_up wlan0}Local:${addr wlan0} | Wifi:${wireless_link_qual_perc wlan0}% |${endif} IP:${execi 300 ~/.conky/scripts/ip.sh} | Temp:${hwmon tempf 1}F | RAM:$memperc% | CPU:${cpu cpu0}% ${cpu cpu1}% ${cpu cpu2}% ${cpu cpu3}% ${cpu cpu4}% | HD:${fs_free}/${fs_size} ${fs_free_perc}% | Bat:${battery_percent BAT1}% | Down ${downspeed wlan0} Up ${upspeed wlan0}
 
 ## With Unicode
-${if_up eth0}eth:${addr eth0} |${endif}${if_up wlan0}Local:${addr wlan0} | Wifi:${wireless_link_qual_perc wlan0}% |${endif} ☏:${execi 1 ~/.conky/scripts/ip.sh} | ♨:${hwmon tempf 1}F | RAM:$memperc% | CPU:${cpu cpu0}% ${cpu cpu1}% ${cpu cpu2}% ${cpu cpu3}% ${cpu cpu4}% | HD:${fs_free}/${fs_size} ${fs_free_perc}% | Bat:${battery_percent BAT1}% | ↓${downspeed wlan0} ↑${upspeed wlan0}
+${if_up eth0}eth:${addr eth0} |${endif}${if_up wlan0}wlan:${addr wlan0} | Wifi:${wireless_link_qual_perc wlan0}% |${endif} ☏:${execi 300 ~/.conky/scripts/ip.sh} | ♨:${hwmon tempf 1}F | RAM:$memperc% | CPU:${cpu cpu0}% ${cpu cpu1}% ${cpu cpu2}% ${cpu cpu3}% ${cpu cpu4}% | HD:${fs_free}/${fs_size} ${fs_free_perc}% | Bat:${battery_percent BAT1}% | Vol: ${exec amixer -c 0 get Master | grep Mono: | cut -d " " -f6} | ${execi 1800 ~/.conky/scripts/weather.sh 48103} | ↓${downspeed wlan0} ↑${upspeed wlan0}
 
 ### Testing Section ### {{{
 ### ${iconv_start UTF-8 ISO_8859-1}° ${iconv_stop}
