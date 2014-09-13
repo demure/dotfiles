@@ -34,11 +34,13 @@ geometry 8x1+1237+1
 # one of N, S, E, W, NW, NE, SW, SE; tray will grow in the direction
 # opposite to one specified by grow_gravity; if horizontal or vertical
 # direction is not specified, tray will not grow in that direction
-grow_gravity NE
+#grow_gravity NE
+grow_gravity E
 
 ## icon_gravity <gravity>
 # icon placement gravity, one of NW, NE, SW, SE (goes same direction)
-icon_gravity NE
+#icon_gravity NE
+icon_gravity W
 
 ## icon_size <int>
 # specifies dimensions of typical icon slot
