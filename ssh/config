@@ -51,6 +51,9 @@ host cork
 	hostName ma.sdf.org
 	ProxyCommand corkscrew proxy.example.com 8080 %h %p
 
+host gnu
+	hostName fencepost.gnu.org
+
 host *
 	User demure
 	Port 22
