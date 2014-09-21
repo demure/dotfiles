@@ -53,6 +53,8 @@ function __prompt_command() {
 			local PSCol="$Yel"				# For Main Cluster
 		elif [ "$MACHTYPE" == "mips-openwrt-linux-gnu" ]; then
 			local PSCol="$On_Pur"			# For OpenWrt
+		elif [ $HOSTNAME == 'fencepost.gnu.org' ]; then
+			local PSCol="${On_Pur}\h"		# For Gnu
 		  else
 			PS1+="${Pur}\h "						# Un-designated catch-all
 		fi
