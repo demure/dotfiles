@@ -54,6 +54,10 @@ host cork
 host gnu
 	hostName fencepost.gnu.org
 
+host dd
+	hostName demuredemeanor.com
+	Port 500
+
 host *
 	User demure
 	Port 22
