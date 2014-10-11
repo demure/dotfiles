@@ -83,6 +83,7 @@
 		alias hdmi-mirror='xrandr --output HDMI1 --mode 1360x768'
 		alias hdmi-second='xrandr --output HDMI1 --mode 1360x768 --right-of LVDS1'
 		alias hdmi-off='xrandr --output HDMI1 --off'
+		alias sd-card='sudo setpci -s 00:1c.2 0x50.B=0x41'
 		__ssh_agent
 	fi
 	### End For #! ### }}}
