@@ -23,7 +23,6 @@ windows:
   - weechat: weechat
   - mud: tt++ ~/sl_mud/sl-test.tin
   - urls: tail -F ~/.weechat/urls.log
-  - kitty: ssh sleep
   - gnu: ssh gnu
   #- mutt: mutt
 
