@@ -286,6 +286,11 @@
 	nnoremap <Leader>do :DiffOrig<cr>
 	nnoremap <leader>dc :q<cr>:diffoff<cr>:exe "norm! ".g:diffline."G"<cr>
 	""" End DiffOrig """ }}}
+
+	""" Sudo Save Edit """{{{
+	"" Use :W to sudo save, may mess with permissions
+	command W w !sudo tee % > /dev/null
+	""" End Sudo Save """}}}
 """ End Key Bindings """ }}}
 
 """ Plugins """ {{{
