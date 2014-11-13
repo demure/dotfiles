@@ -93,6 +93,7 @@
 		#LSCOLORS='exfxcxdxbxegedabagacad'
 		export TZ=EST5EDT
 		alias help='/usr/local/bin/help'
+		alias bb='bboard'
 		#alias ls='colorls -G'
 	fi
 	### End For SDF Main Cluster ### }}}
@@ -101,7 +102,7 @@
 		if [ "$MACHTYPE" == "mips-openwrt-linux-gnu" ]; then
 			alias opkgup="eval \$(opkg list_installed | sed 's/ - .*//' | sed 's/^/opkg upgrade /')"
 		fi
-	### End FOr OpenWrt ### }}}
+	### End For OpenWrt ### }}}
 
 	### Testing ### {{{
 	## Fix tmux DISPLAY
