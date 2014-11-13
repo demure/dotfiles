@@ -35,7 +35,7 @@
 	  else
 		MISSING_ITEMS+="memo,"
 	fi
-	### End Fortune ### }}}
+	### End Memo ### }}}
 
 	### Grep Options ### {{{
 	## Colored Greps
@@ -51,6 +51,8 @@
 		for PATTERN in .cvs .git .hg .svn; do
 			GREP_OPTIONS+="--exclude-dir=$PATTERN "
 		done
+	  else
+		MISSING_ITEMS+="grep-exclude"
 	fi
 	export GREP_OPTIONS
 	### End Grep Options ### }}}
