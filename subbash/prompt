@@ -82,71 +82,75 @@ function __prompt_command() {
 
 		### Add Git Status ### {{{
 		## Inspired by http://www.terminally-incoherent.com/blog/2013/01/14/whats-in-your-bash-prompt/
-		local GStat="$(git status --porcelain -b 2>/dev/null | tr '\n' ':')"
+		if [[ `command -v git` ]]; then
+			local GStat="$(git status --porcelain -b 2>/dev/null | tr '\n' ':')"
 
-		if [ "$GStat" ]; then
-			### Fetch Time Check ### {{{
-			local LAST=$(stat -c %Y $(git rev-parse --git-dir 2>/dev/null)/FETCH_HEAD 2>/dev/null)
-			if [ "${LAST}" ]; then
-				local TIME=$(echo $(date +"%s") - ${LAST} | bc)
-				## Check if more than 60 minutes since last
-				if [ "${TIME}" -gt "3600" ]; then
-					git fetch 2>/dev/null
-					PS1+=' +'
-					## Refresh var
-					local GStat="$(git status --porcelain -b 2>/dev/null | tr '\n' ':')"
+			if [ "$GStat" ]; then
+				### Fetch Time Check ### {{{
+				local LAST=$(stat -c %Y $(git rev-parse --git-dir 2>/dev/null)/FETCH_HEAD 2>/dev/null)
+				if [ "${LAST}" ]; then
+					local TIME=$(echo $(date +"%s") - ${LAST} | bc)
+					## Check if more than 60 minutes since last
+					if [ "${TIME}" -gt "3600" ]; then
+						git fetch 2>/dev/null
+						PS1+=' +'
+						## Refresh var
+						local GStat="$(git status --porcelain -b 2>/dev/null | tr '\n' ':')"
+					fi
 				fi
-			fi
-			### End Fetch Check ### }}}
+				### End Fetch Check ### }}}
 
-			### Test For Changes ### {{{
-			## Change this to test for 'ahead' or 'behind'!
-			local GChanges="$(echo ${GStat} | tr ':' '\n' | grep -v "^$" | grep -v "^\#\#" | wc -l | tr -d ' ')"
-			if [ "$GChanges" == "0" ]; then
-				local GitCol=$Gre
-			  else
-				local GitCol=$Red
-			fi
-			### End Test Changes ### }}}
-
-			### Find Branch ### {{{
-			local GBra="$(echo ${GStat} | tr ':' '\n' | grep "^##" | cut -c4- | grep -o "^[a-zA-Z]\{1,\}[^\.]")"
-			if [ "$GBra" ]; then
-				if [ "$GBra" == "master" ]; then
-					local GBra="M"			# Because why waste space
+				### Test For Changes ### {{{
+				## Change this to test for 'ahead' or 'behind'!
+				local GChanges="$(echo ${GStat} | tr ':' '\n' | grep -v "^$" | grep -v "^\#\#" | wc -l | tr -d ' ')"
+				if [ "$GChanges" == "0" ]; then
+					local GitCol=$Gre
+				  else
+					local GitCol=$Red
 				fi
-			  else
-				local GBra="ERROR"			# It could happen supposedly?
+				### End Test Changes ### }}}
+
+				### Find Branch ### {{{
+				local GBra="$(echo ${GStat} | tr ':' '\n' | grep "^##" | cut -c4- | grep -o "^[a-zA-Z]\{1,\}[^\.]")"
+				if [ "$GBra" ]; then
+					if [ "$GBra" == "master" ]; then
+						local GBra="M"			# Because why waste space
+					fi
+				  else
+					local GBra="ERROR"			# It could happen supposedly?
+				fi
+				### End Branch ### }}}
+
+				PS1+=" ${GitCol}[$GBra]${RCol}"	# Add result to prompt
+
+				### Find Commit Status ### {{{
+					## Test Modified and Untracked for "0"
+	#					# local GDel="$(echo ${GStat} | tr ':' '\n' | grep -c "^[ MARC]D")"
+
+				local GAhe="$(echo ${GStat} | tr ':' '\n' | grep "^##" | grep -o "ahead [0-9]\{1,\}" | grep -o "[0-9]\{1,\}")"
+				if [ "$GAhe" ]; then
+					PS1+="${Gre}↑${RCol}${GAhe}"	# Ahead
+				fi
+
+				## Needs a `git fetch`
+				local GBeh="$(echo ${GStat} | tr ':' '\n' | grep "^##" | grep -o "behind [0-9]\{1,\}" | grep -o "[0-9]\{1,\}")"
+				if [ "$GBeh" ]; then
+					PS1+="${Red}↓${RCol}${GBeh}"	# Behind
+				fi
+
+				local GMod="$(echo ${GStat} | tr ':' '\n' | grep -c "^[ MARC]M")"
+				if [ "$GMod" -gt "0" ]; then
+					PS1+="${Pur}≠${RCol}${GMod}"	# Modified
+				fi
+
+				local GUnt="$(echo ${GStat} | tr ':' '\n' | grep -c "^\?")"
+				if [ "$GUnt" -gt "0" ]; then
+					PS1+="${Yel}?${RCol}${GUnt}"	# Untracked
+				fi
+				### End Commit Status ### }}}
 			fi
-			### End Branch ### }}}
-
-			PS1+=" ${GitCol}[$GBra]${RCol}"	# Add result to prompt
-
-			### Find Commit Status ### {{{
-				## Test Modified and Untracked for "0"
-#					# local GDel="$(echo ${GStat} | tr ':' '\n' | grep -c "^[ MARC]D")"
-
-			local GAhe="$(echo ${GStat} | tr ':' '\n' | grep "^##" | grep -o "ahead [0-9]\{1,\}" | grep -o "[0-9]\{1,\}")"
-			if [ "$GAhe" ]; then
-				PS1+="${Gre}↑${RCol}${GAhe}"	# Ahead
-			fi
-
-			## Needs a `git fetch`
-			local GBeh="$(echo ${GStat} | tr ':' '\n' | grep "^##" | grep -o "behind [0-9]\{1,\}" | grep -o "[0-9]\{1,\}")"
-			if [ "$GBeh" ]; then
-				PS1+="${Red}↓${RCol}${GBeh}"	# Behind
-			fi
-
-			local GMod="$(echo ${GStat} | tr ':' '\n' | grep -c "^[ MARC]M")"
-			if [ "$GMod" -gt "0" ]; then
-				PS1+="${Pur}≠${RCol}${GMod}"	# Modified
-			fi
-
-			local GUnt="$(echo ${GStat} | tr ':' '\n' | grep -c "^\?")"
-			if [ "$GUnt" -gt "0" ]; then
-				PS1+="${Yel}?${RCol}${GUnt}"	# Untracked
-			fi
-			### End Commit Status ### }}}
+		  else
+			MISSING_ITEMS+="git-prompt,"
 		fi
 		### End Git Status ### }}}
 
