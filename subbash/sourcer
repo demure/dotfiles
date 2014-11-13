@@ -20,7 +20,6 @@ so() { [ -s $1 ] && source $1; }
 so ~/.subbash/export					# Exports
 so ~/.subbash/shopt						# Shopts
 so ~/.subbash/sshagent					# SSH agent, have before settings
-so ~/.subbash/settings					# Machine dependent settings
 
 ### Interactive ### {{{
 if [[ $- == *i* ]]; then
@@ -30,6 +29,7 @@ if [[ $- == *i* ]]; then
 fi
 ### End Interactive ### }}}
 
-[ -d ~/bin ] && export PATH=~/bin:$PATH	# user ~/bin/ takes precedence
+## This needs to be after Interactive, to override
+so ~/.subbash/settings					# Machine dependent settings
 
 return 0								# Return 0, so it doesn't show
