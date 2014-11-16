@@ -289,8 +289,23 @@
 
 	""" Sudo Save Edit """ {{{
 	"" Use :W to sudo save, may mess with permissions
-	command W w !sudo tee % > /dev/null
-	""" End Sudo Save """}}}
+	command! W w !sudo tee % > /dev/null
+	""" End Sudo Save """ }}}
+
+	""" Typo Commands """ {{{
+	"" http://blog.sanctum.geek.nz/vim-command-typos/
+	if has("user_commands")
+		command! -bang -nargs=? -complete=file E e<bang> <args>
+		"command! -bang -nargs=? -complete=file W w<bang> <args>
+		command! -bang -nargs=? -complete=file Wq wq<bang> <args>
+		command! -bang -nargs=? -complete=file WQ wq<bang> <args>
+		command! -bang Wa wa<bang>
+		command! -bang WA wa<bang>
+		command! -bang Q q<bang>
+		command! -bang QA qa<bang>
+		command! -bang Qa qa<bang>
+	endif
+	""" End Typo """ }}}
 """ End Key Bindings """ }}}
 
 """ Plugins """ {{{
@@ -468,6 +483,14 @@ if $USER != 'mobile'
 		"" Make work with airline
 		let g:airline_exclude_preview = 1
 		""" End Vim-CtrlSpace """ }}}
+
+		""" Incsearch.vim Conf """ {{{
+		"" https://github.com/haya14busa/incsearch.vim
+		let g:incsearch#magic = '\v'
+		map /  <Plug>(incsearch-forward)
+		map ?  <Plug>(incsearch-backward)
+		map g/ <Plug>(incsearch-stay)
+		""" End Incsearch.vim """ }}}
 	""" End Plugin Confs """ }}}
 endif
 """ End Plugins """ }}}
