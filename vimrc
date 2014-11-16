@@ -287,7 +287,7 @@
 	nnoremap <leader>dc :q<cr>:diffoff<cr>:exe "norm! ".g:diffline."G"<cr>
 	""" End DiffOrig """ }}}
 
-	""" Sudo Save Edit """{{{
+	""" Sudo Save Edit """ {{{
 	"" Use :W to sudo save, may mess with permissions
 	command W w !sudo tee % > /dev/null
 	""" End Sudo Save """}}}
@@ -433,18 +433,18 @@ if $USER != 'mobile'
 		nnoremap <F4> :GundoToggle<CR>
 		""" End Gundo """ }}}
 
-		""" numbers.vim Conf""" {{{
+		""" Numbers.vim Conf""" {{{
 		"" https://github.com/myusuf3/numbers.vim
 		nnoremap <leader>n :NumbersToggle<CR>
-		""" End nunmbers.vim """ }}}
+		""" End Nunmbers.vim """ }}}
 
-		""" vim indent guides """ {{{
+		""" Vim Indent Guides """ {{{
 		"" https://github.com/nathanaelkane/vim-indent-guides
 		"" <Leader>ig
 		let g:indent_guides_auto_colors = 0
 		autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
 		autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
-		""" End vim indent guides """ }}}
+		""" End Indent Guides """ }}}
 
 		""" Airline Conf """ {{{
 		"" Added to fix airline (forces status visibility)
@@ -457,7 +457,7 @@ if $USER != 'mobile'
 
 		""" Hardtime Conf """ {{{
 		let g:hardtime_default_on = 1
-		""" End Hadtime """ }}}
+		""" End Hardtime """ }}}
 
 		""" Syntastic Conf """ {{{
 		let g:syntastic_auto_loc_list=1
