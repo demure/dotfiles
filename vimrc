@@ -324,84 +324,63 @@ if $USER != 'mobile'
 		let iCanHazVundle=0
 	endif
 	set rtp+=~/.vim/bundle/vundle/
-	call vundle#rc()
+	"""""""call vundle#rc()		""commented out for vundle version bump change??
+	call vundle#begin()
 	"" Use git instead of http
 	let g:vundle_default_git_proto = 'git'
 	"" Have vundle first...
-	Bundle 'gmarik/vundle'
+	Plugin 'gmarik/vundle'
 
 		""" Bundles """ {{{
 		""Add your bundles here
 			""" Style """ {{{
-			"" Solarized theme
-			Bundle 'altercation/vim-colors-solarized'
-			"" Tintin++ syntax
-			Bundle 'syntax-highlighting-for-tintinttpp'
-			"" Can imitate writeroom sytle
-			Bundle 'mikewest/vimroom'
-			"" Even better than powerline/neatstatus
-			Bundle 'bling/vim-airline'
-			"" Add a powerline like status
+			Plugin 'altercation/vim-colors-solarized'	" Solarized theme
+			Plugin 'syntax-highlighting-for-tintinttpp'	" Tintin++ syntax
+			Plugin 'mikewest/vimroom'					" Can imitate writeroom sytle
+			Plugin 'bling/vim-airline'					" Even better than powerline/neatstatus
 			"" Disabled as airline is better
-			"Bundle 'maciakl/vim-neatstatus'
-			"" vim-indent-guides default binding: <Leader>ig
-			Bundle 'nathanaelkane/vim-indent-guides'
-			"" Colorize parentheses and similar chars
-			Bundle 'kien/rainbow_parentheses.vim'
-			"" Make num ruler auto switch absolute/rel for insert/norm
-			Bundle 'myusuf3/numbers.vim'
-			"" Add git diff
-			Bundle 'mhinz/vim-signify'
+			"Plugin 'maciakl/vim-neatstatus'			" Add a powerline like status
+			Plugin 'nathanaelkane/vim-indent-guides'	" vim-indent-guides default binding: <Leader>ig
+			Plugin 'kien/rainbow_parentheses.vim'		" Colorize parentheses and similar chars
+			Plugin 'myusuf3/numbers.vim'				" Make num ruler auto switch absolute/rel for insert/norm
+			Plugin 'mhinz/vim-signify'					" Add git diff
 			""" End Style """ }}}
 
 			""" Added Interface """ {{{
-			"" File browser
-			Bundle 'scrooloose/nerdtree'
-			"" buffer browser
-			Bundle 'bufexplorer.zip'
-			"" Undo history tree
-			Bundle 'Gundo'
-			"" Notational Velocity like
-			Bundle 'cwoac/nvim'
-			"" Super buffer controlness
-			Bundle "szw/vim-ctrlspace" 
+			Plugin 'scrooloose/nerdtree'		" File browser
+			Plugin 'bufexplorer.zip'			" buffer browser
+			Plugin 'Gundo'						" Undo history tree
+			Plugin 'cwoac/nvim'					" Notational Velocity like
+			Plugin 'szw/vim-ctrlspace'			" Super buffer controlness
+			Plugin 'haya14busa/incsearch.vim'	" Improved incremental searching
 			""" End Interface """ }}}
 
 			""" Added Functionality """ {{{
-			"" Makes '.' repeat work with plugins
-			Bundle 'tpope/vim-repeat'
-			"" Make commenting easy
-			Bundle 'scrooloose/nerdcommenter'
-			"" Improves copy/paste
-			Bundle 'YankRing.vim'
-			"" git from vim
-			Bundle 'tpope/vim-fugitive'
-			"" Code syntax checker
-			Bundle 'scrooloose/syntastic'
-			"" Collaborative vim
-			""Bundle 'FredKSchott/CoVim'
-			"" Tail inside of vim
-			Bundle 'Tail-Bundle'
-			"Bundle 'SearchComplete'		"" Disabled due to killing UP arrow in search
-			"" <prefix><prefix>motion
-			Bundle 'Lokaltog/vim-easymotion'
-			" Good CVS file handling
-			Bundle 'chrisbra/csv.vim'
+			Plugin 'tpope/vim-repeat'			" Makes '.' repeat work with plugins
+			Plugin 'scrooloose/nerdcommenter'	" Make commenting easy
+			Plugin 'YankRing.vim'				" Improves copy/paste
+			Plugin 'tpope/vim-fugitive'			" git from vim
+			Plugin 'scrooloose/syntastic'		" Code syntax checker
+			"" Disabled due to too many errors, and no use.
+			"Plugin 'FredKSchott/CoVim'		" Collaborative vim
+			Plugin 'Tail-Bundle'				" Tail inside of vim
+			"Plugin 'SearchComplete'			" Disabled due to killing UP arrow in search
+			Plugin 'Lokaltog/vim-easymotion'	" <prefix><prefix>motion
+			Plugin 'chrisbra/csv.vim'			" Good CVS file handling
 			""" End Functionality """ }}}
 
 			""" Misc """ {{{
-			"" Add unnecessary matrix screen saver
-			Bundle 'uguu-org/vim-matrix-screensaver'
-			"" Plugin to break bad movement habits
-			Bundle 'takac/vim-hardtime'
+			Plugin 'uguu-org/vim-matrix-screensaver'	" Add unnecessary matrix screen saver
+			Plugin 'takac/vim-hardtime'					" Plugin to break bad movement habits
 			""" End Misc """ }}}
 		""...All your other bundles...
 		""" End Bundles """ }}}
+	call vundle#end()		" required
 
 	if iCanHazVundle == 0
 		echo "Installing Bundles, please ignore key map error messages"
 		echo ""
-		:BundleInstall
+		:PluginInstall
 	endif
 """ End Setting Up Vundle """ }}}
 
