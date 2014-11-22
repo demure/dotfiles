@@ -31,7 +31,7 @@
 	## Tests for fortune, root, interactive shell, and dumb term
 	# http://www.getmemo.org/index.html
 	if [[ `command -v memo` && $UID != '0' && $- == *i* && $TERM != 'dumb' ]]; then
-		memo -s
+		memo -u
 	  else
 		MISSING_ITEMS+="memo,"
 	fi
