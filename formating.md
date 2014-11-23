@@ -4,100 +4,118 @@
 # https://gitorious.org/demure/dotfiles/
 # legacy repo http://github.com/demure/dotfiles
 -->
-My Formatting
-===
 
-File Start:
----
-1. Shell, if shell script
-2. Info line
-	A. What this file is
-3. Settings used on file
-4. Source code link
+##My Formatting  
+
+### Table of Contents
+* [File Start](#file-start)
+* [Code Block](#code-block)
+* [Comments](#comments)
+	* [Own Line](#own-line)
+	* [Same Line as Code](#same-line-as-code)
+	* [Toggling Code](#toggling-code)
+* [Indentation](#indentation)
+	* [Overall Indents](#overall-indents)
+	* ['If' Test Indents](#if-test-indents)
+* [Line Spacing](#line-spacing)
+	* [Spacing Neighboring Blocks](#spacing-neighboring-blocks)
+	* [Spacing Comments](#spacing-comments)
+
+###File Start:  
+* Shell, if shell script  
+* Info line  
+	* What this file is  
+* Settings used on file  
+* Source code link  
 
 ```
-#!/bin/something	# If relevant
-##### My (demuredemeanor) attempt to codify my formatting
-# Uses shiftwidth=4 for tabs; foldmarker={{{,}}} for folds;
-# https://gitorious.org/demure/dotfiles/
-# legacy repo http://github.com/demure/dotfiles
+	#!/bin/something	# If relevant
+	##### My (demuredemeanor) attempt to codify my formatting
+	# Uses shiftwidth=4 for tabs; foldmarker={{{,}}} for folds;
+	# https://gitorious.org/demure/dotfiles/
+	# legacy repo http://github.com/demure/dotfiles
 ```
 
+###Code Block:  
 
-Code Block:
----
-1. Start
-	A. Three comment symbols
-	B. Cap first letters of title words
-	C. Three comment symbols
-	D. Vim fold symbol
-2. Contents
-3. End
-	A. Same as start, but add 'End' to title
-	B. Can truncate block name
-	
+* Start  
+	* Three comment symbols  
+	* Cap first letters of title words  
+	* Three comment symbols  
+	* Vim fold symbol  
+* Contents  
+* End  
+	* Same as start, but add 'End' to title  * Can truncate block name  
+	* Can truncate block name  
+
 ```
-### Title Block ### {{{
-Contents
-### End Title ### }}}
+	### Title Block ### {{{
+	Contents
+	### End Title ### }}}
 ```
 
+###Comments:  
 
-Comments
----
-1. Own line
-	A. Two comment symbols and a space
-	B. Capitalize first word of sentence
-	C. Additional lines will use single comment symbol
-	D. Put line preceding of code it is for
-	E. Use Cases:
-		* Identity Code
-		* Give long description and details
-		* If 'short' description can not fit on same line
+####Own line  
+* Two comment symbols and a space  
+* Capitalize first word of sentence  
+* Additional lines will use single comment symbol  
+* Put line preceding of code it is for  
+* Use Cases:  
+	* Identity Code
+	* Give long description and details  
+	* If 'short' description can not fit on same line  
 
-	```
+```
 	## Some comment...
 	# ...and its second line
 	some code
-	```
+```
 
-2. Same line as code
-	A. One comment symbol and a space
-	B. Tab comments evenly inside of code block
-		* Preferably matching highest block relevant
+####Same Line as Code  
+* One comment symbol and a space  
+* Tab comments evenly inside of code block  
+	* Preferably matching highest block relevant  
 
-	
-	```
+```
 	some code			# Some comment
 	some more code		# Another comment
-	```
+```
 
-3. Toggling code
-	A. Comment symbol directly preceding code, to toggle it out
-	
-		```
+####Toggling Code  
+* Comment symbol directly preceding code, to toggle it out  
+
+```
 		#echo "some text"		# Toggled off
 		other code				# Still active
-		```
-		
-	B. Long sections can have comment symbol at beginning of line
+```	
 
-		```
+* Long sections can have comment symbol at beginning of line  
+
+```
 		#		if
 		#			blah
 		#		  else
 		#			blah blah
 		#		fi
-		```
+```
 
+* Temporary comments may use three, or more, comment symbols  
+	* May also be use to distinguish between example conf comments  
 
-Indentation:
----
-1. Overall indents
-	A. Child Blocks will be indented one further than parent
-	B. Neighboring Blocks will be on the same indent level
+```
+		###some code			# disabled for troubleshooting
+		other code
+		#another line			# disabled
+```
 
-	```
+###Indentation:  
+
+####Overall Indents  
+* Child Blocks will be indented one further than parent  
+* Neighboring Blocks will be on the same indent level  
+
+```
 	### Parent Block ### {{{
 		### Child Block ### {{{
 		content
@@ -107,26 +125,27 @@ Indentation:
 		other content
 		### End Nested ### }}}
 	### End Parent ### }}}
-	```
+```
 
-2. 'If' test indents
-	A. Half indent 'else's... because I like it.
+####'if' Test Indents  
+* Code will be indented one further than 'if'  
+* Half indent 'else's... because I like it.  
 
-	```
-	if
-		first
-	  else
-		second
-	fi
-	```
+```
+		if
+			first
+		  else
+			second
+		fi
+```
 
+###Line Spacing:  
 
-Line Spacing:
----
-1. Neighboring Blocks will be separated by a blank line
-	A. Nested blocks will not be
+####Spacing Neighboring Blocks  
+* Neighboring Blocks will be separated by a blank line  
+	* Nested blocks will not be  
 
-	```		
+```
 	### Parent Block ### {{{
 		### Child Block ### {{{
 		content
@@ -136,26 +155,28 @@ Line Spacing:
 		other content
 		### End Nested ### }}}
 	### End Parent ### }}}
-	```
+```
 
-2. Comment lines used to identify a Section will have blank line prior
-	A. Comment lines used for details/description need not
-	
-		```
+####Spacing Comments  
+* Comment lines used to identify a Section will have blank line prior  
+	* Comment lines used for details/description need not  
+
+```
 		if other_test
 			echo "for demonstrating below"
 		fi
-	
+
 		## Test for something
 		if something
 			blah
 		fi
-		```
-		
-	B. 'Short' descriptions need not have blank line
-	
-		```
+```
+
+* 'Short' descriptions need not have blank line  
+
+```
 		some other code
 		## desc of following code
 		echo "the really long code is located here"
-		```
+```
+
