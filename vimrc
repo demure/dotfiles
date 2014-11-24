@@ -79,7 +79,6 @@
 	set splitright					" New vertical splits are to the right
 	set history=1000				" Increase command/search history
 	set confirm						" Vim prompts for :q/:qa/:w issues
-	set backspace=indent,eol,start	" Force 'normal' delete operation
 	""" End Assorted """ }}}
 
 	""" HUD """ {{{
@@ -209,9 +208,9 @@
 	command! BI BundleInstall
 """ End Aliases """ }}}
 
-""" Functions """ {{{ current vs saved version
+""" Functions """ {{{
 	""" DiffSaved """ {{{
-	"" To compare
+	"" To compare current vs saved version
 	"" http://vim.wikia.com/wiki/Diff_current_buffer_and_the_original_file
 	"" To get out of diff view you can use the :diffoff command. 
 	function! s:DiffWithSaved()
