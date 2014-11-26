@@ -50,6 +50,7 @@
 		source /etc/bash_completion.d/git		## Add git completion
 
 		alias bb='bboard'
+		alias mutt='~/bin/mutt'
 		unalias svi
 		__ssh_agent
 	fi
