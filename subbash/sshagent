@@ -9,7 +9,8 @@
 
 ### SSH Agent ### {{{
 function __ssh_agent() {
-	SSH_ENV="$HOME/.ssh/environment"
+	local SSH_ENV="$HOME/.ssh/environment"
+	local U_CHECK="$(logname)"
 
 	function __start_agent {
 		echo "Initialising new SSH agent..."
@@ -22,12 +23,14 @@ function __ssh_agent() {
 
 	## Source SSH settings, if applicable
 	if [ -f "${SSH_ENV}" ]; then
-		. "${SSH_ENV}" > /dev/null
-		ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+		if [ ${U_CHECK} == ${USER} ]; then
+			. "${SSH_ENV}" > /dev/null
+			ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+				__start_agent;
+			}
+		  else
 			__start_agent;
-		}
-	  else
-		__start_agent;
+		fi
 	fi
 }
 ### End SSH Agent ### }}}
