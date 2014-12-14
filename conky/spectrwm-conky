@@ -27,10 +27,10 @@ TEXT
 ### End Old ### }}}
 
 ## Without Unicode
-###${if_up eth0}eth:${addr eth0} |${endif}${if_up wlan0}Local:${addr wlan0} | Wifi:${wireless_link_qual_perc wlan0}% |${endif} IP:${execi 300 ~/.conky/scripts/ip.sh} | Temp:${hwmon tempf 1}F | RAM:$memperc% | CPU:${cpu cpu0}% ${cpu cpu1}% ${cpu cpu2}% ${cpu cpu3}% ${cpu cpu4}% | HD:${fs_free}/${fs_size} ${fs_free_perc}% | Bat:${battery_percent BAT1}% | Down ${downspeed wlan0} Up ${upspeed wlan0}
+###${if_up eth0}eth:${addr eth0} |${endif}${if_up wlan0}wlan:${addr wlan0} | Wifi:${wireless_link_qual_perc wlan0}% |${endif} IP:${execi 300 ~/.conky/scripts/ip.sh} | Temp:${hwmon tempf 1}F | Bat:${battery_percent BAT1}% | Vol: ${exec amixer -c 0 get Master | grep Mono: | cut -d " " -f6} | RAM:$memperc% | HD:${fs_free}/${fs_size} ${fs_free_perc}% | CPU:${cpu cpu0}% ${cpu cpu1}% ${cpu cpu2}% ${cpu cpu3}% ${cpu cpu4}% | ${execi 1800 ~/.conky/scripts/weather.sh 48103} | ${if_up eth0}Down ${downspeed eth0}Up ${upspeed eth0}${endif}${if_up wlan0}Down ${downspeed wlan0}Up ${upspeed wlan0}${endif}
 
 ## With Unicode
-${if_up eth0}eth:${addr eth0} |${endif}${if_up wlan0}wlan:${addr wlan0} | Wifi:${wireless_link_qual_perc wlan0}% |${endif} ☏:${execi 300 ~/.conky/scripts/ip.sh} | ♨:${hwmon tempf 1}F | RAM:$memperc% | CPU:${cpu cpu0}% ${cpu cpu1}% ${cpu cpu2}% ${cpu cpu3}% ${cpu cpu4}% | HD:${fs_free}/${fs_size} ${fs_free_perc}% | Bat:${battery_percent BAT1}% | Vol: ${exec amixer -c 0 get Master | grep Mono: | cut -d " " -f6} | ${execi 1800 ~/.conky/scripts/weather.sh 48103} | ↓${downspeed wlan0} ↑${upspeed wlan0}
+${if_up eth0}eth:${addr eth0} |${endif}${if_up wlan0}wlan:${addr wlan0} | Wifi:${wireless_link_qual_perc wlan0}% |${endif} ☏:${execi 300 ~/.conky/scripts/ip.sh} | ♨:${hwmon tempf 1}F | Bat:${battery_percent BAT1}% | Vol: ${exec amixer -c 0 get Master | grep Mono: | cut -d " " -f6} | RAM:$memperc% | HD:${fs_free}/${fs_size} ${fs_free_perc}% | CPU:${cpu cpu0}% ${cpu cpu1}% ${cpu cpu2}% ${cpu cpu3}% ${cpu cpu4}% | ${execi 1800 ~/.conky/scripts/weather.sh 48103} | ${if_up eth0}↓${downspeed eth0}↑${upspeed eth0}${endif}${if_up wlan0}↓${downspeed wlan0}↑${upspeed wlan0}${endif}
 
 ### Testing Section ### {{{
 ### ${iconv_start UTF-8 ISO_8859-1}° ${iconv_stop}
