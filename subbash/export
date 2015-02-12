@@ -57,6 +57,18 @@
 	export GREP_OPTIONS
 	### End Grep Options ### }}}
 
+	### Nethack Conf ### {{{
+	if [ -f ~/.nethackrc ]; then
+		export NETHACKOPTIONS=~/.nethackrc
+	fi
+	### End Nethack ### }}}
+
+	### Slash'em Conf ### {{{
+	if [ -f ~/.slashemrc ]; then
+		export SLASHEMOPTIONS=~/.slashemrc
+	fi
+	### End Slash'em ### }}}
+
 	### TERM color ### {{{
 	## Disabled, as forcing is kind of bad >_>
 	## http://blog.sanctum.geek.nz/term-strings/
