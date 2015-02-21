@@ -58,13 +58,13 @@
 	### End Grep Options ### }}}
 
 	### Nethack Conf ### {{{
-	if [ -f ~/.nethackrc ]; then
+	if [ -f $HOME/.nethackrc ]; then
 		export NETHACKOPTIONS=~/.nethackrc
 	fi
 	### End Nethack ### }}}
 
 	### Slash'em Conf ### {{{
-	if [ -f ~/.slashemrc ]; then
+	if [ -f $HOME/.slashemrc ]; then
 		export SLASHEMOPTIONS=~/.slashemrc
 	fi
 	### End Slash'em ### }}}
