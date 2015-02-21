@@ -3,6 +3,8 @@
 # https://gitorious.org/demure/dotfiles/
 # legacy repo http://github.com/demure/dotfiles
 
+## Note on batterys, /proc/acpi/ is long depreciated, see /sys/class/power_supply/
+
 out_to_x no
 out_to_console yes
 
