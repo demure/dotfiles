@@ -55,7 +55,7 @@ host gnu
 	hostName fencepost.gnu.org
 
 host dd
-	hostName demuredemeanor.com
+	hostName demu.red
 	Port 500
 
 host *
