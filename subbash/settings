@@ -30,16 +30,18 @@
 		### End Mac Sourcing ### }}}
 
 		### Mac Aliases ### {{{
-		alias google='ping -c 1 www.google.com && growlnotify -m "google pinged"'
-		alias ardrestart='sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -restart -agent -menu'
-		alias vi='vim'
-		alias fvreboot='sudo fdesetup authrestart'
-		alias rebuild_open_with='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user;killall Finder;echo "Open With has been rebuilt, Finder will relaunch"'
+		if [[ $- == *i* ]]; then
+			alias google='ping -c 1 www.google.com && growlnotify -m "google pinged"'
+			alias ardrestart='sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -restart -agent -menu'
+			alias vi='vim'
+			alias fvreboot='sudo fdesetup authrestart'
+			alias rebuild_open_with='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user;killall Finder;echo "Open With has been rebuilt, Finder will relaunch"'
 
-		## Aliases for nicing
-		alias fast='sudo nice -n -10'
-		alias slow='nice -n 20'
-		### End Mac Aliases ### }}}
+			## Aliases for nicing
+			alias fast='sudo nice -n -10'
+			alias slow='nice -n 20'
+			### End Mac Aliases ### }}}
+		fi
 	fi
 	### End Mac Settings ### }}}
 
@@ -49,9 +51,12 @@
 		export TZ=EST5EDT
 		source /etc/bash_completion.d/git		## Add git completion
 
-		alias bb='bboard'
-		alias mutt='~/bin/mutt'
-		unalias svi
+		if [[ $- == *i* ]]; then
+			alias bb='bboard'
+			alias mutt='~/bin/mutt'
+			unalias svi
+		fi
+
 		__ssh_agent
 	fi
 	### End MA Settings ### }}}
@@ -59,31 +64,38 @@
 	### For pi ### {{{
 	if [ $HOSTTYPE == 'arm' ]; then
 		source /etc/bash_completion.d/git		## Add git completion
-		alias ls='ls --color=auto'
-		alias vi='vim'
-		alias vnc='vncserver :1 -geometry 1024x700 -depth 24'
-		alias cdtrans='cd /var/lib/transmission-daemon/downloads'
+
+		if [[ $- == *i* ]]; then
+			alias ls='ls --color=auto'
+			alias vi='vim'
+			alias vnc='vncserver :1 -geometry 1024x700 -depth 24'
+			alias cdtrans='cd /var/lib/transmission-daemon/downloads'
+		fi
 		__ssh_agent
 	fi
 	### End For pi ### }}}
 
 	### For iOS ### {{{
 	if [ $OSTYPE == 'darwin9' ]; then
-		alias svi='sudo -E vi'
+		if [[ $- == *i* ]]; then
+			alias svi='sudo -E vi'
+		fi
 	fi
 	### End For iOS ### }}}
 
 	### For #!, and debian Including Laptop and Netbook ### {{{
 	if [[ $MACHTYPE == 'x86_64-pc-linux-gnu' || $MACHTYPE == 'i486-pc-linux-gnu' ]]; then
-		alias ls='ls --color=auto'
-		alias vi='vim'
-		alias mp='mpv'
-		alias ssht='sshuttle --dns -vr ma 0/0'
-		alias hdmi-mirror='xrandr --output HDMI1 --mode 1360x768'
-		alias hdmi-second='xrandr --output HDMI1 --mode 1360x768 --right-of LVDS1'
-		alias hdmi-off='xrandr --output HDMI1 --off'
-		alias sd-card='sudo setpci -s 00:1c.2 0x50.B=0x41'
-		alias xc="xclip -selection c"
+		if [[ $- == *i* ]]; then
+			alias ls='ls --color=auto'
+			alias vi='vim'
+			alias mp='mpv'
+			alias ssht='sshuttle --dns -vr ma 0/0'
+			alias hdmi-mirror='xrandr --output HDMI1 --mode 1360x768'
+			alias hdmi-second='xrandr --output HDMI1 --mode 1360x768 --right-of LVDS1'
+			alias hdmi-off='xrandr --output HDMI1 --off'
+			alias sd-card='sudo setpci -s 00:1c.2 0x50.B=0x41'
+			alias xc="xclip -selection c"
+		fi
 		__ssh_agent
 	fi
 	### End For #! ### }}}
@@ -92,10 +104,13 @@
 	if [[ "$MACHTYPE" == "x86_64--netbsd" && "$OSTYPE" == "netbsd" ]]; then
 		#LSCOLORS='exfxcxdxbxegedabagacad'
 		export TZ=EST5EDT
-		alias help='/usr/local/bin/help'
-		alias bb='bboard'
-		unalias svi
-		#alias ls='colorls -G'
+
+		if [[ $- == *i* ]]; then
+			alias help='/usr/local/bin/help'
+			alias bb='bboard'
+			unalias svi
+			#alias ls='colorls -G'
+		fi
 	fi
 	### End For SDF Main Cluster ### }}}
 
