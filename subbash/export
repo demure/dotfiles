@@ -52,7 +52,7 @@
 			GREP_OPTIONS+="--exclude-dir=$PATTERN "
 		done
 	  else
-		MISSING_ITEMS+="grep-exclude"
+		MISSING_ITEMS+="grep-exclude "
 	fi
 	export GREP_OPTIONS
 	### End Grep Options ### }}}
@@ -60,12 +60,16 @@
 	### Nethack Conf ### {{{
 	if [ -f $HOME/.nethackrc ]; then
 		export NETHACKOPTIONS=~/.nethackrc
+	  else
+		MISSING_ITEMS+="nethackrc "
 	fi
 	### End Nethack ### }}}
 
 	### Slash'em Conf ### {{{
 	if [ -f $HOME/.slashemrc ]; then
 		export SLASHEMOPTIONS=~/.slashemrc
+	  else
+		MISSING_ITEMS+="slashemrc "
 	fi
 	### End Slash'em ### }}}
 
