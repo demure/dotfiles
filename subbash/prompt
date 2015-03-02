@@ -41,20 +41,23 @@ function __prompt_command() {
 		### Machine Test ### {{{
 		if [ $HOSTNAME == 'moving-computer-of-doom' ]; then
 			local PSCol="$Cya"				# For Main Computer
+		if [ $HOSTNAME == 'vps-of-doom' ]; then
+			local PSCol="$Blu"				# For VPS
+		elif [ $HOSTNAME == 'ma.sdf.org' ]; then
+			local PSCol="${Yel}\h"			# For MetaArray
+		elif [ $HOSTNAME == 'fencepost.gnu.org' ]; then
+			local PSCol="${On_Pur}\h"		# For Gnu
 		elif [ $HOSTTYPE == 'arm' ]; then
 			local PSCol="$Gre"				# For pi
-		elif [ $HOSTNAME == 'ma.sdf.org' ]; then
-			local PSCol="$Blu"				# For MetaArray
 		elif [[ $MACHTYPE =~ arm-apple-darwin ]]; then
 			local PSCol="$Gre"				# For iOS
 		elif [ $MACHTYPE == 'i486-pc-linux-gnu' ]; then
 			local PSCol="$BBla"				# For Netbook
 		elif [[ "$MACHTYPE" == "x86_64--netbsd" && "$OSTYPE" == "netbsd" ]]; then
-			local PSCol="$Yel"				# For Main Cluster
+			local PSCol="{$Yel}\h"			# For Main Cluster
 		elif [ "$MACHTYPE" == "mips-openwrt-linux-gnu" ]; then
-			local PSCol="$On_Pur"			# For OpenWrt
-		elif [ $HOSTNAME == 'fencepost.gnu.org' ]; then
-			local PSCol="${On_Pur}\h"		# For Gnu
+			local PSCol="${On_Pur}\h"			# For OpenWrt
+
 		  else
 			PS1+="${Pur}\h "						# Un-designated catch-all
 		fi
