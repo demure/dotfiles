@@ -41,7 +41,7 @@ function __prompt_command() {
 		### Machine Test ### {{{
 		if [ $HOSTNAME == 'moving-computer-of-doom' ]; then
 			local PSCol="$Cya"				# For Main Computer
-		if [ $HOSTNAME == 'vps-of-doom' ]; then
+		elif [ $HOSTNAME == 'vps-of-doom' ]; then
 			local PSCol="$Blu"				# For VPS
 		elif [ $HOSTNAME == 'ma.sdf.org' ]; then
 			local PSCol="${Yel}\h"			# For MetaArray
@@ -57,7 +57,6 @@ function __prompt_command() {
 			local PSCol="{$Yel}\h"			# For Main Cluster
 		elif [ "$MACHTYPE" == "mips-openwrt-linux-gnu" ]; then
 			local PSCol="${On_Pur}\h"			# For OpenWrt
-
 		  else
 			PS1+="${Pur}\h "						# Un-designated catch-all
 		fi
