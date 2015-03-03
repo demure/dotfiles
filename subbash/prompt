@@ -32,6 +32,7 @@ function __prompt_command() {
 		PS1+="${Red}\h \W ->${RCol} "		# Set prompt for root
 	  else
 		local PSCol=""						# Declare so null var fine
+		local PSOpt=""						# Above, and fixes repeat issue
 
 		if [ $EXIT != 0 ]; then
 			## can add `kill -l $?` to test to filter backgrounded
@@ -44,9 +45,11 @@ function __prompt_command() {
 		elif [ $HOSTNAME == 'vps-of-doom' ]; then
 			local PSCol="$Blu"				# For VPS
 		elif [ $HOSTNAME == 'ma.sdf.org' ]; then
-			local PSCol="${Yel}\h"			# For MetaArray
+			local PSCol="${Yel}"			# For MetaArray
+			local PSOpt="\h "
 		elif [ $HOSTNAME == 'fencepost.gnu.org' ]; then
-			local PSCol="${On_Pur}\h"		# For Gnu
+			local PSCol="${On_Pur}"		# For Gnu
+			local PSOpt="\h "
 		elif [ $HOSTTYPE == 'arm' ]; then
 			local PSCol="$Gre"				# For pi
 		elif [[ $MACHTYPE =~ arm-apple-darwin ]]; then
@@ -54,15 +57,19 @@ function __prompt_command() {
 		elif [ $MACHTYPE == 'i486-pc-linux-gnu' ]; then
 			local PSCol="$BBla"				# For Netbook
 		elif [[ "$MACHTYPE" == "x86_64--netbsd" && "$OSTYPE" == "netbsd" ]]; then
-			local PSCol="${Yel}\h"			# For Main Cluster
+			local PSCol="${Yel}"			# For Main Cluster
+			local PSOpt="\h "
 		elif [ "$MACHTYPE" == "mips-openwrt-linux-gnu" ]; then
-			local PSCol="${On_Pur}\h"			# For OpenWrt
+			local PSCol="${On_Pur}"			# For OpenWrt
+			local PSOpt="\h "
 		  else
-			PS1+="${Pur}\h "						# Un-designated catch-all
+			local PSCol="${Pur}"			# Un-designated catch-all
+			local PSOpt="\h "
+
 		fi
 		### End Machine Test ### }}}
 
-		PS1+="${PSCol}\W${RCol}"			# Current working dir
+		PS1+="${PSCol}${PSOpt}\W${RCol}"			# Current working dir
 
 		### Check Jobs ### {{{
 		## Backgrounded running jobs
