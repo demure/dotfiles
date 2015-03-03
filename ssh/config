@@ -45,6 +45,7 @@ host sleep
 
 host route
 	hostName 10.0.0.1
+	User root
 	Port 1337
 
 host cork
@@ -57,6 +58,12 @@ host gnu
 host dd
 	hostName demu.red
 	Port 500
+
+host ddx
+	hostName demu.red
+	Port 500
+	ForwardX11 yes
+	ForwardX11Trusted no
 
 host *
 	User demure
