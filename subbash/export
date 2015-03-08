@@ -23,7 +23,7 @@
 	if [[ `command -v fortune` && $UID != '0' && $- == *i* && $TERM != 'dumb' ]]; then
 		fortune -a
 	  else
-		MISSING_ITEMS+="fortune,"
+		MISSING_ITEMS+="fortune, "
 	fi
 	### End Fortune ### }}}
 
@@ -33,7 +33,7 @@
 	if [[ `command -v memo` && $UID != '0' && $- == *i* && $TERM != 'dumb' ]]; then
 		memo -u
 	  else
-		MISSING_ITEMS+="memo,"
+		MISSING_ITEMS+="memo, "
 	fi
 	### End Memo ### }}}
 
@@ -42,7 +42,7 @@
 	if echo hello | grep --color=auto l >/dev/null 2>&1; then
 		GREP_OPTIONS+="--color=auto " GREP_COLOR='1;31'
 	  else
-		MISSING_ITEMS+="grep-colors,"
+		MISSING_ITEMS+="grep-colors, "
 	fi
 
 	## Exclude annoying dirs
@@ -52,7 +52,7 @@
 			GREP_OPTIONS+="--exclude-dir=$PATTERN "
 		done
 	  else
-		MISSING_ITEMS+="grep-exclude "
+		MISSING_ITEMS+="grep-exclude, "
 	fi
 	export GREP_OPTIONS
 	### End Grep Options ### }}}
@@ -61,7 +61,7 @@
 	if [ -f $HOME/.nethackrc ]; then
 		export NETHACKOPTIONS=~/.nethackrc
 	  else
-		MISSING_ITEMS+="nethackrc "
+		MISSING_ITEMS+="nethackrc, "
 	fi
 	### End Nethack ### }}}
 
@@ -69,7 +69,7 @@
 	if [ -f $HOME/.slashemrc ]; then
 		export SLASHEMOPTIONS=~/.slashemrc
 	  else
-		MISSING_ITEMS+="slashemrc "
+		MISSING_ITEMS+="slashemrc, "
 	fi
 	### End Slash'em ### }}}
 
