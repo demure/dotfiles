@@ -15,6 +15,10 @@ all my systems (when/where possible).
 **NOTE:** While I am currently continuing to maintain the [github] repo,  
 I have moved to [gitorious]. Repo link in top comments, of most comment-able confs.  
 
+###Install:
+
+Aside from installing by hand, you could use [GNU Stow].
+
 ###Improved:  
 
 * I think my vimrc has improved a good deal ^__^  
@@ -27,21 +31,23 @@ I have moved to [gitorious]. Repo link in top comments, of most comment-able con
 * Killed off my laptop's useless menu key, and now have a `SUPER_R` **21MAY2014**  
 * Added test and variable for missing items in bash **12NOV2014**  
 * Decided to declare my `$PATH` with everything I want **12NOV2014**  
+* Added a MISSING_ITEMS to check if disabled things disabled **13NOV2014**
+* Added [GNU Stow] for installing **06MAR2014**
 
 ###Plans:  
 
 * For tmux, I am still debating to use powerline or not...  
     * One of the annoying issues is that the current beta seems pretty confusing  
-* For installing, I am looking at using GNU `stow`, as my 'script' has never really been usable >____>  
 
 <BR>
 **PS.** If you happen to have advice, I certainly would be interested in ways to
 improve my setup.  
 If you do wish to contact me, I guess [twitter] is an ok way (spam mitigation)  
 
-######Last edit 23NOV2014  
+######Last edit 06MAR2015  
 
 
 [github]: https://gitorious.org/demure/dotfiles
 [gitorious]: https://gitorious.org/demure/dotfiles
+[GNU Stow]: https://www.gnu.org/software/stow/
 [twitter]: https://twitter.com/demure
