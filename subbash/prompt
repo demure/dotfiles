@@ -65,7 +65,7 @@ function __prompt_command() {
 		  else
 			local PSCol="${Pur}"			# Un-designated catch-all
 			local PSOpt="\h "
-
+			MISSING_ITEMS+="machine-prompt, "
 		fi
 		### End Machine Test ### }}}
 
@@ -159,7 +159,7 @@ function __prompt_command() {
 				### End Commit Status ### }}}
 			fi
 		  else
-			MISSING_ITEMS+="git-prompt,"
+			MISSING_ITEMS+="git-prompt, "
 		fi
 		### End Git Status ### }}}
 
