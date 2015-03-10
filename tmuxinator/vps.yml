@@ -23,6 +23,7 @@ windows:
   - weechat: weechat
   - mud: tt++ ~/sl_mud/sl-test.tin
   - urls: tail -F ~/.weechat/urls.log
+  - w3m: w3m -B
   - mutt: mutt
 
   #- editor:
