@@ -1,19 +1,69 @@
-host sdf
-	HostName tty.sdf.org
+##### My (demuredemeanor) ~/.ssh/config
+# Uses tabstop=4; shiftwidth=4 tabs; foldmarker={{{,}}};
+# https://gitorious.org/demure/dotfiles/
+# legacy repo http://github.com/demure/dotfiles
 
-host ma
-	HostName ma.sdf.org
+### Internet Places ### {{{
+	### DD ### {{{
+	host dd
+		hostName demu.red
+		Port 500
 
-host max
-	HostName ma.sdf.org
-	#ForwardAgent no
-	ForwardX11 yes
-	#ForwardX11Timeout 596h
-	ForwardX11Trusted no
+	host ddx
+		hostName demu.red
+		Port 500
+		ForwardX11 yes
+		ForwardX11Trusted no
 
-host tmux
-	HostName ma.sdf.org
-	LocalCommand /usr/pkg/bin/tmux attach
+	host ddcomp
+		hostName localhost
+		Port 2001
+
+	host ddtiny
+		hostName localhost
+		Port 2002
+	### End DD ### }}}
+
+	### SDF ### {{{
+	host ma
+		HostName ma.sdf.org
+
+	host max
+		HostName ma.sdf.org
+		#ForwardAgent no
+		ForwardX11 yes
+		#ForwardX11Timeout 596h
+		ForwardX11Trusted no
+
+	host sdf
+		HostName tty.sdf.org
+
+	host cork
+		hostName ma.sdf.org
+		ProxyCommand corkscrew proxy.example.com 8080 %h %p
+		
+	host matiny
+		hostName localhost
+		Port 63753
+	### End SDF ### }}}
+
+host mdns
+	hostName demure.mdns.org
+	Port 8080
+
+host sleep
+	hostName sleepermud.net
+
+host gnu
+	hostName fencepost.gnu.org
+### End Internet Places ### }}}
+
+### Local Places ### {{{
+host comp doom
+	hostName moving-computer-of-doom.local
+
+host tiny
+	HostName tiny-computer-of-doom.local
 
 host net
 	HostName moving-netbook-of-doom.local
@@ -26,45 +76,13 @@ host tv
 	HostName tv-of-doom.local
 	User mobile
 
-host tiny
-	HostName tiny-computer-of-doom.local
-
-host comp doom
-	hostName moving-computer-of-doom.local
-
-host remote
-	hostName localhost
-	Port 63753
-
-host mdns
-	hostName demure.mdns.org
-	Port 8080
-
-host sleep
-	hostName sleepermud.net
-
 host route
 	hostName 10.0.0.1
 	User root
 	Port 1337
+### End Local Places ### }}}
 
-host cork
-	hostName ma.sdf.org
-	ProxyCommand corkscrew proxy.example.com 8080 %h %p
-
-host gnu
-	hostName fencepost.gnu.org
-
-host dd
-	hostName demu.red
-	Port 500
-
-host ddx
-	hostName demu.red
-	Port 500
-	ForwardX11 yes
-	ForwardX11Trusted no
-
+## Default settings, unless overridden above
 host *
 	User demure
 	Port 22
