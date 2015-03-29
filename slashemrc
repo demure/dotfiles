@@ -1,0 +1,117 @@
+### My slashem options
+
+### Interface settings ### {{{
+OPTIONS=color,hilite_pet,lit_corridor
+OPTIONS=showexp,showscore,showweight,time
+OPTIONS=race:human,role:wizard,align:neutral
+OPTIONS=boulder:0
+OPTIONS=DECgraphics
+OPTIONS=fullscreen
+#OPTIONS=number_pad:1
+### End Interface ### }}}
+
+### Messages ### {{{
+OPTIONS=help,silent
+OPTIONS=!news,!mail,!splash_screen,!legacy
+OPTIONS=disclose:yi -a +v -g -c
+OPTIONS=msg_window:reverse,msghistory:1000
+### End Messages ### }}}
+
+### Names ### {{{
+OPTIONS=name:demure
+OPTIONS=catname:derne,dogname:derth,horsename:death
+OPTIONS=fruit:fruit of doom
+### End Names ### }}}
+
+WIZKIT:wizkit.txt
+
+# === MENUCOLOR ===
+# lightcyan - good food
+# orange - cursed (or under +0)
+# yellow - not cursed
+# lightgreen - blessed
+MENUCOLOR="safe"=yellow
+MENUCOLOR="[0-9]:[0-9]"=yellow
+MENUCOLOR="\+[0-9]"=yellow
+MENUCOLOR="[Cc]ursed"=orange
+MENUCOLOR="[Uu]ncursed"=yellow
+MENUCOLOR="[Bb]lessed"=lightgreen
+MENUCOLOR="-[0-9]"=orange
+
+
+#### Pickup Options ### {{{
+#OPTIONS=pickup_types:"!?/=+*$%
+#OPTIONS=pickup_burden:burdened
+
+## Exclude corpses
+#AUTOPICKUP_EXCEPTION=">*corpse*"
+
+##because it is fun
+#AUTOPICKUP_EXCEPTION="<*boomerang*"
+
+##don't auto get heavy
+#AUTOPICKUP_EXCEPTION=">*chest*"
+#AUTOPICKUP_EXCEPTION=">*box*"
+#AUTOPICKUP_EXCEPTION=">*bugle*"
+#AUTOPICKUP_EXCEPTION=">*pick*"
+
+##name the amulet right away, and avoid fakes
+#AUTOPICKUP_EXCEPTION=">*Amulet of Yendor"
+#AUTOPICKUP_EXCEPTION="<*Amulet of Yendor named ?*"
+
+## Exclude possible loadstones, plain rocks, and known (or named)
+## worthless glass.
+#AUTOPICKUP_EXCEPTION=">*gray*stone*"
+#AUTOPICKUP_EXCEPTION=">*loadstone*"
+#AUTOPICKUP_EXCEPTION=">*rock*"
+#AUTOPICKUP_EXCEPTION=">*worthless*"
+
+##avoid empty wands
+#AUTOPICKUP_EXCEPTION="*:0)*"
+#AUTOPICKUP_EXCEPTION=">* named empty"
+
+##pick up already itentified artifacts
+#AUTOPICKUP_EXCEPTION="<the*"
+
+##auto get light ammo, so mobs can't use them.
+#AUTOPICKUP_EXCEPTION="<*arrow"
+### AUTOPICKUP_EXCEPTION="<*elven arrow"
+### AUTOPICKUP_EXCEPTION="<*orcish arrow"
+### AUTOPICKUP_EXCEPTION="<*silver arrow"
+### AUTOPICKUP_EXCEPTION="<*runed arrow"
+### AUTOPICKUP_EXCEPTION="<*crude arrow"
+#AUTOPICKUP_EXCEPTION="<*ya"
+### AUTOPICKUP_EXCEPTION="<*bamboo arrow"
+#AUTOPICKUP_EXCEPTION="<*crossbow bolt"
+#AUTOPICKUP_EXCEPTION="<*dart"
+#AUTOPICKUP_EXCEPTION="<*shuriken"
+#AUTOPICKUP_EXCEPTION="<*throwing star"
+##AUTOPICKUP_EXCEPTION="<*dagger" #heavy
+### AUTOPICKUP_EXCEPTION="<*elven dagger"
+### AUTOPICKUP_EXCEPTION="<*orcish dagger"
+### AUTOPICKUP_EXCEPTION="<*runed dagger"
+### AUTOPICKUP_EXCEPTION="<*crude dagger"
+### AUTOPICKUP_EXCEPTION="<*silver dagger"
+#AUTOPICKUP_EXCEPTION="<*knife"
+
+##things you don't want to pass up
+#AUTOPICKUP_EXCEPTION="<*wand of wishing"
+#AUTOPICKUP_EXCEPTION="<*wand called wish"
+#AUTOPICKUP_EXCEPTION="<*wand of create monster"
+#AUTOPICKUP_EXCEPTION="<*wand of teleportation"
+#AUTOPICKUP_EXCEPTION="<*wand called tele"
+## AUTOPICKUP_EXCEPTION="<*wand of polymorph"
+## AUTOPICKUP_EXCEPTION="<*wand called poly"
+#AUTOPICKUP_EXCEPTION="<*wand of fire"
+#AUTOPICKUP_EXCEPTION="<*wand of lightning"
+#AUTOPICKUP_EXCEPTION="<*wand of death"
+## # Cold is used for Juiblex swamp, etc.
+## AUTOPICKUP_EXCEPTION=">*wand of cold"
+#AUTOPICKUP_EXCEPTION="<*magic marker"
+#AUTOPICKUP_EXCEPTION="<*magic lamp"
+#AUTOPICKUP_EXCEPTION="<lamp"
+#AUTOPICKUP_EXCEPTION="<*d lamp"
+#AUTOPICKUP_EXCEPTION="<*amulet of life saving"
+#AUTOPICKUP_EXCEPTION="<*amulet called life"
+#AUTOPICKUP_EXCEPTION="<*athame"
+#### End Pickup ### }}}
