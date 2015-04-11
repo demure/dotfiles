@@ -18,6 +18,8 @@ override_utf8_locale yes	# Make UTF8 supposedly work
 
 if_up_strictness address	# Make if_up work correctly for eth0
 
+short_units yes				# Shortens units to single character
+
 #imlib_cache_size 0*/
 
 
