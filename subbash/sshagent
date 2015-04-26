@@ -1,4 +1,4 @@
-##### My (demuredemeanor) sub source ssh-agent script
+#### My (demuredemeanor) sub source ssh-agent script
 # Uses tabstop=4; shiftwidth=4 tabs; foldmarker={{{,}}};
 # https://gitorious.org/demure/dotfiles/
 # legacy repo http://github.com/demure/dotfiles
@@ -11,6 +11,8 @@
 function __ssh_agent() {
 	local SSH_ENV="$HOME/.ssh/environment"
 	local U_CHECK="$(logname)"
+	logname &>/dev/null
+	local F_CHECK="$?"
 
 	function __start_agent {
 		echo "Initialising new SSH agent..."
@@ -22,7 +24,7 @@ function __ssh_agent() {
 	}
 
 	## Source SSH settings, if applicable
-	if [ ${U_CHECK} == ${USER} ]; then
+	if [ ${F_CHECK} == 0 -a ${U_CHECK} == ${USER} ]; then
 		if [ -f "${SSH_ENV}" ]; then
 			. "${SSH_ENV}" > /dev/null
 			ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
