@@ -37,25 +37,26 @@
 	fi
 	### End Memo ### }}}
 
-	### Grep Options ### {{{
-	## Colored Greps
-	if echo hello | grep --color=auto l >/dev/null 2>&1; then
-		GREP_OPTIONS+="--color=auto " GREP_COLOR='1;31'
-	  else
-		MISSING_ITEMS+="grep-colors, "
-	fi
+	## Disabled due to death of GREP_OPTIONS
+	#### Grep Options ### {{{
+	### Colored Greps
+	#if echo hello | grep --color=auto l >/dev/null 2>&1; then
+		#GREP_OPTIONS+="--color=auto " GREP_COLOR='1;31'
+	  #else
+		#MISSING_ITEMS+="grep-colors, "
+	#fi
 
-	## Exclude annoying dirs
-	## http://blog.sanctum.geek.nz/default-grep-options/
-	if echo hello | grep --exclude-dir=a l >/dev/null 2>&1; then
-		for PATTERN in .cvs .git .hg .svn; do
-			GREP_OPTIONS+="--exclude-dir=$PATTERN "
-		done
-	  else
-		MISSING_ITEMS+="grep-exclude, "
-	fi
-	export GREP_OPTIONS
-	### End Grep Options ### }}}
+	### Exclude annoying dirs
+	### http://blog.sanctum.geek.nz/default-grep-options/
+	#if echo hello | grep --exclude-dir=a l >/dev/null 2>&1; then
+		#for PATTERN in .cvs .git .hg .svn; do
+			#GREP_OPTIONS+="--exclude-dir=$PATTERN "
+		#done
+	  #else
+		#MISSING_ITEMS+="grep-exclude, "
+	#fi
+	#export GREP_OPTIONS
+	#### End Grep Options ### }}}
 
 	### Nethack Conf ### {{{
 	if [ -f $HOME/.nethackrc ]; then
