@@ -5,6 +5,9 @@
 # vim:set syntax=sh:
 
 ### Universal Aliases ### {{{
+## grep alias
+# added due to death of GREP_OPTIONS
+alias grep='grep --color=auto --exclude-dir=.cvs --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn'
 ## Remove OS X 'junk' files
 alias rmds='find . -name ".DS_Store" -depth -exec rm -i {} \;'
 ## Show ls -R with readable depth
