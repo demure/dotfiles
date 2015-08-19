@@ -5,6 +5,8 @@
 # vim:set syntax=sh:
 
 ### Universal Aliases ### {{{
+## find last docker container
+alias dl='docker ps -l -q'
 ## grep alias
 # added due to death of GREP_OPTIONS
 alias grep='grep --color=auto --exclude-dir=.cvs --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn'
