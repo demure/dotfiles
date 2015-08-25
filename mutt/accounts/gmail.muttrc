@@ -1,0 +1,16 @@
+# Account Settings ------------------------------
+
+set from      = demuredemeanor@gmail.com"
+set sendmail  = "/usr/bin/msmtp -a gmail"
+
+# Default inbox.
+set spoolfile = "+gmail/INBOX"
+
+# Other special folders.
+set mbox      = "+gmail/archive"
+set postponed = "+gmail/drafts"
+set record    = "+gmail/sent"
+
+#mailboxes `echo ~/mail/inbox/*`
+
+color status green default

@@ -1,0 +1,14 @@
+# Account Settings -----
+
+set from      = ${USER}@${HOSTNAME}"
+set sendmail  = "/usr/bin/msmtp -a local"
+
+# Default inbox.
+set spoolfile = "/var/spool/mail/$USER"
+
+## Other special folders.
+#set mbox      = "+local/archive"
+#set postponed = "+local/drafts"
+#set record    = "+local/Sent Messages"
+
+color status yellow default

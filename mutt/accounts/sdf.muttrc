@@ -1,0 +1,14 @@
+# Account Settings ------------------------------
+
+set from      = "demure@sdf.org"
+set sendmail  = "/usr/bin/msmtp -a sdf"
+
+# Default inbox.
+set spoolfile = "+sdf/INBOX"
+
+# Other special folders.
+set mbox      = "+sdf/INBOX"
+set postponed = "+sdf/Drafts"
+set record    = "+sdf/Sent"
+
+color status yellow default

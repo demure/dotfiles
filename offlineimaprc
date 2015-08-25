@@ -1,0 +1,117 @@
+##### My (demuredemeanor) offlineimaprc
+# Uses tabstop=4; shiftwidth=4 tabs; foldmarker={{{,}}};
+# https://notabug.org/demure/dotfiles
+# legacy repo http://github.com/demure/dotfiles
+# vim:set syntax=sh:
+
+## This is heavily inspired by Mark H. Nichols's post
+# http://zanshin.net/2015/01/19/teaching-a-homely-mutt-new-tricks/
+#
+# which in turn was inspired by Steve Losh's post
+# http://stevelosh.com/blog/2012/10/the-homely-mutt/
+#
+# Aside from using my accounts, and eventually a few tweaks,
+# I am /not/ using OS X's keychain...
+# I am using gnome keyring *sigh*, and python3-keyring
+# https://github.com/sup-heliotrope/sup/wiki/Securely-Store-Password
+
+
+### Main Settings ### {{{
+[general]
+# ui = ttyui
+ui = blinkenlights
+#ui = quiet
+##accounts = root,sdf,gmail,emu
+accounts = emu,sdf,gmail
+pythonfile=~/.mutt/offlineimap.py
+fsync = False
+### End Main ### }}}
+
+### sdf ### {{{
+[Account sdf]
+localrepository = sdf-Local
+remoterepository = sdf-Remote
+status-backend = sqlite
+
+[Repository sdf-Local]
+type = Maildir
+localfolders = ~/.mail/sdf
+
+[Repository sdf-Remote]
+maxconnections = 3 
+type = IMAP
+remoteuser = demure
+remotehost = ma.sdf.org
+remoteport = 993
+ssl = yes
+remotepasseval = keyring.get_password('offlineimap', 'demure@sdf.org')
+realdelete = yes
+### End sdf### }}}
+
+### gmail ### {{{
+[Account gmail]
+localrepository = gmail-Local
+remoterepository = gmail-Remote
+status_backend = sqlite
+
+[Repository gmail-Local]
+type = Maildir
+localfolders = ~/.mail/gmail
+nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
+							'sent':    '[Gmail]/Sent Mail',
+							'flagged': '[Gmail]/Starred',
+							'trash':   '[Gmail]/Trash',
+							'archive': '[Gmail]/All Mail',
+						   }.get(folder, folder)
+
+[Repository gmail-Remote]
+maxconnections = 1
+type = Gmail
+remoteuser = demuredemeanor@gmail.com
+remotepasseval = keyring.get_password('offlineimap', 'demuredemeanor@gmail.com')
+realdelete = yes
+nametrans = lambda folder: {'[Gmail]/Drafts':    'drafts',
+							'[Gmail]/Sent Mail': 'sent',
+							'[Gmail]/Starred':   'flagged',
+							'[Gmail]/Trash':     'trash',
+							'[Gmail]/All Mail':  'archive',
+						   }.get(folder, folder)
+folderfilter = lambda folder: folder not in ['[Gmail]/Trash',
+											 '[Gmail]/Important',
+											 '[Gmail]/Spam',
+											 ]
+### End gmail ### }}}
+
+### emu ### {{{
+[Account emu]
+localrepository = emu-Local
+remoterepository = emu-Remote
+status_backend = sqlite
+
+[Repository emu-Local]
+type = Maildir
+localfolders = ~/.mail/emu
+nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
+                            'sent':    '[Gmail]/Sent Mail',
+                            'flagged': '[Gmail]/Starred',
+                            'trash':   '[Gmail]/Trash',
+                            'archive': '[Gmail]/All Mail',
+                           }.get(folder, folder)
+
+[Repository emu-Remote]
+maxconnections = 1
+type = Gmail
+remoteuser = amcbean@emich.edu
+remotepasseval = keyring.get_password('offlineimap', 'amcbean@emich.edu')
+realdelete = yes
+nametrans = lambda folder: {'[Gmail]/Drafts':    'drafts',
+                            '[Gmail]/Sent Mail': 'sent',
+                            '[Gmail]/Starred':   'flagged',
+                            '[Gmail]/Trash':     'trash',
+                            '[Gmail]/All Mail':  'archive',
+                           }.get(folder, folder)
+folderfilter = lambda folder: folder not in ['[Gmail]/Trash',
+                                             '[Gmail]/Important',
+                                             '[Gmail]/Spam',
+                                             ]
+### End gmail ### }}}
