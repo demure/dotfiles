@@ -13,7 +13,7 @@ organizing snippets, improving comments, and trying making one conf work for
 all my systems (when/where possible).  
 
 **NOTE:** While I am currently continuing to maintain the [github] repo,  
-<strike>I have moved to [gitorious].</stike> Repo link in top comments, of most comment-able confs.  
+<strike>I have moved to [gitorious].</strike> Repo link in top comments, of most comment-able confs.  
 With the death of gitorious, I am currently using [notabug].  
 
 ###Install:
