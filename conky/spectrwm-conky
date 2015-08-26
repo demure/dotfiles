@@ -1,6 +1,6 @@
 ##### My (demuredemeanor) conky for spectrwm
 # Uses tabstop=4; shiftwidth=4 tabs; foldmarker={{{,}}};
-# https://gitorious.org/demure/dotfiles/
+# https://notabug.org/demure/dotfiles/
 # legacy repo http://github.com/demure/dotfiles
 
 ## Note on batterys, /proc/acpi/ is long depreciated, see /sys/class/power_supply/

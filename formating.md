@@ -1,7 +1,7 @@
 <!--
 ##### My (demuredemeanor) attempt to codify my formatting
 # Uses shiftwidth=4 for tabs; foldmarker={{{,}}} for folds;
-# https://gitorious.org/demure/dotfiles/
+# https://notabug.org/demure/dotfiles/
 # legacy repo http://github.com/demure/dotfiles
 -->
 

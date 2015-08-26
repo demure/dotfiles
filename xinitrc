@@ -1,7 +1,7 @@
 #!/bin/sh
 ##### My (demuredemeanor) .xinitrc
 # Uses shiftwidth=4 for tabs; foldmarker={{{,}}} for folds;
-# https://gitorious.org/demure/dotfiles/
+# https://notabug.org/demure/dotfiles/
 # legacy repo http://github.com/demure/dotfiles
 
 ## So I have a background other than the one from update-alternitives
