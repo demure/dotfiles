@@ -123,10 +123,10 @@ set spoolfile = "+sdf/INBOX"
 source ~/.mutt/accounts/sdf.muttrc
 
 ## Set account specific options on folder change
+folder-hook emu/*         source ~/.mutt/accounts/emu.muttrc
 folder-hook sdf/*         source ~/.mutt/accounts/sdf.muttrc
 folder-hook gmail/*       source ~/.mutt/accounts/gmail.muttrc
 folder-hook local/*       source ~/.mutt/accounts/local.muttrc
-folder-hook emu/*         source ~/.mutt/accounts/emu.muttrc
 
 ## Make sent show recipient
 ## Doesn't like this regex?
@@ -221,7 +221,7 @@ macro pager \Cu "|urlview<enter>" "call urlview to open links"
 set realname = "demure demeanor"                 # who am I?
 set envelope_from                                # which from?
 set sig_dashes                                   # dashes before sig
-#set autoedit
+set autoedit
 set edit_headers                                 # show headers when composing
 set fast_reply                                   # skip to compose when replying
 set askcc                                        # ask for CC:
