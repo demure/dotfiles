@@ -136,7 +136,6 @@ folder-hook local/*       source ~/.mutt/accounts/local.muttrc
 ## Mailboxes to show in the sidebar.
 mailboxes "+-- sdf ------------" \
 		  +sdf/INBOX \
-		  +sdf/Archive \
 		  +sdf/Drafts \
 		  +sdf/Sent \
 		  "+-- gmail ----------" \
