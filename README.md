@@ -34,6 +34,7 @@ Aside from installing by hand, you could use [GNU Stow].
 * Decided to declare my `$PATH` with everything I want **12NOV2014**  
 * Added a MISSING_ITEMS to check if disabled things disabled **13NOV2014**
 * Added [GNU Stow] for installing **06MAR2014**
+* Added mutt with multiple accounts, using offlineimap, not-much, and msmtp **25AUG2015**
 
 ###Plans:  
 
@@ -45,7 +46,7 @@ Aside from installing by hand, you could use [GNU Stow].
 improve my setup.  
 If you do wish to contact me, I guess [twitter] is an ok way (spam mitigation)  
 
-######Last edit 06MAR2015  
+######Last edit 27AUG2015  
 
 
 [github]: https://gitorious.org/demure/dotfiles
