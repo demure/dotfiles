@@ -15,11 +15,12 @@ so() { [ -s $1 ] && source $1; }
 #so ~/.subbash/${ENV_NAME}_profile		# configuration per OS linux/OSX
 
 #so ~/.subbash/common					# common stuff or overriding
-#so ~/.subbash/bashrc.local				# machine specific config. not tracked
+so ~/.subbash/bashrc.local				# machine specific config. not tracked
 
 so ~/.subbash/export					# Exports
 so ~/.subbash/shopt						# Shopts
 so ~/.subbash/sshagent					# SSH agent, have before settings
+so ~/.subbash/gpgagent					# GPG agent, have before settings
 
 ### Interactive ### {{{
 if [[ $- == *i* ]]; then

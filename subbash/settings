@@ -97,6 +97,7 @@
 			alias xc="xclip -selection c"
 		fi
 		__ssh_agent
+		__gpg_agent
 	fi
 	### End For #! ### }}}
 
