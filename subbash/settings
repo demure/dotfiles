@@ -109,6 +109,7 @@
 		if [[ $- == *i* ]]; then
 			alias help='/usr/local/bin/help'
 			alias bb='bboard'
+			alias cdircd='cd /sys/pkg/etc/unrealircd/'
 			unalias svi
 			#alias ls='colorls -G'
 		fi
