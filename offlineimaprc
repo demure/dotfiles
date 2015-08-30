@@ -44,7 +44,8 @@ remoteuser = demure
 remotehost = ma.sdf.org
 remoteport = 993
 ssl = yes
-remotepasseval = keyring.get_password('offlineimap', 'demure@sdf.org')
+#remotepasseval = keyring.get_password('offlineimap', 'demure@sdf.org')
+remotepasseval = get_pass("sdf")
 realdelete = yes
 ### End sdf### }}}
 
@@ -68,7 +69,8 @@ nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
 maxconnections = 1
 type = Gmail
 remoteuser = demuredemeanor@gmail.com
-remotepasseval = keyring.get_password('offlineimap', 'demuredemeanor@gmail.com')
+#remotepasseval = keyring.get_password('offlineimap', 'demuredemeanor@gmail.com')
+remotepasseval = get_pass("gmail")
 realdelete = yes
 nametrans = lambda folder: {'[Gmail]/Drafts':    'drafts',
 							'[Gmail]/Sent Mail': 'sent',
@@ -102,7 +104,8 @@ nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
 maxconnections = 1
 type = Gmail
 remoteuser = amcbean@emich.edu
-remotepasseval = keyring.get_password('offlineimap', 'amcbean@emich.edu')
+#remotepasseval = keyring.get_password('offlineimap', 'amcbean@emich.edu')
+remotepasseval = get_pass("emu")
 realdelete = yes
 nametrans = lambda folder: {'[Gmail]/Drafts':    'drafts',
                             '[Gmail]/Sent Mail': 'sent',

@@ -1,3 +1,5 @@
+#! /usr/bin/env python2
+from subprocess import check_output
 
-## Uses gnome keyring *sigh*, and python3-keyring
-import keyring
+def get_pass(account):
+    return check_output("pass Mail/" + account, shell=True).rstrip()
