@@ -14,6 +14,12 @@ set completion-map-case on
 set page-completions off
 ## Steps through list, can give n first
 "\t": menu-complete
+## Colored completion based on filetype
+set colored-stats on
+## When completing in middle of word, don't dupe matching text after word
+set skip-completed-text on
+## Show filetype info in completion suggestions, like ls -F output
+set visible-stats on
 
 ## Shift-TAB to menu-complete backwards
 # cf. http://www.tikirobot.net/wp/2006/03/29/reverse-menu-complete-in-bash/
