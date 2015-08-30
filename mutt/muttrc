@@ -44,6 +44,8 @@ set sort_alias = alias
 
 auto_view text/html
 alternative_order text/plain text/html
+## Adding flowed, because it is a good-ness? http://joeclark.org/ffaq.html
+set text_flowed = yes # Generate text/plain; format=flowed attachments.
 ### End Basic ### }}}
 
 ### Sourcing ### {{{

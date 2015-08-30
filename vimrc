@@ -66,6 +66,11 @@
 	autocmd FileType * setlocal formatoptions-=cro
 	set shortmess+=atIT				" Stop messages at vim launch
 	runtime macros/matchit.vim		" Add '%' matching to if/elsif/else/end
+
+	"" Mutt settings
+	" Support Format-Flowed in email (mutt).
+	" Because it is a good-ness? http://joeclark.org/ffaq.html
+    autocmd FileType mail setlocal fo+=aw tw=72
 """ End Commands at Start """ }}}
 
 """ Options """ {{{
