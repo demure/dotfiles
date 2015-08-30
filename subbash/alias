@@ -25,6 +25,8 @@ alias rsy='rsync -avrSPXRh'
 alias svi='sudo -E vim'
 ## Delete duplicate lines from file name augment
 alias deldup="awk '!x[$0]++' "
+## Use color pinfo instead of info
+alias info='pinfo'
 
 	### Git Aliases ### {{{
 	alias git_force_reset='git fetch --all && git reset --hard origin/master'

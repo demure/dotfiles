@@ -23,7 +23,7 @@ CLI Email Client		mutt			NA
 PDF Viewer				zathura			pdf
 Video Player			mpv				mp4, avi, mkg, org, etc
 Enable HDMI Sound		pavucontrol		NA
-
+linux info command		pinfo			NA
 
 
 | Day     | Meal    | Price |
