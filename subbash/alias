@@ -5,8 +5,6 @@
 # vim:set syntax=sh:
 
 ### Universal Aliases ### {{{
-## find last docker container
-alias dl='docker ps -l -q'
 ## grep alias
 # added due to death of GREP_OPTIONS
 alias grep='grep --color=auto --exclude-dir=.cvs --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn'
@@ -18,17 +16,35 @@ alias filetree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 
 alias reset_display='export DISPLAY=$(tmux showenv|grep ^DISPLAY|cut -d = -f 2)'
 ## Make ed more usable, command mode is now ':' like vi
 alias ed='ed -p:'
-## Makes qmv more usable, and regex-able
-alias qm='qmv --format=destination-only'
+## Good for sending dirs from server to remote server
 alias rsy='rsync -avrSPXRh'
 ## Preserve user conf while sudoing vim
 alias svi='sudo -E vim'
 ## Delete duplicate lines from file name augment
 alias deldup="awk '!x[$0]++' "
-## Use color pinfo instead of info
-alias info='pinfo'
+
+	### qmv ### {{{
+	if [[ $(command -v qmv) ]]; then
+		## Makes qmv more usable, and regex-able
+		alias qm='qmv --format=destination-only'
+	fi
+	### End qmv ### }}}
+
+	### pinfo ### {{{
+	if [[ $(command -v pinfo) ]]; then
+		## Use color pinfo instead of info
+		alias info='pinfo'
+	fi
+	### End pinfo ### }}}
 
 	### Git Aliases ### {{{
 	alias git_force_reset='git fetch --all && git reset --hard origin/master'
 	### End Git Aliases ### }}}
+
+	### Docker ### {{{
+	if [[ $(command -v docker) ]]; then
+		## find last docker container
+		alias dl='docker ps -l -q'
+	fi
+	### End Docker ### }}}
 ### End Universal Aliases ### }}}

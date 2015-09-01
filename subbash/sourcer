@@ -19,6 +19,7 @@ so ~/.subbash/bashrc.local				# machine specific config. not tracked
 
 so ~/.subbash/export					# Exports
 so ~/.subbash/shopt						# Shopts
+so ~/.subbash/installcheck				# Checks for installs, $MISSING_PROGRAMS
 so ~/.subbash/sshagent					# SSH agent, have before settings
 so ~/.subbash/gpgagent					# GPG agent, have before settings
 

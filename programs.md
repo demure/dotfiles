@@ -24,6 +24,7 @@ PDF Viewer				zathura			pdf
 Video Player			mpv				mp4, avi, mkg, org, etc
 Enable HDMI Sound		pavucontrol		NA
 linux info command		pinfo			NA
+CLI pager				view/less		NA
 
 
 | Day     | Meal    | Price |
