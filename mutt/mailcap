@@ -1,25 +1,76 @@
+##### My (demuredemeanor) muttrc mailcap file
+# Uses tabstop=4; shiftwidth=4 tabs; foldmarker={{{,}}};
+# https://notabug.org/demure/dotfiles
+# legacy repo http://github.com/demure/dotfiles
+# vim:set syntax=mailcap:
+
+## Note:
+# due to how vim is handling mailcap, I will be nesting levels with extra #s
+
 # MS Word Documents
-application/msword; ~/.mutt/view_attachment.sh %s "-" '/Applications/TextEdit.app'
+application/msword;		~/.mutt/view_attachment.sh %s "-";	test=test -n "$DISPLAY"
+application/msword;		antiword %s
 
-# Images
-image/jpg; ~/.mutt/view_attachment.sh %s jpg
-image/jpeg; ~/.mutt/view_attachment.sh %s jpg
-image/pjpeg; ~/.mutt/view_attachment.sh %s jpg
-image/png; ~/.mutt/view_attachment.sh %s png
-image/gif; ~/.mutt/view_attachment.sh %s gif
+### Images ### {{{
+image/*;		feh %s & sleep 5;	test=test -n "$DISPLAY"
+image/*;		cacaview %s
+### End Images ### }}}
 
-# PDFs
-application/pdf; ~/.mutt/view_attachment.sh %s pdf
+### PDFs ### {{{
+application/pdf;	~/.mutt/view_attachment.sh %s pdf;	test=test -n "$DISPLAY"
+## Check this once you have a good pdf email
+application/pdf;	pdftohtml -q %s - | w3m -T text/html;	copiousoutput
+application/postscript;		zathura %s;		test=test -n "$DISPLAY"
+application/postscript;		ps2ascii %s;	copiousoutput;
+### End PDFs ### }}}
 
-# Text
-text/plain;                      w3m %s; nametemplate=%s.html
+### Video ### {{{
+video/*;		mpv %s > /dev/null;
+### End Video ### }}}
 
-# HTML
-#text/html; ~/.mutt/view_attachment.sh %s html
-text/html;                      w3m %s; nametemplate=%s.html
+### Audio ### {{{
+audio/*;		mpv %s >/dev/null;
+### End Audio ### }}}
 
-# RTF
-text/rtf; ~/.mutt/view_attachment.sh %s rtf
+### Text/HTML ### {{{
+text/plain;		less %s;	edit=vim;	compose=vim;	needsterminal
+text/html;		~/.mutt/view_attachment.sh %s html;	test=test -n "$DISPLAY"
+text/html;		w3m %s; nametemplate=%s.html;			needsterminal
+#text/html;		w3m -v -F -T text/html -dump %s;		copiousoutput
+text/html;		elinks -dump -dump-color-mode 3 %s;		copiousoutput
+text/rtf;		~/.mutt/view_attachment.sh %s rtf
+text/xml;
+text/*;			less %s;	edit=vim;	compose=vim;	needsterminal
+### End Text ### }}}
 
-# Unidentified files
+### Compressed Files ### {{{
+application/x-zip;					unzip -l %s;		copiousoutput
+application/zip;					unzip -l %s;		copiousoutput
+application/x-rar;					unrar l %s;			copiousoutput
+application/x-rar-compressed;		unrar l %s;			copiousoutput
+application/x-tar;					tar -tvf %s;		copiousoutput
+application/x-tarz;					tar -tvf %s;		copiousoutput 
+application/x-gzip;					tar -ztvf %s;		copiousoutput  
+application/x-bzip2;				tar -jtvf %s;		copiousoutput  
+application/x-bzip;					tar -jtvf %s;		copiousoutput  
+application/x-bzip-compressed-tar;	tar -jtvf %s;		copiousoutput  
+application/x-7z-compressed;		7z l %s;			copiousoutput
+application/x-7z-compressed-tar;	7z l %s;			copiousoutput 
+### End Compressed ### }}}
+
+### vcard ### {{{
+#text/x-vcard; evolution %s; test=test -n "$DISPLAY"
+### End vcard ### }}}
+
+### Unidentified files ### {{{
 application/octet-stream; ~/.mutt/view_attachment.sh %s "-"
+### End Unidentified ### }}}
+
+### notes
+#look up all text
+#look up vcards
+#look up pkcs?
+#look up postscript, and other pdf lieks?
+#view contents of compressed files?
+#
+
