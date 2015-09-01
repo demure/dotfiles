@@ -46,9 +46,14 @@ auto_view text/html
 alternative_order text/plain text/html
 ## Adding flowed, because it is a good-ness? http://joeclark.org/ffaq.html
 set text_flowed = yes # Generate text/plain; format=flowed attachments.
+
+set allow_ansi
+
+subscribe ahashop
 ### End Basic ### }}}
 
 ### Sourcing ### {{{
+source ~/.mutt/alias
 source ~/.mutt/crypto.muttrc
 ### End Sourcing ### }}}
 
@@ -245,11 +250,6 @@ set text_flowed = yes                            # eliminate odd line breaks
 ## Postpone message
 #bind compose p postpone-message
 #bind index p recall-message
-
-# Handle contacts
-set query_command = "contacts -Sf '%eTOKEN%n' '%s' | sed -e 's/TOKEN/\t/g'"
-bind editor <Tab> complete-query
-bind editor ^T    complete
 
 # Vanilla Searching
 # / works just like Vim, use `n` to go to next, 'N' to go to previous
