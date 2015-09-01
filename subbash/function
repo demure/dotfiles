@@ -59,7 +59,9 @@
 	}
 	### End Tmux Display ### }}}
 
-function git_files_hist() {
-git log --pretty=%h | while read hash; do git ls-tree -r $hash | awk '{print $4}'; done | sort -u
-}
+	### Git Files Hist Function ### {{{
+	function git_files_hist() {
+	git log --pretty=%h | while read hash; do git ls-tree -r $hash | awk '{print $4}'; done | sort -u
+	}
+	### End Git Hist ### }}}
 ###End Universal Commands ### }}}

@@ -91,7 +91,7 @@ function __prompt_command() {
 
 		### Add Git Status ### {{{
 		## Inspired by http://www.terminally-incoherent.com/blog/2013/01/14/whats-in-your-bash-prompt/
-		if [[ `command -v git` ]]; then
+		if [[ $(command -v git) ]]; then
 			local GStat="$(git status --porcelain -b 2>/dev/null | tr '\n' ':')"
 
 			if [ "$GStat" ]; then

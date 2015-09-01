@@ -57,7 +57,7 @@
 			unalias svi
 		fi
 
-		__ssh_agent
+		#__ssh_agent							## No longer main server
 	fi
 	### End MA Settings ### }}}
 
