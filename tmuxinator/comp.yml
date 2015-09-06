@@ -20,4 +20,5 @@ root: ~/
 
 windows:
   - apt: sudo aptitude
+  - mutt: mutt
   - shell:
