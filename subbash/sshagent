@@ -24,7 +24,7 @@ function __ssh_agent() {
 	}
 
 	## Source SSH settings, if applicable
-	if [ ${F_CHECK} == 0 -a ${U_CHECK} == ${USER} ]; then
+	if [ ${F_CHECK} == 0 ] && { [ "${U_CHECK}" == "${USER}" ] || [ "${U_CHECK}" == "logname: no login name" ] ;}; then
 		if [ -f "${SSH_ENV}" ]; then
 			. "${SSH_ENV}" > /dev/null
 			ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
