@@ -28,14 +28,25 @@
 	### End Fortune ### }}}
 
 	### Memo At Login ### {{{
-	## Tests for fortune, root, interactive shell, and dumb term
+	## Tests for memo, root, interactive shell, and dumb term
 	# http://www.getmemo.org/index.html
 	if [[ `command -v memo` && $UID != '0' && $- == *i* && $TERM != 'dumb' ]]; then
-		memo -u
+		memo -u 2>/dev/null
 	  else
 		MISSING_ITEMS+="memo, "
 	fi
 	### End Memo ### }}}
+
+	### Taskwarrior At Login ### {{{
+	## Tests for task, root, interactive shell, and dumb term
+	# http://taskwarrior.org/
+	if [[ `command -v task` && $UID != '0' && $- == *i* && $TERM != 'dumb' ]]; then
+		task 2>/dev/null
+	  else
+		MISSING_ITEMS+="taskwarrior, "
+	fi
+
+	### End Taskwarrior ### }}}
 
 	## Disabled due to death of GREP_OPTIONS
 	#### Grep Options ### {{{
