@@ -12,7 +12,7 @@
 #
 # Aside from using my accounts, and eventually a few tweaks,
 # I am /not/ using OS X's keychain...
-# I am using gnome keyring *sigh*, and python3-keyring
+# I am using pass now, which is working quite well
 # https://github.com/sup-heliotrope/sup/wiki/Securely-Store-Password
 
 
@@ -44,6 +44,7 @@ remoteuser = demure
 remotehost = ma.sdf.org
 remoteport = 993
 ssl = yes
+cert_fingerprint = 64742c3c557b49d0787d091c99223f13d6143b5d
 #remotepasseval = keyring.get_password('offlineimap', 'demure@sdf.org')
 remotepasseval = get_pass("sdf")
 realdelete = yes
@@ -69,6 +70,7 @@ nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
 maxconnections = 1
 type = Gmail
 remoteuser = demuredemeanor@gmail.com
+ssl = yes
 #remotepasseval = keyring.get_password('offlineimap', 'demuredemeanor@gmail.com')
 remotepasseval = get_pass("gmail")
 realdelete = yes
@@ -104,6 +106,7 @@ nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
 maxconnections = 1
 type = Gmail
 remoteuser = amcbean@emich.edu
+ssl = yes
 #remotepasseval = keyring.get_password('offlineimap', 'amcbean@emich.edu')
 remotepasseval = get_pass("emu")
 realdelete = yes
