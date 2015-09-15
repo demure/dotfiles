@@ -1,0 +1,35 @@
+##### My (demuredemeanor) newsbeuter config
+# Uses tabstop=4; shiftwidth=4 tabs; foldmarker={{{,}}};
+# https://notabug.org/demure/dotfiles/
+# legacy repo http://github.com/demure/dotfiles
+# vim:set syntax=sh:
+
+urls-source "ttrss"
+
+ttrss-url "https://wm.sdf.org/tt-rss/"
+ttrss-mode multi
+ttrss-login "demure"
+ttrss-password "`pass cli/newsbeuter`"
+
+ttrss-flag-star "s"
+ttrss-flag-publish "p"
+
+auto-reload yes
+reload-time 30
+reload-threads 2
+suppress-first-reload yes
+notify-beep yes
+confirm-exit yes
+
+show-read-feeds no
+show-read-articles no
+feed-sort-order unreadarticlecount-asc
+article-sort-order date-desc
+
+#browser "w3m %u"
+browser sensible-browser
+player mpv
+
+macro y set browser "mpv %u"; open-in-browser ; set browser sensible-browser
+macro i set browser "feh %u"; open ; set browser sensible-browser
+macro w set browser "w3m %u"; open-in-browser ; set browser sensible-browser
