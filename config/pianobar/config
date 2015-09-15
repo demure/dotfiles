@@ -1,0 +1,11 @@
+##### My (demuredemeanor) pianobar conf
+# Uses tabstop=4; shiftwidth=4 tabs; foldmarker={{{,}}};
+# https://notabug.org/demure/dotfiles/
+# legacy repo http://github.com/demure/dotfiles
+# vim:set syntax=sh:
+
+## Yes, I know this is tiny....
+# but it will help remind me not to plaintext passwd
+
+password_command = pass cli/pianobar
+user = demuredemeanor@gmail.com
