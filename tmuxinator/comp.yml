@@ -21,4 +21,6 @@ root: ~/
 windows:
   - apt: sudo aptitude
   - mutt: mutt
+  - task: vit
+  - rss: newsbeuter
   - shell:
