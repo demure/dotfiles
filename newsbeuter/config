@@ -33,3 +33,24 @@ player mpv
 macro y set browser "mpv %u"; open-in-browser ; set browser sensible-browser
 macro i set browser "feh %u"; open ; set browser sensible-browser
 macro w set browser "w3m %u"; open-in-browser ; set browser sensible-browser
+
+
+# Ivaylo Kuzev <ivkuzev@gmail.com>, 2014
+# zenburn like color scheme for newsbeuter <http://www.newsbeuter.org/>
+
+color background color188 color237
+color info color223 color234
+color article color188 color237
+color listnormal color188 color237
+color listfocus color108 color234
+color listnormal_unread color108 color234
+color listfocus_unread color234 color108
+
+highlight article "^Feed:.*" color174 default
+highlight article "^Title:.*" color223 color108 bold
+highlight article "^Author:.*" color114 default
+highlight article "^Link:.*" color116 default
+highlight article "^Date:.*" color223 default
+highlight article "\\[[0-9][0-9]*\\]" color66 default bold
+highlight article "\\[image [0-9][0-9]*\\]" color109 default bold
+highlight article "\\[embedded flash: [0-9][0-9]*\\]" color66 default bold
