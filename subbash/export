@@ -41,7 +41,7 @@
 	## Tests for task, root, interactive shell, and dumb term
 	# http://taskwarrior.org/
 	if [[ `command -v task` && $UID != '0' && $- == *i* && $TERM != 'dumb' ]]; then
-		task 2>/dev/null
+		task limit:5 2>/dev/null
 	  else
 		MISSING_ITEMS+="taskwarrior, "
 	fi
