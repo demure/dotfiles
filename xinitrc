@@ -22,4 +22,10 @@ fi
 
 ## Uses spectrwm instead of distasteful gnome 3 :p
 #exec ck-launch-session dbus-launch /usr/local/bin/spectrwm
+
+## git install
+# dont forget about $(xinit /usr/local/bin/spectrwm -- :1 &) for testing
 exec ck-launch-session dbus-launch --sh-syntax --exit-with-session /usr/local/bin/spectrwm
+
+## system install
+#exec ck-launch-session dbus-launch --sh-syntax --exit-with-session /usr/bin/spectrwm
