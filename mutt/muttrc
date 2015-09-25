@@ -147,10 +147,10 @@ mailboxes "+-- sdf ------------" \
 		  +sdf/Sent \
 		  "+-- gmail ----------" \
 		  +gmail/INBOX \
-		  +gmail/archive \
+		  +gmail/Archives \
 		  +gmail/drafts \
 		  +gmail/sent \
-		  ~/.mail/gmail/News\ Letters \
+		  ~/.mail/gmail/Trash \
 		  "+-- emu ------------" \
           +emu/INBOX \
           +emu/archive \

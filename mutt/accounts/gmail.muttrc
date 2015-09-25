@@ -7,7 +7,7 @@ set sendmail  = "/usr/bin/msmtp -a gmail"
 set spoolfile = "+gmail/INBOX"
 
 # Other special folders.
-set mbox      = "+gmail/archive"
+set mbox      = "+gmail/Archives"
 set postponed = "+gmail/drafts"
 set record    = "+gmail/sent"
 
