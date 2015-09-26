@@ -20,6 +20,9 @@ fi
 # still need to test this one
 /usr/bin/xfce4-power-manager &
 
+## auto lock
+xss-lock -- i3lock -c 2E3436 &
+
 ## Uses spectrwm instead of distasteful gnome 3 :p
 #exec ck-launch-session dbus-launch /usr/local/bin/spectrwm
 
