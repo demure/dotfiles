@@ -1,0 +1,66 @@
+# Feh themes configuration file.
+# Lines starting with # are comments. Midline comments are not supported.
+# Place this as either ~/.config/feh/themes or /etc/feh/themes
+
+# Options are defined in theme_name/options pairs.
+# Separate themename and options by whitespace.
+
+# There are two ways of specifying the theme. Either use feh -Tthemename,
+# or use a symbolic link to feh with the name of the theme. eg
+# ln -s `which feh` ~/bin/mkindex
+# Now when you run 'mkindex', feh will load the config specified for the
+# mkindex theme.
+
+# Multiple options can of course be used. If they are too long for one line,
+# you can use a \ to make them continue on the next one, but not mid-option.
+# imagemap -rV --quiet -W 400 -H 300 \
+#          --thumb-width 40 --thumb-height 30
+
+# ====================
+# A few default themes
+# ====================
+
+# Webcam mode, simply specify the url(s).
+# e.g. feh -Twebcam http://cam1 http://cam2
+webcam --multiwindow --reload 20
+
+# Create an index of the current directory. This version uses . as the
+# current dir, so you don't even need any commandline arguments.
+mkindex -iVO index.jpg .
+
+# More ambitious version...
+imgidx --index --output-only .fehindex.jpg --limit-width 1024 \
+       --thumb-width 128 --thumb-height 128 --verbose --quiet
+
+# Show a presentation
+present --full-screen --sort name --hide-pointer
+
+# Booth mode ;-)
+booth --full-screen --hide-pointer --slideshow-delay 20
+
+# Screw xscreensaver, use feh =)
+screensave --recursive --full-screen --randomize --slideshow-delay 10 --hide-pointer
+
+# Different menus
+aqua --menu-bg /usr/share/feh/images/menubg_aqua.png
+sky --menu-bg /usr/share/feh/images/menubg_sky.png
+black --menu-bg /usr/share/feh/images/menubg_black.png
+
+# Some more examples, used by the feh developer
+
+rfs --full-screen --hide-pointer --auto-zoom --randomize
+fs  --full-screen --hide-pointer --auto-zoom --sort filename
+
+thumb_s  --thumbnails --cache-thumbnails --thumb-width 128 --thumb-height 128 \
+         --limit-width 1024 --sort filename \
+         --fontpath /usr/share/fonts/truetype/ttf-dejavu/ --font DejaVuSans/8
+
+thumb_b  --thumbnails --cache-thumbnails --thumb-width 256 --thumb-height 256 \
+         --limit-width 1024 --sort filename \
+         --fontpath /usr/share/fonts/truetype/ttf-dejavu/ --font DejaVuSans/8
+
+thumb_s_nt --thumbnails --cache-thumbnails --thumb-width 128 --thumb-height 128 \
+           --limit-width 1024 --sort filename --index-name 0
+
+thumb_b_nt --thumbnails --cache-thumbnails --thumb-width 256 --thumb-height 256 \
+           --limit-width 1024 --sort filename --index-name 0
