@@ -9,3 +9,5 @@
 
 password_command = pass cli/pianobar
 user = demuredemeanor@gmail.com
+## Install https://malabarba.github.io/control-pianobar/
+event_command = /home/demure/.config/pianobar/pianobar-notify.sh
