@@ -39,6 +39,7 @@ ${if_up eth0}eth:${addr eth0} | ☏:${execi 300 ~/.conky/scripts/ip.sh} | ${endi
 ### Testing Section ### {{{
 ### ${iconv_start UTF-8 ISO_8859-1}° ${iconv_stop}
 
+### Chars I want 🔊 🔈 
 ### Chars the work
 ##  ★ ☆ ☎ ☏  ☜ ☞ ♀ ♂  ♠ ♡ ♣ ♤ ♥ ♧ ♨ ♩ ♪ ♬ ♭ ♯ ← ↑ → ↓ ↔ ↕ ↖ ↗ ↘ ↙ ⇒ ⇔ 
 
