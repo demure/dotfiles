@@ -22,6 +22,14 @@
 	host ddtiny
 		hostName localhost
 		Port 2002
+
+	## for dd to sdf irc
+	Host ddirc
+	HostName ma.sdf.org
+	LocalForward 2003 irc.sdf.org:6667
+	User demure
+	ServerAliveCountMax 300
+	ServerAliveInterval 15
 	### End DD ### }}}
 
 	### SDF ### {{{
