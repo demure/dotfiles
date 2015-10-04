@@ -357,6 +357,7 @@ if $USER != 'mobile'
 			Plugin 'cwoac/nvim'					" Notational Velocity like
 			Plugin 'szw/vim-ctrlspace'			" Super buffer controlness
 			Plugin 'haya14busa/incsearch.vim'	" Improved incremental searching
+			Plugin 'farseer90718/vim-taskwarrior'	" TaskWarrior Interface
 			""" End Interface """ }}}
 
 			""" Added Functionality """ {{{
@@ -455,6 +456,7 @@ if $USER != 'mobile'
 
 		""" Hardtime Conf """ {{{
 		let g:hardtime_default_on = 1
+		let g:hardtime_ignore_buffer_patterns = [ "CustomPatt[ae]rn", "NERD.*", "Task.*" ]
 		""" End Hardtime """ }}}
 
 		""" Syntastic Conf """ {{{
