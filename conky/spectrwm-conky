@@ -31,15 +31,20 @@ TEXT
 ### End Old ### }}}
 
 ## Without Unicode
-###${if_up eth0}eth:${addr eth0} | IP:${execi 300 ~/.conky/scripts/ip.sh} | ${endif}${if_up wlan0}wlan:${addr wlan0} | Wifi:${wireless_link_qual_perc wlan0}% | IP:${execi 300 ~/.conky/scripts/ip.sh}${endif} | Temp:${hwmon tempf 1}F | Bat:${battery_percent BAT1}% | Vol:${exec amixer -c 0 get Master|awk -F"[][]" '/dB/ { print $2 }'} | RAM:$memperc% | HD:${fs_free}/${fs_size} ${fs_free_perc}% | CPU:${cpu cpu0}% ${cpu cpu1}% ${cpu cpu2}% ${cpu cpu3}% ${cpu cpu4}% | ${execi 1800 ~/.conky/scripts/weather.sh 48103} | ${if_up eth0}Down ${downspeed eth0}Up ${upspeed eth0}${endif}${if_up wlan0}Down ${downspeed wlan0}Up ${upspeed wlan0}${endif}
+###${if_up eth0}eth:${addr eth0} | IP:${execi 300 ~/.conky/scripts/ip.sh} | ${endif}${if_up wlan0}wlan:${addr wlan0} | Wifi:${wireless_link_qual_perc wlan0}% | IP:${execi 300 ~/.conky/scripts/ip.sh} | ${endif}Temp:${hwmon tempf 1}F | Bat:${battery_percent BAT1}% | Vol:${exec amixer -c 0 get Master|awk -F"[][]" '/dB/ { print $2 }'} | RAM:$memperc% | HD:${fs_free}/${fs_size} ${fs_free_perc}% | CPU:${cpu cpu0}% ${cpu cpu1}% ${cpu cpu2}% ${cpu cpu3}% ${cpu cpu4}% | ${execi 1800 ~/.conky/scripts/weather.sh 48103} | ${if_up eth0}Down ${downspeed eth0}Up ${upspeed eth0}${endif}${if_up wlan0}Down ${downspeed wlan0}Up ${upspeed wlan0}${endif}
+
+## With Some Unicode
+#${if_up eth0}eth:${addr eth0} | ☏:${execi 300 ~/.conky/scripts/ip.sh} | ${endif}${if_up wlan0}wlan:${addr wlan0} | Wifi:${wireless_link_qual_perc wlan0}% | ☏:${execi 300 ~/.conky/scripts/ip.sh} | ${endif}♨:${hwmon tempf 1}F | Bat:${battery_percent BAT1}% | Vol:${exec amixer -c 0 get Master|awk -F"[][]" '/dB/ { print $2 }'} | RAM:$memperc% | HD:${fs_free}/${fs_size} ${fs_free_perc}% | CPU:${cpu cpu0}% ${cpu cpu1}% ${cpu cpu2}% ${cpu cpu3}% ${cpu cpu4}% | ${execi 1800 ~/.conky/scripts/weather.sh 48103} | ${if_up eth0}↓${downspeed eth0}↑${upspeed eth0}${endif}${if_up wlan0}↓${downspeed wlan0}↑${upspeed wlan0}${endif}
 
 ## With Unicode
-${if_up eth0}eth:${addr eth0} | ☏:${execi 300 ~/.conky/scripts/ip.sh} | ${endif}${if_up wlan0}wlan:${addr wlan0} | Wifi:${wireless_link_qual_perc wlan0}% | ☏:${execi 300 ~/.conky/scripts/ip.sh}${endif} | ♨:${hwmon tempf 1}F | Bat:${battery_percent BAT1}% | Vol:${exec amixer -c 0 get Master|awk -F"[][]" '/dB/ { print $2 }'} | RAM:$memperc% | HD:${fs_free}/${fs_size} ${fs_free_perc}% | CPU:${cpu cpu0}% ${cpu cpu1}% ${cpu cpu2}% ${cpu cpu3}% ${cpu cpu4}% | ${execi 1800 ~/.conky/scripts/weather.sh 48103} | ${if_up eth0}↓${downspeed eth0}↑${upspeed eth0}${endif}${if_up wlan0}↓${downspeed wlan0}↑${upspeed wlan0}${endif}
+${if_up eth0}🔌:${addr eth0} | ☏:${execi 300 ~/.conky/scripts/ip.sh} | ${endif}${if_up wlan0}⚞:${addr wlan0} | 📶:${wireless_link_qual_perc wlan0}% | ☏:${execi 300 ~/.conky/scripts/ip.sh} | ${endif}♨:${hwmon tempf 1}F | 🔋:${battery_percent BAT1}% | 🔊:${exec amixer -c 0 get Master|awk -F"[][]" '/dB/ { print $2 }'} | 🐏:$memperc% | 💾:${fs_free}/${fs_size} ${fs_free_perc}% | ⚙:${cpu cpu0}% ${cpu cpu1}% ${cpu cpu2}% ${cpu cpu3}% ${cpu cpu4}% | ${execi 1800 ~/.conky/scripts/weather.sh 48103} | ${if_up eth0}↓${downspeed eth0}↑${upspeed eth0}${endif}${if_up wlan0}↓${downspeed wlan0}↑${upspeed wlan0}${endif}
 
 ### Testing Section ### {{{
 ### ${iconv_start UTF-8 ISO_8859-1}° ${iconv_stop}
 
-### Chars I want 🔊 🔈 
+# 📶 🐏 💾 🔌 🔋 ✇ 🔊 🔈
+
+### Old ### {{{
 ### Chars the work
 ##  ★ ☆ ☎ ☏  ☜ ☞ ♀ ♂  ♠ ♡ ♣ ♤ ♥ ♧ ♨ ♩ ♪ ♬ ♭ ♯ ← ↑ → ↓ ↔ ↕ ↖ ↗ ↘ ↙ ⇒ ⇔ 
 
@@ -47,7 +52,5 @@ ${if_up eth0}eth:${addr eth0} | ☏:${execi 300 ~/.conky/scripts/ip.sh} | ${endi
 ## ⌂ ⟰  ⚶ ☸ ✇ ⚠ ⚡ ☢ ⚓ ⚙ ⚛ ⌖ ☀ ☁ ☂ ☃ ☄ ☇ ☈ ☉ ☊ ☋ ☌ ☍  ☐ ☑ ☒ ☓ ☔ ☕ ☖ ☗ ☘ ☙ ☚ ☛ ☝ ☟ ☠ ☡ ☢ ☣ ☤ ☥ ☦ ☧ ☨ ☩ ☪ ☫ ☬ ☭ ☮ ☯ ☰ ☱ ☲ ☳ ☴ ☵ ☶ ☷ ☸ ☹ ☺ ☻ ☼ ☽ ☾ ☿ ♁ ♄ ♅ ♆ ♇ ♈ ♉ ♊ ♋ ♌ ♍ ♎ ♏ ♐ ♑ ♒ ♓ ♔ ♕ ♖ ♗ ♘ ♙ ♚ ♛ ♜ ♝ ♞ ♟ ♢ ♦ ♃ ♫ ♮ ♰ ♱ ♲ ♳ ♴ ♵ ♶ ♷ ♸ ♹ ♺ ♻ ♼ ♽ ♾ ♿ ⚀ ⚁ ⚂ ⚃ ⚄ ⚅ ⚆ ⚇ ⚈ ⚉ ⚊ ⚋ ⚌ ⚍ ⚎ ⚏ ⚐ ⚑ ⚒ ⚓ ⚔ ⚕ ⚖ ⚗ ⚘ ⚙ ⚚ ⚛ ⚜ ⚝ ⚞ ⚟ ⚠ ⚡ ⚢ ⚣ ⚤ ⚥ ⚦ ⚧ ⚨ ⚩ ⚪ ⚫ ⚬ ⚭ ⚮ ⚯ ⚰ ⚱ ⚲ ⚳ ⚴ ⚵ ⚶ ⚷ ⚸ ⚹ ⚺ ⚻ ⚼ ⚽ ⚾ ⚿ ⛀ ⛁ ⛂ ⛃ ⛄ ⛅ ⛆ ⛇ ⛈ ⛉ ⛊ ⛋ ⛌ ⛍ ⛎ ⛏ ⛐ ⛑ ⛒ ⛓ ⛔ ⛕ ⛖ ⛗ ⛘ ⛙ ⛚ ⛛ ⛜ ⛝ ⛞ ⛟ ⛠ ⛡ ⛢ ⛣ ⛤ ⛥ ⛦ ⛧ ⛨ ⛩ ⛪ ⛫ ⛬ ⛭ ⛮ ⛯ ⛰ ⛱ ⛲ ⛳ ⛴ ⛵ ⛶ ⛷ ⛸ ⛹ ⛺ ⛻ ⛼ ⛽ ⛾ ⛿
 ## ✀ ✁ ✂ ✃ ✄ ✅ ✆ ✇ ✈ ✉ ✊ ✋ ✌ ✍ ✎ ✏ ✐ ✑ ✒ ✓ ✔ ✕ ✖ ✗ ✘ ✙ ✚ ✛ ✜ ✝ ✞ ✟ ✠ ✡ ✢ ✣ ✤ ✥ ✦ ✧ ✨ ✩ ✪ ✫ ✬ ✭ ✮ ✯ ✰ ✱ ✲ ✳ ✴ ✵ ✶ ✷ ✸ ✹ ✺ ✻ ✼ ✽ ✾ ✿ ❀ ❁ ❂ ❃ ❄ ❅ ❆ ❇ ❈ ❉ ❊ ❋ ❌ ❍ ❎ ❏ ❐ ❑ ❒ ❓ ❔ ❕ ❖ ❗ ❘ ❙ ❚ ❛ ❜ ❝ ❞ ❟ ❠ ❡ ❢ ❣ ❤ ❥ ❦ ❧ ❨ ❩ ❪ ❫ ❬ ❭ ❮ ❯ ❰ ❱ ❲ ❳ ❴ ❵ ❶ ❷ ❸ ❹ ❺ ❻ ❼ ❽ ❾ ❿ ➀ ➁ ➂ ➃ ➄ ➅ ➆ ➇ ➈ ➉ ➊ ➋ ➌ ➍ ➎ ➏ ➐ ➑ ➒ ➓ ➔ ➕ ➖ ➗ ➘ ➙ ➚ ➛ ➜ ➝ ➞ ➟ ➠ ➡ ➢ ➣ ➤ ➥ ➦ ➧ ➨ ➩ ➪ ➫ ➬ ➭ ➮ ➯ ➰ ➱ ➲ ➳ ➴ ➵ ➶ ➷ ➸ ➹ ➺ ➻ ➼ ➽ ➾ ➿
 ## ↚ ↛ ↜ ↝ ↞ ↟ ↠ ↡ ↢ ↣ ↤ ↥ ↦ ↧ ↨ ↩ ↪ ↫ ↬ ↭ ↮ ↯ ↰ ↱ ↲ ↳ ↴ ↵ ↶ ↷ ↸ ↹ ↺ ↻ ↼ ↽ ↾ ↿ ⇀ ⇁ ⇂ ⇃ ⇄ ⇅ ⇆ ⇇ ⇈ ⇉ ⇊ ⇋ ⇌ ⇍ ⇎ ⇏ ⇐ ⇑ ⇓ ⇕ ⇖ ⇗ ⇘ ⇙ ⇚ ⇛ ⇜ ⇝ ⇞ ⇟ ⇠ ⇡ ⇢ ⇣ ⇤ ⇥ ⇦ ⇧ ⇨ ⇩ ⇪ ⇫ ⇬ ⇭ ⇮ ⇯ ⇰ ⇱ ⇲ ⇳ ⇴ ⇵ ⇶ ⇷ ⇸ ⇹ ⇺ ⇻ ⇼ ⇽ ⇾ ⇿
-
-
-
+### End Old ### }}}
 ### End Testing ### }}}
