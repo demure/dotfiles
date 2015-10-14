@@ -3,6 +3,9 @@
 # https://notabug.org/demure/dotfiles/
 # legacy repo http://github.com/demure/dotfiles
 
+## If you are reading this, read:
+# http://blogs.perl.org/users/smylers/2011/08/ssh-productivity-tips.html
+
 ### Internet Places ### {{{
 	### DD ### {{{
 	host dd
