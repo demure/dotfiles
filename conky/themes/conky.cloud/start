@@ -1,6 +1,0 @@
-#!/bin/sh
-
-killall conky 
-conky -c /home/demure/.conky/themes/conky.cloud/conkyshow &
-conky -c /home/demure/.conky/themes/conky.cloud/conkyrc 
-
