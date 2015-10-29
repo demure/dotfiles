@@ -21,10 +21,10 @@ root: ~/
 windows:
   - apt: sudo aptitude
   - weechat: weechat
-  - mud: tt++ ~/sl_mud/sl-test.tin
   - urls: tail -F ~/.weechat/urls.log
   - w3m: w3m -B
   - mutt: mutt
+  - log: sudo lnav /var/log/nginx/access.log /var/log/nginx/error.log /var/log/fail2ban.log
 
   #- editor:
       #layout: main-vertical
