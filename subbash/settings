@@ -96,11 +96,13 @@
 			alias sd-card='sudo setpci -s 00:1c.2 0x50.B=0x41'
 			alias xc="xclip -selection c"
 			alias www-logs='sudo lnav /var/log/nginx/access.log /var/log/nginx/error.log /var/log/fail2ban.log'
+
+			export NVIM_HOME="$HOME/Dropbox/Notational Data"
 		fi
 
-		if [[ $HOSTNAME != "vps-of-doom" ]]; then
-		__gpg_agent
-		fi
+		#if [[ $HOSTNAME != "vps-of-doom" ]]; then
+		#__gpg_agent
+		#fi
 
 		__ssh_agent
 	fi
