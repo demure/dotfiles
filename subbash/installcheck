@@ -11,7 +11,7 @@ MISSING_CLI=""
 MISSING_GUI=""
 
 ### CLI ### {{{
-CLI_LIST=(docker pinfo qmv vim w3m mutt mpv tmux ncdu pass stow notmuch msmtp offlineimap urlview htop aircrack-ng mosh nmap sshuttle fusermount exfatfsck qemu-io pianobar cacaview conky encfs scanmem hexcurse lsof pidof pinentry-curses pinentry-tty ranger rfkill sshfs tree unar wget iotop parted caff fail2ban wicd-curses rsync weechat diff file find gpg gpg mc lnav)
+CLI_LIST=(docker pinfo qmv vim w3m mutt mpv tmux ncdu pass stow notmuch msmtp offlineimap urlview htop aircrack-ng mosh nmap sshuttle fusermount exfatfsck qemu-io pianobar cacaview conky encfs scanmem hexcurse lsof pidof pinentry-curses pinentry-tty ranger rfkill sshfs tree unar wget iotop parted caff fail2ban wicd-curses rsync weechat diff file find gpg gpg mc lnav cheat)
 
 for i in "${CLI_LIST[@]}"; do
 	if [[ ! $(command -v ${i}) ]]; then
