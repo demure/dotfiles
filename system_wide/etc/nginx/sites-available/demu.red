@@ -37,7 +37,7 @@ server {
 	root /var/www/pelican;
 
 	# Add index.php to the list if you are using PHP
-	index index.php index.html index.htm index.nginx-debian.html idlerpg.html yourls-loader.php;
+	index index.php index.html index.htm index.nginx-debian.html idlerpg.html;
 
 	server_name demur.red;
 
@@ -74,25 +74,59 @@ location /theme {
 	}
 	### End IRPG ### }}}
 
+	### TTRSS ### {{{
+	location /ttrss {
+		alias /var/www/tt-rss;
+		access_log /var/log/nginx/ttrss_access.log;
+		error_log /var/log/nginx/ttrss_error.log info;
+		#try_files $uri $uri/ idlerpg.html =404;
+
+		#location ~ \.php$ {
+		location ~ ^(.+\.php)(.*)$ {
+				fastcgi_split_path_info       ^(.+\.php)(.*)$;
+				try_files $uri =404;
+				fastcgi_pass unix:/var/run/php5-fpm.sock;
+				fastcgi_index index.php;
+				## https://stackoverflow.com/questions/28490391/how-to-properly-configure-alias-directive-in-nginx
+				fastcgi_param SCRIPT_FILENAME $request_filename;
+				include fastcgi_params;
+		}
+
+		#location /ttrss/(php|js|css) {
+			#access_log off;
+		#}
+	}
+	### End IRPG ### }}}
+
 	### YOURLS ### {{{
-	location /s/ {
+	location /s {
 		alias /var/www/YOURLS;
+		access_log /var/log/nginx/yourls_access.log;
+		error_log /var/log/nginx/yourls_error.log info;
 
 		# Try files, then folders, then yourls-loader.php
 		# --- The most important line ---
-		#try_files $uri $uri/ /yourls-loader.php =404;
+		try_files $uri $uri/ /yourls-loader.php;
+		#try_files $uri $uri/ /yourls-loader.php?$args;
+		#index yourls-loader.php;
+
+		#if (!-e $request_filename){
+			#rewrite ^/s/(.*)$ /s/yourls-loader.php break;
+		#}
 
 		# PHP engine
 		location ~ \.php$ {
 			try_files      $uri =404;
-			fastcgi_pass   unix:/var/run/php5-fpm.sock; # Can be different
+			#try_files $uri /yourls-loader.php;
+			fastcgi_pass   unix:/var/run/php5-fpm.sock;
 			fastcgi_index  index.php;
 			## https://stackoverflow.com/questions/28490391/how-to-properly-configure-alias-directive-in-nginx
 			fastcgi_param SCRIPT_FILENAME $request_filename;
+			fastcgi_split_path_info ^(.+\.php)(/.+)$;
 			include        fastcgi_params;
 		}
 	}
-	### ENd YOURLS ### }}}
+	### End YOURLS ### }}}
 
 	#### piwik ### {{{
 	#location /piwik {
@@ -102,7 +136,8 @@ location /theme {
 	#location ~ /piwik/.+\.php$ {
 		#try_files $uri =404;
 		#fastcgi_pass unix:/var/run/php5-fpm.sock;
-		#fastcgi_param SCRIPT_FILENAME /var/www/piwik$fastcgi_script_name;
+		### https://stackoverflow.com/questions/28490391/how-to-properly-configure-alias-directive-in-nginx
+		#fastcgi_param SCRIPT_FILENAME $request_filename;
 		#include fastcgi_params;
 	#}
 	#### End piwik ### }}}
