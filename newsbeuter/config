@@ -6,7 +6,7 @@
 
 urls-source "ttrss"
 
-ttrss-url "https://wm.sdf.org/tt-rss/"
+ttrss-url "http://demu.red/ttrss/"
 ttrss-mode multi
 ttrss-login "demure"
 ttrss-password "`pass cli/newsbeuter`"
