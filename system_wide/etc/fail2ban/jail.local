@@ -346,7 +346,7 @@ enabled  = true
 port     = http,https
 filter   = nginx-lurkers
 logpath  = /var/log/nginx/access.log
-maxretry = 2
+maxretry = 1
 ## One week
 bantime  = 604800
 ## Four days
