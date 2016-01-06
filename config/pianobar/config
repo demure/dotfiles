@@ -11,3 +11,7 @@ password_command = pass cli/pianobar
 user = demuredemeanor@gmail.com
 ## Install https://malabarba.github.io/control-pianobar/
 event_command = /home/demure/.config/pianobar/pianobar-notify.sh
+
+## fingureprint changed...
+# see https://github.com/PromyLOPh/pianobar/issues/560
+#tls_fingerprint = 13CC51AC0C31CD96C55015C76914360F7AC41A00
