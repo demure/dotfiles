@@ -18,9 +18,10 @@
 
 ### Main Settings ### {{{
 [general]
-# ui = ttyui
-ui = blinkenlights
-#ui = quiet
+## ui = ttyui
+ui = ttyui
+#ui = blinkenlights		# This is my preferred, but it is currently horribly broken...
+## ui = quiet
 ##accounts = root,sdf,gmail,emu
 accounts = emu,sdf,gmail
 pythonfile=~/.mutt/offlineimap.py
