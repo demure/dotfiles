@@ -41,7 +41,7 @@ TEXT
 
 ${if_up eth0}\
 🔌:${addr eth0} \
-☏:${execi 300 ~/.conky/scripts/ip.sh} \
+☏:${execi 600 ~/.conky/scripts/ip.sh} \
 ${endif}\
 ${if_up wlan0}\
 ⚞:${addr wlan0} \
