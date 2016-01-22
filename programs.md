@@ -5,11 +5,11 @@ Purpose					Name			Filetypes
 
 Comic Reader			mcomix			cbr, cbz, rar, zip, etc
 File Browser			spacefm			NA
-Window Manager			spectrwm		NA
+Window Manager			i3				NA
 Desktop Manager			lightdm			NA
 Terminal Emulator		terminator		NA
 Editor					vim				txt, etc
-GUI Editor?				_				txt, etc
+GUI Editor?				gvim			txt, etc
 System Tray				stalonetray		NA
 Bloated Web Browser		Chromium		http
 CLI Web Browser			w3m				http
@@ -25,6 +25,7 @@ Video Player			mpv				mp4, avi, mkg, org, etc
 Enable HDMI Sound		pavucontrol		NA
 linux info command		pinfo			NA
 CLI pager				view/less		NA
+Documentation Viewer	zeal			NA
 
 
 | Day     | Meal    | Price |
