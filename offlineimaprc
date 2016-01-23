@@ -39,6 +39,9 @@ type = Maildir
 localfolders = ~/.mail/sdf
 
 [Repository sdf-Remote]
+## This is set due to an annoying error by the exparimental xoauth2
+# https://bbs.archlinux.org/viewtopic.php?id=206424
+auth_mechanisms = GSSAPI, CRAM-MD5, PLAIN, LOGIN
 maxconnections = 3 
 type = IMAP
 remoteuser = demure
@@ -68,6 +71,9 @@ nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
 						   }.get(folder, folder)
 
 [Repository gmail-Remote]
+## This is set due to an annoying error by the exparimental xoauth2
+# https://bbs.archlinux.org/viewtopic.php?id=206424
+auth_mechanisms = GSSAPI, CRAM-MD5, PLAIN, LOGIN
 maxconnections = 1
 type = Gmail
 remoteuser = demuredemeanor@gmail.com
@@ -105,6 +111,9 @@ nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
                            }.get(folder, folder)
 
 [Repository emu-Remote]
+## This is set due to an annoying error by the exparimental xoauth2
+# https://bbs.archlinux.org/viewtopic.php?id=206424
+auth_mechanisms = GSSAPI, CRAM-MD5, PLAIN, LOGIN
 maxconnections = 1
 type = Gmail
 remoteuser = amcbean@emich.edu
