@@ -26,6 +26,7 @@ Enable HDMI Sound		pavucontrol		NA
 linux info command		pinfo			NA
 CLI pager				view/less		NA
 Documentation Viewer	zeal			NA
+Font Viewer				font-manager	NA
 
 
 | Day     | Meal    | Price |
