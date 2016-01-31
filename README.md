@@ -28,13 +28,14 @@ Aside from installing by hand, you could use [GNU Stow].
 * My PS1 is much simpl.... Err, neater? **25APR2013**  
     * The machine test is much more consise, and the git check quite useful  
 * Bashrc is now broken up into sub sourced files, much more orginzation potential **26MAY2013**  
-* Moved to the spectrwm window manager **~18MAY2014**  
+* <strike>Moved to the spectrwm window manager **~18MAY2014** </strike>  
 * Killed off my laptop's useless menu key, and now have a `SUPER_R` **21MAY2014**  
 * Added test and variable for missing items in bash **12NOV2014**  
 * Decided to declare my `$PATH` with everything I want **12NOV2014**  
-* Added a MISSING_ITEMS to check if disabled things disabled **13NOV2014**
-* Added [GNU Stow] for installing **06MAR2014**
-* Added mutt with multiple accounts, using offlineimap, not-much, and msmtp **25AUG2015**
+* Added a MISSING_ITEMS to check if disabled things disabled **13NOV2014**  
+* Added [GNU Stow] for installing **06MAR2014**  
+* Added mutt with multiple accounts, using offlineimap, not-much, and msmtp **25AUG2015**  
+* Moved to i3 window manager, and set up a sweet lemonbar **30JAN2016**  
 
 ###Plans:  
 
@@ -46,7 +47,7 @@ Aside from installing by hand, you could use [GNU Stow].
 improve my setup.  
 If you do wish to contact me, I guess [twitter] is an ok way (spam mitigation)  
 
-######Last edit 27AUG2015  
+######Last edit 30JAN2016  
 
 
 [github]: https://gitorious.org/demure/dotfiles
