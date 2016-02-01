@@ -193,13 +193,17 @@ workspace_auto_back_and_forth yes
 		### App Focus Mode ### {{{
 		mode "App Focus" {
 			# hardcoded focus keybindings
-			bindsym b [class="(?i)uzbl"] focus
-			bindsym w [class="(?i)terminal" title="weechat"] focus
-			bindsym m [class="(?i)icedove"] focus
-			bindsym f [class="(?i)spacefm"] focus
-			bindsym z [class="(?i)zathura"] focus
+			bindsym b [class="(?i)uzbl"] focus, mode "default"
+			bindsym w [class="(?i)terminal" title="weechat"] focus, mode "default"
+			bindsym m [class="(?i)icedove"] focus, mode "default"
+			bindsym f [class="(?i)spacefm"] focus, mode "default"
+			bindsym z [class="(?i)zathura"] focus, mode "default"
+
+			# back to normal: Enter or Escape
+			bindsym Return mode "default"
+			bindsym Escape mode "default"
 		}
-		bindsys $Mod+g mode "App Focus"
+		bindsym $Mod+g mode "App Focus"
 		### End App Focus Mode ### }}}
 
 		### Resize Window ### {{{
