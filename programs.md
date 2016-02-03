@@ -27,6 +27,14 @@ linux info command		pinfo			NA
 CLI pager				view/less		NA
 Documentation Viewer	zeal			NA
 Font Viewer				font-manager	NA
+CLI cheat sheet			cheat			NA?
+CLI RSS					newsbeuter		NA
+GUI Disk Usage			baobab			NA
+GUI Hex Editor			bless			*
+GUI Hex Editor			wxHexEditor		*
+CLI Hex Editor			dhex			*
+CLI Hex Editor			hexcurse		*
+
 
 
 | Day     | Meal    | Price |
