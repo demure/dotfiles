@@ -1,6 +1,6 @@
 ##Demure's i3 lemonbar
 
-[pic]
+![my bar][pic]
 
 ###Base
 This is based off of [i3 lemonbar].
