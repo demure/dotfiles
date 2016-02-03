@@ -1,5 +1,7 @@
 ##Demure's i3 lemonbar
 
+[pic]
+
 ###Base
 This is based off of [i3 lemonbar].
 While a lot of the code is the same, I have modified it to do what I want.
@@ -34,3 +36,4 @@ This will also need [i3wm], as it is tailored for this.
 [lemonbar krypt-n]: https://github.com/krypt-n/bar
 [lemonbar]: https://github.com/LemonBoy/bar
 [i3wm]: https://i3wm.org
+[pic]: https://notabug.org/demure/dotfiles/src/master/i3/lemonbar/demure_i3_lemonbar_mod.png
