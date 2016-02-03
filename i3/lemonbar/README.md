@@ -1,6 +1,6 @@
 ##Demure's i3 lemonbar
 
-![my bar][pic]
+![my bar][pic0]
 
 ###Base
 This is based off of [i3 lemonbar].
@@ -37,3 +37,4 @@ This will also need [i3wm], as it is tailored for this.
 [lemonbar]: https://github.com/LemonBoy/bar
 [i3wm]: https://i3wm.org
 [pic]: https://notabug.org/demure/dotfiles/src/master/i3/lemonbar/demure_i3_lemonbar_mod.png
+[pic0]: https://notabug.org/demure/dotfiles/raw/master/i3/lemonbar/demure_i3_lemonbar_mod.png
