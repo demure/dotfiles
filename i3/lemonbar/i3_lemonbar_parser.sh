@@ -77,19 +77,20 @@ while read -r line ; do
 			### End Net Speed ### }}}
 
 			### Battery ### {{{
-			##		0	1	2	3	4
-			##		10	30	50	70	90
+			## Icon         0         1         2         3          4
+			## Bat >=      NA        11        37        63         90
+			## Range     0-10     11-36     37-62     63-89     90-100
 			
 			if [ ${sys_arr[14]} -ge 90 ]; then
 				bat_icon=${icon_bat4}; bat_cicon=${color_bat_high}; bat_cfore=${color_fore}; bat_cback=${color_sec_b1};
-			  elif [ ${sys_arr[14]} -ge 70 ]; then
+			  elif [ ${sys_arr[14]} -ge 63 ]; then
 				bat_icon=${icon_bat3}; bat_cicon=${color_bat_high}; bat_cfore=${color_fore}; bat_cback=${color_sec_b1};
-			  elif [ ${sys_arr[14]} -ge 50 ]; then
-				bat_icon=${icon_bat4}; bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_bat_mid};
-			  elif [ ${sys_arr[14]} -ge 30 ]; then
-				bat_icon=${icon_bat4}; bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_bat_low};
+			  elif [ ${sys_arr[14]} -ge 37 ]; then
+				bat_icon=${icon_bat2}; bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_bat_mid};
+			  elif [ ${sys_arr[14]} -ge 11 ]; then
+				bat_icon=${icon_bat1}; bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_bat_low};
 			  else
-				bat_icon=${icon_bat4}; bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_bat_out};
+				bat_icon=${icon_bat0}; bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_bat_out};
 			fi
 			if [ ${sys_arr[15]} == "C" ] || [ ${sys_arr[15]} == "F" ]; then
 				bat_icon=${icon_bat_plug}; bat_cicon=${color_icon};
