@@ -293,14 +293,14 @@
 
 	""" Sudo Save Edit """ {{{
 	"" Use :W to sudo save, may mess with permissions
-	command! W w !sudo tee % > /dev/null
+	command! WW w !sudo tee % > /dev/null
 	""" End Sudo Save """ }}}
 
 	""" Typo Commands """ {{{
 	"" http://blog.sanctum.geek.nz/vim-command-typos/
 	if has("user_commands")
 		command! -bang -nargs=? -complete=file E e<bang> <args>
-		"command! -bang -nargs=? -complete=file W w<bang> <args>
+		command! -bang -nargs=? -complete=file W w<bang> <args>
 		command! -bang -nargs=? -complete=file Wq wq<bang> <args>
 		command! -bang -nargs=? -complete=file WQ wq<bang> <args>
 		command! -bang Wa wa<bang>
