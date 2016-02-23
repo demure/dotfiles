@@ -48,26 +48,26 @@
 
 	### End Taskwarrior ### }}}
 
-	## Disabled due to death of GREP_OPTIONS
-	#### Grep Options ### {{{
-	### Colored Greps
-	#if echo hello | grep --color=auto l >/dev/null 2>&1; then
-		#GREP_OPTIONS+="--color=auto " GREP_COLOR='1;31'
-	  #else
-		#MISSING_ITEMS+="grep-colors, "
-	#fi
+	### Grep Options ### {{{
+	## So, this code is because even though GREP_OPTIONS are 'dead',
+	## some servers still have older than grep 2.20...
+	## I'm using awk, as bash doesn't really do decimal
+	grep_test="$(echo | awk -v n1=$(grep --version | sed -n '1p' | awk 'NF>1{print $NF}') -v n2=2.20  '{if (n1<n2) print ("lt"); else print ("ge");}')"
 
-	### Exclude annoying dirs
-	### http://blog.sanctum.geek.nz/default-grep-options/
-	#if echo hello | grep --exclude-dir=a l >/dev/null 2>&1; then
-		#for PATTERN in .cvs .git .hg .svn; do
-			#GREP_OPTIONS+="--exclude-dir=$PATTERN "
-		#done
-	  #else
-		#MISSING_ITEMS+="grep-exclude, "
-	#fi
-	#export GREP_OPTIONS
-	#### End Grep Options ### }}}
+	if [ $grep_test == "ge" ]; then
+		## If new, do it the way grep says to
+		alias grep='grep --color=auto --exclude-dir=.cvs --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn'
+	  else
+		## If old, use GREP_OPTIONS, as --exclude may not exist, and annoying errors!
+		if echo hello | grep --exclude-dir=a l >/dev/null 2>&1; then
+			for PATTERN in .cvs .git .hg .svn; do
+				GREP_OPTIONS+="--exclude-dir=$PATTERN "
+				echo pass
+			done
+		fi
+		export GREP_OPTIONS
+	fi
+	### End Grep Options ### }}}
 
 	### Nethack Conf ### {{{
 	if [ -f $HOME/.nethackrc ]; then
