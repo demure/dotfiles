@@ -91,6 +91,12 @@ workspace_auto_back_and_forth yes
 		bindsym $mod+Mod1+Up move workspace to output Up
 		bindsym $mod+Mod1+Right move workspace to output right
 		### End Move Workspace Different Monitor ### }}}
+
+		### Cycle Through Workspaces ### {{{
+		## Added for touchegg
+		bindsym $mod+u workspace prev
+		bindsym $mod+o workspace next
+		### End Cycle Through Workspaces ### }}}
 	### End Workspace Bindings ### }}}
 
 	### Window Bindings ### {{{
@@ -365,5 +371,6 @@ exec --no-startup-id clipit
 exec --no-startup-id xss-lock -- i3lock -e -c 2E3436
 exec --no-startup-id redshift
 exec --no-startup-id dropbox start
+exec --no-startup-id touchegg
 exec nvpy
 ### End Exec Programs ### }}}
