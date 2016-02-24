@@ -19,6 +19,9 @@
 # ====================
 # A few default themes
 # ====================
+## So, it was not obvious to me that this is how to set defaults
+## As it is reading the name of the command, this is how to do it.
+feh -.
 
 # Webcam mode, simply specify the url(s).
 # e.g. feh -Twebcam http://cam1 http://cam2
