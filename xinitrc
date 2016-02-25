@@ -28,7 +28,7 @@ xss-lock -- i3lock -c 2E3436 &
 
 ## git install
 # dont forget about $(xinit /usr/local/bin/spectrwm -- :1 &) for testing
-exec ck-launch-session dbus-launch --sh-syntax --exit-with-session /usr/local/bin/spectrwm
+exec ck-launch-session dbus-launch --sh-syntax --exit-with-session /usr/bin/i3
 
 ## system install
 #exec ck-launch-session dbus-launch --sh-syntax --exit-with-session /usr/bin/spectrwm

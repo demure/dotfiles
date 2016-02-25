@@ -31,7 +31,7 @@ workspace_auto_back_and_forth yes
 
 
 ### Variables ### {{{
-	set $Locker i3lock e -c 2E3436 && sleep 1
+	set $Locker i3lock -e -c 2E3436 && sleep 1
 
 	### Workspace Names ### {{{
 	set $ws1 1:
@@ -366,11 +366,12 @@ bar {
 ### End Bar Settings ### }}}
 
 ### Exec Programs ### {{{
-exec --no-startup-id /home/demure/.fehbg
+exec --no-startup-id nitrogen --restore
 exec --no-startup-id clipit
 exec --no-startup-id xss-lock -- i3lock -e -c 2E3436
 exec --no-startup-id redshift
 exec --no-startup-id dropbox start
 exec --no-startup-id touchegg
+exec --no-startup-id unclutter
 exec nvpy
 ### End Exec Programs ### }}}

@@ -34,6 +34,9 @@ GUI Hex Editor			bless			*
 GUI Hex Editor			wxHexEditor		*
 CLI Hex Editor			dhex			*
 CLI Hex Editor			hexcurse		*
+Image Viewer			feh				MANY
+Desktop Background		nitrogen		MANY
+
 
 
 
