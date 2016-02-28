@@ -185,6 +185,21 @@ while read -r line ; do
 			;;
 		### End MPD Case ### }}}
 
+		### CPB Case ### {{{
+		CPB*)
+			# Music
+			cpb_arr=(${line#???})
+			if [ -z "${line#???}" ]; then
+				song="none";
+			  #elif [ "${cpb_arr[0]}" == "error:" ]; then
+				#song="mpd off";
+			  else
+				song="${line#???}";
+			fi
+			cpb="%{F${color_sec_b2}}${sep_left}%{B${color_sec_b2}}%{F${color_sec_b1}}${sep_left}%{F${color_icon} B${color_sec_b1}} %{T2}${icon_music}%{F${color_fore} T1} ${song}"
+			;;
+		### End MPD Case ### }}}
+
 		### Workspace Case ### {{{
 		WSP*)
 			## I3 Workspaces
@@ -214,6 +229,6 @@ while read -r line ; do
 	esac
 
 	# And finally, output
-	printf "%s\n" "%{l}${wsp}${title} %{r}${mpd}${stab}${email}${stab}${local_ip}${stab}${wifi}${stab}${ext_ip}${stab}${bat}${stab}${cpu}${stab}${mem}${stab}${diskr}${stab}${temp}${stab}${nets_d}${stab}${nets_u}${stab}${vol}${stab}${date}${stab}${time}"
+	printf "%s\n" "%{l}${wsp}${title} %{r}${cpb}${stab}${email}${stab}${local_ip}${stab}${wifi}${stab}${ext_ip}${stab}${bat}${stab}${cpu}${stab}${mem}${stab}${diskr}${stab}${temp}${stab}${nets_d}${stab}${nets_u}${stab}${vol}${stab}${date}${stab}${time}"
 	#printf "%s\n" "%{l}${wsp}${title}"
 done

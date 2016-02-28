@@ -34,6 +34,7 @@ conky -c $(dirname $0)/i3_lemonbar_conky > "${panel_fifo}" &
 cnt_vol=${upd_vol}
 cnt_mail=${upd_mail}
 cnt_mpd=${upd_mpd}
+cnt_cpb=${upd_cpb}
 cnt_ext_ip=${upd_ext_ip}
 
 while :; do
@@ -55,6 +56,12 @@ while :; do
 		#printf "%s%s\n" "MPD" "$(ncmpcpp --now-playing '{%a - %t}|{%f}' | head -c 60)" > "${panel_fifo}"
 		printf "%s%s\n" "MPD" "$(mpc current -f '[[%artist% - ]%title%]|[%file%]' 2>&1 | head -c 70)" > "${panel_fifo}"
 		cnt_mpd=0
+	fi
+
+	# CPB
+	if [ $((cnt_cpb++)) -ge ${upd_cpb} ]; then
+		printf "%s%s\n" "CPB" "$(grep -qxs 1 $HOME/.config/pianobar/isplaying && cat $HOME/.config/pianobar/nowplaying)" > "${panel_fifo}"
+		cnt_cpb=0
 	fi
 
 	# External IP

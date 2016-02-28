@@ -27,6 +27,7 @@ This will also need [i3wm], as it is tailored for this.
 * Made ram show percent instead of raw number **FINISHED**
 * Disabled weechat part, as my weechat lives on my server. Work need a major overhaul, and likely be out of sync, or insecure.
 * Made one segment for both eth and wlan speed, prefers eth. **FINISHED**
+* Added control-pianobar for music, as I don't really use MPD. **27FEB2016**
 
 ###Things I want
 * I am not sure if I can make this set up show i3 keybinding modes in the bar... would like this.

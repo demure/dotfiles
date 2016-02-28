@@ -9,17 +9,23 @@ font="Terminess Powerline-8"
 iconfont="fontawesome-10"
 res_w=$(xrandr | grep "current" | awk '{print $8a}')
 
+### Alarm Settings ### {{{
 # Alarm settings
 cpu_alert=75                        # % cpu use
 net_alert=5                         # K net use
 temp_alert="160"                    # F heat use
+### End Alarm ### }}}
 
+### Update Settings ### {{{
 # update setting, in seconds (conky update in i3_lemonbar_conky
 upd_vol=3                           # Volume update
 upd_mail=150                        # Mail check update
 upd_mpd=5                           # MPD song update
+upd_cpb=5                           # control-pianobar song update
 upd_ext_ip=600                      # External IP update
+### End Update ### }}}
 
+### Color ### {{{
 # color definitions 
 color_back="#FF1D1F21"              # Default background
 color_fore="#FFC5C8C6"              # Default foreground
@@ -41,24 +47,25 @@ color_bat_mid="#ffb58900"           # Background for 30-50 battery
 color_bat_high="#ff859900"          # Forground for 70-100 battery icon
 color_temp="#ffdc322f"              # Backgroud for high temp
 
-### Solarized ### {{{
-#$base03:    #002b36;
-#$base02:    #073642;
-#$base01:    #586e75;
-#$base00:    #657b83;
-#$base0:     #839496;
-#$base1:     #93a1a1;
-#$base2:     #eee8d5;
-#$base3:     #fdf6e3;
-#$yellow:    #b58900;
-#$orange:    #cb4b16;
-#$red:       #dc322f;
-#$magenta:   #d33682;
-#$violet:    #6c71c4;
-#$blue:      #268bd2;
-#$cyan:      #2aa198;
-#$green:     #859900;
-### End Solarized ### }}}
+	### Solarized ### {{{
+	#$base03:    #002b36;
+	#$base02:    #073642;
+	#$base01:    #586e75;
+	#$base00:    #657b83;
+	#$base0:     #839496;
+	#$base1:     #93a1a1;
+	#$base2:     #eee8d5;
+	#$base3:     #fdf6e3;
+	#$yellow:    #b58900;
+	#$orange:    #cb4b16;
+	#$red:       #dc322f;
+	#$magenta:   #d33682;
+	#$violet:    #6c71c4;
+	#$blue:      #268bd2;
+	#$cyan:      #2aa198;
+	#$green:     #859900;
+	### End Solarized ### }}}
+### End Color ### }}}
 
 #default space between sections
 #if [ ${res_w} -gt 1024 ]; then
@@ -70,6 +77,7 @@ else
   stab=''
 fi
 
+### Icons ### {{{
 # Char glyps for powerline fonts
 sep_left=""                        # Powerline separator left
 sep_right=""                       # Powerline separator right
@@ -104,3 +112,4 @@ icon_local_wifi=""                 # Local IP wifi icon
 icon_local_out=""                  # Local IP out icon
 icon_ext_ip=""                     # External IP
 ##                                 
+### End Icons ### }}}
