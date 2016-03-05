@@ -63,7 +63,6 @@
 		if echo hello | grep --exclude-dir=a l >/dev/null 2>&1; then
 			for PATTERN in .cvs .git .hg .svn; do
 				GREP_OPTIONS+="--exclude-dir=$PATTERN "
-				echo pass
 			done
 		fi
 		export GREP_OPTIONS
