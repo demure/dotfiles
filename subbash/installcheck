@@ -21,7 +21,7 @@ done
 ### End CLI ### }}}
 
 ### GUI ### {{{
-GUI_LIST=(rofi mcomix zathura xombrero terminator feh scrot volumeicon calibre redshift-gtk stalonetray i3lock xclip xnest xpra xbacklight spacefm spectrwm libreoffice clipit nm-applet chromium icedove cryptkeeper gparted xss-lock nvpy uzbl urxvt zeal i3 font-manager gimp baobab gvim nitrogen touchegg unclutter)
+GUI_LIST=(rofi mcomix zathura xombrero terminator feh scrot volumeicon calibre redshift-gtk stalonetray i3lock xclip xnest xpra xbacklight spacefm spectrwm libreoffice clipit nm-applet chromium icedove cryptkeeper gparted xss-lock nvpy uzbl urxvt zeal i3 font-manager gimp baobab gvim nitrogen touchegg unclutter autorandr srandr)
 
 for i in "${GUI_LIST[@]}"; do
 	if [[ ! $(command -v ${i}) ]]; then

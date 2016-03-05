@@ -5,7 +5,7 @@
 # legacy repo http://github.com/demure/dotfiles
 
 ## So I have a background other than the one from update-alternitives
-sh ~/.fehbg &
+#sh ~/.fehbg &
 
 ## Fix my sound? damn pusle per user
 pulseaudio --start
@@ -21,7 +21,7 @@ fi
 /usr/bin/xfce4-power-manager &
 
 ## auto lock
-xss-lock -- i3lock -c 2E3436 &
+#xss-lock -- i3lock -c 2E3436 &
 
 ## Uses spectrwm instead of distasteful gnome 3 :p
 #exec ck-launch-session dbus-launch /usr/local/bin/spectrwm

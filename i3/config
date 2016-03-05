@@ -366,6 +366,7 @@ bar {
 ### End Bar Settings ### }}}
 
 ### Exec Programs ### {{{
+exec --no-startup-id srandrd autorandr -c
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id clipit
 exec --no-startup-id xss-lock -- i3lock -e -c 2E3436
@@ -373,5 +374,9 @@ exec --no-startup-id redshift
 exec --no-startup-id dropbox start
 exec --no-startup-id touchegg
 exec --no-startup-id unclutter
-exec nvpy
+exec --no-startup-id i3-msg "workspace $ws1; exec /usr/bin/urxvt"
+exec --no-startup-id i3-msg "workspace $ws3; exec /usr/bin/chromium"
+exec --no-startup-id i3-msg "workspace $ws4; exec /usr/bin/icedove"
+exec --no-startup-id i3-msg "workspace $ws7; exec /usr/bin/spacefm"
+#exec nvpy
 ### End Exec Programs ### }}}
