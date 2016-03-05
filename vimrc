@@ -367,11 +367,12 @@ if $USER != 'mobile'
 			Plugin 'tpope/vim-fugitive'			" git from vim
 			Plugin 'scrooloose/syntastic'		" Code syntax checker
 			"" Disabled due to too many errors, and no use.
-			"Plugin 'FredKSchott/CoVim'		" Collaborative vim
+			"Plugin 'FredKSchott/CoVim'			" Collaborative vim
 			Plugin 'Tail-Bundle'				" Tail inside of vim
 			"Plugin 'SearchComplete'			" Disabled due to killing UP arrow in search
 			Plugin 'Lokaltog/vim-easymotion'	" <prefix><prefix>motion
 			Plugin 'chrisbra/csv.vim'			" Good CVS file handling
+			Plugin 'dhruvasagar/vim-table-mode'	" Make easy tables
 			""" End Functionality """ }}}
 
 			""" Misc """ {{{
