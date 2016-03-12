@@ -28,7 +28,7 @@ fi
 
 ## git install
 # dont forget about $(xinit /usr/local/bin/spectrwm -- :1 &) for testing
-exec ck-launch-session dbus-launch --sh-syntax --exit-with-session /usr/bin/i3
+## I don't think consolekit does anything helpful for me? and wastes a ton of mem.
+#exec ck-launch-session dbus-launch --sh-syntax --exit-with-session /usr/bin/i3
+exec /usr/bin/i3
 
-## system install
-#exec ck-launch-session dbus-launch --sh-syntax --exit-with-session /usr/bin/spectrwm
