@@ -28,7 +28,8 @@ dockapp_mode none
 ## geometry <geometry>
 # tray's geometry in standard X notation; width and height are specified in slot_size multiples
 #geometry 1x1+1301+19
-geometry 8x1+1237+1
+#geometry 8x1+1237+1
+geometry 1x1+1290+14
 
 ## grow_gravity <gravity>
 # one of N, S, E, W, NW, NE, SW, SE; tray will grow in the direction
@@ -40,7 +41,7 @@ grow_gravity E
 ## icon_gravity <gravity>
 # icon placement gravity, one of NW, NE, SW, SE (goes same direction)
 #icon_gravity NE
-icon_gravity W
+icon_gravity E
 
 ## icon_size <int>
 # specifies dimensions of typical icon slot
@@ -58,6 +59,7 @@ log_level err
 # * force_icon_size - ignore resize events on all icons; force their size to be equal to icon_size
 # * use_icon_hints - use icon window hints to dtermine icon size
 kludges force_icons_size
+kludges fix_window_pos
 
 ## max_geometry <geometry>
 # maximal tray dimensions; 0 in width/height means no limit
@@ -127,7 +129,7 @@ window_strut auto
 
 ## window_type <type>
 # set the EWMH-compatible window type; one of: desktop, dock, normal, toolbar, utility
-window_type dock
+window_type normal
 
 ## xsync [<bool>]
 # whether to operate on X server synchronously (SLOOOOW)
