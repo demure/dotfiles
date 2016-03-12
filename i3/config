@@ -297,8 +297,8 @@ workspace_auto_back_and_forth yes
 		### End control-pianobar Commandss ### }}}
 
 		### Pulse Audio Controls ### {{{
-		bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 3%+ #increase sound volume
-		bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset Master 3%- #decrease sound volume
+		bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 5%+ #increase sound volume
+		bindsym XF86AudioLowerVolume exec --no-startup-id amixer -D pulse sset Master 5%- #decrease sound volume
 		bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 		### End Pulse Audio ### }}}
 
