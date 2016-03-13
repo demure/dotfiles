@@ -186,7 +186,7 @@ workspace_auto_back_and_forth yes
 			bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
 			bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
 			bindsym r exec --no-startup-id systemctl reboot, mode "default"
-			bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"  
+			bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
 
 			# back to normal: Enter or Escape
 			bindsym Return mode "default"
@@ -215,26 +215,26 @@ workspace_auto_back_and_forth yes
 		### Resize Window ### {{{
 		# resize window (you can also use the mouse for that)
 		mode "resize" {
-				# These bindings trigger as soon as you enter the resize mode
+			# These bindings trigger as soon as you enter the resize mode
 
-				# Pressing left will shrink the window’s width.
-				# Pressing right will grow the window’s width.
-				# Pressing up will shrink the window’s height.
-				# Pressing down will grow the window’s height.
-				bindsym j resize shrink width 10 px or 10 ppt
-				bindsym k resize grow height 10 px or 10 ppt
-				bindsym l resize shrink height 10 px or 10 ppt
-				bindsym semicolon resize grow width 10 px or 10 ppt
+			# Pressing left will shrink the window’s width.
+			# Pressing right will grow the window’s width.
+			# Pressing up will shrink the window’s height.
+			# Pressing down will grow the window’s height.
+			bindsym j resize shrink width 10 px or 10 ppt
+			bindsym k resize grow height 10 px or 10 ppt
+			bindsym l resize shrink height 10 px or 10 ppt
+			bindsym semicolon resize grow width 10 px or 10 ppt
 
-				# same bindings, but for the arrow keys
-				bindsym Left resize shrink width 10 px or 10 ppt
-				bindsym Down resize grow height 10 px or 10 ppt
-				bindsym Up resize shrink height 10 px or 10 ppt
-				bindsym Right resize grow width 10 px or 10 ppt
+			# same bindings, but for the arrow keys
+			bindsym Left resize shrink width 10 px or 10 ppt
+			bindsym Down resize grow height 10 px or 10 ppt
+			bindsym Up resize shrink height 10 px or 10 ppt
+			bindsym Right resize grow width 10 px or 10 ppt
 
-				# back to normal: Enter or Escape
-				bindsym Return mode "default"
-				bindsym Escape mode "default"
+			# back to normal: Enter or Escape
+			bindsym Return mode "default"
+			bindsym Escape mode "default"
 		}
 
 		bindsym $mod+r mode "resize"
@@ -242,7 +242,28 @@ workspace_auto_back_and_forth yes
 
 		## xrandr mode?
 
-		##control-pianobar mode?
+		### control-pianobar mode ### {{{
+		mode "control-pianobar" {
+			bindsym p exec --no-startup-id ~/.config/pianobar/control-pianobar.sh play, mode "default"
+			bindsym q exec --no-startup-id ~/.config/pianobar/control-pianobar.sh quit, mode "default"
+			bindsym h exec --no-startup-id ~/.config/pianobar/control-pianobar.sh history, mode "default"
+			bindsym n exec --no-startup-id ~/.config/pianobar/control-pianobar.sh next, mode "default"
+			bindsym t exec --no-startup-id ~/.config/pianobar/control-pianobar.sh tired, mode "default"
+			bindsym s exec --no-startup-id ~/.config/pianobar/control-pianobar.sh switchstation, mode "default"
+			bindsym \, exec --no-startup-id ~/.config/pianobar/control-pianobar.sh previousstation, mode "default"
+			bindsym . exec --no-startup-id ~/.config/pianobar/control-pianobar.sh nextstation, mode "default"
+			bindsym l exec --no-startup-id ~/.config/pianobar/control-pianobar.sh love, mode "default"
+			bindsym b exec --no-startup-id ~/.config/pianobar/control-pianobar.sh ban, mode "default"
+			bindsym e exec --no-startup-id ~/.config/pianobar/control-pianobar.sh explain, mode "default"
+			bindsym c exec --no-startup-id ~/.config/pianobar/control-pianobar.sh current, mode "default"
+
+			# back to normal: Enter or Escape
+			bindsym Return mode "default"
+			bindsym Escape mode "default"
+		}
+
+		bindsym $mod+m mode "control-pianobar"
+		### End Resize ### }}}
 
 	### End i3 Modes ### }}}
 
@@ -262,9 +283,9 @@ workspace_auto_back_and_forth yes
 		### End Launch Term ### }}}
 
 		### Screen Shots ### {{{
-		bindsym $mod+Print exec $HOME/bin/screenshot.sh full
+		bindsym $mod+Print exec --no-startup-id $HOME/bin/screenshot.sh full
 		## Note, you need to click on the window, after key combo, to capture it.
-		bindsym $mod+Shift+Print exec $HOME/bin/screenshot.sh window
+		bindsym $mod+Shift+Print --no-startup-id exec $HOME/bin/screenshot.sh window
 		### End Screen Shots ### }}}
 
 		### Rofi Bindings ### {{{
@@ -282,18 +303,18 @@ workspace_auto_back_and_forth yes
 		### End Handy Menu GUI ### }}}
 
 		### control-pianobar Commands ### {{{
-		bindsym $mod+F12 exec ~/.config/pianobar/control-pianobar.sh play
-		bindsym $mod+F11 exec ~/.config/pianobar/control-pianobar.sh quit
-		bindsym $mod+F9 exec ~/.config/pianobar/control-pianobar.sh history
-		bindsym $mod+F1 exec ~/.config/pianobar/control-pianobar.sh next
-		bindsym $mod+F2 exec ~/.config/pianobar/control-pianobar.sh tired
-		bindsym $mod+F7 exec ~/.config/pianobar/control-pianobar.sh switchstation
-		#bindsym $mod+F## exec ~/.config/pianobar/control-pianobar.sh previousstation
-		#bindsym $mod+F## exec ~/.config/pianobar/control-pianobar.sh nextstation
-		bindsym $mod+F3 exec ~/.config/pianobar/control-pianobar.sh love
-		bindsym $mod+F5 exec ~/.config/pianobar/control-pianobar.sh ban
-		#bindsym $mod+F## exec ~/.config/pianobar/control-pianobar.sh explain
-		bindsym $mod+F8 exec ~/.config/pianobar/control-pianobar.sh current
+		bindsym $mod+F12 exec --no-startup-id ~/.config/pianobar/control-pianobar.sh play
+		bindsym $mod+F11 exec --no-startup-id ~/.config/pianobar/control-pianobar.sh quit
+		bindsym $mod+F9 exec --no-startup-id ~/.config/pianobar/control-pianobar.sh history
+		bindsym $mod+F1 exec --no-startup-id ~/.config/pianobar/control-pianobar.sh next
+		bindsym $mod+F2 exec --no-startup-id ~/.config/pianobar/control-pianobar.sh tired
+		bindsym $mod+F7 exec --no-startup-id ~/.config/pianobar/control-pianobar.sh switchstation
+		#bindsym $mod+F## exec --no-startup-id ~/.config/pianobar/control-pianobar.sh previousstation
+		#bindsym $mod+F## exec --no-startup-id ~/.config/pianobar/control-pianobar.sh nextstation
+		bindsym $mod+F3 exec --no-startup-id ~/.config/pianobar/control-pianobar.sh love
+		bindsym $mod+F5 exec --no-startup-id ~/.config/pianobar/control-pianobar.sh ban
+		#bindsym $mod+F## exec --no-startup-id ~/.config/pianobar/control-pianobar.sh explain
+		bindsym $mod+F8 exec --no-startup-id ~/.config/pianobar/control-pianobar.sh current
 		### End control-pianobar Commandss ### }}}
 
 		### Pulse Audio Controls ### {{{
