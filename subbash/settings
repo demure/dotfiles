@@ -11,13 +11,13 @@
 		__ssh_agent
 
 		## Add git completion
-		if [ -f `brew --prefix`/etc/bash_completion ]; then
-			source `brew --prefix`/etc/bash_completion
+		if [ -f $(brew --prefix)/etc/bash_completion ]; then
+			source $(brew --prefix)/etc/bash_completion
 		fi
 
 		## Brew completion
-		if [ -f `brew --prefix`/Library/Contributions/brew_bash_completion.sh ]; then
-			source `brew --prefix`/Library/Contributions/brew_bash_completion.sh
+		if [ -f $(brew --prefix)/Library/Contributions/brew_bash_completion.sh ]; then
+			source $(brew --prefix)/Library/Contributions/brew_bash_completion.sh
 		fi
 
 			### stderred ### {{{
@@ -132,11 +132,5 @@
 	### End For OpenWrt ### }}}
 
 	### Testing ### {{{
-	## Fix tmux DISPLAY
-	# "Yubinkim.com totally wrote this one herself"
-	# "Run this script outside of tmux!"
-#	for name in `tmux ls -F '#{session_name}'`; do
-#		tmux setenv -g -t $name DISPLAY $DISPLAY #set display for all sessions
-#	done
 	### End Testing ### }}}
 ### End Settings ### }}}
