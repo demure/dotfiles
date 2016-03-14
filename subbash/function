@@ -51,7 +51,7 @@
 	# http://justinchouinard.com/blog/2010/04/10/fix-stale-ssh-environment-variables-in-gnu-screen-and-tmux
 	function r() {
 		if [[ -n $TMUX ]]; then
-			NEW_DISPLAY=`tmux showenv|grep ^DISPLAY|cut -d = -f 2`
+			NEW_DISPLAY=$(tmux showenv|grep ^DISPLAY|cut -d = -f 2)
 			if [[ -n $NEW_DISPLAY ]] && [[ -S $NEW_DISPLAY ]]; then
 				DISPLAY=$NEW_DISPLAY
 			fi
