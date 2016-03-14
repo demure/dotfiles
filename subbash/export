@@ -20,7 +20,7 @@
 
 	### Fortune At Login ### {{{
 	## Tests for fortune, root, interactive shell, and dumb term
-	if [[ `command -v fortune` && $UID != '0' && $- == *i* && $TERM != 'dumb' ]]; then
+	if [ $(command -v fortune) ] && [ $UID != '0' ] && [[ $- == *i* ]] && [ $TERM != 'dumb' ]; then
 		fortune -a
 	  else
 		MISSING_ITEMS+="fortune, "
@@ -30,8 +30,12 @@
 	### Memo At Login ### {{{
 	## Tests for memo, root, interactive shell, and dumb term
 	# http://www.getmemo.org/index.html
-	if [[ `command -v memo` && $UID != '0' && $- == *i* && $TERM != 'dumb' ]]; then
-		memo -u 2>/dev/null
+	if [ $(command -v memo) ] && [ $UID != '0' ] && [[ $- == *i* ]] && [ $TERM != 'dumb' ]; then
+		## If it has been four or more hours, show.
+		if [ -e $HOME/.memo ] && [ "$(date +%s)" -ge "$(echo $(stat --printf=%Y $HOME/.memo) + 14400 | bc)" ]; then
+			memo -u 2>/dev/null
+			touch $HOME/.memo
+		fi
 	  else
 		MISSING_ITEMS+="memo, "
 	fi
@@ -40,8 +44,12 @@
 	### Taskwarrior At Login ### {{{
 	## Tests for task, root, interactive shell, and dumb term
 	# http://taskwarrior.org/
-	if [[ `command -v task` && $UID != '0' && $- == *i* && $TERM != 'dumb' ]]; then
-		task limit:5 2>/dev/null
+	if [ $(command -v task) ] && [ $UID != '0' ] && [[ $- == *i* ]] && [ $TERM != 'dumb' ]; then
+		## If it has been four or more hours, show.
+		if [ -e $HOME/.task/pending.data ] && [ "$(date +%s)" -ge "$(echo $(stat --printf=%Y $HOME/.task/pending.data) + 14400 | bc)" ]; then
+			task limit:5 2>/dev/null
+			touch $HOME/.task/pending.data
+		fi
 	  else
 		MISSING_ITEMS+="taskwarrior, "
 	fi
