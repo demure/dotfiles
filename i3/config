@@ -212,7 +212,7 @@ workspace_auto_back_and_forth yes
 		bindsym $Mod+g mode "App Focus"
 		### End App Focus Mode ### }}}
 
-		### Resize Window ### {{{
+		### Resize Window Mode ### {{{
 		# resize window (you can also use the mouse for that)
 		mode "resize" {
 			# These bindings trigger as soon as you enter the resize mode
@@ -238,11 +238,11 @@ workspace_auto_back_and_forth yes
 		}
 
 		bindsym $mod+r mode "resize"
-		### End Resize ### }}}
+		### End Resize Mode ### }}}
 
 		## xrandr mode?
 
-		### control-pianobar mode ### {{{
+		### control-pianobar Mode ### {{{
 		mode "control-pianobar" {
 			bindsym p exec --no-startup-id ~/.config/pianobar/control-pianobar.sh play, mode "default"
 			bindsym q exec --no-startup-id ~/.config/pianobar/control-pianobar.sh quit, mode "default"
@@ -263,7 +263,7 @@ workspace_auto_back_and_forth yes
 		}
 
 		bindsym $mod+m mode "control-pianobar"
-		### End Resize ### }}}
+		### End control-pianobar Mode ### }}}
 
 	### End i3 Modes ### }}}
 
@@ -302,20 +302,20 @@ workspace_auto_back_and_forth yes
 		bindsym $mod+Shift+Pause exec "i3-nagbar -t warning -m 'Options:' -b 'lock' 'exec $Locker' -b 'logout' 'exec --no-startup-id i3-msg exit' -b 'suspend' 'exec --no-startup-id $Locker && systemctl suspend' -b 'hibernate' 'exec iino-startup-id $Locker && systemctl hibernate' -b 'reboot' 'exec --no-startup-id systemctl reboot' -b 'shutdown' 'exec --no-startup-id systemctl poweroff -i'"
 		### End Handy Menu GUI ### }}}
 
-		### control-pianobar Commands ### {{{
-		bindsym $mod+F12 exec --no-startup-id ~/.config/pianobar/control-pianobar.sh play
-		bindsym $mod+F11 exec --no-startup-id ~/.config/pianobar/control-pianobar.sh quit
-		bindsym $mod+F9 exec --no-startup-id ~/.config/pianobar/control-pianobar.sh history
-		bindsym $mod+F1 exec --no-startup-id ~/.config/pianobar/control-pianobar.sh next
-		bindsym $mod+F2 exec --no-startup-id ~/.config/pianobar/control-pianobar.sh tired
-		bindsym $mod+F7 exec --no-startup-id ~/.config/pianobar/control-pianobar.sh switchstation
-		#bindsym $mod+F## exec --no-startup-id ~/.config/pianobar/control-pianobar.sh previousstation
-		#bindsym $mod+F## exec --no-startup-id ~/.config/pianobar/control-pianobar.sh nextstation
-		bindsym $mod+F3 exec --no-startup-id ~/.config/pianobar/control-pianobar.sh love
-		bindsym $mod+F5 exec --no-startup-id ~/.config/pianobar/control-pianobar.sh ban
-		#bindsym $mod+F## exec --no-startup-id ~/.config/pianobar/control-pianobar.sh explain
-		bindsym $mod+F8 exec --no-startup-id ~/.config/pianobar/control-pianobar.sh current
-		### End control-pianobar Commandss ### }}}
+		#### control-pianobar Commands ### {{{
+		#bindsym $mod+F12 exec --no-startup-id ~/.config/pianobar/control-pianobar.sh play
+		#bindsym $mod+F11 exec --no-startup-id ~/.config/pianobar/control-pianobar.sh quit
+		#bindsym $mod+F9 exec --no-startup-id ~/.config/pianobar/control-pianobar.sh history
+		#bindsym $mod+F1 exec --no-startup-id ~/.config/pianobar/control-pianobar.sh next
+		#bindsym $mod+F2 exec --no-startup-id ~/.config/pianobar/control-pianobar.sh tired
+		#bindsym $mod+F7 exec --no-startup-id ~/.config/pianobar/control-pianobar.sh switchstation
+		##bindsym $mod+F## exec --no-startup-id ~/.config/pianobar/control-pianobar.sh previousstation
+		##bindsym $mod+F## exec --no-startup-id ~/.config/pianobar/control-pianobar.sh nextstation
+		#bindsym $mod+F3 exec --no-startup-id ~/.config/pianobar/control-pianobar.sh love
+		#bindsym $mod+F5 exec --no-startup-id ~/.config/pianobar/control-pianobar.sh ban
+		##bindsym $mod+F## exec --no-startup-id ~/.config/pianobar/control-pianobar.sh explain
+		#bindsym $mod+F8 exec --no-startup-id ~/.config/pianobar/control-pianobar.sh current
+		#### End control-pianobar Commandss ### }}}
 
 		### Pulse Audio Controls ### {{{
 		bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 5%+ #increase sound volume
@@ -331,6 +331,10 @@ workspace_auto_back_and_forth yes
 	### Mouse Bindings ### {{{
 		# Use Mouse+$mod to drag floating windows to their wanted position
 		floating_modifier $mod
+		
+		## Seems like this only works on border or title bar...
+		bindsym --whole-window --border button6 workspace prev
+		bindsym --whole-window --border button7 workspace next
 	### End Mouse Bindings ### }}}
 
 	### Scratch Pad ### {{{
