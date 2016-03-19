@@ -12,7 +12,7 @@ This requires `lemonbar` (which used to be called `bar`).
 I do *not* recommend the vanila lemonbar, as it's xft font support is... crap?
 I use [lemonbar krypt-n] instead of [lemonbar].
 
-This will also need [i3wm], as it is tailored for this.
+This will also need [i3wm], as it is tailored for this; and [conky].
 
 ###Modifications
 * On my system, volume and a number of other segments had an extra `%`. **FINISHED**
@@ -37,5 +37,6 @@ This will also need [i3wm], as it is tailored for this.
 [lemonbar krypt-n]: https://github.com/krypt-n/bar
 [lemonbar]: https://github.com/LemonBoy/bar
 [i3wm]: https://i3wm.org
+[conky]: https://github.com/brndnmtthws/conky
 [pic]: https://notabug.org/demure/dotfiles/src/master/i3/lemonbar/demure_i3_lemonbar_mod.png
 [pic0]: https://notabug.org/demure/dotfiles/raw/master/i3/lemonbar/demure_i3_lemonbar_mod.png
