@@ -391,6 +391,7 @@ bar {
 ### End Bar Settings ### }}}
 
 ### Exec Programs ### {{{
+exec --no-startup-id compton -b
 exec --no-startup-id srandrd autorandr -c
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id clipit
