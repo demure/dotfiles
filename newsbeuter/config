@@ -18,7 +18,7 @@ auto-reload yes
 reload-time 30
 reload-threads 2
 suppress-first-reload yes
-notify-beep yes
+#notify-beep yes
 confirm-exit yes
 
 show-read-feeds no
