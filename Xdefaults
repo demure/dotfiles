@@ -9,7 +9,7 @@ URxvt.visualBell: false
 URxvt.inheritPixmap: false
 URxvt.savelines: 1024
 URxvt.cutchars:		"()*,<>[]{}|''"
-URxvt.perl-ext: default,matcher
+URxvt.perl-ext: default,matcher,font-size
 URxvt.url-launcher:       sensible-browser
 URxvt.matcher.button: 1
 URxvt.keysym.C-Shift-u:   matcher:select
@@ -33,6 +33,15 @@ URxvt.boldfont: xft:PragmataPro:bold:pixelsize=14:autohint=true.xft:Bitstream Ve
 URxvt.italicFont: xft:PragmataPro:pixelsize=14:autohint=true.xft:Bitstream Vera Sans Mono:italic:pixelsize=12:autohint=true,xft:Liberation Mono:italic:pixelsize=12:autohint=true,xft:unifont:italic:pixelsize=12:autohint=true 
 URxvt.boldItalicFont: xft:PragmataPro:pixelsize=14:autohint=true.xft:Bitstream Vera Sans Mono:bold:italic:pixelsize=12:autohint=true
 !!! End Font !!! }}}
+
+!!! Font Bindings !!! {{{
+URxvt.keysym.M-C-Up:     perl:font-size:increase
+URxvt.keysym.M-C-Down:   perl:font-size:decrease
+URxvt.keysym.M-C-S-Up:   perl:font-size:incglobal
+URxvt.keysym.M-C-S-Down: perl:font-size:decglobal
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+!!! End Font Bindings !!! }}}
 
 !!! Transparent Attempt !!! {{{
 URxvt.transparent: true
