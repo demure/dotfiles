@@ -70,8 +70,186 @@
 	"" Mutt settings
 	" Support Format-Flowed in email (mutt).
 	" Because it is a good-ness? http://joeclark.org/ffaq.html
-    autocmd FileType mail setlocal fo+=aw tw=72
+	autocmd FileType mail setlocal fo+=aw tw=72
 """ End Commands at Start """ }}}
+
+""" Plugins """ {{{
+if $USER != 'mobile'
+	""" Setting up Vundle """ {{{
+	"" From http://www.erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc/
+	let iCanHazVundle=1
+	let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
+	if !filereadable(vundle_readme)
+		echo "Installing Vundle.."
+		echo ""
+		silent !mkdir -p ~/.vim/bundle
+		"" Disabled for git url
+		"silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+		silent !git clone git://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+		let iCanHazVundle=0
+	endif
+	set rtp+=~/.vim/bundle/vundle/
+	"""""""call vundle#rc()		""commented out for vundle version bump change??
+	call vundle#begin()
+	"" Use git instead of http
+	let g:vundle_default_git_proto = 'git'
+	"" Have vundle first...
+	Plugin 'gmarik/vundle'
+
+		""" Bundles """ {{{
+		""Add your bundles here
+			""" Style """ {{{
+			Plugin 'altercation/vim-colors-solarized'	" Solarized theme
+			Plugin 'syntax-highlighting-for-tintinttpp'	" Tintin++ syntax
+			Plugin 'mikewest/vimroom'					" Can imitate writeroom sytle
+			Plugin 'bling/vim-airline'					" Even better than powerline/neatstatus
+			"" Disabled as airline is better
+			"Plugin 'maciakl/vim-neatstatus'			" Add a powerline like status
+			Plugin 'nathanaelkane/vim-indent-guides'	" vim-indent-guides default binding: <Leader>ig
+			Plugin 'kien/rainbow_parentheses.vim'		" Colorize parentheses and similar chars
+			Plugin 'myusuf3/numbers.vim'				" Make num ruler auto switch absolute/rel for insert/norm
+			Plugin 'mhinz/vim-signify'					" Add git diff
+			""" End Style """ }}}
+
+			""" Added Interface """ {{{
+			Plugin 'scrooloose/nerdtree'		" File browser
+			Plugin 'bufexplorer.zip'			" buffer browser
+			Plugin 'sjl/gundo.vim'				" Undo history tree
+			Plugin 'cwoac/nvim'					" Notational Velocity like
+			Plugin 'szw/vim-ctrlspace'			" Super buffer controlness
+			Plugin 'haya14busa/incsearch.vim'	" Improved incremental searching
+			Plugin 'farseer90718/vim-taskwarrior'	" TaskWarrior Interface
+			""" End Interface """ }}}
+
+			""" Added Functionality """ {{{
+			Plugin 'tpope/vim-repeat'			" Makes '.' repeat work with plugins
+			Plugin 'scrooloose/nerdcommenter'	" Make commenting easy
+			Plugin 'YankRing.vim'				" Improves copy/paste
+			Plugin 'tpope/vim-fugitive'			" git from vim
+			Plugin 'scrooloose/syntastic'		" Code syntax checker
+			"" Disabled due to too many errors, and no use.
+			"Plugin 'FredKSchott/CoVim'			" Collaborative vim
+			Plugin 'Tail-Bundle'				" Tail inside of vim
+			"Plugin 'SearchComplete'			" Disabled due to killing UP arrow in search
+			Plugin 'Lokaltog/vim-easymotion'	" <prefix><prefix>motion
+			Plugin 'chrisbra/csv.vim'			" Good CVS file handling
+			Plugin 'dhruvasagar/vim-table-mode'	" Make easy tables
+			""" End Functionality """ }}}
+
+			""" Misc """ {{{
+			Plugin 'uguu-org/vim-matrix-screensaver'	" Add unnecessary matrix screen saver
+			Plugin 'takac/vim-hardtime'					" Plugin to break bad movement habits
+			""" End Misc """ }}}
+		""...All your other bundles...
+		""" End Bundles """ }}}
+	call vundle#end()		" required
+
+	if iCanHazVundle == 0
+		echo "Installing Bundles, please ignore key map error messages"
+		echo ""
+		:PluginInstall
+	endif
+""" End Setting Up Vundle """ }}}
+
+	""" Plugin Confs """ {{{
+		""" NERDtree config """ {{{
+		"" Starts NERDtree if no file is give to vim at start 
+		"autocmd vimenter * if !argc() | NERDTree | endif
+		""" End NERDtree """ }}}
+
+		""" Vim Repeat Conf """ {{{
+		"" This is to make repeat work for plugins too
+		silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
+		""" End Vim Repeat """ }}}
+
+		""" Better Rainbow Parentheses """ {{{
+		"" https://github.com/kien/rainbow_parentheses.vim
+			""" Auto Rainbow """ {{{
+			au VimEnter * RainbowParenthesesToggle
+			au Syntax * RainbowParenthesesLoadRound
+			au Syntax * RainbowParenthesesLoadSquare
+			au Syntax * RainbowParenthesesLoadBraces
+			""" End Auto """ }}}
+		nmap <leader>[ :RainbowParenthesesToggle <CR>
+		""" End Rainbow Parenthesis """ }}}
+
+		""" YankRing Conf """ {{{
+		"" :h yankring-tutorial
+		nnoremap <silent> <F3> :YRShow<CR>
+		inoremap <silent> <F3> <ESC>:YRShow<CR>
+		map <silent> <prefix>y :YRShow<CR>
+		let g:yankring_history_dir = '~/.vim'
+		""" End YankRing """ }}}
+
+		""" Solarized Theme """ {{{
+		"call togglebg#map("<F6>")
+		if has('gui_running')
+			set background=light
+		colorscheme solarized
+		endif
+		""" End Solarized """ }}}
+
+		""" Gundo Conf """ {{{
+		"" http://sjl.bitbucket.org/gundo.vim/
+		nnoremap <F4> :GundoToggle<CR>
+		""" End Gundo """ }}}
+
+		""" Numbers.vim Conf""" {{{
+		"" https://github.com/myusuf3/numbers.vim
+		nnoremap <leader>n :NumbersToggle<CR>
+		""" End Nunmbers.vim """ }}}
+
+		""" Vim Indent Guides """ {{{
+		"" https://github.com/nathanaelkane/vim-indent-guides
+		"" <Leader>ig
+		let g:indent_guides_auto_colors = 0
+		autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
+		autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
+		""" End Indent Guides """ }}}
+
+		""" Airline Conf """ {{{
+		"" Added to fix airline (forces status visibility)
+		set laststatus=2
+		"" Disable auto echo?
+		let g:bufferline_echo = 0
+		"" Remove default mode indicator
+		set noshowmode
+		""" End Airline Conf """ }}}
+
+		""" Hardtime Conf """ {{{
+		let g:hardtime_default_on = 1
+		let g:hardtime_ignore_buffer_patterns = [ "CustomPatt[ae]rn", "NERD.*", "Task.*" ]
+		""" End Hardtime """ }}}
+
+		""" Syntastic Conf """ {{{
+		let g:syntastic_auto_loc_list=1
+		""" End Syntastic """ }}}
+
+		""" Vim-CtrlSpace Conf """ {{{
+		"" https://github.com/szw/vim-ctrlspace
+		"" Make work with airline
+		let g:airline_exclude_preview = 1
+		""" End Vim-CtrlSpace """ }}}
+
+		""" Incsearch.vim Conf """ {{{
+		"" https://github.com/haya14busa/incsearch.vim
+		let g:incsearch#magic = '\v'
+		map /  <Plug>(incsearch-forward)
+		map ?  <Plug>(incsearch-backward)
+		map g/ <Plug>(incsearch-stay)
+		""" End Incsearch.vim """ }}}
+	""" End Plugin Confs """ }}}
+endif
+""" End Plugins """ }}}
+
+""" Theming """ {{{
+if has('gui_running')
+	set background=light
+	colorscheme solarized
+  else
+	colorscheme torte
+endif
+""" End Theming """ }}}
 
 """ Options """ {{{
 	""" Assorted """ {{{
@@ -311,175 +489,6 @@
 	endif
 	""" End Typo """ }}}
 """ End Key Bindings """ }}}
-
-""" Plugins """ {{{
-if $USER != 'mobile'
-	""" Setting up Vundle """ {{{
-	"" From http://www.erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc/
-	let iCanHazVundle=1
-	let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
-	if !filereadable(vundle_readme)
-		echo "Installing Vundle.."
-		echo ""
-		silent !mkdir -p ~/.vim/bundle
-		"" Disabled for git url
-		"silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
-		silent !git clone git://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-		let iCanHazVundle=0
-	endif
-	set rtp+=~/.vim/bundle/vundle/
-	"""""""call vundle#rc()		""commented out for vundle version bump change??
-	call vundle#begin()
-	"" Use git instead of http
-	let g:vundle_default_git_proto = 'git'
-	"" Have vundle first...
-	Plugin 'gmarik/vundle'
-
-		""" Bundles """ {{{
-		""Add your bundles here
-			""" Style """ {{{
-			Plugin 'altercation/vim-colors-solarized'	" Solarized theme
-			Plugin 'syntax-highlighting-for-tintinttpp'	" Tintin++ syntax
-			Plugin 'mikewest/vimroom'					" Can imitate writeroom sytle
-			Plugin 'bling/vim-airline'					" Even better than powerline/neatstatus
-			"" Disabled as airline is better
-			"Plugin 'maciakl/vim-neatstatus'			" Add a powerline like status
-			Plugin 'nathanaelkane/vim-indent-guides'	" vim-indent-guides default binding: <Leader>ig
-			Plugin 'kien/rainbow_parentheses.vim'		" Colorize parentheses and similar chars
-			Plugin 'myusuf3/numbers.vim'				" Make num ruler auto switch absolute/rel for insert/norm
-			Plugin 'mhinz/vim-signify'					" Add git diff
-			""" End Style """ }}}
-
-			""" Added Interface """ {{{
-			Plugin 'scrooloose/nerdtree'		" File browser
-			Plugin 'bufexplorer.zip'			" buffer browser
-			Plugin 'sjl/gundo.vim'				" Undo history tree
-			Plugin 'cwoac/nvim'					" Notational Velocity like
-			Plugin 'szw/vim-ctrlspace'			" Super buffer controlness
-			Plugin 'haya14busa/incsearch.vim'	" Improved incremental searching
-			Plugin 'farseer90718/vim-taskwarrior'	" TaskWarrior Interface
-			""" End Interface """ }}}
-
-			""" Added Functionality """ {{{
-			Plugin 'tpope/vim-repeat'			" Makes '.' repeat work with plugins
-			Plugin 'scrooloose/nerdcommenter'	" Make commenting easy
-			Plugin 'YankRing.vim'				" Improves copy/paste
-			Plugin 'tpope/vim-fugitive'			" git from vim
-			Plugin 'scrooloose/syntastic'		" Code syntax checker
-			"" Disabled due to too many errors, and no use.
-			"Plugin 'FredKSchott/CoVim'			" Collaborative vim
-			Plugin 'Tail-Bundle'				" Tail inside of vim
-			"Plugin 'SearchComplete'			" Disabled due to killing UP arrow in search
-			Plugin 'Lokaltog/vim-easymotion'	" <prefix><prefix>motion
-			Plugin 'chrisbra/csv.vim'			" Good CVS file handling
-			Plugin 'dhruvasagar/vim-table-mode'	" Make easy tables
-			""" End Functionality """ }}}
-
-			""" Misc """ {{{
-			Plugin 'uguu-org/vim-matrix-screensaver'	" Add unnecessary matrix screen saver
-			Plugin 'takac/vim-hardtime'					" Plugin to break bad movement habits
-			""" End Misc """ }}}
-		""...All your other bundles...
-		""" End Bundles """ }}}
-	call vundle#end()		" required
-
-	if iCanHazVundle == 0
-		echo "Installing Bundles, please ignore key map error messages"
-		echo ""
-		:PluginInstall
-	endif
-""" End Setting Up Vundle """ }}}
-
-	""" Plugin Confs """ {{{
-		""" NERDtree config """ {{{
-		"" Starts NERDtree if no file is give to vim at start 
-		"autocmd vimenter * if !argc() | NERDTree | endif
-		""" End NERDtree """ }}}
-
-		""" Vim Repeat Conf """ {{{
-		"" This is to make repeat work for plugins too
-		silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
-		""" End Vim Repeat """ }}}
-
-		""" Better Rainbow Parentheses """ {{{
-		"" https://github.com/kien/rainbow_parentheses.vim
-			""" Auto Rainbow """ {{{
-			au VimEnter * RainbowParenthesesToggle
-			au Syntax * RainbowParenthesesLoadRound
-			au Syntax * RainbowParenthesesLoadSquare
-			au Syntax * RainbowParenthesesLoadBraces
-			""" End Auto """ }}}
-		nmap <leader>[ :RainbowParenthesesToggle <CR>
-		""" End Rainbow Parenthesis """ }}}
-
-		""" YankRing Conf """ {{{
-		"" :h yankring-tutorial
-		nnoremap <silent> <F3> :YRShow<CR>
-		inoremap <silent> <F3> <ESC>:YRShow<CR>
-		map <silent> <prefix>y :YRShow<CR>
-		let g:yankring_history_dir = '~/.vim'
-		""" End YankRing """ }}}
-
-		""" Solarized Theme """ {{{
-		"call togglebg#map("<F6>")
-		if has('gui_running')
-			set background=light
-		colorscheme solarized
-		endif
-		""" End Solarized """ }}}
-
-		""" Gundo Conf """ {{{
-		"" http://sjl.bitbucket.org/gundo.vim/
-		nnoremap <F4> :GundoToggle<CR>
-		""" End Gundo """ }}}
-
-		""" Numbers.vim Conf""" {{{
-		"" https://github.com/myusuf3/numbers.vim
-		nnoremap <leader>n :NumbersToggle<CR>
-		""" End Nunmbers.vim """ }}}
-
-		""" Vim Indent Guides """ {{{
-		"" https://github.com/nathanaelkane/vim-indent-guides
-		"" <Leader>ig
-		let g:indent_guides_auto_colors = 0
-		autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
-		autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
-		""" End Indent Guides """ }}}
-
-		""" Airline Conf """ {{{
-		"" Added to fix airline (forces status visibility)
-		set laststatus=2
-		"" Disable auto echo?
-		let g:bufferline_echo = 0
-		"" Remove default mode indicator
-		set noshowmode
-		""" End Airline Conf """ }}}
-
-		""" Hardtime Conf """ {{{
-		let g:hardtime_default_on = 1
-		let g:hardtime_ignore_buffer_patterns = [ "CustomPatt[ae]rn", "NERD.*", "Task.*" ]
-		""" End Hardtime """ }}}
-
-		""" Syntastic Conf """ {{{
-		let g:syntastic_auto_loc_list=1
-		""" End Syntastic """ }}}
-
-		""" Vim-CtrlSpace Conf """ {{{
-		"" https://github.com/szw/vim-ctrlspace
-		"" Make work with airline
-		let g:airline_exclude_preview = 1
-		""" End Vim-CtrlSpace """ }}}
-
-		""" Incsearch.vim Conf """ {{{
-		"" https://github.com/haya14busa/incsearch.vim
-		let g:incsearch#magic = '\v'
-		map /  <Plug>(incsearch-forward)
-		map ?  <Plug>(incsearch-backward)
-		map g/ <Plug>(incsearch-stay)
-		""" End Incsearch.vim """ }}}
-	""" End Plugin Confs """ }}}
-endif
-""" End Plugins """ }}}
 
 """ Notes To Self """ {{{
 "" Consider:
