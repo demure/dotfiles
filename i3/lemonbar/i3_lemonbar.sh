@@ -33,9 +33,9 @@ conky -c $(dirname $0)/i3_lemonbar_conky > "${panel_fifo}" &
 ### UPDATE INTERVAL METERS
 cnt_vol=${upd_vol}
 cnt_mail=${upd_mail}
-cnt_mpd=${upd_mpd}
 cnt_cpb=${upd_cpb}
 cnt_ext_ip=${upd_ext_ip}
+cnt_gpg=${upd_gpg}
 
 while :; do
 
@@ -51,23 +51,23 @@ while :; do
 		cnt_mail=0
 	fi
 
-	# MPD
-	if [ $((cnt_mpd++)) -ge ${upd_mpd} ]; then
-		#printf "%s%s\n" "MPD" "$(ncmpcpp --now-playing '{%a - %t}|{%f}' | head -c 60)" > "${panel_fifo}"
-		printf "%s%s\n" "MPD" "$(mpc current -f '[[%artist% - ]%title%]|[%file%]' 2>&1 | head -c 70)" > "${panel_fifo}"
-		cnt_mpd=0
-	fi
-
 	# CPB
 	if [ $((cnt_cpb++)) -ge ${upd_cpb} ]; then
 		printf "%s%s\n" "CPB" "$(grep -qxs 1 $HOME/.config/pianobar/isplaying && cat $HOME/.config/pianobar/nowplaying)" > "${panel_fifo}"
 		cnt_cpb=0
 	fi
 
+	# GPG Check
+	if [ $((cnt_gpg++)) -ge ${upd_gpg} ]; then
+		export DISPLAY=''
+		printf "%s%s\n" "GPG" "$(echo "1234" | gpg2 --batch -o /dev/null --local-user ${gpg_key} -as - 2>/dev/null && echo "1" || echo "0")" > "${panel_fifo}"
+		cnt_gpg=0
+	fi
+
 	# External IP
 	if [ $((cnt_ext_ip++)) -ge ${upd_ext_ip} ]; then
 		printf "%s%s\n" "EXT" "$(wget --no-proxy http://checkip.dyndns.org/ -q -O - | grep -Eo '\<[[:digit:]]{1,3}(\.[[:digit:]]{1,3}){3}\>' || echo 'err')" > "${panel_fifo}"
-		cnt_mpd=0
+		cnt_ext_ip=0
 	fi
 
 	# Finally, wait 1 second

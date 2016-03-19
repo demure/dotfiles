@@ -2,7 +2,6 @@
 #
 # Input parser for i3 bar
 # 14 ago 2015 - Electro7
-
 # config
 . $(dirname $0)/i3_lemonbar_config
 
@@ -133,7 +132,14 @@ while read -r line ; do
 		### External IP Case ### {{{
 		EXT*)
 			# External IP
-			ext_ip="%{F${color_sec_b2}}${sep_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_ext_ip}%{F- T1} ${line#???}"
+			ext_arr="${line#???}"
+			if [ "${lip_select}" = "No IP" ]; then
+				ext_ip="%{F${color_sec_b2}}${sep_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_ext_ip}%{F- T1} No IP"
+			  elif [ "${lip_select}" = "${ext_arr}" ]; then
+				ext_ip="%{F${color_sec_b2}}${sep_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_ext_ip}%{F- T1} Same"
+			  else
+				ext_ip="%{F${color_sec_b2}}${sep_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_ext_ip}%{F- T1} ${ext_arr}"
+			fi
 			;;
 		### End External IP Case ### }}}
 
@@ -146,15 +152,27 @@ while read -r line ; do
 
 		### Offlineimap Case ### {{{
 		EMA*)
-			email_count="${line#???}"
-			if [ "${email_count}" != "0" ]; then
+			email_arr="${line#???}"
+			if [ "${email_arr}" != "0" ]; then
 				mail_cback=${color_mail}; mail_cicon=${color_back}; mail_cfore=${color_back}
 			  else
 				mail_cback=${color_sec_b2}; mail_cicon=${color_icon}; mail_cfore=${color_fore}
 			fi
-			email="%{F${mail_cback}}${sep_left}%{F${mail_cicon} B${mail_cback}} %{T2}${icon_mail}%{F${mail_cfore} T1} ${email_count}"
+			email="%{F${mail_cback}}${sep_left}%{F${mail_cicon} B${mail_cback}} %{T2}${icon_mail}%{F${mail_cfore} T1} ${email_arr}"
 			;;
 		### End Offlineimp Case ### }}}
+
+		### GPG Case ### {{{
+		GPG*)
+			gpg_arr=(${line#???})
+			if [ "${gpg_arr}" = "1" ]; then
+				lock="${icon_gpg_unlocked}"
+			  else
+				lock="${icon_gpg_locked}"
+			fi
+			gpg="%{F${color_icon}}${sep_l_left}%{B${color_sec_b2}}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_gpg}%{F${color_fore} T1} ${lock}"
+			;;
+		### End MPD Case ### }}}
 
 		#### IRC Case ### {{{
 		#IRC*)
@@ -169,21 +187,6 @@ while read -r line ; do
 			#irc="%{F${irc_cback}}${sep_left}%{F${irc_cicon} B${irc_cback}} %{T2}${icon_chat}%{F${irc_cfore} T1} ${irc_n_high} %{F${irc_cicon}}${sep_l_left} %{T2}${icon_contact}%{F${irc_cfore} T1} ${irc_high}"
 			#;;
 		#### End IRC Case ### }}}
-
-		### MPD Case ### {{{
-		MPD*)
-			# Music
-			mpd_arr=(${line#???})
-			if [ -z "${line#???}" ]; then
-				song="none";
-			  elif [ "${mpd_arr[0]}" == "error:" ]; then
-				song="mpd off";
-			  else
-				song="${line#???}";
-			fi
-			mpd="%{F${color_sec_b2}}${sep_left}%{B${color_sec_b2}}%{F${color_sec_b1}}${sep_left}%{F${color_icon} B${color_sec_b1}} %{T2}${icon_music}%{F${color_fore} T1} ${song}"
-			;;
-		### End MPD Case ### }}}
 
 		### CPB Case ### {{{
 		CPB*)
@@ -229,6 +232,6 @@ while read -r line ; do
 	esac
 
 	# And finally, output
-	printf "%s\n" "%{l}${wsp}${title} %{r}${cpb}${stab}${email}${stab}${local_ip}${stab}${wifi}${stab}${ext_ip}${stab}${bat}${stab}${cpu}${stab}${mem}${stab}${diskr}${stab}${temp}${stab}${nets_d}${stab}${nets_u}${stab}${vol}${stab}${date}${stab}${time}"
+	printf "%s\n" "%{l}${wsp}${title} %{r}${cpb}${stab}${email}${stab}${gpg}${stab}${local_ip}${stab}${wifi}${stab}${ext_ip}${stab}${bat}${stab}${cpu}${stab}${mem}${stab}${diskr}${stab}${temp}${stab}${nets_d}${stab}${nets_u}${stab}${vol}${stab}${date}${stab}${time}"
 	#printf "%s\n" "%{l}${wsp}${title}"
 done
