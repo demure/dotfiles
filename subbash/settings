@@ -49,7 +49,7 @@
 	if [ $HOSTNAME == 'ma.sdf.org' ]; then
 		export PATH=/usr/pkg/bin:/usr/local/bin:/usr/bin:/bin
 		export TZ=EST5EDT
-		source /etc/bash_completion.d/git		## Add git completion
+		#source /etc/bash_completion.d/git		## Add git completion
 
 		if [[ $- == *i* ]]; then
 			alias bb='bboard'
@@ -63,7 +63,7 @@
 
 	### For pi ### {{{
 	if [ $HOSTTYPE == 'arm' ]; then
-		source /etc/bash_completion.d/git		## Add git completion
+		#source /etc/bash_completion.d/git		## Add git completion
 
 		if [[ $- == *i* ]]; then
 			alias ls='ls --color=auto'
