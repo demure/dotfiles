@@ -196,6 +196,23 @@ workspace_auto_back_and_forth yes
 		bindsym $mod+Pause mode "$mode_system"
 		### End Handy Menu Mode ### }}}
 
+		### App Quick Launch ### {{{
+		# Launch mode, one app per key.
+		mode "launch" {
+			bindsym b exec uzbl ; mode "default"
+			bindsym f exec firefox ; mode "default"
+			bindsym t exec i3-sensible-terminal ; mode "default"
+
+			## Keeping this as an example
+			# gnome-disks will not launch twice, gparted will. Avoid that.
+			bindsym d exec ((pidof gpartedbin) || gksudo gparted); exec gnome-disks ; mode "default"
+
+			bindsym Return mode "default"
+			bindsym Escape mode "default"
+		}
+		bindsym $mod+Shift+g mode "launch"
+		### End App Quick Launch ### }}}
+
 		### App Focus Mode ### {{{
 		mode "App Focus" {
 			# hardcoded focus keybindings
@@ -217,25 +234,65 @@ workspace_auto_back_and_forth yes
 		mode "resize" {
 			# These bindings trigger as soon as you enter the resize mode
 
-			# Pressing left will shrink the window’s width.
-			# Pressing right will grow the window’s width.
-			# Pressing up will shrink the window’s height.
-			# Pressing down will grow the window’s height.
-			bindsym j resize shrink width 10 px or 10 ppt
-			bindsym k resize grow height 10 px or 10 ppt
-			bindsym l resize shrink height 10 px or 10 ppt
-			bindsym semicolon resize grow width 10 px or 10 ppt
+			# They resize the border in the direction you pressed, e.g.
+			# when pressing left, the window is resized so that it has
+			# more space on its left
+			bindsym h resize shrink left 10 px or 10 ppt
+			bindsym j resize shrink down 10 px or 10 ppt
+			bindsym k resize shrink up 10 px or 10 ppt
+			bindsym l resize shrink right 10 px or 10 ppt
+			bindsym Shift+H resize grow left 10 px or 10 ppt
+			bindsym Shift+J resize grow down 10 px or 10 ppt
+			bindsym Shift+K resize grow up 10 px or 10 ppt
+			bindsym Shift+L resize grow right 10 px or 10 ppt
 
-			# same bindings, but for the arrow keys
-			bindsym Left resize shrink width 10 px or 10 ppt
-			bindsym Down resize grow height 10 px or 10 ppt
-			bindsym Up resize shrink height 10 px or 10 ppt
-			bindsym Right resize grow width 10 px or 10 ppt
+			## Same bindings, but for the arrow keys
+			bindsym Left resize shrink left 10 px or 10 ppt
+			bindsym Down resize shrink down 10 px or 10 ppt
+			bindsym Up resize shrink up 10 px or 10 ppt
+			bindsym Right resize shrink right 10 px or 10 ppt
+			bindsym Shift+Left resize grow left 10 px or 10 ppt
+			bindsym Shift+Down resize grow down 10 px or 10 ppt
+			bindsym Shift+Up resize grow up 10 px or 10 ppt
+			bindsym Shift+Right resize grow right 10 px or 10 ppt
 
-			# back to normal: Enter or Escape
+			## Go to precise mode
+			bindsym p mode "resize_precise"
+
+			## Back to normal: Enter or Escape
 			bindsym Return mode "default"
 			bindsym Escape mode "default"
 		}
+
+			### Precise Resize ### {{{
+			mode "resize_precise" {
+				bindsym h resize shrink left 1 px or 1 ppt
+				bindsym j resize shrink down 1 px or 1 ppt
+				bindsym k resize shrink up 1 px or 1 ppt
+				bindsym l resize shrink right 1 px or 1 ppt
+				bindsym Shift+H resize grow left 1 px or 1 ppt
+				bindsym Shift+J resize grow down 1 px or 1 ppt
+				bindsym Shift+K resize grow up 1 px or 1 ppt
+				bindsym Shift+L resize grow right 1 px or 1 ppt
+
+				## Same bindings, but for the arrow keys
+				bindsym Left resize shrink left 1 px or 1 ppt
+				bindsym Down resize shrink down 1 px or 1 ppt
+				bindsym Up resize shrink up 1 px or 1 ppt
+				bindsym Right resize shrink right 1 px or 1 ppt
+				bindsym Shift+Left resize grow left 1 px or 1 ppt
+				bindsym Shift+Down resize grow down 1 px or 1 ppt
+				bindsym Shift+Up resize grow up 1 px or 1 ppt
+				bindsym Shift+Right resize grow right 1 px or 1 ppt
+
+				## Return to normal resize
+				bindsym p mode "resize"
+
+				## Back to normal: Enter or Escape
+				bindsym Return mode "default"
+				bindsym Escape mode "default"
+			}
+			### End Precise Resize ### }}}
 
 		bindsym $mod+r mode "resize"
 		### End Resize Mode ### }}}
@@ -297,25 +354,6 @@ workspace_auto_back_and_forth yes
 		### rofi-pass binding
 		bindsym $mod+Shift+p exec rofi-pass
 		### End Rofi Bindings ### }}}
-
-		### Handy Menu GUI ### {{{
-		bindsym $mod+Shift+Pause exec "i3-nagbar -t warning -m 'Options:' -b 'lock' 'exec $Locker' -b 'logout' 'exec --no-startup-id i3-msg exit' -b 'suspend' 'exec --no-startup-id $Locker && systemctl suspend' -b 'hibernate' 'exec iino-startup-id $Locker && systemctl hibernate' -b 'reboot' 'exec --no-startup-id systemctl reboot' -b 'shutdown' 'exec --no-startup-id systemctl poweroff -i'"
-		### End Handy Menu GUI ### }}}
-
-		#### control-pianobar Commands ### {{{
-		#bindsym $mod+F12 exec --no-startup-id ~/.config/pianobar/control-pianobar.sh play
-		#bindsym $mod+F11 exec --no-startup-id ~/.config/pianobar/control-pianobar.sh quit
-		#bindsym $mod+F9 exec --no-startup-id ~/.config/pianobar/control-pianobar.sh history
-		#bindsym $mod+F1 exec --no-startup-id ~/.config/pianobar/control-pianobar.sh next
-		#bindsym $mod+F2 exec --no-startup-id ~/.config/pianobar/control-pianobar.sh tired
-		#bindsym $mod+F7 exec --no-startup-id ~/.config/pianobar/control-pianobar.sh switchstation
-		##bindsym $mod+F## exec --no-startup-id ~/.config/pianobar/control-pianobar.sh previousstation
-		##bindsym $mod+F## exec --no-startup-id ~/.config/pianobar/control-pianobar.sh nextstation
-		#bindsym $mod+F3 exec --no-startup-id ~/.config/pianobar/control-pianobar.sh love
-		#bindsym $mod+F5 exec --no-startup-id ~/.config/pianobar/control-pianobar.sh ban
-		##bindsym $mod+F## exec --no-startup-id ~/.config/pianobar/control-pianobar.sh explain
-		#bindsym $mod+F8 exec --no-startup-id ~/.config/pianobar/control-pianobar.sh current
-		#### End control-pianobar Commandss ### }}}
 
 		### Pulse Audio Controls ### {{{
 		bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -D pulse sset Master 5%+ #increase sound volume
