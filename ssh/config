@@ -74,7 +74,7 @@ host comp doom
 	hostName moving-computer-of-doom.local
 
 host tiny
-	HostName tiny-computer-of-doom.local
+	HostName tiny-server-of-doom.local
 
 host net
 	HostName moving-netbook-of-doom.local
