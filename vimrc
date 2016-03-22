@@ -103,8 +103,6 @@ if $USER != 'mobile'
 			Plugin 'syntax-highlighting-for-tintinttpp'	" Tintin++ syntax
 			Plugin 'mikewest/vimroom'					" Can imitate writeroom sytle
 			Plugin 'bling/vim-airline'					" Even better than powerline/neatstatus
-			"" Disabled as airline is better
-			"Plugin 'maciakl/vim-neatstatus'			" Add a powerline like status
 			Plugin 'nathanaelkane/vim-indent-guides'	" vim-indent-guides default binding: <Leader>ig
 			Plugin 'kien/rainbow_parentheses.vim'		" Colorize parentheses and similar chars
 			Plugin 'myusuf3/numbers.vim'				" Make num ruler auto switch absolute/rel for insert/norm
@@ -118,7 +116,8 @@ if $USER != 'mobile'
 			Plugin 'cwoac/nvim'					" Notational Velocity like
 			Plugin 'szw/vim-ctrlspace'			" Super buffer controlness
 			Plugin 'haya14busa/incsearch.vim'	" Improved incremental searching
-			Plugin 'farseer90718/vim-taskwarrior'	" TaskWarrior Interface
+			"Plugin 'farseer90718/vim-taskwarrior'	" TaskWarrior Interface
+			Plugin 'spolu/dwm.vim'				" dwm like split control
 			""" End Interface """ }}}
 
 			""" Added Functionality """ {{{
@@ -238,6 +237,10 @@ if $USER != 'mobile'
 		map ?  <Plug>(incsearch-backward)
 		map g/ <Plug>(incsearch-stay)
 		""" End Incsearch.vim """ }}}
+
+		""" DWM.vim Conf """ {{{
+		nnoremap <silent> <C-b> :call DWM_New()<CR>
+		""" End DWM.vim Conf """ }}}
 	""" End Plugin Confs """ }}}
 endif
 """ End Plugins """ }}}
