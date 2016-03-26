@@ -45,10 +45,13 @@
 	## Tests for task, root, interactive shell, and dumb term
 	# http://taskwarrior.org/
 	if [ $(command -v task) ] && [ $UID != '0' ] && [[ $- == *i* ]] && [ $TERM != 'dumb' ]; then
-		## If it has been four or more hours, show.
-		if [ -e $HOME/.task/pending.data ] && [ "$(date +%s)" -ge "$(echo $(stat --printf=%Y $HOME/.task/pending.data) + 14400 | bc)" ]; then
-			task limit:5 2>/dev/null
-			touch $HOME/.task/pending.data
+		## Don't try to show if term is too small
+		if [ $(tput cols) -ge 90  ]; then
+			## If it has been four or more hours, show.
+			if [ -e $HOME/.task/pending.data ] && [ "$(date +%s)" -ge "$(echo $(stat --printf=%Y $HOME/.task/pending.data) + 14400 | bc)" ]; then
+				task limit:5 2>/dev/null
+				touch $HOME/.task/pending.data
+			fi
 		fi
 	  else
 		MISSING_ITEMS+="taskwarrior, "
