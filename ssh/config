@@ -83,10 +83,6 @@ host device
 	HostName moving-device-of-doom.local
 	User mobile
 
-host tv
-	HostName tv-of-doom.local
-	User mobile
-
 host route
 	hostName 10.0.0.1
 	User root
