@@ -19,10 +19,12 @@ URxvt.url-select.underline: true
 URxvt.matcher.pattern.1:  \\bwww\\.[\\w-]+\\.[\\w./?&@#-]*[\\w/-]
 URxvt.matcher.pattern.2:  \\B(/\\S+?):(\\d+)(?=:|$)
 URxvt.matcher.launcher.2: gvim +$2 $1
+!!! Old Comment !!! {{{
 !URxvt.matcher.pattern.1:  \\b(gopher|mailto|http|https|ftp|file):[/]*[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 !URxvt.matcher.pattern.2:  \\bwww\\.[\\w-]+\\.[\\w./?&@#-]*[\\w/-]
 !URxvt.matcher.pattern.3:  \\B(/\\S+?):(\\d+)(?=:|$)
 !URxvt.matcher.launcher.3: gvim +$2 $1
+!!! End old comment !!! }}}
 URxvt.cursorBlink: true
 URxvt.geometry: 80x24
 URxvt.fading: 25%
