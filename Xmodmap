@@ -9,4 +9,8 @@ keysym Caps_Lock = Escape
 add Lock = Caps_Lock
 
 !! Make useless Contextual Menu key into a right side super
-keycode 135 = Super_R
+!! Was for old laptop
+!!keycode 135 = Super_R
+
+!! Make Print key into right side super
+keycode 107 = Super_R
