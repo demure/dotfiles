@@ -194,6 +194,7 @@ workspace_auto_back_and_forth yes
 		}
 
 		bindsym $mod+Pause mode "$mode_system"
+		bindsym $mod+End mode "$mode_system"
 		### End Handy Menu Mode ### }}}
 
 		### App Quick Launch ### {{{
@@ -340,9 +341,10 @@ workspace_auto_back_and_forth yes
 		### End Launch Term ### }}}
 
 		### Screen Shots ### {{{
-		bindsym $mod+Print exec --no-startup-id $HOME/bin/screenshot.sh full
+		## New laptop has Print where Super_R should be... so now it is bound to that.
+		bindsym $mod+Home exec --no-startup-id exec scrot -m
 		## Note, you need to click on the window, after key combo, to capture it.
-		bindsym $mod+Shift+Print --no-startup-id exec $HOME/bin/screenshot.sh window
+		bindsym $mod+Shift+Home --no-startup-id exec scrot -s
 		### End Screen Shots ### }}}
 
 		### Rofi Bindings ### {{{
@@ -364,6 +366,13 @@ workspace_auto_back_and_forth yes
 		### Toggle redshift ### {{{
 		bindsym $mod+slash exec --no-startup-id pkill -USR1 redshift
 		### End Toggle redshift ### }}}
+
+		### Brightness Bindings ### {{{
+		bindsym XF86MonBrightnessUp exec xbacklight -inc 5 # increase screen brightness
+		bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightness
+		### End Brightness Bindings ### }}}
+
+		bindsym XF86Search exec rofi -sidebar-mode -show run -font 'Pragmata Pro 10' -fg \#505050 -bg \#000000 -bgalt \#101010 -hlfg \#008080 -hlbg \#454A4F -bc \#008080 -bw 1 -location 2 -width 100 -padding 0 -lines 10 -no-disable-history -no-levenshtein-sort
 	### End Misc Bindings ### }}}
 
 	### Mouse Bindings ### {{{
@@ -388,6 +397,7 @@ workspace_auto_back_and_forth yes
 	### Program Floating ### {{{
 	for_window [class="mpv|feh"] floating enable
 	for_window [class="mpv|URxvt|chromium|terminator"] border 1pixel
+	for_window [title="Steam - Update*|Steam - Self Updater|Event Tester"] floating enable
 	### End Program Floating ### }}}
 
 	### uzbl Tabs ### {{{
@@ -401,7 +411,7 @@ workspace_auto_back_and_forth yes
 	### End Popups ### }}}
 
 	### Scratchpad ### {{{
-	for_window [title="nvPY"] move scratchpad
+	#for_window [title="nvPY"] move scratchpad
 	### End Scratchpad ### }}}
 ### End Window Treatments ### }}}
 
@@ -432,6 +442,7 @@ bar {
 exec --no-startup-id compton -b
 exec --no-startup-id srandrd autorandr -c
 exec --no-startup-id nitrogen --restore
+exec --no-startup-id [ -e $HOME/.Xmodmap ] && xmodmap $HOME/.Xmodmap
 exec --no-startup-id clipit
 exec --no-startup-id xss-lock -- i3lock -e -c 2E3436
 exec --no-startup-id redshift
@@ -442,5 +453,5 @@ exec --no-startup-id i3-msg "workspace $ws1; exec /usr/bin/urxvt"
 exec --no-startup-id i3-msg "workspace $ws3; exec /usr/bin/chromium"
 exec --no-startup-id i3-msg "workspace $ws4; exec /usr/bin/icedove"
 exec --no-startup-id i3-msg "workspace $ws7; exec /usr/bin/spacefm"
-#exec nvpy
+exec --no-startup-id sleep 30 && pkill -USR1 redshift
 ### End Exec Programs ### }}}
