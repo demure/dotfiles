@@ -61,7 +61,7 @@ while :; do
 	## Thinkpad Milti Battery, "TMB"
 	if [ ${thinkpad_battery} -eq 1 ]; then
 		if [ $((cnt_tmb++)) -ge ${upd_tmb} ]; then
-			printf "%s%s\n" "TMB" "$(paste -d = /sys/class/power_supply/BAT{0..1}/uevent | awk '/ENERGY_FULL=/||/ENERGY_NOW=/||/STATUS/ {split($0,a,"="); if(a[2]~/Discharging/||a[4]~/Disharging/){CHARGE="D"} else if(a[2]~/Charging/||a[4]~/Charging/){CHARGE="C"} else if (a[2]~/Full/||a[4]~/Full/){CHARGE="F"}; if(a[1]~/FULL/){FULL=a[2]+a[4]}; if(a[1]~/NOW/){NOW=a[2]};} END {PERC=(NOW/FULL)*100; printf("%.0f %s", PERC, CHARGE)}')" > "${panel_fifo}"
+			printf "%s%s\n" "TMB" "$(paste -d = /sys/class/power_supply/BAT{0..1}/uevent | awk '/ENERGY_FULL=/||/ENERGY_NOW=/||/STATUS/ {split($0,a,"="); if(a[2]~/Discharging/||a[4]~/Disharging/){CHARGE="D"} else if(a[2]~/Charging/||a[4]~/Charging/){CHARGE="C"} else if (a[2]~/Full/||a[4]~/Full/){CHARGE="F"}; if(a[1]~/FULL/){FULL=a[2]+a[4]}; if(a[1]~/NOW/){NOW=a[2]+a[4]};} END {PERC=(NOW/FULL)*100; printf("%.0f %s", PERC, CHARGE)}')" > "${panel_fifo}"
 			cnt_tmp=0
 		fi
 	fi
