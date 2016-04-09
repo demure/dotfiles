@@ -30,10 +30,10 @@ URxvt.geometry: 80x24
 URxvt.fading: 25%
 
 !!! Font !!! {{{
-URxvt.font: xft:PragmataPro:pixelsize=12:autohint=true.xft:Bitstream Vera Sans Mono:pixelsize=12:autohint=true.xft:Liberation Mono:pixelsize=12:autohint=true.xft:unifont:pixelsize=12:autohint=true.xft:DejaVu Sans Mono:pixelsize=13:VL Gothic:antialias=true:hinting=true.xft:Font Awesome:pixelsize=12:autohint=true
-URxvt.boldfont: xft:PragmataPro:bold:pixelsize=14:autohint=true.xft:Bitstream Vera Sans Mono:bold:pixelsize=12:autohint=true,xft:Liberation Mono:bold:pixelsize=12:autohint=true,xft:unifont:bold:pixelsize=12:autohint=true,xft:DejaVu Sans Mono:pixelsize=12:antialias=true:hinting=true:style=bold
-URxvt.italicFont: xft:PragmataPro:pixelsize=14:autohint=true.xft:Bitstream Vera Sans Mono:italic:pixelsize=12:autohint=true,xft:Liberation Mono:italic:pixelsize=12:autohint=true,xft:unifont:italic:pixelsize=12:autohint=true 
-URxvt.boldItalicFont: xft:PragmataPro:pixelsize=14:autohint=true.xft:Bitstream Vera Sans Mono:bold:italic:pixelsize=12:autohint=true
+URxvt.font: xft:PragmataPro:pixelsize=15:autohint=true.xft:Bitstream Vera Sans Mono:pixelsize=15:autohint=true.xft:Liberation Mono:pixelsize=15:autohint=true.xft:unifont:pixelsize=15:autohint=true.xft:DejaVu Sans Mono:pixelsize=15:VL Gothic:antialias=true:hinting=true.xft:Font Awesome:pixelsize=15:autohint=true
+URxvt.boldfont: xft:PragmataPro:bold:pixelsize=15:autohint=true.xft:Bitstream Vera Sans Mono:bold:pixelsize=15:autohint=true,xft:Liberation Mono:bold:pixelsize=15:autohint=true,xft:unifont:bold:pixelsize=15:autohint=true,xft:DejaVu Sans Mono:pixelsize=15:antialias=true:hinting=true:style=bold
+URxvt.italicFont: xft:PragmataPro:pixelsize=15:autohint=true.xft:Bitstream Vera Sans Mono:italic:pixelsize=15:autohint=true,xft:Liberation Mono:italic:pixelsize=15:autohint=true,xft:unifont:italic:pixelsize=15:autohint=true
+URxvt.boldItalicFont: xft:PragmataPro:pixelsize=15:autohint=true.xft:Bitstream Vera Sans Mono:bold:italic:pixelsize=15:autohint=true
 !!! End Font !!! }}}
 
 !!! Font Bindings !!! {{{
