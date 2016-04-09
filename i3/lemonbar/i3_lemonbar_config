@@ -4,10 +4,12 @@
 panel_fifo="/tmp/i3_lemonbar_${USER}"
 geometry="x14"
 ## This needs a fork of lemonbar.
-font="Terminess Powerline-8"
+#font="Terminess Powerline-8"
+font="PragmataPro-10"
 iconfont="fontawesome-10"
 gpg_key="DC19D3E8"
 res_w=$(xrandr | grep "current" | awk '{print $8a}')
+thinkpad_battery="1"		# If set to "1", ignore conky battery and use Thinkpad Multi Battery. "0" for conky battery.
 
 ### Alarm Settings ### {{{
 # Alarm settings
@@ -23,6 +25,7 @@ upd_mail=120                        # Mail check update
 upd_cpb=5                           # control-pianobar song update
 upd_ext_ip=600                      # External IP update
 upd_gpg=300                         # GPG update
+upd_tmb=60                          # Thinkpad Multi Battery update
 ### End Update ### }}}
 
 ### Color ### {{{

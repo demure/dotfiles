@@ -79,22 +79,24 @@ while read -r line ; do
 			## Icon         0         1         2         3          4
 			## Bat >=      NA        11        37        63         90
 			## Range     0-10     11-36     37-62     63-89     90-100
-			
-			if [ ${sys_arr[14]} -ge 90 ]; then
-				bat_icon=${icon_bat4}; bat_cicon=${color_bat_high}; bat_cfore=${color_fore}; bat_cback=${color_sec_b1};
-			  elif [ ${sys_arr[14]} -ge 63 ]; then
-				bat_icon=${icon_bat3}; bat_cicon=${color_bat_high}; bat_cfore=${color_fore}; bat_cback=${color_sec_b1};
-			  elif [ ${sys_arr[14]} -ge 37 ]; then
-				bat_icon=${icon_bat2}; bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_bat_mid};
-			  elif [ ${sys_arr[14]} -ge 11 ]; then
-				bat_icon=${icon_bat1}; bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_bat_low};
-			  else
-				bat_icon=${icon_bat0}; bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_bat_out};
+
+			if [ ${thinkpad_battery} -ne 1 ]; then
+				if [ ${sys_arr[14]} -ge 90 ]; then
+					bat_icon=${icon_bat4}; bat_cicon=${color_bat_high}; bat_cfore=${color_fore}; bat_cback=${color_sec_b1};
+				  elif [ ${sys_arr[14]} -ge 63 ]; then
+					bat_icon=${icon_bat3}; bat_cicon=${color_bat_high}; bat_cfore=${color_fore}; bat_cback=${color_sec_b1};
+				  elif [ ${sys_arr[14]} -ge 37 ]; then
+					bat_icon=${icon_bat2}; bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_bat_mid};
+				  elif [ ${sys_arr[14]} -ge 11 ]; then
+					bat_icon=${icon_bat1}; bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_bat_low};
+				  else
+					bat_icon=${icon_bat0}; bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_bat_out};
+				fi
+				if [ ${sys_arr[15]} == "C" ] || [ ${sys_arr[15]} == "F" ]; then
+					bat_icon=${icon_bat_plug}; bat_cicon=${color_icon};
+				fi
+				bat="%{F${bat_cback}}${sep_left}%{F${bat_cicon} B${bat_cback}} %{T2}${bat_icon}%{F- T1} ${sys_arr[14]}%"
 			fi
-			if [ ${sys_arr[15]} == "C" ] || [ ${sys_arr[15]} == "F" ]; then
-				bat_icon=${icon_bat_plug}; bat_cicon=${color_icon};
-			fi
-			bat="%{F${bat_cback}}${sep_left}%{F${bat_cicon} B${bat_cback}} %{T2}${bat_icon}%{F- T1} ${sys_arr[14]}%"
 			### End Battery ### }}}
 
 			### Temperature ### {{{
@@ -143,7 +145,7 @@ while read -r line ; do
 			;;
 		### End External IP Case ### }}}
 
-		### Vol Case ### {{{
+		### Volume Case ### {{{
 		VOL*)
 			# Volume
 			vol="%{F${color_sec_b2}}${sep_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_vol}%{F- T1} ${line#???}"
@@ -172,7 +174,50 @@ while read -r line ; do
 			fi
 			gpg="%{F${color_icon}}${sep_l_left}%{B${color_sec_b2}}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_gpg}%{F${color_fore} T1} ${lock}"
 			;;
-		### End MPD Case ### }}}
+		### End GPG Case ### }}}
+
+		### Thinkpad Multi Battery ### {{{
+		## Icon         0         1         2         3          4
+		## Bat >=      NA        11        37        63         90
+		## Range     0-10     11-36     37-62     63-89     90-100
+
+		TMB*)
+			## Now that I have >12 hours of battery, I don't feel the need for as drastic color thresholds.
+			## I will have colors only at much lower percentages.
+
+			if [ ${thinkpad_battery} -eq 1 ]; then
+			tmb_arr_perc=$(echo ${line#???} | cut -f1 -d\ )
+			tmb_arr_status=$(echo ${line#???} | cut -f2 -d\ )
+				## Set icon only
+				if [ ${tmb_arr_perc} -ge 90 ]; then
+					bat_icon=${icon_bat4};
+				  elif [ ${tmb_arr_perc} -ge 63 ]; then
+					bat_icon=${icon_bat3};
+				  elif [ ${tmb_arr_perc} -ge 37 ]; then
+					bat_icon=${icon_bat2};
+				  elif [ ${tmb_arr_perc} -ge 11 ]; then
+					bat_icon=${icon_bat1};
+				  else
+					bat_icon=${icon_bat0};
+				fi
+
+				## Set Colors
+				if [ ${tmb_arr_perc} -ge 30 ]; then
+					bat_cicon=${color_bat_high}; bat_cfore=${color_fore}; bat_cback=${color_sec_b1};
+				  elif [ ${tmb_arr_perc} -ge 20 ]; then
+					bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_bat_mid};
+				  elif [ ${tmb_arr_perc} -ge 10 ]; then
+					bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_bat_low};
+				  else
+					bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_bat_out};
+				fi
+				if [ ${tmb_arr_status} != "D" ]; then
+					bat_icon=${icon_bat_plug}; bat_cicon=${color_icon}; # bat_cfore=${color_fore}; bat_cback=${color_sec_b1};
+				fi
+				bat="%{F${bat_cback}}${sep_left}%{F${bat_cicon} B${bat_cback}} %{T2}${bat_icon}%{F- T1} ${tmb_arr_perc}%"
+			fi
+			;;
+		### End Thinkpad Multi Battery ### }}}
 
 		#### IRC Case ### {{{
 		#IRC*)
@@ -188,7 +233,7 @@ while read -r line ; do
 			#;;
 		#### End IRC Case ### }}}
 
-		### CPB Case ### {{{
+		### Control Pianobar Case ### {{{
 		CPB*)
 			# Music
 			cpb_arr=(${line#???})
@@ -201,7 +246,7 @@ while read -r line ; do
 			fi
 			cpb="%{F${color_sec_b2}}${sep_left}%{B${color_sec_b2}}%{F${color_sec_b1}}${sep_left}%{F${color_icon} B${color_sec_b1}} %{T2}${icon_music}%{F${color_fore} T1} ${song}"
 			;;
-		### End MPD Case ### }}}
+		### End Control Pianobar Case ### }}}
 
 		### Workspace Case ### {{{
 		WSP*)

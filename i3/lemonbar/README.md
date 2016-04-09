@@ -7,12 +7,14 @@ This is based off of [i3 lemonbar].
 While a lot of the code is the same, I have modified it to do what I want.
 There were a few parts of the original that didn't make sense to me, and other things I wanted to add.
 
+
 ###Requirements
 This requires `lemonbar` (which used to be called `bar`).
 I do *not* recommend the vanila lemonbar, as it's xft font support is... crap?
 I use [lemonbar krypt-n] instead of [lemonbar].
 
 This will also need [i3wm], as it is tailored for this; and [conky].
+
 
 ###Modifications
 * On my system, volume and a number of other segments had an extra `%`. **FINISHED**
@@ -29,6 +31,7 @@ This will also need [i3wm], as it is tailored for this; and [conky].
 * Made one segment for both eth and wlan speed, prefers eth. **FINISHED**
 * Added control-pianobar for music, as I don't really use MPD. **27FEB2016**
 * Added check to see if gpg key is unlocked (since I use it for `pass`, which give `offlineimap` passwds) **19MAR2016**
+* Added Thinkpad Multi Battery code. Will display ***weighted*** total battery percent. Other peoples code which I found only did `(bat0 perc + bat1 perc)/2`... Which is invalid, and extra invalid with an extended battery! There is a setting in the config to use either conky supplied battery, or the new Thinkpad Multi Battery. **09APR2016**
 
 
 ###Things I want
