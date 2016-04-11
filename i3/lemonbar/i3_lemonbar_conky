@@ -18,15 +18,15 @@ ${time %a %d %b %H:%M} \
 ${cpu} \
 ${memperc} \
 ${fs_used_perc /} \
-${if_up wlp4s0}${downspeedf wlp4s0} ${upspeedf wlp4s0} \
+${hwmon tempf 1} \
+${if_up wlp4s0}${downspeedf wlp4s0} ${upspeedf wlp4s0}\
 ${else}down down${endif} \
 ${if_up eth0}${downspeedf eth0} ${upspeedf eth0} \
 ${else}down down${endif} \
 ${if_up eth0}${addr eth0} \
 ${else}down${endif} \
-${if_up wlp4s0}${addr wlp4s0} \
+${if_up wlp4s0}${addr wlp4s0}\
 ${else}down${endif} \
-${hwmon tempf 1} \
+${wireless_link_qual_perc wlp4s0} \
 ${battery_percent BAT1} \
 ${battery_short BAT1} \
-${wireless_link_qual_perc wlp4s0} \

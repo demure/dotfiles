@@ -44,10 +44,10 @@ color_net="#FF5E8D87"               # Background color for net alert
 color_disable="#FF1D1F21"           # Foreground for disable elements
 color_wsp="#FF8C9440"               # Background for selected workspace
 ## Need to tinker with these:
-color_bat_out="#ffdc322f"           # Background for 0-10 battery
-color_bat_low="#ffd33682"           # Background for 10-30 battery
-color_bat_mid="#ffb58900"           # Background for 30-50 battery
-color_bat_high="#ff859900"          # Forground for 70-100 battery icon
+color_bat_out="#ffdc322f"           # Background for very low battery
+color_bat_low="#ffcb4b16"           # Background for low battery
+color_bat_mid="#ffb58900"           # Background for mid battery
+color_bat_plug="#ff859900"          # Forground for 70-100 battery icon
 color_temp="#ffdc322f"              # Backgroud for high temp
 
 	### Solarized ### {{{

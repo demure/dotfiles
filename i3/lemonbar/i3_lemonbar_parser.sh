@@ -14,10 +14,11 @@ while read -r line ; do
 	case $line in
 		### SYS Case ### {{{
 		SYS*)
-			## conky=, 0=wday, 1=mday, 2=month, 3=time, 4=cpu, 5=mem, 6=disk /, 7-8=up/down wlan, 9-10=up/down eth,
-			## 11=eth ip, 12=wlan ip, 13=comp temp, 14=battery %, 15=battery stat, 16=wifi %,
-			## Things to add: external IP, weather, pianobar, only show eth0/wlan0 if up?
-			## Make HD use show free? Check offlineimap unread. Network weechat check?
+			## conky=, 0=wday, 1=mday, 2=month, 3=time, 4=cpu, 5=mem, 6=disk /,
+			## 7=comp temp, 8-9=up/down wlan, 10-11=up/down eth, 12=eth ip,
+			## 13=wlan ip, 14=wifi %, 15=battery %, 16=battery stat,
+			## Things to add: Make HD use show free? Network weechat check?
+
 			sys_arr=(${line#???})
 
 			### Time and Date ### {{{
@@ -51,12 +52,12 @@ while read -r line ; do
 			### Net Speed ### {{{
 			## made to replace WLAN and Eth sections
 			## Will prefer eth0 if up
-			if [ "${sys_arr[9]}" == "down" ]; then
-				if [ "${sys_arr[7]}" == "down" ];then
+			if [ "${sys_arr[10]}" == "down" ]; then
+				if [ "${sys_arr[8]}" == "down" ];then
 					nets_dv="×"; nets_uv="×";
 					nets_cback=${color_sec_b1}; nets_cicon=${color_disable}; nets_cfore=${color_disable};
 				  else
-					nets_dv=${sys_arr[7]}K; nets_uv=${sys_arr[8]}K;
+					nets_dv=${sys_arr[8]}K; nets_uv=${sys_arr[9]}K;
 					if [ ${nets_dv:0:-3} -gt ${net_alert} ] || [ ${nets_uv:0:-3} -gt ${net_alert} ]; then
 						nets_cback=${color_net}; nets_cicon=${color_back}; nets_cfore=${color_back};
 					  else
@@ -64,7 +65,7 @@ while read -r line ; do
 					fi
 				fi
 			  else
-				nets_dv=${sys_arr[9]}K; nets_uv=${sys_arr[10]}K;
+				nets_dv=${sys_arr[10]}K; nets_uv=${sys_arr[11]}K;
 				if [ ${nets_dv:0:-3} -gt ${net_alert} ] || [ ${nets_uv:0:-3} -gt ${net_alert} ]; then
 					nets_cback=${color_net}; nets_cicon=${color_back}; nets_cfore=${color_back};
 				  else
@@ -81,41 +82,56 @@ while read -r line ; do
 			## Range     0-10     11-36     37-62     63-89     90-100
 
 			if [ ${thinkpad_battery} -ne 1 ]; then
-				if [ ${sys_arr[14]} -ge 90 ]; then
-					bat_icon=${icon_bat4}; bat_cicon=${color_bat_high}; bat_cfore=${color_fore}; bat_cback=${color_sec_b1};
-				  elif [ ${sys_arr[14]} -ge 63 ]; then
-					bat_icon=${icon_bat3}; bat_cicon=${color_bat_high}; bat_cfore=${color_fore}; bat_cback=${color_sec_b1};
-				  elif [ ${sys_arr[14]} -ge 37 ]; then
-					bat_icon=${icon_bat2}; bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_bat_mid};
-				  elif [ ${sys_arr[14]} -ge 11 ]; then
-					bat_icon=${icon_bat1}; bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_bat_low};
+				## Set icons
+				if [ ${sys_arr[15]} -ge 90 ]; then
+					bat_icon=${icon_bat4};
+				  elif [ ${sys_arr[15]} -ge 63 ]; then
+					bat_icon=${icon_bat3};
+				  elif [ ${sys_arr[15]} -ge 37 ]; then
+					bat_icon=${icon_bat2};
+				  elif [ ${sys_arr[15]} -ge 11 ]; then
+					bat_icon=${icon_bat1};
 				  else
-					bat_icon=${icon_bat0}; bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_bat_out};
+					bat_icon=${icon_bat0};
 				fi
-				if [ ${sys_arr[15]} == "C" ] || [ ${sys_arr[15]} == "F" ]; then
-					bat_icon=${icon_bat_plug}; bat_cicon=${color_icon};
+
+				## Set colors (so you can have different thresholds)
+				if [ ${sys_arr[15]} -ge 90 ]; then
+					bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_sec_b1};
+				  elif [ ${sys_arr[15]} -ge 63 ]; then
+					bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_sec_b1};
+				  elif [ ${sys_arr[15]} -ge 37 ]; then
+					bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_bat_mid};
+				  elif [ ${sys_arr[15]} -ge 11 ]; then
+					bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_bat_low};
+				  else
+					bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_bat_out};
 				fi
-				bat="%{F${bat_cback}}${sep_left}%{F${bat_cicon} B${bat_cback}} %{T2}${bat_icon}%{F- T1} ${sys_arr[14]}%"
+
+				if [ ${sys_arr[16]} == "C" ] || [ ${sys_arr[16]} == "F" ]; then
+					bat_icon=${icon_bat_plug}; bat_cicon=${color_bat_plug};
+				fi
+				bat="%{F${bat_cback}}${sep_left}%{F${bat_cicon} B${bat_cback}} %{T2}${bat_icon}%{F- T1} ${sys_arr[15]}%"
 			fi
 			### End Battery ### }}}
 
 			### Temperature ### {{{
-			if [ ${sys_arr[13]} -gt ${temp_alert} ]; then
+			if [ ${sys_arr[7]} -gt ${temp_alert} ]; then
 				temp_cback=${color_temp}; temp_cicon=${color_back}; temp_cfore=${color_back};
 			  else
 				temp_cback=${color_sec_b2}; temp_cicon=${color_icon}; temp_cfore=${color_fore};
 			fi
-			temp="%{F${temp_cback}}${sep_left}%{F${temp_cicon} B${temp_cback}} %{T2}${icon_temp}%{F${temp_cfore} T1} ${sys_arr[13]}F"
+			temp="%{F${temp_cback}}${sep_left}%{F${temp_cicon} B${temp_cback}} %{T2}${icon_temp}%{F${temp_cfore} T1} ${sys_arr[7]}F"
 			### End Temp ### }}}
 
 			### Local IP ### {{{
 			## To save space, I don't want to give both eth0 and wlan0 spots
 			## So I will make eth0 > wlan0, as if my laptop has eth, I probably want it.
 			## eth ${sys_arr[11]} wlan ${sys_arr[12]}
-			if [ ${sys_arr[11]} != "down" ]; then
-				lip_select="${sys_arr[11]}"; lip_icon="${icon_local_eth}";
-			  elif [ ${sys_arr[12]} != "down" ]; then
-				lip_select="${sys_arr[12]}"; lip_icon="${icon_local_wifi}";
+			if [ ${sys_arr[12]} != "down" ]; then
+				lip_select="${sys_arr[12]}"; lip_icon="${icon_local_eth}";
+			  elif [ ${sys_arr[13]} != "down" ]; then
+				lip_select="${sys_arr[13]}"; lip_icon="${icon_local_wifi}";
 			  else
 				lip_select="No IP"; lip_icon="${icon_local_out}";
 			fi
@@ -123,8 +139,10 @@ while read -r line ; do
 			### End Local IP ### }}}
 
 			### Wifi Percent ### {{{
-			if [ ${sys_arr[12]} != "down" ]; then
-			wifi="%{F${color_icon}}${sep_l_left}%{F${color_icon} B${color_sec_b1}} %{T2}${icon_wifi}%{F- T1} ${sys_arr[16]}"
+			if [ ${sys_arr[13]} != "down" ]; then
+			wifi="%{F${color_icon}}${sep_l_left}%{F${color_icon} B${color_sec_b1}} %{T2}${icon_wifi}%{F- T1} ${sys_arr[14]}%"
+			  else
+				wifi=""
 			fi
 			### End Wifi Percent ### }}}
 
@@ -203,16 +221,16 @@ while read -r line ; do
 
 				## Set Colors
 				if [ ${tmb_arr_perc} -ge 30 ]; then
-					bat_cicon=${color_bat_high}; bat_cfore=${color_fore}; bat_cback=${color_sec_b1};
+					bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_sec_b1};
 				  elif [ ${tmb_arr_perc} -ge 20 ]; then
-					bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_bat_mid};
+					bat_cicon=${color_bat_mid}; bat_cfore=${color_fore}; bat_cback=${color_sec_b1};
 				  elif [ ${tmb_arr_perc} -ge 10 ]; then
 					bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_bat_low};
 				  else
 					bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_bat_out};
 				fi
 				if [ ${tmb_arr_status} != "D" ]; then
-					bat_icon=${icon_bat_plug}; bat_cicon=${color_icon}; # bat_cfore=${color_fore}; bat_cback=${color_sec_b1};
+					bat_icon=${icon_bat_plug}; bat_cicon=${color_bat_plug};
 				fi
 				bat="%{F${bat_cback}}${sep_left}%{F${bat_cicon} B${bat_cback}} %{T2}${bat_icon}%{F- T1} ${tmb_arr_perc}%"
 			fi
