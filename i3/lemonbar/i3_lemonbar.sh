@@ -69,7 +69,7 @@ while :; do
 	## GPG Check, "GPG"
 	if [ $((cnt_gpg++)) -ge ${upd_gpg} ]; then
 		export DISPLAY=''
-		printf "%s%s\n" "GPG" "$(echo "1234" | gpg2 --batch -o /dev/null --local-user ${gpg_key} -as - 2>/dev/null && echo "1" || echo "0")" > "${panel_fifo}"
+		printf "%s%s\n" "GPG" "$(echo "1234" | gpg2 --no-tty --quiet --batch --local-user ${gpg_key} -as - >/dev/null 2>&1 && echo "1" || echo "0")" > "${panel_fifo}"
 		cnt_gpg=0
 	fi
 
