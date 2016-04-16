@@ -441,10 +441,12 @@ bar {
 ### End Bar Settings ### }}}
 
 ### Exec Programs ### {{{
+exec --no-startup-id [ "$(xrandr | grep -o eDP1)" = "eDP1" ] && xrandr --output eDP1 --primary
+exec --no-startup-id [ -e $HOME/.Xmodmap ] && xmodmap $HOME/.Xmodmap
 exec --no-startup-id compton -b
 exec --no-startup-id srandrd autorandr -c
 exec --no-startup-id nitrogen --restore
-exec --no-startup-id [ -e $HOME/.Xmodmap ] && xmodmap $HOME/.Xmodmap
+exec --no-startup-id conky -qc $HOME/.i3/back_log.conkyrc
 exec --no-startup-id clipit
 exec --no-startup-id xss-lock -- i3lock -e -c 2E3436
 exec --no-startup-id redshift
