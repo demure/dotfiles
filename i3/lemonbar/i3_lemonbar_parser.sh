@@ -206,6 +206,7 @@ while read -r line ; do
 			if [ ${thinkpad_battery} -eq 1 ]; then
 			tmb_arr_perc=$(echo ${line#???} | cut -f1 -d\ )
 			tmb_arr_status=$(echo ${line#???} | cut -f2 -d\ )
+			tmb_arr_time=$(echo ${line#???} | cut -f3 -d\ )
 				## Set icon only
 				if [ ${tmb_arr_perc} -ge 90 ]; then
 					bat_icon=${icon_bat4};
@@ -233,6 +234,7 @@ while read -r line ; do
 					bat_icon=${icon_bat_plug}; bat_cicon=${color_bat_plug};
 				fi
 				bat="%{F${bat_cback}}${sep_left}%{F${bat_cicon} B${bat_cback}} %{T2}${bat_icon}%{F- T1} ${tmb_arr_perc}%"
+				bat_time="%{F${color_icon}}${sep_l_left}%{F${color_icon} B${color_sec_b1}} %{T2}${icon_bat_time}%{F- T1} ${tmb_arr_time}"
 			fi
 			;;
 		### End Thinkpad Multi Battery ### }}}
@@ -295,6 +297,6 @@ while read -r line ; do
 	esac
 
 	# And finally, output
-	printf "%s\n" "%{l}${wsp}${title} %{r}${cpb}${stab}${email}${stab}${gpg}${stab}${local_ip}${stab}${wifi}${stab}${ext_ip}${stab}${bat}${stab}${cpu}${stab}${mem}${stab}${diskr}${stab}${temp}${stab}${nets_d}${stab}${nets_u}${stab}${vol}${stab}${date}${stab}${time}"
+	printf "%s\n" "%{l}${wsp}${title} %{r}${cpb}${stab}${email}${stab}${gpg}${stab}${local_ip}${stab}${wifi}${stab}${ext_ip}${stab}${bat}${stab}${bat_time}${stab}${cpu}${stab}${mem}${stab}${diskr}${stab}${temp}${stab}${nets_d}${stab}${nets_u}${stab}${vol}${stab}${date}${stab}${time}"
 	#printf "%s\n" "%{l}${wsp}${title}"
 done

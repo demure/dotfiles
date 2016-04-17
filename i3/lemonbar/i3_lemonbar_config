@@ -110,6 +110,7 @@ icon_bat1=""                       # Battery icon
 icon_bat2=""                       # Battery icon
 icon_bat3=""                       # Battery icon
 icon_bat4=""                       # Battery icon
+icon_bat_time=""                   # Battery time icon
 icon_temp=""                       # Temperature icon
 icon_wifi=""                       # Wifi percent icon
 icon_local_eth=""                  # Local IP eth icon
@@ -118,6 +119,7 @@ icon_local_out=""                  # Local IP out icon
 icon_ext_ip=""                     # External IP
 icon_gpg=""                        # GPG icon
 icon_gpg_locked=""                 # GPG locked icon
-icon_gpg_unlocked=""               # GPG unlocked icon
+#icon_gpg_unlocked=""               # GPG unlocked icon
+icon_gpg_unlocked=""               # GPG unlocked icon
 ##                                 
 ### End Icons ### }}}
