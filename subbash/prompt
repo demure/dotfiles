@@ -72,20 +72,23 @@ function __prompt_command() {
 		PS1+="${PSCol}${PSOpt}\W${RCol}"			# Current working dir
 
 		### Check Jobs ### {{{
-		## Backgrounded running jobs
-		local BKGJBS=$(jobs -r | wc -l | tr -d ' ')
-		if [ ${BKGJBS} -gt 2 ]; then
-			PS1+=" ${Red}[bg:${BKGJBS}]${RCol}"
-		elif [ ${BKGJBS} -gt 0 ]; then
-			PS1+=" ${Yel}[bg:${BKGJBS}]${RCol}"
-		fi
+		command jobs 2>/dev/null
+		if [ $? == "0" ]; then
+			## Backgrounded running jobs
+			local BKGJBS=$(jobs -r | wc -l | tr -d ' ')
+			if [ ${BKGJBS} -gt 2 ]; then
+				PS1+=" ${Red}[bg:${BKGJBS}]${RCol}"
+			elif [ ${BKGJBS} -gt 0 ]; then
+				PS1+=" ${Yel}[bg:${BKGJBS}]${RCol}"
+			fi
 
-		## Stopped Jobs
-		local STPJBS=$(jobs -s | wc -l | tr -d ' ')
-		if [ ${STPJBS} -gt 2 ]; then
-			PS1+=" ${Red}[stp:${STPJBS}]${RCol}"
-		elif [ ${STPJBS} -gt 0 ]; then
-			PS1+=" ${Yel}[stp:${STPJBS}]${RCol}"
+			## Stopped Jobs
+			local STPJBS=$(jobs -s | wc -l | tr -d ' ')
+			if [ ${STPJBS} -gt 2 ]; then
+				PS1+=" ${Red}[stp:${STPJBS}]${RCol}"
+			elif [ ${STPJBS} -gt 0 ]; then
+				PS1+=" ${Yel}[stp:${STPJBS}]${RCol}"
+			fi
 		fi
 		### End Jobs ### }}}
 
