@@ -200,9 +200,10 @@ workspace_auto_back_and_forth yes
 		### App Quick Launch ### {{{
 		# Launch mode, one app per key.
 		mode "launch" {
-			bindsym b exec uzbl ; mode "default"
+			bindsym b exec $HOME/bin/qutebrowser ; mode "default"
 			bindsym f exec firefox ; mode "default"
 			bindsym t exec i3-sensible-terminal ; mode "default"
+			bindsym w exec urxvt -e wicd-curses ; mode "default"
 
 			## Keeping this as an example
 			# gnome-disks will not launch twice, gparted will. Avoid that.
@@ -217,7 +218,7 @@ workspace_auto_back_and_forth yes
 		### App Focus Mode ### {{{
 		mode "App Focus" {
 			# hardcoded focus keybindings
-			bindsym b [class="(?i)uzbl"] focus, mode "default"
+			bindsym b [class="(?i)qutebrowser"] focus, mode "default"
 			bindsym w [class="(?i)terminal" title="weechat"] focus, mode "default"
 			bindsym m [class="(?i)icedove"] focus, mode "default"
 			bindsym f [class="(?i)spacefm"] focus, mode "default"
@@ -398,9 +399,15 @@ workspace_auto_back_and_forth yes
 ### Window Treatments ### {{{
 	### Program Floating ### {{{
 	for_window [class="mpv|feh"] floating enable
-	for_window [class="mpv|URxvt|chromium|terminator"] border 1pixel
 	for_window [title="Steam - Update*|Steam - Self Updater|Event Tester"] floating enable
+	## Make wicd-curses pop up bigger, and centered
+	for_window [title="wicd-curses"] floating enable, resize shrink width 10000px, resize grow width 800px, resize shrink height 10000px, resize grow height 600px, move position 525 225
+	for_window [class="QtPass"] floating enable, resize shrink width 10000px, resize grow width 800px, resize shrink height 10000px, resize grow height 600px, move position 525 225
 	### End Program Floating ### }}}
+
+	## Disable border
+	for_window [class="mpv|URxvt|chromium|terminator|qutebrowser"] border 1pixel
+
 
 	### uzbl Tabs ### {{{
 	for_window [class="Uzbl-core"] focus child, layout tabbed, focus
@@ -447,15 +454,16 @@ exec --no-startup-id compton -b
 exec --no-startup-id srandrd autorandr -c
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id conky -qc $HOME/.i3/back_log.conkyrc
+exec --no-startup-id conky -qc $HOME/.i3/back_log_backups.conkyrc
 exec --no-startup-id clipit
 exec --no-startup-id xss-lock -- i3lock -e -c 2E3436
 exec --no-startup-id redshift
 exec --no-startup-id dropbox start
 exec --no-startup-id touchegg
 exec --no-startup-id unclutter
-exec --no-startup-id i3-msg "workspace $ws1; exec /usr/bin/urxvt"
-exec --no-startup-id i3-msg "workspace $ws3; exec /usr/bin/chromium"
-exec --no-startup-id i3-msg "workspace $ws4; exec /usr/bin/icedove"
 exec --no-startup-id i3-msg "workspace $ws7; exec /usr/bin/spacefm"
+exec --no-startup-id i3-msg "workspace $ws4; exec /usr/bin/icedove"
+exec --no-startup-id i3-msg "workspace $ws3; exec /usr/local/sbin/qutebrowser"
+exec --no-startup-id i3-msg "workspace $ws1; exec /usr/bin/urxvt"
 exec --no-startup-id sleep 30 && pkill -USR1 redshift
 ### End Exec Programs ### }}}
