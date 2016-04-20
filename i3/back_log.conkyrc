@@ -51,7 +51,7 @@ gap_y 10
 ## stuff after ‘TEXT’ will be formatted on screen
 TEXT
 $color
-${color grey}AUTH ${hr 2}$color
+${color grey90}AUTH ${hr 2}$color
 ${execi 30 tail -n10 /var/log/auth.log | fold -w 300}
 ${color grey90}SYSLOG ${hr 2}$color
 ${execi 30 tail -n30 /var/log/syslog | fold -w300}
