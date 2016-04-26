@@ -83,6 +83,8 @@ while read -r line ; do
 
 			if [ ${thinkpad_battery} -ne 1 ]; then
 				## Set icons
+				## This is 'hard' coded, instead of in the conf, due to font.
+				## It will take user intervention if they have a different number of icons
 				if [ ${sys_arr[15]} -ge 90 ]; then
 					bat_icon=${icon_bat4};
 				  elif [ ${sys_arr[15]} -ge 63 ]; then
@@ -95,19 +97,18 @@ while read -r line ; do
 					bat_icon=${icon_bat0};
 				fi
 
-				## Set colors (so you can have different thresholds)
-				if [ ${sys_arr[15]} -ge 90 ]; then
-					bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_sec_b1};
-				  elif [ ${sys_arr[15]} -ge 63 ]; then
-					bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_sec_b1};
-				  elif [ ${sys_arr[15]} -ge 37 ]; then
-					bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_bat_mid};
-				  elif [ ${sys_arr[15]} -ge 11 ]; then
+				## Set Colors
+				if [ ${sys_arr[15]} -le ${bat_alert_low} ]; then
 					bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_bat_low};
+				  elif [ ${sys_arr[15]} -le ${bat_alert_mid} ]; then
+					bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_bat_mid};
+				  elif [ ${sys_arr[15]} -le ${bat_alert_high} ]; then
+					bat_cicon=${color_bat_high}; bat_cfore=${color_fore}; bat_cback=${color_sec_b1};
 				  else
-					bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_bat_out};
+					bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_sec_b1};
 				fi
 
+				## Set charging icon
 				if [ ${sys_arr[16]} == "C" ] || [ ${sys_arr[16]} == "F" ]; then
 					bat_icon=${icon_bat_plug}; bat_cicon=${color_bat_plug};
 				fi
@@ -208,6 +209,8 @@ while read -r line ; do
 			tmb_arr_status=$(echo ${line#???} | cut -f2 -d\ )
 			tmb_arr_time=$(echo ${line#???} | cut -f3 -d\ )
 				## Set icon only
+				## This is 'hard' coded, instead of in the conf, due to font.
+				## It will take user intervention if they have a different number of icons
 				if [ ${tmb_arr_perc} -ge 90 ]; then
 					bat_icon=${icon_bat4};
 				  elif [ ${tmb_arr_perc} -ge 63 ]; then
@@ -221,15 +224,17 @@ while read -r line ; do
 				fi
 
 				## Set Colors
-				if [ ${tmb_arr_perc} -ge 30 ]; then
-					bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_sec_b1};
-				  elif [ ${tmb_arr_perc} -ge 20 ]; then
-					bat_cicon=${color_bat_mid}; bat_cfore=${color_fore}; bat_cback=${color_sec_b1};
-				  elif [ ${tmb_arr_perc} -ge 10 ]; then
+				if [ ${tmb_arr_perc} -le ${bat_alert_low} ]; then
 					bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_bat_low};
+				  elif [ ${tmb_arr_perc} -le ${bat_alert_mid} ]; then
+					bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_bat_mid};
+				  elif [ ${tmb_arr_perc} -le ${bat_alert_high} ]; then
+					bat_cicon=${color_bat_high}; bat_cfore=${color_fore}; bat_cback=${color_sec_b1};
 				  else
-					bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_bat_out};
+					bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_sec_b1};
 				fi
+
+				## Set charging icon
 				if [ ${tmb_arr_status} != "D" ]; then
 					bat_icon=${icon_bat_plug}; bat_cicon=${color_bat_plug};
 				fi

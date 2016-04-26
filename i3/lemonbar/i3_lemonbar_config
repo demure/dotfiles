@@ -12,14 +12,19 @@ res_w=$(xrandr | grep "current" | awk '{print $8a}')
 thinkpad_battery="1"		# If set to "1", ignore conky battery and use Thinkpad Multi Battery. "0" for conky battery.
 
 ### Alarm Settings ### {{{
-# Alarm settings
 cpu_alert=75                        # % cpu use
 net_alert=5                         # K net use
-temp_alert="160"                    # F heat use
+temp_alert=160                      # F heat use
+
+## Battery
+## Note: levels higher than 'high' will not be highlighted.
+bat_alert_low=9
+bat_alert_mid=19
+bat_alert_high=29
 ### End Alarm ### }}}
 
 ### Update Settings ### {{{
-# update setting, in seconds (conky update in i3_lemonbar_conky
+# update setting, in seconds (conky update in i3_lemonbar_conky)
 upd_vol=3                           # Volume update
 upd_mail=120                        # Mail check update
 upd_cpb=5                           # control-pianobar song update
@@ -29,7 +34,6 @@ upd_tmb=60                          # Thinkpad Multi Battery update
 ### End Update ### }}}
 
 ### Color ### {{{
-# color definitions 
 color_back="#FF1D1F21"              # Default background
 color_fore="#FFC5C8C6"              # Default foreground
 color_head="#FFB5BD68"              # Background for first element
@@ -43,10 +47,9 @@ color_cpu="#FF5F819D"               # Background color for cpu alert
 color_net="#FF5E8D87"               # Background color for net alert
 color_disable="#FF1D1F21"           # Foreground for disable elements
 color_wsp="#FF8C9440"               # Background for selected workspace
-## Need to tinker with these:
-color_bat_out="#ffdc322f"           # Background for very low battery
-color_bat_low="#ffcb4b16"           # Background for low battery
-color_bat_mid="#ffb58900"           # Background for mid battery
+color_bat_low="#ffdc322f"           # Background for low bat threshold
+color_bat_mid="#ffcb4b16"           # Background for mid bat threshold
+color_bat_high="#ffb58900"          # Icon for high bat threshold
 color_bat_plug="#ff859900"          # Forground for 70-100 battery icon
 color_temp="#ffdc322f"              # Backgroud for high temp
 
@@ -71,15 +74,14 @@ color_temp="#ffdc322f"              # Backgroud for high temp
 ### End Color ### }}}
 
 ### Spacing ### {{{
-#default space between sections
-#if [ ${res_w} -gt 1024 ]; then
-if [ ${res_w} -gt 1366 ]; then
-  #stab='  '
-  stab=' '
-else
+##default space between sections
+#if [ ${res_w} -gt 1366 ]; then
   #stab=' '
-  stab=''
-fi
+#else
+  #stab=''
+#fi
+## I like to be compact...
+stab=''
 ### End Spacing ### }}}
 
 ### Icons ### {{{
@@ -119,7 +121,6 @@ icon_local_out=""                  # Local IP out icon
 icon_ext_ip=""                     # External IP
 icon_gpg=""                        # GPG icon
 icon_gpg_locked=""                 # GPG locked icon
-#icon_gpg_unlocked=""               # GPG unlocked icon
 icon_gpg_unlocked=""               # GPG unlocked icon
 ##                                 
 ### End Icons ### }}}
