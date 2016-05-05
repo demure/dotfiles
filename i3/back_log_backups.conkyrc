@@ -52,4 +52,4 @@ gap_y 10
 TEXT
 $color
 ${color grey90}Backups ${hr 2}$color
-${execi 60 tail -n75 $HOME/.config/cryptshotr-cron/log | fold -w 300}
+${execi 60 tail -n125 $HOME/.config/cryptshotr-cron/log | fold -w 300}
