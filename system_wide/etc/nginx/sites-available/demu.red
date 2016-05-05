@@ -52,6 +52,10 @@ location /theme {
   access_log off;
   }
 
+	### Rate Limit ### {{{
+	limit_req zone=perip burst=5 nodelay;
+	### End Rate Limit ### }}}
+
 	### IRPG ### {{{
 	location /irpg {
 		alias /var/www/irpg;
@@ -95,6 +99,10 @@ location /theme {
 		#location /ttrss/(php|js|css) {
 			#access_log off;
 		#}
+
+		### High Rate Limit ### {{{
+		limit_req zone=perip burst=99999 nodelay;
+		### End High Rate Limit ### }}}
 	}
 	### End IRPG ### }}}
 
