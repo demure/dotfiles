@@ -53,7 +53,7 @@ location /theme {
   }
 
 	### Rate Limit ### {{{
-	limit_req zone=perip burst=5 nodelay;
+	limit_req zone=perip burst=10 nodelay;
 	limit_req zone=perserver burst=50;
 	### End Rate Limit ### }}}
 
