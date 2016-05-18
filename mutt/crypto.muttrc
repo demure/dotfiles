@@ -11,6 +11,7 @@ set crypt_autosign = yes
 set crypt_replyencrypt = yes
 set crypt_replysignencrypted=yes
 set crypt_verify_sig=yes
+set crypt_use_gpgme = yes
 set pgp_decode_command="gpg2 %?p?--passphrase-fd 0? --no-verbose --batch --output - %f"
 set pgp_verify_command="gpg2 --no-verbose --batch --output - --verify %s %f"
 set pgp_decrypt_command="gpg2 --no-verbose --batch --output - %f"
