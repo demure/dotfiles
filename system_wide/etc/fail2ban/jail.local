@@ -348,7 +348,9 @@ filter   = nginx-lurkers
 logpath  = /var/log/nginx/access.log
 maxretry = 1
 ## One week
-bantime  = 604800
+#bantime  = 604800
+## One Month
+bantime = 2628002
 ## Four days
 findtime = 345600
 ### End nginx ### }}}
