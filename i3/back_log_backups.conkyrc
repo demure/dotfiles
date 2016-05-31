@@ -49,7 +49,15 @@ gap_x 10
 gap_y 10
 
 ## stuff after ‘TEXT’ will be formatted on screen
+## This summarizes the backup pass/fail state.
+## Written to display 'fail' if periodicity not in log, though will look odd.
+## For some reason 'monthly' can't be regexed... though it worked before fixing fail state.
+## As such, 'month' is intentional.
 TEXT
 $color
 ${color grey90}Backups ${hr 2}$color
-${execi 60 tail -n125 $HOME/.config/cryptshotr-cron/log | fold -w 300}
+Yearly ${alignr}${exec awk '/yearly/ {LL=$0;if($4=="passed"){LAST=$1 " " $2}} END {match(LL, /(.*)\s(.*)\t(\w+)\t(\w+)\t([0-9]+)/, m); if(m[4]=="passed"){printf "☑ passed %s %s\n", m[1], m[2]} else {printf "⚠ last passed %s\n", LAST}}' $HOME/.config/cryptshotr-cron/log}
+Monthly ${alignr}${exec awk '/month/ {LL=$0;if($4=="passed"){LAST=$1 " " $2}} END {match(LL, /(.*)\s(.*)\t(\w+)\t(\w+)\t([0-9]+)/, m); if(m[4]=="passed"){printf "☑ passed %s %s\n", m[1], m[2]} else {printf "⚠ last passed %s\n", LAST}}' $HOME/.config/cryptshotr-cron/log}
+Weekly ${alignr}${exec awk '/weekly/ {LL=$0;if($4=="passed"){LAST=$1 " " $2}} END {match(LL, /(.*)\s(.*)\t(\w+)\t(\w+)\t([0-9]+)/, m); if(m[4]=="passed"){printf "☑ passed %s %s\n", m[1], m[2]} else {printf "⚠ last passed %s\n", LAST}}' $HOME/.config/cryptshotr-cron/log}
+Daily ${alignr}${exec awk '/daily/ {LL=$0;if($4=="passed"){LAST=$1 " " $2}} END {match(LL, /(.*)\s(.*)\t(\w+)\t(\w+)\t([0-9]+)/, m); if(m[4]=="passed"){printf "☑ passed %s %s\n", m[1], m[2]} else {printf "⚠ last passed %s\n", LAST}}' $HOME/.config/cryptshotr-cron/log}
+Hourly ${alignr}${exec awk '/hourly/ {LL=$0;if($4=="passed"){LAST=$1 " " $2}} END {match(LL, /(.*)\s(.*)\t(\w+)\t(\w+)\t([0-9]+)/, m); if(m[4]=="passed"){printf "☑ passed %s %s\n", m[1], m[2]} else {printf "⚠ last passed %s\n", LAST}}' $HOME/.config/cryptshotr-cron/log}
