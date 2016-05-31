@@ -463,4 +463,5 @@ exec --no-startup-id i3-msg "workspace $ws4; exec /usr/bin/icedove"
 exec --no-startup-id i3-msg "workspace $ws3; exec /usr/local/sbin/qutebrowser"
 exec --no-startup-id i3-msg "workspace $ws1; exec /usr/bin/urxvt"
 exec --no-startup-id sleep 30 && pkill -USR1 redshift
+exec --no-startup-id selfspy -n
 ### End Exec Programs ### }}}
