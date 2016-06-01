@@ -353,6 +353,18 @@ maxretry = 1
 bantime = 2628002
 ## Four days
 findtime = 345600
+
+[nginx-req-limit]
+
+enabled  = true
+port     = http,https
+filter   = nginx-limit-req
+logpath  = /var/log/nginx/*error.log
+## One week
+bantime  = 604800
+## Four days
+findtime = 345600
+maxretry = 10
 ### End nginx ### }}}
 
 ### php-url-fopen ### {{{
