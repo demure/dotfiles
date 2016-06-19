@@ -32,6 +32,8 @@ This will also need [i3wm], as it is tailored for this; and [conky].
 * Added control-pianobar for music, as I don't really use MPD. **27FEB2016**
 * Added check to see if gpg key is unlocked (since I use it for `pass`, which give `offlineimap` passwds) **19MAR2016**
 * Added Thinkpad Multi Battery code. Will display ***weighted*** total battery percent. Other peoples code which I found only did `(bat0 perc + bat1 perc)/2`... Which is invalid, and extra invalid with an extended battery! There is a setting in the config to use either conky supplied battery, or the new Thinkpad Multi Battery. **09APR2016**
+* Added Battery Time Remaining to Thinkpad Multi Battery. **17APR2016**
+* Added Screen Brightness percent. **19JUN2016**
 
 
 ###Things I want
