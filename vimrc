@@ -342,6 +342,7 @@ endif
 "	set expandtab   "" use spaces, not tabs
 	set tabstop=4					" Set Tab length
 	set shiftwidth=4				" Affects when you press >>, << or ==. And auto indent.
+	set shiftround					" Uses multiple of shiftwidth when indenting with '<' and '>'
 	set smarttab					" Insert Tabs at ^ per shiftwidth, not tabstop
 	set autoindent					" Always set auto indenting on
 	set copyindent					" Copy prior indentation on autoindent
