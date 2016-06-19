@@ -26,6 +26,7 @@ bat_alert_high=29
 ### Update Settings ### {{{
 # update setting, in seconds (conky update in i3_lemonbar_conky)
 upd_vol=3                           # Volume update
+upd_bri=3                           # Screen brightness update
 upd_mail=120                        # Mail check update
 upd_cpb=5                           # control-pianobar song update
 upd_ext_ip=600                      # External IP update
@@ -98,6 +99,7 @@ icon_mem=""                        # MEM icon
 icon_dl=""                         # Download icon
 icon_ul=""                         # Upload icon
 icon_vol=""                        # Volume icon
+icon_bri=""                        # Brightness icon
 icon_hd=""                         # HD / icon
 icon_home=""                       # HD /home icon
 icon_mail=""                       # Mail icon

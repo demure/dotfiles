@@ -171,6 +171,13 @@ while read -r line ; do
 			;;
 		### End Vol Case ### }}}
 
+		### Brightness Case ### {{{
+		BRI*)
+			# Brightness
+			bri="%{F${color_icon}}${sep_l_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_bri}%{F- T1} ${line#???}%"
+			;;
+		### End Vol Case ### }}}
+
 		### Offlineimap Case ### {{{
 		EMA*)
 			email_arr="${line#???}"
@@ -302,6 +309,6 @@ while read -r line ; do
 	esac
 
 	# And finally, output
-	printf "%s\n" "%{l}${wsp}${title} %{r}${cpb}${stab}${email}${stab}${gpg}${stab}${local_ip}${stab}${wifi}${stab}${ext_ip}${stab}${bat}${stab}${bat_time}${stab}${cpu}${stab}${mem}${stab}${diskr}${stab}${temp}${stab}${nets_d}${stab}${nets_u}${stab}${vol}${stab}${date}${stab}${time}"
+	printf "%s\n" "%{l}${wsp}${title} %{r}${cpb}${stab}${email}${stab}${gpg}${stab}${local_ip}${stab}${wifi}${stab}${ext_ip}${stab}${bat}${stab}${bat_time}${stab}${cpu}${stab}${mem}${stab}${diskr}${stab}${temp}${stab}${nets_d}${stab}${nets_u}${stab}${vol}${stab}${bri}${stab}${date}${stab}${time}"
 	#printf "%s\n" "%{l}${wsp}${title}"
 done

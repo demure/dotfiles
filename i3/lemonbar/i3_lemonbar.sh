@@ -32,6 +32,7 @@ conky -c $(dirname $0)/i3_lemonbar_conky > "${panel_fifo}" &
 
 ### UPDATE INTERVAL METERS
 cnt_vol=${upd_vol}
+cnt_bri=${upd_bri}
 cnt_mail=${upd_mail}
 cnt_cpb=${upd_cpb}
 cnt_ext_ip=${upd_ext_ip}
@@ -44,6 +45,13 @@ while :; do
 	if [ $((cnt_vol++)) -ge ${upd_vol} ]; then
 		amixer -c 0 get Master | grep "Mono" | awk -F'[]%[]' '/%/ {if ($7 == "off") {print "VOL×\n"} else {printf "VOL%d%%\n", $2}}' > "${panel_fifo}" &
 		cnt_vol=0
+	fi
+
+	## Brightness, "BRI"
+	if [ $((cnt_bri++)) -ge ${upd_bri} ]; then
+		## xbacklight doesn't work as this doesn't have xrandr access while running as the bar?
+		paste /sys/class/backlight/intel_backlight/{actual_brightness,max_brightness} | awk '{BRIGHT=$1/$2*100} END {printf "%s%.f\n", "BRI", BRIGHT}' > "${panel_fifo}"
+		cnt_bri=0
 	fi
 
 	## Offlineimap, "EMA"
