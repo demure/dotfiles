@@ -7,6 +7,7 @@
 ### Universal Aliases ### {{{
 ## Remove OS X 'junk' files
 alias rmds='find . -name ".DS_Store" -depth -exec rm -i {} \;'
+alias rmd_='find . -iname '._*' -exec rm -rf {} \;'
 ## Show ls -R with readable depth
 alias filetree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'"
 ## not sure this is still needed, but might $DISPLAY
