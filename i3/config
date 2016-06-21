@@ -359,9 +359,11 @@ workspace_auto_back_and_forth yes
 		### End Rofi Bindings ### }}}
 
 		### Pulse Audio Controls ### {{{
-		bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q set Master 5%+ #increase sound volume
-		bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 5%- #decrease sound volume
-		bindsym XF86AudioMute exec --no-startup-id amixer -q set Master toggle # mute sound
+		bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q set Master 5%+        ## Increase sound volume
+		bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id amixer -q set Master 1%+  ## Fine increase sound volume
+		bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 5%-        ## Decrease sound volume
+		bindsym Shift+XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 1%-  ## Fine decrease sound volume
+		bindsym XF86AudioMute exec --no-startup-id amixer -q set Master toggle            ## mute sound
 		### End Pulse Audio ### }}}
 
 		### Toggle redshift ### {{{
@@ -369,10 +371,12 @@ workspace_auto_back_and_forth yes
 		### End Toggle redshift ### }}}
 
 		### Brightness Bindings ### {{{
-		bindsym XF86MonBrightnessUp exec xbacklight -inc 5 ## Increase screen brightness
-		bindsym XF86MonBrightnessDown exec xbacklight -dec 5 ## Decrease screen brightness
-		bindsym $mod+XF86MonBrightnessUp exec xbacklight -set 100 ## Set max screen brightness
-		bindsym $mod+XF86MonBrightnessDown exec xbacklight -set 1 ## Set min screen brightness
+		bindsym XF86MonBrightnessUp exec xbacklight -inc 5          ## Increase screen brightness
+		bindsym Shift+XF86MonBrightnessUp exec xbacklight -inc 1    ## Fine increase screen brightness
+		bindsym XF86MonBrightnessDown exec xbacklight -dec 5        ## Decrease screen brightness
+		bindsym Shift+XF86MonBrightnessDown exec xbacklight -dec 1  ## Fine decrease screen brightness
+		bindsym $mod+XF86MonBrightnessUp exec xbacklight -set 100   ## Set max screen brightness
+		bindsym $mod+XF86MonBrightnessDown exec xbacklight -set 1   ## Set min screen brightness
 		### End Brightness Bindings ### }}}
 
 		bindsym XF86Search exec rofi -sidebar-mode -show run -font 'Pragmata Pro 10' -fg \#505050 -bg \#000000 -bgalt \#101010 -hlfg \#008080 -hlbg \#454A4F -bc \#008080 -bw 1 -location 2 -width 100 -padding 0 -lines 10 -no-disable-history -no-levenshtein-sort
