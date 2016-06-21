@@ -43,7 +43,7 @@ while :; do
 
 	## Volume, "VOL"
 	if [ $((cnt_vol++)) -ge ${upd_vol} ]; then
-		amixer -c 0 get Master | grep "Mono" | awk -F'[]%[]' '/%/ {if ($7 == "off") {print "VOL×\n"} else {printf "VOL%d%%\n", $2}}' > "${panel_fifo}" &
+		amixer get Master | awk -F'[]%[]' '/%/ {STATE=$5; VOL=$2} END {if (STATE == "off") {print "VOL×\n"} else {printf "VOL%d%%\n", VOL}}' > "${panel_fifo}"
 		cnt_vol=0
 	fi
 
