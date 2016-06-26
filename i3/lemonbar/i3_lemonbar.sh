@@ -43,14 +43,14 @@ while :; do
 
 	## Volume, "VOL"
 	if [ $((cnt_vol++)) -ge ${upd_vol} ]; then
-		amixer get Master | awk -F'[]%[]' '/%/ {STATE=$5; VOL=$2} END {if (STATE == "off") {print "VOL×\n"} else {printf "VOL%d%%\n", VOL}}' > "${panel_fifo}"
+		amixer get Master | awk -F'[]%[]' '/%/ {STATE=$5; VOL=$2} END {if (STATE == "off") {print "VOL×\n"} else {printf "VOL%d%%\n", VOL}}' > "${panel_fifo}" &
 		cnt_vol=0
 	fi
 
 	## Brightness, "BRI"
 	if [ $((cnt_bri++)) -ge ${upd_bri} ]; then
 		## xbacklight doesn't work as this doesn't have xrandr access while running as the bar?
-		paste /sys/class/backlight/intel_backlight/{actual_brightness,max_brightness} | awk '{BRIGHT=$1/$2*100} END {printf "%s%.f\n", "BRI", BRIGHT}' > "${panel_fifo}"
+		paste /sys/class/backlight/intel_backlight/{actual_brightness,max_brightness} | awk '{BRIGHT=$1/$2*100} END {printf "%s%.f\n", "BRI", BRIGHT}' > "${panel_fifo}" &
 		cnt_bri=0
 	fi
 
@@ -77,7 +77,7 @@ while :; do
 	## GPG Check, "GPG"
 	if [ $((cnt_gpg++)) -ge ${upd_gpg} ]; then
 		export DISPLAY=''
-		printf "%s%s\n" "GPG" "$(echo "1234" | gpg2 --no-tty --quiet --batch --local-user ${gpg_key} -as - >/dev/null 2>&1 && echo "1" || echo "0")" > "${panel_fifo}"
+		printf "%s%s\n" "GPG" "$(gpg-connect-agent 'keyinfo --list' /bye 2>/dev/null | awk 'BEGIN{CACHED=0} /^S/ {match($0, /S\sKEYINFO\s\S+\s\S\s\S+\s\S+\s(\S)\s\S\s\S+\s\S+\s\S/, m); if(m[1]==1){CACHED=1}} END{print CACHED}')" > "${panel_fifo}"
 		cnt_gpg=0
 	fi
 

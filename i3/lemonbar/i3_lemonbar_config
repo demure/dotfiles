@@ -7,7 +7,6 @@ geometry="x14"
 #font="Terminess Powerline-8"
 font="PragmataPro-10"
 iconfont="fontawesome-10"
-gpg_key="DC19D3E8"
 res_w=$(xrandr | grep "current" | awk '{print $8a}')
 thinkpad_battery="1"		# If set to "1", ignore conky battery and use Thinkpad Multi Battery. "0" for conky battery.
 
