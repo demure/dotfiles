@@ -57,7 +57,7 @@ workspace_auto_back_and_forth yes
 		### End Last Workspace ### }}}
 
 		### Switch Workspace ### {{{
-		# switch to workspace
+		## switch to workspace
 		bindsym $mod+1 workspace $ws1
 		bindsym $mod+2 workspace $ws2
 		bindsym $mod+3 workspace $ws3
@@ -71,7 +71,7 @@ workspace_auto_back_and_forth yes
 		### End Switch Workspace ### }}}
 
 		### Send Workspace ### {{{
-		# move focused container to workspace
+		## move focused container to workspace
 		bindsym $mod+Shift+1 move container to workspace $ws1
 		bindsym $mod+Shift+2 move container to workspace $ws2
 		bindsym $mod+Shift+3 move container to workspace $ws3
@@ -85,7 +85,7 @@ workspace_auto_back_and_forth yes
 		### End Send Workspace ### }}}
 
 		### Move Workspace Different Monitor ### {{{
-		# Move the current workspace to the next output
+		## Move the current workspace to the next output
 		bindsym $mod+Mod1+Left move workspace to output Left
 		bindsym $mod+Mod1+Down move workspace to output Down
 		bindsym $mod+Mod1+Up move workspace to output Up
@@ -100,41 +100,41 @@ workspace_auto_back_and_forth yes
 	### End Workspace Bindings ### }}}
 
 	### Window Bindings ### {{{
-		# kill focused window
+		## kill focused window
 		bindsym $mod+Shift+q kill
 
 		### Sticky Windows, good for picture in picture
 		bindsym $mod+Shift+s sticky toggle
 
 		### Split Orientation ### {{{
-		# split in horizontal orientation
+		## split in horizontal orientation
 		bindsym $mod+h split h
 
-		# split in vertical orientation
+		## split in vertical orientation
 		bindsym $mod+v split v
 		### End Split Orientation ### }}}
 	### End Window Bindings ### }}}
 
 	### Focus Bindings ### {{{
-		# enter fullscreen mode for the focused container
+		## enter fullscreen mode for the focused container
 		bindsym $mod+f fullscreen toggle
 
 		### Tile / Float ### {{{
-		# toggle tiling / floating
+		## toggle tiling / floating
 		bindsym $mod+Shift+space floating toggle
 
-		# change focus between tiling / floating windows
+		## change focus between tiling / floating windows
 		bindsym $mod+space focus mode_toggle
 		### End Tile / Float ### }}}
 
 		### Change Focus ### {{{
-		# change focus
+		## change focus
 		bindsym $mod+j focus left
 		bindsym $mod+k focus down
 		bindsym $mod+l focus up
 		bindsym $mod+semicolon focus right
 
-		# alternatively, you can use the cursor keys:
+		## alternatively, you can use the cursor keys:
 		bindsym $mod+Left focus left
 		bindsym $mod+Down focus down
 		bindsym $mod+Up focus up
@@ -142,13 +142,13 @@ workspace_auto_back_and_forth yes
 		### End Change Focus ### }}}
 
 		### Move Focused Window ### {{{
-		# move focused window
+		## move focused window
 		bindsym $mod+Shift+j move left
 		bindsym $mod+Shift+k move down
 		bindsym $mod+Shift+l move up
 		bindsym $mod+Shift+semicolon move right
 
-		# alternatively, you can use the cursor keys:
+		## alternatively, you can use the cursor keys:
 		bindsym $mod+Shift+Left move left
 		bindsym $mod+Shift+Down move down
 		bindsym $mod+Shift+Up move up
@@ -162,17 +162,17 @@ workspace_auto_back_and_forth yes
 
 	### Container Bindings ### {{{
 		### Change Container Layout ### {{{
-		# change container layout (stacked, tabbed, toggle split)
+		## change container layout (stacked, tabbed, toggle split)
 		bindsym $mod+s layout stacking
 		bindsym $mod+w layout tabbed
 		bindsym $mod+e layout toggle split
 		### End Change Container Layout ### }}}
 
 		### Parent / Child Container ### {{{
-		# focus the parent container
+		## focus the parent container
 		bindsym $mod+a focus parent
 
-		# focus the child container
+		## focus the child container
 		bindsym $mod+d focus child
 		### End Parent / Child Container ### }}}
 	### End Container Bindings ### }}}
@@ -188,7 +188,7 @@ workspace_auto_back_and_forth yes
 			bindsym r exec --no-startup-id systemctl reboot, mode "default"
 			bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
 
-			# back to normal: Enter or Escape
+			## back to normal: Enter or Escape
 			bindsym Return mode "default"
 			bindsym Escape mode "default"
 		}
@@ -198,47 +198,51 @@ workspace_auto_back_and_forth yes
 		### End Handy Menu Mode ### }}}
 
 		### App Quick Launch ### {{{
-		# Launch mode, one app per key.
+		## Launch mode, one app per key.
 		mode "launch" {
 			bindsym b exec $HOME/bin/qutebrowser ; mode "default"
+			bindsym c exec chromium ; mode "default"
 			bindsym f exec firefox ; mode "default"
+			bindsym g exec gksudo gameconqueror ; mode "default"
+			bindsym o exec libreoffice ; mode "default"
 			bindsym t exec i3-sensible-terminal ; mode "default"
 			bindsym w exec urxvt -e wicd-curses ; mode "default"
 
 			## Keeping this as an example
-			# gnome-disks will not launch twice, gparted will. Avoid that.
-			bindsym d exec ((pidof gpartedbin) || gksudo gparted); exec gnome-disks ; mode "default"
+			## gnome-disks will not launch twice, gparted will. Avoid that.
+			#bindsym d exec ((pidof gpartedbin) || gksudo gparted); exec gnome-disks ; mode "default"
 
 			bindsym Return mode "default"
 			bindsym Escape mode "default"
 		}
-		bindsym $mod+Shift+g mode "launch"
+		#bindsym $mod+Shift+g mode "launch"
+		bindsym $mod+g mode "launch"
 		### End App Quick Launch ### }}}
 
 		### App Focus Mode ### {{{
 		mode "App Focus" {
-			# hardcoded focus keybindings
+			## hardcoded focus keybindings
 			bindsym b [class="(?i)qutebrowser"] focus, mode "default"
 			bindsym w [class="(?i)terminal" title="weechat"] focus, mode "default"
-			bindsym m [class="(?i)icedove"] focus, mode "default"
+			#bindsym m [class="(?i)icedove"] focus, mode "default"
 			bindsym f [class="(?i)spacefm"] focus, mode "default"
 			bindsym z [class="(?i)zathura"] focus, mode "default"
 
-			# back to normal: Enter or Escape
+			## back to normal: Enter or Escape
 			bindsym Return mode "default"
 			bindsym Escape mode "default"
 		}
-		bindsym $Mod+g mode "App Focus"
+		bindsym $mod+Shift+g mode "App Focus"
 		### End App Focus Mode ### }}}
 
 		### Resize Window Mode ### {{{
-		# resize window (you can also use the mouse for that)
+		## resize window (you can also use the mouse for that)
 		mode "resize" {
-			# These bindings trigger as soon as you enter the resize mode
+			## These bindings trigger as soon as you enter the resize mode
 
-			# They resize the border in the direction you pressed, e.g.
-			# when pressing left, the window is resized so that it has
-			# more space on its left
+			## They resize the border in the direction you pressed, e.g.
+			## when pressing left, the window is resized so that it has
+			## more space on its left
 			bindsym h resize shrink left 10 px or 10 ppt
 			bindsym j resize shrink down 10 px or 10 ppt
 			bindsym k resize shrink up 10 px or 10 ppt
@@ -316,7 +320,7 @@ workspace_auto_back_and_forth yes
 			bindsym e exec --no-startup-id ~/.config/pianobar/control-pianobar.sh explain, mode "default"
 			bindsym c exec --no-startup-id ~/.config/pianobar/control-pianobar.sh current, mode "default"
 
-			# back to normal: Enter or Escape
+			## back to normal: Enter or Escape
 			bindsym Return mode "default"
 			bindsym Escape mode "default"
 		}
@@ -328,16 +332,16 @@ workspace_auto_back_and_forth yes
 
 	### Misc Bindings ### {{{
 		### i3 Keys ### {{{
-		# reload the configuration file
+		## reload the configuration file
 		bindsym $mod+Shift+c reload
-		# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+		## restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 		bindsym $mod+Shift+r restart
-		# exit i3 (logs you out of your X session)
+		## exit i3 (logs you out of your X session)
 		bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 		### End i3 Keys ### }}}
 
 		### Launch Term ### {{{
-		# start a terminal
+		## start a terminal
 		bindsym $mod+Return exec i3-sensible-terminal
 		### End Launch Term ### }}}
 
@@ -350,7 +354,7 @@ workspace_auto_back_and_forth yes
 
 		### Rofi Bindings ### {{{
 		## Use rofi, it's better
-		# start dmenu (a program launcher)
+		## start dmenu (a program launcher)
 		#bindsym $mod+d exec dmenu_run
 		bindsym $mod+p exec rofi -sidebar-mode -show run -font 'Pragmata Pro 10' -fg \#505050 -bg \#000000 -bgalt \#101010 -hlfg \#008080 -hlbg \#454A4F -bc \#008080 -bw 1 -location 2 -width 100 -padding 0 -lines 10 -no-disable-history -no-levenshtein-sort
 
@@ -383,7 +387,7 @@ workspace_auto_back_and_forth yes
 	### End Misc Bindings ### }}}
 
 	### Mouse Bindings ### {{{
-		# Use Mouse+$mod to drag floating windows to their wanted position
+		## Use Mouse+$mod to drag floating windows to their wanted position
 		floating_modifier $mod
 		
 		## Seems like this only works on border or title bar...
@@ -392,10 +396,10 @@ workspace_auto_back_and_forth yes
 	### End Mouse Bindings ### }}}
 
 	### Scratch Pad ### {{{
-	# Make the currently focused window a scratchpad
+	## Make the currently focused window a scratchpad
 	bindsym $mod+Shift+minus move scratchpad
 
-	# Show the first scratchpad window
+	## Show the first scratchpad window
 	bindsym $mod+minus scratchpad show
 	### End Scratch Pad ### }}}
 ### End Bindings ### }}}
@@ -427,7 +431,6 @@ workspace_auto_back_and_forth yes
 ### End Window Treatments ### }}}
 
 ### Assign Application Workspace ### {{{
-assign [class="(?i)icedove"]	$ws4
 assign [class="(?i)spacefm"]	$ws7
 
 ### End Assign Application Workspace ### }}}
@@ -463,7 +466,6 @@ exec --no-startup-id dropbox start
 exec --no-startup-id touchegg
 exec --no-startup-id unclutter
 exec --no-startup-id i3-msg "workspace $ws7; exec /usr/bin/spacefm"
-exec --no-startup-id i3-msg "workspace $ws4; exec /usr/bin/icedove"
 exec --no-startup-id i3-msg "workspace $ws3; exec /usr/local/sbin/qutebrowser"
 exec --no-startup-id i3-msg "workspace $ws1; exec /usr/bin/urxvt"
 exec --no-startup-id sleep 30 && pkill -USR1 redshift
