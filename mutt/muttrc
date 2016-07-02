@@ -55,6 +55,8 @@ subscribe ahashop
 ### Sourcing ### {{{
 source ~/.mutt/alias
 source ~/.mutt/crypto.muttrc
+## can use this to sources files that might not be there, like aliases 
+#source `FILE=$HOME/.muttaliases; if [ ! -s "$FILE" ]; then FILE=/dev/null;fi;echo "$FILE"`
 ### End Sourcing ### }}}
 
 ### Color Scheme ### {{{ 
@@ -133,7 +135,7 @@ source ~/.mutt/accounts/sdf.muttrc
 folder-hook emu/*         source ~/.mutt/accounts/emu.muttrc
 folder-hook sdf/*         source ~/.mutt/accounts/sdf.muttrc
 folder-hook gmail/*       source ~/.mutt/accounts/gmail.muttrc
-folder-hook local/*       source ~/.mutt/accounts/local.muttrc
+folder-hook /var/spool/mail/$USER/*       source ~/.mutt/accounts/local.muttrc
 
 ## Make sent show recipient
 ## Doesn't like this regex?
@@ -141,23 +143,23 @@ folder-hook local/*       source ~/.mutt/accounts/local.muttrc
 #folder-hook ! *[sS]ent* 'set index_format="%2C | %Z [%d] %-30.30F (%-4.4c) %s"'
 
 ## Mailboxes to show in the sidebar.
-mailboxes "+-- sdf ------------" \
-		  +sdf/INBOX \
-		  +sdf/Drafts \
-		  +sdf/Sent \
-		  "+-- gmail ----------" \
-		  +gmail/INBOX \
-		  +gmail/Archives \
-		  +gmail/drafts \
-		  +gmail/sent \
-		  ~/.mail/gmail/Trash \
-		  "+-- emu ------------" \
-          +emu/INBOX \
-          +emu/archive \
-          +emu/drafts \
-          +emu/sent \
-          "+-- local ----------" \
-          /var/spool/mail/$USER \
+mailboxes  "+-- sdf ------------" \
+			+sdf/INBOX \
+			+sdf/drafts \
+			+sdf/Sent \
+		   "+-- gmail ----------" \
+			+gmail/INBOX \
+			+gmail/Archives \
+			+gmail/People \
+			+gmail/drafts \
+			+gmail/sent \
+		   "+-- emu ------------" \
+			+emu/INBOX \
+			+emu/archive \
+			+emu/drafts \
+			+emu/sent \
+		   "+-- local ----------" \
+			/var/spool/mail/$USER \
 ### End Account }}}
 
 ### Index View Options ### {{{ 

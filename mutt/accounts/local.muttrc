@@ -11,4 +11,10 @@ set spoolfile = "/var/spool/mail/$USER"
 #set postponed = "+local/drafts"
 #set record    = "+local/Sent Messages"
 
-color status yellow default
+## Color border
+color status red black
+
+## Contacts
+bind editor <Tab> complete        # default Mutt setting
+bind editor ^T complete-query     # default Mutt setting
+unset query_command               # default Mutt setting

@@ -1,16 +1,21 @@
-# Account Settings ------------------------------
+## Account Settings ------------------------------
 
 set from      = demuredemeanor@gmail.com"
 set sendmail  = "/usr/bin/msmtp -a gmail"
 
-# Default inbox.
+## Default inbox.
 set spoolfile = "+gmail/INBOX"
 
-# Other special folders.
+## Other special folders.
 set mbox      = "+gmail/Archives"
 set postponed = "+gmail/drafts"
 set record    = "+gmail/sent"
 
-#mailboxes `echo ~/mail/inbox/*`
+## Color border
+color status cyan black
 
-color status green default
+## Contacts
+bind editor <Tab> complete-query
+bind editor ^T complete
+## Note, new installs will need `goobook authenticate`
+set query_command = "goobook query '%s'"

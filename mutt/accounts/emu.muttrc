@@ -1,14 +1,20 @@
-# Account Settings ------------------------------
+## Account Settings ------------------------------
 
 set from      = "amcbean@emich.edu"
 set sendmail  = "/usr/bin/msmtp -a emu"
 
-# Default inbox.
+## Default inbox.
 set spoolfile = "+emu/INBOX"
 
-# Other special folders.
+## Other special folders.
 set mbox      = "+emu/archive"
 set postponed = "+emu/drafts"
 set record    = "+emu/sent"
 
-color status green default
+## Color border
+color status green black
+
+## Contacts
+bind editor <Tab> complete        # default Mutt setting
+bind editor ^T complete-query     # default Mutt setting
+unset query_command               # default Mutt setting

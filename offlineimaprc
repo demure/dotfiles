@@ -49,7 +49,6 @@ remotehost = ma.sdf.org
 remoteport = 993
 ssl = yes
 cert_fingerprint = 64742c3c557b49d0787d091c99223f13d6143b5d
-#remotepasseval = keyring.get_password('offlineimap', 'demure@sdf.org')
 remotepasseval = get_pass("sdf")
 realdelete = yes
 ### End sdf### }}}
@@ -68,7 +67,7 @@ nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
 							'flagged': '[Gmail]/Starred',
 							'trash':   '[Gmail]/Trash',
 							'archive': '[Gmail]/All Mail',
-						   }.get(folder, folder)
+							}.get(folder, folder)
 
 [Repository gmail-Remote]
 ## This is set due to an annoying error by the exparimental xoauth2
@@ -79,22 +78,23 @@ type = Gmail
 remoteuser = demuredemeanor@gmail.com
 ssl = yes
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
-#remotepasseval = keyring.get_password('offlineimap', 'demuredemeanor@gmail.com')
 remotepasseval = get_pass("gmail")
 realdelete = yes
 nametrans = lambda folder: {'[Gmail]/Drafts':    'drafts',
 							'[Gmail]/Sent Mail': 'sent',
 							'[Gmail]/Starred':   'flagged',
-							'[Gmail]/Trash':     'trash',
 							'[Gmail]/All Mail':  'archive',
-						   }.get(folder, folder)
-folderfilter = lambda folder: folder not in ['[Gmail]/Trash',
-											 '[Gmail]/Important',
-											 '[Gmail]/Spam',
-											 ]
+							}.get(folder, folder)
+folderfilter = lambda folder: folder in ['[Gmail]/Drafts',
+										'[Gmail]/Sent Mail',
+										'[Gmail]/Starred',
+										'[Gmail]/All Mail',
+										'Inbox',
+										'People',
+										]
 ### End gmail ### }}}
 
-### emu ### {{{
+### EMU ### {{{
 [Account emu]
 localrepository = emu-Local
 remoterepository = emu-Remote
@@ -104,11 +104,11 @@ status_backend = sqlite
 type = Maildir
 localfolders = ~/.mail/emu
 nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
-                            'sent':    '[Gmail]/Sent Mail',
-                            'flagged': '[Gmail]/Starred',
-                            'trash':   '[Gmail]/Trash',
-                            'archive': '[Gmail]/All Mail',
-                           }.get(folder, folder)
+							'sent':    '[Gmail]/Sent Mail',
+							'flagged': '[Gmail]/Starred',
+							'trash':   '[Gmail]/Trash',
+							'archive': '[Gmail]/All Mail',
+							}.get(folder, folder)
 
 [Repository emu-Remote]
 ## This is set due to an annoying error by the exparimental xoauth2
@@ -119,17 +119,18 @@ type = Gmail
 remoteuser = amcbean@emich.edu
 ssl = yes
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
-#remotepasseval = keyring.get_password('offlineimap', 'amcbean@emich.edu')
 remotepasseval = get_pass("emu")
 realdelete = yes
 nametrans = lambda folder: {'[Gmail]/Drafts':    'drafts',
-                            '[Gmail]/Sent Mail': 'sent',
-                            '[Gmail]/Starred':   'flagged',
-                            '[Gmail]/Trash':     'trash',
-                            '[Gmail]/All Mail':  'archive',
-                           }.get(folder, folder)
-folderfilter = lambda folder: folder not in ['[Gmail]/Trash',
-                                             '[Gmail]/Important',
-                                             '[Gmail]/Spam',
-                                             ]
-### End gmail ### }}}
+							'[Gmail]/Sent Mail': 'sent',
+							'[Gmail]/Starred':   'flagged',
+							'[Gmail]/Trash':     'trash',
+							'[Gmail]/All Mail':  'archive',
+							}.get(folder, folder)
+folderfilter = lambda folder: folder in ['[Gmail]/Drafts',
+										'[Gmail]/Sent Mail',
+										'[Gmail]/Starred',
+										'[Gmail]/All Mail',
+										'Inbox',
+										]
+### End EMU ### }}}
