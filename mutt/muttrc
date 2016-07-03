@@ -69,7 +69,7 @@ source ~/.mutt/crypto.muttrc
 
 ### Sidebar Patch ### {{{ 
 set sidebar_visible = yes 
-set sidebar_delim   = ' | '
+set sidebar_delim   = '|'
 set sidebar_width   = 25 
 # set sidebar_delim_chars = "./"
 color sidebar_new  yellow default

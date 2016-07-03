@@ -89,7 +89,7 @@ folderfilter = lambda folder: folder in ['[Gmail]/Drafts',
 										'[Gmail]/Sent Mail',
 										'[Gmail]/Starred',
 										'[Gmail]/All Mail',
-										'Inbox',
+										'INBOX',
 										'People',
 										]
 ### End gmail ### }}}
@@ -131,6 +131,6 @@ folderfilter = lambda folder: folder in ['[Gmail]/Drafts',
 										'[Gmail]/Sent Mail',
 										'[Gmail]/Starred',
 										'[Gmail]/All Mail',
-										'Inbox',
+										'INBOX',
 										]
 ### End EMU ### }}}
