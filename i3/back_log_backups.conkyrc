@@ -4,7 +4,7 @@ own_window_type override
 own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
 double_buffer yes
 
-## Compton doesn't like conky trasparent, so this is the fix
+## Compton doesn't like conky transparent, so this is the fix
 ## http://conky.pitstop.free.fr/wiki/index.php5?title=Transparency_in_conky_(en)
 own_window_transparent no #yes
 own_window_argb_visual yes
