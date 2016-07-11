@@ -5,7 +5,7 @@ panel_fifo="/tmp/i3_lemonbar_${USER}"
 geometry="x14"
 ## This needs a fork of lemonbar.
 #font="Terminess Powerline-8"
-font="PragmataPro-10"
+font="PragmataProMono-10"
 iconfont="fontawesome-10"
 res_w=$(xrandr | grep "current" | awk '{print $8a}')
 thinkpad_battery="1"		# If set to "1", ignore conky battery and use Thinkpad Multi Battery. "0" for conky battery.
