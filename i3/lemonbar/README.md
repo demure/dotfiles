@@ -17,7 +17,8 @@ This will also need [i3wm], as it is tailored for this; and [conky].
 
 
 ###Installation
-* You will want to install font-awesome, you change the icon font and set all the icons.
+* You will want to install font-awesome
+  * or you can change the icon font and set all the icons.
 * You will need to check that the conky conf uses your hardware identifiers.
   * battery
   * wifi
