@@ -21,6 +21,11 @@ root: ~/
 windows:
   - apt: sudo aptitude
   - mutt: mutt
-  - task: vit
+  - schedule:
+      layout: even-vertical
+      panes:
+        - vit
+        - khal interactive
+  - cal: khal
   - rss: newsbeuter
   - shell:
