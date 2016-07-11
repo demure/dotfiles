@@ -111,4 +111,4 @@
 # evaluate if I can safely have MA's path higher...
 # put this is a location
 #export PATH=/usr/pkg/bin:/usr/local/bin:/usr/bin:/bin
-export PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/pkg/bin:/usr/local/bin:/usr/local/sbin:${HOME}/projects/personal/scripts:${HOME}/bin:/usr/local/games:/usr/games
+export PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/pkg/bin:/usr/local/bin:/usr/local/sbin:${HOME}/projects/personal/scripts:${HOME}/bin:${HOME}/.local/bin:/usr/local/games:/usr/games
