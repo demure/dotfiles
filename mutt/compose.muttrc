@@ -1,0 +1,45 @@
+##### My (demuredemeanor) muttrc sub compose config
+# Uses tabstop=4; shiftwidth=4 tabs; foldmarker={{{,}}};
+# https://notabug.org/demure/dotfiles
+# legacy repo http://github.com/demure/dotfiles
+# vim:set syntax=muttrc:
+
+### Compose View Options ### {{{
+set realname = "demure demeanor"                 # who am I?
+set envelope_from                                # which from?
+set sig_dashes                                   # dashes before sig
+set autoedit
+set edit_headers                                 # show headers when composing
+set fast_reply                                   # skip to compose when replying
+set askcc                                        # ask for CC:
+set fcc_attach                                   # save attachments with the body
+set mime_forward = ask-no                        # forward attachments as attachments
+# unset mime_forward                               # forward attachments as a part of body
+set forward_format = "Fwd: %s"                   # format of subject when forwarding
+set forward_decode                               # decode when forwarding
+set attribution = "On %d, %n wrote:"             # format of quoting header
+set reply_to                                     # reply to Reply to: field
+set reverse_name                                 # reply as whoever it was to
+set include                                      # include message in reply
+set forward_quote                                # include message in forwards
+
+set editor = "vim +:silent+?^$"                  # use terminal Vim to compose email
+set text_flowed = yes                            # eliminate odd line breaks
+# set editor = "vim -c 'set spell spelllang=en' -c 'setlocal fo+=aw' +:silent+?^$"
+### End Compose View Opitons ### }}}
+
+### Compose View Bindings ### {{{
+## This is were the default pgp binding lives...
+## Postpone message
+#bind compose p postpone-message
+#bind index p recall-message
+
+# Vanilla Searching
+# / works just like Vim, use `n` to go to next, 'N' to go to previous
+bind index N search-opposite
+bind pager N search-opposite
+
+# Vanilla Limiting
+# `l` + pattern
+macro index a "<limit>all\n" "show all messages (undo limit)"
+### End Compose View Bindings ### }}}

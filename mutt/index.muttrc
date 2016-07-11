@@ -1,0 +1,37 @@
+##### My (demuredemeanor) muttrc sub index config
+# Uses tabstop=4; shiftwidth=4 tabs; foldmarker={{{,}}};
+# https://notabug.org/demure/dotfiles
+# legacy repo http://github.com/demure/dotfiles
+# vim:set syntax=muttrc:
+
+### Index View Options ### {{{
+#set date_format = "%m.%d.%y"
+## Uses Conditional Date patch, to be awesome.
+## today -> "22:09", 7 days -> "Sun 10", this year -> "Jun 10", older -> "2016 JUL 10"
+set index_format = "[%Z] %<[y?%<[7d?%<[d?%[%H:%M ]&%[%a %d]>&%[%b %d]>&%[%Y %b %d]>  %-20.20F  %s%> (%4c){%X}"
+set sort = threads                         # like gmail
+set sort_aux = reverse-last-date-received  # like gmail
+set uncollapse_jump                        # don't collapse on an unread message
+set sort_re                                # thread based on regex
+set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+### End Index View Options ### }}}
+
+### Index Key Bindings ### {{{
+bind index gg         first-entry
+bind index G          last-entry
+
+bind index R          group-reply
+bind index <tab>      sync-mailbox
+bind index <space>    collapse-thread
+
+## Ctrl-R to mark all as read
+macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
+
+## Sync email
+macro index O "<shell-escape>offlineimap<enter>"           "run offlineimap to sync all mail"
+macro index o "<shell-escape>offlineimap -qf INBOX<enter>" "run offlineimap to sync inbox"
+
+## Saner copy/move dialogs
+macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
+macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
+### End Index Key Bindings ### }}}

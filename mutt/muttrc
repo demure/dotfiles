@@ -15,7 +15,7 @@
 # I am using pass now, which is working quite well
 # https://github.com/sup-heliotrope/sup/wiki/Securely-Store-Password
 
-### Paths ### {{{ 
+### Paths ### {{{
 set folder            = ~/.mail                # mailbox location
 set alias_file        = ~/.mutt/alias          # where to store aliases
 set header_cache      = ~/.mutt/cache/headers  # where to store headers
@@ -26,7 +26,7 @@ set tmpdir            = ~/.mutt/temp           # where to keep temp files
 set signature         = ~/.mutt/sig            # my signature file
 ### End Pathes ### }}}
 
-### Basic Options ### {{{ 
+### Basic Options ### {{{
 set wait_key = no        # shut up, mutt
 set mbox_type = Maildir  # mailbox type
 set timeout = 3          # idle time before scanning
@@ -53,13 +53,18 @@ subscribe ahashop
 ### End Basic ### }}}
 
 ### Sourcing ### {{{
+source ~/.mutt/index.muttrc
+source ~/.mutt/pager.muttrc
+source ~/.mutt/compose.muttrc
 source ~/.mutt/alias
 source ~/.mutt/crypto.muttrc
-## can use this to sources files that might not be there, like aliases 
+source ~/.mutt/sidebar.muttrc
+
+## can use this to sources files that might not be there, like aliases
 #source `FILE=$HOME/.muttaliases; if [ ! -s "$FILE" ]; then FILE=/dev/null;fi;echo "$FILE"`
 ### End Sourcing ### }}}
 
-### Color Scheme ### {{{ 
+### Color Scheme ### {{{
 #source ~/.mutt/themes/comidia.muttrc
 #source ~/.mutt/themes/vombatidae.muttrc
 #source ~/.mutt/themes/tomorrow-night.muttrc
@@ -67,15 +72,7 @@ source ~/.mutt/crypto.muttrc
 #source ~/.mutt/themes/mutt-colors-solarized-light-16.muttrc
 ### End Color ### }}}
 
-### Sidebar Patch ### {{{ 
-set sidebar_visible = yes 
-set sidebar_delim   = '|'
-set sidebar_width   = 25 
-# set sidebar_delim_chars = "./"
-color sidebar_new  yellow default
-### End Sidebar ### }}}
-
-### Status Bar ### {{{ 
+### Status Bar ### {{{
 set status_chars   = " *%A"
 
 ## status_format - format of summary on the current folder in the index
@@ -117,15 +114,15 @@ set status_on_top = yes
 set status_format  = "Folder: %f : %r%n new (%m messages)%?d? (%d to delete)?%?t? (%t tagged)? %>-%?p?( %p postponed )? : "
 ### End Status Bar ### }}}
 
-### Header Options ### {{{ 
+### Header Options ### {{{
 ignore *                               # ignore all headers
 unignore from: to: cc: date: subject:  # show only these
 unhdr_order *                          # some distros order things
 hdr_order from: to: cc: date: subject: # and in this order
 ### End Header ### }}}
 
-### Account Settings ### {{{ 
-## Multiple account setup. 
+### Account Settings ### {{{
+## Multiple account setup.
 
 ## Default inbox.
 set spoolfile = "+sdf/INBOX"
@@ -142,123 +139,22 @@ folder-hook /var/spool/mail/$USER/*       source ~/.mutt/accounts/local.muttrc
 #folder-hook   *[sS]ent* 'set index_format="%2C | %Z [%d] %-30.30t (%-4.4c) %s"'
 #folder-hook ! *[sS]ent* 'set index_format="%2C | %Z [%d] %-30.30F (%-4.4c) %s"'
 
-## Mailboxes to show in the sidebar.
-mailboxes  "+-- sdf ------------" \
+## Mailboxes, which will be shown in the sidebar.
+mailboxes	+--\ sdf\ ------------- \
 			+sdf/INBOX \
 			+sdf/drafts \
 			+sdf/Sent \
-		   "+-- gmail ----------" \
+			+--\ gmail\ ----------- \
 			+gmail/INBOX \
 			+gmail/Archives \
 			+gmail/People \
 			+gmail/drafts \
 			+gmail/sent \
-		   "+-- emu ------------" \
+			+--\ emu\ ------------- \
 			+emu/INBOX \
 			+emu/archive \
 			+emu/drafts \
 			+emu/sent \
-		   "+-- local ----------" \
+			+--\ local\ ----------- \
 			/var/spool/mail/$USER \
 ### End Account }}}
-
-### Index View Options ### {{{ 
-set date_format = "%m.%d.%y"
-set index_format = "[%Z] %D %-20.20F %s"
-set sort = threads                         # like gmail
-set sort_aux = reverse-last-date-received  # like gmail
-set uncollapse_jump                        # don't collapse on an unread message
-set sort_re                                # thread based on regex
-set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
-### End Index  View ### }}}
-
-### Index Key Bindings ### {{{ 
-bind index gg         first-entry
-bind index G          last-entry
-
-bind index R          group-reply
-bind index <tab>      sync-mailbox
-bind index <space>    collapse-thread
-
-## Ctrl-R to mark all as read
-macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
-
-## Sync email
-macro index O "<shell-escape>offlineimap<enter>"           "run offlineimap to sync all mail"
-macro index o "<shell-escape>offlineimap -qf INBOX<enter>" "run offlineimap to sync inbox"
-
-## Saner copy/move dialogs
-macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
-macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
-
-### End Index Key ### }}}
-
-### Sidebar Navigation ### {{{ 
-bind index,pager <down>    sidebar-next
-bind index,pager <up>      sidebar-prev
-bind index,pager <right>   sidebar-open
-### End Sidebar Nav ### }}}
-
-### Pager View Settings ### {{{ 
-set pager_index_lines = 10  # number of lines to show
-set pager_context = 3       # number of context lines to show
-set pager_stop              # don't go to the next message automatically
-set menu_scroll             # scroll in menus
-set tilde                   # show tildes like in vim
-unset markers               # no ugly plus signs
-
-set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
-alternative_order text/plain text/enriched text/html
-
-## Pager Key Bindings
-bind pager k   previous-line
-bind pager j   next-line
-bind pager gg  top
-bind pager G   bottom
-
-bind pager R   group-reply
-
-## View attachments properly.
-bind attach <return> view-mailcap
-
-## Handle URLs.
-macro pager \Cu "|urlview<enter>" "call urlview to open links"
-### End Pager View ### }}}
-
-### Compose View Options ### {{{ 
-set realname = "demure demeanor"                 # who am I?
-set envelope_from                                # which from?
-set sig_dashes                                   # dashes before sig
-set autoedit
-set edit_headers                                 # show headers when composing
-set fast_reply                                   # skip to compose when replying
-set askcc                                        # ask for CC:
-set fcc_attach                                   # save attachments with the body
-set mime_forward = ask-no                        # forward attachments as attachments
-# unset mime_forward                               # forward attachments as a part of body
-set forward_format = "Fwd: %s"                   # format of subject when forwarding
-set forward_decode                               # decode when forwarding
-set attribution = "On %d, %n wrote:"             # format of quoting header
-set reply_to                                     # reply to Reply to: field
-set reverse_name                                 # reply as whoever it was to
-set include                                      # include message in reply
-set forward_quote                                # include message in forwards
-
-set editor = "vim +:silent+?^$"                  # use terminal Vim to compose email
-set text_flowed = yes                            # eliminate odd line breaks
-# set editor = "vim -c 'set spell spelllang=en' -c 'setlocal fo+=aw' +:silent+?^$"
-
-## This is were the default pgp binding lives...
-## Postpone message
-#bind compose p postpone-message
-#bind index p recall-message
-
-# Vanilla Searching
-# / works just like Vim, use `n` to go to next, 'N' to go to previous
-bind index N search-opposite
-bind pager N search-opposite
-
-# Vanilla Limiting
-# `l` + pattern
-macro index a "<limit>all\n" "show all messages (undo limit)"
-### End Compose View ### }}}

@@ -1,0 +1,32 @@
+##### My (demuredemeanor) muttrc sub sidebar config
+# Uses tabstop=4; shiftwidth=4 tabs; foldmarker={{{,}}};
+# https://notabug.org/demure/dotfiles
+# legacy repo http://github.com/demure/dotfiles
+# vim:set syntax=muttrc:
+
+ifndef USE_SIDEBAR finish           ## If not compiled with sidebar, skip
+
+### Sidebar Settings ### {{{
+set sidebar_visible = yes           ## Make the Sidebar visible by default
+set sidebar_width = 16              ## Sidebar width, including divider
+set sidebar_divider_char = '│'      ## Pretty line-drawing character
+set sidebar_short_path              ## Shorten mailbox names
+set sidebar_delim_chars = "/"       ## Delete mailbox name up to the last / character
+#set sidebar_folder_indent           ## Indent folders whose names we've shortened
+#set sidebar_indent_string="  "      ## Indent with two spaces
+### End Sidebar Settings ### }}}
+
+### Sidebar Colors ### {{{
+color sidebar_indicator default color17         ## Dark blue background
+color sidebar_highlight white   color238        ## Grey background
+color sidebar_spoolfile yellow  default         ## Yellow
+color sidebar_new       green   default         ## Green
+color sidebar_flagged   red     default         ## Red
+color sidebar_divider   color8  default         ## Dark grey
+### End Sidebar Colors ### }}}
+
+### Sidebar Navigation ### {{{
+bind index,pager <down>    sidebar-next
+bind index,pager <up>      sidebar-prev
+bind index,pager <right>   sidebar-open
+### End Sidebar Nav ### }}}

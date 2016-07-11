@@ -1,0 +1,31 @@
+##### My (demuredemeanor) muttrc sub pager config
+# Uses tabstop=4; shiftwidth=4 tabs; foldmarker={{{,}}};
+# https://notabug.org/demure/dotfiles
+# legacy repo http://github.com/demure/dotfiles
+# vim:set syntax=muttrc:
+
+### Pager View Options ### {{{
+set pager_index_lines = 10  # number of lines to show
+set pager_context = 3       # number of context lines to show
+set pager_stop              # don't go to the next message automatically
+set menu_scroll             # scroll in menus
+set tilde                   # show tildes like in vim
+unset markers               # no ugly plus signs
+### End Pager View Options ### }}}
+
+set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+alternative_order text/plain text/enriched text/html
+
+### Pager Key Bindings ### {{{
+bind pager k   previous-line
+bind pager j   next-line
+bind pager gg  top
+bind pager G   bottom
+bind pager R   group-reply
+
+## View attachments properly.
+bind attach <return> view-mailcap
+
+## Handle URLs.
+macro pager \Cu "|urlview<enter>" "call urlview to open links"
+### End Pager Key Bindings ### }}}
