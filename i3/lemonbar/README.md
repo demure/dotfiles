@@ -16,6 +16,17 @@ I use [lemonbar krypt-n] instead of [lemonbar].
 This will also need [i3wm], as it is tailored for this; and [conky].
 
 
+###Installation
+* You will want to install font-awesome, you change the icon font and set all the icons.
+* You will need to check that the conky conf uses your hardware identifiers.
+  * battery
+  * wifi
+  * temp
+* You may need to tweak the acpi paths in the main script for your system
+  * brightness
+  * thinkpad multi battery? (I think that this might be same across thinkpads though)
+
+
 ###Modifications
 * On my system, volume and a number of other segments had an extra `%`. **FINISHED**
 * Edited vol command to be more efficient, and not need a conf line **FINISHED**
