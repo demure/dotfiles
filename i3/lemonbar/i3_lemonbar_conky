@@ -1,5 +1,8 @@
-# Conky for external bar 
-# out simple text to console
+## Conky for external bar 
+## out simple text to console
+
+## Based on Electro7's work
+## Modded by demure
 
 background no
 update_interval 2

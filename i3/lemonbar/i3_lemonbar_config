@@ -1,14 +1,20 @@
-#!\bin\bash
-# i3 panel config. Powerline style.
+#!/bin/bash
+
+## i3 panel config. Powerline style.
+## Based on Electro7's work
+## Modded by demure
 
 panel_fifo="/tmp/i3_lemonbar_${USER}"
 geometry="x14"
-## This needs a fork of lemonbar.
-#font="Terminess Powerline-8"
+## This format needs a fork of lemonbar, which supports xft fonts.
+## The font should have powerline support, if you want the fancy separators.
 font="PragmataProMono-10"
+## I recommend font awesome for the iconfont, it has the best icon support
+## I have even of any symbol font. It also has the most symbols.
 iconfont="fontawesome-10"
 res_w=$(xrandr | grep "current" | awk '{print $8a}')
-thinkpad_battery="1"		# If set to "1", ignore conky battery and use Thinkpad Multi Battery. "0" for conky battery.
+## If set to "1", ignore conky battery and use Thinkpad Multi Battery. "0" for conky battery.
+thinkpad_battery="1"
 
 ### Alarm Settings ### {{{
 cpu_alert=75                        # % cpu use
@@ -123,5 +129,4 @@ icon_ext_ip=""                     # External IP
 icon_gpg=""                        # GPG icon
 icon_gpg_locked=""                 # GPG locked icon
 icon_gpg_unlocked=""               # GPG unlocked icon
-##                                 
 ### End Icons ### }}}

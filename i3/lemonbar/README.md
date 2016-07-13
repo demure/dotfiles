@@ -9,23 +9,33 @@ There were a few parts of the original that didn't make sense to me, and other t
 
 
 ###Requirements
-This requires `lemonbar` (which used to be called `bar`).
-I do *not* recommend the vanila lemonbar, as it's xft font support is... crap?
-I use [lemonbar krypt-n] instead of [lemonbar].
 
-This will also need [i3wm], as it is tailored for this; and [conky].
-
+* [i3wm]
+* `lemonbar` (which used to be know as `bar`)
+  * I use [lemonbar krypt-n] instead of [lemonbar].
+   * I do *not* recommend the vanila lemonbar, as it's xft font support is... crap?
+* You need [conky]
+  * on debian sid, I use the `conky-all` package
+  * on arch, make sure the wireless support compiled in
+* A nice symbol font
+  * I use font awesome, which is the best symbol font I have seen to date.
 
 ###Installation
-* You will want to install font-awesome
-  * or you can change the icon font and set all the icons.
+* Install font awesome
+  * or you can change the icon font, and set all the icons.
 * You will need to check that the conky conf uses your hardware identifiers.
   * battery
   * wifi
+  * ethernet
   * temp
 * You may need to tweak the acpi paths in the main script for your system
   * brightness
   * thinkpad multi battery? (I think that this might be same across thinkpads though)
+
+
+###Notes
+* I find that this does not gracefully handle i3 logout -> login
+  * I used `pkill lemonbar && ~/.i3/lemonbar/i3_lemonbar.sh &` to correct the issue
 
 
 ###Modifications

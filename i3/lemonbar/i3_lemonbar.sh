@@ -1,6 +1,9 @@
-#! /bin/bash
-#
-# I3 bar with https://github.com/LemonBoy/bar
+#!/bin/bash
+
+## I3 bar with https://github.com/LemonBoy/bar
+##
+## Based on Electro7's work
+## Modded by demure
 
 . $(dirname $0)/i3_lemonbar_config
 
@@ -16,18 +19,18 @@ mkfifo "${panel_fifo}"
 
 ### EVENTS METERS
 
-# Window title, "WIN"
+## Window title, "WIN"
 xprop -spy -root _NET_ACTIVE_WINDOW | sed -un 's/.*\(0x.*\)/WIN\1/p' > "${panel_fifo}" &
 
-# i3 Workspaces, "WSP"
-# TODO : Restarting I3 breaks the IPC socket con. :(
+## i3 Workspaces, "WSP"
+## TODO : Restarting I3 breaks the IPC socket con. :(
 $(dirname $0)/i3_workspaces.pl > "${panel_fifo}" &
 
 # IRC, "IRC"
 # only for init
 #~/bin/irc_warn &
 
-# Conky, "SYS"
+## Conky, "SYS"
 conky -c $(dirname $0)/i3_lemonbar_conky > "${panel_fifo}" &
 
 ### UPDATE INTERVAL METERS

@@ -1,15 +1,18 @@
 #!/bin/bash
-#
-# Input parser for i3 bar
-# 14 ago 2015 - Electro7
-# config
+
+## Input parser for i3 bar
+##
+## Based on Electro7's work
+## Modded by demure
+
+## config
 . $(dirname $0)/i3_lemonbar_config
 
-# min init
+## min init
 irc_n_high=0
 title="%{F${color_head} B${color_sec_b2}}${sep_right}%{F${color_head} B${color_sec_b2}%{T2} ${icon_prog} %{F${color_sec_b2} B-}${sep_right}%{F- B- T1}"
 
-# parser
+## parser
 while read -r line ; do
 	case $line in
 		### SYS Case ### {{{
@@ -152,7 +155,7 @@ while read -r line ; do
 
 		### External IP Case ### {{{
 		EXT*)
-			# External IP
+			## External IP
 			ext_arr="${line#???}"
 			if [ "${lip_select}" = "No IP" ]; then
 				ext_ip="%{F${color_sec_b2}}${sep_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_ext_ip}%{F- T1} No IP"
@@ -166,14 +169,14 @@ while read -r line ; do
 
 		### Volume Case ### {{{
 		VOL*)
-			# Volume
+			## Volume
 			vol="%{F${color_sec_b2}}${sep_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_vol}%{F- T1} ${line#???}"
 			;;
 		### End Vol Case ### }}}
 
 		### Brightness Case ### {{{
 		BRI*)
-			# Brightness
+			## Brightness
 			bri="%{F${color_icon}}${sep_l_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_bri}%{F- T1} ${line#???}%"
 			;;
 		### End Vol Case ### }}}
@@ -267,12 +270,10 @@ while read -r line ; do
 
 		### Control Pianobar Case ### {{{
 		CPB*)
-			# Music
+			## Music
 			cpb_arr=(${line#???})
 			if [ -z "${line#???}" ]; then
 				song="none";
-			  #elif [ "${cpb_arr[0]}" == "error:" ]; then
-				#song="mpd off";
 			  else
 				song="${line#???}";
 			fi
@@ -301,14 +302,13 @@ while read -r line ; do
 
 		### Window Case ### {{{
 		WIN*)
-			# window title
+			## window title
 			title=$(xprop -id ${line#???} | awk '/_NET_WM_NAME/{$1=$2="";print}' | cut -d'"' -f2)
 			title="%{F${color_head} B${color_sec_b2}}${sep_right}%{F${color_head} B${color_sec_b2} T2} ${icon_prog} %{F${color_sec_b2} B-}${sep_right}%{F- B- T1} ${title}"
 			;;
 		### End Window Case ### }}}
 	esac
 
-	# And finally, output
+	## And finally, output
 	printf "%s\n" "%{l}${wsp}${title} %{r}${cpb}${stab}${email}${stab}${gpg}${stab}${local_ip}${stab}${wifi}${stab}${ext_ip}${stab}${bat}${stab}${bat_time}${stab}${cpu}${stab}${mem}${stab}${diskr}${stab}${temp}${stab}${nets_d}${stab}${nets_u}${stab}${vol}${stab}${bri}${stab}${date}${stab}${time}"
-	#printf "%s\n" "%{l}${wsp}${title}"
 done
