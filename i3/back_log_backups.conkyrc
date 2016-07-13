@@ -30,7 +30,7 @@ draw_shades no
 ## Text stuff
 draw_outline no # amplifies text if yes
 draw_borders no
-font PragmataProMono:size=7
+font PragmataPro:size=7
 uppercase no
 
 
