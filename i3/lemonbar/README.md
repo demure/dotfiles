@@ -51,7 +51,7 @@ There were a few parts of the original that didn't make sense to me, and other t
 * Made ram show percent instead of raw number **FINISHED**
 * Disabled weechat part, as my weechat lives on my server. Work need a major overhaul, and likely be out of sync, or insecure.
 * Made one segment for both eth and wlan speed, prefers eth. **FINISHED**
-* <strike>Added control-pianobar for music, as I don't really use MPD. **27FEB2016**</stirke>
+* <strike>Added control-pianobar for music, as I don't really use MPD. **27FEB2016**</strike>
 * Added check to see if gpg key is unlocked (since I use it for `pass`, which give `offlineimap` passwds) **19MAR2016**
 * Added Thinkpad Multi Battery code. Will display ***weighted*** total battery percent. Other peoples code which I found only did `(bat0 perc + bat1 perc)/2`... Which is invalid, and extra invalid with an extended battery! There is a setting in the config to use either conky supplied battery, or the new Thinkpad Multi Battery. **09APR2016**
 * Added Battery Time Remaining to Thinkpad Multi Battery. **17APR2016**
