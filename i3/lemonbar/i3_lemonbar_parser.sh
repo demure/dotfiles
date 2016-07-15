@@ -268,18 +268,19 @@ while read -r line ; do
 			#;;
 		#### End IRC Case ### }}}
 
-		### Control Pianobar Case ### {{{
-		CPB*)
+		### Mutli Music Player Display ### {{{
+		MMP*)
 			## Music
-			cpb_arr=(${line#???})
-			if [ -z "${line#???}" ]; then
-				song="none";
+			mmpd_arr="${line#???}"
+			if [ -z "${mmpd_arr}" ]; then
+				## This can deal with odd issues?
+				mmpd_song="none";
 			  else
-				song="${line#???}";
+				mmpd_song="${mmpd_arr}";
 			fi
-			cpb="%{F${color_sec_b2}}${sep_left}%{B${color_sec_b2}}%{F${color_sec_b1}}${sep_left}%{F${color_icon} B${color_sec_b1}} %{T2}${icon_music}%{F${color_fore} T1} ${song}"
+			mmpd="%{F${color_sec_b2}}${sep_left}%{B${color_sec_b2}}%{F${color_sec_b1}}${sep_left}%{F${color_icon} B${color_sec_b1}} %{T2}${icon_music}%{F${color_fore} T1} ${mmpd_song}"
 			;;
-		### End Control Pianobar Case ### }}}
+		### End Multi Music Player Display ### }}}
 
 		### Workspace Case ### {{{
 		WSP*)
@@ -310,5 +311,5 @@ while read -r line ; do
 	esac
 
 	## And finally, output
-	printf "%s\n" "%{l}${wsp}${title} %{r}${cpb}${stab}${email}${stab}${gpg}${stab}${local_ip}${stab}${wifi}${stab}${ext_ip}${stab}${bat}${stab}${bat_time}${stab}${cpu}${stab}${mem}${stab}${diskr}${stab}${temp}${stab}${nets_d}${stab}${nets_u}${stab}${vol}${stab}${bri}${stab}${date}${stab}${time}"
+	printf "%s\n" "%{l}${wsp}${title} %{r}${mmpd}${stab}${email}${stab}${gpg}${stab}${local_ip}${stab}${wifi}${stab}${ext_ip}${stab}${bat}${stab}${bat_time}${stab}${cpu}${stab}${mem}${stab}${diskr}${stab}${temp}${stab}${nets_d}${stab}${nets_u}${stab}${vol}${stab}${bri}${stab}${date}${stab}${time}"
 done
