@@ -34,8 +34,9 @@ There were a few parts of the original that didn't make sense to me, and other t
 
 
 ###Notes
-* I find that this does not gracefully handle i3 logout -> login
+* I find that this does not gracefully handle i3 logout -> login, and full config reload.
   * I used `pkill lemonbar && ~/.i3/lemonbar/i3_lemonbar.sh &` to correct the issue
+  * I have added `pkill lemonbar` to my log out command, to make life easier.
 
 
 ###Modifications
