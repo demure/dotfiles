@@ -58,8 +58,11 @@ There were a few parts of the original that didn't make sense to me, and other t
 * Added Battery Time Remaining to Thinkpad Multi Battery. **17APR2016**
 * Added Screen Brightness percent. **19JUN2016**
 * Completely overhauled music code to how scalablely handle multiple music players. (requested by verrlara) **15JUL2016**
-  * currently supports [control-pianobar] and [cmus].
+  * currently supports [control-pianobar], [cmus] and [mpd]<sup>(new code)</sup>.
     * cmus output will indicate paused and lack of meta data.
+    * cmus can display internet stream data too.
+    * Readded mpd support with new awk.
+    * mpd will report pause status, and works with internet streams even easier, as it didn't need extra coding.
 
 
 ###Things I want
@@ -76,3 +79,4 @@ There were a few parts of the original that didn't make sense to me, and other t
 [pic0]: https://notabug.org/demure/dotfiles/raw/master/i3/lemonbar/demure_i3_lemonbar_mod.png
 [control-pianobar]: https://malabarba.github.io/control-pianobar/
 [cmus]: https://cmus.github.io/
+[mpd]: https://www.musicpd.org/
