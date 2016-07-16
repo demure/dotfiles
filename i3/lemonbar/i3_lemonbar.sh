@@ -69,18 +69,26 @@ while :; do
 		if [ "${mmpd_check}" != "none" ]; then
 			printf "%s%s\n" "MMP" "${mmpd_check}" > "${panel_fifo}"
 		  else
-		mmpd_check="$(cmus-remote -Q 2>/dev/null | awk 'BEGIN {STATUS=0;STREAM=0;TITLE=0;ARTIST=0} {match($0, /^(status|stream|tag title|tag artist)\s(.*)/, m); if(m[1]=="status"){STATUS=m[2]};if(m[1]=="stream"){STREAM=m[2]}; if(m[1]=="tag title"){TITLE=m[2]}; if(m[1]=="tag artist"){ARTIST=m[2]}} END {if(STATUS!=0){if(STATUS=="playing"){if(STREAM!=0){print STREAM} else if(ARTIST!=0){print ARTIST " - " TITLE} else if(TITLE!=0){print TITLE}else {print "cmus: no meta data"}} else if(STATUS=="paused"){print "cmus: paused"} else {print "none"}} else {print "none"}}')"
+		## cmus
+		mmpd_check="$(cmus-remote -Q 2>/dev/null | awk 'BEGIN {STATUS=0;STREAM=0;TITLE=0;ARTIST=0} {match($0, /^(status|stream|tag title|tag artist)\s(.*)/, m); if(m[1]=="status"){STATUS=m[2]};if(m[1]=="stream"){STREAM=m[2]}; if(m[1]=="tag title"){TITLE=m[2]}; if(m[1]=="tag artist"){ARTIST=m[2]}} END {if(STATUS!=0){if(STATUS=="playing"){if(STREAM!=0){print STREAM} else if(ARTIST!=0&&TITLE!=0){print ARTIST " - " TITLE} else if(TITLE!=0){print TITLE}else {print "cmus: no meta data"}} else if(STATUS=="paused"){print "cmus: paused"} else {print "none"}} else {print "none"}}')"
 			if [ "${mmpd_check}" != "none" ]; then
 				printf "%s%s\n" "MMP" "${mmpd_check}" > "${panel_fifo}"
 			  else
+				## mpd
 				## Note this is my own mpd check (not elctro7's)
 				## It will report if mpd is paused.
 				mmpd_check="$(mpc status 2>/dev/null | awk 'BEGIN {STATUS=0;INFO=0} !/^volume/ {match($0, /^(\w+.*)/, p); match($0, /(\[playing\]|\[paused\])/, m); if(m[0]!=""){STATUS=m[1]}; if(p[0]!=""){INFO=p[0]}} END {if(STATUS!=0){if(STATUS=="[paused]"){print "mpd: paused"} else {print INFO}} else {print "none"}}')"
 				if [ "${mmpd_check}" != "none" ]; then
 					printf "%s%s\n" "MMP" "${mmpd_check}" > "${panel_fifo}"
 				  else
-					## This makes scaling easier
-					printf "%s%s\n" "MMP" "none" > "${panel_fifo}"
+					## mocp
+					mmpd_check="$(mocp --info 2>/dev/null | awk 'BEGIN {STATE=0; TITLE=0; ARTIST=0} {match($0, /^(State|Title|Artist):\s(.*)/, m); if(m[1]=="State"){STATE=m[2]}; if(m[1]=="Artist"&&m[2]!=""){ARTIST=m[2]}; if(m[1]=="Title"&&m[2]!=""){TITLE=m[2]}} END {if(STATE!=0){if(STATE=="PLAY"){if(TITLE!=0){print TITLE} else {print "mocp: no meta data"}} else if(STATE=="PAUSE"){print "mocp: paused"} else {print "none"}} else {print "none"}}')"
+					if [ "${mmpd_check}" != "none" ]; then
+						printf "%s%s\n" "MMP" "${mmpd_check}" > "${panel_fifo}"
+					  else
+						## This makes scaling easier
+						printf "%s%s\n" "MMP" "none" > "${panel_fifo}"
+					fi
 				fi
 			fi
 		fi

@@ -57,12 +57,13 @@ There were a few parts of the original that didn't make sense to me, and other t
 * Added Thinkpad Multi Battery code. Will display ***weighted*** total battery percent. Other peoples code which I found only did `(bat0 perc + bat1 perc)/2`... Which is invalid, and extra invalid with an extended battery! There is a setting in the config to use either conky supplied battery, or the new Thinkpad Multi Battery. **09APR2016**
 * Added Battery Time Remaining to Thinkpad Multi Battery. **17APR2016**
 * Added Screen Brightness percent. **19JUN2016**
-* Completely overhauled music code to how scalablely handle multiple music players. (requested by verrlara) **15JUL2016**
-  * currently supports [control-pianobar], [cmus] and [mpd]<sup>(new code)</sup>.
-    * cmus output will indicate paused and lack of meta data.
-    * cmus can display internet stream data too.
-    * Readded mpd support with new awk.
-    * mpd will report pause status, and works with internet streams even easier, as it didn't need extra coding.
+* Completely overhauled music code to how scalablely handle multiple music players. (requested by verrlara) **14JUL2016**
+  * currently supports [control-pianobar], [cmus], [mpd]<sup>(new code)</sup>, and [mocp].
+    * `cmus` output will indicate paused and lack of meta data.
+    * `cmus` can display internet stream data too.
+    * Readded `mpd` support with new awk. **15JUL2016**
+    * `mpd` will report pause status, and works with internet streams even easier, as it didn't need extra coding.
+    * `mocp` reports pause, and works with internet streams. **16JUL2016**
 
 
 ###Things I want
@@ -80,3 +81,4 @@ There were a few parts of the original that didn't make sense to me, and other t
 [control-pianobar]: https://malabarba.github.io/control-pianobar/
 [cmus]: https://cmus.github.io/
 [mpd]: https://www.musicpd.org/
+[mocp]: https://moc.daper.net/
