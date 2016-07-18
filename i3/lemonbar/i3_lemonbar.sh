@@ -86,8 +86,14 @@ while :; do
 					if [ "${mmpd_check}" != "none" ]; then
 						printf "%s%s\n" "MMP" "${mmpd_check}" > "${panel_fifo}"
 					  else
-						## This makes scaling easier
-						printf "%s%s\n" "MMP" "none" > "${panel_fifo}"
+						## audacios
+						mmpd_check="$(audtool --playback-status --current-song 2>/dev/null | awk 'BEGIN {STATUS=0; INFO=0} {if($0=="playing"||$0=="paused"){STATUS=$0}; if(STATUS=="playing"){INFO=$0}} END {if(INFO!=0){print INFO} else if(STATUS=="paused"){print "audacios: paused"} else {print "none"}}')"
+						if [ "${mmpd_check}" != "none" ]; then
+							printf "%s%s\n" "MMP" "${mmpd_check}" > "${panel_fifo}"
+						  else
+							## This makes scaling easier
+							printf "%s%s\n" "MMP" "none" > "${panel_fifo}"
+						fi
 					fi
 				fi
 			fi

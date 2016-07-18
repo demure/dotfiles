@@ -15,7 +15,7 @@ There were a few parts of the original that didn't make sense to me, and other t
    * I do *not* recommend the vanila lemonbar, as it's xft font support is... crap?
 * You need [conky]
   * on debian sid, I use the `conky-all` package
-  * on arch, make sure the wireless support compiled in
+  * on arch, make sure the wireless support compiled in. The AUR `conky-git` might be what you want.
 * A nice symbol font
   * I use font awesome, which is the best symbol font I have seen to date.
 
@@ -64,6 +64,8 @@ There were a few parts of the original that didn't make sense to me, and other t
     * Readded `mpd` support with new awk. **15JUL2016**
     * `mpd` will report pause status, and works with internet streams even easier, as it didn't need extra coding.
     * `mocp` reports pause, and works with internet streams. **16JUL2016**
+    * `audacious` reports paused, works with internet steams. **17JUL2016**
+    * `audacious` has a default out put of 'Artist - Album - Song'; this can be changed in your audacious `Settings` -> `Playlist` -> `Title Format`
 
 
 ###Things I want
