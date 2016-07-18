@@ -158,12 +158,13 @@ while read -r line ; do
 			## External IP
 			ext_arr="${line#???}"
 			if [ "${lip_select}" = "No IP" ]; then
-				ext_ip="%{F${color_sec_b2}}${sep_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_ext_ip}%{F- T1} No IP"
+				ext_ip_select="No IP"
 			  elif [ "${lip_select}" = "${ext_arr}" ]; then
-				ext_ip="%{F${color_sec_b2}}${sep_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_ext_ip}%{F- T1} Same"
+				ext_ip_select="Same"
 			  else
-				ext_ip="%{F${color_sec_b2}}${sep_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_ext_ip}%{F- T1} ${ext_arr}"
+				ext_ip_select="${ext_arr}"
 			fi
+			ext_ip="%{F${color_sec_b2}}${sep_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_ext_ip}%{F- T1} ${ext_ip_select}"
 			;;
 		### End External IP Case ### }}}
 
@@ -309,6 +310,36 @@ while read -r line ; do
 			;;
 		### End Window Case ### }}}
 	esac
+
+	### Screenshot IP Scrubber ### {{{
+	## This is toggled by, preferably, a binding in your ~/.i3/config
+	## You can find the awk command in my config, or this bar's readme
+
+	ext_toggle="$(cat /tmp/i3_lemonbar_ip_${USER} 2>/dev/null)"
+
+	if [ "${ext_toggle}" = 1 ]; then
+		if [ "${lip_select}" != "No IP" ]; then
+			if [ "${ext_ip_select}" != "No IP" ]; then
+				## This var is used so that you don't have to wait for EXT IP to rerun, after toggle off.
+				ext_ip_temp="${ext_ip_select}"
+
+				if [ "${lip_select}" != "${ext_ip_select}" ]; then
+					ext_ip_temp="${scrub_ip}"
+				  else
+					lip_select="${scrub_ip}"
+				fi
+
+				ext_ip="%{F${color_sec_b2}}${sep_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_ext_ip}%{F- T1} ${ext_ip_temp}"
+				local_ip="%{F${color_sec_b1}}${sep_left}%{F${color_icon} B${color_sec_b1}} %{T2}${lip_icon}%{F- T1} ${lip_select}"
+			fi
+		fi
+	  else
+		if [ "${ext_ip_temp}" = "${scrub_ip}" ]; then
+			ext_ip_temp="${ext_ip_select}"
+			ext_ip="%{F${color_sec_b2}}${sep_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_ext_ip}%{F- T1} ${ext_ip_temp}"
+		fi
+	fi
+	### Screenshot IP  Scrubber ### }}}
 
 	## And finally, output
 	printf "%s\n" "%{l}${wsp}${title} %{r}${mmpd}${stab}${email}${stab}${gpg}${stab}${local_ip}${stab}${wifi}${stab}${ext_ip}${stab}${bat}${stab}${bat_time}${stab}${cpu}${stab}${mem}${stab}${diskr}${stab}${temp}${stab}${nets_d}${stab}${nets_u}${stab}${vol}${stab}${bri}${stab}${date}${stab}${time}"

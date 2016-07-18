@@ -58,7 +58,7 @@ There were a few parts of the original that didn't make sense to me, and other t
 * Added Battery Time Remaining to Thinkpad Multi Battery. **17APR2016**
 * Added Screen Brightness percent. **19JUN2016**
 * Completely overhauled music code to how scalablely handle multiple music players. (requested by verrlara) **14JUL2016**
-  * currently supports [control-pianobar], [cmus], [mpd]<sup>(new code)</sup>, and [mocp].
+  * currently supports [control-pianobar], [cmus], [mpd]<sup>(new code)</sup>, [mocp], and [audacious].
     * `cmus` output will indicate paused and lack of meta data.
     * `cmus` can display internet stream data too.
     * Readded `mpd` support with new awk. **15JUL2016**
@@ -66,6 +66,10 @@ There were a few parts of the original that didn't make sense to me, and other t
     * `mocp` reports pause, and works with internet streams. **16JUL2016**
     * `audacious` reports paused, works with internet steams. **17JUL2016**
     * `audacious` has a default out put of 'Artist - Album - Song'; this can be changed in your audacious `Settings` -> `Playlist` -> `Title Format`
+* Added Screenshot IP Scrubber, to quickly toggle the external IP from the bar. **18JUL2016**
+  * You can add support to your i3 by adding the following binding:
+  * `bindsym YOUR_KEYS exec awk -v TEMP=/tmp/i3_lemonbar_ip_${USER} 'BEGIN {{FILE=getline < TEMP < 0 ? "0" : "1"} {if($0==1){STATE=1} else {STATE=0}} {if(STATE==0){system("echo 1 > "TEMP)} else {system("echo 0 > "TEMP)}}}'`
+  * You can edit the Scrubber sting in `i3_lemonbar_config`, such as setting it to `""` if you want to reduce your bar length when toggled.
 
 
 ###Things I want
@@ -84,3 +88,4 @@ There were a few parts of the original that didn't make sense to me, and other t
 [cmus]: https://cmus.github.io/
 [mpd]: https://www.musicpd.org/
 [mocp]: https://moc.daper.net/
+[audacious]: http://audacious-media-player.org/

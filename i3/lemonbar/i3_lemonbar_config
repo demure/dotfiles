@@ -15,6 +15,9 @@ iconfont="fontawesome-10"
 res_w=$(xrandr | awk '/current/ {print $8a}')
 ## If set to "1", ignore conky battery and use Thinkpad Multi Battery. "0" for conky battery.
 thinkpad_battery="1"
+## This is for the Screenshot IP Scrubber
+## You could set this to "" to reduce bar length while toggled.
+scrub_ip="---.---.---.---"
 
 ### Alarm Settings ### {{{
 cpu_alert=75                        # % cpu use

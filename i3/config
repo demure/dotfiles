@@ -348,9 +348,14 @@ workspace_auto_back_and_forth yes
 
 		### Screen Shots ### {{{
 		## New laptop has Print where Super_R should be... so now it is bound to that.
-		bindsym $mod+Home exec --no-startup-id exec scrot -m
-		## Note, you need to click on the window, after key combo, to capture it.
-		bindsym $mod+Shift+Home --no-startup-id exec scrot -s
+		#bindsym $mod+Home exec --no-startup-id exec scrot -m
+		bindsym Print exec --no-startup-id exec scrot -m
+		bindsym XF86Explorer exec --no-startup-id exec scrot -m
+		## Note: you need to click on the window, after key combo, to capture it.
+		## Note: Needs to have startup ip, as interacts with GUI
+		#bindsym $mod+Shift+Home exec scrot -s
+		bindsym Shift+Print exec scrot -s
+		bindsym Shift+XF86Explorer exec scrot -s
 		### End Screen Shots ### }}}
 
 		### Rofi Bindings ### {{{
@@ -358,9 +363,11 @@ workspace_auto_back_and_forth yes
 		## start dmenu (a program launcher)
 		#bindsym $mod+d exec dmenu_run
 		bindsym $mod+p exec rofi -sidebar-mode -show run -font 'Pragmata Pro 10' -fg \#505050 -bg \#000000 -bgalt \#101010 -hlfg \#008080 -hlbg \#454A4F -bc \#008080 -bw 1 -location 2 -width 100 -padding 0 -lines 10 -no-disable-history -no-levenshtein-sort
+		bindsym XF86Search exec rofi -sidebar-mode -show run -font 'Pragmata Pro 10' -fg \#505050 -bg \#000000 -bgalt \#101010 -hlfg \#008080 -hlbg \#454A4F -bc \#008080 -bw 1 -location 2 -width 100 -padding 0 -lines 10 -no-disable-history -no-levenshtein-sort
 
 		### rofi-pass binding
 		bindsym $mod+Shift+p exec rofi-pass
+		bindsym Shift+XF86Search exec rofi-pass
 		### End Rofi Bindings ### }}}
 
 		### Pulse Audio Controls ### {{{
@@ -384,7 +391,9 @@ workspace_auto_back_and_forth yes
 		bindsym $mod+XF86MonBrightnessDown exec xbacklight -set 1   ## Set min screen brightness
 		### End Brightness Bindings ### }}}
 
-		bindsym XF86Search exec rofi -sidebar-mode -show run -font 'Pragmata Pro 10' -fg \#505050 -bg \#000000 -bgalt \#101010 -hlfg \#008080 -hlbg \#454A4F -bc \#008080 -bw 1 -location 2 -width 100 -padding 0 -lines 10 -no-disable-history -no-levenshtein-sort
+		### External IP Toggle For i3 lemonbar ### {{{
+		bindsym XF86LaunchA exec awk -v TEMP=/tmp/i3_lemonbar_ip_${USER} 'BEGIN {{FILE=getline < TEMP < 0 ? "0" : "1"} {if($0==1){STATE=1} else {STATE=0}} {if(STATE==0){system("echo 1 > "TEMP)} else {system("echo 0 > "TEMP)}}}'
+		### End External IP FOr i3 lemonbar ### }}}
 	### End Misc Bindings ### }}}
 
 	### Mouse Bindings ### {{{
