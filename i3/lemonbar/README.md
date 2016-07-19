@@ -31,6 +31,13 @@ There were a few parts of the original that didn't make sense to me, and other t
 * You may need to tweak the acpi paths in the main script for your system
   * brightness
   * thinkpad multi battery? (I think that this might be same across thinkpads though)
+* Add i3 lemonbar to your `~/.i3/config`
+
+```
+bar {
+    i3_bar_command ~./.i3/lemonbar/i3_lemonbar.sh
+    }
+```
 
 
 ###Notes
@@ -70,6 +77,7 @@ There were a few parts of the original that didn't make sense to me, and other t
   * You can add support to your i3 by adding the following binding:
   * `bindsym YOUR_KEYS exec awk -v TEMP=/tmp/i3_lemonbar_ip_${USER} 'BEGIN {{FILE=getline < TEMP < 0 ? "0" : "1"} {if($0==1){STATE=1} else {STATE=0}} {if(STATE==0){system("echo 1 > "TEMP)} else {system("echo 0 > "TEMP)}}}'`
   * You can edit the Scrubber sting in `i3_lemonbar_config`, such as setting it to `""` if you want to reduce your bar length when toggled.
+* Added `$music_limit` to prevent music from covering workspace display. **18JUL2016**
 
 
 ###Things I want

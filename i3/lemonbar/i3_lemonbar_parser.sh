@@ -277,7 +277,8 @@ while read -r line ; do
 				## This can deal with odd issues?
 				mmpd_song="none";
 			  else
-				mmpd_song="${mmpd_arr}";
+				## $music_limit will help stop the music from taking over the workspace display on the left.
+				mmpd_song="${mmpd_arr:0:${music_limit}}";
 			fi
 			mmpd="%{F${color_sec_b2}}${sep_left}%{B${color_sec_b2}}%{F${color_sec_b1}}${sep_left}%{F${color_icon} B${color_sec_b1}} %{T2}${icon_music}%{F${color_fore} T1} ${mmpd_song}"
 			;;
