@@ -278,6 +278,7 @@ while read -r line ; do
 				mmpd_song="none";
 			  else
 				## $music_limit will help stop the music from taking over the workspace display on the left.
+				## Note: you should read http://tldp.org/LDP/abs/html/parameter-substitution.html
 				mmpd_song="${mmpd_arr:0:${music_limit}}";
 			fi
 			mmpd="%{F${color_sec_b2}}${sep_left}%{B${color_sec_b2}}%{F${color_sec_b1}}${sep_left}%{F${color_icon} B${color_sec_b1}} %{T2}${icon_music}%{F${color_fore} T1} ${mmpd_song}"
