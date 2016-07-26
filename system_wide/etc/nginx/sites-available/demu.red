@@ -102,8 +102,8 @@ location /theme {
 		#}
 
 		### High Rate Limit ### {{{
-		limit_req zone=perip burst=9999 nodelay;
-		limit_req zone=perserver burst=999999;
+		limit_req zone=perip burst=999999 nodelay;
+		limit_req zone=perserver burst=999999999;
 		### End High Rate Limit ### }}}
 	}
 	### End IRPG ### }}}
