@@ -101,11 +101,25 @@ while :; do
 	fi
 
 	## Thinkpad Milti Battery, "TMB"
-	if [ ${thinkpad_battery} -eq 1 ]; then
-		if [ $((cnt_tmb++)) -ge ${upd_tmb} ]; then
-			printf "%s%s%s\n" "TMB" "$(paste -d = /sys/class/power_supply/BAT{0..1}/uevent | awk '/ENERGY_FULL=/||/ENERGY_NOW=/||/STATUS/ {split($0,a,"="); if(a[2]~/Discharging/||a[4]~/Discharging/){CHARGE="D"} else if(a[2]~/Charging/||a[4]~/Charging/){CHARGE="C"} else if (a[2]~/Full/||a[4]~/Full/){CHARGE="F"}; if(a[1]~/FULL/){FULL=a[2]+a[4]}; if(a[1]~/NOW/){NOW=a[2]+a[4]};} END {PERC=(NOW/FULL)*100; printf("%.0f %s", PERC, CHARGE)}')" "$(acpi -b | awk '{if($5!=""){print " " $5}}')" > "${panel_fifo}"
-			cnt_tmb=0
+	## Works for normal batteries now too.
+	if [ $((cnt_tmb++)) -ge ${upd_tmb} ]; then
+		## Check for BAT0
+		if [ -e /sys/class/power_supply/BAT0/uevent ]; then
+			BAT0="/sys/class/power_supply/BAT0/uevent"
 		fi
+
+		## Check for BAT1
+		if [ -e /sys/class/power_supply/BAT1/uevent ]; then
+			BAT1="/sys/class/power_supply/BAT1/uevent"
+		fi
+
+		if [ "${BAT0}" != "" ] || [ "${BAT1}" != "" ]; then
+			## Originally "/sys/class/power_supply/BAT{0..1}/uevent" but changed into variables make work for non thinkpad cases. paste fails if it can't find a passed file.
+			printf "%s%s%s\n" "TMB" "$(paste -d = ${BAT0} ${BAT1} 2>/dev/null | awk '/ENERGY_FULL=/||/ENERGY_NOW=/||/STATUS/||/CHARGE_NOW/||/CHARGE_FULL/ {split($0,a,"="); if(a[2]~/Discharging/||a[4]~/Discharging/){CHARGE="D"} else if(a[2]~/Charging/||a[4]~/Charging/){CHARGE="C"} else if (a[2]~/Full/||a[4]~/Full/){CHARGE="F"}; if(a[1]~/FULL/){FULL=a[2]+a[4]}; if(a[1]~/NOW/){NOW=a[2]+a[4]};} END {if(NOW!=""){PERC=int((NOW/FULL)*100)} else {PERC="none"}; printf("%s %s\n", PERC, CHARGE)}')" "$(acpi -b | awk '{if($5!=""){print " " $5}}')" > "${panel_fifo}" 
+			else
+			printf "%s%s\n" "TMB" "none" > "${panel_fifo}"
+		fi
+		cnt_tmb=0
 	fi
 
 	## GPG Check, "GPG"

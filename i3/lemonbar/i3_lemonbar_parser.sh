@@ -79,46 +79,6 @@ while read -r line ; do
 			nets_u="%{F${nets_cicon}}${sep_l_left} %{T2}${icon_ul}%{F${nets_cfore} T1} ${nets_uv}"
 			### End Net Speed ### }}}
 
-			### Battery ### {{{
-			## Icon         0         1         2         3          4
-			## Bat >=      NA        11        37        63         90
-			## Range     0-10     11-36     37-62     63-89     90-100
-
-			if [ ${thinkpad_battery} -ne 1 ]; then
-				## Set icons
-				## This is 'hard' coded, instead of in the conf, due to font.
-				## It will take user intervention if they have a different number of icons
-				if [ ${sys_arr[15]} -ge 90 ]; then
-					bat_icon=${icon_bat4};
-				  elif [ ${sys_arr[15]} -ge 63 ]; then
-					bat_icon=${icon_bat3};
-				  elif [ ${sys_arr[15]} -ge 37 ]; then
-					bat_icon=${icon_bat2};
-				  elif [ ${sys_arr[15]} -ge 11 ]; then
-					bat_icon=${icon_bat1};
-				  else
-					bat_icon=${icon_bat0};
-				fi
-
-				## Set Colors
-				if [ ${sys_arr[15]} -le ${bat_alert_low} ]; then
-					bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_bat_low};
-				  elif [ ${sys_arr[15]} -le ${bat_alert_mid} ]; then
-					bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_bat_mid};
-				  elif [ ${sys_arr[15]} -le ${bat_alert_high} ]; then
-					bat_cicon=${color_bat_high}; bat_cfore=${color_fore}; bat_cback=${color_sec_b1};
-				  else
-					bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_sec_b1};
-				fi
-
-				## Set charging icon
-				if [ ${sys_arr[16]} == "C" ] || [ ${sys_arr[16]} == "F" ]; then
-					bat_icon=${icon_bat_plug}; bat_cicon=${color_bat_plug};
-				fi
-				bat="%{F${bat_cback}}${sep_left}%{F${bat_cicon} B${bat_cback}} %{T2}${bat_icon}%{F- T1} ${sys_arr[15]}%"
-			fi
-			### End Battery ### }}}
-
 			### Temperature ### {{{
 			if [ ${sys_arr[7]} -gt ${temp_alert} ]; then
 				temp_cback=${color_temp}; temp_cicon=${color_back}; temp_cfore=${color_back};
@@ -215,33 +175,35 @@ while read -r line ; do
 			## Now that I have >12 hours of battery, I don't feel the need for as drastic color thresholds.
 			## I will have colors only at much lower percentages.
 
-			if [ ${thinkpad_battery} -eq 1 ]; then
 			tmb_arr_perc=$(echo ${line#???} | cut -f1 -d\ )
 			tmb_arr_status=$(echo ${line#???} | cut -f2 -d\ )
 			tmb_arr_time=$(echo ${line#???} | cut -f3 -d\ )
+
+			## This means it will not show up on desktop computers
+			if [ ${tmb_arr_perc} != "none" ]; then
 				## Set icon only
-				## This is 'hard' coded, instead of in the conf, due to font.
+				## This is 'hard' coded, instead of in the conf, due to icon font.
 				## It will take user intervention if they have a different number of icons
 				if [ ${tmb_arr_perc} -ge 90 ]; then
 					bat_icon=${icon_bat4};
-				  elif [ ${tmb_arr_perc} -ge 63 ]; then
+				elif [ ${tmb_arr_perc} -ge 63 ]; then
 					bat_icon=${icon_bat3};
-				  elif [ ${tmb_arr_perc} -ge 37 ]; then
+				elif [ ${tmb_arr_perc} -ge 37 ]; then
 					bat_icon=${icon_bat2};
-				  elif [ ${tmb_arr_perc} -ge 11 ]; then
+				elif [ ${tmb_arr_perc} -ge 11 ]; then
 					bat_icon=${icon_bat1};
-				  else
+				else
 					bat_icon=${icon_bat0};
 				fi
 
 				## Set Colors
 				if [ ${tmb_arr_perc} -le ${bat_alert_low} ]; then
 					bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_bat_low};
-				  elif [ ${tmb_arr_perc} -le ${bat_alert_mid} ]; then
+				elif [ ${tmb_arr_perc} -le ${bat_alert_mid} ]; then
 					bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_bat_mid};
-				  elif [ ${tmb_arr_perc} -le ${bat_alert_high} ]; then
+				elif [ ${tmb_arr_perc} -le ${bat_alert_high} ]; then
 					bat_cicon=${color_bat_high}; bat_cfore=${color_fore}; bat_cback=${color_sec_b1};
-				  else
+				else
 					bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_sec_b1};
 				fi
 
@@ -251,6 +213,9 @@ while read -r line ; do
 				fi
 				bat="%{F${bat_cback}}${sep_left}%{F${bat_cicon} B${bat_cback}} %{T2}${bat_icon}%{F- T1} ${tmb_arr_perc}%"
 				bat_time="%{F${color_icon}}${sep_l_left}%{F${color_icon} B${color_sec_b1}} %{T2}${icon_bat_time}%{F- T1} ${tmb_arr_time}"
+			  else
+				## If a desktop, show a plug icon. This stops the ugly segment merge that that would happen.
+				bat="%{F${color_sec_b1}}${sep_left}%{F${color_icon} B${color_sec_b1}} %{T2}${icon_bat_plug}%{F- T1}"
 			fi
 			;;
 		### End Thinkpad Multi Battery ### }}}
@@ -344,5 +309,32 @@ while read -r line ; do
 	### Screenshot IP  Scrubber ### }}}
 
 	## And finally, output
-	printf "%s\n" "%{l}${wsp}${title} %{r}${mmpd}${stab}${email}${stab}${gpg}${stab}${local_ip}${stab}${wifi}${stab}${ext_ip}${stab}${bat}${stab}${bat_time}${stab}${cpu}${stab}${mem}${stab}${diskr}${stab}${temp}${stab}${nets_d}${stab}${nets_u}${stab}${vol}${stab}${bri}${stab}${date}${stab}${time}"
+	## Broken into multiple lines to make more readable.
+	## You can rearrange them or remove them as desired.
+	## Notice that all but the first and last have a ${stab} for spacing.
+
+	## NOTE: At this moment, there is not a dead simple way to adjust a
+	# segment between the three background colors, you have to manually
+	# find the CASE and edit.
+
+	printf "%s\n" "%{l}${wsp}${title} %{r}\
+${mmpd}${stab}\
+${email}${stab}\
+${gpg}${stab}\
+${local_ip}${stab}\
+${wifi}${stab}\
+${ext_ip}${stab}\
+${bat}${stab}\
+${bat_time}${stab}\
+${cpu}${stab}\
+${mem}${stab}\
+${diskr}${stab}\
+${temp}${stab}\
+${nets_d}${stab}\
+${nets_u}${stab}\
+${vol}${stab}\
+${bri}${stab}\
+${date}${stab}\
+${time}"
+
 done

@@ -19,10 +19,6 @@ font="PragmataProMono-10"
 ## I have even of any symbol font. It also has the most symbols.
 iconfont="fontawesome-10"
 
-
-## If set to "1", ignore conky battery and use Thinkpad Multi Battery. "0" for conky battery.
-thinkpad_battery="1"
-
 ## This is for the Screenshot IP Scrubber
 ## You could set this to "" to reduce bar length while toggled.
 scrub_ip="---.---.---.---"
@@ -71,6 +67,7 @@ color_bat_plug="#ff859900"          # Forground for 70-100 battery icon
 color_temp="#ffdc322f"              # Backgroud for high temp
 
 	### Solarized ### {{{
+	## For reference purposes
 	#$base03:    #002b36;
 	#$base02:    #073642;
 	#$base01:    #586e75;

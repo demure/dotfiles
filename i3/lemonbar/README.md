@@ -13,6 +13,8 @@ There were a few parts of the original that didn't make sense to me, and other t
 * `lemonbar` (which used to be know as `bar`)
   * I use [lemonbar krypt-n] instead of [lemonbar].
    * I do *not* recommend the vanila lemonbar, as it's xft font support is... crap?
+   * On debian depends on libxcb1-dev, libxcb-xinerama0-dev, xcb-randr0-dev, libxft-dev, and a few other things (I listed the less common ones).
+* `gawk`, as I wrote my fancy awk using it.
 * You need [conky]
   * on debian sid, I use the `conky-all` package
   * on arch, make sure the wireless support compiled in. The AUR `conky-git` might be what you want.
@@ -61,7 +63,8 @@ bar {
 * Made one segment for both eth and wlan speed, prefers eth. **FINISHED**
 * <strike>Added control-pianobar for music, as I don't really use MPD. **27FEB2016**</strike>
 * Added check to see if gpg key is unlocked (since I use it for `pass`, which give `offlineimap` passwds) **19MAR2016**
-* Added Thinkpad Multi Battery code. Will display ***weighted*** total battery percent. Other peoples code which I found only did `(bat0 perc + bat1 perc)/2`... Which is invalid, and extra invalid with an extended battery! There is a setting in the config to use either conky supplied battery, or the new Thinkpad Multi Battery. **09APR2016**
+* Added Thinkpad Multi Battery code. Will display ***weighted*** total battery percent. Other peoples code which I found only did `(bat0 perc + bat1 perc)/2`... Which is invalid, and extra invalid with an extended battery! <strike>There is a setting in the config to use either conky supplied battery, or the new Thinkpad Multi Battery.</strike> **09APR2016**
+  * Now made TMB detect no battery (desktop), normal batter, or thinkpad multi battery automagically. (as long as your computer uses BAT0 and/or BAT1) **27JUL2016**
 * Added Battery Time Remaining to Thinkpad Multi Battery. **17APR2016**
 * Added Screen Brightness percent. **19JUN2016**
 * Completely overhauled music code to how scalablely handle multiple music players. (requested by verrlara) **14JUL2016**
