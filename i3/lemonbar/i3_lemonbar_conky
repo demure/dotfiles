@@ -31,5 +31,3 @@ ${else}down${endif} \
 ${if_up wlp4s0}${addr wlp4s0}\
 ${else}down${endif} \
 ${wireless_link_qual_perc wlp4s0} \
-${battery_percent BAT1} \
-${battery_short BAT1} \

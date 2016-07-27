@@ -19,7 +19,7 @@ while read -r line ; do
 		SYS*)
 			## conky=, 0=wday, 1=mday, 2=month, 3=time, 4=cpu, 5=mem, 6=disk /,
 			## 7=comp temp, 8-9=up/down wlan, 10-11=up/down eth, 12=eth ip,
-			## 13=wlan ip, 14=wifi %, 15=battery %, 16=battery stat,
+			## 13=wlan ip, 14=wifi %
 			## Things to add: Make HD use show free? Network weechat check?
 
 			sys_arr=(${line#???})

@@ -15,6 +15,8 @@ There were a few parts of the original that didn't make sense to me, and other t
    * I do *not* recommend the vanila lemonbar, as it's xft font support is... crap?
    * On debian depends on libxcb1-dev, libxcb-xinerama0-dev, xcb-randr0-dev, libxft-dev, and a few other things (I listed the less common ones).
 * `gawk`, as I wrote my fancy awk using it.
+* `amixer` for volume support.
+  * Part of `alsa-utils` on debian.
 * You need [conky]
   * on debian sid, I use the `conky-all` package
   * on arch, make sure the wireless support compiled in. The AUR `conky-git` might be what you want.
