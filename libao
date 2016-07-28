@@ -1,0 +1,4 @@
+## This is needed to fix pianobar,
+## Otherwise other sounds are broken while pianobar is running.
+driver=alsa
+dev=default
