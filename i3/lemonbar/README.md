@@ -66,8 +66,11 @@ bar {
 * Made one segment for both eth and wlan speed, prefers eth. **FINISHED**
 * <strike>Added control-pianobar for music, as I don't really use MPD. **27FEB2016**</strike>
 * Added check to see if gpg key is unlocked (since I use it for `pass`, which give `offlineimap` passwds) **19MAR2016**
+  * GPG icon will only show if GPG is installed (and maybe if there are keys?) **28JUL2016**
 * Added Thinkpad Multi Battery code. Will display ***weighted*** total battery percent. Other peoples code which I found only did `(bat0 perc + bat1 perc)/2`... Which is invalid, and extra invalid with an extended battery! <strike>There is a setting in the config to use either conky supplied battery, or the new Thinkpad Multi Battery.</strike> **09APR2016**
   * Now made TMB detect no battery (desktop), normal batter, or thinkpad multi battery automagically. (as long as your computer uses BAT0 and/or BAT1) **27JUL2016**
+  * Battery time remaining only shows when there is meaningful output.
+    * Note: It will show either time till empty, or time till full. BUT, it only accounts for one battery... but still a bit useful to thinkpad users. **28JUL2016**
 * Added Battery Time Remaining to Thinkpad Multi Battery. **17APR2016**
 * Added Screen Brightness percent. **19JUN2016**
 * Completely overhauled music code to how scalablely handle multiple music players. (requested by verrlara) **14JUL2016**

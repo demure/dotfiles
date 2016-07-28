@@ -122,7 +122,8 @@ while read -r line ; do
 		### Volume Case ### {{{
 		VOL*)
 			## Volume
-			vol="%{F${color_sec_b2}}${sep_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_vol}%{F- T1} ${line#???}"
+			vol_arr="${line#???}"
+			vol="%{F${color_sec_b2}}${sep_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_vol}%{F- T1} ${vol_arr}"
 			;;
 		### End Volume Case ### }}}
 
@@ -151,7 +152,6 @@ while read -r line ; do
 			fi
 			;;
 		### End Temperature Case ### }}}
-		### End Temp ### }}}
 
 		### Offlineimap Case ### {{{
 		EMA*)
@@ -168,12 +168,14 @@ while read -r line ; do
 		### GPG Case ### {{{
 		GPG*)
 			gpg_arr=(${line#???})
-			if [ "${gpg_arr}" = "1" ]; then
-				lock="${icon_gpg_unlocked}"
-			  else
-				lock="${icon_gpg_locked}"
+			if [ "${gpg_arr}" != "none" ]; then
+				if [ "${gpg_arr}" = "1" ]; then
+					lock="${icon_gpg_unlocked}"
+				else
+					lock="${icon_gpg_locked}"
+				fi
+				gpg="%{F${color_icon}}${sep_l_left}%{B${color_sec_b2}}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_gpg}%{F${color_fore} T1} ${lock}"
 			fi
-			gpg="%{F${color_icon}}${sep_l_left}%{B${color_sec_b2}}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_gpg}%{F${color_fore} T1} ${lock}"
 			;;
 		### End GPG Case ### }}}
 
@@ -187,7 +189,7 @@ while read -r line ; do
 			## I will have colors only at much lower percentages.
 
 			tmb_arr_perc=$(echo ${line#???} | cut -f1 -d\ )
-			tmb_arr_status=$(echo ${line#???} | cut -f2 -d\ )
+			tmb_arr_stat=$(echo ${line#???} | cut -f2 -d\ )
 			tmb_arr_time=$(echo ${line#???} | cut -f3 -d\ )
 
 			## This means it will not show up on desktop computers
@@ -219,11 +221,16 @@ while read -r line ; do
 				fi
 
 				## Set charging icon
-				if [ ${tmb_arr_status} != "D" ]; then
+				if [ ${tmb_arr_stat} != "D" ]; then
 					bat_icon=${icon_bat_plug}; bat_cicon=${color_bat_plug};
 				fi
 				bat="%{F${bat_cback}}${sep_left}%{F${bat_cicon} B${bat_cback}} %{T2}${bat_icon}%{F- T1} ${tmb_arr_perc}%"
-				bat_time="%{F${color_icon}}${sep_l_left}%{F${color_icon} B${color_sec_b1}} %{T2}${icon_bat_time}%{F- T1} ${tmb_arr_time}"
+				
+				if [ ${tmb_arr_time} != "" ]; then
+					bat_time="%{F${color_icon}}${sep_l_left}%{F${color_icon} B${color_sec_b1}} %{T2}${icon_bat_time}%{F- T1} ${tmb_arr_time}"
+				  else
+					bat_time=""
+				fi
 			  else
 				## If a desktop, show a plug icon. This stops the ugly segment merge that that would happen.
 				bat="%{F${color_sec_b1}}${sep_left}%{F${color_icon} B${color_sec_b1}} %{T2}${icon_bat_plug}%{F- T1}"

@@ -122,7 +122,7 @@ while :; do
 
 		if [ "${BAT0}" != "" ] || [ "${BAT1}" != "" ]; then
 			## Originally "/sys/class/power_supply/BAT{0..1}/uevent" but changed into variables make work for non thinkpad cases. paste fails if it can't find a passed file.
-			printf "%s%s%s\n" "TMB" "$(paste -d = ${BAT0} ${BAT1} 2>/dev/null | awk '/ENERGY_FULL=/||/ENERGY_NOW=/||/STATUS/||/CHARGE_NOW/||/CHARGE_FULL/ {split($0,a,"="); if(a[2]~/Discharging/||a[4]~/Discharging/){CHARGE="D"} else if(a[2]~/Charging/||a[4]~/Charging/){CHARGE="C"} else if (a[2]~/Full/||a[4]~/Full/){CHARGE="F"}; if(a[1]~/FULL/){FULL=a[2]+a[4]}; if(a[1]~/NOW/){NOW=a[2]+a[4]};} END {if(NOW!=""){PERC=int((NOW/FULL)*100)} else {PERC="none"}; printf("%s %s\n", PERC, CHARGE)}')" "$(acpi -b | awk '{if($5!=""){print " " $5}}')" > "${panel_fifo}" 
+			printf "%s%s%s\n" "TMB" "$(paste -d = ${BAT0} ${BAT1} 2>/dev/null | awk '/ENERGY_FULL=/||/ENERGY_NOW=/||/STATUS/||/CHARGE_NOW/||/CHARGE_FULL/ {split($0,a,"="); if(a[2]~/Discharging/||a[4]~/Discharging/){CHARGE="D"} else if(a[2]~/Charging/||a[4]~/Charging/){CHARGE="C"} else if (a[2]~/Full/||a[4]~/Full/){CHARGE="F"}; if(a[1]~/FULL/){FULL=a[2]+a[4]}; if(a[1]~/NOW/){NOW=a[2]+a[4]};} END {if(NOW!=""){PERC=int((NOW/FULL)*100)} else {PERC="none"}; printf("%s %s\n", PERC, CHARGE)}')" "$(acpi -b | awk '/[0-9][0-9]:[0-9][0-9]:[0-9][0-9]/ {if($5!=""){print " " $5}}')" > "${panel_fifo}" 
 			else
 			printf "%s%s\n" "TMB" "none" > "${panel_fifo}"
 		fi
@@ -132,7 +132,7 @@ while :; do
 	## GPG Check, "GPG"
 	if [ $((cnt_gpg++)) -ge ${upd_gpg} ]; then
 		export DISPLAY=''
-		printf "%s%s\n" "GPG" "$(gpg-connect-agent 'keyinfo --list' /bye 2>/dev/null | awk 'BEGIN{CACHED=0} /^S/ {match($0, /S\sKEYINFO\s\S+\s\S\s\S+\s\S+\s(\S)\s\S\s\S+\s\S+\s\S/, m); if(m[1]==1){CACHED=1}} END{print CACHED}')" > "${panel_fifo}"
+		printf "%s%s\n" "GPG" "$(gpg-connect-agent 'keyinfo --list' /bye 2>/dev/null | awk 'BEGIN{CACHED=0} /^S/ {match($0, /S\sKEYINFO\s\S+\s\S\s\S+\s\S+\s(\S)\s\S\s\S+\s\S+\s\S/, m); if(m[1]==1){CACHED=1}} END{if($0!=""){print CACHED} else {print "none"}}')" > "${panel_fifo}"
 		cnt_gpg=0
 	fi
 
