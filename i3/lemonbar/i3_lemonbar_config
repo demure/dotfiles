@@ -23,6 +23,18 @@ iconfont="fontawesome-10"
 ## You could set this to "" to reduce bar length while toggled.
 scrub_ip="---.---.---.---"
 
+### Temperature ### {{{
+## Temperature value can either be C or F.
+temp_format="F"
+if [ ${temp_format} = "C" ]; then
+	temp_format=""
+  else
+	if [ ${temp_format} = "F" ]; then
+		temp_format="f"
+	fi
+fi
+### End Temperature ### }}}
+
 ### Alarm Settings ### {{{
 cpu_alert=75                        # % cpu use
 net_alert=5                         # K net use
@@ -44,6 +56,7 @@ upd_mmpd=5                          # Multi Music Player Display
 upd_ext_ip=600                      # External IP update
 upd_gpg=300                         # GPG update
 upd_tmb=60                          # Thinkpad Multi Battery update
+upd_temp=3                          # Temperature update
 ### End Update ### }}}
 
 ### Color ### {{{
@@ -94,6 +107,7 @@ color_temp="#ffdc322f"              # Backgroud for high temp
 #else
   #stab=''
 #fi
+
 ## I like to be compact...
 stab=''
 ### End Spacing ### }}}

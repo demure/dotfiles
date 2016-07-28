@@ -79,15 +79,6 @@ while read -r line ; do
 			nets_u="%{F${nets_cicon}}${sep_l_left} %{T2}${icon_ul}%{F${nets_cfore} T1} ${nets_uv}"
 			### End Net Speed ### }}}
 
-			### Temperature ### {{{
-			if [ ${sys_arr[7]} -gt ${temp_alert} ]; then
-				temp_cback=${color_temp}; temp_cicon=${color_back}; temp_cfore=${color_back};
-			  else
-				temp_cback=${color_sec_b2}; temp_cicon=${color_icon}; temp_cfore=${color_fore};
-			fi
-			temp="%{F${temp_cback}}${sep_left}%{F${temp_cicon} B${temp_cback}} %{T2}${icon_temp}%{F${temp_cfore} T1} ${sys_arr[7]}F"
-			### End Temp ### }}}
-
 			### Local IP ### {{{
 			## To save space, I don't want to give both eth0 and wlan0 spots
 			## So I will make eth0 > wlan0, as if my laptop has eth, I probably want it.
@@ -133,14 +124,34 @@ while read -r line ; do
 			## Volume
 			vol="%{F${color_sec_b2}}${sep_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_vol}%{F- T1} ${line#???}"
 			;;
-		### End Vol Case ### }}}
+		### End Volume Case ### }}}
 
 		### Brightness Case ### {{{
 		BRI*)
 			## Brightness
-			bri="%{F${color_icon}}${sep_l_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_bri}%{F- T1} ${line#???}%"
+			bright_arr="${line#???}"
+			bri="%{F${color_icon}}${sep_l_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_bri}%{F- T1} ${bright_arr}%"
 			;;
-		### End Vol Case ### }}}
+		### End Brightness Case ### }}}
+
+		### Temperature Case ### {{{
+		TMP*)
+			## Temperature
+			temp_arr_val=$(echo ${line#???} | cut -f1 -d\ )
+			temp_arr_unit=$(echo ${line#???} | cut -f2 -d\ )
+			if [ ${temp_arr_val} != "none" ]; then
+				if [ ${temp_arr_val} -gt ${temp_alert} ]; then
+					temp_cback=${color_temp}; temp_cicon=${color_back}; temp_cfore=${color_back};
+					else
+					temp_cback=${color_sec_b2}; temp_cicon=${color_icon}; temp_cfore=${color_fore};
+				fi
+				temp="%{F${temp_cback}}${sep_left}%{F${temp_cicon} B${temp_cback}} %{T2}${icon_temp}%{F${temp_cfore} T1} ${temp_arr_val}${temp_arr_unit}"
+			  else
+				temp="%{F${color_sec_b2}}${sep_left}%{F${color_disable} B${color_sec_b2}} %{T2}${icon_temp}%{F${color_disable} T1} ×"
+			fi
+			;;
+		### End Temperature Case ### }}}
+		### End Temp ### }}}
 
 		### Offlineimap Case ### {{{
 		EMA*)

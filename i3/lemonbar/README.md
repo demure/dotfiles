@@ -28,13 +28,12 @@ There were a few parts of the original that didn't make sense to me, and other t
 * Install font awesome
   * or you can change the icon font, and set all the icons.
 * You will need to check that the conky conf uses your hardware identifiers.
-  * battery
+  * <strike>battery</strike>
   * wifi
   * ethernet
-  * temp
+  * <strike>temp</strike>
 * You may need to tweak the acpi paths in the main script for your system
   * brightness
-  * thinkpad multi battery? (I think that this might be same across thinkpads though)
 * Add i3 lemonbar to your `~/.i3/config`
 
 ```
@@ -60,6 +59,8 @@ bar {
 * Added external ip **FINISHED**
 * Added battery, different icons for level, different colors for level, icon for charging. **FINISHED**
 * Added temp, with threshold color. **FINISHED**
+  * Made temp no longer rely on conky. **27JUL2016**
+  * You can set temp to use ferinheight or celsius in the config.
 * Made ram show percent instead of raw number **FINISHED**
 * Disabled weechat part, as my weechat lives on my server. Work need a major overhaul, and likely be out of sync, or insecure.
 * Made one segment for both eth and wlan speed, prefers eth. **FINISHED**

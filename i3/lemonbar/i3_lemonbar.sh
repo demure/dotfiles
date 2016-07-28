@@ -41,6 +41,7 @@ cnt_mmpd=${upd_mmpd}
 cnt_ext_ip=${upd_ext_ip}
 cnt_gpg=${upd_gpg}
 cnt_tmb=${upd_tmb}
+cnt_temp=${upd_temp}
 
 while :; do
 
@@ -55,6 +56,12 @@ while :; do
 		## xbacklight doesn't work as this doesn't have xrandr access while running as the bar?
 		paste /sys/class/backlight/intel_backlight/{actual_brightness,max_brightness} | awk '{BRIGHT=$1/$2*100} END {printf "%s%.f\n", "BRI", BRIGHT}' > "${panel_fifo}" &
 		cnt_bri=0
+	fi
+
+	## Temperature Check, TMP
+	if [ $((cnt_temp++)) -ge ${upd_temp} ]; then
+		printf "%s%s%s\n" "TMP" "$(acpi -t${temp_format} 2>/dev/null | awk '/Thermal 0/ {match($0, /([0-9]+\.[0-9]).*([CF])$/, m)} END {if(m[1]!=""){print int(m[1]) " " m[2]} else {print "none"}}')" > "${panel_fifo}"
+		cnt_temp=0
 	fi
 
 	## Offlineimap, "EMA"
@@ -129,7 +136,7 @@ while :; do
 		cnt_gpg=0
 	fi
 
-	## External IP
+	## External IP, "EXT"
 	if [ $((cnt_ext_ip++)) -ge ${upd_ext_ip} ]; then
 		printf "%s%s\n" "EXT" "$(wget --no-proxy http://checkip.dyndns.org/ -q -O - | grep -Eo '\<[[:digit:]]{1,3}(\.[[:digit:]]{1,3}){3}\>' || echo 'err')" > "${panel_fifo}"
 		cnt_ext_ip=0
