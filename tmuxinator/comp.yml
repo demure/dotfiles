@@ -22,10 +22,9 @@ windows:
   - apt: sudo aptitude
   - mutt: mutt
   - schedule:
-      layout: even-vertical
+      layout: even-horizontal
       panes:
         - vit
         - khal interactive
-  - cal: khal
   - rss: newsbeuter
   - shell:
