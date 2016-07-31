@@ -26,8 +26,3 @@ ${if_up wlp4s0}${downspeedf wlp4s0} ${upspeedf wlp4s0}\
 ${else}down down${endif} \
 ${if_up eth0}${downspeedf eth0} ${upspeedf eth0} \
 ${else}down down${endif} \
-${if_up eth0}${addr eth0} \
-${else}down${endif} \
-${if_up wlp4s0}${addr wlp4s0}\
-${else}down${endif} \
-${wireless_link_qual_perc wlp4s0} \

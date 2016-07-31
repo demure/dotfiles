@@ -36,9 +36,9 @@ fi
 ### End Temperature ### }}}
 
 ### Alarm Settings ### {{{
-cpu_alert=75                        # % cpu use
-net_alert=5                         # K net use
-temp_alert=160                      # F heat use
+cpu_alert=75                        ## % cpu use
+net_alert=50                        ## K net use
+temp_alert=160                      ## F heat use
 
 ## Battery
 ## Note: levels higher than 'high' will not be highlighted.
@@ -49,35 +49,36 @@ bat_alert_high=29
 
 ### Update Settings ### {{{
 # update setting, in seconds (conky update in i3_lemonbar_conky)
-upd_vol=3                           # Volume update
-upd_bri=3                           # Screen brightness update
-upd_mail=120                        # Mail check update
-upd_mmpd=5                          # Multi Music Player Display
-upd_ext_ip=600                      # External IP update
-upd_gpg=300                         # GPG update
-upd_tmb=60                          # Thinkpad Multi Battery update
-upd_temp=3                          # Temperature update
+upd_vol=3                           ## Volume update
+upd_bri=3                           ## Screen brightness update
+upd_mail=120                        ## Mail check update
+upd_mmpd=5                          ## Multi Music Player Display
+upd_ext_ip=600                      ## External IP update
+upd_gpg=300                         ## GPG update
+upd_tmb=60                          ## Thinkpad Multi Battery update
+upd_temp=3                          ## Temperature update
+upd_net=3                           ## Network update
 ### End Update ### }}}
 
 ### Color ### {{{
-color_back="#FF1D1F21"              # Default background
-color_fore="#FFC5C8C6"              # Default foreground
-color_head="#FFB5BD68"              # Background for first element
-color_sec_b1="#FF282A2E"            # Background for section 1
-color_sec_b2="#FF454A4F"            # Background for section 2
-color_sec_b3="#FF60676E"            # Background for section 3
-color_icon="#FF979997"              # For icons
-color_mail="#FFCE935F"              # Background color for mail alert
-color_chat="#FFCC6666"              # Background color for chat alert
-color_cpu="#FF5F819D"               # Background color for cpu alert
-color_net="#FF5E8D87"               # Background color for net alert
-color_disable="#FF1D1F21"           # Foreground for disable elements
-color_wsp="#FF8C9440"               # Background for selected workspace
-color_bat_low="#ffdc322f"           # Background for low bat threshold
-color_bat_mid="#ffcb4b16"           # Background for mid bat threshold
-color_bat_high="#ffb58900"          # Icon for high bat threshold
-color_bat_plug="#ff859900"          # Forground for 70-100 battery icon
-color_temp="#ffdc322f"              # Backgroud for high temp
+color_back="#FF1D1F21"              ## Default background
+color_fore="#FFC5C8C6"              ## Default foreground
+color_head="#FFB5BD68"              ## Background for first element
+color_sec_b1="#FF282A2E"            ## Background for section 1
+color_sec_b2="#FF454A4F"            ## Background for section 2
+color_sec_b3="#FF60676E"            ## Background for section 3
+color_icon="#FF979997"              ## For icons
+color_mail="#FFCE935F"              ## Background color for mail alert
+color_chat="#FFCC6666"              ## Background color for chat alert
+color_cpu="#FF5F819D"               ## Background color for cpu alert
+color_net="#FF5E8D87"               ## Background color for net alert
+color_disable="#FF1D1F21"           ## Foreground for disable elements
+color_wsp="#FF8C9440"               ## Background for selected workspace
+color_bat_low="#ffdc322f"           ## Background for low bat threshold
+color_bat_mid="#ffcb4b16"           ## Background for mid bat threshold
+color_bat_high="#ffb58900"          ## Icon for high bat threshold
+color_bat_plug="#ff859900"          ## Forground for 70-100 battery icon
+color_temp="#ffdc322f"              ## Backgroud for high temp
 
 	### Solarized ### {{{
 	## For reference purposes
@@ -114,41 +115,41 @@ stab=''
 
 ### Icons ### {{{
 # Char glyps for powerline fonts
-sep_left=""                        # Powerline separator left
-sep_right=""                       # Powerline separator right
-sep_l_left=""                      # Powerline light separator left
-sep_l_right=""                     # Powerline light sepatator right
+sep_left=""                        ## Powerline separator left
+sep_right=""                       ## Powerline separator right
+sep_l_left=""                      ## Powerline light separator left
+sep_l_right=""                     ## Powerline light sepatator right
 
 # Icon glyphs from Font Awesome
-icon_clock=""                      # Clock icon
-icon_cpu=""                        # CPU icon
-icon_mem=""                        # MEM icon
-icon_dl=""                         # Download icon
-icon_ul=""                         # Upload icon
-icon_vol=""                        # Volume icon
-icon_bri=""                        # Brightness icon
-icon_hd=""                         # HD / icon
-icon_home=""                       # HD /home icon
-icon_mail=""                       # Mail icon
-icon_chat=""                       # IRC/Chat icon
-icon_music=""                      # Music icon
-icon_prog=""                       # Window icon
-icon_contact=""                    # Contact icon
-icon_wsp=""                        # Workspace icon
-icon_bat_plug=""                   # Battery icon, may add level indicator? and plugged in?
-icon_bat0=""                       # Battery icon
-icon_bat1=""                       # Battery icon
-icon_bat2=""                       # Battery icon
-icon_bat3=""                       # Battery icon
-icon_bat4=""                       # Battery icon
-icon_bat_time=""                   # Battery time icon
-icon_temp=""                       # Temperature icon
-icon_wifi=""                       # Wifi percent icon
-icon_local_eth=""                  # Local IP eth icon
-icon_local_wifi=""                 # Local IP wifi icon
-icon_local_out=""                  # Local IP out icon
-icon_ext_ip=""                     # External IP
-icon_gpg=""                        # GPG icon
-icon_gpg_locked=""                 # GPG locked icon
-icon_gpg_unlocked=""               # GPG unlocked icon
+icon_clock=""                      ## Clock icon
+icon_cpu=""                        ## CPU icon
+icon_mem=""                        ## MEM icon
+icon_dl=""                         ## Download icon
+icon_ul=""                         ## Upload icon
+icon_vol=""                        ## Volume icon
+icon_bri=""                        ## Brightness icon
+icon_hd=""                         ## HD / icon
+icon_home=""                       ## HD /home icon
+icon_mail=""                       ## Mail icon
+icon_chat=""                       ## IRC/Chat icon
+icon_music=""                      ## Music icon
+icon_prog=""                       ## Window icon
+icon_contact=""                    ## Contact icon
+icon_wsp=""                        ## Workspace icon
+icon_bat_plug=""                   ## Battery icon, may add level indicator? and plugged in?
+icon_bat0=""                       ## Battery icon
+icon_bat1=""                       ## Battery icon
+icon_bat2=""                       ## Battery icon
+icon_bat3=""                       ## Battery icon
+icon_bat4=""                       ## Battery icon
+icon_bat_time=""                   ## Battery time icon
+icon_temp=""                       ## Temperature icon
+icon_wifi=""                       ## Wifi percent icon
+icon_local_eth=""                  ## Local IP eth icon
+icon_local_wifi=""                 ## Local IP wifi icon
+icon_local_out=""                  ## Local IP out icon
+icon_ext_ip=""                     ## External IP
+icon_gpg=""                        ## GPG icon
+icon_gpg_locked=""                 ## GPG locked icon
+icon_gpg_unlocked=""               ## GPG unlocked icon
 ### End Icons ### }}}

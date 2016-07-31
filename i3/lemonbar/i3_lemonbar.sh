@@ -42,6 +42,7 @@ cnt_ext_ip=${upd_ext_ip}
 cnt_gpg=${upd_gpg}
 cnt_tmb=${upd_tmb}
 cnt_temp=${upd_temp}
+cnt_net=${upd_net}
 
 while :; do
 
@@ -54,14 +55,21 @@ while :; do
 	## Brightness, "BRI"
 	if [ $((cnt_bri++)) -ge ${upd_bri} ]; then
 		## xbacklight doesn't work as this doesn't have xrandr access while running as the bar?
-		paste /sys/class/backlight/intel_backlight/{actual_brightness,max_brightness} | awk '{BRIGHT=$1/$2*100} END {printf "%s%.f\n", "BRI", BRIGHT}' > "${panel_fifo}" &
+		printf "%s%s\n" "BRI" "$(paste /sys/class/backlight/intel_backlight/{actual_brightness,max_brightness} | awk '{BRIGHT=$1/$2*100} END {printf "%.f", BRIGHT}')" > "${panel_fifo}"
 		cnt_bri=0
 	fi
 
 	## Temperature Check, TMP
 	if [ $((cnt_temp++)) -ge ${upd_temp} ]; then
-		printf "%s%s%s\n" "TMP" "$(acpi -t${temp_format} 2>/dev/null | awk '/Thermal 0/ {match($0, /([0-9]+\.[0-9]).*([CF])$/, m)} END {if(m[1]!=""){print int(m[1]) " " m[2]} else {print "none"}}')" > "${panel_fifo}"
+		printf "%s%s\n" "TMP" "$(acpi -t${temp_format} 2>/dev/null | awk '/Thermal 0/ {match($0, /([0-9]+\.[0-9]).*([CF])$/, m)} END {if(m[1]!=""){print int(m[1]) " " m[2]} else {print "none"}}')" > "${panel_fifo}"
 		cnt_temp=0
+	fi
+
+	## Network Check, NET
+	if [ $((cnt_net++)) -ge ${upd_net} ]; then
+		## Get IP and wifi strength
+		printf "%s%s %s\n" "NET" "$(ip address show up scope global 2>/dev/null | awk '/inet/ {match($0, /\s+\w+\s(\w+\.\w+\.\w+\.\w+)\/\w+\s\w+\s\w+\.\w+\.\w+\.\w+\s\w+\s\w+\s(\w+)/, m)} END {if(m[1]!=""){print m[1] " " m[2]} else {print "none none"}}')" "$(iwconfig 2>/dev/null | awk '/Link/ {match($0, /\s+\w+\s\w+=([0-9]+)\/([0-9]+).*/, m)} END {if(m[1]!=""&&m[2]!=""){print int((m[1] / m[2]) * 100)} else {print "none"}}')" > "${panel_fifo}"
+		cnt_net=0
 	fi
 
 	## Offlineimap, "EMA"
@@ -105,6 +113,7 @@ while :; do
 				fi
 			fi
 		fi
+	cnt_mmpd=0
 	fi
 
 	## Thinkpad Milti Battery, "TMB"
@@ -122,7 +131,7 @@ while :; do
 
 		if [ "${BAT0}" != "" ] || [ "${BAT1}" != "" ]; then
 			## Originally "/sys/class/power_supply/BAT{0..1}/uevent" but changed into variables make work for non thinkpad cases. paste fails if it can't find a passed file.
-			printf "%s%s%s\n" "TMB" "$(paste -d = ${BAT0} ${BAT1} 2>/dev/null | awk '/ENERGY_FULL=/||/ENERGY_NOW=/||/STATUS/||/CHARGE_NOW/||/CHARGE_FULL/ {split($0,a,"="); if(a[2]~/Discharging/||a[4]~/Discharging/){CHARGE="D"} else if(a[2]~/Charging/||a[4]~/Charging/){CHARGE="C"} else if (a[2]~/Full/||a[4]~/Full/){CHARGE="F"}; if(a[1]~/FULL/){FULL=a[2]+a[4]}; if(a[1]~/NOW/){NOW=a[2]+a[4]};} END {if(NOW!=""){PERC=int((NOW/FULL)*100)} else {PERC="none"}; printf("%s %s\n", PERC, CHARGE)}')" "$(acpi -b | awk '/[0-9][0-9]:[0-9][0-9]:[0-9][0-9]/ {if($5!=""){print " " $5}}')" > "${panel_fifo}" 
+			printf "%s%s %s\n" "TMB" "$(paste -d = ${BAT0} ${BAT1} 2>/dev/null | awk '/ENERGY_FULL=/||/ENERGY_NOW=/||/STATUS/||/CHARGE_NOW/||/CHARGE_FULL/ {split($0,a,"="); if(a[2]~/Discharging/||a[4]~/Discharging/){CHARGE="D"} else if(a[2]~/Charging/||a[4]~/Charging/){CHARGE="C"} else if (a[2]~/Full/||a[4]~/Full/){CHARGE="F"}; if(a[1]~/FULL/){FULL=a[2]+a[4]}; if(a[1]~/NOW/){NOW=a[2]+a[4]};} END {if(NOW!=""){PERC=int((NOW/FULL)*100)} else {PERC="none"}; printf("%s %s\n", PERC, CHARGE)}')" "$(acpi -b | awk '/[0-9][0-9]:[0-9][0-9]:[0-9][0-9]/ {if($5!=""){print $5}}')" > "${panel_fifo}" 
 			else
 			printf "%s%s\n" "TMB" "none" > "${panel_fifo}"
 		fi

@@ -18,8 +18,7 @@ while read -r line ; do
 		### SYS Case ### {{{
 		SYS*)
 			## conky=, 0=wday, 1=mday, 2=month, 3=time, 4=cpu, 5=mem, 6=disk /,
-			## 7=comp temp, 8-9=up/down wlan, 10-11=up/down eth, 12=eth ip,
-			## 13=wlan ip, 14=wifi %
+			## 7=REMOVED, 8-9=up/down wlan, 10-11=up/down eth
 			## Things to add: Make HD use show free? Network weechat check?
 
 			sys_arr=(${line#???})
@@ -78,39 +77,49 @@ while read -r line ; do
 			nets_d="%{F${nets_cback}}${sep_left}%{F${nets_cicon} B${nets_cback}} %{T2}${icon_dl}%{F${nets_cfore} T1} ${nets_dv}"
 			nets_u="%{F${nets_cicon}}${sep_l_left} %{T2}${icon_ul}%{F${nets_cfore} T1} ${nets_uv}"
 			### End Net Speed ### }}}
+			;;
+		### End SYS Case ### }}}
 
-			### Local IP ### {{{
-			## To save space, I don't want to give both eth0 and wlan0 spots
-			## So I will make eth0 > wlan0, as if my laptop has eth, I probably want it.
-			## eth ${sys_arr[11]} wlan ${sys_arr[12]}
-			if [ ${sys_arr[12]} != "down" ]; then
-				lip_select="${sys_arr[12]}"; lip_icon="${icon_local_eth}";
-			  elif [ ${sys_arr[13]} != "down" ]; then
-				lip_select="${sys_arr[13]}"; lip_icon="${icon_local_wifi}";
+		### Network Case ### {{{
+		NET*)
+			## Receives either eth or wireless ip, and interface, and signal.
+			## Unfortunately, this will likely default to the last valid entry.
+			net_arr_ip=$(echo ${line#???} | cut -f1 -d\ )
+			net_arr_inter=$(echo ${line#???} | cut -f2 -d\ )
+			net_arr_signal=$(echo ${line#???} | cut -f3 -d\ )
+			## Local IP
+			if [ ${net_arr_ip} != "none" ]; then
+				if [[ ${net_arr_inter} =~ eth ]]; then
+					net_icon="${icon_local_eth}";
+				  else
+					net_icon="${icon_local_wifi}";
+				fi
 			  else
-				lip_select="No IP"; lip_icon="${icon_local_out}";
+				net_arr_ip="No IP"; net_icon="${icon_local_out}";
 			fi
-			local_ip="%{F${color_sec_b1}}${sep_left}%{F${color_icon} B${color_sec_b1}} %{T2}${lip_icon}%{F- T1} ${lip_select}"
-			### End Local IP ### }}}
+			local_ip="%{F${color_sec_b1}}${sep_left}%{F${color_icon} B${color_sec_b1}} %{T2}${net_icon}%{F- T1} ${net_arr_ip}"
 
-			### Wifi Percent ### {{{
-			if [ ${sys_arr[13]} != "down" ]; then
-			wifi="%{F${color_icon}}${sep_l_left}%{F${color_icon} B${color_sec_b1}} %{T2}${icon_wifi}%{F- T1} ${sys_arr[14]}%"
+			## Wifi Signal Strength
+			if [ ${net_arr_signal} != "none" ]; then
+				wifi="%{F${color_icon}}${sep_l_left}%{F${color_icon} B${color_sec_b1}} %{T2}${icon_wifi}%{F- T1} ${net_arr_signal}%"
 			  else
 				wifi=""
 			fi
-			### End Wifi Percent ### }}}
 
+			## External IP clean up
+			## This stops an external IP from displaying, if on local IP.
+			## This is in this section, as it run much much more often.
+			if [ "${net_arr_ip}" = "No IP" ]; then
+				ext_ip="%{F${color_sec_b2}}${sep_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_ext_ip}%{F- T1} No IP"
+			fi
 			;;
-		### End SYS Case ### }}}
+		### End Network Case ### }}}
 
 		### External IP Case ### {{{
 		EXT*)
 			## External IP
 			ext_arr="${line#???}"
-			if [ "${lip_select}" = "No IP" ]; then
-				ext_ip_select="No IP"
-			  elif [ "${lip_select}" = "${ext_arr}" ]; then
+			if [ "${net_arr_ip}" = "${ext_arr}" ]; then
 				ext_ip_select="Same"
 			  else
 				ext_ip_select="${ext_arr}"
@@ -297,25 +306,25 @@ while read -r line ; do
 	esac
 
 	### Screenshot IP Scrubber ### {{{
-	## This is toggled by, preferably, a binding in your ~/.i3/config
+	# This is toggled by, preferably, a binding in your ~/.i3/config
 	## You can find the awk command in my config, or this bar's readme
 
 	ext_toggle="$(cat /tmp/i3_lemonbar_ip_${USER} 2>/dev/null)"
 
 	if [ "${ext_toggle}" = 1 ]; then
-		if [ "${lip_select}" != "No IP" ]; then
+		if [ "${net_arr_ip}" != "No IP" ]; then
 			if [ "${ext_ip_select}" != "No IP" ]; then
 				## This var is used so that you don't have to wait for EXT IP to rerun, after toggle off.
 				ext_ip_temp="${ext_ip_select}"
 
-				if [ "${lip_select}" != "${ext_ip_select}" ]; then
+				if [ "${net_arr_ip}" != "${ext_ip_select}" ]; then
 					ext_ip_temp="${scrub_ip}"
 				  else
-					lip_select="${scrub_ip}"
+					net_arr_ip="${scrub_ip}"
 				fi
 
 				ext_ip="%{F${color_sec_b2}}${sep_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_ext_ip}%{F- T1} ${ext_ip_temp}"
-				local_ip="%{F${color_sec_b1}}${sep_left}%{F${color_icon} B${color_sec_b1}} %{T2}${lip_icon}%{F- T1} ${lip_select}"
+				local_ip="%{F${color_sec_b1}}${sep_left}%{F${color_icon} B${color_sec_b1}} %{T2}${net_icon}%{F- T1} ${net_arr_ip}"
 			fi
 		fi
 	  else
