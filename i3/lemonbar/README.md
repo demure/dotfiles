@@ -27,13 +27,6 @@ There were a few parts of the original that didn't make sense to me, and other t
 ###Installation
 * Install font awesome
   * or you can change the icon font, and set all the icons.
-* You will need to check that the conky conf uses your hardware identifiers.
-  * <strike>battery</strike>
-  * wifi
-  * ethernet
-  * <strike>temp</strike>
-* You may need to tweak the acpi paths in the main script for your system
-  * brightness
 * Add i3 lemonbar to your `~/.i3/config`
 
 ```
@@ -55,7 +48,8 @@ bar {
 * I felt that the declaring 1024 as a 'small screen' was falling short, set to 1336. **FINISHED**
 * Edited the buffer between segments to be smaller. **FINISHED**
 * Removed gmail support, and added offlineimap support **FINISHED**
-* Added local ip, prefers eth over wlan; shows appropriate icon; shows wifi signal strength if wifi. **FINISHED**
+* Added local ip, <strike>prefers eth over wlan</strike>; shows appropriate icon; shows wifi signal strength if wifi. **FINISHED**
+  * No longer uses conky, but will default to last outputted interface. **31JUL2016**
 * Added external ip **FINISHED**
 * Added battery, different icons for level, different colors for level, icon for charging. **FINISHED**
 * Added temp, with threshold color. **FINISHED**
@@ -73,6 +67,7 @@ bar {
     * Note: It will show either time till empty, or time till full. BUT, it only accounts for one battery... but still a bit useful to thinkpad users. **28JUL2016**
 * Added Battery Time Remaining to Thinkpad Multi Battery. **17APR2016**
 * Added Screen Brightness percent. **19JUN2016**
+  * Tweaked brightness to automagically work with more installs. Made brightness hide for desktop (no battery) computers **31JUL2016**
 * Completely overhauled music code to how scalablely handle multiple music players. (requested by verrlara) **14JUL2016**
   * currently supports [control-pianobar], [cmus], [mpd]<sup>(new code)</sup>, [mocp], and [audacious].
     * `cmus` output will indicate paused and lack of meta data.

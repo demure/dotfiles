@@ -140,7 +140,15 @@ while read -r line ; do
 		BRI*)
 			## Brightness
 			bright_arr="${line#???}"
-			bri="%{F${color_icon}}${sep_l_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_bri}%{F- T1} ${bright_arr}%"
+			
+			## Don't show brightness if there is no battery.
+			## Most desktops don't software adjust brightness.
+			## I suppose there is a small use case of a laptop with no battery...
+			if [ ${tmb_arr_perc} != "none" ]; then
+				bri="%{F${color_icon}}${sep_l_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_bri}%{F- T1} ${bright_arr}%"
+			  else
+				bri=""
+			fi
 			;;
 		### End Brightness Case ### }}}
 

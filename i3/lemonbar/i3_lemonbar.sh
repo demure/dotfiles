@@ -55,7 +55,7 @@ while :; do
 	## Brightness, "BRI"
 	if [ $((cnt_bri++)) -ge ${upd_bri} ]; then
 		## xbacklight doesn't work as this doesn't have xrandr access while running as the bar?
-		printf "%s%s\n" "BRI" "$(paste /sys/class/backlight/intel_backlight/{actual_brightness,max_brightness} | awk '{BRIGHT=$1/$2*100} END {printf "%.f", BRIGHT}')" > "${panel_fifo}"
+		printf "%s%s\n" "BRI" "$(paste /sys/class/backlight/*/{actual_brightness,max_brightness} | awk '{BRIGHT=$1/$2*100} END {printf "%.f", BRIGHT}')" > "${panel_fifo}"
 		cnt_bri=0
 	fi
 
