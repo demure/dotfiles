@@ -70,6 +70,10 @@
 		alias grep='grep --color=auto --exclude-dir=.cvs --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn'
 	  else
 		## If old, use GREP_OPTIONS, as --exclude may not exist, and annoying errors!
+		if echo hello | grep --color=auto l >/dev/null 2>&1; then
+			GREP_OPTIONS+="--color=auto " GREP_COLOR='1;31'
+		fi
+
 		if echo hello | grep --exclude-dir=a l >/dev/null 2>&1; then
 			for PATTERN in .cvs .git .hg .svn; do
 				GREP_OPTIONS+="--exclude-dir=$PATTERN "
