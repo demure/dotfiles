@@ -1,8 +1,8 @@
-##Demure's i3 lemonbar##
+## Demure's i3 lemonbar ##
 
 ![my bar][pic0]
 
-###Base###
+### Base ###
 This is based off of [i3 lemonbar], by electro7.
 There were a few parts of the original that didn't make sense to me, and other things I wanted to add.
 I've no added a number of features I have desired:
@@ -19,7 +19,7 @@ I've no added a number of features I have desired:
 * Shows either wired or wireless Up/Down speed in the same spot.
 
 
-###Requirements###
+### Requirements ###
 * [i3wm]
 * `lemonbar` (which used to be know as `bar`)
   * I use [lemonbar krypt-n] instead of [lemonbar].
@@ -35,7 +35,7 @@ I've no added a number of features I have desired:
   * I use font awesome, which is the best symbol font I have seen to date.
 
 
-###Installation###
+### Installation ###
 * Install font awesome
   * or you can change the icon font, and set all the icons.
 * Add i3 lemonbar to your `~/.i3/config`
@@ -47,13 +47,13 @@ bar {
 ```
 
 
-###Notes###
+### Notes ###
 * I find that this does not gracefully handle i3 logout -> login, and full config reload.
   * I used `pkill lemonbar && ~/.i3/lemonbar/i3_lemonbar.sh &` to correct the issue
   * I have added `pkill lemonbar` to my log out command, to make life easier.
 
 
-###Modifications###
+### Modifications ###
 * On my system, volume and a number of other segments had an extra `%`. **FINISHED**
 * Edited vol command to be more efficient, and not need a conf line **FINISHED**
 * I felt that the declaring 1024 as a 'small screen' was falling short, set to 1336. **FINISHED**
@@ -95,7 +95,7 @@ bar {
 * Added `$music_limit` to prevent music from covering workspace display. **18JUL2016**
 
 
-###Things I want###
+### Things I want ###
 * I am not sure if I can make this set up show i3 keybinding modes in the bar... would like this.
 * Make better separations between joined colored segments.
 
