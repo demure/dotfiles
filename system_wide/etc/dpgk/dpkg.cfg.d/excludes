@@ -1,0 +1,15 @@
+## Drop locales except english and japanese
+path-exclude=/usr/share/locale/*
+path-include=/usr/share/locale/en/*
+path-include=/usr/share/locale/en_US/*
+path-include=/usr/share/locale/ja/*
+path-include=/usr/share/locale/locale.alias
+
+## Drop translated manual pages except english and japanese
+path-exclude=/usr/share/man/*
+path-include=/usr/share/man/man[1-9]/*
+path-include=/usr/share/man/en*/*
+path-include=/usr/share/man/ja*/*
+
+## Drop annoyingly large texlive-doc
+path-exclude=/usr/share/doc/texlive-doc/*
