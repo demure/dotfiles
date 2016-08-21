@@ -7,7 +7,7 @@ This is based off of [i3 lemonbar], by electro7.
 There were a few parts of the original that didn't make sense to me, and other things I wanted to add.
 I've no added a number of features I have desired:
 
-* Battery level works indicates no batter, normal %, and correct multiple batter %.
+* Battery level works indicates no battery, normal %, and correct multiple battery %.
 * Works with multiple music players, and has room to add more support.
 * Works with my offlineimap setup.
 * Shows either wired or wireless IP, using the same spot.
