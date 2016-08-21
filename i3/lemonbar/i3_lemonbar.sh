@@ -122,11 +122,15 @@ while :; do
 		## Check for BAT0
 		if [ -e /sys/class/power_supply/BAT0/uevent ]; then
 			BAT0="/sys/class/power_supply/BAT0/uevent"
+		  else
+			BAT0=""
 		fi
 
 		## Check for BAT1
 		if [ -e /sys/class/power_supply/BAT1/uevent ]; then
 			BAT1="/sys/class/power_supply/BAT1/uevent"
+		  else
+			BAT1=""
 		fi
 
 		if [ "${BAT0}" != "" ] || [ "${BAT1}" != "" ]; then
