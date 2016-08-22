@@ -1,15 +1,4 @@
-##
-# You should look at the following URL's in order to grasp a solid understanding
-# of Nginx configuration files in order to fully unleash the power of Nginx.
-# http://wiki.nginx.org/Pitfalls
-# http://wiki.nginx.org/QuickStart
-# http://wiki.nginx.org/Configuration
-#
-# Generally, you will want to move this file somewhere, and start with a clean
-# file but keep this around for reference. Or just disable in sites-enabled.
-#
-# Please see /usr/share/doc/nginx-doc/examples/ for more detailed examples.
-##
+## Main site config
 
 # Default server configuration
 #
@@ -101,20 +90,6 @@ server {
 		### End High Rate Limit ### }}}
 	}
 	### End IRPG ### }}}
-
-	#### piwik ### {{{
-	#location /piwik {
-		#alias /var/www/piwik;
-	#}
-
-	#location ~ /piwik/.+\.php$ {
-		#try_files $uri =404;
-		#fastcgi_pass unix:/var/run/php5-fpm.sock;
-		### https://stackoverflow.com/questions/28490391/how-to-properly-configure-alias-directive-in-nginx
-		#fastcgi_param SCRIPT_FILENAME $request_filename;
-		#include fastcgi_params;
-	#}
-	#### End piwik ### }}}
 
 	### php attempt ### {{{
 		# pass the PHP scripts to FastCGI server listening on /var/run/php5-fpm.sock
