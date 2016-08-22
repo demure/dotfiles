@@ -41,16 +41,10 @@ server {
 
 	server_name demur.red;
 
-#	location / {
-#		# First attempt to serve request as file, then
-#		# as directory, then fall back to displaying a 404.
-#		try_files $uri $uri/ =404;
-#	}
-
-## Stop logging /theme
-location /theme {
-  access_log off;
-  }
+	## Stop logging /theme
+	location /theme {
+		access_log off;
+	}
 
 	### Rate Limit ### {{{
 	limit_req zone=perip burst=10 nodelay;
@@ -108,36 +102,6 @@ location /theme {
 	}
 	### End IRPG ### }}}
 
-	### YOURLS ### {{{
-	location /s {
-		alias /var/www/YOURLS;
-		access_log /var/log/nginx/yourls_access.log;
-		error_log /var/log/nginx/yourls_error.log info;
-
-		# Try files, then folders, then yourls-loader.php
-		# --- The most important line ---
-		try_files $uri $uri/ /yourls-loader.php;
-		#try_files $uri $uri/ /yourls-loader.php?$args;
-		#index yourls-loader.php;
-
-		#if (!-e $request_filename){
-			#rewrite ^/s/(.*)$ /s/yourls-loader.php break;
-		#}
-
-		# PHP engine
-		location ~ \.php$ {
-			try_files      $uri =404;
-			#try_files $uri /yourls-loader.php;
-			fastcgi_pass   unix:/var/run/php5-fpm.sock;
-			fastcgi_index  index.php;
-			## https://stackoverflow.com/questions/28490391/how-to-properly-configure-alias-directive-in-nginx
-			fastcgi_param SCRIPT_FILENAME $request_filename;
-			fastcgi_split_path_info ^(.+\.php)(/.+)$;
-			include        fastcgi_params;
-		}
-	}
-	### End YOURLS ### }}}
-
 	#### piwik ### {{{
 	#location /piwik {
 		#alias /var/www/piwik;
@@ -151,14 +115,6 @@ location /theme {
 		#include fastcgi_params;
 	#}
 	#### End piwik ### }}}
-
-	### GateOne redirect to HTTPS ### {{{
-	#location / {
-	#}
-	location /go {
-	    rewrite ^ https://$http_host$request_uri? permanent;
-	}
-	### End GateOne ### }}}
 
 	### php attempt ### {{{
 		# pass the PHP scripts to FastCGI server listening on /var/run/php5-fpm.sock
@@ -177,31 +133,4 @@ location /theme {
 	error_page 404 /pages/404;
 	error_page 403 /pages/403;
 	### End Error ### }}}
-
-	# deny access to .htaccess files, if Apache's document root
-	# concurs with nginx's one
-	#
-	#location ~ /\.ht {
-	#	deny all;
-	#}
 }
-
-
-# Virtual Host configuration for example.com
-#
-# You can move that to a different file under sites-available/ and symlink that
-# to sites-enabled/ to enable it.
-#
-#server {
-#	listen 80;
-#	listen [::]:80;
-#
-#	server_name example.com;
-#
-#	root /var/www/example.com;
-#	index index.html;
-#
-#	location / {
-#		try_files $uri $uri/ =404;
-#	}
-#}
