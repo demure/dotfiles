@@ -1,32 +1,37 @@
 ## YOURLS site config
 
 server {
-    listen      80;
-    server_name ln.demu.red;
-    root        /var/www/YOURLS;
+	listen 80;
+	listen [::]:80;
+	server_name ln.demu.red;
+	root /var/www/YOURLS;
 
-    access_log /var/log/nginx/yourls_access.log;
-    error_log /var/log/nginx/yourls_error.log;
+	access_log /var/log/nginx/yourls_access.log;
+	error_log /var/log/nginx/yourls_error.log;
 
-    index index.php;
+	index index.php;
 
-    location / {
-        #try_files $uri $uri/ /yourls-loader.php;
-        try_files $uri $uri/ /yourls-loader.php?$query_string;
-        expires 14d;
-        add_header Cache-Control 'public';
-    }
+	location / {
+		try_files $uri $uri/ /yourls-loader.php?$query_string;
+		expires 14d;
+		add_header Cache-Control 'public';
+	}
 
-    location ~ \.php$ {
-        fastcgi_split_path_info ^(.+\.php)(/.+)$;
-        fastcgi_pass unix:/var/run/php5-fpm.sock;
-        fastcgi_index index.php;
-        include fastcgi_params;
-        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-        fastcgi_intercept_errors off;
-        fastcgi_buffer_size 16k;
-        fastcgi_buffers 4 16k;
-    }
+	location ~ \.php$ {
+		fastcgi_split_path_info ^(.+\.php)(/.+)$;
+		fastcgi_pass unix:/var/run/php5-fpm.sock;
+		fastcgi_index index.php;
+		include fastcgi_params;
+		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+		fastcgi_intercept_errors off;
+		fastcgi_buffer_size 16k;
+		fastcgi_buffers 4 16k;
+	}
+
+	## Return a 404 for all text files.
+	location ~* ^/(?:README|readme|LICENSE[^.]*|LEGALNOTICE)(?:\.txt|\.md)*$ {
+		return 404;
+	}
 
 	### High Rate Limit ### {{{
 	limit_req zone=perip burst=999999 nodelay;
