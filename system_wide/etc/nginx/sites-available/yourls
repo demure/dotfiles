@@ -9,7 +9,7 @@ server {
 	access_log /var/log/nginx/yourls_access.log;
 	error_log /var/log/nginx/yourls_error.log;
 
-	index index.php;
+	index index.php index.html;
 
 	location / {
 		try_files $uri $uri/ /yourls-loader.php?$query_string;
@@ -37,4 +37,10 @@ server {
 	limit_req zone=perip burst=999999 nodelay;
 	limit_req zone=perserver burst=999999999;
 	### End High Rate Limit ### }}}
+
+	## Error Redirects
+	error_page 403 /index.html;
+	error_page 404 /index.html;
+	error_page 405 /index.html;
+	error_page 500 501 502 503 504 /index.html;
 }

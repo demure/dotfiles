@@ -97,7 +97,7 @@ server {
 
 	### Error Redirects ### {{{
 	## Redirect server error pages
-	error_page 500 502 503 504 /pages/50x;
+	error_page 500 501 502 503 504 /pages/50x;
 	error_page 404 /pages/404;
 	error_page 403 /pages/403;
 	### End Error ### }}}
