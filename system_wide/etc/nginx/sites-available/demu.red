@@ -26,10 +26,24 @@ server {
 	## Add index.php to the list if you are using PHP
 	index index.php index.html index.htm index.nginx-debian.html idlerpg.html;
 
-	## Stop logging /theme
-	location /theme {
-		access_log off;
-	}
+	### Block Stuffs ### {{{
+		## Protect specific TXT and config files
+		location ~ /(\.|readme.html|readme.md|changelog.txt|changelog.md|contributing.txt|contributing.md|license.txt|license.md|legalnotice|privacy.txt|privacy.md|security.txt|security.md|sample-.*txt)
+		{
+			deny all;
+		}
+
+		## Protect .git files
+		location ~ /\.git/ {
+			access_log off;
+			log_not_found off;
+			deny all;
+		}
+		## Stop logging /theme
+		location /theme {
+			access_log off;
+		}
+	### End Block Stuffs ### }}}
 
 	### Rate Limit ### {{{
 	limit_req zone=perip burst=10 nodelay;

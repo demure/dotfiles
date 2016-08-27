@@ -14,8 +14,8 @@ server {
 	server_name stats.demu.red;
 
 	## Parameterization using hostname of access and log filenames.
-	access_log  /var/log/nginx/stats.demu.red_access.log;
-	error_log /var/log/nginx/stats.demu.red_error.log;
+	access_log  /var/log/nginx/piwik.log;
+	error_log /var/log/nginx/piwik_error.log;
 
 	## Disable all methods besides HEAD, GET and POST.
 	if ($request_method !~ ^(GET|HEAD|POST)$ ) {
@@ -25,22 +25,37 @@ server {
 	root /var/www/piwik/;
 	index index.php index.html;
 
-	## Disallow any usage of piwik assets if referer is non valid.
-	location ~* ^.+\.(?:jpg|png|css|gif|jpeg|js|swf)$ {
-		# Defining the valid referers.
-		valid_referers none blocked *.mysite.com othersite.com;
-		if ($invalid_referer)  {
-			return 444;
+	### Deny stuffs ### {{{
+		## Protect specific TXT and config files
+		location ~ /(\.|readme.html|readme.md|changelog.txt|changelog.md|contributing.txt|contributing.md|license.txt|license.md|legalnotice|privacy.txt|privacy.md|security.txt|security.md|sample-.*txt)
+		{
+			deny all;
 		}
-		expires max;
-		break;
-	}
 
-	## Support for favicon. Return a 204 (No Content) if the favicon
-	# doesn't exist.
-	location = /favicon.ico {
-		try_files /favicon.ico =204;
-	}
+		## Protect .git files
+		location ~ /\.git/ {
+			access_log off;
+			log_not_found off;
+			deny all;
+		}
+
+		## Disallow any usage of piwik assets if referer is non valid.
+		location ~* ^.+\.(?:jpg|png|css|gif|jpeg|js|swf)$ {
+			# Defining the valid referers.
+			valid_referers none blocked *.mysite.com othersite.com;
+			if ($invalid_referer)  {
+				return 444;
+			}
+			expires max;
+			break;
+		}
+
+		## Support for favicon. Return a 204 (No Content) if the favicon
+		# doesn't exist.
+		location = /favicon.ico {
+			try_files /favicon.ico =204;
+		}
+	### End Deny Stuffs ### }}}
 
 	## Try all locations and relay to index.php as a fallback.
 	location / {
