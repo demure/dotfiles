@@ -68,7 +68,8 @@ while :; do
 	## Network Check, NET
 	if [ $((cnt_net++)) -ge ${upd_net} ]; then
 		## Get IP and wifi strength
-		printf "%s%s %s\n" "NET" "$(ip address show up scope global 2>/dev/null | awk '/inet/ {match($0, /\s+\w+\s(\w+\.\w+\.\w+\.\w+)\/\w+\s\w+\s\w+\.\w+\.\w+\.\w+\s\w+\s\w+\s(\w+)/, m)} END {if(m[1]!=""){print m[1] " " m[2]} else {print "none none"}}')" "$(iwconfig 2>/dev/null | awk '/Link/ {match($0, /\s+\w+\s\w+=([0-9]+)\/([0-9]+).*/, m)} END {if(m[1]!=""&&m[2]!=""){print int((m[1] / m[2]) * 100)} else {print "none"}}')" > "${panel_fifo}"
+		## Does not currently handle ipv6 in anyway...
+		printf "%s%s %s\n" "NET" "$(ip address show up scope global 2>/dev/null | awk '/inet\s/ {match($0, /\s+\w+\s(\w+\.\w+\.\w+\.\w+)\/\w+\s\w+\s\w+\.\w+\.\w+\.\w+\s\w+\s\w+\s(\w+)/, m)} END {if(m[1]!=""){print m[1] " " m[2]} else {print "none none"}}')" "$(iwconfig 2>/dev/null | awk '/Link/ {match($0, /\s+\w+\s\w+=([0-9]+)\/([0-9]+).*/, m)} END {if(m[1]!=""&&m[2]!=""){print int((m[1] / m[2]) * 100)} else {print "none"}}')" > "${panel_fifo}"
 		cnt_net=0
 	fi
 
