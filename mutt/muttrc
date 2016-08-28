@@ -146,7 +146,6 @@ mailboxes	+--\ sdf\ ------------- \
 			+sdf/Sent \
 			+--\ gmail\ ----------- \
 			+gmail/INBOX \
-			+gmail/Archives \
 			+gmail/People \
 			+gmail/drafts \
 			+gmail/sent \
