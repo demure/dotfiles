@@ -9,6 +9,11 @@ server {
 	access_log /var/log/nginx/yourls_access.log;
 	error_log /var/log/nginx/yourls_error.log;
 
+	## Disable all methods besides HEAD, GET and POST.
+	if ($request_method !~ ^(GET|HEAD|POST)$ ) {
+		return 444;
+	}
+
 	index index.php index.html;
 
 	### Deny Stuffs ### {{{
@@ -43,12 +48,8 @@ server {
 		fastcgi_buffers 4 16k;
 	}
 
-	## Return a 404 for all text files.
-	location ~* ^/(?:README|readme|LICENSE[^.]*|LEGALNOTICE)(?:\.txt|\.md)*$ {
-		return 404;
-	}
-
 	## Error Redirects
+	# Done on purpose, as the main page is all in one.
 	error_page 403 /index.html;
 	error_page 404 /index.html;
 	error_page 405 /index.html;

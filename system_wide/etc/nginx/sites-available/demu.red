@@ -23,10 +23,15 @@ server {
 	server_name demur.red;		## Name of server
 	root /var/www/pelican;		## Path to root
 
-	## Add index.php to the list if you are using PHP
-	index index.php index.html index.htm index.nginx-debian.html idlerpg.html;
+	## Disable all methods besides HEAD, GET and POST.
+	if ($request_method !~ ^(GET|HEAD|POST)$ ) {
+		return 444;
+	}
 
-	### Block Stuffs ### {{{
+	## Add index.php to the list if you are using PHP
+	index index.php index.html index.htm;
+
+	### Deny Stuffs ### {{{
 		## Protect specific TXT and config files
 		location ~ /(\.|readme.html|readme.md|changelog.txt|changelog.md|contributing.txt|contributing.md|license.txt|license.md|legalnotice|privacy.txt|privacy.md|security.txt|security.md|sample-.*txt)
 		{
@@ -39,64 +44,17 @@ server {
 			log_not_found off;
 			deny all;
 		}
+
 		## Stop logging /theme
 		location /theme {
 			access_log off;
 		}
-	### End Block Stuffs ### }}}
+	### End Deny Stuffs ### }}}
 
 	### Rate Limit ### {{{
 	limit_req zone=perip burst=10 nodelay;
 	limit_req zone=perserver burst=50;
 	### End Rate Limit ### }}}
-
-	### IRPG ### {{{
-	location /irpg {
-		alias /var/www/irpg;
-		#try_files $uri $uri/ idlerpg.html =404;
-
-		location ~ ^(.+\.php)(.*)$ {
-			fastcgi_split_path_info ^(.+\.php)(.*)$;
-			try_files $uri =404;
-			fastcgi_pass unix:/var/run/php5-fpm.sock;
-			fastcgi_index index.php;
-			## https://stackoverflow.com/questions/28490391/how-to-properly-configure-alias-directive-in-nginx
-			fastcgi_param SCRIPT_FILENAME $request_filename;
-			include fastcgi_params;
-		}
-
-		location /irpg/(php|js|css) {
-			access_log off;
-		}
-	}
-	### End IRPG ### }}}
-
-	### TTRSS ### {{{
-	location /ttrss {
-		alias /var/www/tt-rss;
-		access_log /var/log/nginx/ttrss_access.log;
-		error_log /var/log/nginx/ttrss_error.log info;
-
-		location ~ ^(.+\.php)(.*)$ {
-			fastcgi_split_path_info ^(.+\.php)(.*)$;
-			try_files $uri =404;
-			fastcgi_pass unix:/var/run/php5-fpm.sock;
-			fastcgi_index index.php;
-			## https://stackoverflow.com/questions/28490391/how-to-properly-configure-alias-directive-in-nginx
-			fastcgi_param SCRIPT_FILENAME $request_filename;
-			include fastcgi_params;
-		}
-
-		#location /ttrss/(php|js|css) {
-			#access_log off;
-		#}
-
-		### High Rate Limit ### {{{
-		limit_req zone=perip burst=999999 nodelay;
-		limit_req zone=perserver burst=999999999;
-		### End High Rate Limit ### }}}
-	}
-	### End IRPG ### }}}
 
 	### php attempt ### {{{
 	## Pass the PHP scripts to FastCGI server listening on /var/run/php5-fpm.sock
