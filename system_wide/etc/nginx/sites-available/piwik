@@ -80,12 +80,14 @@ server {
 		#break;
 	#}
 
-	## The 404 is signaled through a static page.
-	#error_page  404  /404.html;
+	## Error Redirects
+	error_page 403 /error.html;
+	error_page 404 /error.html;
+	error_page 405 /error.html;
+	error_page 500 501 502 503 504 /error.html;
 
-	## All server error pages go to 50x.html at the document root.
-	#error_page 500 502 503 504  /50x.html;
-	#location = /50x.html {
-	#	root   /var/www/nginx-default;
-	#}
+	location = /error.html {
+		root /var/www/error;
+		internal;
+	}
 } # server

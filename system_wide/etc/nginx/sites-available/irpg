@@ -51,8 +51,13 @@ server {
 	}
 
 	## Error Redirects
-	#error_page 403 /index.html;
-	#error_page 404 /index.html;
-	#error_page 405 /index.html;
-	#error_page 500 501 502 503 504 /index.html;
+	error_page 403 /error.html;
+	error_page 404 /error.html;
+	error_page 405 /error.html;
+	error_page 500 501 502 503 504 /error.html;
+
+	location = /error.html {
+		root /var/www/error;
+		internal;
+	}
 }
