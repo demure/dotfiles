@@ -316,6 +316,18 @@ bantime  = 604800
 ## Four days
 findtime = 345600
 
+[nginx-botsearch]
+
+enabled  = true
+port     = http,https
+filter   = nginx-botsearch
+logpath  = /var/log/nginx/access.log
+maxretry = 2
+## One week
+bantime  = 604800
+## Four days
+findtime = 345600
+
 [nginx-nohome]
 
 enabled  = true
@@ -346,6 +358,9 @@ enabled  = true
 port     = http,https
 filter   = nginx-lurkers
 logpath  = /var/log/nginx/access.log
+           /var/log/nginx/ttrss_access.log
+           /var/log/nginx/piwik_access.log
+           /var/log/nginx/irpg_access.log
 maxretry = 1
 ## One week
 #bantime  = 604800
@@ -354,17 +369,17 @@ bantime = 2628002
 ## Four days
 findtime = 345600
 
-[nginx-req-limit]
+#[nginx-req-limit]
 
-enabled  = true
-port     = http,https
-filter   = nginx-limit-req
-logpath  = /var/log/nginx/*error.log
-## One week
-bantime  = 604800
-## Four days
-findtime = 345600
-maxretry = 10
+#enabled  = true
+#port     = http,https
+#filter   = nginx-limit-req
+#logpath  = /var/log/nginx/*error.log
+### One week
+#bantime  = 604800
+### Four days
+#findtime = 345600
+#maxretry = 10
 ### End nginx ### }}}
 
 ### php-url-fopen ### {{{
