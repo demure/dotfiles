@@ -26,13 +26,20 @@ show-read-articles no
 feed-sort-order unreadarticlecount-asc
 article-sort-order date-desc
 
-#browser "w3m %u"
+## Bindings
+# vim like navigation
+bind-key j down
+bind-key k up
+
 browser sensible-browser
 player mpv
 
+## Macros
 macro y set browser "mpv %u"; open-in-browser ; set browser sensible-browser
 macro i set browser "feh %u"; open ; set browser sensible-browser
 macro w set browser "w3m %u"; open-in-browser ; set browser sensible-browser
+macro I set browser "feh %u"
+macro B set browser sensible-browser
 
 
 # Ivaylo Kuzev <ivkuzev@gmail.com>, 2014
