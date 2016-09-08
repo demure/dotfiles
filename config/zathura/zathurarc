@@ -1,0 +1,42 @@
+# zathurarc-light
+# from https://github.com/esn89/base16-zathura
+
+set font                        "inconsolata 9"
+set default-bg                  "#E0E0E0" #06
+set default-fg                  "#202020" #01
+
+set statusbar-fg                "#303030" #02
+set statusbar-bg                "#B0B0B0" #04
+
+set inputbar-bg                 "#151515" # currently not used
+set inputbar-fg                 "#303030" #02
+
+set notification-error-bg       "#AC4142" #08
+set notification-error-fg       "#E0E0E0" #06
+
+set notification-warning-bg     "#AC4142" #08
+set notification-warning-fg     "#E0E0E0" #06
+
+set highlight-color             "#F4BF75" #0A
+set highlight-active-color      "#AA759F" #08
+
+set completion-highlight-fg     "#D0D0D0" #05
+set completion-highlight-bg     "#75B5AA" #0C
+
+set completion-bg               "#D0D0D0" #05
+set completion-fg               "#75B5AA" #0C
+
+set notification-bg             "#90A959" #0B
+set notification-fg             "#F5F5F5" #07
+
+set recolor-lightcolor          "#E0E0E0" #06
+set recolor-darkcolor           "#303030" #02
+set recolor                     "true"
+
+# setting recolor-keephue true will keep any color your pdf
+# has.  If it is set to false, it will just be shades of
+# gray.  (lol 50 shades of gray)
+set recolor-keephue             "true"
+
+# Rest of your configs go here:
+set selection-clipboard clipboard
