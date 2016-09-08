@@ -50,7 +50,7 @@ remoteport = 993
 ssl = yes
 cert_fingerprint = 64742c3c557b49d0787d091c99223f13d6143b5d
 remotepasseval = get_pass("sdf")
-realdelete = yes
+realdelete = True
 ### End sdf### }}}
 
 ### gmail ### {{{
@@ -79,7 +79,7 @@ remoteuser = demuredemeanor@gmail.com
 ssl = yes
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 remotepasseval = get_pass("gmail")
-realdelete = yes
+realdelete = True
 nametrans = lambda folder: {'[Gmail]/Drafts':    'drafts',
 							'[Gmail]/Sent Mail': 'sent',
 							'[Gmail]/Starred':   'flagged',
@@ -120,7 +120,7 @@ remoteuser = amcbean@emich.edu
 ssl = yes
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 remotepasseval = get_pass("emu")
-realdelete = yes
+realdelete = True
 nametrans = lambda folder: {'[Gmail]/Drafts':    'drafts',
 							'[Gmail]/Sent Mail': 'sent',
 							'[Gmail]/Starred':   'flagged',
