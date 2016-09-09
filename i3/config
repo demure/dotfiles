@@ -467,7 +467,7 @@ exec --no-startup-id [ -e $HOME/.Xmodmap ] && xmodmap $HOME/.Xmodmap
 ## Set pulseaudio bell sound, and set volume
 exec --no-startup-id pactl upload-sample /usr/share/sounds/freedesktop/stereo/bell.oga bell && pactl load-module module-x11-bell sample=bell && xset b 75
 exec --no-startup-id compton -b
-exec --no-startup-id srandrd autorandr -c
+exec srandrd autorandr -c
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id conky -qc $HOME/.i3/back_log.conkyrc
 exec --no-startup-id conky -qc $HOME/.i3/back_log_backups.conkyrc

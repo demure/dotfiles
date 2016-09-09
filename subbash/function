@@ -84,4 +84,11 @@
 		echo
 	}
 	### End IP Look Up ### }}}
+
+	### Mpv Search Youtube ### {{{
+	## mm "search terms"
+	function mm() {
+		mpv --no-video --ytdl-format=bestaudio ytdl://ytsearch10:"$@"
+	}
+	### End Mpv Search ### }}}
 ###End Universal Commands ### }}}
