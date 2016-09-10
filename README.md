@@ -3,7 +3,26 @@
 # legacy repo http://github.com/demure/dotfiles
 -->
 
-#Demure's Dotfiles  
+<!--
+      ██                                            ██        
+     ░██                                           ░░█        
+     ░██  █████  ██████████  ██   ██ ██████  █████  ░   ██████
+  ██████ ██░░░██░░██░░██░░██░██  ░██░░██░░█ ██░░░██    ██░░░░ 
+ ██░░░██░███████ ░██ ░██ ░██░██  ░██ ░██ ░ ░███████   ░░█████ 
+░██  ░██░██░░░░  ░██ ░██ ░██░██  ░██ ░██   ░██░░░░     ░░░░░██
+░░██████░░██████ ███ ░██ ░██░░██████░███   ░░██████    ██████ 
+ ░░░░░░  ░░░░░░ ░░░  ░░  ░░  ░░░░░░ ░░░     ░░░░░░    ░░░░░░  
+      ██            ██     ████ ██  ██                        
+     ░██           ░██    ░██░ ░░  ░██                        
+     ░██  ██████  ██████ ██████ ██ ░██  █████   ██████        
+  ██████ ██░░░░██░░░██░ ░░░██░ ░██ ░██ ██░░░██ ██░░░░         
+ ██░░░██░██   ░██  ░██    ░██  ░██ ░██░███████░░█████         
+░██  ░██░██   ░██  ░██    ░██  ░██ ░██░██░░░░  ░░░░░██        
+░░██████░░██████   ░░██   ░██  ░██ ███░░██████ ██████         
+ ░░░░░░  ░░░░░░     ░░    ░░   ░░ ░░░  ░░░░░░ ░░░░░░          
+-->
+
+## Demure's Dotfiles ##
 
 This is a repo of my dot files, to help me keep them organized,  
 and in-sync between computers and servers.  
@@ -16,11 +35,13 @@ all my systems (when/where possible).
 <strike>I have moved to [gitorious].</strike> Repo link in top comments, of most comment-able confs.  
 With the death of gitorious, I am currently using [notabug].  
 
-###Install:
+You may like my blog as well, [demu.red].  
+
+### Install: ###
 
 Aside from installing by hand, you could use [GNU Stow].
 
-###Improved:  
+### Improved: ###
 
 * I think my vimrc has improved a good deal ^__^  
     * It will now auto install Vundle if missing, and create undo/backup/swap paths **8APR2013**  
@@ -37,7 +58,7 @@ Aside from installing by hand, you could use [GNU Stow].
 * Added mutt with multiple accounts, using offlineimap, not-much, and msmtp **25AUG2015**  
 * Moved to i3 window manager, and set up a sweet lemonbar **30JAN2016**  
 
-###Plans:  
+### Plans: ###
 
 * For tmux, I am still debating to use powerline or not...  
     * One of the annoying issues is that the current beta seems pretty confusing  
@@ -47,7 +68,7 @@ Aside from installing by hand, you could use [GNU Stow].
 improve my setup.  
 If you do wish to contact me, I guess [twitter] is an ok way (spam mitigation)  
 
-######Last edit 30JAN2016  
+###### Last edit 10SEP2016 #####
 
 
 [github]: https://gitorious.org/demure/dotfiles
@@ -55,3 +76,4 @@ If you do wish to contact me, I guess [twitter] is an ok way (spam mitigation)
 [notabug]: https://notabug.org/demure/dotfiles/
 [GNU Stow]: https://www.gnu.org/software/stow/
 [twitter]: https://twitter.com/demure
+[demu.red]: http://demu.red
