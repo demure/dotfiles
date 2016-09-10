@@ -10,6 +10,15 @@ export PROMPT_COMMAND=__prompt_command	# Func to gen PS1 after CMDs
 function __prompt_command() {
 	local EXIT="$?"							# This needs to be first
 	PS1=""
+
+	### Dealing With History ### {{{
+	## http://unix.stackexchange.com/a/18443/39115
+	history -n		## Sync with other terms
+	history -w		## Flush dupes
+	history -c		## Clear term hist
+	history -r		## Reload term hist
+	### End Dealing With History ### }}}
+
 	### Colors to Vars ### {{{
 	## Inspired by http://wiki.archlinux.org/index.php/Color_Bash_Prompt#List_of_colors_for_prompt_and_Bash
 	## Terminal Control Escape Sequences: http://www.termsys.demon.co.uk/vtansi.htm
