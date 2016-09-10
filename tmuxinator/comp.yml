@@ -27,4 +27,4 @@ windows:
         - vit
         - khal interactive
   - rss: newsbeuter
-  - shell:
+  - file: ranger
