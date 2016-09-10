@@ -43,7 +43,10 @@ set thorough_search      # strip headers and eval mimes before searching
 set sort_alias = alias
 
 auto_view text/html
-alternative_order text/plain text/html
+#alternative_order text/plain text/html
+alternative_order text/enriched text/plain text/html text
+macro attach 'V' "<pipe-entry>w3m -v -T text/html -dump | less<enter>"
+
 ## Adding flowed, because it is a good-ness? http://joeclark.org/ffaq.html
 set text_flowed = yes # Generate text/plain; format=flowed attachments.
 
