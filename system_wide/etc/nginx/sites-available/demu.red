@@ -3,6 +3,8 @@
 server {
 	listen 80 default_server;
 	listen [::]:80 default_server;
+	listen 443 default_server ssl;
+	listen [::]:443 default_server ssl;
 
 	# SSL configuration
 	#
@@ -30,6 +32,12 @@ server {
 
 	## Add index.php to the list if you are using PHP
 	index index.php index.html index.htm;
+
+	## Include certbot fix
+	include /etc/nginx/snippets/nginx.well-known.conf;
+
+	## Include ssl
+	include /etc/nginx/snippets/nginx.ssl.conf;
 
 	### Deny Stuffs ### {{{
 		## Protect specific TXT and config files
