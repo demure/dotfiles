@@ -133,6 +133,7 @@ if $USER != 'mobile'
 			Plugin 'Lokaltog/vim-easymotion'	" <prefix><prefix>motion
 			Plugin 'chrisbra/csv.vim'			" Good CVS file handling
 			Plugin 'dhruvasagar/vim-table-mode'	" Make easy tables
+			Plugin 'vim-scripts/Smart-Tabs'		" Use \t for indents, and spaces elsewhere
 			""" End Functionality """ }}}
 
 			""" Misc """ {{{
