@@ -53,6 +53,7 @@ set text_flowed = yes # Generate text/plain; format=flowed attachments.
 set allow_ansi
 
 subscribe ahashop
+subscribe cryptoparty-ann-arbor@inventati.org
 ### End Basic ### }}}
 
 ### Sourcing ### {{{
