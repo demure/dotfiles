@@ -35,6 +35,15 @@ server {
 		try_files $uri $uri/ /yourls-loader.php?$query_string;
 		expires 14d;
 		add_header Cache-Control 'public';
+
+		#location ~ ^/add/(.*)$ {
+			#alias /var/www/YOURLS/admin/$1;
+			#try_files $uri /api/index.php;
+		#}
+
+		location ~ /(js|css|images) {
+			access_log off;
+		}
 	}
 
 	location ~ \.php$ {

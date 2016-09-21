@@ -45,7 +45,7 @@ server {
 			include fastcgi_params;
 		}
 
-		location /(php|js|css) {
+		location ~ /(php|js|css) {
 			access_log off;
 		}
 	}
