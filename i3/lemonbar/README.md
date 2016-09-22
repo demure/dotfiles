@@ -12,6 +12,7 @@ I've no added a number of features I have desired:
 * Works with my offlineimap setup.
 * Shows either wired or wireless IP, using the same spot.
   * Indicates which is in use.
+  * Prefers lower numbered interface (eth0 > wifi).
 * Shows external IP
   * You can bind an i3 key to toggle this display.
 * Shows if a GPG key is cached, and hides of no GPG installed.
@@ -47,13 +48,13 @@ bar {
 ```
 
 
-### Notes ###
+### **Notes** ###
 * I find that this does not gracefully handle i3 logout -> login, and full config reload.
   * I used `pkill lemonbar && ~/.i3/lemonbar/i3_lemonbar.sh &` to correct the issue
   * I have added `pkill lemonbar` to my log out command, to make life easier.
 
 
-### Modifications ###
+### **Modifications** ###
 * On my system, volume and a number of other segments had an extra `%`. **FINISHED**
 * Edited vol command to be more efficient, and not need a conf line **FINISHED**
 * I felt that the declaring 1024 as a 'small screen' was falling short, set to 1336. **FINISHED**
@@ -93,12 +94,15 @@ bar {
   * `bindsym YOUR_KEYS exec awk -v TEMP=/tmp/i3_lemonbar_ip_${USER} 'BEGIN {{FILE=getline < TEMP < 0 ? "0" : "1"} {if($0==1){STATE=1} else {STATE=0}} {if(STATE==0){system("echo 1 > "TEMP)} else {system("echo 0 > "TEMP)}}}'`
   * You can edit the Scrubber sting in `i3_lemonbar_config`, such as setting it to `""` if you want to reduce your bar length when toggled.
 * Added `$music_limit` to prevent music from covering workspace display. **18JUL2016**
+* Fixed non conky network ip to prefer lower network interface. **22SEP2016**
 
 
-### Things I want ###
+### **Things I want** ###
 * I am not sure if I can make this set up show i3 keybinding modes in the bar... would like this.
 * Make better separations between joined colored segments.
 
+
+##### **Last updated 22SEP2016** #####
 
 [i3 lemonbar]: https://github.com/electro7/dotfiles/tree/master/.i3/lemonbar
 [lemonbar krypt-n]: https://github.com/krypt-n/bar
