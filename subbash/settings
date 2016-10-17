@@ -89,6 +89,7 @@
 			alias ls='ls --color=auto'
 			alias vi='vim'
 			alias mp='mpv'
+			alias mpp='mp --no-ytdl --fs=no --geometry=50%'     ## for podcasts
 			alias ssht='sshuttle --dns -vr ma 0/0'
 			alias hdmi-mirror='xrandr --output HDMI1 --mode 1360x768'
 			alias hdmi-second='xrandr --output HDMI1 --mode 1360x768 --right-of LVDS1'
