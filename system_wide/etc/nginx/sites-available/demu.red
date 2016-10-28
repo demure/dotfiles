@@ -37,6 +37,9 @@ server {
 	include /etc/nginx/snippets/nginx.well-known.conf;
 
 	## Include ssl
+	ssl_certificate /etc/letsencrypt/live/demu.red/fullchain.pem;
+	ssl_certificate_key /etc/letsencrypt/live/demu.red/privkey.pem;
+	ssl_trusted_certificate /etc/letsencrypt/live/demu.red/fullchain.pem;
 	include /etc/nginx/snippets/nginx.ssl.conf;
 
 	### Deny Stuffs ### {{{
