@@ -10,6 +10,8 @@ set spoolfile = "+gmail/INBOX"
 set mbox      = "+gmail/Archives"
 set postponed = "+gmail/drafts"
 set record    = "+gmail/sent"
+unset trash
+set trash     = "+gmail/trash"
 
 ## Color border
 color status cyan black

@@ -10,6 +10,8 @@ set spoolfile = "+sdf/INBOX"
 set mbox      = "+sdf/INBOX"
 set postponed = "+sdf/Drafts"
 set record    = "+sdf/Sent"
+unset trash
+set trash     = "+sdf/Trash"
 
 ## Color border
 color status yellow black

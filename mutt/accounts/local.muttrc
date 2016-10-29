@@ -10,6 +10,7 @@ set spoolfile = "/var/spool/mail/$USER"
 #set mbox      = "+local/archive"
 #set postponed = "+local/drafts"
 #set record    = "+local/Sent Messages"
+unset trash
 
 ## Color border
 color status red black

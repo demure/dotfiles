@@ -10,6 +10,8 @@ set spoolfile = "+emu/INBOX"
 set mbox      = "+emu/archive"
 set postponed = "+emu/drafts"
 set record    = "+emu/sent"
+unset trash
+set trash     = "+emu/trash"
 
 ## Color border
 color status green black
