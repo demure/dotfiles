@@ -33,6 +33,7 @@ fsync = False
 localrepository = sdf-Local
 remoterepository = sdf-Remote
 status-backend = sqlite
+postsynchook = [ -e $HOME/.notmuch-config ] && notmuch new
 
 [Repository sdf-Local]
 type = Maildir
@@ -58,6 +59,7 @@ realdelete = True
 localrepository = gmail-Local
 remoterepository = gmail-Remote
 status_backend = sqlite
+postsynchook = [ -e $HOME/.notmuch-config ] && notmuch new
 
 [Repository gmail-Local]
 type = Maildir
@@ -101,6 +103,7 @@ folderfilter = lambda folder: folder in ['[Gmail]/Drafts',
 localrepository = emu-Local
 remoterepository = emu-Remote
 status_backend = sqlite
+postsynchook = [ -e $HOME/.notmuch-config ] && notmuch new
 
 [Repository emu-Local]
 type = Maildir
