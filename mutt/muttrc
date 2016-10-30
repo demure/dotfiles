@@ -16,39 +16,35 @@
 # https://github.com/sup-heliotrope/sup/wiki/Securely-Store-Password
 
 ### Paths ### {{{
-set folder            = ~/.mail                # mailbox location
-set alias_file        = ~/.mutt/alias          # where to store aliases
-set header_cache      = ~/.mutt/cache/headers  # where to store headers
-set message_cachedir  = ~/.mutt/cache/bodies   # where to store bodies
-set certificate_file  = ~/.mutt/cerficates     # where to store certs
-set mailcap_path      = ~/.mutt/mailcap        # entries for filetypes
-set tmpdir            = ~/.mutt/temp           # where to keep temp files
-set signature         = ~/.mutt/sig            # my signature file
+set folder              = "~/.mail"                     ## Mailbox location
+set alias_file          = "~/.mutt/alias"               ## Where to store aliases
+set header_cache        = "~/.mutt/cache/headers"       ## Where to store headers
+set message_cachedir    = "~/.mutt/cache/bodies"        ## Where to store bodies
+set certificate_file    = "~/.mutt/cerficates"          ## Where to store certs
+set mailcap_path        = "~/.mutt/mailcap"             ## Entries for filetypes
+set tmpdir              = "~/.mutt/temp"                ## Where to keep temp files
+set signature           = "~/.mutt/sig"                 ## My signature file
 ### End Pathes ### }}}
 
 ### Basic Options ### {{{
-set wait_key = no        # shut up, mutt
-set mbox_type = Maildir  # mailbox type
-set timeout = 3          # idle time before scanning
-set mail_check = 0       # minimum time between scans
-unset move               # gmail does that
-set delete               # don't ask, just do
-unset confirmappend      # don't ask, just do!
-set quit = ask-no        # don't ask, just do !!
-unset mark_old           # read/new is good enough for me
-set beep_new             # bell on new mails
-set pipe_decode          # strip headers and eval mimes when piping
-set thorough_search      # strip headers and eval mimes before searching
+set wait_key = no           ## Shut up, mutt
+set mbox_type = Maildir     ## Mailbox type
+set timeout = 3             ## Idle time before scanning
+set mail_check = 0          ## Minimum time between scans
+unset move                  ## Gmail does that
+set delete                  ## Don't ask, just do
+unset confirmappend         ## Don't ask, just do!
+set quit = ask-no           ## Don't ask, just do !!
+unset mark_old              ## Read/new is good enough for me
+set beep_new                ## Bell on new mails
+set pipe_decode             ## Strip headers and eval mimes when piping
+set thorough_search         ## Strip headers and eval mimes before searching
 
 set sort_alias = alias
 
-auto_view text/html
-#alternative_order text/plain text/html
-alternative_order text/enriched text/plain text/html text
-macro attach 'V' "<pipe-entry>w3m -v -T text/html -dump | less<enter>"
 
 ## Adding flowed, because it is a good-ness? http://joeclark.org/ffaq.html
-set text_flowed = yes # Generate text/plain; format=flowed attachments.
+set text_flowed = yes       ## Generate text/plain; format=flowed attachments.
 
 set allow_ansi
 
@@ -57,110 +53,49 @@ subscribe cryptoparty-ann-arbor@inventati.org
 ### End Basic ### }}}
 
 ### Sourcing ### {{{
-source ~/.mutt/index.muttrc
-source ~/.mutt/pager.muttrc
-source ~/.mutt/compose.muttrc
-source ~/.mutt/alias
-source ~/.mutt/crypto.muttrc
-source ~/.mutt/sidebar.muttrc
+source "~/.mutt/index.muttrc"
+source "~/.mutt/pager.muttrc"
+source "~/.mutt/compose.muttrc"
+source "~/.mutt/alias"
+source "~/.mutt/crypto.muttrc"
+source "~/.mutt/sidebar.muttrc"
+source "~/.mutt/notmuch.muttrc"
 
 ## can use this to sources files that might not be there, like aliases
 #source `FILE=$HOME/.muttaliases; if [ ! -s "$FILE" ]; then FILE=/dev/null;fi;echo "$FILE"`
 ### End Sourcing ### }}}
 
 ### Color Scheme ### {{{
-#source ~/.mutt/themes/comidia.muttrc
-#source ~/.mutt/themes/vombatidae.muttrc
-#source ~/.mutt/themes/tomorrow-night.muttrc
-#source ~/.mutt/themes/mutt-colors-solarized-dark-16.muttrc
-#source ~/.mutt/themes/mutt-colors-solarized-light-16.muttrc
+#source "~/.mutt/themes/comidia.muttrc"
+#source "~/.mutt/themes/vombatidae.muttrc"
+#source "~/.mutt/themes/tomorrow-night.muttrc"
+#source "~/.mutt/themes/mutt-colors-solarized-dark-16.muttrc"
+#source "~/.mutt/themes/mutt-colors-solarized-light-16.muttrc"
 ### End Color ### }}}
 
 ### Status Bar ### {{{
-set status_chars   = " *%A"
-
-## status_format - format of summary on the current folder in the index
-## meta strings:
-##  -----f-h---lmn-p-rst-v----  lower case letters (10)
-##  ------------M----------X--  upper case letters (02)
-## %d      the number of messages with the flag 'delete'  (v64)
-## %f      the full pathname of the current mailbox
-## %h      local hostname
-## %l      size (in bytes) of the current mailbox
-## %m      the number of messages in the mailbox
-## %M      the number of messages shown (i.e., which match the current limit)
-## %n      number of new messages in the mailbox
-## %p      number of postponed messages
-## %s      current sorting mode
-## %r      modified/read-only/won't-write/attach-message indicator-status_chars
-## %t      number of tagged messages
-## %v      Mutt version string
-## %>X     right justify the rest of the string and pad with "X"
-## %|X     pad to the end of the line with "X"
-##
-## %?<sequence_char>?<optional_string>? optionally print string, if>0
-##
-## Examples:
-#set status_format="%v: %f (%s) [%?M/?%m]  [flags:%?t tagged,?%n new%?p post?]"
-#set status_format="%v: %f (%s) [%?M/?%m]  [flags:%?t tagged,?%n new]"
-#set status_format="%v: %f (%s) [%M/%m]\n[flags:n=%n,D=%d,t=%t,!=%F]"
-#set status_format="%v: %f (%s) [%M/%m]  [flags:n=%n,t=%t]"
-#set status_format="%v:    (%s) [%M/%m]  [flags:n=%n,t=%t]"
-#set status_format="%v:    (%s) [%M/%m]  [flags:n:%n,t:%t,p:%p]"
-#set status_format="%v:    (%s) [%M/%m]  [flags:%?02n new?,t:%t]"
-#set status_format="%v: %f (%s) [%M/%m]  [flags:%n new,%?t tagged?]"
-#set status_format="%v: %f (%s) [%M/%m;%l bytes]  [N=%n,*=%t,post=%p]"
-#set status_format="%v: %f (%s) [%M/%m] [N=%n,*=%t,post=%p,new=%b]"
-#set status_format=" Msgs=%M(%m) [N=%n,O=%o,*=%t,p=%p] %> %r (%P) %h:%f [%l] (%s/%S) (%v) "
-
-#set status_format  = "Folder: %f : %r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? %>-%?p?( %p postponed )? : "
+set status_chars = " *%A"
 set status_on_top = yes
-set status_format  = "Folder: %f : %r%n new (%m messages)%?d? (%d to delete)?%?t? (%t tagged)? %>-%?p?( %p postponed )? : "
+set status_format = "Folder: %f : %r%n new (%m messages)%?d? (%d to delete)?%?t? (%t tagged)? %>-%?p?( %p postponed )? : "
 ### End Status Bar ### }}}
 
 ### Header Options ### {{{
-ignore *                               # ignore all headers
-unignore from: to: cc: date: subject:  # show only these
-unhdr_order *                          # some distros order things
-hdr_order from: to: cc: date: subject: # and in this order
+ignore *                                ## Ignore all headers
+unignore from: to: cc: date: subject:   ## Show only these
+unhdr_order *                           ## Some distros order things
+hdr_order from: to: cc: date: subject:  ## And in this order
 ### End Header ### }}}
 
 ### Account Settings ### {{{
-## Multiple account setup.
+## Multiple account setup
 
 ## Default inbox.
 set spoolfile = "+sdf/INBOX"
 source ~/.mutt/accounts/sdf.muttrc
 
 ## Set account specific options on folder change
-folder-hook emu/*         source ~/.mutt/accounts/emu.muttrc
-folder-hook sdf/*         source ~/.mutt/accounts/sdf.muttrc
-folder-hook gmail/*       source ~/.mutt/accounts/gmail.muttrc
-folder-hook /var/spool/mail/$USER/*       source ~/.mutt/accounts/local.muttrc
-
-## Make sent show recipient
-## Doesn't like this regex?
-#folder-hook   *[sS]ent* 'set index_format="%2C | %Z [%d] %-30.30t (%-4.4c) %s"'
-#folder-hook ! *[sS]ent* 'set index_format="%2C | %Z [%d] %-30.30F (%-4.4c) %s"'
-
-## Mailboxes, which will be shown in the sidebar.
-mailboxes	+--\ sdf\ ------------- \
-			+sdf/INBOX \
-			+sdf/Drafts \
-			+sdf/Sent \
-			+sdf/Trash \
-			+--\ gmail\ ----------- \
-			+gmail/INBOX \
-			+gmail/People \
-			+gmail/drafts \
-			+gmail/sent \
-			+gmail/trash \
-			+--\ emu\ ------------- \
-			+emu/INBOX \
-			+emu/archive \
-			+emu/drafts \
-			+emu/sent \
-			+emu/trash \
-			+--\ local\ ----------- \
-			/var/spool/mail/$USER \
+folder-hook emu/*                   source ~/.mutt/accounts/emu.muttrc
+folder-hook sdf/*                   source ~/.mutt/accounts/sdf.muttrc
+folder-hook gmail/*                 source ~/.mutt/accounts/gmail.muttrc
+folder-hook /var/spool/mail/$USER/* source ~/.mutt/accounts/local.muttrc
 ### End Account }}}

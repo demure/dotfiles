@@ -33,3 +33,27 @@ bind index,pager <down>    sidebar-next
 bind index,pager <up>      sidebar-prev
 bind index,pager <right>   sidebar-open
 ### End Sidebar Nav ### }}}
+
+### Sidebar Mailboxes ### {{{
+## Mailboxes, which will be shown in the sidebar.
+mailboxes \
+	+--\ sdf\ ------------- \
+	+sdf/INBOX \
+	+sdf/Drafts \
+	+sdf/Sent \
+	+sdf/Trash \
+	+--\ gmail\ ----------- \
+	+gmail/INBOX \
+	+gmail/People \
+	+gmail/drafts \
+	+gmail/sent \
+	+gmail/trash \
+	+--\ emu\ ------------- \
+	+emu/INBOX \
+	+emu/archive \
+	+emu/drafts \
+	+emu/sent \
+	+emu/trash \
+	+--\ local\ ----------- \
+	/var/spool/mail/$USER \
+### End Sidebar Mailboxes ### }}}

@@ -5,27 +5,29 @@
 # vim:set syntax=muttrc:
 
 ### Pager View Options ### {{{
-set pager_index_lines = 10  # number of lines to show
-set pager_context = 3       # number of context lines to show
-set pager_stop              # don't go to the next message automatically
-set menu_scroll             # scroll in menus
-set tilde                   # show tildes like in vim
-unset markers               # no ugly plus signs
+set pager_index_lines = 10  ## Number of lines to show
+set pager_context = 3       ## Number of context lines to show
+set pager_stop              ## Don't go to the next message automatically
+set menu_scroll             ## Scroll in menus
+set tilde                   ## Show tildes like in vim
+unset markers               ## No ugly plus signs
 ### End Pager View Options ### }}}
 
 set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
-alternative_order text/plain text/enriched text/html
+auto_view text/html
+alternative_order text/enriched text/plain text/html text
 
 ### Pager Key Bindings ### {{{
-bind pager k   previous-line
-bind pager j   next-line
-bind pager gg  top
-bind pager G   bottom
-bind pager R   group-reply
+bind pager k    previous-line
+bind pager j    next-line
+bind pager gg   top
+bind pager G    bottom
+bind pager R    group-reply
 
-## View attachments properly.
-bind attach <return> view-mailcap
-
-## Handle URLs.
-macro pager \Cu "|urlview<enter>" "call urlview to open links"
+bind attach <return>    view-mailcap    ## View attachments properly.
 ### End Pager Key Bindings ### }}}
+
+### Macros ### {{{
+macro pager \Cu         "|urlview<enter>" "call urlview to open links"          ## Handle URLs.
+macro attach 'V'        "<pipe-entry>w3m -v -T text/html -dump | less<enter>"   ## Process html to text, for stupid html only emails
+### End Macros ### }}}

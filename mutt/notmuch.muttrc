@@ -1,0 +1,29 @@
+##### My (demuredemeanor) muttrc sub notmuch config
+# Uses tabstop=4; shiftwidth=4 tabs; foldmarker={{{,}}};
+# https://notabug.org/demure/dotfiles
+# legacy repo http://github.com/demure/dotfiles
+# vim:set syntax=muttrc:
+
+## notmuch
+set nm_default_uri="notmuch:///home/demure/.mail"  ## path to the maildir
+set virtual_spoolfile=yes                          ## enable virtual folders
+#set sendmail="/PATH/TO/bin/nm_sendmail"            ## enables parsing of outgoing mail
+
+## sets up queries for virtual folders
+virtual-mailboxes \
+	"INBOX"         "notmuch://?query=tag:INBOX and NOT tag:archive" \
+	"Unread"        "notmuch://?query=tag:unread" \
+	"Starred"       "notmuch://?query=tag:*" \
+	"Sent"          "notmuch://?query=tag:sent"
+exec sidebar-toggle-virtual     ## Show non virtual mail on load
+
+## notmuch bindings
+macro index X "<sidebar-toggle-virtual>                         ## Replace <change-vfolder> with useful toggle
+
+## The following have not been checked by me yet...
+macro index \\\\ "<vfolder-from-query>"              ## looks up a hand made query
+macro index A "<modify-labels>+archive -unread -inbox\\n"        ## tag as Archived
+macro index I "<modify-labels>-inbox -unread\\n"                 ## removed from inbox
+macro index S "<modify-labels-then-hide>-inbox -unread +junk\\n" ## tag as Junk mail
+macro index + "<modify-labels>+*\\n<sync-mailbox>"               ## tag as starred
+macro index - "<modify-labels>-*\\n<sync-mailbox>"               ## tag as unstarred

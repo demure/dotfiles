@@ -1,21 +1,20 @@
-# Account Settings -----
+## Account Settings
+set from        = ${USER}@${HOSTNAME}"
+set sendmail    = "/usr/bin/msmtp -a local"
 
-set from      = ${USER}@${HOSTNAME}"
-set sendmail  = "/usr/bin/msmtp -a local"
+## Default inbox
+set spoolfile   = "/var/spool/mail/$USER"
 
-# Default inbox.
-set spoolfile = "/var/spool/mail/$USER"
-
-## Other special folders.
-#set mbox      = "+local/archive"
-#set postponed = "+local/drafts"
-#set record    = "+local/Sent Messages"
+## Other special folders
+#set mbox        = "+local/archive"
+#set postponed   = "+local/drafts"
+#set record      = "+local/Sent Messages"
 unset trash
 
 ## Color border
 color status red black
 
 ## Contacts
-bind editor <Tab> complete        # default Mutt setting
-bind editor ^T complete-query     # default Mutt setting
-unset query_command               # default Mutt setting
+bind editor <Tab> complete      ## default Mutt setting
+bind editor ^T complete-query   ## default Mutt setting
+unset query_command             ## default Mutt setting

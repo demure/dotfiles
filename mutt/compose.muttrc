@@ -5,27 +5,27 @@
 # vim:set syntax=muttrc:
 
 ### Compose View Options ### {{{
-set realname = "demure demeanor"                 # who am I?
-set envelope_from                                # which from?
-set sig_dashes                                   # dashes before sig
-set autoedit
-set edit_headers                                 # show headers when composing
-set fast_reply                                   # skip to compose when replying
-set askcc                                        # ask for CC:
-set fcc_attach                                   # save attachments with the body
-set mime_forward = ask-no                        # forward attachments as attachments
-# unset mime_forward                               # forward attachments as a part of body
-set forward_format = "Fwd: %s"                   # format of subject when forwarding
-set forward_decode                               # decode when forwarding
-set attribution = "On %d, %n wrote:"             # format of quoting header
-set reply_to                                     # reply to Reply to: field
-set reverse_name                                 # reply as whoever it was to
-set include                                      # include message in reply
-set forward_quote                                # include message in forwards
+set realname = "demure demeanor"                ## Who am I?
+set envelope_from                               ## Which from?
+set sig_dashes                                  ## Dashes before sig
+set autoedit                                    ## Skip directly to composing
+set edit_headers                                ## Show headers when composing
+set fast_reply                                  ## Skip to compose when replying
+set askcc                                       ## Ask for CC:
+set fcc_attach                                  ## Save attachments with the body
+set mime_forward = ask-no                       ## Forward attachments as attachments
+#unset mime_forward                              ## Forward attachments as a part of body
+set forward_format = "Fwd: %s"                  ## Format of subject when forwarding
+set forward_decode                              ## Decode when forwarding
+set attribution = "On %d, %n wrote:"            ## Format of quoting header
+set reply_to                                    ## Reply to Reply to: field
+set reverse_name                                ## Reply as whoever it was to
+set include                                     ## Include message in reply
+set forward_quote                               ## Include message in forwards
 
-set editor = "vim +:silent+?^$"                  # use terminal Vim to compose email
-set text_flowed = yes                            # eliminate odd line breaks
-# set editor = "vim -c 'set spell spelllang=en' -c 'setlocal fo+=aw' +:silent+?^$"
+set editor = "vim +:silent+?^$"                 ## Use terminal Vim to compose email
+set text_flowed = yes                           ## Eliminate odd line breaks
+#set editor = "vim -c 'set spell spelllang=en' -c 'setlocal fo+=aw' +:silent+?^$"
 ### End Compose View Opitons ### }}}
 
 ### Compose View Bindings ### {{{
@@ -34,12 +34,12 @@ set text_flowed = yes                            # eliminate odd line breaks
 #bind compose p postpone-message
 #bind index p recall-message
 
-# Vanilla Searching
-# / works just like Vim, use `n` to go to next, 'N' to go to previous
-bind index N search-opposite
-bind pager N search-opposite
+## Vanilla Searching
+## / works just like Vim, use `n` to go to next, 'N' to go to previous
+bind index N    search-opposite
+bind pager N    search-opposite
 
-# Vanilla Limiting
-# `l` + pattern
-macro index a "<limit>all\n" "show all messages (undo limit)"
+## Vanilla Limiting
+## `l` + pattern
+macro index a   "<limit>all\n" "show all messages (undo limit)"
 ### End Compose View Bindings ### }}}

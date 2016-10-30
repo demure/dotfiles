@@ -1,22 +1,21 @@
-## Account Settings ------------------------------
+## Account Settings
+set from        = "demure@sdf.org"
+set sendmail    = "/usr/bin/msmtp -a sdf"
 
-set from      = "demure@sdf.org"
-set sendmail  = "/usr/bin/msmtp -a sdf"
+## Default inbox
+set spoolfile   = "+sdf/INBOX"
 
-## Default inbox.
-set spoolfile = "+sdf/INBOX"
-
-## Other special folders.
-set mbox      = "+sdf/INBOX"
-set postponed = "+sdf/Drafts"
-set record    = "+sdf/Sent"
+## Other special folders
+set mbox        = "+sdf/INBOX"
+set postponed   = "+sdf/Drafts"
+set record      = "+sdf/Sent"
 unset trash
-set trash     = "+sdf/Trash"
+set trash       = "+sdf/Trash"
 
 ## Color border
 color status yellow black
 
 ## Contacts
-bind editor <Tab> complete        # default Mutt setting
-bind editor ^T complete-query     # default Mutt setting
-unset query_command               # default Mutt setting
+bind editor <Tab> complete      ## default Mutt setting
+bind editor ^T complete-query   ## default Mutt setting
+unset query_command             ## default Mutt setting
