@@ -22,10 +22,11 @@ set mail_check_stats                ## Need for format's %N
 ### Sidebar Colors ### {{{
 color sidebar_indicator default color17         ## Dark blue background
 color sidebar_highlight white   color238        ## Grey background
-color sidebar_spoolfile yellow  default         ## Yellow
-color sidebar_new       green   default         ## Green
-color sidebar_flagged   red     default         ## Red
-color sidebar_divider   color8  default         ## Dark grey
+#color sidebar_highlight white   cyan            ## Cyan for visablity
+color sidebar_spoolfile yellow  black           ## Yellow
+color sidebar_new       green   black           ## Green
+color sidebar_flagged   red     black           ## Red
+color sidebar_divider   color8  black           ## Dark grey
 ### End Sidebar Colors ### }}}
 
 ### Sidebar Navigation ### {{{

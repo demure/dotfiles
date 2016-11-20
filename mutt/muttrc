@@ -66,11 +66,9 @@ source "~/.mutt/notmuch.muttrc"
 ### End Sourcing ### }}}
 
 ### Color Scheme ### {{{
-#source "~/.mutt/themes/comidia.muttrc"
-#source "~/.mutt/themes/vombatidae.muttrc"
 #source "~/.mutt/themes/tomorrow-night.muttrc"
 #source "~/.mutt/themes/mutt-colors-solarized-dark-16.muttrc"
-#source "~/.mutt/themes/mutt-colors-solarized-light-16.muttrc"
+source "~/.mutt/themes/mutt-colors-solarized-dark-256.muttrc"
 ### End Color ### }}}
 
 ### Status Bar ### {{{
