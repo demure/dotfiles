@@ -401,8 +401,11 @@ workspace_auto_back_and_forth yes
 		floating_modifier $mod
 		
 		## Seems like this only works on border or title bar...
-		bindsym --whole-window --border button6 workspace prev
-		bindsym --whole-window --border button7 workspace next
+		#bindsym --whole-window --border button6 workspace prev
+		#bindsym --whole-window --border button7 workspace next
+		## Removed --whole-window as it started working, and touchpoint scrolling affected.
+		bindsym --border button6 workspace prev
+		bindsym --border button7 workspace next
 	### End Mouse Bindings ### }}}
 
 	### Scratch Pad ### {{{
