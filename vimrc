@@ -71,6 +71,11 @@
 	" Support Format-Flowed in email (mutt).
 	" Because it is a good-ness? http://joeclark.org/ffaq.html
 	autocmd FileType mail setlocal fo+=aw tw=72
+
+	"" vimdiff settings
+	if &diff
+		colorscheme slate
+	endif
 """ End Commands at Start """ }}}
 
 """ Plugins """ {{{
