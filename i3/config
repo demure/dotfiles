@@ -418,6 +418,7 @@ workspace_auto_back_and_forth yes
 ### End Bindings ### }}}
 
 ### Window Treatments ### {{{
+	## (adding "(?i)" means ignore case)
 	### Program Floating ### {{{
 	for_window [class="mpv|feh"] floating enable
 	for_window [title="Steam - Update*|Steam - Self Updater|Event Tester"] floating enable
@@ -427,7 +428,7 @@ workspace_auto_back_and_forth yes
 	### End Program Floating ### }}}
 
 	## Disable border
-	for_window [class="mpv|URxvt|chromium|terminator|qutebrowser"] border 1pixel
+	for_window [class="mpv|URxvt|(?i)chromium|terminator|qutebrowser"] border 1pixel
 
 	## Tab view
 	for_window [class="Virt-manager"] focus child, layout tabbed, focus
