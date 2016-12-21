@@ -144,7 +144,7 @@ while read -r line ; do
 			## Don't show brightness if there is no battery.
 			## Most desktops don't software adjust brightness.
 			## I suppose there is a small use case of a laptop with no battery...
-			if [ ${tmb_arr_perc} != "none" ]; then
+			if [ ${bright_arr} != "none" ]; then
 				bri="%{F${color_icon}}${sep_l_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_bri}%{F- T1} ${bright_arr}%"
 			  else
 				bri=""
@@ -243,7 +243,7 @@ while read -r line ; do
 				fi
 				bat="%{F${bat_cback}}${sep_left}%{F${bat_cicon} B${bat_cback}} %{T2}${bat_icon}%{F- T1} ${tmb_arr_perc}%"
 				
-				if [ ${tmb_arr_time} != "" ]; then
+				if [ ${tmb_arr_time} != "none" ]; then
 					bat_time="%{F${color_icon}}${sep_l_left}%{F${color_icon} B${color_sec_b1}} %{T2}${icon_bat_time}%{F- T1} ${tmb_arr_time}"
 				  else
 					bat_time=""
