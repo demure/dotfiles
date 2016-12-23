@@ -3,6 +3,8 @@
 server {
 	listen 80;
 	listen [::]:80;
+	listen 443 ssl;
+	listen [::]:443 ssl;
 	server_name tt.demu.red;
 	root /var/www/tt-rss;
 
@@ -15,6 +17,12 @@ server {
 	}
 
 	index index.php index.html;
+
+	## Include certbot fix
+	include /etc/nginx/snippets/nginx.well-known.conf;
+
+	## Include ssl
+	include /etc/nginx/snippets/nginx.ssl.conf;
 
 	### Deny Stuffs ### {{{
 		## Protect specific TXT and config files
