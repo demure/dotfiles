@@ -8,31 +8,31 @@
 
 so() { [ -s $1 ] && source $1; }
 
-#so ~/.subbash/profile					# main configuration
+#so ~/.subbash/profile                  # main configuration
 
 ## Uses:
 ## export ENV_NAME=$(uname -s|tr 'A-Z' 'a-z')
-#so ~/.subbash/${ENV_NAME}_profile		# configuration per OS linux/OSX
+#so ~/.subbash/${ENV_NAME}_profile      # configuration per OS linux/OSX
 
-#so ~/.subbash/common					# common stuff or overriding
+#so ~/.subbash/common                   # common stuff or overriding
 
-so ~/.subbash/export					# Exports
-so ~/.subbash/shopt						# Shopts
-so ~/.subbash/installcheck				# Checks for installs, $MISSING_PROGRAMS
-so ~/.subbash/sshagent					# SSH agent, have before settings
-so ~/.subbash/gpgagent					# GPG agent, have before settings
+so ~/.subbash/export                    # Exports
+so ~/.subbash/shopt                     # Shopts
+so ~/.subbash/installcheck              # Checks for installs, $MISSING_PROGRAMS
+so ~/.subbash/sshagent                  # SSH agent, have before settings
+so ~/.subbash/gpgagent                  # GPG agent, have before settings
 
 ### Interactive ### {{{
 if [[ $- == *i* ]]; then
-	so ~/.subbash/prompt				# COMMAND_PROMPT function
-	so ~/.subbash/alias					# Alias
-	so ~/.subbash/function				# Functions
+	so ~/.subbash/prompt                # COMMAND_PROMPT function
+	so ~/.subbash/alias                 # Alias
+	so ~/.subbash/function              # Functions
 fi
 ### End Interactive ### }}}
 
 ## This needs to be after Interactive, to override
-so ~/.subbash/settings					# Machine dependent settings
+so ~/.subbash/settings                  # Machine dependent settings
 ## This is last, so it can override everything. Less fighting with mini installs.
-so ~/.subbash/bashrc.local				# machine specific config. not tracked
+so ~/.subbash/bashrc.local              # machine specific config. not tracked
 
-return 0								# Return 0, so it doesn't show
+return 0                                # Return 0, so it doesn't show

@@ -8,18 +8,25 @@
 ## Remove OS X 'junk' files
 alias rmds='find . -name ".DS_Store" -depth -exec rm -i {} \;'
 alias rmd_='find . -iname '._*' -exec rm -rf {} \;'
+
 ## Show ls -R with readable depth
 alias filetree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'"
+
 ## not sure this is still needed, but might $DISPLAY
 alias reset_display='export DISPLAY=$(tmux showenv|grep ^DISPLAY|cut -d = -f 2)'
+
 ## Make ed more usable, command mode is now ':' like vi
 alias ed='ed -p:'
+
 ## Good for sending dirs from server to remote server
 alias rsy='rsync -avrSPXRh'
+
 ## Preserve user conf while sudoing vim
 alias svi='sudo -E vim'
+
 ## Delete duplicate lines from file name augment
 alias deldup="awk '!x[$0]++' "
+
 ## Shortcut for wicd-curses
 alias wic='wicd-curses'
 

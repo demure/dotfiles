@@ -5,14 +5,14 @@
 # vim:set syntax=sh:
 
 ### Universal Shopts ### {{{
-shopt -s histappend					# Appends hist on exit
-shopt -s cmdhist					# Save multi-line hist as one line
-shopt -s checkwinsize				# Update col/lines after commands
+shopt -s histappend                 # Appends hist on exit
+shopt -s cmdhist                    # Save multi-line hist as one line
+shopt -s checkwinsize               # Update col/lines after commands
 
 	### Completion ### {{{
-	shopt -s autocd 2>/dev/null		# Can change dir without `cd`
-	shopt -s cdspell				# Fixes minor spelling errors in cd paths
-	shopt -s no_empty_cmd_completion	# Stops empty line tab comp
-	shopt -s dirspell 2>/dev/null	# Tab comp can fix dir name typos
+	shopt -s autocd 2>/dev/null         # Can change dir without `cd`
+	shopt -s cdspell                    # Fixes minor spelling errors in cd paths
+	shopt -s no_empty_cmd_completion    # Stops empty line tab comp
+	shopt -s dirspell 2>/dev/null       # Tab comp can fix dir name typos
 	### End Completion ### }}}
 ### End Universal Shopts ### }}}

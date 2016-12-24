@@ -7,9 +7,7 @@
 ### Settings ### {{{
 	### Mac Settings ### {{{
 	if [ $OSTYPE == 'darwin13' ]; then
-		### Mac Sourcing ### {{{
-		__ssh_agent
-
+		### Brew Stuff ### {{{
 		## Add git completion
 		if [ -f $(brew --prefix)/etc/bash_completion ]; then
 			source $(brew --prefix)/etc/bash_completion
@@ -19,29 +17,20 @@
 		if [ -f $(brew --prefix)/Library/Contributions/brew_bash_completion.sh ]; then
 			source $(brew --prefix)/Library/Contributions/brew_bash_completion.sh
 		fi
-
-			### stderred ### {{{
-			#if [ -f /Projects/git/stderred/build/libstderred.dylib${DYLD_INSERT_LIBRARIES:+:$DYLD_INSERT_LIBRARIES} ]; then
-
-				#export DYLD_INSERT_LIBRARIES="/Projects/git/stderred/build/libstderred.dylib${DYLD_INSERT_LIBRARIES:+:$DYLD_INSERT_LIBRARIES}"
-				##export STDERRED_ESC_CODE=$(printf "\e[1;31m")
-			#fi
-			### End stderred ### }}}
-		### End Mac Sourcing ### }}}
+		### End Brew Stuff ###  }}}
 
 		### Mac Aliases ### {{{
+		## Interactive Test
 		if [[ $- == *i* ]]; then
 			alias google='ping -c 1 www.google.com && growlnotify -m "google pinged"'
 			alias ardrestart='sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -restart -agent -menu'
 			alias vi='vim'
 			alias fvreboot='sudo fdesetup authrestart'
 			alias rebuild_open_with='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user;killall Finder;echo "Open With has been rebuilt, Finder will relaunch"'
-
-			## Aliases for nicing
-			alias fast='sudo nice -n -10'
-			alias slow='nice -n 20'
-			### End Mac Aliases ### }}}
 		fi
+		### End Mac Aliases ### }}}
+
+		__ssh_agent
 	fi
 	### End Mac Settings ### }}}
 
@@ -51,13 +40,14 @@
 		export TZ=EST5EDT
 		#source /etc/bash_completion.d/git		## Add git completion
 
+		## Interactive Test
 		if [[ $- == *i* ]]; then
 			alias bb='bboard'
 			alias mutt='~/bin/mutt'
 			unalias svi
 		fi
 
-		#__ssh_agent							## No longer main server
+		__ssh_agent
 	fi
 	### End MA Settings ### }}}
 
@@ -65,12 +55,13 @@
 	if [ $HOSTTYPE == 'arm' ]; then
 		#source /etc/bash_completion.d/git		## Add git completion
 
+		## Interactive Test
 		if [[ $- == *i* ]]; then
 			alias ls='ls --color=auto'
 			alias vi='vim'
 			alias vnc='vncserver :1 -geometry 1024x700 -depth 24'
-			alias cdtrans='cd /var/lib/transmission-daemon/downloads'
 		fi
+
 		__ssh_agent
 	fi
 	### End For pi ### }}}
@@ -83,8 +74,9 @@
 	fi
 	### End For iOS ### }}}
 
-	### For #!, and debian Including Laptop and Netbook ### {{{
+	### For Debian Including Laptop and Netbook ### {{{
 	if [[ $MACHTYPE == 'x86_64-pc-linux-gnu' || $MACHTYPE == 'i486-pc-linux-gnu' ]]; then
+		## Interactive Test
 		if [[ $- == *i* ]]; then
 			alias ls='ls --color=auto'
 			alias vi='vim'
@@ -94,26 +86,21 @@
 			alias hdmi-mirror='xrandr --output HDMI1 --mode 1360x768'
 			alias hdmi-second='xrandr --output HDMI1 --mode 1360x768 --right-of LVDS1'
 			alias hdmi-off='xrandr --output HDMI1 --off'
-			alias sd-card='sudo setpci -s 00:1c.2 0x50.B=0x41'
 			alias xc="xclip -selection c"
-			alias www-logs='sudo lnav /var/log/nginx/access.log /var/log/nginx/error.log /var/log/fail2ban.log'
 
 			export NVIM_HOME="$HOME/Dropbox/Notational Data"
 		fi
 
-		#if [[ $HOSTNAME != "vps-of-doom" ]]; then
-		#__gpg_agent
-		#fi
-
 		__ssh_agent
 	fi
-	### End For #! ### }}}
+	### End For Debian ### }}}
 
 	### For SDF Main Cluster ### {{{
 	if [[ "$MACHTYPE" == "x86_64--netbsd" && "$OSTYPE" == "netbsd" ]]; then
 		#LSCOLORS='exfxcxdxbxegedabagacad'
 		export TZ=EST5EDT
 
+		## Interactive Test
 		if [[ $- == *i* ]]; then
 			alias help='/usr/local/bin/help'
 			alias bb='bboard'
@@ -121,6 +108,8 @@
 			unalias svi
 			#alias ls='colorls -G'
 		fi
+
+		__ssh_agent
 	fi
 	### End For SDF Main Cluster ### }}}
 

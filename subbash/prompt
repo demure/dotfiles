@@ -5,10 +5,10 @@
 # vim:set syntax=sh:
 
 ### This Changes The PS1 ### {{{
-export PROMPT_COMMAND=__prompt_command	# Func to gen PS1 after CMDs
+export PROMPT_COMMAND=__prompt_command      # Func to gen PS1 after CMDs
 
 function __prompt_command() {
-	local EXIT="$?"							# This needs to be first
+	local EXIT="$?"                         # This needs to be first
 	PS1=""
 
 	### Colors to Vars ### {{{
@@ -30,47 +30,47 @@ function __prompt_command() {
 	### End Color Vars ### }}}
 
 	if [ $UID -eq "0" ];then
-		PS1+="${Red}\h \W ->${RCol} "		# Set prompt for root
+		PS1+="${Red}\h \W ->${RCol} "       # Set prompt for root
 	  else
-		local PSCol=""						# Declare so null var fine
-		local PSOpt=""						# Above, and fixes repeat issue
+		local PSCol=""                      # Declare so null var fine
+		local PSOpt=""                      # Above, and fixes repeat issue
 
 		if [ $EXIT != 0 ]; then
 			## can add `kill -l $?` to test to filter backgrounded
-			PS1+="${Red}${EXIT}${RCol}"		# Add exit code, if non 0
+			PS1+="${Red}${EXIT}${RCol}"     # Add exit code, if non 0
 		fi
 
 		### Machine Test ### {{{
 		if [ $HOSTNAME == 'moving-computer-of-doom' ]; then
-			local PSCol="$Cya"				# For Main Computer
+			local PSCol="$Cya"              # For Main Computer
 		elif [ $HOSTNAME == 'vps-of-doom' ]; then
-			local PSCol="$Blu"				# For VPS
+			local PSCol="$Blu"              # For VPS
 		elif [ $HOSTNAME == 'ma.sdf.org' ]; then
-			local PSCol="${Yel}"			# For MetaArray
+			local PSCol="${Yel}"            # For MetaArray
 			local PSOpt="\h "
 		elif [ $HOSTNAME == 'fencepost.gnu.org' ]; then
-			local PSCol="${On_Pur}"		# For Gnu
+			local PSCol="${On_Pur}"         # For Gnu
 			local PSOpt="\h "
 		elif [ $HOSTTYPE == 'arm' ]; then
-			local PSCol="$Gre"				# For pi
+			local PSCol="$Gre"              # For pi
 		elif [[ $MACHTYPE =~ arm-apple-darwin ]]; then
-			local PSCol="$Gre"				# For iOS
+			local PSCol="$Gre"              # For iOS
 		elif [ $MACHTYPE == 'i486-pc-linux-gnu' ]; then
-			local PSCol="$BBla"				# For Netbook
+			local PSCol="$BBla"             # For Netbook
 		elif [[ "$MACHTYPE" == "x86_64--netbsd" && "$OSTYPE" == "netbsd" ]]; then
-			local PSCol="${Yel}"			# For Main Cluster
+			local PSCol="${Yel}"            # For Main Cluster
 			local PSOpt="\h "
 		elif [ "$MACHTYPE" == "mips-openwrt-linux-gnu" ]; then
-			local PSCol="${On_Pur}"			# For OpenWrt
+			local PSCol="${On_Pur}"         # For OpenWrt
 			local PSOpt="\h "
 		  else
-			local PSCol="${Pur}"			# Un-designated catch-all
+			local PSCol="${Pur}"            # Un-designated catch-all
 			local PSOpt="\h "
 			MISSING_ITEMS+="machine-prompt, "
 		fi
 		### End Machine Test ### }}}
 
-		PS1+="${PSCol}${PSOpt}\W${RCol}"			# Current working dir
+		PS1+="${PSCol}${PSOpt}\W${RCol}"    # Current working dir
 
 		### Check Jobs ### {{{
 		command jobs 2>/dev/null
@@ -127,38 +127,38 @@ function __prompt_command() {
 				local GBra="$(echo ${GStat} | tr ':' '\n' | grep "^##" | cut -c4- | grep -o "^[a-zA-Z]\{1,\}[^\.]")"
 				if [ "$GBra" ]; then
 					if [ "$GBra" == "master" ]; then
-						local GBra="M"			# Because why waste space
+						local GBra="M"      # Because why waste space
 					fi
 				  else
-					local GBra="ERROR"			# It could happen supposedly?
+					local GBra="ERROR"      # It could happen supposedly?
 				fi
 				### End Branch ### }}}
 
 				PS1+=" ${GitCol}[$GBra]${RCol}"	# Add result to prompt
 
 				### Find Commit Status ### {{{
-					## Test Modified and Untracked for "0"
-	#					# local GDel="$(echo ${GStat} | tr ':' '\n' | grep -c "^[ MARC]D")"
+				## Test Modified and Untracked for "0"
+				# local GDel="$(echo ${GStat} | tr ':' '\n' | grep -c "^[ MARC]D")"
 
 				local GAhe="$(echo ${GStat} | tr ':' '\n' | grep "^##" | grep -o "ahead [0-9]\{1,\}" | grep -o "[0-9]\{1,\}")"
 				if [ "$GAhe" ]; then
-					PS1+="${Gre}↑${RCol}${GAhe}"	# Ahead
+					PS1+="${Gre}↑${RCol}${GAhe}"    # Ahead
 				fi
 
 				## Needs a `git fetch`
 				local GBeh="$(echo ${GStat} | tr ':' '\n' | grep "^##" | grep -o "behind [0-9]\{1,\}" | grep -o "[0-9]\{1,\}")"
 				if [ "$GBeh" ]; then
-					PS1+="${Red}↓${RCol}${GBeh}"	# Behind
+					PS1+="${Red}↓${RCol}${GBeh}"    # Behind
 				fi
 
 				local GMod="$(echo ${GStat} | tr ':' '\n' | grep -c "^[ MARC]M")"
 				if [ "$GMod" -gt "0" ]; then
-					PS1+="${Pur}≠${RCol}${GMod}"	# Modified
+					PS1+="${Pur}≠${RCol}${GMod}"    # Modified
 				fi
 
 				local GUnt="$(echo ${GStat} | tr ':' '\n' | grep -c "^\?")"
 				if [ "$GUnt" -gt "0" ]; then
-					PS1+="${Yel}?${RCol}${GUnt}"	# Untracked
+					PS1+="${Yel}?${RCol}${GUnt}"    # Untracked
 				fi
 				### End Commit Status ### }}}
 			fi
@@ -167,7 +167,7 @@ function __prompt_command() {
 		fi
 		### End Git Status ### }}}
 
-		PS1+=" ${PSCol}-> ${RCol}"			## End of PS1
+		PS1+=" ${PSCol}-> ${RCol}"          ## End of PS1
 	fi
 }
 ### End PS1 ### }}}

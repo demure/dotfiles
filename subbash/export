@@ -6,15 +6,15 @@
 
 ### Exports ### {{{
 	### Universal Exports ### {{{
-	export CLICOLOR="YES"				# Color 'ls', etc.
+	export CLICOLOR="YES"       # Color 'ls', etc.
 	export EDITOR=vim
 
 		### History Settings ### {{{
-		export HISTSIZE=10000			# Size of shells hist
-		export HISTFILESIZE=10000		# Size of Hist file
+		export HISTSIZE=10000                   # Size of shells hist
+		export HISTFILESIZE=10000               # Size of Hist file
 		export HISTCONTROL=ignoreboth:erasedups
-		export HISTTIMEFORMAT="%F %T "	# Adds time to history
-		export HISTIGNORE='ls:bg:fg:history'	# Hist ignores exact match
+		export HISTTIMEFORMAT="%F %T "          # Adds time to history
+		export HISTIGNORE='ls:bg:fg:history'    # Hist ignores exact match
 		### End History Settings ### }}}
 	### End Universal Exports ### }}}
 
