@@ -27,8 +27,10 @@ function __ssh_agent() {
 	if [ ${F_CHECK} == 0 ] && { [ "${U_CHECK}" == "${USER}" ] || [ "${U_CHECK}" == "logname: no login name" ] ;}; then
 		if [ -f "${SSH_ENV}" ]; then
 			. "${SSH_ENV}" > /dev/null
-			ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
-				__start_agent;
+			ps -ef 2>/dev/null | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+				pstree -up ${USER} 2>/dev/null | grep ${SSH_AGENT_PID} | grep ^ssh-agent > /dev/null || {
+					__start_agent;
+				}
 			}
 		  else
 			__start_agent;
