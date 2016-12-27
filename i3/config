@@ -394,6 +394,10 @@ workspace_auto_back_and_forth yes
 		### External IP Toggle For i3 lemonbar ### {{{
 		bindsym XF86LaunchA exec awk -v TEMP=/tmp/i3_lemonbar_ip_${USER} 'BEGIN {{FILE=getline < TEMP < 0 ? "0" : "1"} {if($0==1){STATE=1} else {STATE=0}} {if(STATE==0){system("echo 1 > "TEMP)} else {system("echo 0 > "TEMP)}} }'
 		### End External IP FOr i3 lemonbar ### }}}
+
+		### Clipster Clipboard Manager ### {{{
+		bindsym $mod+c exec clipster -sp
+		### End Clipster ### }}}
 	### End Misc Bindings ### }}}
 
 	### Mouse Bindings ### {{{
@@ -475,12 +479,12 @@ exec srandrd autorandr -c
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id conky -qc $HOME/.i3/back_log.conkyrc
 exec --no-startup-id conky -qc $HOME/.i3/back_log_backups.conkyrc
-exec --no-startup-id clipit
 exec --no-startup-id xss-lock -- i3lock -e -c 2E3436
 exec --no-startup-id redshift
 exec --no-startup-id dropbox start
 exec --no-startup-id touchegg
 exec --no-startup-id unclutter
+exec --no-startup-id clipster -d
 exec --no-startup-id i3-msg "workspace $ws7; exec /usr/bin/spacefm"
 exec --no-startup-id i3-msg "workspace $ws3; exec /usr/local/sbin/qutebrowser"
 exec --no-startup-id i3-msg "workspace $ws1; exec /usr/bin/urxvt"
