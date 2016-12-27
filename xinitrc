@@ -7,8 +7,9 @@
 ## Fix my sound? damn pusle per user
 #pulseaudio --start
 
-## Uses spectrwm instead of distasteful gnome 3 :p
-#exec ck-launch-session dbus-launch /usr/local/bin/spectrwm
+## Fix path for WM?
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/pkg/bin:/usr/local/bin:/usr/local/sbin:${HOME}/projects/personal/scripts:${HOME}/bin:${HOME}/.local/bin:/usr/local/games:/usr/games
+
 
 ## git install
 # dont forget about $(xinit /usr/local/bin/spectrwm -- :1 &) for testing
