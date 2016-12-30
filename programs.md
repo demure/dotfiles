@@ -6,7 +6,7 @@
 -->
 
 ## My Programs ##
-|----------------------|--------------|-------------------------|  
+
 | Purpose              | Name         | Filetypes               |  
 |----------------------|--------------|-------------------------|  
 | Comic Reader         | mcomix       | cbr, cbz, rar, zip, etc |  
@@ -42,4 +42,3 @@
 | CLI Hex Editor       | hexcurse     | *                       |  
 | Image Viewer         | feh          | MANY                    |  
 | Desktop Background   | nitrogen     | MANY                    |  
-|----------------------|--------------|-------------------------|  
