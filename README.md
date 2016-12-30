@@ -1,4 +1,5 @@
 <!--My (demuredemeanor) readme
+# vim: set expandtab ts=4 sw=4: ## Since this is markdown
 # https://gitorious.org/demure/dotfiles/
 # legacy repo http://github.com/demure/dotfiles
 -->
