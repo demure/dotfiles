@@ -6,39 +6,98 @@
 -->
 
 ## My Programs ##
+### CLI ###
 
-| Purpose              | Name         | Filetypes               |  
-|----------------------|--------------|-------------------------|  
-| Comic Reader         | mcomix       | cbr, cbz, rar, zip, etc |  
-| File Browser         | spacefm      | NA                      |  
-| Window Manager       | i3           | NA                      |  
-| Desktop Manager      | lightdm      | NA                      |  
-| Terminal Emulator    | terminator   | NA                      |  
-| Editor               | vim          | txt, etc                |  
-| GUI Editor?          | gvim         | txt, etc                |  
-| System Tray          | stalonetray  | NA                      |  
-| Bloated Web Browser  | Chromium     | http                    |  
-| CLI Web Browser      | w3m          | http                    |  
-| Keybound Web Browser | qutebrowser  | http                    |  
-| Batch Rename         | qmv          | Note: from renameutils  |  
-| System Lock          | i3lock       | NA                      |  
-| System Menu          | rofi         | NA                      |  
-| System Clipboard     | clipit       | NA                      |  
-| GUI Email Client     | icedove      | NA                      |  
-| CLI Email Client     | mutt         | NA                      |  
-| PDF Viewer           | zathura      | pdf                     |  
-| Video Player         | mpv          | MANY                    |  
-| Enable HDMI Sound    | pavucontrol  | NA                      |  
-| linux info command   | pinfo        | NA                      |  
-| CLI pager            | view/less    | NA                      |  
-| Documentation Viewer | zeal         | NA                      |  
-| Font Viewer          | font-manager | NA                      |  
-| CLI cheat sheet      | cheat        | NA?                     |  
-| CLI RSS              | newsbeuter   | NA                      |  
-| GUI Disk Usage       | baobab       | NA                      |  
-| GUI Hex Editor       | bless        | *                       |  
-| GUI Hex Editor       | wxHexEditor  | *                       |  
-| CLI Hex Editor       | dhex         | *                       |  
-| CLI Hex Editor       | hexcurse     | *                       |  
-| Image Viewer         | feh          | MANY                    |  
-| Desktop Background   | nitrogen     | MANY                    |  
+| Purpose                | Name           | Filetypes                 |
+| ---------------------- | -------------- | ------------------------- |
+| Editor                 | vim            | txt, etc                  |
+| Web Browser            | w3m            | http                      |
+| Batch Rename           | qmv            | Note: from renameutils    |
+| System Clipboard       | clipit         |                           |
+| Email Client           | mutt           |                           |
+| PDF Viewer             | zathura        | pdf                       |
+| Enable HDMI Sound      | pavucontrol    |                           |
+| Linux Info Command     | pinfo          |                           |
+| Pager                  | view/less      |                           |
+| Cheat Sheet            | cheat          | NA?                       |
+| RSS Client             | newsbeuter     |                           |
+| Hex Editor             | dhex           | *                         |
+| Hex Editor             | hexcurse       | *                         |
+| Terminal Multiplexer   | tmux           |                           |
+| tmux profiles          | tmuxinator     |                           |
+| smtp                   | msmtp          |                           |
+| imap                   | offlineimap    |                           |
+| Process Info           | htop           |                           |
+| Port Mapping           | nmap           |                           |
+| Pandora                | pianobar       | Note: w/ control-pianobar |
+| Poke Finding           | scanmem        |                           |
+| Network Ban Hammer     | fail2ban       |                           |
+| IRC Client             | weechat        |                           |
+| Log Viewer             | lnav           |                           |
+| Disk Usage             | ncdu           |                           |
+| File Browser           | ranger         |                           |
+| Package Manager        | aptitude       |                           |
+| Version Control        | git            |                           |
+| Calandar               | khal           |                           |
+| Music Player           | cmus           | Many, Stram               |
+| Password Manager       | pass           |                           |
+| Usage Stats            | selfspy        |                           |
+
+### CLI programs that preform a GUI Function ###
+
+| Purpose                | Name           | Filetypes                 |
+| ---------------------- | -------------- | ------------------------- |
+| PDF Viewer             | zathura        | pdf                       |
+| Video Player           | mpv            | Many                      |
+| Image Viewer           | feh            | Many                      |
+| Virtual Machines       | qemu-kvm       |                           |
+| Chart Maker            | graphviz       | Many                      |
+| Show Keystrokes        | screenkey      |                           |
+
+### WM Environment Related ###
+**Note:** Many of these fall under the previous category.
+
+| Purpose                | Name           | Filetypes                 |
+| ---------------------- | -------------- | ------------------------- |
+| File Browser           | spacefm        |                           |
+| Window Manager         | i3             |                           |
+| Desktop Manager        | lightdm        |                           |
+| System Tray            | stalonetray    |                           |
+| System Lock            | i3lock         |                           |
+| System Menu            | rofi           |                           |
+| Clipboard History      | clipit         |                           |
+| Desktop Background     | nitrogen       | Many                      |
+| System Bar             | lemonbar       |                           |
+| System Tray            | stalonetray    |                           |
+| Brightness Control     | xbacklight     |                           |
+| Transparency           | compton        |                           |
+| Mouse Pointer Hidding  | unclutter      |                           |
+| Screen Resolution      | srandrd        |                           |
+| Screen Resolution      | autorandr      |                           |
+| Screen Shots           | scrot          |                           |
+
+### GUI ###
+
+| Purpose                | Name           | Filetypes                 |
+| ---------------------- | -------------- | ------------------------- |
+| Comic Reader           | mcomix         | cbr, cbz, rar, zip, etc   |
+| File Browser           | spacefm        |                           |
+| Terminal Emulator      | urxvt          |                           |
+| Editor                 | gvim           | txt, etc                  |
+| Bloated Web Browser    | Chromium       | http                      |
+| Keybound Web Browser   | qutebrowser    | http                      |
+| GUI Email Client       | icedove        |                           |
+| Documentation Viewer   | zeal           |                           |
+| Font Viewer            | font-manager   |                           |
+| Disk Usage             | baobab         |                           |
+| Hex Editor             | bless          | *                         |
+| Hex Editor             | wxHexEditor    | *                         |
+| Poke Finding           | gameconqueror  |                           |
+| Word Proccessor        | libreoffice    | Many                      |
+| Spread Sheet           | libreoffice    | Many                      |
+| Presentation           | libreoffice    | Many                      |
+| Ebook Manager          | calibre        | Many                      |
+| Password Manager       | qtpass         |                           |
+| Image Manipulation     | gimp           | Many                      |
+| Vectors                | inkscape       | Many                      |
+

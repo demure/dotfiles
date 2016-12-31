@@ -11,7 +11,7 @@
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/pkg/bin:/usr/local/bin:/usr/local/sbin:${HOME}/projects/personal/scripts:${HOME}/bin:${HOME}/.local/bin:/usr/local/games:/usr/games
 
 
-## git install
+## Call WM
 # dont forget about $(xinit /usr/local/bin/spectrwm -- :1 &) for testing
 ## I don't think consolekit does anything helpful for me? and wastes a ton of mem.
 #exec ck-launch-session dbus-launch --sh-syntax --exit-with-session /usr/bin/i3

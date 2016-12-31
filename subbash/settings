@@ -38,7 +38,7 @@
 	if [ $HOSTNAME == 'ma.sdf.org' ]; then
 		export PATH=/usr/pkg/bin:/usr/local/bin:/usr/bin:/bin
 		export TZ=EST5EDT
-		#source /etc/bash_completion.d/git		## Add git completion
+		#source /etc/bash_completion.d/git      ## Add git completion
 
 		## Interactive Test
 		if [[ $- == *i* ]]; then
@@ -53,7 +53,7 @@
 
 	### For pi ### {{{
 	if [ $HOSTTYPE == 'arm' ]; then
-		#source /etc/bash_completion.d/git		## Add git completion
+		#source /etc/bash_completion.d/git      ## Add git completion
 
 		## Interactive Test
 		if [[ $- == *i* ]]; then
