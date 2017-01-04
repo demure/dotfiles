@@ -39,6 +39,9 @@
 	host ma
 		HostName ma.sdf.org
 
+	host meta
+		HostName meta.sdf.org
+
 	host max
 		HostName ma.sdf.org
 		#ForwardAgent no
