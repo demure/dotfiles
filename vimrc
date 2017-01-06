@@ -106,7 +106,6 @@ if $USER != 'mobile'
 			""" Style """ {{{
 			Plugin 'altercation/vim-colors-solarized'	" Solarized theme
 			Plugin 'syntax-highlighting-for-tintinttpp'	" Tintin++ syntax
-			Plugin 'mikewest/vimroom'					" Can imitate writeroom sytle
 			Plugin 'bling/vim-airline'					" Even better than powerline/neatstatus
 			Plugin 'nathanaelkane/vim-indent-guides'	" vim-indent-guides default binding: <Leader>ig
 			Plugin 'kien/rainbow_parentheses.vim'		" Colorize parentheses and similar chars
@@ -121,7 +120,6 @@ if $USER != 'mobile'
 			Plugin 'cwoac/nvim'					" Notational Velocity like
 			Plugin 'szw/vim-ctrlspace'			" Super buffer controlness
 			Plugin 'haya14busa/incsearch.vim'	" Improved incremental searching
-			"Plugin 'farseer90718/vim-taskwarrior'	" TaskWarrior Interface
 			Plugin 'spolu/dwm.vim'				" dwm like split control
 			""" End Interface """ }}}
 
@@ -131,9 +129,6 @@ if $USER != 'mobile'
 			Plugin 'YankRing.vim'				" Improves copy/paste
 			Plugin 'tpope/vim-fugitive'			" git from vim
 			Plugin 'scrooloose/syntastic'		" Code syntax checker
-			"" Disabled due to too many errors, and no use.
-			"Plugin 'FredKSchott/CoVim'			" Collaborative vim
-			Plugin 'Tail-Bundle'				" Tail inside of vim
 			"Plugin 'SearchComplete'			" Disabled due to killing UP arrow in search
 			Plugin 'Lokaltog/vim-easymotion'	" <prefix><prefix>motion
 			Plugin 'chrisbra/csv.vim'			" Good CVS file handling
