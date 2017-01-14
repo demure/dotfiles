@@ -70,6 +70,9 @@ host sleep
 
 host gnu
 	hostName fencepost.gnu.org
+
+host ppc
+	hostName tty.ppc64.club
 ### End Internet Places ### }}}
 
 ### Local Places ### {{{
