@@ -208,6 +208,7 @@ workspace_auto_back_and_forth yes
 			bindsym o exec libreoffice ; mode "default"
 			bindsym t exec i3-sensible-terminal ; mode "default"
 			bindsym w exec urxvt -e wicd-curses ; mode "default"
+			bindsym n exec urxvt -e terminal_velocity ; mode "default"
 
 			## Keeping this as an example
 			## gnome-disks will not launch twice, gparted will. Avoid that.
@@ -427,7 +428,7 @@ workspace_auto_back_and_forth yes
 	for_window [class="mpv|feh"] floating enable
 	for_window [title="Steam - Update*|Steam - Self Updater|Event Tester"] floating enable
 	## Make wicd-curses pop up bigger, and centered
-	for_window [title="wicd-curses"] floating enable, resize shrink width 10000px, resize grow width 800px, resize shrink height 10000px, resize grow height 600px, move position 525 225
+	for_window [title="wicd-curses|terminal_velocity"] floating enable, resize shrink width 10000px, resize grow width 800px, resize shrink height 10000px, resize grow height 600px, move position 525 225
 	for_window [class="QtPass"] floating enable, resize shrink width 10000px, resize grow width 800px, resize shrink height 10000px, resize grow height 600px, move position 525 225
 	### End Program Floating ### }}}
 

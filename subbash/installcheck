@@ -19,7 +19,7 @@ caff fail2ban-client wicd-curses rsync weechat diff file find gpg gpg2 mc \
 lnav cheat dfc lemonbar newsbeuter task redshift xdotool git clamscan iftop \
 wireshark aptitude hwmon bc entr gpm tlp sfill vit curl lshw parallel minicom \
 khal rsnapshot scdaemon grep less cmus pianobar mpv tmuxinator iw goobook \
-dmidecode gawk bvi pandoc djmount) 
+dmidecode gawk bvi pandoc djmount terminal_velocity) 
 
 for i in "${CLI_LIST[@]}"; do
 	if [[ ! $(command -v ${i}) ]]; then
