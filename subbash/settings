@@ -87,10 +87,10 @@
 			alias hdmi-second='xrandr --output HDMI1 --mode 1360x768 --right-of LVDS1'
 			alias hdmi-off='xrandr --output HDMI1 --off'
 			alias xc="xclip -selection c"
-
-			export NVIM_HOME="$HOME/Dropbox/Notational Data"
+			alias borg_pass='export BORG_PASSPHRASE="$(pass cli/borg)"'
 		fi
 
+		export BORG_REPO='/media/store/backups/doom/'
 		__ssh_agent
 	fi
 	### End For Debian ### }}}
@@ -109,7 +109,9 @@
 			#alias ls='colorls -G'
 		fi
 
-		__ssh_agent
+		if [ $HOSTNAME = "iceland" ]; then
+			__ssh_agent
+		fi
 	fi
 	### End For SDF Main Cluster ### }}}
 

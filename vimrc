@@ -117,7 +117,6 @@ if $USER != 'mobile'
 			Plugin 'scrooloose/nerdtree'		" File browser
 			Plugin 'bufexplorer.zip'			" buffer browser
 			Plugin 'sjl/gundo.vim'				" Undo history tree
-			Plugin 'cwoac/nvim'					" Notational Velocity like
 			Plugin 'szw/vim-ctrlspace'			" Super buffer controlness
 			Plugin 'haya14busa/incsearch.vim'	" Improved incremental searching
 			Plugin 'spolu/dwm.vim'				" dwm like split control
