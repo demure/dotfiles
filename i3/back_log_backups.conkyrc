@@ -56,8 +56,4 @@ gap_y 10
 TEXT
 $color
 ${color grey90}Backups ${hr 2}$color
-Yearly ${alignr}${exec awk '/yearly/ {LL=$0;if($4=="passed"){LAST=$1 " " $2}} END {match(LL, /(.*)\s(.*)\t(\w+)\t(\w+)\t([0-9]+)/, m); if(m[4]=="passed"){printf "☑ passed %s %s\n", m[1], m[2]} else {printf "⚠ last passed %s\n", LAST}}' $HOME/.config/cryptshotr-cron/log}
-Monthly ${alignr}${exec awk '/month/ {LL=$0;if($4=="passed"){LAST=$1 " " $2}} END {match(LL, /(.*)\s(.*)\t(\w+)\t(\w+)\t([0-9]+)/, m); if(m[4]=="passed"){printf "☑ passed %s %s\n", m[1], m[2]} else {printf "⚠ last passed %s\n", LAST}}' $HOME/.config/cryptshotr-cron/log}
-Weekly ${alignr}${exec awk '/weekly/ {LL=$0;if($4=="passed"){LAST=$1 " " $2}} END {match(LL, /(.*)\s(.*)\t(\w+)\t(\w+)\t([0-9]+)/, m); if(m[4]=="passed"){printf "☑ passed %s %s\n", m[1], m[2]} else {printf "⚠ last passed %s\n", LAST}}' $HOME/.config/cryptshotr-cron/log}
-Daily ${alignr}${exec awk '/daily/ {LL=$0;if($4=="passed"){LAST=$1 " " $2}} END {match(LL, /(.*)\s(.*)\t(\w+)\t(\w+)\t([0-9]+)/, m); if(m[4]=="passed"){printf "☑ passed %s %s\n", m[1], m[2]} else {printf "⚠ last passed %s\n", LAST}}' $HOME/.config/cryptshotr-cron/log}
-Hourly ${alignr}${exec awk '/hourly/ {LL=$0;if($4=="passed"){LAST=$1 " " $2}} END {match(LL, /(.*)\s(.*)\t(\w+)\t(\w+)\t([0-9]+)/, m); if(m[4]=="passed"){printf "☑ passed %s %s\n", m[1], m[2]} else {printf "⚠ last passed %s\n", LAST}}' $HOME/.config/cryptshotr-cron/log}
+${alignr}${exec awk -v count=$(wc -l < $HOME/.config/borg/log) '{if(NR > count-12){if($3=="passed"){print "☑",$3,$1,$2} else {print "⚠",$4,$1,$2}}};' $HOME/.config/borg/log}
