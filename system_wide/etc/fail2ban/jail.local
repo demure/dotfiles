@@ -192,7 +192,7 @@ enabled  = true
 bantime  = 3600
 ## ten minutes
 findtime = 600
-port     = 500
+port     = 500,8080
 logpath  = %(sshd_log)s
 
 
@@ -201,7 +201,7 @@ logpath  = %(sshd_log)s
 # The mail-whois action send a notification e-mail with a whois request
 # in the body.
 enabled = true
-port    = 500
+port    = 500,8080
 logpath = %(sshd_log)s
 ### End ssh ### }}}
 
@@ -310,7 +310,7 @@ enabled  = true
 port     = http,https
 filter   = nginx-badbots
 logpath  = /var/log/nginx/access.log
-maxretry = 2
+maxretry = 1
 ## One week
 bantime  = 604800
 ## Four days
@@ -362,24 +362,22 @@ logpath  = /var/log/nginx/access.log
            /var/log/nginx/piwik_access.log
            /var/log/nginx/irpg_access.log
 maxretry = 1
-## One week
-#bantime  = 604800
 ## One Month
 bantime = 2628002
 ## Four days
 findtime = 345600
 
-#[nginx-req-limit]
+[nginx-req-limit]
 
-#enabled  = true
-#port     = http,https
-#filter   = nginx-limit-req
-#logpath  = /var/log/nginx/*error.log
-### One week
-#bantime  = 604800
-### Four days
-#findtime = 345600
-#maxretry = 10
+enabled  = false
+port     = http,https
+filter   = nginx-limit-req
+logpath  = /var/log/nginx/*error.log
+## One week
+bantime  = 604800
+## Four days
+findtime = 345600
+maxretry = 10
 ### End nginx ### }}}
 
 ### php-url-fopen ### {{{
