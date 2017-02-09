@@ -56,4 +56,5 @@ gap_y 10
 TEXT
 $color
 ${color grey90}Backups ${hr 2}$color
-${alignr}${exec awk -v count=$(wc -l < $HOME/.config/borg/log) '{if(NR > count-12){if($3=="passed"){print "☑",$3,$1,$2} else {print "⚠",$4,$1,$2}}};' $HOME/.config/borg/log}
+${alignr}${exec awk -v count=$(wc -l < $HOME/.config/borg/log) 'BEGIN {PASS=0; LC=0; LPASS=0} {if($3=="passed"){LPASS="⚠ " $4 " " $1 " " $2}; if(NR > count-6){if($3=="passed"){PASS=1}};++LC} END {if(PASS==0){print LPASS}}' $HOME/.config/borg/log}
+${alignr}${exec awk -v count=$(wc -l < $HOME/.config/borg/log) '{if(NR > count-6){if($3=="passed"){print "☑",$3,$1,$2} else {print "⚠",$4,$1,$2}}};' $HOME/.config/borg/log}
