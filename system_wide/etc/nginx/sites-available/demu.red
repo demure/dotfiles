@@ -60,8 +60,8 @@ server {
 	### End Deny Stuffs ### }}}
 
 	### Rate Limit ### {{{
-	limit_req zone=perip burst=10 nodelay;
-	limit_req zone=perserver burst=50;
+	limit_req zone=perip burst=100 nodelay;
+	limit_req zone=perserver burst=5000;
 	### End Rate Limit ### }}}
 
 	### php attempt ### {{{
