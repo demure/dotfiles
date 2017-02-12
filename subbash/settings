@@ -90,7 +90,7 @@
 			alias borg_pass='export BORG_PASSPHRASE="$(pass cli/borg)"'
 		fi
 
-		export BORG_REPO='/media/store/backups/doom/'
+		export BORG_REPO='ssh://demure@store:500/mnt/borg/doom'
 		__ssh_agent
 	fi
 	### End For Debian ### }}}
