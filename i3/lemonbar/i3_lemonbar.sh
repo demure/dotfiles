@@ -62,7 +62,7 @@ while :; do
 
 	## Temperature Check, TMP
 	if [ $((cnt_temp++)) -ge ${upd_temp} ]; then
-		printf "%s%s\n" "TMP" "$(acpi -t${temp_format} 2>/dev/null | awk '/Thermal 0/ {match($0, /([0-9]+\.[0-9]).*([CF])$/, m)} END {if(m[1]!=""){print int(m[1]) " " m[2]} else {print "none"}}')" > "${panel_fifo}"
+		printf "%s%s\n" "TMP" "$(acpi -t${temp_format} 2>/dev/null | awk '/Thermal 0/ {if($6=="F"||$6=="C"){print $4,$6} else {print "none none"}}')" > "${panel_fifo}"
 		cnt_temp=0
 	fi
 
@@ -70,7 +70,7 @@ while :; do
 	if [ $((cnt_net++)) -ge ${upd_net} ]; then
 		## Get IP and wifi strength
 		## Does not currently handle ipv6 in anyway...
-		printf "%s%s %s\n" "NET" "$(ip address show up scope global 2>/dev/null | awk -v "DONE=0" '/inet\s/ {if(DONE==0){match($0, /\s+\w+\s(\w+\.\w+\.\w+\.\w+)\/\w+\s\w+\s\w+\.\w+\.\w+\.\w+\s\w+\s\w+\s(\w+)/, m)}; if(m[1]!=""){DONE=1}} END {if(m[1]!=""){print m[1] " " m[2]} else {print "none none"}}')" "$(iwconfig 2>/dev/null | awk '/Link/ {match($0, /\s+\w+\s\w+=([0-9]+)\/([0-9]+).*/, m)} END {if(m[1]!=""&&m[2]!=""){print int((m[1] / m[2]) * 100)} else {print "none"}}')" > "${panel_fifo}"
+		printf "%s%s %s\n" "NET" "$( ip address show up scope global 2>/dev/null | awk 'BEGIN {DONE=0} /inet\s/ {if(DONE==0){sub(/\/.*/,NULL,$2); IP=$2; INT=$7; DONE=1}} END {if(IP!=""){print IP,INT} else {print "none none"}}')" "$(iwconfig 2>/dev/null | awk '/Link/ {match($2, /\w+=([0-9]+)\/([0-9]+)/, m)} END {if(m[1]!=""&&m[2]!=""){print int((m[1] / m[2]) * 100)} else {print "none"}}')" > "${panel_fifo}"
 		cnt_net=0
 	fi
 
@@ -148,7 +148,7 @@ while :; do
 	## GPG Check, "GPG"
 	if [ $((cnt_gpg++)) -ge ${upd_gpg} ]; then
 		export DISPLAY=''
-		printf "%s%s\n" "GPG" "$(gpg-connect-agent 'keyinfo --list' /bye 2>/dev/null | awk 'BEGIN{CACHED=0} /^S/ {match($0, /S\sKEYINFO\s\S+\s\S\s\S+\s\S+\s(\S)\s\S\s\S+\s\S+\s\S/, m); if(m[1]==1){CACHED=1}} END{if($0!=""){print CACHED} else {print "none"}}')" > "${panel_fifo}"
+		printf "%s%s\n" "GPG" "$(gpg-connect-agent 'keyinfo --list' /bye 2>/dev/null | awk 'BEGIN{CACHED=0} /^S/ {if($7==1){CACHED=1}} END{if($0!=""){print CACHED} else {print "none"}}')" > "${panel_fifo}"
 		cnt_gpg=0
 	fi
 
