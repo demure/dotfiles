@@ -86,7 +86,8 @@ while read -r line ; do
 			## Unfortunately, this will likely default to the last valid entry.
 			net_arr_ip=$(echo ${line#???} | cut -f1 -d\ )
 			net_arr_inter=$(echo ${line#???} | cut -f2 -d\ )
-			net_arr_signal=$(echo ${line#???} | cut -f3 -d\ )
+			net_arr_ipv6=$(echo ${line#???} | cut -f3 -d\ )
+			net_arr_signal=$(echo ${line#???} | cut -f4 -d\ )
 			## Local IP
 			if [ ${net_arr_ip} != "none" ]; then
 				if [[ ${net_arr_inter} =~ eth ]]; then
@@ -158,7 +159,8 @@ while read -r line ; do
 			temp_arr_val=$(echo ${line#???} | cut -f1 -d\ )
 			temp_arr_unit=$(echo ${line#???} | cut -f2 -d\ )
 			if [ ${temp_arr_val} != "none" ]; then
-				if [ ${temp_arr_val} -gt ${temp_alert} ]; then
+				temp_check=$(awk -v x=${temp_arr_val} -v y=${temp_alert} 'BEGIN {if (x<y){print 0} else {print 1}}')
+				if [ ${temp_check} -eq 1 ]; then
 					temp_cback=${color_temp}; temp_cicon=${color_back}; temp_cfore=${color_back};
 					else
 					temp_cback=${color_sec_b2}; temp_cicon=${color_icon}; temp_cfore=${color_fore};
@@ -313,35 +315,28 @@ while read -r line ; do
 		### End Window Case ### }}}
 	esac
 
-	### Screenshot IP Scrubber ### {{{
+	### Network Display Toggle ### {{{
 	# This is toggled by, preferably, a binding in your ~/.i3/config
 	## You can find the awk command in my config, or this bar's readme
 
 	ext_toggle="$(cat /tmp/i3_lemonbar_ip_${USER} 2>/dev/null)"
 
-	if [ "${ext_toggle}" = 1 ]; then
-		if [ "${net_arr_ip}" != "No IP" ]; then
-			if [ "${ext_ip_select}" != "No IP" ]; then
-				## This var is used so that you don't have to wait for EXT IP to rerun, after toggle off.
-				ext_ip_temp="${ext_ip_select}"
-
-				if [ "${net_arr_ip}" != "${ext_ip_select}" ]; then
-					ext_ip_temp="${scrub_ip}"
-				  else
-					net_arr_ip="${scrub_ip}"
-				fi
-
-				ext_ip="%{F${color_sec_b2}}${sep_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_ext_ip}%{F- T1} ${ext_ip_temp}"
-				local_ip="%{F${color_sec_b1}}${sep_left}%{F${color_icon} B${color_sec_b1}} %{T2}${net_icon}%{F- T1} ${net_arr_ip}"
-			fi
+	if [ "${ext_toggle}" = 2 ]; then
+		local_ip="%{F${color_sec_b1}}${sep_left}%{F${color_icon} B${color_sec_b1}} %{T2}${net_icon}%{F- T1} ${scrub_ip}"
+		filler="%{F${color_sec_b2}}${sep_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_ext_ip}%{F- T1}"
+		mast_net="${local_ip}${stab}${wifi}${stab}${filler}${stab}"
+	  elif [ "${ext_toggle}" = 1 ]; then
+		if [ "${net_arr_ipv6}" = "none" ]; then
+			net_arr_ipv6="No IPv6"
 		fi
+
+		filler="%{F${color_sec_b1}}${sep_left}%{F${color_icon} B${color_sec_b1}} %{T2}${net_icon}%{F- T1}"
+		ext_ip="%{F${color_sec_b2}}${sep_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_ext_ip}%{F- T1} ${net_arr_ipv6}"
+		mast_net="${filler}${stab}${ext_ip}"
 	  else
-		if [ "${ext_ip_temp}" = "${scrub_ip}" ]; then
-			ext_ip_temp="${ext_ip_select}"
-			ext_ip="%{F${color_sec_b2}}${sep_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_ext_ip}%{F- T1} ${ext_ip_temp}"
-		fi
+		mast_net="${local_ip}${stab}${wifi}${stab}${ext_ip}${stab}"
 	fi
-	### Screenshot IP  Scrubber ### }}}
+	### End Network Display Toggle ### }}}
 
 	## And finally, output
 	## Broken into multiple lines to make more readable.
@@ -356,9 +351,7 @@ while read -r line ; do
 ${mmpd}${stab}\
 ${email}${stab}\
 ${gpg}${stab}\
-${local_ip}${stab}\
-${wifi}${stab}\
-${ext_ip}${stab}\
+${mast_net}${stab}\
 ${bat}${stab}\
 ${bat_time}${stab}\
 ${cpu}${stab}\

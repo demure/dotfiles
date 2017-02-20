@@ -13,7 +13,7 @@ I've no added a number of features I have desired:
 * Shows either wired or wireless IP, using the same spot.
   * Indicates which is in use.
   * Prefers lower numbered interface (eth0 > wifi).
-* Shows external IP
+* Shows local IP+external IP, IPv6, or hide
   * You can bind an i3 key to toggle this display.
 * Shows if a GPG key is cached, and hides of no GPG installed.
 * Shows brightness and volume.
@@ -43,7 +43,7 @@ I've no added a number of features I have desired:
 
 ```
 bar {
-    i3_bar_command ~./.i3/lemonbar/i3_lemonbar.sh
+    i3_bar_command ~/.i3/lemonbar/i3_lemonbar.sh
     }
 ```
 
@@ -89,12 +89,16 @@ bar {
     * `mocp` reports pause, and works with internet streams. **16JUL2016**
     * `audacious` reports paused, works with internet steams. **17JUL2016**
     * `audacious` has a default out put of 'Artist - Album - Song'; this can be changed in your audacious `Settings` -> `Playlist` -> `Title Format`
-* Added Screenshot IP Scrubber, to quickly toggle the external IP from the bar. **18JUL2016**
+* <strike>Added Screenshot IP Scrubber, to quickly toggle the external IP from the bar. **18JUL2016**
   * You can add support to your i3 by adding the following binding:
   * `bindsym YOUR_KEYS exec awk -v TEMP=/tmp/i3_lemonbar_ip_${USER} 'BEGIN {{FILE=getline < TEMP < 0 ? "0" : "1"} {if($0==1){STATE=1} else {STATE=0}} {if(STATE==0){system("echo 1 > "TEMP)} else {system("echo 0 > "TEMP)}}}'`
-  * You can edit the Scrubber sting in `i3_lemonbar_config`, such as setting it to `""` if you want to reduce your bar length when toggled.
+  * You can edit the Scrubber sting in `i3_lemonbar_config`, such as setting it to `""` if you want to reduce your bar length when toggled.</strike>
 * Added `$music_limit` to prevent music from covering workspace display. **18JUL2016**
 * Fixed non conky network ip to prefer lower network interface. **22SEP2016**
+* Network Display Toggle (replaces "Screenshot IP Scrubber"). **19FEB2017**
+  * This lets you toggle between showing your local+external ipv4, your ipv6, or hiding.
+  * can bind this in i3 with the following binding:
+    * `bindsym XF86LaunchA exec awk -v TEMP=/tmp/i3_lemonbar_ip_${USER} 'BEGIN {{FILE=getline < TEMP < 0 ? "0" : "1"} {if($0==1){STATE=1} else if($0==2){STATE=2} else{STATE=0}} {if(STATE==0){system("echo 1 > "TEMP)} else if(STATE==1){system("echo 2 > "TEMP)} else {system("echo 0 > "TEMP)}}}'`
 
 
 ### **Things I want** ###
@@ -102,7 +106,7 @@ bar {
 * Make better separations between joined colored segments.
 
 
-##### **Last updated 22SEP2016** #####
+##### **Last updated 19FEB2017** #####
 
 [i3 lemonbar]: https://github.com/electro7/dotfiles/tree/master/.i3/lemonbar
 [lemonbar krypt-n]: https://github.com/krypt-n/bar

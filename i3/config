@@ -393,7 +393,9 @@ workspace_auto_back_and_forth yes
 		### End Brightness Bindings ### }}}
 
 		### External IP Toggle For i3 lemonbar ### {{{
-		bindsym XF86LaunchA exec awk -v TEMP=/tmp/i3_lemonbar_ip_${USER} 'BEGIN {{FILE=getline < TEMP < 0 ? "0" : "1"} {if($0==1){STATE=1} else {STATE=0}} {if(STATE==0){system("echo 1 > "TEMP)} else {system("echo 0 > "TEMP)}} }'
+		## Good example of a on/off flag, with awk. Replaces with three position code.
+		## awk -v TEMP=/tmp/i3_lemonbar_ip_${USER} 'BEGIN {{FILE=getline < TEMP < 0 ? "0" : "1"} {if($0==1){STATE=1} else {STATE=0}} {if(STATE==0){system("echo 1 > "TEMP)} else {system("echo 0 > "TEMP)}} }'
+		bindsym XF86LaunchA exec awk -v TEMP=/tmp/i3_lemonbar_ip_${USER} 'BEGIN {{FILE=getline < TEMP < 0 ? "0" : "1"} {if($0==1){STATE=1} else if($0==2){STATE=2} else{STATE=0}} {if(STATE==0){system("echo 1 > "TEMP)} else if(STATE==1){system("echo 2 > "TEMP)} else {system("echo 0 > "TEMP)}}}'
 		### End External IP FOr i3 lemonbar ### }}}
 
 		### Clipster Clipboard Manager ### {{{
