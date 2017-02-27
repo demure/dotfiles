@@ -25,6 +25,7 @@ show-read-feeds no
 show-read-articles no
 feed-sort-order unreadarticlecount-asc
 article-sort-order date-desc
+datetime-format "%F"
 
 ## Bindings
 # vim like navigation
