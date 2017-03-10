@@ -2,4 +2,4 @@
 from subprocess import check_output
 
 def get_pass(account):
-    return check_output("pass Mail/" + account, shell=True).rstrip()
+    return check_output("pass cli/" + account, shell=True).rstrip()
