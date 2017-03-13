@@ -148,7 +148,8 @@ while :; do
 	## GPG Check, "GPG"
 	if [ $((cnt_gpg++)) -ge ${upd_gpg} ]; then
 		export DISPLAY=''
-		printf "%s%s\n" "GPG" "$(gpg-connect-agent 'keyinfo --list' /bye 2>/dev/null | awk 'BEGIN{CACHED=0} /^S/ {if($7==1){CACHED=1}} END{if($0!=""){print CACHED} else {print "none"}}')" > "${panel_fifo}"
+		## Now will check if a local gpg key, or a smartcard, is cached.
+		printf "%s%s\n" "GPG" "$({ gpg-connect-agent 'keyinfo --list' /bye 2>/dev/null; gpg-connect-agent 'scd getinfo card_list' /bye 2>/dev/null; } | awk 'BEGIN{CH=0} /^S/ {if($7==1){CH=1}; if($2=="SERIALNO"){CH=1}} END{if($0!=""){print CH} else {print "none"}}')" > "${panel_fifo}"
 		cnt_gpg=0
 	fi
 
