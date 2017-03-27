@@ -9,9 +9,9 @@
 
 ### Docs ### {{{
 ## MS Word Documents
-application/msword; ~/.mutt/view_attachment.sh %s "-";  test=test -n "$DISPLAY"
+application/msword; ~/.mutt/view_attachment.sh %s "-" & sleep 5;  test=test -n "$DISPLAY"
 application/msword; antiword %s
-application/vnd.openxmlformats-officedocument.wordprocessingml.document; ~/.mutt/view_attachment.sh %s "-";  test=test -n "$DISPLAY" 
+application/vnd.openxmlformats-officedocument.wordprocessingml.document; ~/.mutt/view_attachment.sh %s "-" & sleep 5;  test=test -n "$DISPLAY" 
 ### End Docs ### }}}
 
 ### Images ### {{{
