@@ -489,7 +489,7 @@ exec --no-startup-id touchegg
 exec --no-startup-id unclutter
 exec --no-startup-id clipster -d
 exec --no-startup-id i3-msg "workspace $ws7; exec /usr/bin/spacefm"
-exec --no-startup-id i3-msg "workspace $ws3; exec /usr/local/sbin/qutebrowser"
+exec --no-startup-id i3-msg "workspace $ws3; exec $HOME/bin/qutebrowser"
 exec --no-startup-id i3-msg "workspace $ws1; exec /usr/bin/urxvt"
 exec --no-startup-id sleep 30 && pkill -USR1 redshift
 exec --no-startup-id pkill selfspy; rm $HOME/.selfspy/selfspy.pid.lock; selfspy -n
