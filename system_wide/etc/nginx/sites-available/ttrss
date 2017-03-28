@@ -43,9 +43,9 @@ server {
 		access_log /var/log/nginx/ttrss_access.log;
 		error_log /var/log/nginx/ttrss_error.log info;
 
-		location ~ /(js|css|images|lib|themes) {
-			access_log off;
-		}
+		#location ~ /(js|css|images|lib|themes) {
+			#access_log off;
+		#}
 
 		location ~ ^(.+\.php)(.*)$ {
 			fastcgi_split_path_info ^(.+\.php)(.*)$;
