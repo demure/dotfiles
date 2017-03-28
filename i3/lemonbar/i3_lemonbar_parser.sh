@@ -240,7 +240,7 @@ while read -r line ; do
 				fi
 
 				## Set charging icon
-				if [ ${tmb_arr_stat} != "D" ]; then
+				if [ ${tmb_arr_stat} == "C" ]; then
 					bat_icon=${icon_bat_plug}; bat_cicon=${color_bat_plug};
 				fi
 				bat="%{F${bat_cback}}${sep_left}%{F${bat_cicon} B${bat_cback}} %{T2}${bat_icon}%{F- T1} ${tmb_arr_perc}%"
