@@ -176,11 +176,11 @@ while read -r line ; do
 		EMA*)
 			email_arr="${line#???}"
 			if [ "${email_arr}" != "0" ]; then
-				mail_cback=${color_mail}; mail_cicon=${color_back}; mail_cfore=${color_back}
+				mail_cback=${color_mail}; mail_cicon=${color_back}; mail_cfore=${color_back}; mail_icon=${icon_mail}; mail_num=${email_arr}
 			  else
-				mail_cback=${color_sec_b2}; mail_cicon=${color_icon}; mail_cfore=${color_fore}
+				mail_cback=${color_sec_b2}; mail_cicon=${color_icon}; mail_cfore=${color_fore}; mail_icon=${icon_mail_read}; mail_num=""
 			fi
-			email="%{F${mail_cback}}${sep_left}%{F${mail_cicon} B${mail_cback}} %{T2}${icon_mail}%{F${mail_cfore} T1} ${email_arr}"
+			email="%{F${mail_cback}}${sep_left}%{F${mail_cicon} B${mail_cback}} %{T2}${mail_icon}%{F${mail_cfore} T1} ${mail_num}"
 			;;
 		### End Offlineimp Case ### }}}
 

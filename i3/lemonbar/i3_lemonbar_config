@@ -42,9 +42,9 @@ temp_alert=160                      ## F heat use
 
 ## Battery
 ## Note: levels higher than 'high' will not be highlighted.
-bat_alert_low=9
-bat_alert_mid=19
-bat_alert_high=29
+bat_alert_low=11
+bat_alert_mid=22
+bat_alert_high=33
 ### End Alarm ### }}}
 
 ### Update Settings ### {{{
@@ -131,6 +131,7 @@ icon_bri=""                        ## Brightness icon
 icon_hd=""                         ## HD / icon
 icon_home=""                       ## HD /home icon
 icon_mail=""                       ## Mail icon
+icon_mail_read=""                  ## Mail read icon
 icon_chat=""                       ## IRC/Chat icon
 icon_music=""                      ## Music icon
 icon_prog=""                       ## Window icon
