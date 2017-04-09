@@ -89,7 +89,7 @@ while read -r line ; do
 			net_arr_ipv6=$(echo ${line#???} | cut -f3 -d\ )
 			net_arr_signal=$(echo ${line#???} | cut -f4 -d\ )
 			## Local IP
-			if [ ${net_arr_ip} != "none" ]; then
+			if [ "${net_arr_ip}" != "none" ]; then
 				if [[ ${net_arr_inter} =~ eth ]]; then
 					net_icon="${icon_local_eth}";
 				  else
@@ -101,7 +101,7 @@ while read -r line ; do
 			local_ip="%{F${color_sec_b1}}${sep_left}%{F${color_icon} B${color_sec_b1}} %{T2}${net_icon}%{F- T1} ${net_arr_ip}"
 
 			## Wifi Signal Strength
-			if [ ${net_arr_signal} != "none" ]; then
+			if [ "${net_arr_signal}" != "none" ]; then
 				wifi="%{F${color_icon}}${sep_l_left}%{F${color_icon} B${color_sec_b1}} %{T2}${icon_wifi}%{F- T1} ${net_arr_signal}%"
 			  else
 				wifi=""
@@ -145,7 +145,7 @@ while read -r line ; do
 			## Don't show brightness if there is no battery.
 			## Most desktops don't software adjust brightness.
 			## I suppose there is a small use case of a laptop with no battery...
-			if [ ${bright_arr} != "none" ]; then
+			if [ "${bright_arr}" != "none" ]; then
 				bri="%{F${color_icon}}${sep_l_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_bri}%{F- T1} ${bright_arr}%"
 			  else
 				bri=""
@@ -158,7 +158,7 @@ while read -r line ; do
 			## Temperature
 			temp_arr_val=$(echo ${line#???} | cut -f1 -d\ )
 			temp_arr_unit=$(echo ${line#???} | cut -f2 -d\ )
-			if [ ${temp_arr_val} != "none" ]; then
+			if [ "${temp_arr_val}" != "none" ]; then
 				temp_check=$(awk -v x=${temp_arr_val} -v y=${temp_alert} 'BEGIN {if (x<y){print 0} else {print 1}}')
 				if [ ${temp_check} -eq 1 ]; then
 					temp_cback=${color_temp}; temp_cicon=${color_back}; temp_cfore=${color_back};
@@ -212,7 +212,7 @@ while read -r line ; do
 			tmb_arr_time=$(echo ${line#???} | cut -f3 -d\ )
 
 			## This means it will not show up on desktop computers
-			if [ ${tmb_arr_perc} != "none" ]; then
+			if [ "${tmb_arr_perc}" != "none" ]; then
 				## Set icon only
 				## This is 'hard' coded, instead of in the conf, due to icon font.
 				## It will take user intervention if they have a different number of icons
@@ -240,12 +240,12 @@ while read -r line ; do
 				fi
 
 				## Set charging icon
-				if [ ${tmb_arr_stat} == "C" ]; then
+				if [ "${tmb_arr_stat}" == "C" ]; then
 					bat_icon=${icon_bat_plug}; bat_cicon=${color_bat_plug};
 				fi
 				bat="%{F${bat_cback}}${sep_left}%{F${bat_cicon} B${bat_cback}} %{T2}${bat_icon}%{F- T1} ${tmb_arr_perc}%"
 				
-				if [ ${tmb_arr_time} -ne "none" ]; then
+				if [ "${tmb_arr_time}" != "none" ]; then
 					bat_time="%{F${color_icon}}${sep_l_left}%{F${color_icon} B${color_sec_b1}} %{T2}${icon_bat_time}%{F- T1} ${tmb_arr_time}"
 				  else
 					bat_time=""
