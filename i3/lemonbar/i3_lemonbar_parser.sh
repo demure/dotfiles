@@ -88,6 +88,8 @@ while read -r line ; do
 			net_arr_inter=$(echo ${line#???} | cut -f2 -d\ )
 			net_arr_ipv6=$(echo ${line#???} | cut -f3 -d\ )
 			net_arr_signal=$(echo ${line#???} | cut -f4 -d\ )
+			net_arr_vpn=$(echo ${line#???} | cut -f5 -d\ )
+
 			## Local IP
 			if [ "${net_arr_ip}" != "none" ]; then
 				if [[ ${net_arr_inter} =~ eth ]]; then
@@ -112,6 +114,16 @@ while read -r line ; do
 			## This is in this section, as it run much much more often.
 			if [ "${net_arr_ip}" = "No IP" ]; then
 				ext_ip="%{F${color_sec_b2}}${sep_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_ext_ip}%{F- T1} No IP"
+			fi
+
+			## External IP icon to VPN icon
+			## This will swap the normal icon to show that a VPN is up.
+			## This is in this section, as it run much much more often.
+			if [ "${net_arr_vpn}" = "VPN" ]; then
+				vpn="%{F${color_icon}}${sep_l_left}%{B${color_sec_b2}}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_vpn}"
+				#gpg="%{F${color_icon}}${sep_l_left}%{B${color_sec_b2}}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_gpg}%{F${color_fore} T1} ${lock}"
+			  else
+				vpn=""
 			fi
 			;;
 		### End Network Case ### }}}
@@ -324,7 +336,7 @@ while read -r line ; do
 	if [ "${ext_toggle}" = 2 ]; then
 		local_ip="%{F${color_sec_b1}}${sep_left}%{F${color_icon} B${color_sec_b1}} %{T2}${net_icon}%{F- T1} ${scrub_ip}"
 		filler="%{F${color_sec_b2}}${sep_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_ext_ip}%{F- T1}"
-		mast_net="${local_ip}${stab}${wifi}${stab}${filler}${stab}"
+		mast_net="${local_ip}${stab}${wifi}${stab}${filler}${stab}${vpn}${stab}"
 	  elif [ "${ext_toggle}" = 1 ]; then
 		if [ "${net_arr_ipv6}" = "none" ]; then
 			net_arr_ipv6="No IPv6"
@@ -334,7 +346,7 @@ while read -r line ; do
 		ext_ip="%{F${color_sec_b2}}${sep_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_ext_ip}%{F- T1} ${net_arr_ipv6}"
 		mast_net="${filler}${stab}${ext_ip}"
 	  else
-		mast_net="${local_ip}${stab}${wifi}${stab}${ext_ip}${stab}"
+		mast_net="${local_ip}${stab}${wifi}${stab}${ext_ip}${stab}${vpn}${stab}"
 	fi
 	### End Network Display Toggle ### }}}
 

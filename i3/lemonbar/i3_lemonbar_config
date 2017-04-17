@@ -123,7 +123,8 @@ sep_l_right=""                     ## Powerline light sepatator right
 # Icon glyphs from Font Awesome
 icon_clock=""                      ## Clock icon
 icon_cpu=""                        ## CPU icon
-icon_mem=""                        ## MEM icon
+#icon_cpu=""                        ## CPU icon
+icon_mem=""                        ## MEM icon
 icon_dl=""                         ## Download icon
 icon_ul=""                         ## Upload icon
 icon_vol=""                        ## Volume icon
@@ -153,4 +154,5 @@ icon_ext_ip=""                     ## External IP
 icon_gpg=""                        ## GPG icon
 icon_gpg_locked=""                 ## GPG locked icon
 icon_gpg_unlocked=""               ## GPG unlocked icon
+icon_vpn=""                        ## VPN icon
 ### End Icons ### }}}

@@ -205,10 +205,11 @@ workspace_auto_back_and_forth yes
 			bindsym c exec chromium ; mode "default"
 			bindsym f exec firefox ; mode "default"
 			bindsym g exec gksudo gameconqueror ; mode "default"
+			bindsym n exec urxvt -e terminal_velocity ; mode "default"
 			bindsym o exec libreoffice ; mode "default"
 			bindsym t exec i3-sensible-terminal ; mode "default"
+			bindsym v exec $HOME/bin/start-vpn.sh ; mode "default"
 			bindsym w exec urxvt -e wicd-curses ; mode "default"
-			bindsym n exec urxvt -e terminal_velocity ; mode "default"
 
 			## Keeping this as an example
 			## gnome-disks will not launch twice, gparted will. Avoid that.
