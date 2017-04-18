@@ -71,7 +71,7 @@ while :; do
 		## Get IP and wifi strength
 		## Now supports IPv6
 		## Now filters out virtual interfaces for docker/qemu/vpn
-		printf "%s%s %s %s\n" "NET" "$(ip address show up scope global 2>/dev/null | awk 'BEGIN {Dv4=0;Dv6=0} /inet/&&!/(docker|virbr|tun|tap)[0-9]+$/ {if(Dv4==0 && $1=="inet"){sub(/\/.*/,NULL,$2); IPv4=$2; INT=$7; Dv4=1}; if(Dv6==0 && $1=="inet6" && $2!~/^fd/){sub(/\/.*/,NULL,$2); IPv6=$2; Dv6=1}} END {if(IPv4==""){IPv4="none"; INT="none"}; if(IPv6==""){IPv6="none"}; print IPv4,INT,IPv6}')" "$(iwconfig 2>/dev/null | awk '/Link/ {match($2, /\w+=([0-9]+)\/([0-9]+)/, m)} END {if(m[1]!=""&&m[2]!=""){print int((m[1] / m[2]) * 100)} else {print "none"}}')" "$( ip tuntap | awk '/tun/ {} END {if($0!=""){print "VPN"} else {print "none"}}')" > "${panel_fifo}"
+		printf "%s%s %s %s\n" "NET" "$(ip address show up scope global 2>/dev/null | awk 'BEGIN {Dv4=0;Dv6=0} /inet/&&!/(docker|virbr|tun|tap)[0-9]+$/ {if(Dv4==0 && $1=="inet"){sub(/\/.*/,NULL,$2); IPv4=$2; INT=$7; Dv4=1}; if(Dv6==0 && $1=="inet6" && $2!~/^fd/){sub(/\/.*/,NULL,$2); IPv6=$2; Dv6=1}} END {if(IPv4==""){IPv4="none"; INT="none"}; if(IPv6==""){IPv6="none"}; print IPv4,INT,IPv6}')" "$(iwconfig 2>/dev/null | awk '/Link/ {match($2, /\w+=([0-9]+)\/([0-9]+)/, m)} END {if(m[1]!=""&&m[2]!=""){print int((m[1] / m[2]) * 100)} else {print "none"}}')" "$(ip tuntap | awk '/tun/ {} END {if($0!=""){print "VPN"} else {print "none"}}')" > "${panel_fifo}"
 		cnt_net=0
 	fi
 
