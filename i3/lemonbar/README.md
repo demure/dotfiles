@@ -53,7 +53,7 @@ bar {
 ### **Notes** ###
 * I find that this does not gracefully handle i3 logout -> login, and full config reload.
   * I used `pkill lemonbar && ~/.i3/lemonbar/i3_lemonbar.sh &` to correct the issue
-  * I have added `pkill lemonbar` to my log out command, to make life easier.
+  * I have added `pkill lemonbar` to my log out command and i3 restart, to make life easier.
 
 
 ### **Modifications** ###
@@ -110,7 +110,7 @@ bar {
 * Make better separations between joined colored segments.
 
 
-##### **Last updated 17APR2017** #####
+##### **Last updated 23APR2017** #####
 
 [i3 lemonbar]: https://github.com/electro7/dotfiles/tree/master/.i3/lemonbar
 [lemonbar krypt-n]: https://github.com/krypt-n/bar
