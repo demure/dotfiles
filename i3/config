@@ -187,6 +187,8 @@ workspace_auto_back_and_forth yes
 			bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
 			bindsym r exec --no-startup-id systemctl reboot, mode "default"
 			bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
+			bindsym c exec --no-startup-id sudo /usr/local/bin/tomb close all, mode "default"
+			bindsym Shift+c exec --no-startup-id sudo /usr/local/bin/tomb slam, mode "default"
 
 			## back to normal: Enter or Escape
 			bindsym Return mode "default"
@@ -205,6 +207,7 @@ workspace_auto_back_and_forth yes
 			bindsym c exec chromium ; mode "default"
 			bindsym f exec firefox ; mode "default"
 			bindsym g exec gksudo gameconqueror ; mode "default"
+			bindsym Shift+m exec --no-startup-id sudo /usr/local/bin/tomb open -k ~/vault.tomb.key ~/vault.tomb -g ; mode "default"
 			bindsym n exec urxvt -e terminal_velocity ; mode "default"
 			bindsym o exec libreoffice ; mode "default"
 			bindsym t exec i3-sensible-terminal ; mode "default"
@@ -396,7 +399,7 @@ workspace_auto_back_and_forth yes
 		### External IP Toggle For i3 lemonbar ### {{{
 		## Good example of a on/off flag, with awk. Replaces with three position code.
 		## awk -v TEMP=/tmp/i3_lemonbar_ip_${USER} 'BEGIN {{FILE=getline < TEMP < 0 ? "0" : "1"} {if($0==1){STATE=1} else {STATE=0}} {if(STATE==0){system("echo 1 > "TEMP)} else {system("echo 0 > "TEMP)}} }'
-		bindsym XF86LaunchA exec awk -v TEMP=/tmp/i3_lemonbar_ip_${USER} 'BEGIN {{FILE=getline < TEMP < 0 ? "0" : "1"} {if($0==1){STATE=1} else if($0==2){STATE=2} else{STATE=0}} {if(STATE==0){system("echo 1 > "TEMP)} else if(STATE==1){system("echo 2 > "TEMP)} else {system("echo 0 > "TEMP)}}}'
+		bindsym XF86LaunchA exec awk -v TEMP=/tmp/i3_lemonbar_ip_${USER} 'BEGIN {{FILE=getline < TEMP < 0 ? "0" : "1"} {if($0==1){STATE=1} else if($0==2){STATE=2} else{STATE=0}} {if(STATE==0){system("echo 1 > "TEMP)} else if(STATE==1){system("echo 2 > "TEMP)} else {system("echo 0 > "TEMP)}} }'
 		### End External IP FOr i3 lemonbar ### }}}
 
 		### Clipster Clipboard Manager ### {{{
