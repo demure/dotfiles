@@ -36,7 +36,8 @@ browser sensible-browser
 player mpv
 
 ## Macros
-macro y set browser "mpv %u"; open-in-browser ; set browser sensible-browser
+## Strips utm/etc
+macro y set browser "mpv $(echo %u | cut -d? -f1 -)"; open-in-browser ; set browser sensible-browser
 macro i set browser "feh %u"; open ; set browser sensible-browser
 macro w set browser "w3m %u"; open-in-browser ; set browser sensible-browser
 macro I set browser "feh %u"
