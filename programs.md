@@ -13,8 +13,8 @@
 | Editor                 | vim            | txt, etc                  |
 | Web Browser            | w3m            | http                      |
 | Batch Rename           | qmv            | Note: from renameutils    |
-| System Clipboard       | clipit         |                           |
-| Email Client           | mutt           |                           |
+| System Clipboard       | clipster       |                           |
+| Email Client           | neomutt        |                           |
 | PDF Viewer             | zathura        | pdf                       |
 | Enable HDMI Sound      | pavucontrol    |                           |
 | Linux Info Command     | pinfo          |                           |
@@ -23,6 +23,7 @@
 | RSS Client             | newsbeuter     |                           |
 | Hex Editor             | dhex           | *                         |
 | Hex Editor             | hexcurse       | *                         |
+| Hex Editor             | bci            | *                         |
 | Terminal Multiplexer   | tmux           |                           |
 | tmux profiles          | tmuxinator     |                           |
 | smtp                   | msmtp          |                           |
@@ -39,7 +40,7 @@
 | Package Manager        | aptitude       |                           |
 | Version Control        | git            |                           |
 | Calandar               | khal           |                           |
-| Music Player           | cmus           | Many, Stram               |
+| Music Player           | cmus           | Many, Stream              |
 | Password Manager       | pass           |                           |
 | Usage Stats            | selfspy        |                           |
 
@@ -65,10 +66,9 @@
 | System Tray            | stalonetray    |                           |
 | System Lock            | i3lock         |                           |
 | System Menu            | rofi           |                           |
-| Clipboard History      | clipit         |                           |
+| Clipboard History      | clipster       |                           |
 | Desktop Background     | nitrogen       | Many                      |
 | System Bar             | lemonbar       |                           |
-| System Tray            | stalonetray    |                           |
 | Brightness Control     | xbacklight     |                           |
 | Transparency           | compton        |                           |
 | Mouse Pointer Hidding  | unclutter      |                           |
