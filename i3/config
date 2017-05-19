@@ -434,8 +434,9 @@ workspace_auto_back_and_forth yes
 	### Program Floating ### {{{
 	for_window [class="mpv|feh"] floating enable
 	for_window [title="Steam - Update*|Steam - Self Updater|Event Tester"] floating enable
-	## Make wicd-curses pop up bigger, and centered
-	for_window [title="wicd-curses|terminal_velocity"] floating enable, resize shrink width 10000px, resize grow width 800px, resize shrink height 10000px, resize grow height 600px, move position 525 225
+	## Make wicd-curses and terminal_velocity pop up bigger, and centered
+	## Added second criteria to reduce false positives
+	for_window [class="URxvt"] [title="wicd-curses|terminal_velocity"] floating enable, resize shrink width 10000px, resize grow width 800px, resize shrink height 10000px, resize grow height 600px, move position 525 225
 	for_window [class="QtPass"] floating enable, resize shrink width 10000px, resize grow width 800px, resize shrink height 10000px, resize grow height 600px, move position 525 225
 	### End Program Floating ### }}}
 
@@ -497,5 +498,4 @@ exec --no-startup-id i3-msg "workspace $ws7; exec /usr/bin/spacefm"
 exec --no-startup-id i3-msg "workspace $ws3; exec $HOME/bin/qutebrowser"
 exec --no-startup-id i3-msg "workspace $ws1; exec /usr/bin/urxvt"
 exec --no-startup-id sleep 30 && pkill -USR1 redshift
-exec --no-startup-id pkill selfspy; rm $HOME/.selfspy/selfspy.pid.lock; selfspy -n
 ### End Exec Programs ### }}}
