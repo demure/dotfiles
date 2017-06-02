@@ -30,4 +30,5 @@ bind attach <return>    view-mailcap    ## View attachments properly.
 ### Macros ### {{{
 macro pager \Cu         "|urlview<enter>" "call urlview to open links"          ## Handle URLs.
 macro attach 'V'        "<pipe-entry>w3m -v -T text/html -dump | less<enter>"   ## Process html to text, for stupid html only emails
+macro pager d           "<exit><delete-message>"                                ## Deletes message with out auto opening next message
 ### End Macros ### }}}
