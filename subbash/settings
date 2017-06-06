@@ -91,7 +91,7 @@
 
 		if [ $HOSTNAME == "moving-computer-of-doom" ]; then
 			alias borg_pass='export BORG_PASSPHRASE="$(pass cli/borg)"'
-			export BORG_REPO='ssh://demure@store:500/mnt/borg/doom'
+			export BORG_REPO='ssh://demure@10.0.0.10:500/mnt/borg/doom'
 		fi
 		__ssh_agent
 	fi
