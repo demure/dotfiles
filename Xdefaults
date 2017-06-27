@@ -30,10 +30,10 @@ URxvt.geometry: 80x24
 URxvt.fading: 25%
 
 !!! Font !!! {{{
-URxvt.font: xft:PragmataProMono:pixelsize=15:autohint=true.xft:Bitstream Vera Sans Mono:pixelsize=15:autohint=true.xft:Liberation Mono:pixelsize=15:autohint=true.xft:unifont:pixelsize=15:autohint=true.xft:DejaVu Sans Mono:pixelsize=15:autohint=true.xft:FontAwesome:pixelsize=15:autohint=true
-URxvt.boldfont: xft:PragmataProMono:bold:pixelsize=15:autohint=true.xft:Bitstream Vera Sans Mono:bold:pixelsize=15:autohint=true.xft:Liberation Mono:bold:pixelsize=15:autohint=true.xft:unifont:bold:pixelsize=15:autohint=true.xft:DejaVu Sans Mono:bold:pixelsize=15:antialias=true:autohint=true
-URxvt.italicFont: xft:PragmataProMono:italic:pixelsize=15:autohint=true.xft:Bitstream Vera Sans Mono:italic:pixelsize=15:autohint=true.xft:Liberation Mono:italic:pixelsize=15:autohint=true.xft:unifont:italic:pixelsize=15:autohint=true.xft:DejaVu Sans Mono:pixelsize=15:antialias=true:autohint=true:style=bold
-URxvt.boldItalicFont: xft:PragmataProMono:bold:italic:pixelsize=15:autohint=true.xft:Bitstream Vera Sans Mono:bold:italic:pixelsize=15:autohint=true.xft:Liberation Mono:bold:italic:pixelsize=15:autohint=true.xft:unifont:bold:italic:pixelsize=15:autohint=true.xft:DejaVu Sans Mono:bold:italic:pixelsize=15:antialias=true:hinting=true
+URxvt.font: xft:PragmataPro:pixelsize=15:autohint=true.xft:Bitstream Vera Sans Mono:pixelsize=15:autohint=true.xft:Liberation Mono:pixelsize=15:autohint=true.xft:unifont:pixelsize=15:autohint=true.xft:DejaVu Sans Mono:pixelsize=15:autohint=true.xft:FontAwesome:pixelsize=15:autohint=true
+URxvt.boldfont: xft:PragmataPro:bold:pixelsize=15:autohint=true.xft:Bitstream Vera Sans Mono:bold:pixelsize=15:autohint=true.xft:Liberation Mono:bold:pixelsize=15:autohint=true.xft:unifont:bold:pixelsize=15:autohint=true.xft:DejaVu Sans Mono:bold:pixelsize=15:antialias=true:autohint=true
+URxvt.italicFont: xft:PragmataPro:italic:pixelsize=15:autohint=true.xft:Bitstream Vera Sans Mono:italic:pixelsize=15:autohint=true.xft:Liberation Mono:italic:pixelsize=15:autohint=true.xft:unifont:italic:pixelsize=15:autohint=true.xft:DejaVu Sans Mono:pixelsize=15:antialias=true:autohint=true:style=bold
+URxvt.boldItalicFont: xft:PragmataPro:bold:italic:pixelsize=15:autohint=true.xft:Bitstream Vera Sans Mono:bold:italic:pixelsize=15:autohint=true.xft:Liberation Mono:bold:italic:pixelsize=15:autohint=true.xft:unifont:bold:italic:pixelsize=15:autohint=true.xft:DejaVu Sans Mono:bold:italic:pixelsize=15:antialias=true:hinting=true
 !!! End Font !!! }}}
 
 !!! Font Bindings !!! {{{

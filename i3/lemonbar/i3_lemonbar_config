@@ -13,7 +13,7 @@ music_limit=70
 
 ## This format needs a fork of lemonbar, which supports xft fonts.
 ## The font should have powerline support, if you want the fancy separators.
-font="PragmataProMono-10"
+font="PragmataPro-10"
 
 ## I recommend font awesome for the iconfont, it has the best icon support
 ## I have even of any symbol font. It also has the most symbols.
