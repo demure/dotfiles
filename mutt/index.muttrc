@@ -17,6 +17,7 @@ set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
 ### End Index View Options ### }}}
 
 ### Index Key Bindings ### {{{
+bind index g        noop            ## Removes error from next binding
 bind index gg       first-entry
 bind index G        last-entry
 

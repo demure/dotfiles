@@ -16,6 +16,7 @@
 # https://github.com/sup-heliotrope/sup/wiki/Securely-Store-Password
 
 ### Paths ### {{{
+## sidebar 'mailboxes' relies on 'folder'
 set folder              = "~/.mail"                     ## Mailbox location
 set alias_file          = "~/.mutt/alias"               ## Where to store aliases
 set header_cache        = "~/.mutt/cache/headers"       ## Where to store headers

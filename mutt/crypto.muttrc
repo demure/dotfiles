@@ -8,6 +8,7 @@ set pgp_use_gpg_agent           = yes
 set pgp_sign_as                 = 80D71B1AF3DE75FF7377DA38B3DC7AB56EEF2891
 set pgp_autosign                = yes
 set crypt_autosign              = yes
+set crypt_replysign             = yes
 set crypt_replyencrypt          = yes
 set crypt_replysignencrypted    = yes
 set crypt_verify_sig            = yes
