@@ -1,6 +1,9 @@
 ## Account Settings
 set from        = demuredemeanor@gmail.com"
 set sendmail    = "/usr/bin/msmtp -a gmail"
+set my_account  = "gmail"       ## This is for an offlineimap macro
+## Temp, waiting on https://github.com/neomutt/neomutt/issues/658
+macro index \Co     "<shell-escape>offlineimap -a gmail -f INBOX -u quiet &>/dev/null<enter>" "run offlineimap to sync current inbox."
 
 ## Default inbox
 set spoolfile   = "+gmail/INBOX"

@@ -1,6 +1,9 @@
 ## Account Settings
 set from        = "demure@sdf.org"
 set sendmail    = "/usr/bin/msmtp -a sdf"
+set my_account  = "sdf"         ## This is for an offlineimap macro
+## Temp, waiting on https://github.com/neomutt/neomutt/issues/658
+macro index \Co     "<shell-escape>offlineimap -a sdf -f INBOX -u quiet &>/dev/null<enter>" "run offlineimap to sync current inbox."
 
 ## Default inbox
 set spoolfile   = "+sdf/INBOX"
