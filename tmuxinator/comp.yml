@@ -24,7 +24,7 @@ windows:
   - schedule:
       layout: even-horizontal
       panes:
-        - vit
         - khal interactive
+        - vit
   - rss: newsbeuter
   - file: ranger
