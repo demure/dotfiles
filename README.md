@@ -1,6 +1,6 @@
 <!--My (demuredemeanor) readme
 # vim: set expandtab ts=4 sw=4: ## Since this is markdown
-# https://gitorious.org/demure/dotfiles/
+# https://notabug.org/demure/dotfiles
 # legacy repo http://github.com/demure/dotfiles
 -->
 
@@ -69,7 +69,7 @@ Aside from installing by hand, you could use [GNU Stow].
 improve my setup.  
 If you do wish to contact me, I guess [twitter] is an ok way (spam mitigation)  
 
-###### Last edit 10SEP2016 #####
+###### Last edit 16JUL2017 ######
 
 
 [github]: https://gitorious.org/demure/dotfiles
