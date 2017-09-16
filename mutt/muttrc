@@ -30,8 +30,10 @@ set signature           = "~/.mutt/sig"                 ## My signature file
 ### Basic Options ### {{{
 set wait_key = no           ## Shut up, mutt
 set mbox_type = Maildir     ## Mailbox type
-set timeout = 3             ## Idle time before scanning
-set mail_check = 0          ## Minimum time between scans
+#set timeout = 3             ## Idle time before scanning
+set timeout = 600           ## Idle time before scanning
+#set mail_check = 0          ## Minimum time between scans
+set mail_check = 5          ## Minimum time between scans
 unset move                  ## Gmail does that
 set delete                  ## Don't ask, just do
 unset confirmappend         ## Don't ask, just do!
@@ -98,3 +100,6 @@ folder-hook sdf/*                   source ~/.mutt/accounts/sdf.muttrc
 folder-hook gmail/*                 source ~/.mutt/accounts/gmail.muttrc
 folder-hook /var/spool/mail/$USER/* source ~/.mutt/accounts/local.muttrc
 ### End Account }}}
+
+timeout-hook 'push "!~/projects/personal/scripts/offlineimap_neomutt_hook.sh &<enter>"'
+startup-hook 'push "!~/projects/personal/scripts/offlineimap_neomutt_hook.sh &<enter>"'
