@@ -287,9 +287,9 @@ while read -r line ; do
 		MMP*)
 			## Music
 			mmpd_arr="${line#???}"
-			if [ -z "${mmpd_arr}" ]; then
+			if [ -z "${mmpd_arr}" ] || [ "${mmpd_arr}" == "none" ]; then
 				## This can deal with odd issues?
-				mmpd_song="none";
+				mmpd_song="×";
 			  else
 				## $music_limit will help stop the music from taking over the workspace display on the left.
 				## Note: you should read http://tldp.org/LDP/abs/html/parameter-substitution.html
