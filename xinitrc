@@ -10,6 +10,8 @@
 ## Fix path for WM?
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/pkg/bin:/usr/local/bin:/usr/local/sbin:${HOME}/projects/personal/scripts:${HOME}/bin:${HOME}/.local/bin:/usr/local/games:/usr/games
 
+## Fix calibre being giant
+export QT_AUTO_SCREEN_SCALE_FACTOR=0
 
 ## Call WM
 # dont forget about $(xinit /usr/local/bin/spectrwm -- :1 &) for testing
