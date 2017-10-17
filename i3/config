@@ -496,6 +496,7 @@ exec --no-startup-id dropbox start
 exec --no-startup-id touchegg
 exec --no-startup-id unclutter
 exec --no-startup-id clipster -d
+exec --no-startup-id mpd
 exec --no-startup-id i3-msg "workspace $ws7; exec /usr/bin/spacefm"
 exec --no-startup-id i3-msg "workspace $ws3; exec $HOME/bin/qutebrowser"
 exec --no-startup-id i3-msg "workspace $ws1; exec /usr/bin/urxvt"
