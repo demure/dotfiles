@@ -120,8 +120,6 @@
 	### For OpenWrt ### {{{
 		if [ "$MACHTYPE" == "mips-openwrt-linux-gnu" ]; then
 			alias opkgup="eval \$(opkg list_installed | sed 's/ - .*//' | sed 's/^/opkg upgrade /')"
-			unalias vi
-			unalias grep
 		fi
 	### End For OpenWrt ### }}}
 
