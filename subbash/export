@@ -63,7 +63,7 @@
 	## So, this code is because even though GREP_OPTIONS are 'dead',
 	## some servers still have older than grep 2.20...
 	## I'm using awk, as bash doesn't really do decimal
-	grep_test="$(grep --version | awk 'BEGIN {VER=0; CUT=2.20} /^grep/ NR>1{if($NF!~/[a-z]/){VER=$NF}} END {if(VER<CUT){print "lt"} else {print "ge"}}')"
+	grep_test="$(grep --version 2>/dev/null | awk 'BEGIN {VER=0; CUT=2.20} /^grep/ NR>1{if($NF!~/[a-z]/){VER=$NF}} END {if(VER<CUT){print "lt"} else {print "ge"}}')"
 
 	if [ $grep_test == "ge" ]; then
 		## If new, do it the way grep says to
