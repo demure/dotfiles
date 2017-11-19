@@ -19,7 +19,7 @@ use_spacer none
 use_xft yes
 
 ## Update interval in seconds
-update_interval 10.0
+update_interval 60.0
 
 ## Minimum size of text area
 # minimum_size 250 5
@@ -38,10 +38,10 @@ uppercase no
 default_color grey
 
 ## Text alignment, other possible values are commented
-alignment top_left
+#alignment top_left
 #alignment top_right
 #alignment bottom_left
-#alignment bottom_right
+alignment bottom_right
 
 ## Gap between borders of screen and text
 ## The default size is a bit large
@@ -49,10 +49,11 @@ gap_x 10
 gap_y 10
 
 ## stuff after ‘TEXT’ will be formatted on screen
+## This summarizes the backup pass/fail state.
+## Written to display 'fail' if periodicity not in log, though will look odd.
+## For some reason 'monthly' can't be regexed... though it worked before fixing fail state.
+## As such, 'month' is intentional.
 TEXT
 $color
-${color grey90}AUTH ${hr 2}$color
-${execi 30 tail -n10 /var/log/auth.log | fold -w 300}
-${color grey90}SYSLOG ${hr 2}$color
-${execi 30 tail -n30 /var/log/syslog | fold -w300}
-
+${color grey90}Tasks ${hr 2}$color
+${alignr}${exec task limit:50}

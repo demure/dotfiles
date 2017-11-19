@@ -443,7 +443,7 @@ workspace_auto_back_and_forth yes
 	### End Program Floating ### }}}
 
 	## Disable border
-	for_window [class="mpv|URxvt|(?i)chromium|terminator|qutebrowser|manaplus"] border 1pixel
+	for_window [class="mpv|URxvt|(?i)chromium|terminator|qutebrowser|manaplus|(?i)firefox"] border 1pixel
 
 	## Tab view
 	for_window [class="Virt-manager"] focus child, layout tabbed, focus
@@ -489,8 +489,9 @@ exec --no-startup-id compton -b
 #exec srandrd autorandr -c      ## One day, I may use this if I have a dock set up at home/work.
 exec srandrd ~/projects/personal/scripts/hdmi.sh    ## For now, this auto connects to any monitor, and adds it to the right.
 exec --no-startup-id nitrogen --restore
-exec --no-startup-id conky -qc $HOME/.i3/back_log.conkyrc
-exec --no-startup-id conky -qc $HOME/.i3/back_log_backups.conkyrc
+exec --no-startup-id conky -qc $HOME/.i3/conky/back_log.conkyrc
+exec --no-startup-id conky -qc $HOME/.i3/conky/back_backups.conkyrc
+exec --no-startup-id conky -qc $HOME/.i3/conky/back_task.conkyrc
 exec --no-startup-id xss-lock -- i3lock -e -c 2E3436
 exec --no-startup-id redshift
 exec --no-startup-id dropbox start
