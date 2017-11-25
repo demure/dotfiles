@@ -19,7 +19,9 @@ alias reset_display='export DISPLAY=$(tmux showenv|grep ^DISPLAY|cut -d = -f 2)'
 alias ed='ed -p:'
 
 ## Good for sending dirs from server to remote server
-alias rsy='rsync -avrSPXRh'
+alias rsy='rsync -avSPRX'
+## This one is for copying off the network shares.
+alias rsyz='rsync -rltDvSPR'
 
 ## Preserve user conf while sudoing vim
 alias svi='sudo -E vim'
