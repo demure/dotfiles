@@ -23,7 +23,7 @@ windows:
   - weechat: weechat
   - urls: tail -F ~/.weechat/urls.log
   - w3m: w3m -B
-  - mutt: mutt
+  - mutt: neomutt
   - log: lnav -r /var/log/nginx/access.log /var/log/nginx/error.log /var/log/fail2ban.log
 
   #- editor:

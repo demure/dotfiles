@@ -20,7 +20,7 @@ root: ~/
 
 windows:
   - apt: sudo aptitude
-  - mutt: mutt
+  - mutt: neomutt
   - schedule:
       layout: even-horizontal
       panes:
