@@ -37,4 +37,8 @@ macro index o       "<shell-escape>offlineimap -qf INBOX<enter>" "run offlineima
 ## Saner copy/move dialogs
 macro index C       "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
 macro index M       "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
+
+## Make quick html view macro
+bind index,pager V  noop        ## Unbinds V from version
+macro index,pager V "<view-attachments><search>html<enter><view-mailcap><exit>"
 ### End Index Key Bindings ### }}}
