@@ -8,7 +8,8 @@
 #set date_format = "%m.%d.%y"
 ## Uses Conditional Date patch, to be awesome.
 ## today -> "22:09", 7 days -> "Sun 10", this year -> "Jun 10", older -> "2016 JUL 10"
-set index_format = "[%Z] %<[y?%<[7d?%<[d?%[%H:%M ]&%[%a %d]>&%[%b %d]>&%[%Y %b %d]>  %-20.20F  %s%> (%4c){%X}"
+#set index_format = "[%Z] %<[y?%<[7d?%<[d?%[%H:%M ]&%[%a %d]>&%[%b %d]>&%[%Y %b %d]>  %-20.20F  %s%> (%4c){%X}"
+set index_format = "[%Z] %<[y?%<[7d?%<[d?%[%H:%M ]&%[%a %d]>&%[%b %d]>&%[%Y %b %d]>  %-20.20F  %s%> %g (%4c){%X}"
 set sort = threads                          ## like gmail
 set sort_aux = reverse-last-date-received   ## like gmail
 set uncollapse_jump                         ## don't collapse on an unread message

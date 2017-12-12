@@ -98,6 +98,7 @@ source ~/.mutt/accounts/sdf.muttrc
 folder-hook emu/*                   source ~/.mutt/accounts/emu.muttrc
 folder-hook sdf/*                   source ~/.mutt/accounts/sdf.muttrc
 folder-hook gmail/*                 source ~/.mutt/accounts/gmail.muttrc
+folder-hook aha/*                   source ~/.mutt/accounts/aha.muttrc
 folder-hook /var/spool/mail/$USER/* source ~/.mutt/accounts/local.muttrc
 ### End Account }}}
 
