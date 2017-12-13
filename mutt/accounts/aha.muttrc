@@ -16,7 +16,7 @@ unset trash
 set trash       = "+aha/trash"
 
 ## Color border
-color status purple black
+color status magenta black
 
 ## Contacts
 bind editor <Tab> complete      ## default Mutt setting
