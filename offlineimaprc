@@ -23,7 +23,7 @@ ui = blinkenlights
 #ui = blinkenlights		# This is my preferred, but it is currently horribly broken...
 ## ui = quiet
 ##accounts = root,sdf,gmail,emu
-accounts = emu,sdf,gmail
+accounts = emu,sdf,gmail,aha
 pythonfile=~/.mutt/offlineimap.py
 fsync = False
 ### End Main ### }}}
