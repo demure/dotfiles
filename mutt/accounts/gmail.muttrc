@@ -23,3 +23,6 @@ bind editor <Tab> complete-query
 bind editor ^T complete
 ## Note, new installs will need `goobook authenticate`
 set query_command = "goobook query '%s'"
+
+## Attempting archive binding
+macro index,pager S '<save-message>+gmail/archive<enter>'

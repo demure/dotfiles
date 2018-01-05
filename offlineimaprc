@@ -57,12 +57,10 @@ realdelete = True
 [Account gmail]
 localrepository = gmail-Local
 remoterepository = gmail-Remote
-
 ## Needs GmailMaildir set
 synclabels = yes
 ## Where sync labels are stored
 labelsheader = X-Keywords
-
 postsynchook = [ -e $HOME/.notmuch-config ] && notmuch new
 
 [Repository gmail-Local]
@@ -85,6 +83,7 @@ remoteuser = demuredemeanor@gmail.com
 ssl = yes
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 remotepasseval = get_pass("mail-gmail")
+## This setting removes mail for good, default of 'no' just strips gmail label (think inbox)
 realdelete = True
 nametrans = lambda folder: {'[Gmail]/Drafts':    'drafts',
 							'[Gmail]/Sent Mail': 'sent',
@@ -99,6 +98,8 @@ folderfilter = lambda folder: folder in ['[Gmail]/Drafts',
 										'[Gmail]/All Mail',
 										'INBOX',
 										'People',
+										'Orders',
+										'News Letters',
 										]
 ### End gmail ### }}}
 
@@ -148,15 +149,20 @@ folderfilter = lambda folder: folder in ['[Gmail]/Drafts',
 [Account aha]
 localrepository = aha-Local
 remoterepository = aha-Remote
+## Needs GmailMaildir set
+synclabels = yes
+## Where sync labels are stored
+labelsheader = X-Keywords
 postsynchook = [ -e $HOME/.notmuch-config ] && notmuch new
 
 [Repository aha-Local]
-type = Maildir
+type = GmailMaildir
 localfolders = ~/.mail/aha
 nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
 							'sent':    '[Gmail]/Sent Mail',
 							'flagged': '[Gmail]/Starred',
 							'trash':   '[Gmail]/Trash',
+							'archive': '[Gmail]/All Mail',
 							}.get(folder, folder)
 
 [Repository aha-Remote]
@@ -174,11 +180,17 @@ nametrans = lambda folder: {'[Gmail]/Drafts':    'drafts',
 							'[Gmail]/Sent Mail': 'sent',
 							'[Gmail]/Starred':   'flagged',
 							'[Gmail]/Trash':     'trash',
+							'[Gmail]/All Mail':  'archive',
 							}.get(folder, folder)
 folderfilter = lambda folder: folder in ['[Gmail]/Drafts',
 										'[Gmail]/Sent Mail',
 										'[Gmail]/Starred',
 										'[Gmail]/Trash',
+										'[Gmail]/All Mail',
 										'INBOX',
+										'board',
+										'ahashop',
+										'ahashop_staff',
+										'ahashop_members',
 										]
 ### End AHA ### }}}

@@ -22,3 +22,6 @@ color status yellow black
 bind editor <Tab> complete      ## default Mutt setting
 bind editor ^T complete-query   ## default Mutt setting
 unset query_command             ## default Mutt setting
+
+## Unbind archive
+bind index,pager S noop

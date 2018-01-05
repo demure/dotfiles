@@ -22,3 +22,6 @@ color status magenta black
 bind editor <Tab> complete      ## default Mutt setting
 bind editor ^T complete-query   ## default Mutt setting
 unset query_command             ## default Mutt setting
+
+## Attempting archive binding
+macro index,pager S '<save-message>+aha/archive<enter>'
