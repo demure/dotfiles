@@ -46,7 +46,7 @@ server {
 		location ~ ^(.+\.php)(.*)$ {
 			fastcgi_split_path_info ^(.+\.php)(.*)$;
 			try_files $uri =404;
-			fastcgi_pass unix:/var/run/php5-fpm.sock;
+			fastcgi_pass unix:/var/run/php/php7.0-fpm.sock;
 			fastcgi_index index.php;
 			## https://stackoverflow.com/questions/28490391/how-to-properly-configure-alias-directive-in-nginx
 			fastcgi_param SCRIPT_FILENAME $request_filename;
