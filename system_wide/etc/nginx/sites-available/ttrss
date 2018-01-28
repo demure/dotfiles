@@ -1,8 +1,13 @@
 ## YOURLS site config
-
 server {
+	## Redirect http to https
 	listen 80;
 	listen [::]:80;
+	server_name tt.demu.red;
+	return 301 https://$host$request_uri;
+}
+
+server {
 	listen 443 ssl;
 	listen [::]:443 ssl;
 	server_name tt.demu.red;
