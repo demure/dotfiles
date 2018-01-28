@@ -201,6 +201,7 @@ logpath  = %(sshd_log)s
 # This jail corresponds to the standard configuration in Fail2ban.
 # The mail-whois action send a notification e-mail with a whois request
 # in the body.
+#enabled = true
 enabled = true
 port    = 500,8080
 logpath = %(sshd_log)s
@@ -293,6 +294,7 @@ ports   = http,https
 #logpath = %(nginx_error_log)s
 logpath = /var/log/nginx/error.log
 
+
 [nginx-noscript]
 
 enabled  = true
@@ -304,6 +306,7 @@ maxretry = 4
 bantime  = 604800
 ## Four days
 findtime = 345600
+
 
 [nginx-badbots]
 
@@ -317,6 +320,7 @@ bantime  = 604800
 ## Four days
 findtime = 345600
 
+
 [nginx-botsearch]
 
 enabled  = true
@@ -328,6 +332,7 @@ maxretry = 2
 bantime  = 604800
 ## Four days
 findtime = 345600
+
 
 [nginx-nohome]
 
@@ -341,6 +346,7 @@ bantime  = 604800
 ## Four days
 findtime = 345600
 
+
 [nginx-noproxy]
 
 enabled  = false
@@ -352,6 +358,7 @@ maxretry = 2
 bantime  = 604800
 ## Four days
 findtime = 345600
+
 
 [nginx-lurkers]
 
@@ -368,6 +375,7 @@ bantime = 2628002
 ## Four days
 findtime = 345600
 
+
 [nginx-req-limit]
 
 enabled  = false
@@ -379,6 +387,19 @@ bantime  = 604800
 ## Four days
 findtime = 345600
 maxretry = 10
+
+
+[nginx-rss-over-scrape]
+
+enabled  = false
+port =   = http,https
+filter   = nginx-rss-over-scrape
+logpath  = /var/log/nginx/access.log
+maxretry = 3
+## thirty-six hours
+bantime = 129600
+## Six hours
+findtime = 21600
 ### End nginx ### }}}
 
 ### php-url-fopen ### {{{
