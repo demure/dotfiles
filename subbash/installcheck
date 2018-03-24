@@ -32,7 +32,7 @@ done
 GUI_LIST=(rofi mcomix zathura feh scrot calibre i3lock xnest xpra xbacklight \
 spacefm libreoffice chromium gparted xss-lock urxvt zeal i3 font-manager gimp \
 baobab gvim nitrogen touchegg unclutter autorandr srandrd neato compton \
-notify-send qtpass youtube-dl screenkey inkscape qutebrowser clipster)
+notify-send qtpass youtube-dl screenkey inkscape qutebrowser clipster xcalib)
 
 for i in "${GUI_LIST[@]}"; do
 	if [[ ! $(command -v ${i}) ]]; then

@@ -189,6 +189,8 @@ workspace_auto_back_and_forth yes
 			bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
 			bindsym c exec --no-startup-id sudo /usr/local/bin/tomb close all, mode "default"
 			bindsym Shift+c exec --no-startup-id sudo /usr/local/bin/tomb slam, mode "default"
+			## Invert screen colors
+			bindsym i exec --no-startup-id xcalib -invert -alter, mode "default"
 
 			## back to normal: Enter or Escape
 			bindsym Return mode "default"
