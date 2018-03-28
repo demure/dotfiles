@@ -26,5 +26,5 @@ windows:
       panes:
         - khal interactive
         - vit
-  - rss: newsbeuter
+  - rss: newsboat
   - file: ranger

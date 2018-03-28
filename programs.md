@@ -20,7 +20,8 @@
 | Linux Info Command     | pinfo          |                           |
 | Pager                  | view/less      |                           |
 | Cheat Sheet            | cheat          | NA?                       |
-| RSS Client             | newsbeuter     |                           |
+| RSS Client             | (newsbeuter)   | Project dead              |
+| RSS Client             | newsboat       |                           |
 | Hex Editor             | dhex           | *                         |
 | Hex Editor             | hexcurse       | *                         |
 | Hex Editor             | bci            | *                         |
