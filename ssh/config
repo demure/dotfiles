@@ -91,8 +91,12 @@ host device
 
 host route
 	hostName 10.0.0.1
+	Port 500
+
+host wifi
+	hostName 10.0.0.2
+	Port 500
 	User root
-	Port 1337
 ### End Local Places ### }}}
 
 ## Default settings, unless overridden above
