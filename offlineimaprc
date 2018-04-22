@@ -48,7 +48,7 @@ remoteuser = demure
 remotehost = ma.sdf.org
 remoteport = 993
 ssl = yes
-cert_fingerprint = 64742c3c557b49d0787d091c99223f13d6143b5d
+cert_fingerprint = 5576096893504c59ce5bc0c8f9b33462084fa872
 remotepasseval = get_pass("mail-sdf-imap")
 realdelete = True
 ### End sdf### }}}
