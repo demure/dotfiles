@@ -65,3 +65,8 @@ highlight article "^Date:.*" color223 default
 highlight article "\\[[0-9][0-9]*\\]" color66 default bold
 highlight article "\\[image [0-9][0-9]*\\]" color109 default bold
 highlight article "\\[embedded flash: [0-9][0-9]*\\]" color66 default bold
+
+## podboat settings
+download-path "~/.podboat/%h/%n"
+max-downloads 3
+player "mpv"
