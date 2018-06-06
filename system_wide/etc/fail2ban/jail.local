@@ -23,7 +23,7 @@ before = paths-debian.conf
 # ban a host which matches an address in this list. Several addresses can be
 # defined using space separator.
 ## Local host, and MA
-ignoreip = 127.0.0.1/8 205.166.94.31
+ignoreip = 127.0.0.1 205.166.94.31 2600:3c03::f03c:91ff:fe56:c573
 
 # External command that will take an tagged arguments to ignore, e.g. <ip>,
 # and return true if the IP is to be ignored. False otherwise.
@@ -195,16 +195,6 @@ bantime  = 3600
 findtime = 600
 port     = 500,8080
 logpath  = %(sshd_log)s
-
-
-[sshd-ddos]
-# This jail corresponds to the standard configuration in Fail2ban.
-# The mail-whois action send a notification e-mail with a whois request
-# in the body.
-#enabled = true
-enabled = true
-port    = 500,8080
-logpath = %(sshd_log)s
 ### End ssh ### }}}
 
 ### dropbear ### {{{
@@ -369,6 +359,19 @@ logpath  = /var/log/nginx/access.log
            /var/log/nginx/ttrss_access.log
            /var/log/nginx/piwik_access.log
            /var/log/nginx/irpg_access.log
+maxretry = 1
+## One Month
+bantime = 2628002
+## Four days
+findtime = 345600
+
+
+[nginx-bbb-sent]
+
+enabled  = true
+port     = http,https
+filter   = nginx-bbb-sent
+logpath  = /var/log/nginx/access.log
 maxretry = 1
 ## One Month
 bantime = 2628002
