@@ -18,10 +18,12 @@ alias reset_display='export DISPLAY=$(tmux showenv|grep ^DISPLAY|cut -d = -f 2)'
 ## Make ed more usable, command mode is now ':' like vi
 alias ed='ed -p:'
 
+## Old rsync alias
+alias rsy='rsync -avrSPXRh'
 ## Good for sending dirs from server to remote server
-alias rsy='rsync -avSPRh'
+alias rsy1='rsync -avSPRh'
 ## This one is for copying off the network shares.
-alias rsyz='rsync -rltDvSPRh'
+alias rsy2='rsync -rltDvSPRh'
 
 ## Preserve user conf while sudoing vim
 alias svi='sudo -E vim'
