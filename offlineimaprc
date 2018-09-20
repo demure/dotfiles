@@ -48,7 +48,9 @@ remoteuser = demure
 remotehost = ma.sdf.org
 remoteport = 993
 ssl = yes
-#cert_fingerprint = 5576096893504c59ce5bc0c8f9b33462084fa872
+## temp setting due to https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=907079
+## Left in place due to issue with MA cert size?
+ssl_version = tls1_2
 cert_fingerprint = 0245dc7f6fa67bf72243b896beedf6f7c49ada3192a5138e7b07557cf9d4d476bd013f015f997fec7784c21719da21ce7f58a4f0c7dca4f1c7688c4ac486ddc6
 remotepasseval = get_pass("mail-sdf-imap")
 realdelete = True
