@@ -110,10 +110,6 @@
 			unalias svi
 			#alias ls='colorls -G'
 		fi
-
-		if [ $HOSTNAME = "iceland" ]; then
-			__ssh_agent
-		fi
 	fi
 	### End For SDF Main Cluster ### }}}
 
