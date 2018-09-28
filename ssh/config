@@ -97,6 +97,12 @@ host wifi
 	hostName 10.0.0.2
 	Port 500
 	User root
+
+## NAS container for easy rsync
+host nas_fs nfs
+	hostName 10.0.0.10
+	Port 502
+	User root
 ### End Local Places ### }}}
 
 ## Default settings, unless overridden above
