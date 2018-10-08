@@ -101,6 +101,7 @@
 	if [[ "$MACHTYPE" == "x86_64--netbsd" && "$OSTYPE" == "netbsd" ]]; then
 		#LSCOLORS='exfxcxdxbxegedabagacad'
 		export TZ=EST5EDT
+		export PATH=/usr/pkg/bin:/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/sbin:${HOME}/projects/personal/scripts:${HOME}/bin:${HOME}/.local/bin:/usr/local/games:/usr/games
 
 		## Interactive Test
 		if [[ $- == *i* ]]; then
