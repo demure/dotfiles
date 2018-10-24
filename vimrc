@@ -117,7 +117,7 @@ if $USER != 'mobile'
 			Plugin 'scrooloose/nerdtree'		" File browser
 			Plugin 'bufexplorer.zip'			" buffer browser
 			Plugin 'sjl/gundo.vim'				" Undo history tree
-			Plugin 'szw/vim-ctrlspace'			" Super buffer controlness
+			"Plugin 'szw/vim-ctrlspace'			" Super buffer controlness, disabled due to never using
 			Plugin 'haya14busa/incsearch.vim'	" Improved incremental searching
 			Plugin 'spolu/dwm.vim'				" dwm like split control
 			""" End Interface """ }}}
