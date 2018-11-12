@@ -48,7 +48,9 @@ while :; do
 
 	## Volume, "VOL"
 	if [ $((cnt_vol++)) -ge ${upd_vol} ]; then
-		amixer get Master | awk -F'[]%[]' '/%/ {STATE=$5; VOL=$2} END {if (STATE == "off") {print "VOL×\n"} else {printf "VOL%d%%\n", VOL}}' > "${panel_fifo}" &
+		## Retired this line as amixer stopped showing >100% volume... around the same time amixer mute broke
+		#amixer get Master | awk -F'[]%[]' '/%/ {STATE=$5; VOL=$2} END {if (STATE == "off") {print "VOL×\n"} else {printf "VOL%d%%\n", VOL}}' > "${panel_fifo}" &
+		pactl list sinks | awk 'BEGIN {MUTE="none";VOL="none"}/^\t*Volume|^\t*Mute/ {if($1=="Mute:"){MUTE=$2};if($1=="Volume:"){VOL=$5}} END {if(MUTE=="yes"){print "VOL×\n"} else {if(VOL!="none"){printf "VOL%d%%\n", VOL} else {print "VOLerror\n"}}}' > "${panel_fifo}" &
 		cnt_vol=0
 	fi
 
