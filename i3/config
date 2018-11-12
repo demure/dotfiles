@@ -385,9 +385,10 @@ workspace_auto_back_and_forth yes
 		bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 5%-          ## Decrease sound volume
 		bindsym Shift+XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 1%-    ## Fine decrease sound volume
 		bindsym $mod+XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%  ## Able to softvol decrease
-		## may need following if things go wrong with mutting:
-		## pactl set-sink-mute 0 toggle
-		bindsym XF86AudioMute exec --no-startup-id amixer -q set Master toggle              ## mute sound
+		bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle             ## mute sound
+		## This stopped working...
+		##bindsym XF86AudioMute exec --no-startup-id amixer -q set Master toggle              ## mute sound
+		bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 1 toggle        ## mute sound
 		### End Pulse Audio ### }}}
 
 		### Toggle redshift ### {{{
