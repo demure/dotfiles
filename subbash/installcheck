@@ -6,6 +6,8 @@
 
 ## NOTE: not using ',' as I want to be able to:
 # $(sudo aptitude install $MISSING_PROGRAMS)
+# or more reasonably:
+# $(for i in $MISSING_PROGRAMS; do sudo aptitude install $i; done)
 
 MISSING_CLI=""
 MISSING_GUI=""
@@ -13,7 +15,7 @@ MISSING_GUI=""
 ### CLI ### {{{
 CLI_LIST=(docker pinfo qmv vim w3m mutt tmux ncdu pass stow notmuch msmtp \
 offlineimap urlview htop aircrack-ng mosh nmap sshuttle fusermount exfatfsck \
-qemu-io pianobar cacaview conky encfs scanmem hexcurse lsof pidof \
+qemu-io pianobar cacaview conky scanmem hexcurse lsof pidof \
 pinentry-curses pinentry-tty ranger rfkill sshfs tree unar wget iotop parted \
 caff fail2ban-client wicd-curses rsync weechat diff file find gpg gpg2 mc \
 lnav cheat dfc lemonbar newsboat task redshift xdotool git clamscan iftop \
