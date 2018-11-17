@@ -41,6 +41,15 @@ You may like my blog as well, [demu.red].
 ### Install: ###
 
 Aside from installing by hand, you could use [GNU Stow].
+example:
+
+```
+cd path_to_dotfiles_clone/GNU_Stow
+stow -t ~ main    ## main programs
+stow -t ~ laptop  ## gui programs
+```
+
+**NOTE:** `-t PATH` is use as the stow 'packages' are recessed.
 
 ### Improved: ###
 
@@ -58,11 +67,11 @@ Aside from installing by hand, you could use [GNU Stow].
 * Added [GNU Stow] for installing **06MAR2014**  
 * Added mutt with multiple accounts, using offlineimap, not-much, and msmtp **25AUG2015**  
 * Moved to i3 window manager, and set up a sweet lemonbar **30JAN2016**  
+* Got around to updating stow dir to reflect current software. (still needs some work) **16NOV2018**  
 
 ### Plans: ###
 
-* For tmux, I am still debating to use powerline or not...  
-    * One of the annoying issues is that the current beta seems pretty confusing  
+* One of these days I need to try zsh  
 
 <BR>
 **PS.** If you happen to have advice, I certainly would be interested in ways to
