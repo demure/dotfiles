@@ -22,7 +22,7 @@ ${cpu} \
 ${memperc} \
 ${fs_used_perc /} \
 REMOVED \
-${if_up wlp4s0}${downspeedf wlp4s0} ${upspeedf wlp4s0}\
+${if_up wlp3s0}${downspeedf wlp3s0} ${upspeedf wlp3s0}\
 ${else}down down${endif} \
 ${if_up eth0}${downspeedf eth0} ${upspeedf eth0} \
 ${else}down down${endif} \

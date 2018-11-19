@@ -29,8 +29,8 @@ I've now added a number of features I have desired:
    * I do *not* recommend the vanila lemonbar, as it's xft font support is... crap?
    * On debian depends on `libxcb1-dev`, `libxcb-xinerama0-dev`, `xcb-randr0-dev`, `libxft-dev`, `libx11-xcb-dev` and a few other things (I listed the less common ones).
 * `gawk`, as I wrote my fancy awk using it.
-* `amixer` for volume support.
-  * Part of `alsa-utils` on debian.
+<strike>* `amixer` for volume support.
+  * Part of `alsa-utils` on debian.</strike>
 * You need [conky]
   * on debian sid, I use the `conky-all` package
   * on arch, make sure the wireless support compiled in. The AUR `conky-git` might be what you want.
@@ -103,6 +103,7 @@ bar {
     * `bindsym XF86LaunchA exec awk -v TEMP=/tmp/i3_lemonbar_ip_${USER} 'BEGIN {{FILE=getline < TEMP < 0 ? "0" : "1"} {if($0==1){STATE=1} else if($0==2){STATE=2} else{STATE=0}} {if(STATE==0){system("echo 1 > "TEMP)} else if(STATE==1){system("echo 2 > "TEMP)} else {system("echo 0 > "TEMP)}}}'`
 * IP display filters virtual interfaces for docker, qemu, and vpn. **08APR2017**
 * Added VPN on indicator. **17APR2017**
+* Due to change in debian, using pactl for volume checking. **12NOV2018**
 
 
 ### **Things I want** ###
@@ -110,7 +111,7 @@ bar {
 * Make better separations between joined colored segments.
 
 
-##### **Last updated 23APR2017** #####
+##### **Last updated 16NOV2018** #####
 
 [i3 lemonbar]: https://github.com/electro7/dotfiles/tree/master/.i3/lemonbar
 [lemonbar krypt-n]: https://github.com/krypt-n/bar
