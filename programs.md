@@ -101,4 +101,4 @@
 | Password Manager       | qtpass         |                           |
 | Image Manipulation     | gimp           | Many                      |
 | Vectors                | inkscape       | Many                      |
-
+| Calculator             | SpeedCrunch    |                           |
