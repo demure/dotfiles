@@ -133,6 +133,7 @@ if $USER != 'mobile'
 			Plugin 'chrisbra/csv.vim'			" Good CVS file handling
 			Plugin 'dhruvasagar/vim-table-mode'	" Make easy tables
 			Plugin 'vim-scripts/Smart-Tabs'		" Use \t for indents, and spaces elsewhere
+			Plugin 'jamessan/vim-gnupg'			" Transparent editing of gpg encrypted files
 			""" End Functionality """ }}}
 
 			""" Misc """ {{{
