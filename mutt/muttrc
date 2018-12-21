@@ -18,7 +18,7 @@
 ### Paths ### {{{
 ## sidebar 'mailboxes' relies on 'folder'
 set folder              = "~/.mail"                     ## Mailbox location
-set alias_file          = "~/.mutt/alias"               ## Where to store aliases
+#set alias_file          = "~/.mutt/alias"               ## Where to store aliases
 set header_cache        = "~/.mutt/cache/headers"       ## Where to store headers
 set message_cachedir    = "~/.mutt/cache/bodies"        ## Where to store bodies
 set certificate_file    = "~/.mutt/cerficates"          ## Where to store certs
@@ -43,7 +43,7 @@ set beep_new                ## Bell on new mails
 set pipe_decode             ## Strip headers and eval mimes when piping
 set thorough_search         ## Strip headers and eval mimes before searching
 
-set sort_alias = alias
+#set sort_alias = alias
 
 
 ## Adding flowed, because it is a good-ness? http://joeclark.org/ffaq.html
@@ -59,7 +59,7 @@ subscribe cryptoparty-ann-arbor@inventati.org
 source "~/.mutt/index.muttrc"
 source "~/.mutt/pager.muttrc"
 source "~/.mutt/compose.muttrc"
-source "~/.mutt/alias"
+#source "~/.mutt/alias"
 source "~/.mutt/crypto.muttrc"
 source "~/.mutt/sidebar.muttrc"
 source "~/.mutt/notmuch.muttrc"
