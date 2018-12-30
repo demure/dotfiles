@@ -335,7 +335,7 @@ endif
     """ Tab Windows """ {{{
     set hidden                      " Hides buffers, instead of closing, or forcing save
     set showtabline=2               " shows the tab bar at all times
-    set tabpagemax=10               " max num of tabs to open on startup
+    set tabpagemax=100              " max num of tabs to open on startup
     hi TabLineSel ctermbg=Yellow    " Current Tab
     hi TabLine ctermfg=Grey ctermbg=DarkGrey    " Other Tabs
     hi TabLineFill ctermfg=Black    " Rest of line
