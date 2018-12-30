@@ -5,109 +5,108 @@
 # vim:set syntax=sh:
 
 ### Exports ### {{{
-	### Universal Exports ### {{{
-	export CLICOLOR="YES"       ## Color 'ls', etc.
-	export EDITOR=vim           ## Set default editor
+    ### Universal Exports ### {{{
+    export CLICOLOR="YES"       ## Color 'ls', etc.
+    export EDITOR=vim           ## Set default editor
 
-		### History Settings ### {{{
-		export HISTSIZE=100000                  ## Size of shells hist
-		export HISTFILESIZE=100000              ## Size of Hist file
-		export HISTCONTROL=ignoreboth:erasedups
-		export HISTTIMEFORMAT="%F %T "          ## Adds time to history
-		export HISTIGNORE='ls:bg:fg:history'    ## Hist ignores exact match
-		### End History Settings ### }}}
-	### End Universal Exports ### }}}
+        ### History Settings ### {{{
+        export HISTSIZE=100000                  ## Size of shells hist
+        export HISTFILESIZE=100000              ## Size of Hist file
+        export HISTCONTROL=ignoreboth:erasedups
+        export HISTTIMEFORMAT="%F %T "          ## Adds time to history
+        export HISTIGNORE='ls:bg:fg:history'    ## Hist ignores exact match
+        ### End History Settings ### }}}
+    ### End Universal Exports ### }}}
 
-	### Fortune At Login ### {{{
-	## Tests for fortune, root, interactive shell, and dumb term
-	if [ $(command -v fortune) ] && [ $UID != '0' ] && [[ $- == *i* ]] && [ $TERM != 'dumb' ]; then
-		fortune -a
-	  else
-		MISSING_ITEMS+="fortune, "
-	fi
-	### End Fortune ### }}}
+    ### Fortune At Login ### {{{
+    ## Tests for fortune, root, interactive shell, and dumb term
+    if [ $(command -v fortune) ] && [ $UID != '0' ] && [[ $- == *i* ]] && [ $TERM != 'dumb' ]; then
+        fortune -a
+      else
+        MISSING_ITEMS+="fortune, "
+    fi
+    ### End Fortune ### }}}
 
-	### Memo At Login ### {{{
-	## Tests for memo, root, interactive shell, and dumb term
-	# http://www.getmemo.org/index.html
-	if [ $(command -v memo) ] && [ $UID != '0' ] && [[ $- == *i* ]] && [ $TERM != 'dumb' ]; then
-		## If it has been four or more hours, show.
-		if [ -e $HOME/.memo ] && [ "$(date +%s)" -ge "$(echo $(stat --printf=%Y $HOME/.memo) + 14400 | bc)" ]; then
-			memo -u 2>/dev/null
-			touch $HOME/.memo
-		fi
-	  else
-		MISSING_ITEMS+="memo, "
-	fi
-	### End Memo ### }}}
+    ### Memo At Login ### {{{
+    ## Tests for memo, root, interactive shell, and dumb term
+    # http://www.getmemo.org/index.html
+    if [ $(command -v memo) ] && [ $UID != '0' ] && [[ $- == *i* ]] && [ $TERM != 'dumb' ]; then
+        ## If it has been four or more hours, show.
+        if [ -e $HOME/.memo ] && [ "$(date +%s)" -ge "$(echo $(stat --printf=%Y $HOME/.memo) + 14400 | bc)" ]; then
+            memo -u 2>/dev/null
+            touch $HOME/.memo
+        fi
+      else
+        MISSING_ITEMS+="memo, "
+    fi
+    ### End Memo ### }}}
 
-	### Taskwarrior At Login ### {{{
-	## Tests for task, root, interactive shell, and dumb term
-	# http://taskwarrior.org/
-	if [ $(command -v task) ] && [ $UID != '0' ] && [[ $- == *i* ]] && [ $TERM != 'dumb' ]; then
-		## Don't try to show if term is too small
-		if [ $(tput cols) -ge 90  ]; then
-			## If it has been four or more hours, show.
-			if [ -e $HOME/.task/pending.data ] && [ "$(date +%s)" -ge "$(echo $(stat --printf=%Y $HOME/.task/pending.data) + 14400 | bc)" ]; then
-				task limit:5 2>/dev/null
-				touch $HOME/.task/pending.data
-			fi
-		fi
-	  else
-		MISSING_ITEMS+="taskwarrior, "
-	fi
+    ### Taskwarrior At Login ### {{{
+    ## Tests for task, root, interactive shell, and dumb term
+    # http://taskwarrior.org/
+    if [ $(command -v task) ] && [ $UID != '0' ] && [[ $- == *i* ]] && [ $TERM != 'dumb' ]; then
+        ## Don't try to show if term is too small
+        if [ $(tput cols) -ge 90  ]; then
+            ## If it has been four or more hours, show.
+            if [ -e $HOME/.task/pending.data ] && [ "$(date +%s)" -ge "$(echo $(stat --printf=%Y $HOME/.task/pending.data) + 14400 | bc)" ]; then
+                task limit:5 2>/dev/null
+                touch $HOME/.task/pending.data
+            fi
+        fi
+      else
+        MISSING_ITEMS+="taskwarrior, "
+    fi
+    ### End Taskwarrior ### }}}
 
-	### End Taskwarrior ### }}}
+    ### Grep Options ### {{{
+    ## So, this code is because even though GREP_OPTIONS are 'dead',
+    ## some servers still have older than grep 2.20...
+    ## I'm using awk, as bash doesn't really do decimal
+    grep_test="$(grep --version 2>/dev/null | awk 'BEGIN {VER=0; CUT=2.20} /^grep/ NR>1{if($NF!~/[a-z]/){VER=$NF}} END {if(VER<CUT){print "lt"} else {print "ge"}}')"
 
-	### Grep Options ### {{{
-	## So, this code is because even though GREP_OPTIONS are 'dead',
-	## some servers still have older than grep 2.20...
-	## I'm using awk, as bash doesn't really do decimal
-	grep_test="$(grep --version 2>/dev/null | awk 'BEGIN {VER=0; CUT=2.20} /^grep/ NR>1{if($NF!~/[a-z]/){VER=$NF}} END {if(VER<CUT){print "lt"} else {print "ge"}}')"
+    if [ $grep_test == "ge" ]; then
+        ## If new, do it the way grep says to
+        alias grep='grep --color=auto --exclude-dir=.cvs --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn'
+      else
+        ## If old, use GREP_OPTIONS, as --exclude may not exist, and annoying errors!
+        if echo hello | grep --color=auto l >/dev/null 2>&1; then
+            GREP_OPTIONS+="--color=auto " GREP_COLOR='1;31'
+        fi
 
-	if [ $grep_test == "ge" ]; then
-		## If new, do it the way grep says to
-		alias grep='grep --color=auto --exclude-dir=.cvs --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn'
-	  else
-		## If old, use GREP_OPTIONS, as --exclude may not exist, and annoying errors!
-		if echo hello | grep --color=auto l >/dev/null 2>&1; then
-			GREP_OPTIONS+="--color=auto " GREP_COLOR='1;31'
-		fi
+        if echo hello | grep --exclude-dir=a l >/dev/null 2>&1; then
+            for PATTERN in .cvs .git .hg .svn; do
+                GREP_OPTIONS+="--exclude-dir=$PATTERN "
+            done
+        fi
+        export GREP_OPTIONS
+    fi
+    ### End Grep Options ### }}}
 
-		if echo hello | grep --exclude-dir=a l >/dev/null 2>&1; then
-			for PATTERN in .cvs .git .hg .svn; do
-				GREP_OPTIONS+="--exclude-dir=$PATTERN "
-			done
-		fi
-		export GREP_OPTIONS
-	fi
-	### End Grep Options ### }}}
+    ### Nethack Conf ### {{{
+    if [ -f $HOME/.nethackrc ]; then
+        export NETHACKOPTIONS=~/.nethackrc
+      else
+        MISSING_ITEMS+="nethackrc, "
+    fi
+    ### End Nethack ### }}}
 
-	### Nethack Conf ### {{{
-	if [ -f $HOME/.nethackrc ]; then
-		export NETHACKOPTIONS=~/.nethackrc
-	  else
-		MISSING_ITEMS+="nethackrc, "
-	fi
-	### End Nethack ### }}}
+    ### Slash'em Conf ### {{{
+    if [ -f $HOME/.slashemrc ]; then
+        export SLASHEMOPTIONS=~/.slashemrc
+      else
+        MISSING_ITEMS+="slashemrc, "
+    fi
+    ### End Slash'em ### }}}
 
-	### Slash'em Conf ### {{{
-	if [ -f $HOME/.slashemrc ]; then
-		export SLASHEMOPTIONS=~/.slashemrc
-	  else
-		MISSING_ITEMS+="slashemrc, "
-	fi
-	### End Slash'em ### }}}
-
-#	### TERM color ### {{{
-#	## Disabled, as forcing is kind of bad >_>
-#	## http://blog.sanctum.geek.nz/term-strings/
-#	if [ -e /usr/share/terminfo/x/xterm-256color ]; then
-#		export TERM='xterm-256color'
-#	  else
-#		export TERM='xterm-color'
-#	fi
-#	### End TERM ### }}}
+#   ### TERM color ### {{{
+#   ## Disabled, as forcing is kind of bad >_>
+#   ## http://blog.sanctum.geek.nz/term-strings/
+#   if [ -e /usr/share/terminfo/x/xterm-256color ]; then
+#       export TERM='xterm-256color'
+#     else
+#       export TERM='xterm-color'
+#   fi
+#   ### End TERM ### }}}
 #### End Exports ### }}}
 
 ## Adding PATH junk

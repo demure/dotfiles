@@ -1,9 +1,9 @@
 #!/usr/bin/env perl
 # vim:ts=4:sw=4:expandtab:ft=perl
-# 
+#
 # Print i3 workspaces on every change.
-# 
-# Format: 
+#
+# Format:
 #   For every workspace (x = workspace name)
 #       - "FOCx" -> Focused workspace
 #       - "INAx" -> Inactive workspace

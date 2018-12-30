@@ -1,8 +1,8 @@
 #!/usr/bin/env python
-# 
+#
 # Print i3 workspaces on every change.
-# 
-# Format: 
+#
+# Format:
 #   For every workspace (x = workspace name)
 #       - "FOCx" -> Focused workspace
 #       - "INAx" -> Inactive workspace
@@ -67,7 +67,7 @@ class i3ws(object):
 
     def format(self, workspaces, outputs):
         # Formats the text according to the workspace data given.
-        out = '' 
+        out = ''
         for workspace in workspaces:
             output = None
             for output_ in outputs:

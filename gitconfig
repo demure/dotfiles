@@ -1,18 +1,18 @@
 [user]
-	name = demure
-	email = demuredemeanor@gmail.com
+    name = demure
+    email = demuredemeanor@gmail.com
 [push]
-	default = simple
+    default = simple
 [color]
-	ui = true
+    ui = true
 [alias]
-	st = status -sb
-	cmm = commit -m
-	d = difftool --tool=vimdiff --no-prompt
-	report = "log --author=demure --since='2 sunday ago' --until='1 sunday ago' --format='%Cgreen%ci%Creset %s%Creset' --no-merges"
-	glog = log --all --pretty='format:%d %Cgreen%h%Creset %an - %s' --graph
-	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+    st = status -sb
+    cmm = commit -m
+    d = difftool --tool=vimdiff --no-prompt
+    report = "log --author=demure --since='2 sunday ago' --until='1 sunday ago' --format='%Cgreen%ci%Creset %s%Creset' --no-merges"
+    glog = log --all --pretty='format:%d %Cgreen%h%Creset %an - %s' --graph
+    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
 [pull]
-	rebase = true
+    rebase = true
 [rebase]
-	stat = true
+    stat = true

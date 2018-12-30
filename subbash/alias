@@ -34,28 +34,28 @@ alias deldup="awk '!x[$0]++' "
 ## Shortcut for wicd-curses
 alias wic='wicd-curses'
 
-	### qmv ### {{{
-	if [[ $(command -v qmv) ]]; then
-		## Makes qmv more usable, and regex-able
-		alias qm='qmv --format=destination-only'
-	fi
-	### End qmv ### }}}
+    ### qmv ### {{{
+    if [[ $(command -v qmv) ]]; then
+        ## Makes qmv more usable, and regex-able
+        alias qm='qmv --format=destination-only'
+    fi
+    ### End qmv ### }}}
 
-	### pinfo ### {{{
-	if [[ $(command -v pinfo) ]]; then
-		## Use color pinfo instead of info
-		alias info='pinfo'
-	fi
-	### End pinfo ### }}}
+    ### pinfo ### {{{
+    if [[ $(command -v pinfo) ]]; then
+        ## Use color pinfo instead of info
+        alias info='pinfo'
+    fi
+    ### End pinfo ### }}}
 
-	### Git Aliases ### {{{
-	alias git_force_reset='git fetch --all && git reset --hard origin/master'
-	### End Git Aliases ### }}}
+    ### Git Aliases ### {{{
+    alias git_force_reset='git fetch --all && git reset --hard origin/master'
+    ### End Git Aliases ### }}}
 
-	### Docker ### {{{
-	if [[ $(command -v docker) ]]; then
-		## find last docker container
-		alias dl='docker ps -l -q'
-	fi
-	### End Docker ### }}}
+    ### Docker ### {{{
+    if [[ $(command -v docker) ]]; then
+        ## find last docker container
+        alias dl='docker ps -l -q'
+    fi
+    ### End Docker ### }}}
 ### End Universal Aliases ### }}}

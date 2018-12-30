@@ -7,108 +7,108 @@
 # http://blogs.perl.org/users/smylers/2011/08/ssh-productivity-tips.html
 
 ### Internet Places ### {{{
-	### DD ### {{{
-	host dd
-		hostName demu.red
-		Port 500
+    ### DD ### {{{
+    host dd
+        hostName demu.red
+        Port 500
 
-	host ddx
-		hostName demu.red
-		Port 500
-		ForwardX11 yes
-		ForwardX11Trusted no
+    host ddx
+        hostName demu.red
+        Port 500
+        ForwardX11 yes
+        ForwardX11Trusted no
 
-	host ddcomp
-		hostName localhost
-		Port 2001
+    host ddcomp
+        hostName localhost
+        Port 2001
 
-	host ddtiny
-		hostName localhost
-		Port 2002
+    host ddtiny
+        hostName localhost
+        Port 2002
 
-	## for dd to sdf irc
-	Host ddirc
-	HostName ma.sdf.org
-	LocalForward 2003 irc.sdf.org:6667
-	User demure
-	ServerAliveCountMax 300
-	ServerAliveInterval 15
-	### End DD ### }}}
+    ## for dd to sdf irc
+    Host ddirc
+    HostName ma.sdf.org
+    LocalForward 2003 irc.sdf.org:6667
+    User demure
+    ServerAliveCountMax 300
+    ServerAliveInterval 15
+    ### End DD ### }}}
 
-	### SDF ### {{{
-	host ma
-		HostName ma.sdf.org
+    ### SDF ### {{{
+    host ma
+        HostName ma.sdf.org
 
-	host meta
-		HostName meta.sdf.org
+    host meta
+        HostName meta.sdf.org
 
-	host max
-		HostName ma.sdf.org
-		#ForwardAgent no
-		ForwardX11 yes
-		#ForwardX11Timeout 596h
-		ForwardX11Trusted no
+    host max
+        HostName ma.sdf.org
+        #ForwardAgent no
+        ForwardX11 yes
+        #ForwardX11Timeout 596h
+        ForwardX11Trusted no
 
-	host sdf
-		HostName tty.sdf.org
+    host sdf
+        HostName tty.sdf.org
 
-	host cork
-		hostName ma.sdf.org
-		ProxyCommand corkscrew proxy.example.com 8080 %h %p
-		
-	host matiny
-		hostName localhost
-		Port 63753
-	### End SDF ### }}}
+    host cork
+        hostName ma.sdf.org
+        ProxyCommand corkscrew proxy.example.com 8080 %h %p
+
+    host matiny
+        hostName localhost
+        Port 63753
+    ### End SDF ### }}}
 
 host mdns
-	hostName demure.mdns.org
-	Port 8080
+    hostName demure.mdns.org
+    Port 8080
 
 host sleep
-	hostName sleepermud.net
+    hostName sleepermud.net
 
 host gnu
-	hostName fencepost.gnu.org
+    hostName fencepost.gnu.org
 
 host ppc
-	hostName deb.ppc64.club
+    hostName deb.ppc64.club
 ### End Internet Places ### }}}
 
 ### Local Places ### {{{
 host comp doom
-	hostName moving-computer-of-doom.local
+    hostName moving-computer-of-doom.local
 
 host tiny
-	HostName tiny-server-of-doom.local
+    HostName tiny-server-of-doom.local
 
 host net
-	HostName moving-netbook-of-doom.local
+    HostName moving-netbook-of-doom.local
 
 host device
-	HostName moving-device-of-doom.local
-	User mobile
+    HostName moving-device-of-doom.local
+    User mobile
 
 host route
-	hostName 10.0.0.1
-	Port 500
+    hostName 10.0.0.1
+    Port 500
 
 host wifi
-	hostName 10.0.0.2
-	Port 500
-	User root
+    hostName 10.0.0.2
+    Port 500
+    User root
 
 ## NAS container for easy rsync
 host nas_fs nfs
-	hostName 10.0.0.10
-	Port 502
-	User root
+    hostName 10.0.0.10
+    Port 502
+    User root
 ### End Local Places ### }}}
 
 ## Default settings, unless overridden above
 host *
-	User demure
-	Port 22
-	GSSAPIAuthentication no
-	## https://pthree.org/2013/05/30/openssh-keys-and-the-drunken-bishop/
-	VisualHostKey yes
+    User demure
+    Port 22
+    GSSAPIAuthentication no
+    ## https://pthree.org/2013/05/30/openssh-keys-and-the-drunken-bishop/
+    VisualHostKey yes

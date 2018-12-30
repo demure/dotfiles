@@ -1,71 +1,71 @@
 ## irpg site config
 
 server {
-	listen 80;
-	listen [::]:80;
-	listen 443 ssl;
-	listen [::]:443 ssl;
-	server_name irpg.demu.red;
-	root /var/www/irpg;
+    listen 80;
+    listen [::]:80;
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    server_name irpg.demu.red;
+    root /var/www/irpg;
 
-	access_log /var/log/nginx/irpg_access.log;
-	error_log /var/log/nginx/irpg_error.log;
+    access_log /var/log/nginx/irpg_access.log;
+    error_log /var/log/nginx/irpg_error.log;
 
-	## Disable all methods besides HEAD, GET and POST.
-	if ($request_method !~ ^(GET|HEAD|POST)$ ) {
-		return 444;
-	}
+    ## Disable all methods besides HEAD, GET and POST.
+    if ($request_method !~ ^(GET|HEAD|POST)$ ) {
+        return 444;
+    }
 
-	index idlerpg.html index.php index.html;
+    index idlerpg.html index.php index.html;
 
-	## Include certbot fix
-	include /etc/nginx/snippets/nginx.well-known.conf;
+    ## Include certbot fix
+    include /etc/nginx/snippets/nginx.well-known.conf;
 
-	## Include ssl
-	include /etc/nginx/snippets/nginx.ssl.conf;
+    ## Include ssl
+    include /etc/nginx/snippets/nginx.ssl.conf;
 
-	### Deny Stuffs ### {{{
-		## Protect specific TXT and config files
-		location ~ /(\.|readme.html|readme.md|changelog.txt|changelog.md|contributing.txt|contributing.md|license.txt|license.md|legalnotice|privacy.txt|privacy.md|security.txt|security.md|sample-.*txt)
-		{
-			deny all;
-		}
+    ### Deny Stuffs ### {{{
+        ## Protect specific TXT and config files
+        location ~ /(\.|readme.html|readme.md|changelog.txt|changelog.md|contributing.txt|contributing.md|license.txt|license.md|legalnotice|privacy.txt|privacy.md|security.txt|security.md|sample-.*txt)
+        {
+            deny all;
+        }
 
-		## Protect .git files
-		location ~ /\.git/ {
-			access_log off;
-			log_not_found off;
-			deny all;
-		}
-	### End Deny Stuffs ### }}}
+        ## Protect .git files
+        location ~ /\.git/ {
+            access_log off;
+            log_not_found off;
+            deny all;
+        }
+    ### End Deny Stuffs ### }}}
 
-	location / {
-		#try_files $uri $uri/ idlerpg.html =404;
-		try_files $uri /idlerpg.html;
+    location / {
+        #try_files $uri $uri/ idlerpg.html =404;
+        try_files $uri /idlerpg.html;
 
-		location ~ ^(.+\.php)(.*)$ {
-			fastcgi_split_path_info ^(.+\.php)(.*)$;
-			try_files $uri =404;
-			fastcgi_pass unix:/var/run/php/php7.0-fpm.sock;
-			fastcgi_index index.php;
-			## https://stackoverflow.com/questions/28490391/how-to-properly-configure-alias-directive-in-nginx
-			fastcgi_param SCRIPT_FILENAME $request_filename;
-			include fastcgi_params;
-		}
+        location ~ ^(.+\.php)(.*)$ {
+            fastcgi_split_path_info ^(.+\.php)(.*)$;
+            try_files $uri =404;
+            fastcgi_pass unix:/var/run/php/php7.0-fpm.sock;
+            fastcgi_index index.php;
+            ## https://stackoverflow.com/questions/28490391/how-to-properly-configure-alias-directive-in-nginx
+            fastcgi_param SCRIPT_FILENAME $request_filename;
+            include fastcgi_params;
+        }
 
-		location ~ /(php|js|css) {
-			access_log off;
-		}
-	}
+        location ~ /(php|js|css) {
+            access_log off;
+        }
+    }
 
-	## Error Redirects
-	error_page 403 /error.html;
-	error_page 404 /error.html;
-	error_page 405 /error.html;
-	error_page 500 501 502 503 504 /error.html;
+    ## Error Redirects
+    error_page 403 /error.html;
+    error_page 404 /error.html;
+    error_page 405 /error.html;
+    error_page 500 501 502 503 504 /error.html;
 
-	location = /error.html {
-		root /var/www/error;
-		internal;
-	}
+    location = /error.html {
+        root /var/www/error;
+        internal;
+    }
 }

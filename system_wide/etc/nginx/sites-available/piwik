@@ -1,101 +1,101 @@
 ## PIWIK Site Config
 
 #server {
-	### This is to avoid the spurious if for sub-domain name rewriting.
-	#listen [::]:80;
-	#server_name www.stats.demu.red;
-	#rewrite ^ $scheme://stats.demu.red$request_uri? permanent;
+    ### This is to avoid the spurious if for sub-domain name rewriting.
+    #listen [::]:80;
+    #server_name www.stats.demu.red;
+    #rewrite ^ $scheme://stats.demu.red$request_uri? permanent;
 #}
 
 server {
-	listen 80;
-	listen [::]:80;
-	listen 443 ssl;
-	listen [::]:443 ssl;
-	#limit_conn arbeit 10;
-	server_name stats.demu.red;
+    listen 80;
+    listen [::]:80;
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    #limit_conn arbeit 10;
+    server_name stats.demu.red;
 
-	## Parameterization using hostname of access and log filenames.
-	access_log  /var/log/nginx/piwik_access.log;
-	error_log /var/log/nginx/piwik_error.log;
+    ## Parameterization using hostname of access and log filenames.
+    access_log  /var/log/nginx/piwik_access.log;
+    error_log /var/log/nginx/piwik_error.log;
 
-	## Disable all methods besides HEAD, GET and POST.
-	if ($request_method !~ ^(GET|HEAD|POST)$ ) {
-		return 444;
-	}
+    ## Disable all methods besides HEAD, GET and POST.
+    if ($request_method !~ ^(GET|HEAD|POST)$ ) {
+        return 444;
+    }
 
-	root /var/www/piwik/;
-	index index.php index.html;
+    root /var/www/piwik/;
+    index index.php index.html;
 
-	## Include certbot fix
-	include /etc/nginx/snippets/nginx.well-known.conf;
+    ## Include certbot fix
+    include /etc/nginx/snippets/nginx.well-known.conf;
 
-	## Include ssl
-	include /etc/nginx/snippets/nginx.ssl.conf;
+    ## Include ssl
+    include /etc/nginx/snippets/nginx.ssl.conf;
 
-	### Deny Stuffs ### {{{
-		## Protect specific TXT and config files
-		location ~ /(\.|readme.html|readme.md|changelog.txt|changelog.md|contributing.txt|contributing.md|license.txt|license.md|legalnotice|privacy.txt|privacy.md|security.txt|security.md|sample-.*txt)
-		{
-			deny all;
-		}
+    ### Deny Stuffs ### {{{
+        ## Protect specific TXT and config files
+        location ~ /(\.|readme.html|readme.md|changelog.txt|changelog.md|contributing.txt|contributing.md|license.txt|license.md|legalnotice|privacy.txt|privacy.md|security.txt|security.md|sample-.*txt)
+        {
+            deny all;
+        }
 
-		## Protect .git files
-		location ~ /\.git/ {
-			access_log off;
-			log_not_found off;
-			deny all;
-		}
+        ## Protect .git files
+        location ~ /\.git/ {
+            access_log off;
+            log_not_found off;
+            deny all;
+        }
 
-		## Support for favicon. Return a 204 (No Content) if the favicon
-		# doesn't exist.
-		location = /favicon.ico {
-			try_files /favicon.ico =204;
-		}
-	### End Deny Stuffs ### }}}
+        ## Support for favicon. Return a 204 (No Content) if the favicon
+        # doesn't exist.
+        location = /favicon.ico {
+            try_files /favicon.ico =204;
+        }
+    ### End Deny Stuffs ### }}}
 
-	## Try all locations and relay to index.php as a fallback.
-	location / {
-		try_files $uri /index.php;
-	}
+    ## Try all locations and relay to index.php as a fallback.
+    location / {
+        try_files $uri /index.php;
+    }
 
-	## Stop logging /plugins
-	location /plugins {
-		access_log off;
-	}
+    ## Stop logging /plugins
+    location /plugins {
+        access_log off;
+    }
 
-	## Relay all index.php requests to fastcgi.
-	location ~* ^/(?:index|piwik)\.php$ {
-		fastcgi_pass unix:/var/run/php/php7.0-fpm.sock;
-		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-		include fastcgi_params;
-		access_log off;		## It spams a bit.
-	}
+    ## Relay all index.php requests to fastcgi.
+    location ~* ^/(?:index|piwik)\.php$ {
+        fastcgi_pass unix:/var/run/php/php7.0-fpm.sock;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+        access_log off;     ## It spams a bit.
+    }
 
-	## Any other attempt to access PHP files returns a 404.
-	location ~* ^.+\.php$ {
-		return 404;
-	}
+    ## Any other attempt to access PHP files returns a 404.
+    location ~* ^.+\.php$ {
+        return 404;
+    }
 
-	## Disallow any usage of piwik assets if referer is non valid.
-	#location ~* ^.+\.(?:jpg|png|css|gif|js|jpeg|swf)$ {
-		## Defining the valid referers.
-		#valid_referers none blocked *.mysite.com othersite.com;
-		#if ($invalid_referer)  {
-			#return 444;
-		#}
-		#expires max;
-		#break;
-	#}
+    ## Disallow any usage of piwik assets if referer is non valid.
+    #location ~* ^.+\.(?:jpg|png|css|gif|js|jpeg|swf)$ {
+        ## Defining the valid referers.
+        #valid_referers none blocked *.mysite.com othersite.com;
+        #if ($invalid_referer)  {
+            #return 444;
+        #}
+        #expires max;
+        #break;
+    #}
 
-	## Error Redirects
-	error_page 403 /error.html;
-	error_page 404 /error.html;
-	error_page 405 /error.html;
-	error_page 500 501 502 503 504 /error.html;
+    ## Error Redirects
+    error_page 403 /error.html;
+    error_page 404 /error.html;
+    error_page 405 /error.html;
+    error_page 500 501 502 503 504 /error.html;
 
-	location = /error.html {
-		root /var/www/error;
-		internal;
-	}
+    location = /error.html {
+        root /var/www/error;
+        internal;
+    }
 } # server

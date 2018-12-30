@@ -13,7 +13,7 @@ decorations none
 
 ## display <display name>
 # Use X display display
-#display <display name> 
+#display <display name>
 
 ## dockapp_mode <mode>
 # set dockapp mode, which can be either simple (for e.g. OpenBox, wmaker for
@@ -91,7 +91,7 @@ scrollbars none
 
 ## slot_size <int>
 # specifies size of icon slot, defaults to icon_size
-#slot_size <int> 
+#slot_size <int>
 
 ## skip_taskbar [<bool>]
 # hide tray`s window from the taskbar

@@ -23,7 +23,7 @@ set visible-stats on
 
 ## Shift-TAB to menu-complete backwards
 # cf. http://www.tikirobot.net/wp/2006/03/29/reverse-menu-complete-in-bash/
-#	\C-y:"\M--\C-i"
+#   \C-y:"\M--\C-i"
 
 ## Append symbol for file, in tab completion
 set visible-stats on
@@ -37,15 +37,15 @@ set visible-stats on
 
 ### History Stuffs ### {{{
 ## Ended up disabling these as the prompt got a bit wonky
-#	set mark-modified-lines on
-#	set history-preserve-point on
+#   set mark-modified-lines on
+#   set history-preserve-point on
 ### End History Stuffs ### }}}
 
 ### Editing Mode ### {{{
 ## I prefer some of emacs key bindings as OS X uses them.
-#	set editing-mode vi
-#	set keymap vi-insert
-#	vi-command vi-insert
+#   set editing-mode vi
+#   set keymap vi-insert
+#   vi-command vi-insert
 ### End Editing Mode ### }}}
 
 ### For Other Languages ### {{{
@@ -64,6 +64,6 @@ set bell-style audible
 ### End Bell ### }}}
 
 ### Testing ### {{{
-	## Add missing / when tab-completing symbolic links to dirs
-#	set mark-symlinked-directories on
+    ## Add missing / when tab-completing symbolic links to dirs
+#   set mark-symlinked-directories on
 ### End Testing ### }}}

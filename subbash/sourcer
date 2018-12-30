@@ -18,9 +18,9 @@ so ~/.subbash/sshagent                  ## SSH agent, have before settings
 
 ### Interactive ### {{{
 if [[ $- == *i* ]]; then
-	so ~/.subbash/prompt                ## COMMAND_PROMPT function
-	so ~/.subbash/alias                 ## Alias
-	so ~/.subbash/function              ## Functions
+    so ~/.subbash/prompt                ## COMMAND_PROMPT function
+    so ~/.subbash/alias                 ## Alias
+    so ~/.subbash/function              ## Functions
 fi
 ### End Interactive ### }}}
 
@@ -29,7 +29,7 @@ so ~/.subbash/settings                  ## Machine dependent settings
 
 ### Overrides ### {{{
 ## Easy per box conf for tracking
-so ~/.subbash/${HOSTNAME}_profile      ## configuration per OS linux/OSX
+so ~/.subbash/${HOSTNAME}_profile       ## configuration per OS linux/OSX
 
 ## This is last, so it can override everything.
 # Less fighting with mini installs.

@@ -9,32 +9,32 @@
 
 ### SSH Agent ### {{{
 function __ssh_agent() {
-	local SSH_ENV="$HOME/.ssh/environment"
-	local U_CHECK="$(logname)"
-	logname &>/dev/null
-	local F_CHECK="$?"
+    local SSH_ENV="$HOME/.ssh/environment"
+    local U_CHECK="$(logname)"
+    logname &>/dev/null
+    local F_CHECK="$?"
 
-	function __start_agent {
-		echo "Initialising new SSH agent..."
-		/usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
-		echo succeeded
-		chmod 600 "${SSH_ENV}"
-		. "${SSH_ENV}" > /dev/null
-		/usr/bin/ssh-add;
-	}
+    function __start_agent {
+        echo "Initialising new SSH agent..."
+        /usr/bin/ssh-agent | sed 's/^echo/#echo/' > "${SSH_ENV}"
+        echo succeeded
+        chmod 600 "${SSH_ENV}"
+        . "${SSH_ENV}" > /dev/null
+        /usr/bin/ssh-add;
+    }
 
-	## Source SSH settings, if applicable
-	if [ ${F_CHECK} == 0 ] && { [ "${U_CHECK}" == "${USER}" ] || [ "${U_CHECK}" == "logname: no login name" ] ;}; then
-		if [ -f "${SSH_ENV}" ]; then
-			. "${SSH_ENV}" > /dev/null
-			ps -ef 2>/dev/null | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
-				pstree -up ${USER} 2>/dev/null | grep ${SSH_AGENT_PID} | grep ^ssh-agent > /dev/null || {
-					__start_agent;
-				}
-			}
-		  else
-			__start_agent;
-		fi
-	fi
+    ## Source SSH settings, if applicable
+    if [ ${F_CHECK} == 0 ] && { [ "${U_CHECK}" == "${USER}" ] || [ "${U_CHECK}" == "logname: no login name" ] ;}; then
+        if [ -f "${SSH_ENV}" ]; then
+            . "${SSH_ENV}" > /dev/null
+            ps -ef 2>/dev/null | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+                pstree -up ${USER} 2>/dev/null | grep ${SSH_AGENT_PID} | grep ^ssh-agent > /dev/null || {
+                    __start_agent;
+                }
+            }
+          else
+            __start_agent;
+        fi
+    fi
 }
 ### End SSH Agent ### }}}

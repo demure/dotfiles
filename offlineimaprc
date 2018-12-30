@@ -20,7 +20,6 @@
 [general]
 #ui = ttyui
 ui = blinkenlights
-#ui = blinkenlights		# This is my preferred, but it is currently horribly broken...
 ## ui = quiet
 ##accounts = root,sdf,gmail,emu
 accounts = emu,sdf,gmail
@@ -42,7 +41,7 @@ localfolders = ~/.mail/sdf
 ## This is set due to an annoying error by the exparimental xoauth2
 # https://bbs.archlinux.org/viewtopic.php?id=206424
 auth_mechanisms = GSSAPI, CRAM-MD5, PLAIN, LOGIN
-maxconnections = 3 
+maxconnections = 3
 type = IMAP
 remoteuser = demure
 remotehost = ma.sdf.org
@@ -70,11 +69,11 @@ postsynchook = [ -e $HOME/.notmuch-config ] && notmuch new
 type = GmailMaildir
 localfolders = ~/.mail/gmail
 nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
-							'sent':    '[Gmail]/Sent Mail',
-							'flagged': '[Gmail]/Starred',
-							'trash':   '[Gmail]/Trash',
-							'archive': '[Gmail]/All Mail',
-							}.get(folder, folder)
+                            'sent':    '[Gmail]/Sent Mail',
+                            'flagged': '[Gmail]/Starred',
+                            'trash':   '[Gmail]/Trash',
+                            'archive': '[Gmail]/All Mail',
+                            }.get(folder, folder)
 
 [Repository gmail-Remote]
 ## This is set due to an annoying error by the exparimental xoauth2
@@ -89,21 +88,21 @@ remotepasseval = get_pass("mail-gmail")
 ## This setting removes mail for good, default of 'no' just strips gmail label (think inbox)
 realdelete = True
 nametrans = lambda folder: {'[Gmail]/Drafts':    'drafts',
-							'[Gmail]/Sent Mail': 'sent',
-							'[Gmail]/Starred':   'flagged',
-							'[Gmail]/Trash':     'trash',
-							'[Gmail]/All Mail':  'archive',
-							}.get(folder, folder)
+                            '[Gmail]/Sent Mail': 'sent',
+                            '[Gmail]/Starred':   'flagged',
+                            '[Gmail]/Trash':     'trash',
+                            '[Gmail]/All Mail':  'archive',
+                            }.get(folder, folder)
 folderfilter = lambda folder: folder in ['[Gmail]/Drafts',
-										'[Gmail]/Sent Mail',
-										'[Gmail]/Starred',
-										'[Gmail]/Trash',
-										'[Gmail]/All Mail',
-										'INBOX',
-										'People',
-										'Orders',
-										'News Letters',
-										]
+                                        '[Gmail]/Sent Mail',
+                                        '[Gmail]/Starred',
+                                        '[Gmail]/Trash',
+                                        '[Gmail]/All Mail',
+                                        'INBOX',
+                                        'People',
+                                        'Orders',
+                                        'News Letters',
+                                        ]
 ### End gmail ### }}}
 
 ### EMU ### {{{
@@ -116,11 +115,11 @@ postsynchook = [ -e $HOME/.notmuch-config ] && notmuch new
 type = Maildir
 localfolders = ~/.mail/emu
 nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
-							'sent':    '[Gmail]/Sent Mail',
-							'flagged': '[Gmail]/Starred',
-							'trash':   '[Gmail]/Trash',
-							'archive': '[Gmail]/All Mail',
-							}.get(folder, folder)
+                            'sent':    '[Gmail]/Sent Mail',
+                            'flagged': '[Gmail]/Starred',
+                            'trash':   '[Gmail]/Trash',
+                            'archive': '[Gmail]/All Mail',
+                            }.get(folder, folder)
 
 [Repository emu-Remote]
 ## This is set due to an annoying error by the exparimental xoauth2
@@ -134,16 +133,16 @@ sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 remotepasseval = get_pass("mail-emu")
 realdelete = True
 nametrans = lambda folder: {'[Gmail]/Drafts':    'drafts',
-							'[Gmail]/Sent Mail': 'sent',
-							'[Gmail]/Starred':   'flagged',
-							'[Gmail]/Trash':     'trash',
-							'[Gmail]/All Mail':  'archive',
-							}.get(folder, folder)
+                            '[Gmail]/Sent Mail': 'sent',
+                            '[Gmail]/Starred':   'flagged',
+                            '[Gmail]/Trash':     'trash',
+                            '[Gmail]/All Mail':  'archive',
+                            }.get(folder, folder)
 folderfilter = lambda folder: folder in ['[Gmail]/Drafts',
-										'[Gmail]/Sent Mail',
-										'[Gmail]/Starred',
-										'[Gmail]/Trash',
-										'[Gmail]/All Mail',
-										'INBOX',
-										]
+                                        '[Gmail]/Sent Mail',
+                                        '[Gmail]/Starred',
+                                        '[Gmail]/Trash',
+                                        '[Gmail]/All Mail',
+                                        'INBOX',
+                                        ]
 ### End EMU ### }}}

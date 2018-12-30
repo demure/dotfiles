@@ -11,10 +11,10 @@ set virtual_spoolfile=yes                          ## enable virtual folders
 
 ## sets up queries for virtual folders
 virtual-mailboxes \
-	"INBOX"         "notmuch://?query=tag:INBOX and NOT tag:archive" \
-	"Unread"        "notmuch://?query=tag:unread" \
-	"Starred"       "notmuch://?query=tag:*" \
-	"Sent"          "notmuch://?query=tag:sent"
+    "INBOX"         "notmuch://?query=tag:INBOX and NOT tag:archive" \
+    "Unread"        "notmuch://?query=tag:unread" \
+    "Starred"       "notmuch://?query=tag:*" \
+    "Sent"          "notmuch://?query=tag:sent"
 exec sidebar-toggle-virtual     ## Show non virtual mail on load
 
 ## notmuch bindings

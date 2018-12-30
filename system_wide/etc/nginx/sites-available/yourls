@@ -1,74 +1,74 @@
 ## YOURLS site config
 
 server {
-	listen 80;
-	listen [::]:80;
-	listen 443 ssl;
-	listen [::]:443 ssl;
-	server_name ln.demu.red;
-	root /var/www/YOURLS;
+    listen 80;
+    listen [::]:80;
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    server_name ln.demu.red;
+    root /var/www/YOURLS;
 
-	access_log /var/log/nginx/yourls_access.log;
-	error_log /var/log/nginx/yourls_error.log;
+    access_log /var/log/nginx/yourls_access.log;
+    error_log /var/log/nginx/yourls_error.log;
 
-	## Disable all methods besides HEAD, GET and POST.
-	if ($request_method !~ ^(GET|HEAD|POST)$ ) {
-		return 444;
-	}
+    ## Disable all methods besides HEAD, GET and POST.
+    if ($request_method !~ ^(GET|HEAD|POST)$ ) {
+        return 444;
+    }
 
-	index index.php index.html;
+    index index.php index.html;
 
-	## Include certbot fix
-	include /etc/nginx/snippets/nginx.well-known.conf;
+    ## Include certbot fix
+    include /etc/nginx/snippets/nginx.well-known.conf;
 
-	## Include ssl
-	include /etc/nginx/snippets/nginx.ssl.conf;
+    ## Include ssl
+    include /etc/nginx/snippets/nginx.ssl.conf;
 
-	### Deny Stuffs ### {{{
-		## Protect specific TXT and config files
-		location ~ /(\.|readme.html|readme.md|changelog.txt|changelog.md|contributing.txt|contributing.md|license.txt|license.md|legalnotice|privacy.txt|privacy.md|security.txt|security.md|sample-.*txt)
-		{
-			deny all;
-		}
+    ### Deny Stuffs ### {{{
+        ## Protect specific TXT and config files
+        location ~ /(\.|readme.html|readme.md|changelog.txt|changelog.md|contributing.txt|contributing.md|license.txt|license.md|legalnotice|privacy.txt|privacy.md|security.txt|security.md|sample-.*txt)
+        {
+            deny all;
+        }
 
-		## Protect .git files
-		location ~ /\.git/ {
-			access_log off;
-			log_not_found off;
-			deny all;
-		}
-	### End Deny Stuffs ### }}}
+        ## Protect .git files
+        location ~ /\.git/ {
+            access_log off;
+            log_not_found off;
+            deny all;
+        }
+    ### End Deny Stuffs ### }}}
 
-	location / {
-		try_files $uri $uri/ /yourls-loader.php?$query_string;
-		expires 14d;
-		add_header Cache-Control 'public';
+    location / {
+        try_files $uri $uri/ /yourls-loader.php?$query_string;
+        expires 14d;
+        add_header Cache-Control 'public';
 
-		#location ~ ^/add/(.*)$ {
-			#alias /var/www/YOURLS/admin/$1;
-			#try_files $uri /api/index.php;
-		#}
+        #location ~ ^/add/(.*)$ {
+            #alias /var/www/YOURLS/admin/$1;
+            #try_files $uri /api/index.php;
+        #}
 
-		location ~ /(js|css|images) {
-			access_log off;
-		}
-	}
+        location ~ /(js|css|images) {
+            access_log off;
+        }
+    }
 
-	location ~ \.php$ {
-		fastcgi_split_path_info ^(.+\.php)(/.+)$;
-		fastcgi_pass unix:/var/run/php/php7.0-fpm.sock;
-		fastcgi_index index.php;
-		include fastcgi_params;
-		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-		fastcgi_intercept_errors off;
-		fastcgi_buffer_size 16k;
-		fastcgi_buffers 4 16k;
-	}
+    location ~ \.php$ {
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        fastcgi_pass unix:/var/run/php/php7.0-fpm.sock;
+        fastcgi_index index.php;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_intercept_errors off;
+        fastcgi_buffer_size 16k;
+        fastcgi_buffers 4 16k;
+    }
 
-	## Error Redirects
-	# Done on purpose, as the main page is all in one.
-	error_page 403 /index.html;
-	error_page 404 /index.html;
-	error_page 405 /index.html;
-	error_page 500 501 502 503 504 /index.html;
+    ## Error Redirects
+    # Done on purpose, as the main page is all in one.
+    error_page 403 /index.html;
+    error_page 404 /index.html;
+    error_page 405 /index.html;
+    error_page 500 501 502 503 504 /index.html;
 }
