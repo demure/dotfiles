@@ -507,6 +507,7 @@ exec srandrd ~/projects/personal/scripts/hdmi.sh    ## For now, this auto connec
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id conky -qc $HOME/.i3/conky/back_log.conkyrc
 exec --no-startup-id conky -qc $HOME/.i3/conky/back_backups.conkyrc
+exec --no-startup-id conky -qc $HOME/.i3/conky/back_cal.conkyrc
 exec --no-startup-id conky -qc $HOME/.i3/conky/back_task.conkyrc
 exec --no-startup-id xss-lock -- i3lock -e -c 2E3436
 exec --no-startup-id redshift
