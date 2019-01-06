@@ -73,7 +73,7 @@ function __prompt_command() {
         PS1+="${PSCol}${PSOpt}\W${RCol}"    ## Current working dir
 
         ### Check Jobs ### {{{
-        command jobs 2>/dev/null
+        type jobs &>/dev/null
         if [ $? == "0" ]; then
             ## Backgrounded running jobs
             local BKGJBS=$(jobs -r | wc -l | tr -d ' ')
