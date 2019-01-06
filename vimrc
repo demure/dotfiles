@@ -348,6 +348,7 @@ endif
     set tabstop=4                   " Set Tab length
     set shiftwidth=4                " Affects when you press >>, << or ==. And auto indent.
     set shiftround                  " Uses multiple of shiftwidth when indenting with '<' and '>'
+    set softtabstop=4               " With space indenting, lets vim delete multiple spaces at once
     "" disabled per https://stackoverflow.com/questions/234564/tab-key-4-spaces-and-auto-indent-after-curly-braces-in-vim
 "   set smarttab                    " Insert Tabs at ^ per shiftwidth, not tabstop
     set autoindent                  " Always set auto indenting on
