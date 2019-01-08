@@ -49,6 +49,7 @@ gap_x 10
 gap_y 10
 
 ## stuff after ‘TEXT’ will be formatted on screen
+## Displays from auth and syslog
 TEXT
 $color
 ${color grey90}AUTH ${hr 2}$color
