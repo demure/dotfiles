@@ -5,7 +5,9 @@
 # vim:set syntax=muttrc:
 
 set pgp_use_gpg_agent           = yes
-set pgp_sign_as                 = 80D71B1AF3DE75FF7377DA38B3DC7AB56EEF2891
+set pgp_sign_as                 = 5FEC76218436521FE0B05D119A5C2AE96907C3D1
+set pgp_self_encrypt            = yes
+set pgp_default_key             = 061F408B84683AB36305F97B2C75CC3414602EB6
 set pgp_autosign                = yes
 set crypt_autosign              = yes
 set crypt_replysign             = yes
@@ -19,8 +21,8 @@ set pgp_decrypt_command         = "gpg2 --no-verbose --batch --output - %f"
 set pgp_sign_command            = "gpg2 --no-verbose --batch --output - --armor --detach-sign --textmode %?a?-u %a? %f"
 set pgp_clearsign_command       = "gpg2 --no-verbose --batch --output - --armor --textmode --clearsign %?a?-u %a? %f"
 ## Giving the full path fixes a pgpewrap not found issue
-set pgp_encrypt_only_command    = "/usr/lib/mutt/pgpewrap gpg2 --batch --quiet --no-verbose --output - --encrypt --textmode --armor --always-trust --encrypt-to D0289FEDA3059A8C12D74B66FB25CF7F1330AA3D -- -r %r -- %f"
-set pgp_encrypt_sign_command    = "/usr/lib/mutt/pgpewrap gpg2 --batch --quiet --no-verbose --textmode --output - --encrypt --sign %?a?-u %a? --armor --always-trust --encrypt-to D0289FEDA3059A8C12D74B66FB25CF7F1330AA3D -- -r %r -- %f"
+set pgp_encrypt_only_command    = "/usr/lib/neomutt/pgpewrap gpg2 --batch --quiet --no-verbose --output - --encrypt --textmode --armor --always-trust --encrypt-to 061F408B84683AB36305F97B2C75CC3414602EB6 -- -r %r -- %f"
+set pgp_encrypt_sign_command    = "/usr/lib/neomutt/pgpewrap gpg2 --batch --quiet --no-verbose --textmode --output - --encrypt --sign %?a?-u %a? --armor --always-trust --encrypt-to 061F408B84683AB36305F97B2C75CC3414602EB6 -- -r %r -- %f"
 set pgp_import_command          = "gpg2 --no-verbose --import -v %f"
 set pgp_export_command          = "gpg2 --no-verbose --export --armor %r"
 set pgp_verify_key_command      = "gpg2 --no-verbose --batch --fingerprint --check-sigs %r"
