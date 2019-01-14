@@ -43,6 +43,7 @@ macro y set browser "mpv $(echo %u | cut -d? -f1 -)"; open-in-browser ; set brow
 macro i set browser "feh %u"; open ; set browser sensible-browser
 macro w set browser "w3m %u"; open-in-browser ; set browser sensible-browser
 macro I set browser "feh %u"
+macro b open-in-browser
 macro B set browser sensible-browser
 
 
