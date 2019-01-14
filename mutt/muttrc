@@ -102,5 +102,9 @@ folder-hook aha/*                   source ~/.mutt/accounts/aha.muttrc
 folder-hook /var/spool/mail/$USER/* source ~/.mutt/accounts/local.muttrc
 ### End Account }}}
 
+## Fetches offlineimap mail
 timeout-hook 'push "!~/projects/personal/scripts/offlineimap_neomutt_hook.sh &<enter>"'
 startup-hook 'push "!~/projects/personal/scripts/offlineimap_neomutt_hook.sh &<enter>"'
+
+## Warns if replying to multiple recipt email
+reply-hook "~C 2" "set sleep_time=10\;echo 'Warning, original message has multiple recipients!'\;unset sleep_time"
