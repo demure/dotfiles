@@ -111,6 +111,7 @@ if $USER != 'mobile'
             Plugin 'kien/rainbow_parentheses.vim'       " Colorize parentheses and similar chars
             Plugin 'myusuf3/numbers.vim'                " Make num ruler auto switch absolute/rel for insert/norm
             Plugin 'mhinz/vim-signify'                  " Add git diff
+            Plugin 'mboughaba/i3config.vim'             " i3 conf syntax
             """ End Style """ }}}
 
             """ Added Interface """ {{{
