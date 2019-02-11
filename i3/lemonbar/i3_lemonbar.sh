@@ -43,32 +43,39 @@ cnt_gpg=${upd_gpg}
 cnt_tmb=${upd_tmb}
 cnt_temp=${upd_temp}
 cnt_net=${upd_net}
+cnt_mem=${upd_mem}
+cnt_time=${upd_time}
+cnt_disk=${upd_disk}
 
 while :; do
 
-    ## Volume, "VOL"
+    ### Volume Check, "VOL" ### {{{
     if [ $((cnt_vol++)) -ge ${upd_vol} ]; then
         ## Retired this line as amixer stopped showing >100% volume... around the same time amixer mute broke
         #amixer get Master | awk -F'[]%[]' '/%/ {STATE=$5; VOL=$2} END {if (STATE == "off") {print "VOL×\n"} else {printf "VOL%d%%\n", VOL}}' > "${panel_fifo}" &
-        pactl list sinks | awk 'BEGIN {MUTE="none";VOL="none"}/^\t*Volume|^\t*Mute/ {if($1=="Mute:"){MUTE=$2};if($1=="Volume:"){VOL=$5}} END {if(MUTE=="yes"){print "VOL×\n"} else {if(VOL!="none"){printf "VOL%d%%\n", VOL} else {print "VOLerror\n"}}}' > "${panel_fifo}" &
+        pactl list sinks | awk 'BEGIN {MUTE="none";VOL="none"}/^\t*Volume|^\t*Mute/ {if($1=="Mute:"){MUTE=$2};if($1=="Volume:"){VOL=$5}} END {if(MUTE=="yes"){print "VOL×\n"} else {if(VOL!="none"){printf "VOL%d%%\n", VOL} else {print "VOLerror\n"};}}' > "${panel_fifo}" &
         cnt_vol=0
     fi
+    ### End Volume Check, "VOL" ### }}}
 
-    ## Brightness, "BRI"
+    ### Brightness Check, "BRI" ### {{{
     if [ $((cnt_bri++)) -ge ${upd_bri} ]; then
         ## xbacklight doesn't work as this doesn't have xrandr access while running as the bar?
         ## On failure, '$1/$2' becomes '0', and will result in 'none'
         printf "%s%s\n" "BRI" "$(paste /sys/class/backlight/*/{actual_brightness,max_brightness} | awk '{BRIGHT=$1/$2*100} END {if(BRIGHT!=0){printf "%.f", BRIGHT} else {print "none"}}')" > "${panel_fifo}"
         cnt_bri=0
     fi
+    ### End Brightness Check, "BRI" ### }}}
 
-    ## Temperature Check, TMP
+    ### Temperature Check, "TMP" ### {{{
     if [ $((cnt_temp++)) -ge ${upd_temp} ]; then
-        printf "%s%s\n" "TMP" "$(acpi -t${temp_format} 2>/dev/null | awk '/Thermal 0/ {if($6=="F"||$6=="C"){print $4,$6} else {print "none none"}}')" > "${panel_fifo}"
+        ## Removes decimal from Celsius as it is always an integer
+        printf "%s%s\n" "TMP" "$(acpi -t${temp_format} 2>/dev/null | awk 'BEGIN {} /Thermal 0/ {if($6=="C"){printf "%.0f %s",$4,$6} else {if($6=="F"){print $4,$6} else {print "none none"};}}')" > "${panel_fifo}"
         cnt_temp=0
     fi
+    ### End Temperature Check, "TMP" ### }}}
 
-    ## Network Check, NET
+    ### Network Check, "NET" ### {{{
     if [ $((cnt_net++)) -ge ${upd_net} ]; then
         ## Get IP and wifi strength
         ## Now supports IPv6
@@ -76,14 +83,16 @@ while :; do
         printf "%s%s %s %s\n" "NET" "$(ip address show up scope global 2>/dev/null | awk 'BEGIN {Dv4=0;Dv6=0} /inet/&&!/(docker|virbr|tun|tap)[0-9]+$/ {if(Dv4==0 && $1=="inet"){sub(/\/.*/,NULL,$2); IPv4=$2; INT=$7; Dv4=1}; if(Dv6==0 && $1=="inet6" && $2!~/^fd/){sub(/\/.*/,NULL,$2); IPv6=$2; Dv6=1}} END {if(IPv4==""){IPv4="none"; INT="none"}; if(IPv6==""){IPv6="none"}; print IPv4,INT,IPv6}')" "$(iwconfig 2>/dev/null | awk '/Link/ {match($2, /\w+=([0-9]+)\/([0-9]+)/, m)} END {if(m[1]!=""&&m[2]!=""){print int((m[1] / m[2]) * 100)} else {print "none"}}')" "$(ip tuntap | awk 'BEGIN {TC=0} /tun/ {if($0!=""){TC++}} END {if(TC>=1){print "VPN"} else {print "none"}}')" > "${panel_fifo}"
         cnt_net=0
     fi
+    ### End Network Check, "NET" ### }}}
 
-    ## Offlineimap, "EMA"
+    ### Offlineimap, "EMA" ### {{{
     if [ $((cnt_mail++)) -ge ${upd_mail} ]; then
         printf "%s%s\n" "EMA" "$(find $HOME/.mail/*/INBOX/new -type f 2>/dev/null | wc -l)" > "${panel_fifo}"
         cnt_mail=0
     fi
+    ### End Offlineimap, "EMA" ### }}}
 
-    ## Multi Music Player Display
+    ### Multi Music Player Display, "MMP" ### {{{
     if [ $((cnt_mmpd++)) -ge ${upd_mmpd} ]; then
         mmpd_check="$(grep -qxs 1 $HOME/.config/pianobar/isplaying && cat $HOME/.config/pianobar/nowplaying || echo 'none')"
         if [ "${mmpd_check}" != "none" ]; then
@@ -120,8 +129,9 @@ while :; do
         fi
     cnt_mmpd=0
     fi
+    ### End Multi Music Player Display ### }}}
 
-    ## Thinkpad Milti Battery, "TMB"
+    ### Thinkpad Milti Battery, "TMB" ### {{{
     ## Works for normal batteries now too.
     if [ $((cnt_tmb++)) -ge ${upd_tmb} ]; then
         ## Check for BAT0
@@ -147,20 +157,46 @@ while :; do
         fi
         cnt_tmb=0
     fi
+    ### End Thinkpad Milti Battery, "TMB" ### }}}
 
-    ## GPG Check, "GPG"
+    ### GPG Cache Check, "GPG" ### {{{
     if [ $((cnt_gpg++)) -ge ${upd_gpg} ]; then
         export DISPLAY=''
         ## Now will check if a local gpg key, or a smartcard, is cached.
         printf "%s%s\n" "GPG" "$({ gpg-connect-agent 'keyinfo --list' /bye 2>/dev/null; gpg-connect-agent 'scd getinfo card_list' /bye 2>/dev/null; } | awk 'BEGIN{CH=0} /^S/ {if($7==1){CH=1}; if($2=="SERIALNO"){CH=1}} END{if($0!=""){print CH} else {print "none"}}')" > "${panel_fifo}"
         cnt_gpg=0
     fi
+    ### End GPG Cache Check, "GPG" ### }}}
 
-    ## External IP, "EXT"
+    ### External IP Check, "EXT" ### {{{
     if [ $((cnt_ext_ip++)) -ge ${upd_ext_ip} ]; then
         printf "%s%s\n" "EXT" "$(wget --no-proxy http://checkip.dyndns.org/ -q -O - | grep -Eo '\<[[:digit:]]{1,3}(\.[[:digit:]]{1,3}){3}\>' || echo 'err')" > "${panel_fifo}"
         cnt_ext_ip=0
     fi
+    ### End External IP Check, "EXT" ### }}}
+
+    ### System Memory Usage, "MEM" ### {{{
+    if [ $((cnt_mem++)) -ge ${upd_mem} ]; then
+        ## Using MemAvailable and flipping the percentage with a "1-__" as MemFree gives bad results.
+        printf "%s%s\n" "MEM" "$(awk '/MemAvailable/ {AVAIL=$2} /MemTotal/ {TOTAL=$2} END {printf "%.0f%\n", (1-AVAIL/TOTAL)*100}' /proc/meminfo)" > "${panel_fifo}"
+        cnt_mem=0
+    fi
+    ### End System Memory Usage, "MEM" ### }}}
+
+    ### Time Check, "TIM" ### {{{
+    if [ $((cnt_time++)) -ge ${upd_time} ]; then
+        printf "%s%s\n" "TIM" "$(date '+%a %d %b %H:%M')" > "${panel_fifo}"
+        cnt_time=0
+    fi
+    ### End Time Check, "TIM" ### }}}
+
+    ### Disk Usage Check, "DIC" ### {{{
+    if [ $((cnt_disk++)) -ge ${upd_disk} ]; then
+        ## Limits to root filesystem. awk cuts header line and shucks leading space
+        printf "%s%s\n" "DIC" "$(df --output=pcent / | awk 'END {print $1}')" > "${panel_fifo}"
+        cnt_disk=0
+    fi
+    ### End Disk Usage Check, "DIC" ### }}}
 
     ## Finally, wait 1 second
     sleep 1s;

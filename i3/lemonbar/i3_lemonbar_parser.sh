@@ -3,7 +3,7 @@
 ## Input parser for i3 bar
 ##
 ## Based on Electro7's work
-## Modded by demure
+## Highly Modded by demure
 
 ## config
 . $(dirname $0)/i3_lemonbar_config
@@ -17,23 +17,9 @@ while read -r line ; do
     case $line in
         ### SYS Case ### {{{
         SYS*)
-            ## conky=, 0=wday, 1=mday, 2=month, 3=time, 4=cpu, 5=mem, 6=disk /,
-            ## 7=REMOVED, 8-9=up/down wlan, 10-11=up/down eth
-            ## Things to add: Make HD use show free? Network weechat check?
+            ## conky=, 0-1=up/down wlan, 2-3=up/down eth, 5=cpu
 
             sys_arr=(${line#???})
-
-            ### Time and Date ### {{{
-            ## Date
-            if [ ${res_w} -gt 1024 ]; then
-                date="${sys_arr[0]} ${sys_arr[1]} ${sys_arr[2]}"
-              else
-                date="${sys_arr[1]} ${sys_arr[2]}"
-            fi
-            date="%{F${color_sec_b1}}${sep_left}%{F${color_icon} B${color_sec_b1}} %{T2}${icon_clock}%{F- T1} ${date}"
-            ## Time
-            time="%{F${color_head}}${sep_left}%{F${color_back} B${color_head}} ${sys_arr[3]} %{F- B-}"
-            ### End Time ### }}}
 
             ### CPU ### {{{
             if [ ${sys_arr[4]} -gt ${cpu_alert} ]; then
@@ -44,22 +30,15 @@ while read -r line ; do
             cpu="%{F${cpu_cback}}${sep_left}%{F${cpu_cicon} B${cpu_cback}} %{T2}${icon_cpu}%{F${cpu_cfore} T1} ${sys_arr[4]}%"
             ### End CPU ### }}}
 
-            ### Memory and Disk ### {{{
-            ## mem (ram)
-            mem="%{F${cpu_cicon}}${sep_l_left} %{T2}${icon_mem}%{F${cpu_cfore} T1} ${sys_arr[5]}%"
-            ## disk /
-            diskr="%{F${color_sec_b1}}${sep_left}%{F${color_icon} B${color_sec_b1}} %{T2}${icon_hd}%{F- T1} ${sys_arr[6]}%"
-            ### End Memory ### }}}
-
             ### Net Speed ### {{{
             ## made to replace WLAN and Eth sections
             ## Will prefer eth0 if up
-            if [ "${sys_arr[10]}" == "down" ]; then
-                if [ "${sys_arr[8]}" == "down" ];then
+            if [ "${sys_arr[2]}" == "down" ]; then
+                if [ "${sys_arr[0]}" == "down" ];then
                     nets_dv="×"; nets_uv="×";
                     nets_cback=${color_sec_b1}; nets_cicon=${color_disable}; nets_cfore=${color_disable};
                   else
-                    nets_dv=${sys_arr[8]}K; nets_uv=${sys_arr[9]}K;
+                    nets_dv=${sys_arr[0]}K; nets_uv=${sys_arr[1]}K;
                     if [ ${nets_dv:0:-3} -gt ${net_alert} ] || [ ${nets_uv:0:-3} -gt ${net_alert} ]; then
                         nets_cback=${color_net}; nets_cicon=${color_back}; nets_cfore=${color_back};
                       else
@@ -67,7 +46,7 @@ while read -r line ; do
                     fi
                 fi
               else
-                nets_dv=${sys_arr[10]}K; nets_uv=${sys_arr[11]}K;
+                nets_dv=${sys_arr[2]}K; nets_uv=${sys_arr[3]}K;
                 if [ ${nets_dv:0:-3} -gt ${net_alert} ] || [ ${nets_uv:0:-3} -gt ${net_alert} ]; then
                     nets_cback=${color_net}; nets_cicon=${color_back}; nets_cfore=${color_back};
                   else
@@ -79,6 +58,41 @@ while read -r line ; do
             ### End Net Speed ### }}}
             ;;
         ### End SYS Case ### }}}
+
+        ### Time and Date Case ### {{{
+        TIM*)
+            ## Display Ram use
+            ## Seems to need a hand to be treated as an array...
+            read -r -a time_arr <<< "${line#???}"
+            #time_arr="${line#???}"
+
+            ## Date
+            if [ ${res_w} -gt 1024 ]; then
+                date="${time_arr[0]} ${time_arr[1]} ${time_arr[2]}"
+              else
+                date="${time_arr[1]} ${time_arr[2]}"
+            fi
+            date="%{F${color_sec_b1}}${sep_left}%{F${color_icon} B${color_sec_b1}} %{T2}${icon_time}%{F- T1} ${date}"
+            ## Time
+            time="%{F${color_head}}${sep_left}%{F${color_back} B${color_head}} ${time_arr[3]} %{F- B-}"
+            ;;
+        ### End MEM Case ### }}}
+
+        ### Disk Usage Case ### {{{
+        DIC*)
+            ## Display Disk use
+            disk_arr="${line#???}"
+            diskr="%{F${color_sec_b1}}${sep_left}%{F${color_icon} B${color_sec_b1}} %{T2}${icon_disk}%{F- T1} ${disk_arr}"
+            ;;
+        ### End Disk Usage Case ### }}}
+
+        ### MEM Usage Case ### {{{
+        MEM*)
+            ## Display Ram use
+            mem_arr="${line#???}"
+            mem="%{F${cpu_cicon}}${sep_l_left} %{T2}${icon_mem}%{F${cpu_cfore} T1} ${mem_arr}"
+            ;;
+        ### End MEM Usage Case ### }}}
 
         ### Network Case ### {{{
         NET*)
@@ -171,7 +185,15 @@ while read -r line ; do
             temp_arr_val=$(echo ${line#???} | cut -f1 -d\ )
             temp_arr_unit=$(echo ${line#???} | cut -f2 -d\ )
             if [ "${temp_arr_val}" != "none" ]; then
-                temp_check=$(awk -v x=${temp_arr_val} -v y=${temp_alert} 'BEGIN {if (x<y){print 0} else {print 1}}')
+
+                ## Select alert for measurement system
+                if [ ${temp_arr_unit} == "C" ]; then
+                    temp_check=$(awk -v x=${temp_arr_val} -v y=${temp_alert_c} 'BEGIN {if (x<y){print 0} else {print 1}}')
+                  else
+                    temp_check=$(awk -v x=${temp_arr_val} -v y=${temp_alert_f} 'BEGIN {if (x<y){print 0} else {print 1}}')
+                fi
+
+                ## Set alert color
                 if [ ${temp_check} -eq 1 ]; then
                     temp_cback=${color_temp}; temp_cicon=${color_back}; temp_cfore=${color_back};
                     else
@@ -188,9 +210,9 @@ while read -r line ; do
         EMA*)
             email_arr="${line#???}"
             if [ "${email_arr}" != "0" ]; then
-                mail_cback=${color_mail}; mail_cicon=${color_back}; mail_cfore=${color_back}; mail_icon=${icon_mail}; mail_num=${email_arr}
+                mail_cback=${color_mail}; mail_cicon=${color_sec_b2}; mail_cfore=${color_sec_b2}; mail_icon=${icon_mail}; mail_num=${email_arr}; mail_post_sep=${sep_left}
               else
-                mail_cback=${color_sec_b2}; mail_cicon=${color_icon}; mail_cfore=${color_fore}; mail_icon=${icon_mail_read}; mail_num=""
+                mail_cback=${color_sec_b2}; mail_cicon=${color_icon}; mail_cfore=${color_fore}; mail_icon=${icon_mail_read}; mail_num=""; mail_post_sep=${sep_l_left}
             fi
             email="%{F${mail_cback}}${sep_left}%{F${mail_cicon} B${mail_cback}} %{T2}${mail_icon}%{F${mail_cfore} T1} ${mail_num}"
             ;;
@@ -205,7 +227,9 @@ while read -r line ; do
                 else
                     lock="${icon_gpg_locked}"
                 fi
-                gpg="%{F${color_icon}}${sep_l_left}%{B${color_sec_b2}}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_gpg}%{F${color_fore} T1} ${lock}"
+                #gpg="%{F${color_icon}}${sep_l_left}%{B${color_sec_b2}}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_gpg}%{F${color_fore} T1} ${lock}"
+                ## Using mail_post_sep from EMA case, to help with color when mail highlighted
+                gpg="${mail_post_sep}%{F${color_icon}}%{B${color_sec_b2}}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_gpg}%{F${color_fore} T1} ${lock}"
             fi
             ;;
         ### End GPG Case ### }}}
@@ -343,8 +367,8 @@ while read -r line ; do
         fi
 
         filler="%{F${color_sec_b1}}${sep_left}%{F${color_icon} B${color_sec_b1}} %{T2}${net_icon}%{F- T1}"
-        ext_ip="%{F${color_sec_b2}}${sep_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_ext_ip}%{F- T1} ${net_arr_ipv6}"
-        mast_net="${filler}${stab}${ext_ip}"
+        ipv6_ip="%{F${color_sec_b2}}${sep_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_ext_ip}%{F- T1} ${net_arr_ipv6}"
+        mast_net="${filler}${stab}${ipv6_ip}"
       else
         mast_net="${local_ip}${stab}${wifi}${stab}${ext_ip}${stab}${vpn}${stab}"
     fi

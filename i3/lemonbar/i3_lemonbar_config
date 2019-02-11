@@ -25,7 +25,7 @@ scrub_ip="---.---.---.---"
 
 ### Temperature ### {{{
 ## Temperature value can either be C or F.
-temp_format="F"
+temp_format="C"
 if [ ${temp_format} = "C" ]; then
     temp_format=""
   else
@@ -38,7 +38,8 @@ fi
 ### Alarm Settings ### {{{
 cpu_alert=75                        ## % cpu use
 net_alert=50                        ## K net use
-temp_alert=160                      ## F heat use
+temp_alert_c=70                     ## C heat use
+temp_alert_f=160                    ## F heat use
 
 ## Battery
 ## Note: levels higher than 'high' will not be highlighted.
@@ -58,6 +59,9 @@ upd_gpg=300                         ## GPG update
 upd_tmb=60                          ## Thinkpad Multi Battery update
 upd_temp=3                          ## Temperature update
 upd_net=3                           ## Network update
+upd_mem=3                           ## Mem used update
+upd_time=5                          ## Time update
+upd_disk=10                         ## Disk free update
 ### End Update ### }}}
 
 ### Color ### {{{
@@ -121,7 +125,7 @@ sep_l_left=""                      ## Powerline light separator left
 sep_l_right=""                     ## Powerline light sepatator right
 
 # Icon glyphs from Font Awesome
-icon_clock=""                      ## Clock icon
+icon_time=""                       ## Time icon
 icon_cpu=""                        ## CPU icon
 #icon_cpu=""                        ## CPU icon
 icon_mem=""                        ## MEM icon
@@ -129,8 +133,8 @@ icon_dl=""                         ## Download icon
 icon_ul=""                         ## Upload icon
 icon_vol=""                        ## Volume icon
 icon_bri=""                        ## Brightness icon
-icon_hd=""                         ## HD / icon
-icon_home=""                       ## HD /home icon
+icon_disk=""                       ## Disk usage icon
+icon_disk_home=""                  ## Disk usage Home icon
 icon_mail=""                       ## Mail icon
 icon_mail_read=""                  ## Mail read icon
 icon_chat=""                       ## IRC/Chat icon
