@@ -45,20 +45,6 @@
     }
     ### End Man ### }}}
 
-    ### Tmux Display Funtion ### {{{
-    ## For resyncing $DISPLAY
-    # used to refresh ssh connection for tmux
-    # http://justinchouinard.com/blog/2010/04/10/fix-stale-ssh-environment-variables-in-gnu-screen-and-tmux
-    function r() {
-        if [[ -n $TMUX ]]; then
-            NEW_DISPLAY=$(tmux showenv|grep ^DISPLAY|cut -d = -f 2)
-            if [[ -n $NEW_DISPLAY ]] && [[ -S $NEW_DISPLAY ]]; then
-                DISPLAY=$NEW_DISPLAY
-            fi
-        fi
-    }
-    ### End Tmux Display ### }}}
-
     ### Git Files Hist Function ### {{{
     function git_files_hist() {
     git log --pretty=%h | while read hash; do git ls-tree -r $hash | awk '{print $4}'; done | sort -u
