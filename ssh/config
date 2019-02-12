@@ -115,6 +115,11 @@ host nas_fs nfs
 host *
     User demure
     Port 22
+    ## Disabled to speed up connections
     GSSAPIAuthentication no
     ## https://pthree.org/2013/05/30/openssh-keys-and-the-drunken-bishop/
     VisualHostKey yes
+    ## Speed up subsequent connections
+    ControlMaster auto
+    ControlPath /tmp/ssh_mux_%h_%p_%r
+    ControlPersist 1h
