@@ -18,6 +18,12 @@
         ForwardX11 yes
         ForwardX11Trusted no
 
+    Host ddgpg
+        HostName demu.red
+        Port 500
+        #RemoteForward /home/demure/.gnupg/S.gpg-agent /home/demure/.gnupg/S.gpg-agent.extra
+        RemoteForward /run/user/1000/gnupg/S.gpg-agent /run/user/1000/gnupg/S.gpg-agent.extra
+
     host ddcomp
         hostName localhost
         Port 2001
