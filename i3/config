@@ -182,6 +182,8 @@ workspace_auto_back_and_forth yes
             bindsym i exec --no-startup-id xcalib -invert -alter, mode "default"
             ## Set brightness to my default of 30%
             bindsym b exec --no-startup-id xbacklight -set 30, mode "default"
+            ## One minute timer
+            bindsym t exec urxvt -fn xft:PragmataProMono-Regular:pixelsize=70 -e termdown -WBb -t TIME -q 3 1m, mode "default"
 
             ## back to normal: Enter or Escape
             bindsym Return mode "default"
@@ -443,7 +445,7 @@ workspace_auto_back_and_forth yes
     ## (adding "(?i)" means ignore case)
     ### Program Floating ### {{{
     for_window [class="mpv|feh|Pinentry|Gnome-calculator"] floating enable
-    for_window [title="Steam - Update*|Steam - Self Updater|Event Tester"] floating enable
+    for_window [title="Steam - Update*|Steam - Self Updater|Event Tester|termdown"] floating enable
     ## Make wicd-curses and terminal_velocity pop up bigger, and centered
     ## Added second criteria to reduce false positives
     for_window [class="URxvt"] [title="wicd-curses|terminal_velocity"] floating enable, resize shrink width 10000px, resize grow width 800px, resize shrink height 10000px, resize grow height 600px, move position 525 225

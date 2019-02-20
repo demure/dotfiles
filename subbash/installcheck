@@ -21,7 +21,8 @@ caff fail2ban-client wicd-curses rsync weechat diff file find gpg gpg2 mc \
 lnav cheat dfc lemonbar newsboat task redshift xdotool git clamscan iftop \
 wireshark aptitude hwmon bc entr gpm tlp sfill vit curl lshw parallel minicom \
 khal scdaemon grep less cmus mpv tmuxinator iw goobook dmidecode gawk bvi \
-pandoc djmount terminal_velocity openvpn resolvconf borg iptraf-ng make acpi)
+pandoc djmount terminal_velocity openvpn resolvconf borg iptraf-ng make acpi \
+termdown)
 
 for i in "${CLI_LIST[@]}"; do
     if [[ ! $(command -v ${i}) ]]; then
