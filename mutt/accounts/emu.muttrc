@@ -3,7 +3,7 @@ set from        = "amcbean@emich.edu"
 set sendmail    = "/usr/bin/msmtp -a emu"
 set my_account  = "emu"         ## This is for an offlineimap macro
 ## Temp, waiting on https://github.com/neomutt/neomutt/issues/658
-macro index \Co     "<shell-escape>offlineimap -a emu -f INBOX -u quiet &>/dev/null<enter>" "run offlineimap to sync current inbox."
+macro index \Co     "<shell-escape>offlineimap -a emu<enter>" "run offlineimap to sync current inbox."
 
 ## Default inbox
 set spoolfile   = "+emu/INBOX"
