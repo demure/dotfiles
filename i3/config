@@ -182,8 +182,10 @@ workspace_auto_back_and_forth yes
             bindsym i exec --no-startup-id xcalib -invert -alter, mode "default"
             ## Set brightness to my default of 30%
             bindsym b exec --no-startup-id xbacklight -set 30, mode "default"
-            ## One minute timer
-            bindsym t exec urxvt -fn xft:PragmataProMono-Regular:pixelsize=70 -e termdown -WBb -t TIME -q 3 1m, mode "default"
+            ## One minute timer, big
+            bindsym t exec urxvt -fn xft:PragmataProMono-Regular:pixelsize=70 -e termdown -WBb -c 10 -t TIME 1m, mode "default"
+            ## One minute timer, small
+            bindsym Shift+t exec urxvt -e termdown -WBb -c 10 -t TIME 1m, mode "default"
 
             ## back to normal: Enter or Escape
             bindsym Return mode "default"
