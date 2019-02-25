@@ -20,7 +20,7 @@ set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
 ### Index Key Bindings ### {{{
 bind index g        noop            ## Removes error from next binding
 bind index gg       first-entry
-bind index G        last-entry
+bind index GG       last-entry
 
 bind index R        group-reply
 bind index <tab>    sync-mailbox

@@ -14,16 +14,22 @@ virtual-mailboxes \
     "INBOX"         "notmuch://?query=tag:INBOX and NOT tag:archive" \
     "Unread"        "notmuch://?query=tag:unread" \
     "Starred"       "notmuch://?query=tag:*" \
-    "Sent"          "notmuch://?query=tag:sent"
+    "Sent"          "notmuch://?query=tag:sent" \
+    "Attachment"    "notmuch://?query=tag:attachment" \
+    "Signed"        "notmuch://?query=tag:signed" \
+    "Encrypted"     "notmuch://?query=tag:encrypted"
+
 exec sidebar-toggle-virtual     ## Show non virtual mail on load
 
 ## notmuch bindings
-macro index X "<sidebar-toggle-virtual>                             ## Replace <change-vfolder> with useful toggle
+macro index X "<sidebar-toggle-virtual>"                            ## Replace <change-vfolder> with useful toggle
 
 ## The following have not been checked by me yet...
+## Disabled as I'm not really using notmuch
 macro index \\\\ "<vfolder-from-query>"                             ## looks up a hand made query
-macro index A "<modify-labels>+archive -unread -inbox\\n"           ## tag as Archived
-macro index I "<modify-labels>-inbox -unread\\n"                    ## removed from inbox
-macro index S "<modify-labels-then-hide>-inbox -unread +junk\\n"    ## tag as Junk mail
-macro index + "<modify-labels>+*\\n<sync-mailbox>"                  ## tag as starred
-macro index - "<modify-labels>-*\\n<sync-mailbox>"                  ## tag as unstarred
+#macro index A "<modify-labels>+archive -unread -inbox\\n"           ## tag as Archived
+#macro index I "<modify-labels>-inbox -unread\\n"                    ## removed from inbox
+#macro index S "<modify-labels-then-hide>-inbox -unread +junk\\n"    ## tag as Junk mail
+#macro index + "<modify-labels>+*\\n<sync-mailbox>"                  ## tag as starred
+#macro index - "<modify-labels>-*\\n<sync-mailbox>"                  ## tag as unstarred
+macro index \CX "<modify-labels>+deleted\n"                         ## tag as deleted
