@@ -34,17 +34,23 @@ goto-next-feed no
 bind-key j down
 bind-key k up
 
-browser sensible-browser
+browser $BROWSER
 player mpv
 
 ## Macros
 ## Strips utm/etc
-macro y set browser "mpv $(echo %u | cut -d? -f1 -)"; open-in-browser ; set browser sensible-browser
-macro i set browser "feh %u"; open ; set browser sensible-browser
-macro w set browser "w3m %u"; open-in-browser ; set browser sensible-browser
+macro o set browser "mpv $(echo %u | cut -d? -f1 -)"; open-in-browser ; set browser $BROWSER
+## Got for playing podcasts when %u doesn't match
+macro p pipe-to "grep -o 'http.*mp3' | xargs -n1 mpv" ;
+macro i set browser "feh %u"; open ; set browser $BROWSER
+macro w set browser "w3m %u"; open-in-browser ; set browser $BROWSER
 macro I set browser "feh %u"
 macro b open-in-browser
-macro B set browser sensible-browser
+macro B set browser $BROWSER
+## copy url to clipboard "yank"
+macro y set browser "echo -n %u | xclip -selection clipboard"; open-in-browser ; set browser $BROWSER
+## add video or audio to play queue using mpv (requires: task-spooler, mpv, youtube-dl)
+macro p set browser "tsp mpv %u"; open-in-browser ; set browser $BROWSER
 
 
 # Ivaylo Kuzev <ivkuzev@gmail.com>, 2014

@@ -8,6 +8,10 @@
     ### Universal Exports ### {{{
     export CLICOLOR="YES"       ## Color 'ls', etc.
     export EDITOR=vim           ## Set default editor
+    export BROWSER=qutebrowswer
+    export BROWSERCLI=w3m
+    ## Adding PATH junk
+    export PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/pkg/bin:/usr/local/bin:/usr/local/sbin:${HOME}/projects/personal/scripts:${HOME}/bin:${HOME}/.local/bin:/usr/local/games:/usr/games
 
         ### History Settings ### {{{
         export HISTSIZE=100000                  ## Size of shells hist
@@ -108,9 +112,3 @@
 #   fi
 #   ### End TERM ### }}}
 #### End Exports ### }}}
-
-## Adding PATH junk
-# evaluate if I can safely have MA's path higher...
-# put this is a location
-#export PATH=/usr/pkg/bin:/usr/local/bin:/usr/bin:/bin
-export PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/pkg/bin:/usr/local/bin:/usr/local/sbin:${HOME}/projects/personal/scripts:${HOME}/bin:${HOME}/.local/bin:/usr/local/games:/usr/games
