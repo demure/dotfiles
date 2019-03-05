@@ -186,6 +186,8 @@ workspace_auto_back_and_forth yes
             bindsym t exec urxvt -fn xft:PragmataProMono-Regular:pixelsize=70 -e termdown -WBb -c 10 -t TIME 1m, mode "default"
             ## One minute timer, small
             bindsym Shift+t exec urxvt -e termdown -WBb -c 10 -t TIME 1m, mode "default"
+            ## Flip screen horizontally
+            bindsym f exec --no-startup-id xrandr -x, mode "default"
 
             ## back to normal: Enter or Escape
             bindsym Return mode "default"
