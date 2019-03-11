@@ -7,7 +7,7 @@
 # Add check for key exists first
 # Add check -> Y/N for ssh_env existing? might not need, if using __ssh_agent right
 
-### SSH Agent ### {{{
+## SSH Agent
 function __ssh_agent() {
     local SSH_ENV="$HOME/.ssh/environment"
     local U_CHECK="$(logname)"
@@ -37,4 +37,3 @@ function __ssh_agent() {
         fi
     fi
 }
-### End SSH Agent ### }}}

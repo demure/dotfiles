@@ -4,7 +4,7 @@
 # legacy repo http://github.com/demure/dotfiles
 # vim:set syntax=sh:
 
-### Universal Aliases ### {{{
+### Misc Aliases ### {{{
 ## Remove OS X 'junk' files
 alias rmds='find . -name ".DS_Store" -depth -exec rm -i {} \;'
 alias rmd_='find . -iname '._*' -exec rm -rf {} \;'
@@ -23,13 +23,6 @@ alias reset_display='export DISPLAY=$(tmux showenv|grep ^DISPLAY|cut -d = -f 2)'
 ## Make ed more usable, command mode is now ':' like vi
 alias ed='ed -p:'
 
-## Old rsync alias
-alias rsy='rsync -avrSPXRh'
-## Good for sending dirs from server to remote server
-alias rsy1='rsync -avSPRh'
-## This one is for copying off the network shares.
-alias rsy2='rsync -rltDvSPRh'
-
 ## Preserve user conf while sudoing vim
 alias svi='sudo -E vim'
 
@@ -38,29 +31,38 @@ alias deldup="awk '!x[$0]++' "
 
 ## Shortcut for wicd-curses
 alias wic='wicd-curses'
+### End Misc Aliases ### }}}
 
-    ### qmv ### {{{
-    if [[ $(command -v qmv) ]]; then
-        ## Makes qmv more usable, and regex-able
-        alias qm='qmv --format=destination-only'
-    fi
-    ### End qmv ### }}}
+### rsync Aliases ### {{{
+## Old rsync alias
+alias rsy='rsync -avrSPXRh'
+## Good for sending dirs from server to remote server
+alias rsy1='rsync -avSPRh'
+## This one is for copying off the network shares.
+alias rsy2='rsync -rltDvSPRh'
+### End rsync Aliases ### }}}
 
-    ### pinfo ### {{{
-    if [[ $(command -v pinfo) ]]; then
-        ## Use color pinfo instead of info
-        alias info='pinfo'
-    fi
-    ### End pinfo ### }}}
+### qmv ### {{{
+if [[ $(command -v qmv) ]]; then
+    ## Makes qmv more usable, and regex-able
+    alias qm='qmv --format=destination-only'
+fi
+### End qmv ### }}}
 
-    ### Git Aliases ### {{{
-    alias git_force_reset='git fetch --all && git reset --hard origin/master'
-    ### End Git Aliases ### }}}
+### pinfo ### {{{
+if [[ $(command -v pinfo) ]]; then
+    ## Use color pinfo instead of info
+    alias info='pinfo'
+fi
+### End pinfo ### }}}
 
-    ### Docker ### {{{
-    if [[ $(command -v docker) ]]; then
-        ## find last docker container
-        alias dl='docker ps -l -q'
-    fi
-    ### End Docker ### }}}
-### End Universal Aliases ### }}}
+### Git Aliases ### {{{
+alias git_force_reset='git fetch --all && git reset --hard origin/master'
+### End Git Aliases ### }}}
+
+### Docker ### {{{
+if [[ $(command -v docker) ]]; then
+    ## find last docker container
+    alias dl='docker ps -l -q'
+fi
+### End Docker ### }}}

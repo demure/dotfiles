@@ -4,123 +4,121 @@
 # legacy repo http://github.com/demure/dotfiles
 # vim:set syntax=sh:
 
-### Settings ### {{{
-    ### Mac Settings ### {{{
-    if [ $OSTYPE == 'darwin13' ]; then
-        ### Brew Stuff ### {{{
-        ## Add git completion
-        if [ -f $(brew --prefix)/etc/bash_completion ]; then
-            source $(brew --prefix)/etc/bash_completion
-        fi
-
-        ## Brew completion
-        if [ -f $(brew --prefix)/Library/Contributions/brew_bash_completion.sh ]; then
-            source $(brew --prefix)/Library/Contributions/brew_bash_completion.sh
-        fi
-        ### End Brew Stuff ###  }}}
-
-        ### Mac Aliases ### {{{
-        ## Interactive Test
-        if [[ $- == *i* ]]; then
-            alias google='ping -c 1 www.google.com && growlnotify -m "google pinged"'
-            alias ardrestart='sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -restart -agent -menu'
-            alias vi='vim'
-            alias fvreboot='sudo fdesetup authrestart'
-            alias rebuild_open_with='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user;killall Finder;echo "Open With has been rebuilt, Finder will relaunch"'
-        fi
-        ### End Mac Aliases ### }}}
-
-        __ssh_agent
+### Mac Settings ### {{{
+if [ $OSTYPE == 'darwin13' ]; then
+    ### Brew Stuff ### {{{
+    ## Add git completion
+    if [ -f $(brew --prefix)/etc/bash_completion ]; then
+        source $(brew --prefix)/etc/bash_completion
     fi
-    ### End Mac Settings ### }}}
 
-    ### MA Settings ### {{{
-    if [ $HOSTNAME == 'ma.sdf.org' ]; then
-        export PATH=/usr/pkg/bin:/usr/local/bin:/usr/bin:/bin
-        export TZ=EST5EDT
-        #source /etc/bash_completion.d/git      ## Add git completion
-
-        ## Interactive Test
-        if [[ $- == *i* ]]; then
-            alias bb='bboard'
-            alias mutt='~/bin/mutt'
-            unalias svi
-        fi
-
-        __ssh_agent
+    ## Brew completion
+    if [ -f $(brew --prefix)/Library/Contributions/brew_bash_completion.sh ]; then
+        source $(brew --prefix)/Library/Contributions/brew_bash_completion.sh
     fi
-    ### End MA Settings ### }}}
+    ### End Brew Stuff ###  }}}
 
-    ### For pi ### {{{
-    if [ $HOSTTYPE == 'arm' ]; then
-        #source /etc/bash_completion.d/git      ## Add git completion
-
-        ## Interactive Test
-        if [[ $- == *i* ]]; then
-            alias ls='ls --color=auto'
-            alias vi='vim'
-            alias vnc='vncserver :1 -geometry 1024x700 -depth 24'
-        fi
-
-        __ssh_agent
+    ### Mac Aliases ### {{{
+    ## Interactive Test
+    if [[ $- == *i* ]]; then
+        alias google='ping -c 1 www.google.com && growlnotify -m "google pinged"'
+        alias ardrestart='sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -restart -agent -menu'
+        alias vi='vim'
+        alias fvreboot='sudo fdesetup authrestart'
+        alias rebuild_open_with='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user;killall Finder;echo "Open With has been rebuilt, Finder will relaunch"'
     fi
-    ### End For pi ### }}}
+    ### End Mac Aliases ### }}}
 
-    ### For iOS ### {{{
-    if [ $OSTYPE == 'darwin9' ]; then
-        if [[ $- == *i* ]]; then
-            alias svi='sudo -E vi'
-        fi
+    __ssh_agent
+fi
+### End Mac Settings ### }}}
+
+### MA Settings ### {{{
+if [ $HOSTNAME == 'ma.sdf.org' ]; then
+    export PATH=/usr/pkg/bin:/usr/local/bin:/usr/bin:/bin
+    export TZ=EST5EDT
+    #source /etc/bash_completion.d/git      ## Add git completion
+
+    ## Interactive Test
+    if [[ $- == *i* ]]; then
+        alias bb='bboard'
+        alias mutt='~/bin/mutt'
+        unalias svi
     fi
-    ### End For iOS ### }}}
 
-    ### For Debian Including Laptop and Netbook ### {{{
-    if [[ $MACHTYPE == 'x86_64-pc-linux-gnu' || $MACHTYPE == 'i486-pc-linux-gnu' ]]; then
-        ## Interactive Test
-        if [[ $- == *i* ]]; then
-            alias ls='ls --color=auto'
-            alias vi='vim'
-            alias mp='mpv'
-            alias qmp='tsp mpv'
-            alias mpp='mp --no-ytdl --fs=no --geometry=50%'     ## for podcasts
-            alias ssht='sshuttle --dns -vr ma 0/0'
-            #alias hdmi-mirror='xrandr --output HDMI1 --mode 1360x768'
-            #alias hdmi-second='xrandr --output HDMI1 --mode 1360x768 --right-of LVDS1'
-            alias hdmi-off='xrandr --output HDMI1 --off'
-            alias xc="xclip -selection c"
-        fi
+    __ssh_agent
+fi
+### End MA Settings ### }}}
 
-        if [ $HOSTNAME == "moving-computer-of-doom" ]; then
-            alias borg_pass='export BORG_PASSPHRASE="$(pass cli/borg)"'
-            export BORG_REPO='ssh://demure@10.0.0.10:500/mnt/borg/doom-x270'
-        fi
-        __ssh_agent
+### For pi ### {{{
+if [ $HOSTTYPE == 'arm' ]; then
+    #source /etc/bash_completion.d/git      ## Add git completion
+
+    ## Interactive Test
+    if [[ $- == *i* ]]; then
+        alias ls='ls --color=auto'
+        alias vi='vim'
+        alias vnc='vncserver :1 -geometry 1024x700 -depth 24'
     fi
-    ### End For Debian ### }}}
 
-    ### For SDF Main Cluster ### {{{
-    if [[ "$MACHTYPE" == "x86_64--netbsd" && "$OSTYPE" == "netbsd" ]]; then
-        #LSCOLORS='exfxcxdxbxegedabagacad'
-        export TZ=EST5EDT
-        export PATH=/usr/pkg/bin:/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/sbin:${HOME}/projects/personal/scripts:${HOME}/bin:${HOME}/.local/bin:/usr/local/games:/usr/games
+    __ssh_agent
+fi
+### End For pi ### }}}
 
-        ## Interactive Test
-        if [[ $- == *i* ]]; then
-            alias help='/usr/local/bin/help'
-            alias bb='bboard'
-            alias cdircd='cd /sys/pkg/etc/unrealircd/'
-            unalias svi
-            #alias ls='colorls -G'
-        fi
+### For iOS ### {{{
+if [ $OSTYPE == 'darwin9' ]; then
+    if [[ $- == *i* ]]; then
+        alias svi='sudo -E vi'
     fi
-    ### End For SDF Main Cluster ### }}}
+fi
+### End For iOS ### }}}
 
-    ### For OpenWrt ### {{{
-        if [ "$MACHTYPE" == "mips-openwrt-linux-gnu" ]; then
-            alias opkgup="eval \$(opkg list_installed | sed 's/ - .*//' | sed 's/^/opkg upgrade /')"
-        fi
-    ### End For OpenWrt ### }}}
+### For Debian Including Laptop and Netbook ### {{{
+if [[ $MACHTYPE == 'x86_64-pc-linux-gnu' || $MACHTYPE == 'i486-pc-linux-gnu' ]]; then
+    ## Interactive Test
+    if [[ $- == *i* ]]; then
+        alias ls='ls --color=auto'
+        alias vi='vim'
+        alias mp='mpv'
+        alias qmp='tsp mpv'
+        alias mpp='mp --no-ytdl --fs=no --geometry=50%'     ## for podcasts
+        alias ssht='sshuttle --dns -vr ma 0/0'
+        #alias hdmi-mirror='xrandr --output HDMI1 --mode 1360x768'
+        #alias hdmi-second='xrandr --output HDMI1 --mode 1360x768 --right-of LVDS1'
+        alias hdmi-off='xrandr --output HDMI1 --off'
+        alias xc="xclip -selection c"
+    fi
 
-    ### Testing ### {{{
-    ### End Testing ### }}}
-### End Settings ### }}}
+    if [ $HOSTNAME == "moving-computer-of-doom" ]; then
+        alias borg_pass='export BORG_PASSPHRASE="$(pass cli/borg)"'
+        export BORG_REPO='ssh://demure@10.0.0.10:500/mnt/borg/doom-x270'
+    fi
+    __ssh_agent
+fi
+### End For Debian ### }}}
+
+### For SDF Main Cluster ### {{{
+if [[ "$MACHTYPE" == "x86_64--netbsd" && "$OSTYPE" == "netbsd" ]]; then
+    #LSCOLORS='exfxcxdxbxegedabagacad'
+    export TZ=EST5EDT
+    export PATH=/usr/pkg/bin:/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/sbin:${HOME}/projects/personal/scripts:${HOME}/bin:${HOME}/.local/bin:/usr/local/games:/usr/games
+
+    ## Interactive Test
+    if [[ $- == *i* ]]; then
+        alias help='/usr/local/bin/help'
+        alias bb='bboard'
+        alias cdircd='cd /sys/pkg/etc/unrealircd/'
+        unalias svi
+        #alias ls='colorls -G'
+    fi
+fi
+### End For SDF Main Cluster ### }}}
+
+### For OpenWrt ### {{{
+    if [ "$MACHTYPE" == "mips-openwrt-linux-gnu" ]; then
+        alias opkgup="eval \$(opkg list_installed | sed 's/ - .*//' | sed 's/^/opkg upgrade /')"
+    fi
+### End For OpenWrt ### }}}
+
+### Testing ### {{{
+### End Testing ### }}}
