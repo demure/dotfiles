@@ -10,7 +10,12 @@ alias rmds='find . -name ".DS_Store" -depth -exec rm -i {} \;'
 alias rmd_='find . -iname '._*' -exec rm -rf {} \;'
 
 ## Show ls -R with readable depth
+## From http://xmodulo.com/useful-bash-aliases-functions.html
 alias filetree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/ /' -e 's/-/|/'"
+
+## List programs connected to network
+## From http://xmodulo.com/useful-bash-aliases-functions.html
+alias listen="lsof -P -i -n"
 
 ## not sure this is still needed, but might $DISPLAY
 alias reset_display='export DISPLAY=$(tmux showenv|grep ^DISPLAY|cut -d = -f 2)'
