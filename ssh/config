@@ -48,6 +48,11 @@
     host meta
         HostName meta.sdf.org
 
+    host bb
+        HostName meta.sdf.org
+        RemoteCommand bboard
+        RequestTTY yes
+
     host max
         HostName ma.sdf.org
         #ForwardAgent no
