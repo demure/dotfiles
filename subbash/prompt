@@ -114,8 +114,8 @@ function __prompt_command() {
                 ### End Fetch Check ### }}}
 
                 ### Test For Changes ### {{{
-                ## Change this to test for 'ahead' or 'behind'!
-                local GChanges="$(echo ${GStat} | tr ':' '\n' | grep -v "^$" | grep -v "^\#\#" | wc -l | tr -d ' ')"
+                ## "-2" deals with first porcelain line
+                local GChanges="$(echo ${GStat} | awk '{print (split($0,a,":")-2)}')"
                 if [ "${GChanges}" == "0" ]; then
                     local GitCol=$Gre
                   else
@@ -126,7 +126,7 @@ function __prompt_command() {
                 ### Find Branch ### {{{
                 ## Updated regex so that it should account for empty repos
                 ## (and maybe branches?), due to bug report by tukusejssirs
-                local GBra="$(echo ${GStat} | grep -oP '^##.* \K([a-zA-Z0-9_-]+)(?=\.{3,}.*$)')"
+                local GBra="$(echo ${GStat} |  awk 'match($0,/ [a-zA-Z0-9_-]+\.\.\./) {print substr($0,RSTART+1,RLENGTH-4)}')"
                 if [ -n "${GBra}" ]; then
                     if [ "${GBra}" == "master" ]; then
                         local GBra="M"      ## Because why waste space
@@ -142,13 +142,13 @@ function __prompt_command() {
                 ## Test Modified and Untracked for "0"
                 # local GDel="$(echo ${GStat} | tr ':' '\n' | grep -c "^[ MARC]D")"
 
-                local GAhe="$(echo ${GStat} | grep -oP '^##.*\[ahead \K([0-9]+)(?=\].*)')"
+                local GAhe="$(echo ${GStat} | awk 'match($0,/\[ahead [0-9]+\]/) {print substr($0,RSTART+7,RLENGTH-8)}')"
                 if [ -n "${GAhe}" ]; then
                     PS1+="${Gre}↑${RCol}${GAhe}"    ## Ahead
                 fi
 
                 ## Needs a `git fetch`
-                local GBeh="$(echo ${GStat} | grep -oP '^##.*\[behind \K([0-9]+)(?=\].*)')"
+                local GBeh="$(echo ${GStat} | awk 'match($0,/\[behind [0-9]+\]/) {print substr($0,RSTART+8,RLENGTH-9)}')"
                 if [ -n "${GBeh}" ]; then
                     PS1+="${Red}↓${RCol}${GBeh}"    ## Behind
                 fi
