@@ -126,7 +126,8 @@ function __prompt_command() {
                 ### Find Branch ### {{{
                 ## Updated regex so that it should account for empty repos
                 ## (and maybe branches?), due to bug report by tukusejssirs
-                local GBra="$(echo ${GStat} |  awk 'match($0,/ [a-zA-Z0-9_-]+\.\.\./) {print substr($0,RSTART+1,RLENGTH-4)}')"
+                #local GBra="$(echo ${GStat} |  awk 'match($0,/ [a-zA-Z0-9_-]+\.\.\./) {print substr($0,RSTART+1,RLENGTH-4)}')"
+                local GBra="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
                 if [ -n "${GBra}" ]; then
                     if [ "${GBra}" == "master" ]; then
                         local GBra="M"      ## Because why waste space
