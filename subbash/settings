@@ -5,7 +5,7 @@
 # vim:set syntax=sh:
 
 ### Mac Settings ### {{{
-if [ $OSTYPE == 'darwin13' ]; then
+if [ ${OSTYPE} == 'darwin13' ]; then
     ### Brew Stuff ### {{{
     ## Add git completion
     if [ -f $(brew --prefix)/etc/bash_completion ]; then
@@ -34,7 +34,7 @@ fi
 ### End Mac Settings ### }}}
 
 ### MA Settings ### {{{
-if [ $HOSTNAME == 'ma.sdf.org' ]; then
+if [ ${HOSTNAME} == 'ma.sdf.org' ]; then
     export PATH=/usr/pkg/bin:/usr/local/bin:/usr/bin:/bin
     export TZ=EST5EDT
     #source /etc/bash_completion.d/git      ## Add git completion
@@ -51,7 +51,7 @@ fi
 ### End MA Settings ### }}}
 
 ### For pi ### {{{
-if [ $HOSTTYPE == 'arm' ]; then
+if [ ${HOSTTYPE} == 'arm' ]; then
     #source /etc/bash_completion.d/git      ## Add git completion
 
     ## Interactive Test
@@ -66,7 +66,7 @@ fi
 ### End For pi ### }}}
 
 ### For iOS ### {{{
-if [ $OSTYPE == 'darwin9' ]; then
+if [ ${OSTYPE} == 'darwin9' ]; then
     if [[ $- == *i* ]]; then
         alias svi='sudo -E vi'
     fi
@@ -74,7 +74,7 @@ fi
 ### End For iOS ### }}}
 
 ### For Debian Including Laptop and Netbook ### {{{
-if [[ $MACHTYPE == 'x86_64-pc-linux-gnu' || $MACHTYPE == 'i486-pc-linux-gnu' ]]; then
+if [[ ${MACHTYPE} == 'x86_64-pc-linux-gnu' || ${MACHTYPE} == 'i486-pc-linux-gnu' ]]; then
     ## Interactive Test
     if [[ $- == *i* ]]; then
         alias ls='ls --color=auto'
@@ -89,7 +89,7 @@ if [[ $MACHTYPE == 'x86_64-pc-linux-gnu' || $MACHTYPE == 'i486-pc-linux-gnu' ]];
         alias xc="xclip -selection c"
     fi
 
-    if [ $HOSTNAME == "moving-computer-of-doom" ]; then
+    if [ ${HOSTNAME} == "moving-computer-of-doom" ]; then
         alias borg_pass='export BORG_PASSPHRASE="$(pass cli/borg)"'
         export BORG_REPO='ssh://demure@10.0.0.10:500/mnt/borg/doom-x270'
     fi
@@ -98,7 +98,7 @@ fi
 ### End For Debian ### }}}
 
 ### For SDF Main Cluster ### {{{
-if [[ "$MACHTYPE" == "x86_64--netbsd" && "$OSTYPE" == "netbsd" ]]; then
+if [[ "${MACHTYPE}" == "x86_64--netbsd" && "${OSTYPE}" == "netbsd" ]]; then
     #LSCOLORS='exfxcxdxbxegedabagacad'
     export TZ=EST5EDT
     export PATH=/usr/pkg/bin:/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/sbin:${HOME}/projects/personal/scripts:${HOME}/bin:${HOME}/.local/bin:/usr/local/games:/usr/games
@@ -115,7 +115,7 @@ fi
 ### End For SDF Main Cluster ### }}}
 
 ### For OpenWrt ### {{{
-    if [ "$MACHTYPE" == "mips-openwrt-linux-gnu" ]; then
+    if [ "${MACHTYPE}" == "mips-openwrt-linux-gnu" ]; then
         alias opkgup="eval \$(opkg list_installed | sed 's/ - .*//' | sed 's/^/opkg upgrade /')"
     fi
 ### End For OpenWrt ### }}}

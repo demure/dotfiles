@@ -57,7 +57,7 @@ function __prompt_command() {
             local PSCol="$Gre"              ## For iOS
         elif [ ${MACHTYPE} == 'i486-pc-linux-gnu' ]; then
             local PSCol="$BBla"             ## For Netbook
-        elif [[ "${MACHTYPE}" == "x86_64--netbsd" && "$OSTYPE" == "netbsd" ]]; then
+        elif [[ "${MACHTYPE}" == "x86_64--netbsd" && "${OSTYPE}" == "netbsd" ]]; then
             local PSCol="${Yel}"            ## For Main Cluster
             local PSOpt="\h "
         elif [ "${MACHTYPE}" == "mips-openwrt-linux-gnu" ]; then

@@ -14,7 +14,7 @@ title="%{F${color_head} B${color_sec_b2}}${sep_right}%{F${color_head} B${color_s
 
 ## parser
 while read -r line ; do
-    case $line in
+    case ${line} in
         ### SYS Case ### {{{
         SYS*)
             ## conky=, 0-1=up/down wlan, 2-3=up/down eth, 5=cpu

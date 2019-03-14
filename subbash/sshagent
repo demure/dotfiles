@@ -9,7 +9,7 @@
 
 ## SSH Agent
 function __ssh_agent() {
-    local SSH_ENV="$HOME/.ssh/environment"
+    local SSH_ENV="${HOME}/.ssh/environment"
     local U_CHECK="$(logname)"
     logname &>/dev/null
     local F_CHECK="$?"

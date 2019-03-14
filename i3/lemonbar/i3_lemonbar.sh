@@ -88,14 +88,14 @@ while :; do
 
     ### Offlineimap, "EMA" ### {{{
     if [ $((cnt_mail++)) -ge ${upd_mail} ]; then
-        printf "%s%s\n" "EMA" "$(find $HOME/.mail/*/INBOX/new -type f 2>/dev/null | wc -l)" > "${panel_fifo}"
+        printf "%s%s\n" "EMA" "$(find ${HOME}/.mail/*/INBOX/new -type f 2>/dev/null | wc -l)" > "${panel_fifo}"
         cnt_mail=0
     fi
     ### End Offlineimap, "EMA" ### }}}
 
     ### Multi Music Player Display, "MMP" ### {{{
     if [ $((cnt_mmpd++)) -ge ${upd_mmpd} ]; then
-        mmpd_check="$(grep -qxs 1 $HOME/.config/pianobar/isplaying && cat $HOME/.config/pianobar/nowplaying || echo 'none')"
+        mmpd_check="$(grep -qxs 1 ${HOME}/.config/pianobar/isplaying && cat ${HOME}/.config/pianobar/nowplaying || echo 'none')"
         if [ "${mmpd_check}" != "none" ]; then
             printf "%s%s\n" "MMP" "${mmpd_check}" > "${panel_fifo}"
           else
