@@ -133,9 +133,11 @@ sep_l_right=""                     ## Powerline light sepatator right
 
 # Icon glyphs from Font Awesome
 icon_time=""                       ## Time icon
+icon_cal=""                        ## Calendar icon
 icon_cpu=""                        ## CPU icon
 #icon_cpu=""                        ## CPU icon
 icon_mem=""                        ## MEM icon
+## Real ram icon #icon_mem=""                        ## MEM icon
 icon_dl=""                         ## Download icon
 icon_ul=""                         ## Upload icon
 icon_vol=""                        ## Volume icon
@@ -146,7 +148,8 @@ icon_mail=""                       ## Mail icon
 icon_mail_read=""                  ## Mail read icon
 icon_chat=""                       ## IRC/Chat icon
 icon_music=""                      ## Music icon
-icon_prog=""                       ## Window icon
+#icon_prog=""                       ## Window icon
+icon_prog=""                       ## Window icon
 icon_contact=""                    ## Contact icon
 icon_wsp=""                        ## Workspace icon
 icon_bat_plug=""                   ## Battery icon, may add level indicator? and plugged in?
