@@ -104,6 +104,8 @@ bar {
 * IP display filters virtual interfaces for docker, qemu, and vpn. **08APR2017**
 * Added VPN on indicator. **17APR2017**
 * Due to change in debian, using pactl for volume checking. **12NOV2018**
+* Added RSS (newsboat) unread indicator. **13MAR2019**
+* Tweaked so that section backgrounds are easier to edit. **13MAR2019**
 
 
 ### **Things I want** ###
@@ -111,7 +113,7 @@ bar {
 * Make better separations between joined colored segments.
 
 
-##### **Last updated 16NOV2018** #####
+##### **Last updated 13MAR2019** #####
 
 [i3 lemonbar]: https://github.com/electro7/dotfiles/tree/master/.i3/lemonbar
 [lemonbar krypt-n]: https://github.com/krypt-n/bar

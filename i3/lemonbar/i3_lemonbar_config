@@ -23,6 +23,11 @@ iconfont="fontawesome-10"
 ## You could set this to "" to reduce bar length while toggled.
 scrub_ip="---.---.---.---"
 
+## Path for RSS db
+## unsetting/commenting out/"" will disable
+## This is currently written for newsboat (and maybe old newsbeuter)
+rss_path="$HOME/.newsboat/cache.db"
+
 ### Temperature ### {{{
 ## Temperature value can either be C or F.
 temp_format="C"
@@ -62,9 +67,11 @@ upd_net=3                           ## Network update
 upd_mem=3                           ## Mem used update
 upd_time=5                          ## Time update
 upd_disk=10                         ## Disk free update
+upd_rss=120                         ## RSS check update
 ### End Update ### }}}
 
 ### Color ### {{{
+## Base Colors
 color_back="#FF1D1F21"              ## Default background
 color_fore="#FFC5C8C6"              ## Default foreground
 color_head="#FFB5BD68"              ## Background for first element
@@ -72,6 +79,8 @@ color_sec_b1="#FF282A2E"            ## Background for section 1
 color_sec_b2="#FF454A4F"            ## Background for section 2
 color_sec_b3="#FF60676E"            ## Background for section 3
 color_icon="#FF979997"              ## For icons
+
+## Section Special Colors
 color_mail="#FFCE935F"              ## Background color for mail alert
 color_chat="#FFCC6666"              ## Background color for chat alert
 color_cpu="#FF5F819D"               ## Background color for cpu alert
@@ -84,25 +93,23 @@ color_bat_high="#ffb58900"          ## Icon for high bat threshold
 color_bat_plug="#ff859900"          ## Forground for 70-100 battery icon
 color_temp="#ffdc322f"              ## Backgroud for high temp
 
-    ### Solarized ### {{{
-    ## For reference purposes
-    #$base03:    #002b36;
-    #$base02:    #073642;
-    #$base01:    #586e75;
-    #$base00:    #657b83;
-    #$base0:     #839496;
-    #$base1:     #93a1a1;
-    #$base2:     #eee8d5;
-    #$base3:     #fdf6e3;
-    #$yellow:    #b58900;
-    #$orange:    #cb4b16;
-    #$red:       #dc322f;
-    #$magenta:   #d33682;
-    #$violet:    #6c71c4;
-    #$blue:      #268bd2;
-    #$cyan:      #2aa198;
-    #$green:     #859900;
-    ### End Solarized ### }}}
+    ### Section Background Colors ### {{{
+    ## This is to make changing up section order a little easier
+    ## You still need to edit printf at the end up i3_lemonbar_parser.sh
+    local_ip_cback=${color_sec_b1}
+    gpg_cback=${color_sec_b2}
+    disk_cback=${color_sec_b1}
+    ext_ip_cback=${color_sec_b2}
+    rss_cback=${color_sec_b2}
+    mail_cback=${color_sec_b1}
+    cpu_cback=${color_sec_b2}
+    date_cback=${color_sec_b1}
+    mmpd_cback=${color_sec_b1}
+    mmpd_alt_cback=${color_sec_b2}
+    bat_cback=${color_sec_b1}
+    temp_cback=${color_sec_b2}
+    vol_cback=${color_sec_b2}
+    ### End Section Background Colors ### }}}
 ### End Color ### }}}
 
 ### Spacing ### {{{
@@ -159,4 +166,5 @@ icon_gpg=""                        ## GPG icon
 icon_gpg_locked=""                 ## GPG locked icon
 icon_gpg_unlocked=""               ## GPG unlocked icon
 icon_vpn=""                        ## VPN icon
+icon_rss=""                        ## RSS icon
 ### End Icons ### }}}

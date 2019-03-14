@@ -23,11 +23,11 @@ while read -r line ; do
 
             ### CPU ### {{{
             if [ ${sys_arr[4]} -gt ${cpu_alert} ]; then
-                cpu_cback=${color_cpu}; cpu_cicon=${color_back}; cpu_cfore=${color_back};
+                cpu_set_back=${color_cpu}; cpu_cicon=${color_back}; cpu_cfore=${color_back};
               else
-                cpu_cback=${color_sec_b2}; cpu_cicon=${color_icon}; cpu_cfore=${color_fore};
+                cpu_set_back=${cpu_cback}; cpu_cicon=${color_icon}; cpu_cfore=${color_fore};
             fi
-            cpu="%{F${cpu_cback}}${sep_left}%{F${cpu_cicon} B${cpu_cback}} %{T2}${icon_cpu}%{F${cpu_cfore} T1} ${sys_arr[4]}%"
+            cpu="%{F${cpu_set_back}}${sep_left}%{F${cpu_cicon} B${cpu_set_back}} %{T2}${icon_cpu}%{F${cpu_cfore} T1} ${sys_arr[4]}%"
             ### End CPU ### }}}
 
             ### Net Speed ### {{{
@@ -72,7 +72,7 @@ while read -r line ; do
               else
                 date="${time_arr[1]} ${time_arr[2]}"
             fi
-            date="%{F${color_sec_b1}}${sep_left}%{F${color_icon} B${color_sec_b1}} %{T2}${icon_time}%{F- T1} ${date}"
+            date="%{F${date_cback}}${sep_left}%{F${color_icon} B${date_cback}} %{T2}${icon_time}%{F- T1} ${date}"
             ## Time
             time="%{F${color_head}}${sep_left}%{F${color_back} B${color_head}} ${time_arr[3]} %{F- B-}"
             ;;
@@ -82,7 +82,7 @@ while read -r line ; do
         DIC*)
             ## Display Disk use
             disk_arr="${line#???}"
-            diskr="%{F${color_sec_b1}}${sep_left}%{F${color_icon} B${color_sec_b1}} %{T2}${icon_disk}%{F- T1} ${disk_arr}"
+            diskr="%{F${disk_cback}}${sep_left}%{F${color_icon} B${disk_cback}} %{T2}${icon_disk}%{F- T1} ${disk_arr}"
             ;;
         ### End Disk Usage Case ### }}}
 
@@ -114,11 +114,12 @@ while read -r line ; do
               else
                 net_arr_ip="No IP"; net_icon="${icon_local_out}";
             fi
-            local_ip="%{F${color_sec_b1}}${sep_left}%{F${color_icon} B${color_sec_b1}} %{T2}${net_icon}%{F- T1} ${net_arr_ip}"
+            #local_ip_cback=${color_sec_b1}
+            local_ip="%{F${local_ip_cback}}${sep_left}%{F${color_icon} B${local_ip_cback}} %{T2}${net_icon}%{F- T1} ${net_arr_ip}"
 
             ## Wifi Signal Strength
             if [ "${net_arr_signal}" != "none" ]; then
-                wifi="%{F${color_icon}}${sep_l_left}%{F${color_icon} B${color_sec_b1}} %{T2}${icon_wifi}%{F- T1} ${net_arr_signal}%"
+                wifi="%{F${color_icon}}${sep_l_left}%{F${color_icon} B${local_ip_cback}} %{T2}${icon_wifi}%{F- T1} ${net_arr_signal}%"
               else
                 wifi=""
             fi
@@ -127,15 +128,14 @@ while read -r line ; do
             ## This stops an external IP from displaying, if on local IP.
             ## This is in this section, as it run much much more often.
             if [ "${net_arr_ip}" = "No IP" ]; then
-                ext_ip="%{F${color_sec_b2}}${sep_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_ext_ip}%{F- T1} No IP"
+                ext_ip="%{F${ext_ip_cback}}${sep_left}%{F${color_icon} B${ext_it_cback}} %{T2}${icon_ext_ip}%{F- T1} No IP"
             fi
 
             ## External IP icon to VPN icon
             ## This will swap the normal icon to show that a VPN is up.
             ## This is in this section, as it run much much more often.
             if [ "${net_arr_vpn}" = "VPN" ]; then
-                vpn="%{F${color_icon}}${sep_l_left}%{B${color_sec_b2}}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_vpn}"
-                #gpg="%{F${color_icon}}${sep_l_left}%{B${color_sec_b2}}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_gpg}%{F${color_fore} T1} ${lock}"
+                vpn="%{F${color_icon}}${sep_l_left}%{B${ext_ip_cback}}%{F${color_icon} B${ext_ip_cback}} %{T2}${icon_vpn}"
               else
                 vpn=""
             fi
@@ -151,7 +151,7 @@ while read -r line ; do
               else
                 ext_ip_select="${ext_arr}"
             fi
-            ext_ip="%{F${color_sec_b2}}${sep_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_ext_ip}%{F- T1} ${ext_ip_select}"
+            ext_ip="%{F${ext_ip_cback}}${sep_left}%{F${color_icon} B${ext_ip_cback}} %{T2}${icon_ext_ip}%{F- T1} ${ext_ip_select}"
             ;;
         ### End External IP Case ### }}}
 
@@ -159,7 +159,7 @@ while read -r line ; do
         VOL*)
             ## Volume
             vol_arr="${line#???}"
-            vol="%{F${color_sec_b2}}${sep_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_vol}%{F- T1} ${vol_arr}"
+            vol="%{F${vol_cback}}${sep_left}%{F${color_icon} B${vol_cback}} %{T2}${icon_vol}%{F- T1} ${vol_arr}"
             ;;
         ### End Volume Case ### }}}
 
@@ -195,13 +195,14 @@ while read -r line ; do
 
                 ## Set alert color
                 if [ ${temp_check} -eq 1 ]; then
-                    temp_cback=${color_temp}; temp_cicon=${color_back}; temp_cfore=${color_back};
+                    temp_set_back=${color_temp}; temp_cicon=${color_back}; temp_cfore=${color_back};
                     else
-                    temp_cback=${color_sec_b2}; temp_cicon=${color_icon}; temp_cfore=${color_fore};
+                    temp_set_back=${temp_cback}; temp_cicon=${color_icon}; temp_cfore=${color_fore};
                 fi
-                temp="%{F${temp_cback}}${sep_left}%{F${temp_cicon} B${temp_cback}} %{T2}${icon_temp}%{F${temp_cfore} T1} ${temp_arr_val}${temp_arr_unit}"
+                temp="%{F${temp_set_back}}${sep_left}%{F${temp_cicon} B${temp_set_back}} %{T2}${icon_temp}%{F${temp_cfore} T1} ${temp_arr_val}${temp_arr_unit}"
               else
-                temp="%{F${color_sec_b2}}${sep_left}%{F${color_disable} B${color_sec_b2}} %{T2}${icon_temp}%{F${color_disable} T1} ×"
+                ## Set if temp fifo missing
+                temp="%{F${temp_cback}}${sep_left}%{F${color_disable} B${temp_cback}} %{T2}${icon_temp}%{F${color_disable} T1} ×"
             fi
             ;;
         ### End Temperature Case ### }}}
@@ -210,11 +211,11 @@ while read -r line ; do
         EMA*)
             email_arr="${line#???}"
             if [ "${email_arr}" != "0" ]; then
-                mail_cback=${color_mail}; mail_cicon=${color_sec_b2}; mail_cfore=${color_sec_b2}; mail_icon=${icon_mail}; mail_num=${email_arr}; mail_post_sep=${sep_left}
+                mail_set_back=${color_mail}; mail_cicon=${color_sec_b2}; mail_cfore=${color_sec_b2}; mail_icon=${icon_mail}; mail_num=${email_arr}; mail_post_sep=${sep_left}
               else
-                mail_cback=${color_sec_b2}; mail_cicon=${color_icon}; mail_cfore=${color_fore}; mail_icon=${icon_mail_read}; mail_num=""; mail_post_sep=${sep_l_left}
+                mail_set_back=${mail_cback}; mail_cicon=${color_icon}; mail_cfore=${color_fore}; mail_icon=${icon_mail_read}; mail_num=""; mail_post_sep=${sep_l_left}
             fi
-            email="%{F${mail_cback}}${sep_left}%{F${mail_cicon} B${mail_cback}} %{T2}${mail_icon}%{F${mail_cfore} T1} ${mail_num}"
+            email="%{F${mail_set_back}}${sep_left}%{F${mail_cicon} B${mail_set_back}} %{T2}${mail_icon}%{F${mail_cfore} T1} ${mail_num}"
             ;;
         ### End Offlineimp Case ### }}}
 
@@ -227,12 +228,20 @@ while read -r line ; do
                 else
                     lock="${icon_gpg_locked}"
                 fi
-                #gpg="%{F${color_icon}}${sep_l_left}%{B${color_sec_b2}}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_gpg}%{F${color_fore} T1} ${lock}"
-                ## Using mail_post_sep from EMA case, to help with color when mail highlighted
-                gpg="${mail_post_sep}%{F${color_icon}}%{B${color_sec_b2}}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_gpg}%{F${color_fore} T1} ${lock}"
+
+                gpg="%{F${gpg_cback}}${sep_left}%{F${color_icon} B${gpg_cback}} %{T2}${icon_gpg}%{F${color_fore} T1} ${lock}"
             fi
             ;;
         ### End GPG Case ### }}}
+
+        ### RSS Case ### {{{
+        RSS*)
+            rss_arr=(${line#???})
+            if [ -n "${rss_arr}" ]; then
+                rss="%{F${rss_cback}}${sep_left}%{F${color_icon} B${rss_cback}} %{T2}${icon_rss}%{F${color_fore} T1} ${rss_arr}"
+            fi
+            ;;
+        ### End RSS Case ### }}}
 
         ### Thinkpad Multi Battery ### {{{
         ## Icon         0         1         2         3          4
@@ -266,29 +275,29 @@ while read -r line ; do
 
                 ## Set Colors
                 if [ ${tmb_arr_perc} -le ${bat_alert_low} ]; then
-                    bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_bat_low};
+                    bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_set_back=${color_bat_low};
                 elif [ ${tmb_arr_perc} -le ${bat_alert_mid} ]; then
-                    bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_bat_mid};
+                    bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_set_back=${color_bat_mid};
                 elif [ ${tmb_arr_perc} -le ${bat_alert_high} ]; then
-                    bat_cicon=${color_bat_high}; bat_cfore=${color_fore}; bat_cback=${color_sec_b1};
+                    bat_cicon=${color_bat_high}; bat_cfore=${color_fore}; bat_set_back=${bat_cback};
                 else
-                    bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_cback=${color_sec_b1};
+                    bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_set_back=${bat_cback};
                 fi
 
                 ## Set charging icon
                 if [ "${tmb_arr_stat}" == "C" ]; then
                     bat_icon=${icon_bat_plug}; bat_cicon=${color_bat_plug};
                 fi
-                bat="%{F${bat_cback}}${sep_left}%{F${bat_cicon} B${bat_cback}} %{T2}${bat_icon}%{F- T1} ${tmb_arr_perc}%"
+                bat="%{F${bat_set_back}}${sep_left}%{F${bat_cicon} B${bat_set_back}} %{T2}${bat_icon}%{F- T1} ${tmb_arr_perc}%"
 
                 if [ "${tmb_arr_time}" != "none" ]; then
-                    bat_time="%{F${color_icon}}${sep_l_left}%{F${color_icon} B${color_sec_b1}} %{T2}${icon_bat_time}%{F- T1} ${tmb_arr_time}"
+                    bat_time="%{F${color_icon}}${sep_l_left}%{F${color_icon} B${bat_cback}} %{T2}${icon_bat_time}%{F- T1} ${tmb_arr_time}"
                   else
                     bat_time=""
                 fi
               else
                 ## If a desktop, show a plug icon. This stops the ugly segment merge that that would happen.
-                bat="%{F${color_sec_b1}}${sep_left}%{F${color_icon} B${color_sec_b1}} %{T2}${icon_bat_plug}%{F- T1}"
+                bat="%{F${bat_cback}}${sep_left}%{F${color_icon} B${bat_cback}} %{T2}${icon_bat_plug}%{F- T1}"
             fi
             ;;
         ### End Thinkpad Multi Battery ### }}}
@@ -319,7 +328,7 @@ while read -r line ; do
                 ## Note: you should read http://tldp.org/LDP/abs/html/parameter-substitution.html
                 mmpd_song="${mmpd_arr:0:${music_limit}}";
             fi
-            mmpd="%{F${color_sec_b2}}${sep_left}%{B${color_sec_b2}}%{F${color_sec_b1}}${sep_left}%{F${color_icon} B${color_sec_b1}} %{T2}${icon_music}%{F${color_fore} T1} ${mmpd_song}"
+            mmpd="%{F${mmpd_alt_cback}}${sep_left}%{B${mmpd_alt_cback}}%{F${mmpd_cback}}${sep_left}%{F${color_icon} B${mmpd_cback}} %{T2}${icon_music}%{F${color_fore} T1} ${mmpd_song}"
             ;;
         ### End Multi Music Player Display ### }}}
 
@@ -358,16 +367,16 @@ while read -r line ; do
     ext_toggle="$(cat /tmp/i3_lemonbar_ip_${USER} 2>/dev/null)"
 
     if [ "${ext_toggle}" = 2 ]; then
-        local_ip="%{F${color_sec_b1}}${sep_left}%{F${color_icon} B${color_sec_b1}} %{T2}${net_icon}%{F- T1} ${scrub_ip}"
-        filler="%{F${color_sec_b2}}${sep_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_ext_ip}%{F- T1}"
+        local_ip="%{F${local_ip_cback}}${sep_left}%{F${color_icon} B${local_ip_cback}} %{T2}${net_icon}%{F- T1} ${scrub_ip}"
+        filler="%{F${ext_ip_cback}}${sep_left}%{F${color_icon} B${ext_ip_cback}} %{T2}${icon_ext_ip}%{F- T1}"
         mast_net="${local_ip}${stab}${wifi}${stab}${filler}${stab}${vpn}${stab}"
       elif [ "${ext_toggle}" = 1 ]; then
         if [ "${net_arr_ipv6}" = "none" ]; then
             net_arr_ipv6="No IPv6"
         fi
 
-        filler="%{F${color_sec_b1}}${sep_left}%{F${color_icon} B${color_sec_b1}} %{T2}${net_icon}%{F- T1}"
-        ipv6_ip="%{F${color_sec_b2}}${sep_left}%{F${color_icon} B${color_sec_b2}} %{T2}${icon_ext_ip}%{F- T1} ${net_arr_ipv6}"
+        filler="%{F${local_ip_cback}}${sep_left}%{F${color_icon} B${local_ip_cback}} %{T2}${net_icon}%{F- T1}"
+        ipv6_ip="%{F${ext_ip_cback}}${sep_left}%{F${color_icon} B${ext_ip_cback}} %{T2}${icon_ext_ip}%{F- T1} ${net_arr_ipv6}"
         mast_net="${filler}${stab}${ipv6_ip}"
       else
         mast_net="${local_ip}${stab}${wifi}${stab}${ext_ip}${stab}${vpn}${stab}"
@@ -385,6 +394,7 @@ while read -r line ; do
 
     printf "%s\n" "%{l}${wsp}${title} %{r}\
 ${mmpd}${stab}\
+${rss}${stab}\
 ${email}${stab}\
 ${gpg}${stab}\
 ${mast_net}${stab}\

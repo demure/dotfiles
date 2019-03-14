@@ -46,6 +46,7 @@ cnt_net=${upd_net}
 cnt_mem=${upd_mem}
 cnt_time=${upd_time}
 cnt_disk=${upd_disk}
+cnt_rss=${upd_rss}
 
 while :; do
 
@@ -197,6 +198,22 @@ while :; do
         cnt_disk=0
     fi
     ### End Disk Usage Check, "DIC" ### }}}
+
+    ### RSS Unread Check, "RSS" ### {{{
+    if [ $((cnt_rss++)) -ge ${upd_rss} ]; then
+
+        ## Checks that $rss_path is set or skips commands
+        if [ -n "${rss_path}" ]; then
+            ## Verifies that sqlite3 is installed
+            if [ -n "$(command -v sqlite3)" ]; then
+                ## Polls newsboat db for unread count.
+                printf "%s%s\n" "RSS" "$(sqlite3 ${rss_path} 'select sum(unread) from rss_item')" > "${panel_fifo}"
+            fi
+        fi
+
+        cnt_rss=0
+    fi
+    ### End RSS Unread Check, "RSS" ### }}}
 
     ## Finally, wait 1 second
     sleep 1s;
