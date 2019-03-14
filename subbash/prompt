@@ -140,7 +140,7 @@ function __prompt_command() {
                 # local GDel="$(echo ${GStat} | tr ':' '\n' | grep -c "^[ MARC]D")"
 
                 ## Add 0 to knock off the '+'
-                local GAhead="$(echo ${GStatus} | awk 'match($0,/# branch.ab \+[0-9]+ \-[0-9]+/) {split(substr($0,RSTART+12,RLENGTH-12),s," "); V=s[2]+0} END {if(V>0){print V}}')"
+                local GAhead="$(echo ${GStatus} | awk 'match($0,/# branch.ab \+[0-9]+ \-[0-9]+/) {split(substr($0,RSTART+12,RLENGTH-12),s," "); V=s[1]+0} END {if(V>0){print V}}')"
                 if [ -n "${GAhead}" ]; then
                     PS1+="${Gre}↑${RCol}${GAhead}"      ## Ahead
                 fi
