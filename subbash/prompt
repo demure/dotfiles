@@ -96,9 +96,9 @@ function __prompt_command() {
         ### Add Git Status ### {{{
         ## Inspired by http://www.terminally-incoherent.com/blog/2013/01/14/whats-in-your-bash-prompt/
         if [[ $(command -v git) ]]; then
-            local GStat="$(git status --porcelain -b 2>/dev/null | tr '\n' ':')"
+            local GStatus="$(git status --porcelain=2 -b 2>/dev/null | tr '\n' ':')"
 
-            if [ -n "${GStat}" ]; then
+            if [ -n "${GStatus}" ]; then
                 ### Fetch Time Check ### {{{
                 local LAST=$(stat -c %Y $(git rev-parse --git-dir 2>/dev/null)/FETCH_HEAD 2>/dev/null)
                 if [ -n "${LAST}" ]; then
@@ -108,61 +108,59 @@ function __prompt_command() {
                         git fetch 2>/dev/null
                         PS1+=' +'
                         ## Refresh var
-                        local GStat="$(git status --porcelain -b 2>/dev/null | tr '\n' ':')"
+                        local GStatus="$(git status --porcelain=2 -b 2>/dev/null | tr '\n' ':')"
                     fi
                 fi
                 ### End Fetch Check ### }}}
 
                 ### Test For Changes ### {{{
-                ## "-2" deals with first porcelain line
-                local GChanges="$(echo ${GStat} | awk '{print (split($0,a,":")-2)}')"
+                local GChanges="$(echo ${GStatus} | tr ':' '\n' | awk 'BEGIN {C=0} /^[12] .M/ {C++} END {print C}')"
                 if [ "${GChanges}" == "0" ]; then
-                    local GitCol=$Gre
+                    local GitColor=$Gre
                   else
-                    local GitCol=$Red
+                    local GitColor=$Red
                 fi
                 ### End Test Changes ### }}}
 
                 ### Find Branch ### {{{
-                ## Updated regex so that it should account for empty repos
-                ## (and maybe branches?), due to bug report by tukusejssirs
-                #local GBra="$(echo ${GStat} |  awk 'match($0,/ [a-zA-Z0-9_-]+\.\.\./) {print substr($0,RSTART+1,RLENGTH-4)}')"
-                local GBra="$(git rev-parse --abbrev-ref HEAD 2>/dev/null)"
-                if [ -n "${GBra}" ]; then
-                    if [ "${GBra}" == "master" ]; then
-                        local GBra="M"      ## Because why waste space
+                local GBranch="$(echo ${GStatus} | awk 'match($0,/# branch.head [^ :]+/) {print substr($0,RSTART+14,RLENGTH-14)}')"
+                if [ -n "${GBranch}" ]; then
+                    if [ "${GBranch}" == "master" ]; then
+                        local GBranch="M"      ## Because why waste space
                     fi
                   else
-                    local GBra="ERROR"      ## It could happen supposedly?
+                    local GBranch="ERROR"      ## It could happen supposedly?
                 fi
                 ### End Branch ### }}}
 
-                PS1+=" ${GitCol}[$GBra]${RCol}" ## Add result to prompt
+                PS1+=" ${GitColor}[$GBranch]${RCol}" ## Add result to prompt
 
                 ### Find Commit Status ### {{{
                 ## Test Modified and Untracked for "0"
                 # local GDel="$(echo ${GStat} | tr ':' '\n' | grep -c "^[ MARC]D")"
 
-                local GAhe="$(echo ${GStat} | awk 'match($0,/\[ahead [0-9]+\]/) {print substr($0,RSTART+7,RLENGTH-8)}')"
-                if [ -n "${GAhe}" ]; then
-                    PS1+="${Gre}↑${RCol}${GAhe}"    ## Ahead
+                ## Add 0 to knock off the '+'
+                local GAhead="$(echo ${GStatus} | awk 'match($0,/# branch.ab \+[0-9]+ \-[0-9]+/) {split(substr($0,RSTART+12,RLENGTH-12),s," "); V=s[2]+0} END {if(V>0){print V}}')"
+                if [ -n "${GAhead}" ]; then
+                    PS1+="${Gre}↑${RCol}${GAhead}"      ## Ahead
                 fi
 
                 ## Needs a `git fetch`
-                local GBeh="$(echo ${GStat} | awk 'match($0,/\[behind [0-9]+\]/) {print substr($0,RSTART+8,RLENGTH-9)}')"
-                if [ -n "${GBeh}" ]; then
-                    PS1+="${Red}↓${RCol}${GBeh}"    ## Behind
+                ## Multiply by -1 to remove the '-'
+                local GBehind="$(echo ${GStatus} | awk 'match($0,/# branch.ab \+[0-9]+ \-[0-9]+/) {split(substr($0,RSTART+12,RLENGTH-12),s," "); V=s[2]*-1} END {if(V>0){print V}}')"
+                if [ -n "${GBehind}" ]; then
+                    PS1+="${Red}↓${RCol}${GBehind}"     ## Behind
                 fi
 
                 ## "[ MARC]" comes from https://git-scm.com/docs/git-status
-                local GMod="$(echo ${GStat} | tr ':' '\n' | grep -c "^[ MARC]M")"
-                if [ "${GMod}" -gt "0" ]; then
-                    PS1+="${Pur}≠${RCol}${GMod}"    ## Modified
+                local GModified="$(echo ${GStatus} | tr ':' '\n' | awk 'BEGIN {C=0} /^[12] .M/ {C++} END {print C}')"
+                if [ "${GModified}" -gt "0" ]; then
+                    PS1+="${Pur}≠${RCol}${GModified}"   ## Modified
                 fi
 
-                local GUnt="$(echo ${GStat} | tr ':' '\n' | grep -c "^\?")"
-                if [ "${GUnt}" -gt "0" ]; then
-                    PS1+="${Yel}?${RCol}${GUnt}"    ## Untracked
+                local GUntracked="$(echo ${GStatus} | tr ':' '\n' | awk 'BEGIN {C=0} /^\?/ {C++} END {print C}')"
+                if [ "${GUntracked}" -gt "0" ]; then
+                    PS1+="${Yel}?${RCol}${GUntracked}"  ## Untracked
                 fi
                 ### End Commit Status ### }}}
             fi

@@ -68,6 +68,7 @@ stow -t ~ laptop  ## gui programs
 * Added mutt with multiple accounts, using offlineimap, not-much, and msmtp **25AUG2015**  
 * Moved to i3 window manager, and set up a sweet lemonbar **30JAN2016**  
 * Got around to updating stow dir to reflect current software. (still needs some work) **16NOV2018**  
+* Spent a lot of time refactory my prompt command's git **14MAR2019**
 
 ### Plans: ###
 
