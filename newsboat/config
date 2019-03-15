@@ -50,7 +50,7 @@ macro B set browser $BROWSER
 ## copy url to clipboard "yank"
 macro y set browser "echo -n %u | xclip -selection clipboard"; open-in-browser ; set browser $BROWSER
 ## add video or audio to play queue using mpv (requires: task-spooler, mpv, youtube-dl)
-macro p set browser "tsp mpv %u"; open-in-browser ; set browser $BROWSER
+macro q set browser "tsp mpv %u"; open-in-browser ; set browser $BROWSER
 
 
 # Ivaylo Kuzev <ivkuzev@gmail.com>, 2014
