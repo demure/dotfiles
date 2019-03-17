@@ -41,10 +41,12 @@ function __prompt_command() {
         fi
 
         ### Machine Test ### {{{
+        local SHost="$(echo $HOSTNAME | awk 'match($0,/^[a-zA-Z0-9]+/) {print substr($0,RSTART,RLENGTH)}')"
         if [ ${HOSTNAME} == 'moving-computer-of-doom' ]; then
             local PSCol="$Cya"              ## For Main Computer
         elif [ ${HOSTNAME} == 'vps-of-doom' ]; then
             local PSCol="$Blu"              ## For VPS
+            local PSOpt="${SHost} "
         elif [ ${HOSTNAME} == 'ma.sdf.org' ]; then
             local PSCol="${Yel}"            #@ For MetaArray
             local PSOpt="\h "
@@ -53,10 +55,12 @@ function __prompt_command() {
             local PSOpt="\h "
         elif [ ${HOSTTYPE} == 'arm' ]; then
             local PSCol="$Gre"              #@ For pi
+            local PSOpt="${SHost} "
         elif [[ ${MACHTYPE} =~ arm-apple-darwin ]]; then
             local PSCol="$Gre"              ## For iOS
         elif [ ${MACHTYPE} == 'i486-pc-linux-gnu' ]; then
             local PSCol="$BBla"             ## For Netbook
+            local PSOpt="${SHost} "
         elif [[ "${MACHTYPE}" == "x86_64--netbsd" && "${OSTYPE}" == "netbsd" ]]; then
             local PSCol="${Yel}"            ## For Main Cluster
             local PSOpt="\h "
