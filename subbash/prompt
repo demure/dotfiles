@@ -129,15 +129,20 @@ function __prompt_command() {
                 ### Find Branch ### {{{
                 local GBranch="$(echo ${GStatus} | awk 'match($0,/# branch.head [^ :]+/) {print substr($0,RSTART+14,RLENGTH-14)}')"
                 if [ -n "${GBranch}" ]; then
-                    if [ "${GBranch}" == "master" ]; then
-                        local GBranch="M"      ## Because why waste space
+                    GBranch="[${GBranch}]"              ## Add brackets for final output. Will now test against brackets as well.
+                    if [ "${GBranch}" == "[master]" ]; then
+                        local GBranch="[M]"             ## Because why waste space
+                    fi
+                    ## Test if in detached head state, and set output to first 8char of hash
+                    if [ "${GBranch}" == "[(detached)]" ]; then
+                        GBranch="($(echo ${GStatus} | awk 'match($0,/branch.oid [0-9a-fA-F]+/) {print substr($0,RSTART+11,RLENGTH-11)}' | cut -c1-8))"
                     fi
                   else
-                    local GBranch="ERROR"      ## It could happen supposedly?
+                    local GBranch="ERROR"               ## It could happen?
                 fi
                 ### End Branch ### }}}
 
-                PS1+=" ${GitColor}[$GBranch]${RCol}" ## Add result to prompt
+                PS1+=" ${GitColor}${GBranch}${RCol}"    ## Add result to prompt
 
                 ### Find Commit Status ### {{{
                 ## Test Modified and Untracked for "0"
