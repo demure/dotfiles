@@ -15,10 +15,11 @@ ttrss-flag-star "s"
 ttrss-flag-publish "p"
 
 auto-reload yes
-reload-time 30
+reload-time 20
 reload-threads 2
 suppress-first-reload yes
 #notify-beep yes
+notify-screen yes
 confirm-exit yes
 
 show-read-feeds no
