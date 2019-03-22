@@ -37,6 +37,16 @@ workspace_auto_back_and_forth yes
 ### End Variables ### }}}
 
 ### Bindings ### {{{
+    ### i3 Keys ### {{{
+    ## reload the configuration file
+    bindsym $mod+Shift+c reload
+    ## restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+    ## The pkill is to makke my fancy bar play nice
+    bindsym $mod+Shift+r exec pkill lemonbar && i3-msg restart
+    ## exit i3 (logs you out of your X session)
+    bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'pkill lemonbar && i3-msg exit'"
+    ### End i3 Keys ### }}}
+
     ### Workspace Bindings ### {{{
         ### Last Workspace ### {{{
         ## Move to last workspace
@@ -166,189 +176,64 @@ workspace_auto_back_and_forth yes
         ### End Parent / Child Container ### }}}
     ### End Container Bindings ### }}}
 
-    ### i3 Modes ### {{{
-        ### Handy Menu Mode ### {{{
-        set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
-        mode "$mode_system" {
-            bindsym l exec --no-startup-id $Locker, mode "default"
-            bindsym e exec --no-startup-id pkill lemonbar && i3-msg exit, mode "default"
-            bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
-            bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
-            bindsym r exec --no-startup-id systemctl reboot, mode "default"
-            bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
-            bindsym c exec --no-startup-id sudo /usr/bin/tomb close all, mode "default"
-            bindsym Shift+c exec --no-startup-id sudo /usr/bin/tomb slam, mode "default"
-            ## Invert screen colors
-            bindsym i exec --no-startup-id xcalib -invert -alter, mode "default"
-            ## Set brightness to my default of 30%
-            bindsym b exec --no-startup-id xbacklight -set 30, mode "default"
-            ## One minute timer, big
-            bindsym t exec urxvt -fn xft:PragmataProMono-Regular:pixelsize=70 -e termdown -WBb -c 10 -t TIME 1m, mode "default"
-            ## One minute timer, small
-            bindsym Shift+t exec urxvt -e termdown -WBb -c 10 -t TIME 1m, mode "default"
-            ## Flip screen horizontally
-            bindsym f exec --no-startup-id xrandr -x, mode "default"
-            ## Flip screen vertically
-            bindsym Shift+F exec --no-startup-id xrandr -y, mode "default"
+    ### Mouse Bindings ### {{{
+        ## Use Mouse+$mod to drag floating windows to their wanted position
+        floating_modifier $mod
 
-            ## back to normal: Enter or Escape
-            bindsym Return mode "default"
-            bindsym Escape mode "default"
-        }
+        ## Seems like this only works on border or title bar...
+        #bindsym --whole-window --border button6 workspace prev
+        #bindsym --whole-window --border button7 workspace next
+        ## Removed --whole-window as it started working, and touchpoint scrolling affected.
+        bindsym --border button6 workspace prev
+        bindsym --border button7 workspace next
+    ### End Mouse Bindings ### }}}
 
-        bindsym $mod+Pause mode "$mode_system"
-        bindsym $mod+End mode "$mode_system"
-        bindsym XF86Tools mode "$mode_system"
-        ### End Handy Menu Mode ### }}}
+    ### Scratch Pad ### {{{
+    ## Make the currently focused window a scratchpad
+    bindsym $mod+Shift+minus move scratchpad
 
-        ### App Quick Launch ### {{{
-        ## Launch mode, one app per key.
-        mode "launch" {
-            bindsym b exec qutebrowser ; mode "default"
-            bindsym c exec speedcrunch ; mode "default"
-            bindsym f exec firefox ; mode "default"
-            ## gksudo is dead
-            #bindsym g exec gksudo gameconqueror ; mode "default"
-            bindsym g exec urxvt -e sudo scanmem ; mode "default"
-            bindsym Shift+m exec --no-startup-id sudo /usr/bin/tomb open -k ~/vault.tomb.key ~/vault.tomb -g ; mode "default"
-            bindsym n exec urxvt -e terminal_velocity ; mode "default"
-            bindsym o exec libreoffice ; mode "default"
-            bindsym t exec i3-sensible-terminal ; mode "default"
-            bindsym v exec $HOME/bin/start-vpn.sh ; mode "default"
-            bindsym w exec urxvt -e wicd-curses ; mode "default"
+    ## Show the first scratchpad window
+    bindsym $mod+minus scratchpad show
+    ### End Scratch Pad ### }}}
 
-            ## Keeping this as an example
-            ## gnome-disks will not launch twice, gparted will. Avoid that.
-            #bindsym d exec ((pidof gpartedbin) || gksudo gparted); exec gnome-disks ; mode "default"
+    ### User Interface Bindings ### {{{
+        ### Brightness Bindings ### {{{
+        bindsym XF86MonBrightnessUp exec xbacklight -inc 5          ## Increase screen brightness
+        bindsym Shift+XF86MonBrightnessUp exec xbacklight -inc 1    ## Fine increase screen brightness
+        bindsym XF86MonBrightnessDown exec xbacklight -dec 5        ## Decrease screen brightness
+        bindsym Shift+XF86MonBrightnessDown exec xbacklight -dec 1  ## Fine decrease screen brightness
+        bindsym $mod+XF86MonBrightnessUp exec xbacklight -set 100   ## Set max screen brightness
+        bindsym $mod+XF86MonBrightnessDown exec xbacklight -set 1   ## Set min screen brightness
+        ### End Brightness Bindings ### }}}
 
-            bindsym Return mode "default"
-            bindsym Escape mode "default"
-        }
-        #bindsym $mod+Shift+g mode "launch"
-        bindsym $mod+g mode "launch"
-        ### End App Quick Launch ### }}}
+        ### Pulse Audio Controls ### {{{
+        ## Disabled old volume bindings after amixer started acting up
+        ##bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q set Master 5%+          ## Increase sound volume
+        ##bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id amixer -q set Master 1%+    ## Fine increase sound volume
+        ##bindsym $mod+XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%  ## Able to softvol increase
+        ##bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 5%-          ## Decrease sound volume
+        ##bindsym Shift+XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 1%-    ## Fine decrease sound volume
+        ##bindsym $mod+XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%  ## Able to softvol decrease
+        ##bindsym XF86AudioMute exec --no-startup-id amixer -q set Master toggle              ## mute sound
 
-        ### App Focus Mode ### {{{
-        mode "App Focus" {
-            ## hardcoded focus keybindings
-            bindsym b [class="(?i)qutebrowser"] focus, mode "default"
-            bindsym w [class="(?i)terminal" title="weechat"] focus, mode "default"
-            #bindsym m [class="(?i)icedove"] focus, mode "default"
-            bindsym f [class="(?i)spacefm"] focus, mode "default"
-            bindsym z [class="(?i)zathura"] focus, mode "default"
+        ## Softvol increase possible with pactl
+        bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%           ## Increase sound volume
+        bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +1%     ## Fine increase sound volume
+        bindsym $mod+XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 100%     ## Set volume to "100%"
+        bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%           ## Decrease sound volume
+        bindsym Shift+XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -1%     ## Fine decrease sound volume
+        bindsym $mod+XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 50%      ## Set volume to "50%"
 
-            ## back to normal: Enter or Escape
-            bindsym Return mode "default"
-            bindsym Escape mode "default"
-        }
-        bindsym $mod+Shift+g mode "App Focus"
-        ### End App Focus Mode ### }}}
+        bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle                 ## mute sound
+        bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 1 toggle            ## mute mic
+        ### End Pulse Audio ### }}}
 
-        ### Resize Window Mode ### {{{
-        ## resize window (you can also use the mouse for that)
-        mode "resize" {
-            ## These bindings trigger as soon as you enter the resize mode
+        ### Toggle redshift ### {{{
+        bindsym $mod+slash exec --no-startup-id pkill -USR1 redshift
+        ### End Toggle redshift ### }}}
+    ### End User Interface Bindings ### }}}
 
-            ## They resize the border in the direction you pressed, e.g.
-            ## when pressing left, the window is resized so that it has
-            ## more space on its left
-            bindsym h resize shrink left 10 px or 10 ppt
-            bindsym j resize shrink down 10 px or 10 ppt
-            bindsym k resize shrink up 10 px or 10 ppt
-            bindsym l resize shrink right 10 px or 10 ppt
-            bindsym Shift+H resize grow left 10 px or 10 ppt
-            bindsym Shift+J resize grow down 10 px or 10 ppt
-            bindsym Shift+K resize grow up 10 px or 10 ppt
-            bindsym Shift+L resize grow right 10 px or 10 ppt
-
-            ## Same bindings, but for the arrow keys
-            bindsym Left resize shrink left 10 px or 10 ppt
-            bindsym Down resize shrink down 10 px or 10 ppt
-            bindsym Up resize shrink up 10 px or 10 ppt
-            bindsym Right resize shrink right 10 px or 10 ppt
-            bindsym Shift+Left resize grow left 10 px or 10 ppt
-            bindsym Shift+Down resize grow down 10 px or 10 ppt
-            bindsym Shift+Up resize grow up 10 px or 10 ppt
-            bindsym Shift+Right resize grow right 10 px or 10 ppt
-
-            ## Go to precise mode
-            bindsym p mode "resize_precise"
-
-            ## Back to normal: Enter or Escape
-            bindsym Return mode "default"
-            bindsym Escape mode "default"
-        }
-
-            ### Precise Resize ### {{{
-            mode "resize_precise" {
-                bindsym h resize shrink left 1 px or 1 ppt
-                bindsym j resize shrink down 1 px or 1 ppt
-                bindsym k resize shrink up 1 px or 1 ppt
-                bindsym l resize shrink right 1 px or 1 ppt
-                bindsym Shift+H resize grow left 1 px or 1 ppt
-                bindsym Shift+J resize grow down 1 px or 1 ppt
-                bindsym Shift+K resize grow up 1 px or 1 ppt
-                bindsym Shift+L resize grow right 1 px or 1 ppt
-
-                ## Same bindings, but for the arrow keys
-                bindsym Left resize shrink left 1 px or 1 ppt
-                bindsym Down resize shrink down 1 px or 1 ppt
-                bindsym Up resize shrink up 1 px or 1 ppt
-                bindsym Right resize shrink right 1 px or 1 ppt
-                bindsym Shift+Left resize grow left 1 px or 1 ppt
-                bindsym Shift+Down resize grow down 1 px or 1 ppt
-                bindsym Shift+Up resize grow up 1 px or 1 ppt
-                bindsym Shift+Right resize grow right 1 px or 1 ppt
-
-                ## Return to normal resize
-                bindsym p mode "resize"
-
-                ## Back to normal: Enter or Escape
-                bindsym Return mode "default"
-                bindsym Escape mode "default"
-            }
-            ### End Precise Resize ### }}}
-
-        bindsym $mod+r mode "resize"
-        ### End Resize Mode ### }}}
-
-        ## xrandr mode?
-
-        ### control-pianobar Mode ### {{{
-        mode "control-pianobar" {
-            bindsym p exec --no-startup-id ~/.config/pianobar/control-pianobar.sh play, mode "default"
-            bindsym q exec --no-startup-id ~/.config/pianobar/control-pianobar.sh quit, mode "default"
-            bindsym h exec --no-startup-id ~/.config/pianobar/control-pianobar.sh history, mode "default"
-            bindsym n exec --no-startup-id ~/.config/pianobar/control-pianobar.sh next, mode "default"
-            bindsym t exec --no-startup-id ~/.config/pianobar/control-pianobar.sh tired, mode "default"
-            bindsym s exec --no-startup-id ~/.config/pianobar/control-pianobar.sh switchstation, mode "default"
-            bindsym \, exec --no-startup-id ~/.config/pianobar/control-pianobar.sh previousstation, mode "default"
-            bindsym . exec --no-startup-id ~/.config/pianobar/control-pianobar.sh nextstation, mode "default"
-            bindsym l exec --no-startup-id ~/.config/pianobar/control-pianobar.sh love, mode "default"
-            bindsym b exec --no-startup-id ~/.config/pianobar/control-pianobar.sh ban, mode "default"
-            bindsym e exec --no-startup-id ~/.config/pianobar/control-pianobar.sh explain, mode "default"
-            bindsym c exec --no-startup-id ~/.config/pianobar/control-pianobar.sh current, mode "default"
-
-            ## back to normal: Enter or Escape
-            bindsym Return mode "default"
-            bindsym Escape mode "default"
-        }
-
-        bindsym $mod+m mode "control-pianobar"
-        ### End control-pianobar Mode ### }}}
-    ### End i3 Modes ### }}}
-
-    ### Misc Bindings ### {{{
-        ### i3 Keys ### {{{
-        ## reload the configuration file
-        bindsym $mod+Shift+c reload
-        ## restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-        ## The pkill is to makke my fancy bar play nice
-        bindsym $mod+Shift+r exec pkill lemonbar && i3-msg restart
-        ## exit i3 (logs you out of your X session)
-        bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'pkill lemonbar && i3-msg exit'"
-        ### End i3 Keys ### }}}
-
+    ### Program Call Bindings ### {{{
         ### Launch Term ### {{{
         ## start a terminal
         bindsym $mod+Return exec i3-sensible-terminal
@@ -379,41 +264,6 @@ workspace_auto_back_and_forth yes
         bindsym Shift+XF86Search exec rofi-pass     ## x260
         ### End Rofi Bindings ### }}}
 
-        ### Pulse Audio Controls ### {{{
-        ## Disabled old volume bindings after amixer started acting up
-        ##bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q set Master 5%+          ## Increase sound volume
-        ##bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id amixer -q set Master 1%+    ## Fine increase sound volume
-        ##bindsym $mod+XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%  ## Able to softvol increase
-        ##bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 5%-          ## Decrease sound volume
-        ##bindsym Shift+XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 1%-    ## Fine decrease sound volume
-        ##bindsym $mod+XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%  ## Able to softvol decrease
-        ##bindsym XF86AudioMute exec --no-startup-id amixer -q set Master toggle              ## mute sound
-
-        ## Softvol increase possible with pactl
-        bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%           ## Increase sound volume
-        bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +1%     ## Fine increase sound volume
-        bindsym $mod+XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 100%     ## Set volume to "100%"
-        bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%           ## Decrease sound volume
-        bindsym Shift+XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -1%     ## Fine decrease sound volume
-        bindsym $mod+XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 50%      ## Set volume to "50%"
-
-        bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle                 ## mute sound
-        bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 1 toggle            ## mute mic
-        ### End Pulse Audio ### }}}
-
-        ### Toggle redshift ### {{{
-        bindsym $mod+slash exec --no-startup-id pkill -USR1 redshift
-        ### End Toggle redshift ### }}}
-
-        ### Brightness Bindings ### {{{
-        bindsym XF86MonBrightnessUp exec xbacklight -inc 5          ## Increase screen brightness
-        bindsym Shift+XF86MonBrightnessUp exec xbacklight -inc 1    ## Fine increase screen brightness
-        bindsym XF86MonBrightnessDown exec xbacklight -dec 5        ## Decrease screen brightness
-        bindsym Shift+XF86MonBrightnessDown exec xbacklight -dec 1  ## Fine decrease screen brightness
-        bindsym $mod+XF86MonBrightnessUp exec xbacklight -set 100   ## Set max screen brightness
-        bindsym $mod+XF86MonBrightnessDown exec xbacklight -set 1   ## Set min screen brightness
-        ### End Brightness Bindings ### }}}
-
         ### External IP Toggle For i3 lemonbar ### {{{
         ## Good example of a on/off flag, with awk. Replaces with three position code.
         ## awk -v TEMP=/tmp/i3_lemonbar_ip_${USER} 'BEGIN {{FILE=getline < TEMP < 0 ? "0" : "1"} {if($0==1){STATE=1} else {STATE=0}} {if(STATE==0){system("echo 1 > "TEMP)} else {system("echo 0 > "TEMP)}} }'
@@ -424,28 +274,184 @@ workspace_auto_back_and_forth yes
         ### Clipster Clipboard Manager ### {{{
         bindsym $mod+c exec clipster -sc
         ### End Clipster ### }}}
+    ### End Program Call Bindings ### }}}
+
+    ### Misc Bindings ### {{{
     ### End Misc Bindings ### }}}
-
-    ### Mouse Bindings ### {{{
-        ## Use Mouse+$mod to drag floating windows to their wanted position
-        floating_modifier $mod
-
-        ## Seems like this only works on border or title bar...
-        #bindsym --whole-window --border button6 workspace prev
-        #bindsym --whole-window --border button7 workspace next
-        ## Removed --whole-window as it started working, and touchpoint scrolling affected.
-        bindsym --border button6 workspace prev
-        bindsym --border button7 workspace next
-    ### End Mouse Bindings ### }}}
-
-    ### Scratch Pad ### {{{
-    ## Make the currently focused window a scratchpad
-    bindsym $mod+Shift+minus move scratchpad
-
-    ## Show the first scratchpad window
-    bindsym $mod+minus scratchpad show
-    ### End Scratch Pad ### }}}
 ### End Bindings ### }}}
+
+### i3 Modes ### {{{
+    ### System Control  Mode ### {{{
+    mode "system-control" {
+        bindsym l exec --no-startup-id $Locker, mode "default"
+        bindsym e exec --no-startup-id pkill lemonbar && i3-msg exit, mode "default"
+        bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
+        bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
+        bindsym r exec --no-startup-id systemctl reboot, mode "default"
+        bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
+        bindsym c exec --no-startup-id sudo /usr/bin/tomb close all, mode "default"
+        bindsym Shift+c exec --no-startup-id sudo /usr/bin/tomb slam, mode "default"
+        ## Invert screen colors
+        bindsym i exec --no-startup-id xcalib -invert -alter, mode "default"
+        ## Set brightness to my default of 30%
+        bindsym b exec --no-startup-id xbacklight -set 30, mode "default"
+        ## One minute timer, big
+        bindsym t exec urxvt -fn xft:PragmataProMono-Regular:pixelsize=70 -e termdown -WBb -c 10 -t TIME 1m, mode "default"
+        ## One minute timer, small
+        bindsym Shift+t exec urxvt -e termdown -WBb -c 10 -t TIME 1m, mode "default"
+        ## Flip screen horizontally
+        bindsym f exec --no-startup-id xrandr -x, mode "default"
+        ## Flip screen vertically
+        bindsym Shift+F exec --no-startup-id xrandr -y, mode "default"
+
+        ## back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+    }
+
+    bindsym $mod+Pause mode "system-control"
+    bindsym $mod+End mode "system-control"
+    bindsym XF86Tools mode "system-control"
+    ### End System Control Mode ### }}}
+
+    ### App Quick Launch ### {{{
+    ## Launch mode, one app per key.
+    mode "quick-launch" {
+        bindsym b exec qutebrowser ; mode "default"
+        bindsym c exec speedcrunch ; mode "default"
+        bindsym f exec firefox ; mode "default"
+        ## gksudo is dead
+        #bindsym g exec gksudo gameconqueror ; mode "default"
+        bindsym g exec urxvt -e sudo scanmem ; mode "default"
+        bindsym Shift+m exec --no-startup-id sudo /usr/bin/tomb open -k ~/vault.tomb.key ~/vault.tomb -g ; mode "default"
+        bindsym n exec urxvt -e terminal_velocity ; mode "default"
+        bindsym o exec libreoffice ; mode "default"
+        bindsym t exec i3-sensible-terminal ; mode "default"
+        bindsym v exec $HOME/bin/start-vpn.sh ; mode "default"
+        bindsym w exec urxvt -e wicd-curses ; mode "default"
+
+        ## Keeping this as an example
+        ## gnome-disks will not launch twice, gparted will. Avoid that.
+        #bindsym d exec ((pidof gpartedbin) || gksudo gparted); exec gnome-disks ; mode "default"
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+    }
+
+    #bindsym $mod+Shift+g mode "quick-launch"
+    bindsym $mod+g mode "quick-launch"
+    ### End App Quick Launch ### }}}
+
+    ### App Focus Mode ### {{{
+    mode "app-focus" {
+        ## hardcoded focus keybindings
+        bindsym b [class="(?i)qutebrowser"] focus, mode "default"
+        bindsym w [class="(?i)terminal" title="weechat"] focus, mode "default"
+        #bindsym m [class="(?i)icedove"] focus, mode "default"
+        bindsym f [class="(?i)spacefm"] focus, mode "default"
+        bindsym z [class="(?i)zathura"] focus, mode "default"
+
+        ## back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+    }
+
+    bindsym $mod+Shift+g mode "app-focus"
+    ### End App Focus Mode ### }}}
+
+    ### Resize Window Mode ### {{{
+    ## resize window (you can also use the mouse for that)
+    mode "resize" {
+        ## These bindings trigger as soon as you enter the resize mode
+
+        ## They resize the border in the direction you pressed, e.g.
+        ## when pressing left, the window is resized so that it has
+        ## more space on its left
+        bindsym h resize shrink left 10 px or 10 ppt
+        bindsym j resize shrink down 10 px or 10 ppt
+        bindsym k resize shrink up 10 px or 10 ppt
+        bindsym l resize shrink right 10 px or 10 ppt
+        bindsym Shift+H resize grow left 10 px or 10 ppt
+        bindsym Shift+J resize grow down 10 px or 10 ppt
+        bindsym Shift+K resize grow up 10 px or 10 ppt
+        bindsym Shift+L resize grow right 10 px or 10 ppt
+
+        ## Same bindings, but for the arrow keys
+        bindsym Left resize shrink left 10 px or 10 ppt
+        bindsym Down resize shrink down 10 px or 10 ppt
+        bindsym Up resize shrink up 10 px or 10 ppt
+        bindsym Right resize shrink right 10 px or 10 ppt
+        bindsym Shift+Left resize grow left 10 px or 10 ppt
+        bindsym Shift+Down resize grow down 10 px or 10 ppt
+        bindsym Shift+Up resize grow up 10 px or 10 ppt
+        bindsym Shift+Right resize grow right 10 px or 10 ppt
+
+        ## Go to precise mode
+        bindsym p mode "resize_precise"
+
+        ## Back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+    }
+
+        ### Precise Resize ### {{{
+        mode "resize_precise" {
+            bindsym h resize shrink left 1 px or 1 ppt
+            bindsym j resize shrink down 1 px or 1 ppt
+            bindsym k resize shrink up 1 px or 1 ppt
+            bindsym l resize shrink right 1 px or 1 ppt
+            bindsym Shift+H resize grow left 1 px or 1 ppt
+            bindsym Shift+J resize grow down 1 px or 1 ppt
+            bindsym Shift+K resize grow up 1 px or 1 ppt
+            bindsym Shift+L resize grow right 1 px or 1 ppt
+
+            ## Same bindings, but for the arrow keys
+            bindsym Left resize shrink left 1 px or 1 ppt
+            bindsym Down resize shrink down 1 px or 1 ppt
+            bindsym Up resize shrink up 1 px or 1 ppt
+            bindsym Right resize shrink right 1 px or 1 ppt
+            bindsym Shift+Left resize grow left 1 px or 1 ppt
+            bindsym Shift+Down resize grow down 1 px or 1 ppt
+            bindsym Shift+Up resize grow up 1 px or 1 ppt
+            bindsym Shift+Right resize grow right 1 px or 1 ppt
+
+            ## Return to normal resize
+            bindsym p mode "resize"
+
+            ## Back to normal: Enter or Escape
+            bindsym Return mode "default"
+            bindsym Escape mode "default"
+        }
+        ### End Precise Resize ### }}}
+
+    bindsym $mod+r mode "resize"
+    ### End Resize Mode ### }}}
+
+    ### Control Pianobar Mode ### {{{
+    mode "control-pianobar" {
+        bindsym p exec --no-startup-id ~/.config/pianobar/control-pianobar.sh play, mode "default"
+        bindsym q exec --no-startup-id ~/.config/pianobar/control-pianobar.sh quit, mode "default"
+        bindsym h exec --no-startup-id ~/.config/pianobar/control-pianobar.sh history, mode "default"
+        bindsym n exec --no-startup-id ~/.config/pianobar/control-pianobar.sh next, mode "default"
+        bindsym t exec --no-startup-id ~/.config/pianobar/control-pianobar.sh tired, mode "default"
+        bindsym s exec --no-startup-id ~/.config/pianobar/control-pianobar.sh switchstation, mode "default"
+        bindsym \, exec --no-startup-id ~/.config/pianobar/control-pianobar.sh previousstation, mode "default"
+        bindsym . exec --no-startup-id ~/.config/pianobar/control-pianobar.sh nextstation, mode "default"
+        bindsym l exec --no-startup-id ~/.config/pianobar/control-pianobar.sh love, mode "default"
+        bindsym b exec --no-startup-id ~/.config/pianobar/control-pianobar.sh ban, mode "default"
+        bindsym e exec --no-startup-id ~/.config/pianobar/control-pianobar.sh explain, mode "default"
+        bindsym c exec --no-startup-id ~/.config/pianobar/control-pianobar.sh current, mode "default"
+
+        ## back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+    }
+
+    bindsym $mod+m mode "control-pianobar"
+    ### End Control Pianobar Mode ### }}}
+
+    ## xrandr mode?
+### End i3 Modes ### }}}
 
 ### Window Treatments ### {{{
     ## (adding "(?i)" means ignore case)
