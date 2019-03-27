@@ -25,7 +25,7 @@ export PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/pkg/bin:/usr/local/bin:/usr/local
 ## Tests for fortune, root, interactive shell, and dumb term
 if [ $(command -v fortune) ] && [ ${UID} != '0' ] && [[ $- == *i* ]] && [ ${TERM} != 'dumb' ]; then
     fortune -a
-    else
+  else
     MISSING_ITEMS+="fortune, "
 fi
 ### End Fortune ### }}}
@@ -39,7 +39,7 @@ if [ $(command -v memo) ] && [ ${UID} != '0' ] && [[ $- == *i* ]] && [ ${TERM} !
         memo -u 2>/dev/null
         touch ${HOME}/.memo
     fi
-    else
+  else
     MISSING_ITEMS+="memo, "
 fi
 ### End Memo ### }}}
@@ -56,7 +56,7 @@ if [ $(command -v task) ] && [ ${UID} != '0' ] && [[ $- == *i* ]] && [ ${TERM} !
             touch ${HOME}/.task/pending.data
         fi
     fi
-    else
+  else
     MISSING_ITEMS+="taskwarrior, "
 fi
 ### End Taskwarrior ### }}}
@@ -70,7 +70,7 @@ grep_test="$(grep --version 2>/dev/null | awk 'BEGIN {VER=0; CUT=2.20} /^grep/ N
 if [ ${grep_test} == "ge" ]; then
     ## If new, do it the way grep says to
     alias grep='grep --color=auto --exclude-dir=.cvs --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn'
-    else
+  else
     ## If old, use GREP_OPTIONS, as --exclude may not exist, and annoying errors!
     if echo hello | grep --color=auto l >/dev/null 2>&1; then
         GREP_OPTIONS+="--color=auto " GREP_COLOR='1;31'
@@ -88,7 +88,7 @@ fi
 ### Nethack Conf ### {{{
 if [ -f ${HOME}/.nethackrc ]; then
     export NETHACKOPTIONS=~/.nethackrc
-    else
+  else
     MISSING_ITEMS+="nethackrc, "
 fi
 ### End Nethack ### }}}
@@ -96,10 +96,19 @@ fi
 ### Slash'em Conf ### {{{
 if [ -f ${HOME}/.slashemrc ]; then
     export SLASHEMOPTIONS=~/.slashemrc
-    else
+  else
     MISSING_ITEMS+="slashemrc, "
 fi
 ### End Slash'em ### }}}
+
+### z Jump Around ###
+if [ $(command -v z.sh) ] && [ ${UID} != '0' ] && [[ $- == *i* ]] && [ ${TERM} != 'dumb' ]; then
+    source $(command -v z.sh)
+  else
+    MISSING_ITEMS+="z_jump, "
+fi
+### End z Jump Around ###
+
 
 #   ### TERM color ### {{{
 #   ## Disabled, as forcing is kind of bad >_>
