@@ -256,8 +256,8 @@ workspace_auto_back_and_forth yes
         ## Use rofi, it's better
         ## start dmenu (a program launcher)
         #bindsym $mod+d exec dmenu_run
-        bindsym $mod+p exec rofi -sidebar-mode -show run -font 'Pragmata Pro 10' -fg \#505050 -bg \#000000 -bgalt \#101010 -hlfg \#008080 -hlbg \#454A4F -bc \#008080 -bw 1 -location 2 -width 100 -padding 0 -lines 10 -no-disable-history -no-levenshtein-sort        ## Backup bindingt
-        bindsym XF86Search exec rofi -sidebar-mode -show run -font 'Pragmata Pro 10' -fg \#505050 -bg \#000000 -bgalt \#101010 -hlfg \#008080 -hlbg \#454A4F -bc \#008080 -bw 1 -location 2 -width 100 -padding 0 -lines 10 -no-disable-history -no-levenshtein-sort    ## x260
+        bindsym $mod+p exec rofi -show run
+        bindsym XF86Search exec rofi -show run      ## x260
 
         ### rofi-pass binding
         bindsym $mod+Shift+p exec rofi-pass
