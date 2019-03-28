@@ -101,13 +101,13 @@ if [ -f ${HOME}/.slashemrc ]; then
 fi
 ### End Slash'em ### }}}
 
-### z Jump Around ###
+### z Jump Around ### {{{
 if [ $(command -v z.sh) ] && [ ${UID} != '0' ] && [[ $- == *i* ]] && [ ${TERM} != 'dumb' ]; then
     source $(command -v z.sh)
   else
     MISSING_ITEMS+="z_jump, "
 fi
-### End z Jump Around ###
+### End z Jump Around ### }}}
 
 
 #   ### TERM color ### {{{
