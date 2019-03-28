@@ -138,6 +138,7 @@ function __prompt_command() {
                         GBranch="($(echo ${GStatus} | awk 'match($0,/branch.oid [0-9a-fA-F]+/) {print substr($0,RSTART+11,RLENGTH-11)}' | cut -c1-8))"
                     fi
                   else
+                    ## Note: No braces applied to emphasis that there is an issue, and that you aren't in a branch named "ERROR".
                     local GBranch="ERROR"               ## It could happen?
                 fi
                 ### End Branch ### }}}
