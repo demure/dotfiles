@@ -56,7 +56,8 @@ BROWSER='qutebrowser'
 ## Misc settings
 
 default_do='menu' # menu, autotype, copyPass, typeUser, typePass, copyUser, copyUrl, viewEntry, typeMenu, actionMenu, copyMenu, openUrl
-auto_enter='false'
+#auto_enter='false'
+auto_enter='true'
 notify='false'
 default_autotype='user :tab pass'
 
