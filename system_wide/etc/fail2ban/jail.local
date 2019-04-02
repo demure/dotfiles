@@ -195,6 +195,18 @@ bantime  = 3600
 findtime = 600
 port     = 500,8080
 logpath  = %(sshd_log)s
+
+
+[sshd-bad-protocol]
+
+enabled     = true
+maxretry    = 1
+## One week
+bantime     = 604800
+## Four days
+findtime    = 345600
+port        = 500,8080
+logpath     = %(sshd_log)s
 ### End ssh ### }}}
 
 ### dropbear ### {{{
