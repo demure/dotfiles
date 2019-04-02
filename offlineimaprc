@@ -50,8 +50,7 @@ ssl = yes
 ## temp setting due to https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=907079
 ## Left in place due to issue with MA cert size?
 ssl_version = tls1_2
-#cert_fingerprint = 5c3c0973316f28669c7c7f91dd3cc1698475e8b0ccb54267da99018bf5f2878018ef0d7ce1dad3868d57cc4be0d0c4c439c224403640b4eac0f03736f46dbe47
-cert_fingerprint = 76ff9a3e19ed7e7b7a40d1ef2b82177a65d41d09419ba0a584b891e18eb03aa0967cddd649388b845e63501637d56f8653303396d6d6576ec0e69bb59b473ac9
+cert_fingerprint = e49ed05bc81099322fa09027988ccaab934082260ec8c37fdc48550bcf6b1fffdb052d50006af534d2e0ce6dee99c5b123be027675cb7db1526eb940b995440e
 remotepasseval = get_pass("mail-sdf-imap")
 realdelete = True
 ### End sdf### }}}
