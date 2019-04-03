@@ -193,7 +193,8 @@ enabled  = true
 bantime  = 3600
 ## ten minutes
 findtime = 600
-port     = 500,8080
+#port     = 500,8080
+port     = 0:499,501:65535
 logpath  = %(sshd_log)s
 
 
@@ -205,9 +206,23 @@ maxretry    = 1
 bantime     = 604800
 ## Four days
 findtime    = 345600
-port        = 500,8080
+#port        = 500,8080
+port        = 0:499,501:65535
 logpath     = %(sshd_log)s
 ### End ssh ### }}}
+
+### endlessh ### {{{
+[endlessh]
+
+enabled     = true
+maxretry    = 10
+## One week
+bantime     = 604800
+## Four days
+findtime    = 345600
+port        = 0:65535
+logpath     = /var/log/endlessh.log
+### End endlessh ### }}}
 
 ### dropbear ### {{{
 [dropbear]
@@ -300,7 +315,8 @@ logpath = /var/log/nginx/error.log
 [nginx-noscript]
 
 enabled  = true
-port     = http,https
+#port     = http,https
+port     = 0:499,501:65535
 filter   = nginx-noscript
 logpath  = /var/log/nginx/access.log
 maxretry = 4
@@ -313,7 +329,8 @@ findtime = 345600
 [nginx-badbots]
 
 enabled  = true
-port     = http,https
+#port     = http,https
+port     = 0:499,501:65535
 filter   = nginx-badbots
 logpath  = /var/log/nginx/access.log
 maxretry = 1
@@ -365,12 +382,14 @@ findtime = 345600
 [nginx-lurkers]
 
 enabled  = true
-port     = http,https
+#port     = http,https
+port     = 0:499,501:65535
 filter   = nginx-lurkers
 logpath  = /var/log/nginx/access.log
            /var/log/nginx/ttrss_access.log
            /var/log/nginx/piwik_access.log
            /var/log/nginx/irpg_access.log
+           /var/log/nginx/pit_access.log
 maxretry = 1
 ## One Month
 bantime = 2628002

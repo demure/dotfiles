@@ -1,0 +1,52 @@
+## pit site config
+
+server {
+    listen 80;
+    listen [::]:80;
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    server_name pit.demu.red;
+    root /var/www/pit;
+
+    access_log /var/log/nginx/pit_access.log;
+    error_log /var/log/nginx/pit_error.log;
+
+    ## Disable all methods besides HEAD, GET and POST.
+    if ($request_method !~ ^(GET|HEAD|POST)$ ) {
+        return 444;
+    }
+
+    index index.php index.html;
+
+    ## Include certbot fix
+    include /etc/nginx/snippets/nginx.well-known.conf;
+
+    ## Include ssl
+    include /etc/nginx/snippets/nginx.ssl.conf;
+
+    ### Deny Stuffs ### {{{
+        ## Protect specific TXT and config files
+        location ~ /(\.|readme.html|readme.md|changelog.txt|changelog.md|contributing.txt|contributing.md|license.txt|license.md|legalnotice|privacy.txt|privacy.md|security.txt|security.md|sample-.*txt)
+        {
+            deny all;
+        }
+
+        ## Protect .git files
+        location ~ /\.git/ {
+            access_log off;
+            log_not_found off;
+            deny all;
+        }
+    ### End Deny Stuffs ### }}}
+
+    ## Error Redirects
+    error_page 403 /error.html;
+    error_page 404 /error.html;
+    error_page 405 /error.html;
+    error_page 500 501 502 503 504 /error.html;
+
+    location = /error.html {
+        root /var/www/error;
+        internal;
+    }
+}
