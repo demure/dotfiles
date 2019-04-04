@@ -495,7 +495,7 @@ assign [class="(?i)spacefm"]    $ws7
 #}
 
 bar {
-    i3bar_command ~/.i3/lemonbar/i3_lemonbar.sh
+    i3bar_command sleep 5; ~/.i3/lemonbar/i3_lemonbar.sh
     binding_mode_indicator yes
     ## This isn't working? primary display set to lvms1.
     #tray_output primary
