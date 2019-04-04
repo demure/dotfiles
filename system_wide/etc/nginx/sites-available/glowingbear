@@ -1,15 +1,25 @@
-## pit site config
+## glowing-bear site config
 
 server {
+    ## Redirect http to https
     listen 80;
     listen [::]:80;
+    server_name glow.demu.red;
+    return 301 https://$host$request_uri;
+}
+
+server {
     listen 443 ssl;
     listen [::]:443 ssl;
-    server_name pit.demu.red;
-    root /var/www/pit;
+    server_name glow.demu.red;
+    root /var/www/glowing-bear;
 
-    access_log /var/log/nginx/pit_access.log;
-    error_log /var/log/nginx/pit_error.log;
+    access_log /var/log/nginx/glow_access.log;
+    error_log /var/log/nginx/glow_error.log;
+
+    ## Lock Down Access
+    auth_basic           "Authorized Access Only";
+    auth_basic_user_file /var/www/glowing-bear/.htpasswd;
 
     ## Disable all methods besides HEAD, GET and POST.
     if ($request_method !~ ^(GET|HEAD|POST)$ ) {
