@@ -194,7 +194,7 @@ bantime  = 3600
 ## ten minutes
 findtime = 600
 #port     = 500,8080
-port     = 0:499,501:65535
+port     = 0:21,23:65535
 logpath  = %(sshd_log)s
 
 
@@ -207,7 +207,7 @@ bantime     = 604800
 ## Four days
 findtime    = 345600
 #port        = 500,8080
-port        = 0:499,501:65535
+port        = 0:21,23:65535
 logpath     = %(sshd_log)s
 ### End ssh ### }}}
 
@@ -215,11 +215,11 @@ logpath     = %(sshd_log)s
 [endlessh]
 
 enabled     = true
-maxretry    = 10
+maxretry    = 1000
 ## One week
 bantime     = 604800
-## Four days
-findtime    = 345600
+## five days
+findtime    = 432000
 port        = 0:65535
 logpath     = /var/log/endlessh.log
 ### End endlessh ### }}}
@@ -316,7 +316,7 @@ logpath = /var/log/nginx/error.log
 
 enabled  = true
 #port     = http,https
-port     = 0:499,501:65535
+port     = 0:21,23:499,501:65535
 filter   = nginx-noscript
 logpath  = /var/log/nginx/access.log
 maxretry = 4
@@ -330,7 +330,7 @@ findtime = 345600
 
 enabled  = true
 #port     = http,https
-port     = 0:499,501:65535
+port     = 0:21,23:499,501:65535
 filter   = nginx-badbots
 logpath  = /var/log/nginx/access.log
 maxretry = 1
@@ -383,7 +383,7 @@ findtime = 345600
 
 enabled  = true
 #port     = http,https
-port     = 0:499,501:65535
+port     = 0:21,23:499,501:65535
 filter   = nginx-lurkers
 logpath  = /var/log/nginx/access.log
            /var/log/nginx/ttrss_access.log
@@ -400,7 +400,8 @@ findtime = 345600
 [nginx-bbb-sent]
 
 enabled  = true
-port     = http,https
+#port     = http,https
+port     = 0:21,23:499,501:65535
 filter   = nginx-bbb-sent
 logpath  = /var/log/nginx/access.log
 maxretry = 1
