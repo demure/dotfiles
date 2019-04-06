@@ -44,6 +44,9 @@
 | Music Player           | cmus           | Many, Stream              |
 | Password Manager       | pass           |                           |
 | Usage Stats            | selfspy        |                           |
+| Parse JSON             | jq             |                           |
+| Count Down             | termdown       |                           |
+| Backups                | borg           |                           |
 
 ### CLI programs that preform a GUI Function ###
 
@@ -55,6 +58,7 @@
 | Virtual Machines       | qemu-kvm       |                           |
 | Chart Maker            | graphviz       | Many                      |
 | Show Keystrokes        | screenkey      |                           |
+| Screen Cast Terminal   | ttyd           |                           |
 
 ### WM Environment Related ###
 **Note:** Many of these fall under the previous category.
@@ -66,7 +70,7 @@
 | Desktop Manager        | lightdm        |                           |
 | System Tray            | stalonetray    |                           |
 | System Lock            | i3lock         |                           |
-| System Menu            | rofi           |                           |
+| System Launcher        | rofi           |                           |
 | Clipboard History      | clipster       |                           |
 | Desktop Background     | nitrogen       | Many                      |
 | System Bar             | lemonbar       |                           |
@@ -76,6 +80,7 @@
 | Screen Resolution      | srandrd        |                           |
 | Screen Resolution      | autorandr      |                           |
 | Screen Shots           | scrot          |                           |
+| Clipboard History      | clipstrer      |                           |
 
 ### GUI ###
 
