@@ -15,6 +15,7 @@ set sort_aux = reverse-last-date-received   ## like gmail
 set uncollapse_jump                         ## don't collapse on an unread message
 set sort_re                                 ## thread based on regex
 set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+set menu_context = 3                        ## Show the lines above/below when scrolling
 ### End Index View Options ### }}}
 
 ### Index Key Bindings ### {{{
