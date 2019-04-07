@@ -11,6 +11,8 @@ set pager_stop              ## Don't go to the next message automatically
 set menu_scroll             ## Scroll in menus
 set tilde                   ## Show tildes like in vim
 unset markers               ## No ugly plus signs
+set pager_context = 3       ## Show pervious lins on page up/down, to help keep place
+set search_context = 1      ## Show lines above search to help give context
 ### End Pager View Options ### }}}
 
 set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
