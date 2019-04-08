@@ -106,6 +106,7 @@ bar {
 * Due to change in debian, using pactl for volume checking. **12NOV2018**
 * Added RSS (newsboat) unread indicator. **13MAR2019**
 * Tweaked so that section backgrounds are easier to edit. **13MAR2019**
+* Added UTC time and date mode. Uses an awk toggle and i3 binding. **08APR2019**
 
 
 ### **Things I want** ###

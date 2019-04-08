@@ -103,7 +103,6 @@ while read -r line ; do
             ;;
         ### UTC Time Case ### }}}
 
-
         ### Disk Usage Case ### {{{
         DIC*)
             ## Display Disk use
@@ -124,11 +123,12 @@ while read -r line ; do
         NET*)
             ## Receives either eth or wireless ip, and interface, and signal.
             ## Unfortunately, this will likely default to the last valid entry.
-            net_arr_ip=$(echo ${line#???} | cut -f1 -d\ )
-            net_arr_inter=$(echo ${line#???} | cut -f2 -d\ )
-            net_arr_ipv6=$(echo ${line#???} | cut -f3 -d\ )
-            net_arr_signal=$(echo ${line#???} | cut -f4 -d\ )
-            net_arr_vpn=$(echo ${line#???} | cut -f5 -d\ )
+            read -r -a net_arr <<< "${line#???}"
+            net_arr_ip="${net_arr[0]}"
+            net_arr_inter="${net_arr[1]}"
+            net_arr_ipv6="${net_arr[2]}"
+            net_arr_signal="${net_arr[3]}"
+            net_arr_vpn="${net_arr[4]}"
 
             ## Local IP
             if [ "${net_arr_ip}" != "none" ]; then
@@ -208,10 +208,11 @@ while read -r line ; do
         ### Temperature Case ### {{{
         TMP*)
             ## Display Temperature
-            temp_arr_val=$(echo ${line#???} | cut -f1 -d\ )
-            temp_arr_unit=$(echo ${line#???} | cut -f2 -d\ )
-            if [ "${temp_arr_val}" != "none" ]; then
+            read -r -a temp_arr <<< "${line#???}"
+            temp_arr_val="${temp_arr[0]}"
+            temp_arr_unit="${temp_arr[1]}"
 
+            if [ "${temp_arr_val}" != "none" ]; then
                 ## Select alert for measurement system
                 if [ ${temp_arr_unit} == "C" ]; then
                     temp_check=$(awk -v x=${temp_arr_val} -v y=${temp_alert_c} 'BEGIN {if (x<y){print 0} else {print 1}}')
@@ -222,7 +223,7 @@ while read -r line ; do
                 ## Set alert color
                 if [ ${temp_check} -eq 1 ]; then
                     temp_set_back=${color_temp}; temp_cicon=${color_back}; temp_cfore=${color_back};
-                    else
+                  else
                     temp_set_back=${temp_cback}; temp_cicon=${color_icon}; temp_cfore=${color_fore};
                 fi
                 temp="%{F${temp_set_back}}${sep_left}%{F${temp_cicon} B${temp_set_back}} %{T2}${icon_temp}%{F${temp_cfore} T1} ${temp_arr_val}${temp_arr_unit}"
@@ -253,7 +254,7 @@ while read -r line ; do
             if [ "${gpg_arr}" != "none" ]; then
                 if [ "${gpg_arr}" = "1" ]; then
                     lock="${icon_gpg_unlocked}"
-                else
+                  else
                     lock="${icon_gpg_locked}"
                 fi
 
@@ -281,9 +282,10 @@ while read -r line ; do
             ## Now that I have >12 hours of battery, I don't feel the need for as drastic color thresholds.
             ## I will have colors only at much lower percentages.
 
-            tmb_arr_perc=$(echo ${line#???} | cut -f1 -d\ )
-            tmb_arr_stat=$(echo ${line#???} | cut -f2 -d\ )
-            tmb_arr_time=$(echo ${line#???} | cut -f3 -d\ )
+            read -r -a tmb_arr <<< "${line#???}"
+            tmb_arr_perc="${tmb_arr[0]}"
+            tmb_arr_stat="${tmb_arr[1]}"
+            tmb_arr_time="${tmb_arr[2]}"
 
             ## This means it will not show up on desktop computers
             if [ "${tmb_arr_perc}" != "none" ]; then
@@ -298,7 +300,7 @@ while read -r line ; do
                     bat_icon=${icon_bat2};
                 elif [ ${tmb_arr_perc} -ge 11 ]; then
                     bat_icon=${icon_bat1};
-                else
+                  else
                     bat_icon=${icon_bat0};
                 fi
 
@@ -309,7 +311,7 @@ while read -r line ; do
                     bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_set_back=${color_bat_mid};
                 elif [ ${tmb_arr_perc} -le ${bat_alert_high} ]; then
                     bat_cicon=${color_bat_high}; bat_cfore=${color_fore}; bat_set_back=${bat_cback};
-                else
+                  else
                     bat_cicon=${color_icon}; bat_cfore=${color_fore}; bat_set_back=${bat_cback};
                 fi
 
@@ -382,7 +384,7 @@ while read -r line ; do
 
         ### Window Case ### {{{
         WIN*)
-            ## window title
+            ## Display window title
             title=$(xprop -id ${line#???} | awk '/_NET_WM_NAME/{$1=$2="";print}' | cut -d'"' -f2)
             title="%{F${color_head} B${color_sec_b2}}${sep_right}%{F${color_head} B${color_sec_b2} T2} ${icon_prog} %{F${color_sec_b2} B-}${sep_right}%{F- B- T1} ${title}"
             ;;
