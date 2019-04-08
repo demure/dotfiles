@@ -61,22 +61,48 @@ while read -r line ; do
 
         ### Time and Date Case ### {{{
         TIM*)
-            ## Display Ram use
+            ## Display Time and Date
             ## Seems to need a hand to be treated as an array...
             read -r -a time_arr <<< "${line#???}"
             #time_arr="${line#???}"
 
-            ## Date
+            ## Set Time Var
+            time="${time_arr[3]}"
+
+            ## Set Date Var
             if [ ${res_w} -gt 1024 ]; then
                 date="${time_arr[0]} ${time_arr[1]} ${time_arr[2]}"
               else
                 date="${time_arr[1]} ${time_arr[2]}"
             fi
+
+            ## Grab UTC toggle state, and replace time if set on
+            utc_toggle="$(cat /tmp/i3_lemonbar_utc_${USER} 2>/dev/null)"
+            if [ ${utc_toggle} == 1 ]; then
+                time="${utc_time}"
+                date="${utc_date}"
+            fi
+
             date="%{F${date_cback}}${sep_left}%{F${color_icon} B${date_cback}} %{T2}${icon_time}%{F- T1} ${date}"
             ## Time
-            time="%{F${color_head}}${sep_left}%{F${color_back} B${color_head}} ${time_arr[3]} %{F- B-}"
+            time="%{F${color_head}}${sep_left}%{F${color_back} B${color_head}} ${time} %{F- B-}"
             ;;
-        ### End MEM Case ### }}}
+        ### End Time and Date Case ### }}}
+
+        ### UTC Time Case ### {{{
+        UTC*)
+            ## Display Ram use
+            ## Seems to need a hand to be treated as an array...
+            read -r -a utc_arr <<< "${line#???}"
+            #time_arr="${line#???}"
+
+            ## UTC Date
+            utc_date="${utc_arr[0]}"
+            ## UTC Time
+            utc_time="${utc_arr[1]} ${utc_arr[2]}"
+            ;;
+        ### UTC Time Case ### }}}
+
 
         ### Disk Usage Case ### {{{
         DIC*)
@@ -88,7 +114,7 @@ while read -r line ; do
 
         ### MEM Usage Case ### {{{
         MEM*)
-            ## Display Ram use
+            ## Display Mem use
             mem_arr="${line#???}"
             mem="%{F${cpu_cicon}}${sep_l_left} %{T2}${icon_mem}%{F${cpu_cfore} T1} ${mem_arr}"
             ;;
@@ -157,7 +183,7 @@ while read -r line ; do
 
         ### Volume Case ### {{{
         VOL*)
-            ## Volume
+            ## Display Volume
             vol_arr="${line#???}"
             vol="%{F${vol_cback}}${sep_left}%{F${color_icon} B${vol_cback}} %{T2}${icon_vol}%{F- T1} ${vol_arr}"
             ;;
@@ -165,7 +191,7 @@ while read -r line ; do
 
         ### Brightness Case ### {{{
         BRI*)
-            ## Brightness
+            ## Display Brightness
             bright_arr="${line#???}"
 
             ## Don't show brightness if there is no battery.
@@ -181,7 +207,7 @@ while read -r line ; do
 
         ### Temperature Case ### {{{
         TMP*)
-            ## Temperature
+            ## Display Temperature
             temp_arr_val=$(echo ${line#???} | cut -f1 -d\ )
             temp_arr_unit=$(echo ${line#???} | cut -f2 -d\ )
             if [ "${temp_arr_val}" != "none" ]; then
@@ -209,6 +235,7 @@ while read -r line ; do
 
         ### Offlineimap Case ### {{{
         EMA*)
+            ## Display unreal mail (offlineimap)
             email_arr="${line#???}"
             if [ "${email_arr}" != "0" ]; then
                 mail_set_back=${color_mail}; mail_cicon=${color_sec_b2}; mail_cfore=${color_sec_b2}; mail_icon=${icon_mail}; mail_num=${email_arr}; mail_post_sep=${sep_left}
@@ -221,6 +248,7 @@ while read -r line ; do
 
         ### GPG Case ### {{{
         GPG*)
+            ## Display if gpg keys are unlocked in cache
             gpg_arr=(${line#???})
             if [ "${gpg_arr}" != "none" ]; then
                 if [ "${gpg_arr}" = "1" ]; then
@@ -236,6 +264,7 @@ while read -r line ; do
 
         ### RSS Case ### {{{
         RSS*)
+            ## Display newsboat unread count
             rss_arr=(${line#???})
             if [ -n "${rss_arr}" ]; then
                 rss="%{F${rss_cback}}${sep_left}%{F${color_icon} B${rss_cback}} %{T2}${icon_rss}%{F${color_fore} T1} ${rss_arr}"
@@ -318,7 +347,7 @@ while read -r line ; do
 
         ### Mutli Music Player Display ### {{{
         MMP*)
-            ## Music
+            ## Display Music Status
             mmpd_arr="${line#???}"
             if [ -z "${mmpd_arr}" ] || [ "${mmpd_arr}" == "none" ]; then
                 ## This can deal with odd issues?
@@ -364,13 +393,13 @@ while read -r line ; do
     # This is toggled by, preferably, a binding in your ~/.i3/config
     ## You can find the awk command in my config, or this bar's readme
 
-    ext_toggle="$(cat /tmp/i3_lemonbar_ip_${USER} 2>/dev/null)"
+    extip_toggle="$(cat /tmp/i3_lemonbar_ip_${USER} 2>/dev/null)"
 
-    if [ "${ext_toggle}" = 2 ]; then
+    if [ "${extip_toggle}" = 2 ]; then
         local_ip="%{F${local_ip_cback}}${sep_left}%{F${color_icon} B${local_ip_cback}} %{T2}${net_icon}%{F- T1} ${scrub_ip}"
         filler="%{F${ext_ip_cback}}${sep_left}%{F${color_icon} B${ext_ip_cback}} %{T2}${icon_ext_ip}%{F- T1}"
         mast_net="${local_ip}${stab}${wifi}${stab}${filler}${stab}${vpn}${stab}"
-      elif [ "${ext_toggle}" = 1 ]; then
+      elif [ "${extip_toggle}" = 1 ]; then
         if [ "${net_arr_ipv6}" = "none" ]; then
             net_arr_ipv6="No IPv6"
         fi

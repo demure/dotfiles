@@ -187,6 +187,7 @@ while :; do
     ### Time Check, "TIM" ### {{{
     if [ $((cnt_time++)) -ge ${upd_time} ]; then
         printf "%s%s\n" "TIM" "$(date '+%a %d %b %H:%M')" > "${panel_fifo}"
+        printf "%s%s\n" "UTC" "$(date -u '+%F %H:%M UTC')" > "${panel_fifo}"
         cnt_time=0
     fi
     ### End Time Check, "TIM" ### }}}
