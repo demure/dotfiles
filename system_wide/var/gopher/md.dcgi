@@ -1,0 +1,16 @@
+#!/bin/sh
+## Script to gen a list of files, and give them right type
+
+ROOT="/var/gopher"
+DIR="${ROOT}${2}"
+
+echo "[i|${2}:|Err||]"
+
+for RESULT in $(/bin/ls -r1 ${DIR})
+do
+	DESC="${RESULT}"
+	PATH="/blog/${RESULT}"
+	echo "[0|${DESC}|${PATH}|demu.red|70]"
+done
+
+exit 0
