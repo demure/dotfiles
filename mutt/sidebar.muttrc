@@ -32,9 +32,11 @@ color sidebar_divider   color8  black           ## Dark grey
 ### End Sidebar Colors ### }}}
 
 ### Sidebar Navigation ### {{{
-bind index,pager    <down>     sidebar-next
-bind index,pager    <up>       sidebar-prev
-bind index,pager    <right>    sidebar-open
+bind index,pager    <down>      sidebar-next
+bind index,pager    <up>        sidebar-prev
+bind index,pager    <right>     sidebar-open
+bind index,pager    "\e[1;2B"   sidebar-next-new
+bind index,pager    "\e[1;2A"   sidebar-prev-new
 ### End Sidebar Nav ### }}}
 
 ### Sidebar Mailboxes ### {{{
