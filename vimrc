@@ -39,7 +39,7 @@
             function! CustomFoldText()
                 "" Process line
                 let fs = v:foldstart
-                let fLinePrep = substitute(getline(fs), '\t', '+---', 'g')
+                let fLinePrep = substitute(getline(fs), '\t\|    ', '+---', 'g')
                 let fLine = substitute(fLinePrep, ' {\{3}', '', 'g')
 
                 "" Process line count and fold precentage
