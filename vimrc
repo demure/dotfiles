@@ -29,7 +29,7 @@
         "au BufWinLeave ?* mkview
         "au BufWinEnter ?* silent loadview
         set foldmethod=marker
-        set fillchars=fold:.
+        set fillchars=fold:<
         highlight Folded ctermfg=Grey ctermbg=Black
         "set foldlevelstart=99      " Effectively disable auto folding
 
@@ -44,12 +44,12 @@
 
                 "" Process line count and fold precentage
                 let fSize = 1 + v:foldend - v:foldstart
-                let fSizeStr = " " . fSize . " lines "
+                let fSizeStr = "  (" . fSize . " lines) "
                 let fLineCount = line("$")
-                let fPercent = printf("[%.1f", (fSize*1.0)/fLineCount*100) . "%] "
+                let fPercent = printf(" [%.1f", (fSize*1.0)/fLineCount*100) . "%] "
 
                 "" Process fold level
-                let fLevel = "{".v:foldlevel."} "
+                let fLevel = " {".v:foldlevel."}  "
 
                 "" Process filler string
                 let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
