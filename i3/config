@@ -304,7 +304,7 @@ workspace_auto_back_and_forth yes
         ## Flip screen vertically
         bindsym Shift+F exec --no-startup-id xrandr -y, mode "default"
         ## Toggle between $TZ and UTC in lebmonbar
-        bindsym u exec awk -v TEMP=/tmp/i3_lemonbar_utc_${USER} 'BEGIN {{FILE=getline < TEMP < 0 ? "0" : "1"} {if($0==1){STATE=1} else {STATE=0}} {if(STATE==0){system("echo 1 > "TEMP)} else {system("echo 0 > "TEMP)}} }'
+        bindsym u exec awk -v TEMP=/tmp/i3_lemonbar_utc_${USER} 'BEGIN {{FILE=getline < TEMP < 0 ? "0" : "1"} {if($0==1){STATE=1} else {STATE=0}} {if(STATE==0){system("echo 1 > "TEMP)} else {system("echo 0 > "TEMP)}} }', mode "default"
 
         ## back to normal: Enter or Escape
         bindsym Return mode "default"
