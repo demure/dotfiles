@@ -42,7 +42,7 @@ bind index,pager    "\e[1;2A"   sidebar-prev-new
 ### Sidebar Mailboxes ### {{{
 ## Mailboxes, which will be shown in the sidebar.
 mailboxes +sdf      +sdf/INBOX      +sdf/Drafts     +sdf/Sent       +sdf/Trash
-mailboxes +gmail    +gmail/INBOX    +gmail/archive  +gmail/People   +gmail/Orders   +gmail/News\ Letters    +gmail/drafts   +gmail/sent     +gmail/trash
+mailboxes +gmail    +gmail/INBOX    +gmail/archive  +gmail/People   +gmail/Orders   +gmail/Bulletin     +gmail/drafts   +gmail/sent     +gmail/trash
 mailboxes +emu      +emu/INBOX      +emu/archive    +emu/drafts     +emu/sent       +emu/trash
 mailboxes "+-- local -----------"   /var/spool/mail/$USER
 ### End Sidebar Mailboxes ### }}}M#

@@ -101,7 +101,7 @@ folderfilter = lambda folder: folder in ['[Gmail]/Drafts',
                                         'INBOX',
                                         'People',
                                         'Orders',
-                                        'News Letters',
+                                        'Bulletin',
                                         ]
 ### End gmail ### }}}
 
