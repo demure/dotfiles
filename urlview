@@ -12,5 +12,7 @@
 # REGEXP  (((https?|ftp|gopher)://|(mailto|file|news):)[^' \t<>"]+|(www|web|w3)\.[-a-z0-9.]+)[^' \t.,;<>"\):]
 # COMMAND url_handler.sh '%s'
 #
-REGEXP  (((https?|ftp|gopher)://|(mailto|file|news):)[^' \t<>"]+|(www|web|w3)\.[-a-z0-9.]+)[^' \t.,;<>"\):]
-COMMAND w3m %s
+## Disabled to let default system regex run
+#REGEXP  (((https?|ftp|gopher)://|(mailto|file|news):)[^' \t<>"]+|(www|web|w3)\.[-a-z0-9.]+)[^' \t.,;<>"\):]
+## Disabled to let default system side script run
+#COMMAND w3m %s
