@@ -65,7 +65,7 @@
 
 | Purpose                | Name           | Filetypes                 |
 | ---------------------- | -------------- | ------------------------- |
-| File Browser           | spacefm        |                           |
+| File Browser           |                |                           |
 | Window Manager         | i3             |                           |
 | Desktop Manager        | lightdm        |                           |
 | System Tray            | stalonetray    |                           |
@@ -81,13 +81,14 @@
 | Screen Resolution      | autorandr      |                           |
 | Screen Shots           | scrot          |                           |
 | Clipboard History      | clipstrer      |                           |
+| automount              | udiskie        |                           |
 
 ### GUI ###
 
 | Purpose                | Name           | Filetypes                 |
 | ---------------------- | -------------- | ------------------------- |
 | Comic Reader           | mcomix         | cbr, cbz, rar, zip, etc   |
-| File Browser           | spacefm        |                           |
+| File Browser           |                |                           |
 | Terminal Emulator      | urxvt          |                           |
 | Editor                 | gvim           | txt, etc                  |
 | Bloated Web Browser    | Chromium       | http                      |
