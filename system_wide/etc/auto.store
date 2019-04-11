@@ -1,0 +1,5 @@
+backups         -fstype=cifs,username=demure,password=REDACTED,rw,uid=1000,gid=1000,file_mode=0770,dir_mode=0770     ://10.0.0.10/backups
+#media           -fstype=cifs,username=demure,password=REDACTED,ro,gid=1000,file_mode=0550,dir_mode=0550       ://10.0.0.10/media
+media           -fstype=cifs,username=demure,password=REDACTED,rw,gid=1000,file_mode=0770,dir_mode=0770       ://10.0.0.10/media
+school          -fstype=cifs,username=demure,password=REDACTED,rw,gid=1000,file_mode=0770,dir_mode=0770       ://10.0.0.10/school
+torrents        -fstype=cifs,username=demure,password=REDACTED,ro,gid=1000,file_mode=0550,dir_mode=0550       ://10.0.0.10/torrents
