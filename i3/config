@@ -452,6 +452,26 @@ workspace_auto_back_and_forth yes
     bindsym $mod+m mode "control-pianobar"
     ### End Control Pianobar Mode ### }}}
 
+    ### Control mpd Mode ### {{{
+    mode "control-mpd" {
+        bindsym space exec --no-startup-id mpc -q toggle, mode "default"
+        bindsym p exec --no-startup-id mpc -q play, mode "default"
+        bindsym r exec --no-startup-id mpc -q random, mode "default"
+        bindsym s exec --no-startup-id mpc -q stop, mode "default"
+        bindsym q exec --no-startup-id mpc -q stop, mode "default"
+        bindsym comma exec --no-startup-id mpc -q prev, mode "default"
+        bindsym period exec --no-startup-id mpc -q next, mode "default"
+        bindsym Shift+less exec --no-startup-id mpc -q prev, mode "default"
+        bindsym Shift+greater exec --no-startup-id mpc -q next, mode "default"
+
+        ## back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+    }
+
+    bindsym $mod+Shift+m mode "control-mpd"
+    ### End Control mpd Mode ### }}}
+
     ## xrandr mode?
 ### End i3 Modes ### }}}
 
@@ -526,7 +546,8 @@ exec --no-startup-id unclutter
 #exec --no-startup-id clipster -d
 ## Having wonkyness with default python being python2.7
 exec --no-startup-id python3 /usr/local/sbin/clipster -d
-exec --no-startup-id mpd
+## Note to self, removed hard coded ~/.mpd from mpd-dynamic
+exec --no-startup-id mpd && mpd-dynamic
 exec --no-startup-id i3-msg "workspace $ws7; exec /usr/bin/spacefm"
 exec --no-startup-id i3-msg "workspace $ws3; exec $HOME/bin/qutebrowser"
 exec --no-startup-id i3-msg "workspace $ws1; exec /usr/bin/urxvt"

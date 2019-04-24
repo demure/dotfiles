@@ -78,7 +78,7 @@ while read -r line ; do
 
             ## Grab UTC toggle state, and replace time if set on
             utc_toggle="$(cat /tmp/i3_lemonbar_utc_${USER} 2>/dev/null)"
-            if [ ${utc_toggle} == 1 ]; then
+            if [ "${utc_toggle}" == 1 ]; then
                 time="${utc_time}"
                 date="${utc_date}"
             fi
