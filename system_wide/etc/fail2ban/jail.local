@@ -216,8 +216,8 @@ logpath     = %(sshd_log)s
 
 enabled     = true
 maxretry    = 1000
-## One week
-bantime     = 604800
+## One month
+bantime     = 2419200
 ## five days
 findtime    = 432000
 port        = 0:65535
