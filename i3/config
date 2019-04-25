@@ -29,7 +29,8 @@ workspace_auto_back_and_forth yes
     set $ws4 4
     set $ws5 5
     set $ws6 6
-    set $ws7 7:
+    #set $ws7 7:
+    set $ws7 7
     set $ws8 8
     set $ws9 9
     set $ws10 10
@@ -350,7 +351,7 @@ workspace_auto_back_and_forth yes
         bindsym b [class="(?i)qutebrowser"] focus, mode "default"
         bindsym w [class="(?i)terminal" title="weechat"] focus, mode "default"
         #bindsym m [class="(?i)icedove"] focus, mode "default"
-        bindsym f [class="(?i)spacefm"] focus, mode "default"
+        #bindsym f [class="(?i)spacefm"] focus, mode "default"
         bindsym z [class="(?i)zathura"] focus, mode "default"
 
         ## back to normal: Enter or Escape
@@ -504,7 +505,7 @@ workspace_auto_back_and_forth yes
 ### End Window Treatments ### }}}
 
 ### Assign Application Workspace ### {{{
-assign [class="(?i)spacefm"]    $ws7
+#assign [class="(?i)spacefm"]    $ws7
 
 ### End Assign Application Workspace ### }}}
 
@@ -548,7 +549,7 @@ exec --no-startup-id unclutter
 exec --no-startup-id python3 /usr/local/sbin/clipster -d
 ## Note to self, removed hard coded ~/.mpd from mpd-dynamic
 exec --no-startup-id mpd && mpd-dynamic
-exec --no-startup-id i3-msg "workspace $ws7; exec /usr/bin/spacefm"
+#exec --no-startup-id i3-msg "workspace $ws7; exec /usr/bin/spacefm"
 exec --no-startup-id i3-msg "workspace $ws3; exec $HOME/bin/qutebrowser"
 exec --no-startup-id i3-msg "workspace $ws1; exec /usr/bin/urxvt"
 exec --no-startup-id sleep 30 && pkill -USR1 redshift
