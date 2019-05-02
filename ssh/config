@@ -84,6 +84,10 @@ host gnu
 
 host ppc
     hostName deb.ppc64.club
+
+host tmw2
+    hostName 54.37.11.84
+    Port 1337
 ### End Internet Places ### }}}
 
 ### Local Places ### {{{
