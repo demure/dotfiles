@@ -44,8 +44,8 @@ macro o set browser "mpv --profile=pod $(echo %u | cut -d? -f1 -)"; open-in-brow
 ## add video or audio to play queue using mpv (requires: task-spooler, mpv, youtube-dl)
 macro O set browser "tsp mpv --profile=pod %u"; open-in-browser ; set browser $BROWSER
 ## Got for playing podcasts when %u doesn't match
-macro p pipe-to "grep -Eo 'http.*mp3\|http.*m4a' | xargs -n1 mpv --profile=pod" ;
-macro P pipe-to "grep -Eo 'http.*mp3\|http.*m4a' | xargs -n1 tsp mpv --profile=pod" ;
+macro p pipe-to "grep -Eom 1 'http.*mp3\|http.*m4a' | xargs -n1 mpv --profile=pod" ;
+macro P pipe-to "grep -Eom 1 'http.*mp3\|http.*m4a' | xargs -n1 tsp mpv --profile=pod" ;
 macro i set browser "feh %u"; open ; set browser $BROWSER
 macro w set browser "w3m %u"; open-in-browser ; set browser $BROWSER
 macro I set browser "feh %u"
