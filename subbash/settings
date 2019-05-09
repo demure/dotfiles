@@ -42,7 +42,6 @@ if [ ${HOSTNAME} == 'ma.sdf.org' ]; then
     ## Interactive Test
     if [[ $- == *i* ]]; then
         alias bb='bboard'
-        alias mutt='~/bin/mutt'
         unalias svi
     fi
 
