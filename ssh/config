@@ -70,6 +70,11 @@
     host matiny
         hostName localhost
         Port 63753
+
+    host ircd
+        hostName irc.sdf.org
+        Port 222
+        User ircd
     ### End SDF ### }}}
 
 host mdns
