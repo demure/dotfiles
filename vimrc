@@ -224,6 +224,7 @@ if $USER != 'mobile'
         """ Hardtime Conf """ {{{
         let g:hardtime_default_on = 1
         let g:hardtime_ignore_buffer_patterns = [ "CustomPatt[ae]rn", "NERD.*", "Task.*" ]
+        nmap <leader>h :HardTimeToggle<CR>
         """ End Hardtime """ }}}
 
         """ Syntastic Conf """ {{{
