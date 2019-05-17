@@ -28,6 +28,8 @@ bind index R        group-reply
 bind index <tab>    sync-mailbox
 bind index <space>  collapse-thread
 
+bind index,pager,attach !   noop        ## Remove shell-escape binding
+
 ## Ctrl-R to mark all as read
 macro index \Cr     "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
 
