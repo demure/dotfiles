@@ -1,0 +1,27 @@
+## Account Settings
+set from        = "demure@demu.red"
+set sendmail    = "/usr/bin/msmtp -a vps"
+set my_account  = "vps"         ## This is for an offlineimap macro
+## Temp, waiting on https://github.com/neomutt/neomutt/issues/658
+macro index \Co     "<shell-escape>offlineimap -a vps<enter>" "run offlineimap to sync current inbox."
+
+## Default inbox
+set spoolfile   = "+vps/INBOX"
+
+## Other special folders
+set mbox        = "+vps/INBOX"
+set postponed   = "+vps/Drafts"
+set record      = "+vps/Sent"
+unset trash
+set trash       = "+vps/Trash"
+
+## Color border
+color status blue black
+
+## Contacts
+bind editor <Tab> complete      ## default Mutt setting
+bind editor ^T complete-query   ## default Mutt setting
+unset query_command             ## default Mutt setting
+
+## Unbind archive
+bind index,pager S noop

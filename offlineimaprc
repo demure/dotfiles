@@ -21,8 +21,7 @@
 #ui = ttyui
 ui = blinkenlights
 ## ui = quiet
-##accounts = root,sdf,gmail,emu
-accounts = emu,sdf,gmail
+accounts = emu,sdf,gmail,vps
 pythonfile=~/.mutt/offlineimap.py
 fsync = False
 ### End Main ### }}}
@@ -50,10 +49,32 @@ ssl = yes
 ## temp setting due to https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=907079
 ## Left in place due to issue with MA cert size?
 ssl_version = tls1_2
-cert_fingerprint = 15eac64af95aa9899cd246eb1c8ad9defbeaee0043b4dca3e58374079839e1efe6b428aaf364b95779a0e70ddd03613705b750109195ba7c0b88e1fd01bda6fb
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 remotepasseval = get_pass("mail-sdf-imap")
 realdelete = True
-### End sdf### }}}
+### End sdf ### }}}
+
+### vps ### {{{
+[Account vps]
+localrepository = vps-Local
+remoterepository = vps-Remote
+postsynchook = [ -e $HOME/.notmuch-config ] && notmuch new
+
+[Repository vps-Local]
+type = Maildir
+localfolders = ~/.mail/vps
+
+[Repository vps-Remote]
+maxconnections = 3
+type = IMAP
+remoteuser = demure@demu.red
+remotehost = mail.gandi.net
+remoteport = 993
+ssl = yes
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+remotepasseval = get_pass("mail-vps")
+realdelete = True
+### End vps ### }}}
 
 ### gmail ### {{{
 [Account gmail]

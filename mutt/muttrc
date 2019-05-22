@@ -96,8 +96,9 @@ source ~/.mutt/accounts/sdf.muttrc
 
 ## Set account specific options on folder change
 folder-hook emu/*                   source ~/.mutt/accounts/emu.muttrc
-folder-hook sdf/*                   source ~/.mutt/accounts/sdf.muttrc
 folder-hook gmail/*                 source ~/.mutt/accounts/gmail.muttrc
+folder-hook sdf/*                   source ~/.mutt/accounts/sdf.muttrc
+folder-hook vps/*                   source ~/.mutt/accounts/vps.muttrc
 folder-hook /var/spool/mail/$USER/* source ~/.mutt/accounts/local.muttrc
 ### End Account }}}
 
