@@ -387,9 +387,9 @@ endif
     set backup                      " Enable backups
     set undofile                    " Enable undo file
     set undoreload=10000
-    set backupdir=~/.vim/back/
-    set directory=~/.vim/swap/      " swap files
-    set undodir=~/.vim/undo/        " undo files
+    set backupdir=~/.vim/back//     " back files, // for full path
+    set directory=~/.vim/swap//     " swap files, // for full path
+    set undodir=~/.vim/undo//       " undo files, // for full path
     """ End Backup Settings """ }}}
 
     """ Timeout Settings """ {{{
