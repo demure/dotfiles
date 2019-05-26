@@ -39,7 +39,8 @@ set delete                  ## Don't ask, just do
 unset confirmappend         ## Don't ask, just do!
 set quit = ask-no           ## Don't ask, just do !!
 unset mark_old              ## Read/new is good enough for me
-set beep_new                ## Bell on new mails
+#set beep_new                ## Bell on new mails
+set new_mail_command="notify-send --icon='/home/demure/Pictures/icons/neomutt.png' 'New Email' '%n new\n%u unread' &"
 set pipe_decode             ## Strip headers and eval mimes when piping
 set thorough_search         ## Strip headers and eval mimes before searching
 
