@@ -76,6 +76,13 @@
     if &diff
         colorscheme slate
     endif
+
+    "" Disable cache for pass
+    autocmd VimEnter
+        \ /dev/shm/pass.?*/?*.txt
+        \,$TMPDIR/pass.?*/?*.txt
+        \,/tmp/pass.?*/?*.txt
+        \ set nobackup nowritebackup noswapfile noundofile
 """ End Commands at Start """ }}}
 
 """ Plugins """ {{{
@@ -224,7 +231,7 @@ if $USER != 'mobile'
         """ Hardtime Conf """ {{{
         let g:hardtime_default_on = 1
         let g:hardtime_ignore_buffer_patterns = [ "CustomPatt[ae]rn", "NERD.*", "Task.*" ]
-        nmap <leader>h :HardTimeToggle<CR>
+        nmap <leader>H :HardTimeToggle<CR>
         """ End Hardtime """ }}}
 
         """ Syntastic Conf """ {{{
