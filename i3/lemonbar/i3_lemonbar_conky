@@ -19,6 +19,6 @@ TEXT
 SYS\
 ${if_up wlp3s0}${downspeedf wlp3s0} ${upspeedf wlp3s0}\
 ${else}down down${endif} \
-${if_up eth0}${downspeedf eth0} ${upspeedf eth0} \
+${if_up enp0s31f6}${downspeedf enp0s31f6} ${upspeedf enp0s31f6} \
 ${else}down down${endif} \
 ${cpu} \
