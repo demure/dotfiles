@@ -216,7 +216,7 @@ port        = 0:21,23:65535
 logpath     = %(sshd_log)s
 
 
-[sshd-bad-users]
+[sshd-bad-users-known]
 
 enabled     = true
 maxretry    = 1
