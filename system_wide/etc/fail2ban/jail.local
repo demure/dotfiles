@@ -216,6 +216,19 @@ port        = 0:21,23:65535
 logpath     = %(sshd_log)s
 
 
+[sshd-bad-users]
+
+enabled     = true
+maxretry    = 5
+## One week
+bantime     = 604800
+## Four days
+findtime    = 345600
+#port        = 500,8080
+port        = 0:21,23:65535
+logpath     = %(sshd_log)s
+
+
 [sshd-bad-users-known]
 
 enabled     = true
