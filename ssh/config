@@ -112,6 +112,7 @@ host device
 host route
     hostName 10.0.0.1
     Port 500
+    User root
 
 host wifi
     hostName 10.0.0.2
