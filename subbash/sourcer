@@ -15,6 +15,7 @@ so ~/.subbash/export                    ## Exports
 so ~/.subbash/shopt                     ## Shopts
 so ~/.subbash/installcheck              ## Checks for installs, $MISSING_PROGRAMS
 so ~/.subbash/sshagent                  ## SSH agent, have before settings
+so ~/.subbash/sshgpgagent               ## SSH GPG agent, have before settings
 
 ### Interactive ### {{{
 if [[ $- == *i* ]]; then
