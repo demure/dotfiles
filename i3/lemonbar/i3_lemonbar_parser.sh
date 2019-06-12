@@ -214,7 +214,7 @@ while read -r line ; do
 
             if [ "${temp_arr_val}" != "none" ]; then
                 ## Select alert for measurement system
-                if [ ${temp_arr_unit} == "C" ]; then
+                if [ "${temp_arr_unit}" == "C" ]; then
                     temp_check=$(awk -v x=${temp_arr_val} -v y=${temp_alert_c} 'BEGIN {if (x<y){print 0} else {print 1}}')
                   else
                     temp_check=$(awk -v x=${temp_arr_val} -v y=${temp_alert_f} 'BEGIN {if (x<y){print 0} else {print 1}}')
