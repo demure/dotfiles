@@ -47,7 +47,7 @@ cp $1 $newfile
 case $(uname) in
   "Linux")
     if [ -z $open_with ]; then
-      xdg-open $newfile
+      xdg-open $newfile &
     else
       # TODO - handle this case
       $open_width $newfile
