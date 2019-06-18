@@ -23,6 +23,7 @@
  ░░░░░░  ░░░░░░     ░░    ░░   ░░ ░░░  ░░░░░░ ░░░░░░          
 -->
 
+
 ## Demure's Dotfiles ##
 
 This is a repo of my dot files, to help me keep them organized,  
@@ -38,10 +39,11 @@ With the death of gitorious, I am currently using [notabug].
 
 You may like my blog as well, [demu.red].  
 
+
 ### Install: ###
 
-Aside from installing by hand, you could use [GNU Stow].
-example:
+Aside from installing by hand, you could use [GNU Stow].  
+example:  
 
 ```
 cd path_to_dotfiles_clone/GNU_Stow
@@ -49,7 +51,8 @@ stow -t ~ main    ## main programs
 stow -t ~ laptop  ## gui programs
 ```
 
-**NOTE:** `-t PATH` is use as the stow 'packages' are recessed.
+**NOTE:** `-t PATH` is used as the stow 'packages' are recessed.  
+
 
 ### Improved: ###
 
@@ -68,18 +71,19 @@ stow -t ~ laptop  ## gui programs
 * Added mutt with multiple accounts, using offlineimap, not-much, and msmtp **25AUG2015**  
 * Moved to i3 window manager, and set up a sweet lemonbar **30JAN2016**  
 * Got around to updating stow dir to reflect current software. (still needs some work) **16NOV2018**  
-* Spent a lot of time refactory my prompt command's git **14MAR2019**
+* Spent a lot of time refactory my prompt command's git **14MAR2019**  
+* Had to get fancy with i3 volume bindings as HDMI output caused sink changes **18JUN2019**  
+
 
 ### Plans: ###
 
 * One of these days I need to try zsh  
 
 <BR>
-**PS.** If you happen to have advice, I certainly would be interested in ways to
-improve my setup.  
+**PS.** If you happen to have advice, I certainly would be interested in ways to improve my setup.  
 If you do wish to contact me, I guess [twitter] is an ok way (spam mitigation)  
 
-###### Last edit 16JUL2017 ######
+###### Last edit 18JUN2019 ######
 
 
 [github]: https://gitorious.org/demure/dotfiles
