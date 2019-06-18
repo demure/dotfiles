@@ -107,6 +107,7 @@ bar {
 * Added RSS (newsboat) unread indicator. **13MAR2019**
 * Tweaked so that section backgrounds are easier to edit. **13MAR2019**
 * Added UTC time and date mode. Uses an awk toggle and i3 binding. **08APR2019**
+* Added multi monitor support (used ocaballeror's work https://github.com/electro7/dot_debian/pull/24 ) **18JUN2019**
 
 
 ### **Things I want** ###
@@ -114,7 +115,7 @@ bar {
 * Make better separations between joined colored segments.
 
 
-##### **Last updated 13MAR2019** #####
+##### **Last updated 18JUN2019** #####
 
 [i3 lemonbar]: https://github.com/electro7/dotfiles/tree/master/.i3/lemonbar
 [lemonbar krypt-n]: https://github.com/krypt-n/bar

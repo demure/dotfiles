@@ -423,7 +423,11 @@ while read -r line ; do
     # segment between the three background colors, you have to manually
     # find the CASE and edit.
 
-    printf "%s\n" "%{l}${wsp}${title} %{r}\
+    ## NOTE: Now with multi monitor support **18JUN2019**
+    # source https://github.com/electro7/dot_debian/pull/24
+
+    ## Declare bar layout
+    bar="$(printf "%s\n" "%{l}${wsp}${title} %{r}\
 ${mmpd}${stab}\
 ${rss}${stab}\
 ${email}${stab}\
@@ -440,6 +444,14 @@ ${nets_u}${stab}\
 ${vol}${stab}\
 ${bri}${stab}\
 ${date}${stab}\
-${time}"
+${time}")"
+
+    ## Do multi monitor magic
+    out=""
+    mcount="$(xrandr --listactivemonitors | head -1 | awk '{print $2}')"
+    for i in $(seq 0 $((mcount -1))); do
+        out+="%{S$i}$bar"
+    done
+    echo "$out"
 
 done
