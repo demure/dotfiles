@@ -560,4 +560,5 @@ exec --no-startup-id mpd && mpd-dynamic
 exec --no-startup-id i3-msg "workspace $ws3; exec $HOME/bin/qutebrowser"
 exec --no-startup-id i3-msg "workspace $ws1; exec /usr/bin/urxvt"
 exec --no-startup-id sleep 30 && pkill -USR1 redshift
+exec --no-startup-id sleep 15 && autorandr -c
 ### End Exec Programs ### }}}
