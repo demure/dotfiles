@@ -309,7 +309,10 @@ workspace_auto_back_and_forth yes
         bindsym u exec awk -v TEMP=/tmp/i3_lemonbar_utc_${USER} 'BEGIN {{FILE=getline < TEMP < 0 ? "0" : "1"} {if($0==1){STATE=1} else {STATE=0}} {if(STATE==0){system("echo 1 > "TEMP)} else {system("echo 0 > "TEMP)}} }', mode "default"
         ## Unload gpg keys
         bindsym g exec --no-startup-id gpgconf --kill gpg-agent, mode "default"
+        ## Reload lemonbar, useful after connecting external monitors
         bindsym k exec --no-startup-id "pkill lemonbar; $HOME/.i3/lemonbar/i3_lemonbar.sh", mode "default"
+        ## Toggle xss-lock, used for lock on idle
+        bindsym Shift+l exec --no-startup-id "pkill xss-lock || xss-lock -- i3block -e -c 2E3436 &", mode "default"
 
         ## back to normal: Enter or Escape
         bindsym Return mode "default"
@@ -551,6 +554,7 @@ exec --no-startup-id xss-lock -- i3lock -e -c 2E3436
 exec --no-startup-id udiskie
 exec --no-startup-id redshift
 exec --no-startup-id dropbox start
+exec --no-startup-id syncthing -no-browser
 exec --no-startup-id touchegg
 exec --no-startup-id unclutter
 #exec --no-startup-id clipster -d
