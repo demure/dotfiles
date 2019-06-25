@@ -2,130 +2,111 @@
 !! run $(xrdb -merge $HOME/.Xresourses) after editing, or logout
 
 !!URxvt
-URxvt.termName: rxvt-unicode-256color
+URxvt.termName:     rxvt-unicode-256color
 URxvt.urgentOnBell: true
-URxvt.insecure: true
-URxvt.visualBell: false
+URxvt.insecure:     true
+URxvt.visualBell:   false
 URxvt.inheritPixmap: false
-URxvt.savelines: 1024
-URxvt.cutchars:		"()*,<>[]{}|''"
-URxvt.perl-ext: default,matcher,font-size
-URxvt.url-launcher:       sensible-browser
-URxvt.matcher.button: 1
-URxvt.keysym.C-Shift-u:   matcher:select
-URxvt.keysym.C-Delete:    matcher:last
-URxvt.keysym.M-Delete:    matcher:list
-URxvt.url-select.underline: true
-URxvt.matcher.pattern.1:  \\bwww\\.[\\w-]+\\.[\\w./?&@#-]*[\\w/-]
-URxvt.matcher.pattern.2:  \\B(/\\S+?):(\\d+)(?=:|$)
-URxvt.matcher.launcher.2: gvim +$2 $1
-URxvt.cursorBlink: true
-URxvt.geometry: 80x24
-URxvt.fading: 25%
+URxvt.savelines:    1024
+URxvt.cutchars:     "()*,<>[]{}|''"
+URxvt.cursorBlink:  true
+URxvt.geometry:     80x24
+URxvt.fading:       25%
+
+!!Scroll in less fix
+URxvt.secondaryWheel: 1
 
 !!! Font !!! {{{
-URxvt.font: xft:PragmataProMono-Regular:pixelsize=15:autohint=true.xft:Bitstream Vera Sans Mono:pixelsize=15:autohint=true.xft:Liberation Mono:pixelsize=15:autohint=true.xft:unifont:pixelsize=15:autohint=true.xft:DejaVu Sans Mono:pixelsize=15:autohint=true.xft:FontAwesome:pixelsize=15:autohint=true
-URxvt.boldfont: xft:PragmataProMono-Regular:bold:pixelsize=15:autohint=true.xft:Bitstream Vera Sans Mono:bold:pixelsize=15:autohint=true.xft:Liberation Mono:bold:pixelsize=15:autohint=true.xft:unifont:bold:pixelsize=15:autohint=true.xft:DejaVu Sans Mono:bold:pixelsize=15:antialias=true:autohint=true
-URxvt.italicFont: xft:PragmataProMono-Regular:italic:pixelsize=15:autohint=true.xft:Bitstream Vera Sans Mono:italic:pixelsize=15:autohint=true.xft:Liberation Mono:italic:pixelsize=15:autohint=true.xft:unifont:italic:pixelsize=15:autohint=true.xft:DejaVu Sans Mono:pixelsize=15:antialias=true:autohint=true:style=bold
-URxvt.boldItalicFont: xft:PragmataProMono-Regular:bold:italic:pixelsize=15:autohint=true.xft:Bitstream Vera Sans Mono:bold:italic:pixelsize=15:autohint=true.xft:Liberation Mono:bold:italic:pixelsize=15:autohint=true.xft:unifont:bold:italic:pixelsize=15:autohint=true.xft:DejaVu Sans Mono:bold:italic:pixelsize=15:antialias=true:hinting=true
+!!font spacing
+URxvt.letterSpace: -1
+URxvt.lineSpace:    0
+
+!!fonts
+URxvt.font:             xft:PragmataProMono-Regular:pixelsize=15:autohint=true.xft:Bitstream Vera Sans Mono:pixelsize=15:autohint=true.xft:Liberation Mono:pixelsize=15:autohint=true.xft:unifont:pixelsize=15:autohint=true.xft:DejaVu Sans Mono:pixelsize=15:autohint=true.xft:FontAwesome:pixelsize=15:autohint=true
+URxvt.boldfont:         xft:PragmataProMono-Regular:bold:pixelsize=15:autohint=true.xft:Bitstream Vera Sans Mono:bold:pixelsize=15:autohint=true.xft:Liberation Mono:bold:pixelsize=15:autohint=true.xft:unifont:bold:pixelsize=15:autohint=true.xft:DejaVu Sans Mono:bold:pixelsize=15:antialias=true:autohint=true
+URxvt.italicFont:       xft:PragmataProMono-Regular:italic:pixelsize=15:autohint=true.xft:Bitstream Vera Sans Mono:italic:pixelsize=15:autohint=true.xft:Liberation Mono:italic:pixelsize=15:autohint=true.xft:unifont:italic:pixelsize=15:autohint=true.xft:DejaVu Sans Mono:pixelsize=15:antialias=true:autohint=true:style=bold
+URxvt.boldItalicFont:   xft:PragmataProMono-Regular:bold:italic:pixelsize=15:autohint=true.xft:Bitstream Vera Sans Mono:bold:italic:pixelsize=15:autohint=true.xft:Liberation Mono:bold:italic:pixelsize=15:autohint=true.xft:unifont:bold:italic:pixelsize=15:autohint=true.xft:DejaVu Sans Mono:bold:italic:pixelsize=15:antialias=true:hinting=true
 !!! End Font !!! }}}
 
-!!! Font Bindings !!! {{{
-URxvt.keysym.M-C-Up:     perl:font-size:increase
-URxvt.keysym.M-C-Down:   perl:font-size:decrease
-URxvt.keysym.M-C-S-Up:   perl:font-size:incglobal
-URxvt.keysym.M-C-S-Down: perl:font-size:decglobal
-URxvt.iso14755: false
-URxvt.iso14755_52: false
-!!! End Font Bindings !!! }}}
+!!! urxvt Colors !!! {{{
+URxvt.foreground:       #eeeeec
+!URxvt.tintColor:        #262626
+URxvt.borderLess:       false
+URxvt.internalBorder:   0
+URxvt.borderColor:      #181818
+URxvt.cursorColor:      grey80
+URxvt.cursorColor2:     #ffffff
+URxvt.underlineColor:   #ffffff
+URxvt.scrollTtyOutput:  false
+URxvt.scrollWithBuffer: true
+URxvt.scrollBar:        false
+URxvt.troughColor:      #888888
+URxvt.scrollBar_right:  false
+URxvt.intensityStyles:  false
+!!! End urxvt Colors !!! }}}
+
+!!! Terminal Color Code Attempt !!! {{{
+!black
+URxvt.color0:   rgb:18/18/18
+URxvt.color8:   rgb:75/77/73
+!!red
+URxvt.color1:   rgb:cc/00/00
+URxvt.color9:   rgb:ef/29/29
+!!green
+URxvt.color2:   rgb:4e/9a/06
+URxvt.color10:  rgb:8a/e2/34
+!!brown/yellow
+URxvt.color3:   rgb:c4/a0/00
+URxvt.color11:  rgb:fc/e9/4f
+!!blue
+URxvt.color4:   #204a87
+URxvt.color12:  #3465a4
+!URxvt.color4:   rgb:7b/9e/ca
+!URxvt.color12:  rgb:98/af/d9
+!!magenta
+URxvt.color5:   rgb:75/50/7b
+URxvt.color13:  rgb:ad/7f/a8
+!!cyan
+URxvt.color6:   rgb:06/98/9a
+URxvt.color14:  rgb:34/e2/e2
+!!white
+URxvt.color7:   rgb:ff/ff/ff
+URxvt.color15:  rgb:ee/ee/ec
+!!! End Terminal Color Code Attempt !!! }}}
 
 !!! Transparent Attempt !!! {{{
-URxvt.transparent: true
-URxvt.shading:20
+URxvt.transparent:  true
+URxvt.shading:      20
 ! Included this so you know how to make your foreground not match the color of your background
-URxvt.depth: 32
-URxvt.background: rgba:3f00/3f00/3f00/dddd
+URxvt.depth:        32
+URxvt.background:   rgba:3f00/3f00/3f00/dddd
 !URxvt.background: rgba:1111/1111/1111/dddd
 !URxvt.foreground: grey80
 !!! End Transparent !!! }}}
 
-URxvt.foreground: #eeeeec
-!URxvt.tintColor: #262626
-URxvt.borderLess: false
-URxvt.internalBorder: 0
-URxvt.borderColor: #181818
-URxvt.cursorColor: grey80
-URxvt.cursorColor2: #ffffff
-URxvt.underlineColor: #ffffff
-URxvt.scrollTtyOutput: false
-URxvt.scrollWithBuffer: true
-URxvt.scrollBar: false
-URxvt.troughColor: #888888
-URxvt.scrollBar_right: false
+!!Extensions
+!URxvt.perl-ext: default,matcher,font-size
+URxvt.perl-ext-common:  default,matcher,resize-font
+!! Allow ctrl+shift bindings
+URxvt.iso14755:     false
+URxvt.iso14755_52:  false
 
-URxvt.intensityStyles: false
+!!! URL handling !!! {{{
+URxvt.url-launcher:         /usr/bin/xdg-open
+URxvt.matcher.button:       1
+URxvt.keysym.C-Shift-u:     matcher:select
+URxvt.keysym.C-Delete:      matcher:last
+URxvt.keysym.M-Delete:      matcher:list
+URxvt.url-select.underline: true
+URxvt.matcher.pattern.1:    \\bwww\\.[\\w-]+\\.[\\w./?&@#-]*[\\w/-]
+URxvt.matcher.pattern.2:    \\B(/\\S+?):(\\d+)(?=:|$)
+URxvt.matcher.launcher.2:   gvim +$2 $1
+!!! End URL handling !!! }}}
 
-!!! Color Attempt !!! {{{
-!! tangoesque scheme
-!!URxvt.background: #111111
-!URxvt.background: #2E3436
-!URxvt.foreground: #babdb6
-!! Black (not tango) + DarkGrey
-!URxvt.color0:  #000000
-!URxvt.color8:  #555753
-!! DarkRed + Red
-!URxvt.color1:  #ff6565
-!URxvt.color9:  #ff8d8d
-!! DarkGreen + Green
-!URxvt.color2:  #93d44f
-!URxvt.color10: #c8e7a8
-!! DarkYellow + Yellow
-!URxvt.color3:  #eab93d
-!URxvt.color11: #ffc123
-!! DarkBlue + Blue
-!URxvt.color4:  #204a87
-!URxvt.color12: #3465a4
-!! DarkMagenta + Magenta
-!URxvt.color5:  #ce5c00
-!URxvt.color13: #f57900
-!!DarkCyan + Cyan (both not tango)
-!URxvt.color6:  #89b6e2
-!URxvt.color14: #46a4ff
-!! LightGrey + White
-!URxvt.color7:  #cccccc
-!URxvt.color15: #ffffff
-!-------
-!black
-URxvt.color0:         rgb:18/18/18
-URxvt.color8:         rgb:75/77/73
-!!red
-URxvt.color1:         rgb:cc/00/00
-URxvt.color9:         rgb:ef/29/29
-!!green
-URxvt.color2:         rgb:4e/9a/06
-URxvt.color10:        rgb:8a/e2/34
-!!brown/yellow
-URxvt.color3:         rgb:c4/a0/00
-URxvt.color11:        rgb:fc/e9/4f
-!!blue
-URxvt.color4:  #204a87
-URxvt.color12: #3465a4
-!URxvt.color4:         rgb:7b/9e/ca
-!URxvt.color12:        rgb:98/af/d9
-!!magenta
-URxvt.color5:         rgb:75/50/7b
-URxvt.color13:        rgb:ad/7f/a8
-!!cyan
-URxvt.color6:         rgb:06/98/9a
-URxvt.color14:        rgb:34/e2/e2
-!!white
-URxvt.color7:         rgb:ff/ff/ff
-URxvt.color15:        rgb:ee/ee/ec
-!!! End Color Attempt !!! }}}
-
-!!font spacing
-URxvt.letterSpace: -1
-URxvt.lineSpace: 0
-
-!!Scroll in less fix
-URxvt.secondaryWheel: 1
+!!! Font Bindings !!! {{{
+!! Expects https://github.com/simmel/urxvt-resize-font , urxvt-resize-font-git on arch
+URxvt.keysym.M-C-Up:     resize-font:bigger
+URxvt.keysym.M-C-Down:   resize-font:smaller
+URxvt.keysym.M-C-Left:   resize-font:reset
+URxvt.keysym.M-C-Right:  resize-font:show
+!!! End Font Bindings !!! }}}
