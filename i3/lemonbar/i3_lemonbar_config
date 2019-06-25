@@ -168,6 +168,7 @@ icon_ext_ip=""                     ## External IP
 icon_gpg=""                        ## GPG icon
 icon_gpg_locked=""                 ## GPG locked icon
 icon_gpg_unlocked=""               ## GPG unlocked icon
-icon_vpn=""                        ## VPN icon
+#icon_vpn=""                        ## VPN icon
+icon_vpn=""                        ## VPN icon
 icon_rss=""                        ## RSS icon
 ### End Icons ### }}}
