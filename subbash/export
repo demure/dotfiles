@@ -103,12 +103,15 @@ fi
 
 ### z Jump Around ### {{{
 if [ $(command -v z.sh) ] && [ ${UID} != '0' ] && [[ $- == *i* ]] && [ ${TERM} != 'dumb' ]; then
+    ## debian
     source $(command -v z.sh)
+  elif [ -z /usr/share/z/z.sh ] && [ ${UID} != '0' ] && [[ $- == *i* ]] && [ ${TERM} != 'dumb' ]; then
+    ## arch
+    source /usr/share/z/z.sh
   else
     MISSING_ITEMS+="z_jump, "
 fi
 ### End z Jump Around ### }}}
-
 
 #   ### TERM color ### {{{
 #   ## Disabled, as forcing is kind of bad >_>
