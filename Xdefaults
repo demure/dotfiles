@@ -11,7 +11,7 @@ URxvt.savelines:    1024
 URxvt.cutchars:     "()*,<>[]{}|''"
 URxvt.cursorBlink:  true
 URxvt.geometry:     80x24
-URxvt.fading:       25%
+URxvt.fading:       15%
 
 !!Scroll in less fix
 URxvt.secondaryWheel: 1
@@ -104,7 +104,6 @@ URxvt.matcher.launcher.2:   gvim +$2 $1
 !!! End URL handling !!! }}}
 
 !!! Font Bindings !!! {{{
-!! Expects https://github.com/simmel/urxvt-resize-font , urxvt-resize-font-git on arch
 URxvt.keysym.M-C-Up:     resize-font:bigger
 URxvt.keysym.M-C-Down:   resize-font:smaller
 URxvt.keysym.M-C-Left:   resize-font:reset
