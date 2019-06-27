@@ -557,9 +557,9 @@ exec --no-startup-id dropbox start
 exec --no-startup-id syncthing -no-browser
 exec --no-startup-id touchegg
 exec --no-startup-id unclutter
-#exec --no-startup-id clipster -d
+exec --no-startup-id clipster -d
 ## Having wonkyness with default python being python2.7
-exec --no-startup-id python3 /usr/local/sbin/clipster -d
+#exec --no-startup-id python3 /usr/local/sbin/clipster -d
 ## Note to self, removed hard coded ~/.mpd from mpd-dynamic
 exec --no-startup-id mpd && mpd-dynamic
 #exec --no-startup-id i3-msg "workspace $ws7; exec /usr/bin/spacefm"
