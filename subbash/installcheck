@@ -13,7 +13,7 @@ MISSING_CLI=""
 MISSING_GUI=""
 
 ### CLI ### {{{
-CLI_LIST=(docker pinfo qmv vim w3m mutt tmux ncdu pass stow notmuch msmtp \
+CLI_LIST=(docker pinfo qmv vim w3m neomutt tmux ncdu pass stow notmuch msmtp \
 offlineimap urlview htop aircrack-ng mosh nmap sshuttle fusermount exfatfsck \
 qemu-io pianobar cacaview conky scanmem hexcurse lsof pidof apt-listbugs \
 pinentry-curses pinentry-tty ranger rfkill sshfs tree unar wget iotop parted \
