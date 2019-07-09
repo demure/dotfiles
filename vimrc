@@ -142,6 +142,7 @@ if $USER != 'mobile'
             Plugin 'dhruvasagar/vim-table-mode' " Make easy tables
             "Plugin 'vim-scripts/Smart-Tabs'        " Use \t for indents, and spaces elsewhere
             Plugin 'jamessan/vim-gnupg'         " Transparent editing of gpg encrypted files
+            Plugin 'ConradIrwin/vim-bracketed-paste'    " Auto set pastemode when a bracketed paste detected. https://cirw.in/blog/bracketed-paste
             """ End Functionality """ }}}
 
             """ Misc """ {{{
