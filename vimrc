@@ -267,6 +267,10 @@ if has('gui_running')
   else
     colorscheme torte
 endif
+
+"" fix transparency
+hi! Normal ctermbg=NONE guibg=NONE
+
 """ End Theming """ }}}
 
 """ Options """ {{{
