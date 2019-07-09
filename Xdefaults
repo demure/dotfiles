@@ -22,10 +22,10 @@ URxvt.letterSpace: -1
 URxvt.lineSpace:    0
 
 !!fonts
-URxvt.font:             xft:PragmataProMono-Regular:pixelsize=15:autohint=true.xft:Bitstream Vera Sans Mono:pixelsize=15:autohint=true.xft:Liberation Mono:pixelsize=15:autohint=true.xft:unifont:pixelsize=15:autohint=true.xft:DejaVu Sans Mono:pixelsize=15:autohint=true.xft:FontAwesome:pixelsize=15:autohint=true
-URxvt.boldfont:         xft:PragmataProMono-Regular:bold:pixelsize=15:autohint=true.xft:Bitstream Vera Sans Mono:bold:pixelsize=15:autohint=true.xft:Liberation Mono:bold:pixelsize=15:autohint=true.xft:unifont:bold:pixelsize=15:autohint=true.xft:DejaVu Sans Mono:bold:pixelsize=15:antialias=true:autohint=true
-URxvt.italicFont:       xft:PragmataProMono-Regular:italic:pixelsize=15:autohint=true.xft:Bitstream Vera Sans Mono:italic:pixelsize=15:autohint=true.xft:Liberation Mono:italic:pixelsize=15:autohint=true.xft:unifont:italic:pixelsize=15:autohint=true.xft:DejaVu Sans Mono:pixelsize=15:antialias=true:autohint=true:style=bold
-URxvt.boldItalicFont:   xft:PragmataProMono-Regular:bold:italic:pixelsize=15:autohint=true.xft:Bitstream Vera Sans Mono:bold:italic:pixelsize=15:autohint=true.xft:Liberation Mono:bold:italic:pixelsize=15:autohint=true.xft:unifont:bold:italic:pixelsize=15:autohint=true.xft:DejaVu Sans Mono:bold:italic:pixelsize=15:antialias=true:hinting=true
+URxvt.font:             xft:PragmataProMono-Regular:pixelsize=15:autohint=true,             xft:DejaVu Sans Mono:pixelsize=15:autohint=true,                            xft:FontAwesome:pixelsize=15:autohint=true,         xft:unifont:pixelsize=15:autohint=true
+URxvt.boldfont:         xft:PragmataProMono-Regular:bold:pixelsize=15:autohint=true,        xft:DejaVu Sans Mono:bold:pixelsize=15:antialias=true:autohint=true,        xft:unifont:bold:pixelsize=15:autohint=true
+URxvt.italicFont:       xft:PragmataProMono-Regular:italic:pixelsize=15:autohint=true,      xft:DejaVu Sans Mono:pixelsize=15:antialias=true:autohint=true:style=bold,  xft:unifont:italic:pixelsize=15:autohint=true
+URxvt.boldItalicFont:   xft:PragmataProMono-Regular:bold:italic:pixelsize=15:autohint=true, xft:DejaVu Sans Mono:bold:italic:pixelsize=15:antialias=true:hinting=true,  xft:unifont:bold:italic:pixelsize=15:autohint=true
 !!! End Font !!! }}}
 
 !!! urxvt Colors !!! {{{
