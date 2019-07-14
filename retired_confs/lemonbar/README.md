@@ -1,5 +1,11 @@
 ## Demure's i3 lemonbar ##
 
+
+### DISCONTINUED ###
+As of **14JUL2019** I am moving to polybar.  
+The configuration is much simpler, cleaner, and tweakable.
+
+
 ![my bar][pic0]
 
 ### Base ###
@@ -115,7 +121,7 @@ bar {
 * Make better separations between joined colored segments.
 
 
-##### **Last updated 18JUN2019** #####
+##### **Last updated 14JUL2019** #####
 
 [i3 lemonbar]: https://github.com/electro7/dotfiles/tree/master/.i3/lemonbar
 [lemonbar krypt-n]: https://github.com/krypt-n/bar

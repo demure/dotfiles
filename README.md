@@ -69,10 +69,12 @@ stow -t ~ laptop  ## gui programs
 * Added a MISSING_ITEMS to check if disabled things disabled **13NOV2014**  
 * Added [GNU Stow] for installing **06MAR2014**  
 * Added mutt with multiple accounts, using offlineimap, not-much, and msmtp **25AUG2015**  
-* Moved to i3 window manager, and set up a sweet lemonbar **30JAN2016**  
+* Moved to i3 window manager<strike>, and set up a sweet lemonbar</strike> **30JAN2016**  
 * Got around to updating stow dir to reflect current software. (still needs some work) **16NOV2018**  
 * Spent a lot of time refactory my prompt command's git **14MAR2019**  
 * Had to get fancy with i3 volume bindings as HDMI output caused sink changes **18JUN2019**  
+* Moved from lemonbar to polybar. Thanks are a lot cleaner and easier to tinker with now. **14JUL2019**  
+    * lemonbar files moved to `retired_confs` dir.
 
 
 ### Plans: ###

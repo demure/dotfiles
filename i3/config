@@ -25,11 +25,9 @@ workspace_auto_back_and_forth yes
     set $ws1 1:
     set $ws2 2:
     set $ws3 3:
-    #set $ws4 4:
     set $ws4 4
     set $ws5 5
     set $ws6 6
-    #set $ws7 7:
     set $ws7 7
     set $ws8 8
     set $ws9 9
@@ -43,9 +41,9 @@ workspace_auto_back_and_forth yes
     bindsym $mod+Shift+c reload
     ## restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
     ## The pkill is to makke my fancy bar play nice
-    bindsym $mod+Shift+r exec pkill lemonbar && i3-msg restart
+    bindsym $mod+Shift+r exec i3-msg restart
     ## exit i3 (logs you out of your X session)
-    bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'pkill lemonbar && i3-msg exit'"
+    bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
     ### End i3 Keys ### }}}
 
     ### Workspace Bindings ### {{{
@@ -238,7 +236,11 @@ workspace_auto_back_and_forth yes
     ### Program Call Bindings ### {{{
         ### Launch Term ### {{{
         ## start a terminal
-        bindsym $mod+Return exec i3-sensible-terminal
+        bindsym $mod+Return exec kitty
+        ## Backup term of urxvt
+        bindsym $mod+Shift+Return exec urxvt
+        ## Emergency backup term
+        bindsym $mod++mod1+Return exec i3-sensible-terminal
         ### End Launch Term ### }}}
 
         ### Screen Shots ### {{{
@@ -266,12 +268,11 @@ workspace_auto_back_and_forth yes
         bindsym Shift+XF86Search exec rofi-pass     ## x260
         ### End Rofi Bindings ### }}}
 
-        ### External IP Toggle For i3 lemonbar ### {{{
-        ## Good example of a on/off flag, with awk. Replaces with three position code.
-        ## awk -v TEMP=/tmp/i3_lemonbar_ip_${USER} 'BEGIN {{FILE=getline < TEMP < 0 ? "0" : "1"} {if($0==1){STATE=1} else {STATE=0}} {if(STATE==0){system("echo 1 > "TEMP)} else {system("echo 0 > "TEMP)}} }'
-        bindsym XF86LaunchA exec awk -v TEMP=/tmp/i3_lemonbar_ip_${USER} 'BEGIN {{FILE=getline < TEMP < 0 ? "0" : "1"} {if($0==1){STATE=1} else if($0==2){STATE=2} else{STATE=0}} {if(STATE==0){system("echo 1 > "TEMP)} else if(STATE==1){system("echo 2 > "TEMP)} else {system("echo 0 > "TEMP)}} }'      ## x260
-        bindsym XF86Display exec awk -v TEMP=/tmp/i3_lemonbar_ip_${USER} 'BEGIN {{FILE=getline < TEMP < 0 ? "0" : "1"} {if($0==1){STATE=1} else if($0==2){STATE=2} else{STATE=0}} {if(STATE==0){system("echo 1 > "TEMP)} else if(STATE==1){system("echo 2 > "TEMP)} else {system("echo 0 > "TEMP)}} }'      ## x270
-        ### End External IP FOr i3 lemonbar ### }}}
+        ### External IP Toggle For i3 polybar ### {{{
+        ## awk -v TEMP=/tmp/i3_polybar_ip_toggle_${USER} 'BEGIN {{FILE=getline < TEMP < 0 ? "0" : "1"} {if($0==1){STATE=1} else {STATE=0}} {if(STATE==0){system("echo 1 > "TEMP)} else {system("echo 0 > "TEMP)}} }'
+        bindsym XF86LaunchA exec awk -v TEMP=/tmp/i3_polybar_ip_toggle_${USER} 'BEGIN {{FILE=getline < TEMP < 0 ? "0" : "1"} {if($0==1){STATE=1} else {STATE=0}} {if(STATE==0){system("echo 1 > "TEMP)} else {system("echo 0 > "TEMP)}} }'    ## x260
+        bindsym XF86Display exec awk -v TEMP=/tmp/i3_polybar_ip_toggle_${USER} 'BEGIN {{FILE=getline < TEMP < 0 ? "0" : "1"} {if($0==1){STATE=1} else {STATE=0}} {if(STATE==0){system("echo 1 > "TEMP)} else {system("echo 0 > "TEMP)}} }'    ## x270
+        ### End External IP FOr i3 polybar ### }}}
 
         ### Clipster Clipboard Manager ### {{{
         bindsym $mod+c exec clipster -sc
@@ -286,7 +287,7 @@ workspace_auto_back_and_forth yes
     ### System Control  Mode ### {{{
     mode "system-control" {
         bindsym l exec --no-startup-id $Locker, mode "default"
-        bindsym e exec --no-startup-id pkill lemonbar && i3-msg exit, mode "default"
+        bindsym e exec --no-startup-id i3-msg exit, mode "default"
         bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
         bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
         bindsym r exec --no-startup-id systemctl reboot, mode "default"
@@ -306,11 +307,11 @@ workspace_auto_back_and_forth yes
         ## Flip screen vertically
         bindsym Shift+F exec --no-startup-id xrandr -y, mode "default"
         ## Toggle between $TZ and UTC in lebmonbar
-        bindsym u exec awk -v TEMP=/tmp/i3_lemonbar_utc_${USER} 'BEGIN {{FILE=getline < TEMP < 0 ? "0" : "1"} {if($0==1){STATE=1} else {STATE=0}} {if(STATE==0){system("echo 1 > "TEMP)} else {system("echo 0 > "TEMP)}} }', mode "default"
+        bindsym u exec awk -v TEMP=/tmp/i3_polybar_utc_${USER} 'BEGIN {{FILE=getline < TEMP < 0 ? "0" : "1"} {if($0==1){STATE=1} else {STATE=0}} {if(STATE==0){system("echo 1 > "TEMP)} else {system("echo 0 > "TEMP)}} }', mode "default"
         ## Unload gpg keys
         bindsym g exec --no-startup-id gpgconf --kill gpg-agent, mode "default"
-        ## Reload lemonbar, useful after connecting external monitors
-        bindsym k exec --no-startup-id "pkill lemonbar; $HOME/.i3/lemonbar/i3_lemonbar.sh &", mode "default"
+        ## Reload polybar
+        bindsym k exec --no-startup-id "$HOME/.config/polybar/scripts/polybar_start.sh", mode "default"
         ## Toggle xss-lock, used for lock on idle
         bindsym Shift+l exec --no-startup-id "pkill xss-lock || xss-lock -- i3block -e -c 2E3436 &", mode "default"
         ## Toggle screen off on idle
@@ -498,7 +499,7 @@ workspace_auto_back_and_forth yes
     ### End Program Floating ### }}}
 
     ## Disable border
-    for_window [class="mpv|URxvt|(?i)chromium|terminator|qutebrowser|manaplus|(?i)firefox"] border 1pixel
+    for_window [class="mpv|URxvt|kitty|(?i)chromium|terminator|qutebrowser|manaplus|(?i)firefox"] border 1pixel
 
     ## Tab view
     for_window [class="Virt-manager"] focus child, layout tabbed, focus
@@ -522,31 +523,18 @@ workspace_auto_back_and_forth yes
 
 ### End Assign Application Workspace ### }}}
 
-### Bar Settings ### {{{
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-#bar {
-        #status_command i3status
-        #tray_output primary
-#}
-
-bar {
-    i3bar_command sleep 5; ~/.i3/lemonbar/i3_lemonbar.sh
-    binding_mode_indicator yes
-    ## This isn't working? primary display set to lvms1.
-    #tray_output primary
-}
-### End Bar Settings ### }}}
-
 ### Exec Programs ### {{{
+## Start polybar
+exec_always --no-startup-id $HOME/.config/polybar/scripts/polybar_start.sh
 exec --no-startup-id [ "$(xrandr | grep -o eDP1)" = "eDP1" ] && xrandr --output eDP1 --primary
 exec --no-startup-id [ -e $HOME/.Xmodmap ] && xmodmap $HOME/.Xmodmap
 ## Set pulseaudio bell sound, and set volume
 exec --no-startup-id pactl upload-sample /usr/share/sounds/freedesktop/stereo/bell.oga bell && pactl load-module module-x11-bell sample=bell && xset b 75
 exec --no-startup-id compton -b
-## Needs profiles already added
-exec srandrd autorandr
-#exec srandrd ~/projects/personal/scripts/hdmi.sh    ## For now, this auto connects to any monitor, and adds it to the right.
+## autorandr needs profiles already added
+exec --no-startup-id srandrd autorandr
+exec --no-startup-id srandrd $HOME/projects/personal/scripts/hdmi_sound_toggle.sh
+exec --no-startup-id srandrd $HOME/.config/polybar/scripts/polybar_start.sh
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id conky -qc $HOME/.i3/conky/back_log.conkyrc
 exec --no-startup-id conky -qc $HOME/.i3/conky/back_backups.conkyrc
@@ -569,4 +557,5 @@ exec --no-startup-id i3-msg "workspace $ws3; exec $HOME/bin/qutebrowser"
 exec --no-startup-id i3-msg "workspace $ws1; exec /usr/bin/urxvt"
 exec --no-startup-id sleep 30 && pkill -USR1 redshift
 exec --no-startup-id sleep 15 && autorandr -c
+exec --no-startup-id sleep 15 && $HOME/projects/personal/scripts/hdmi_sound_toggle.sh
 ### End Exec Programs ### }}}

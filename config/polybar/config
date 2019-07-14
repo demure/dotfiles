@@ -1,0 +1,447 @@
+; This is my (demuredemeanor) polybar conf
+; vim:ft=dosini
+; This is a port of my fancy powerline-esk lemonbar to polybar, in hopes of making things simpler :)
+
+
+;; TODO: Write own network script, will allow for:
+;;      TODO: toggle for hiding local IP
+;;      TODO: show one, and only one (eth vs wlan), when no internet.
+;;          NOTE: may have good-enough solution via ext-ip showing lack of connect.
+;; TODO: weechat highlight module?
+
+
+;;; Colors Block ;;; {{{
+;; NOTE: could use "COLOR = ${xrdb:color#}" to reference from ~/.Xdefaults
+[colors]
+;; Main powerline colors
+m_fg        = #C5C8C6
+;; alias for m_bg_sec1
+m_fg_dark   = #282A2E
+m_bg        = #1D1F21
+m_bg_edge   = #B5BD68
+m_bg_wsp    = #8C9440
+m_bg_sec1   = #282A2E
+m_bg_sec2   = #454A4F
+m_bg_sec3   = #60676E
+m_fg_icon   = #979997
+
+;;;; Palate ;;;; {{{
+;; "base" palate?
+foreground  = #C5C8C6
+background  = #1D1F21
+
+black       = #282A2E
+red         = #A54242
+green       = #8C9440
+yellow      = #DE935F
+blue        = #5F819D
+magenta     = #85678F
+cyan        = #5E8D87
+white       = #707880
+
+bblack      = #373B41
+bred        = #CC6666
+;; yellow-green
+bgreen      = #B5BD68
+byellow     = #F0C674
+bblue       = #81A2BE
+bmagenta    = #B294BB
+bcyan       = #8ABEB7
+bwhite      = #C5C8C6
+;;;; End Palete ;;;; }}}
+;;; End Colors Block ;;; }}}
+
+;;; Bar Section ;;; {{{
+;;;; Main Bar ;;;; {{{
+[bar/main]
+monitor      = ${env:MONITOR:}
+width        = 100%
+height       = 14
+fixed-center = false
+
+border-color       = ${colors.bblack}
+;border-bottom-size = 2
+
+background = ${colors.m_bg}
+foreground = ${colors.m_fg}
+
+font-0 = "PragmataPro:size=10;3"
+;; It looks like PragmataPro includes FA now, so FA isn't called
+font-1 = "FontAwesome:size=10;2"
+;; Back up font, and japanese support (so I get less error msgs) (window titles)
+font-2 = "Noto Sans Mono:size=10;3"
+font-3 = "Noto Sans Mono CJK JP:size=10;3"
+
+modules-left   = i3 title end_indicator_left
+;modules-center =
+modules-right  = end_indicator_right mmpd rss mail misc_status wlan eth ext_ip tmb cpu memory filesystem temperature volume backlight udate
+;;;; End Main Bar ;;;; }}}
+
+;;;; Tray Bar ;;;; {{{
+[bar/main-tray]
+inherit = bar/main
+
+tray-position = right
+tray-detached = false
+tray-maxsize = 14
+;tray-transparent = false
+tray-background = ${colors.m_bg_corner}
+tray-offset-x = 0
+tray-offset-y = 0
+tray-padding = 1
+tray-scale = 1.0
+;;;; End Tray Bar ;;;; }}}
+;;; End Bar Section ;;; }}}
+
+;;; Module Section ;;; {{{
+;;; Indicator Modules ;;;; {{{
+;; Colors:
+;; Name         BG          HEX         FG          HEX
+;; Content      m_bg_sec3   #60676E     m_bg_wsp    #8C9440
+[module/end_indicator_left]
+type = custom/text
+;; Fancy, with icon
+;; Color        sec3    bg          sec3    green?      bg          sec3
+;content  = %{B#60676E F#1D1F21}%{B#60676E F#8C9440}%{B#1D1F21 F#60676E}
+
+;; Plain
+;; Color        sec3    bg          bg      sec3
+content  = %{B#60676E F#1D1F21}%{B#1D1F21 F#60676E}
+
+
+;; Colors:
+;; Name         BG          HEX         FG          HEX
+;; Content      m_bg_sec3   #60676E     m_bg_wsp    #8C9440
+[module/end_indicator_right]
+type = custom/text
+;; Fancy, with icon
+;; Color        bg      sec3        sec3    green?          bg
+;content  = %{B#1D1F21 F#60676E}%{B#60676E F#8C9440}%{F#1D1F21}
+
+;; Plain
+;; Color        bg      sec3        sec3        sec1
+;content  = %{B#1D1F21 F#60676E}%{B#60676E F#282A2E}
+
+;; Color        bg      sec3        sec3        sec2
+content  = %{B#1D1F21 F#60676E}%{B#60676E F#454A4F}
+;;;; End Indicator Modules ;;;; }}}
+
+;;;; i3 Workspace Module ;;;; {{{
+;; Colors:
+;; Name                 BG          HEX         FG          HEX
+;; Prefix               m_bg_edge   #B5BD68     m_fg_dark   #282A2E
+;; (Main) Unfocused     m_bg_edge   #B5BD68     m_fg_dark   #282A2E
+;; Focused/Visible      m_bg_wsp    #8C9440     m_fg_dark   #282A2E
+;; Urgent               red?                    m_fg_dark   #282A2E
+;; Suffix               Smooth out for next section
+
+[module/i3]
+type                = internal/i3
+format              = <label-state>
+;index-sort          = true
+wrapping-scroll     = true
+strip-wsnumbers     = false
+;;;pin-workspaces  = true
+
+;; This section is not using label-NAME-(fore|back)ground, and instead is
+;; literally declaring colors. This allows nice powerline transitions.
+
+;; NOTE: the leading symbol had flip flopped bg/fg on purpose, to mesh nicely.
+
+label-unfocused     = "%{B#B5BD68 F#282A2E}%name%%{B#B5BD68 F#B5BD68}"
+label-visible       = "%{B#8C9440 F#B5BD68}%{B#8C9440 F#282A2E}%name%%{B#B5BD68 F#8C9440}"
+label-focused       = "%{B#8C9440 F#B5BD68}%{B#8C9440 F#282A2E}%name%%{B#B5BD68 F#8C9440}"
+label-urgent        = "%{B#A54242 F#B5BD68}%{B#A54242 F#282A2E}%name%%{B#B5BD68 F#A54242}"
+
+format-prefix       = "%{B#B5BD68 F#282A2E} %{B#B5BD68 F#B5BD68} "
+format-suffix       = "%{B#454A4F F#B5BD68}"
+;;;; End i3 Workspace Module ;;;; }}}
+
+;;;; Title Module ;;;; {{{
+;; Colors:
+;; Name     BG          HEX         FG          HEX
+;; Prefix:  m_bg_sec2   #454A4F     m_bg_edge   #B5BD68
+;; Main:    m_bg        #1D1F21     m_fg        #C5C8C6
+[module/title]
+type = internal/xwindow
+
+format = <label>
+;; prefix is needed as otherwise maxlen would be ate up.
+format-prefix = "%{B#454A4F F#B5BD68}  %{B#1D1F21 F#454A4F}"
+;format-suffix = ""
+
+format-background = ${colors.m_bg}
+format-foreground = ${colors.m_fg}
+
+label = "%title:0:40:…%"
+label-maxlen = 50
+
+label-empty = Empty
+label-empty-foreground = #707880
+;;;; End Title Module ;;;; }}}
+
+;;;; CPU Module ;;;; {{{
+[module/cpu]
+type     = internal/cpu
+interval = 1
+
+;; NOTE: Set up for easy sec1/sec2 toggling
+;; Color    sec2        sec1        sec1    icon        fg
+label = "%{B#454A4F F#282A2E}%{B#282A2E F#979997}%{F#C5C8C6}%percentage:2%%"
+
+;; Color    sec1        sec2        sec2    icon        fg
+;label = "%{B#282A2E F#454A4F}%{B#454A4F F#979997}%{F#C5C8C6}%percentage:2%%"
+;;;; End CPU Module ;;;; }}}
+
+;;;; Memory Module ;;;; {{{
+[module/memory]
+type     = internal/memory
+;interval = 1
+interval = 3
+
+;; NOTE: Set up for easy sec1/sec2 toggling
+;; Color    sec2        sec1        sec1    icon        fg
+;label = "%{B#454A4F F#282A2E}%{B#282A2E F#979997}%{F#C5C8C6}%percentage_used:2%%"
+
+;; Color    sec1        sec2        sec2    icon        fg
+label = "%{B#282A2E F#454A4F}%{B#454A4F F#979997}%{F#C5C8C6}%percentage_used:2%%"
+;;;; End Memory Module ;;;; }}}
+
+;;;; wlan Module ;;;; {{{
+[module/wlan]
+type      = internal/network
+interface = wlp3s0
+interval  = 1.0
+
+;; NOTE: Set up for easy sec1/sec2 toggling
+;; Color                sec2    sec1        sec1    icon        fg                  icon            fg                  sec1        sec2        sec2    icon        fg                  sec2        icon        fg
+label-connected = "%{B#454A4F F#282A2E}%{B#282A2E F#979997}%{F#C5C8C6}%local_ip%%{F#979997} %{F#C5C8C6}%signal:2%%%{B#282A2E F#454A4F}%{B#454A4F F#979997}%{F#C5C8C6}%downspeed%%{B#454A4F F#979997}%{F#C5C8C6}%upspeed%"
+
+;; Color                sec1    sec2        sec2    icon        fg                  icon            fg                  sec2        sec1        sec1    icon        fg                  sec1        icon        fg
+;label-connected = "%{B#282A2E F#454A4F}%{B#454A4F F#979997}%{F#C5C8C6}%local_ip%%{F#979997} %{F#C5C8C6}%signal:2%%%{B#454A4F F#282A2E}%{B#282A2E F#979997}%{F#C5C8C6}%downspeed%%{B#282A2E F#979997}%{F#C5C8C6}%upspeed%"
+
+format-disconnected =
+;;;; End wlan module ;;;; }}}
+
+;;;; eth Module ;;;; {{{
+[module/eth]
+type = internal/network
+interface = enp0s31f6
+interval = 1.0
+
+;; NOTE: Set up for easy sec1/sec2 toggling
+;; Color                sec2    sec1        sec1    icon        fg                  sec1        sec2        sec2    icon        fg                  sec2        icon        fg
+label-connected = "%{B#454A4F F#282A2E}%{B#282A2E F#979997}%{F#C5C8C6}%local_ip%%{B#282A2E F#454A4F}%{B#454A4F F#979997}%{F#C5C8C6}%downspeed%%{B#454A4F F#979997}%{F#C5C8C6}%upspeed%"
+
+;; Color                sec1    sec2        sec2    icon        fg                  sec2        sec1        sec1    icon        fg                  sec1        icon        fg
+;label-connected = "%{B#282A2E F#454A4F}%{B#454A4F F#979997}%{F#C5C8C6}%local_ip%%{B#454A4F F#282A2E}%{B#282A2E F#979997}%{F#C5C8C6}%downspeed%%{B#282A2E F#979997}%{F#C5C8C6}%upspeed%"
+
+format-disconnected =
+;;;; End eth Module ;;;; }}}
+
+;;;; Volume Module ;;;; {{{
+[module/volume]
+type     = internal/pulseaudio
+;interval = 0.1
+interval = 3
+
+;; NOTE: Set up for easy sec1/sec2 toggling
+;; Color            sec2        sec1        sec1    icon        fg
+label-volume    = "%{B#454A4F F#282A2E}%{B#282A2E F#979997}%{F#C5C8C6}%percentage:2%%"
+;; Color            sec2        yellow?     yellow? icon        fg_dark                     sec1
+label-muted     = "%{B#454A4F F#DE935F}%{B#DE935F F#282A2E}%{F#282A2E}%percentage:2%%%{F#282A2E}"
+
+;; Color            sec1        sec2        sec2    icon        fg
+;label-volume    = "%{B#282A2E F#454A4F}%{B#454A4F F#979997}%{F#C5C8C6}%percentage:2%%"
+;; Color            sec1        yellow?     yellow? icon        fg_dark                     sec2
+;label-muted     = "%{B#282A2EF F#DE935F}%{B#DE935F F#282A2E}%{F#282A2E}%percentage:2%%%{F#454A4F}"
+;;;; End Volume Module ;;;; }}}
+
+;;;; Temperature Module ;;;; {{{
+[module/temperature]
+type             = internal/temperature
+thermal-zone     = 0
+warn-temperature = 70
+
+;; NOTE: Set up for easy sec1/sec2 toggling
+;; Color            sec2        sec1        sec1    icon            fg
+;format          = "%{B#454A4F F#282A2E}%{B#282A2E F#979997}<ramp>%{F#C5C8C6}<label>"
+;; Color            sec2        red?        red?    icon            fg_dark                 sec1
+;format-warn     = "%{B#454A4F F#A54242}%{B#A54242 F#282A2E}<ramp>%{F#282A2E}<label-warn>%{F#282A2E}"
+
+;; Color            sec1        sec2        sec2    icon        fg
+format          = "%{B#282A2E F#454A4F}%{B#454A4F F#979997}<ramp>%{F#C5C8C6}<label>"
+;; Color            sec1        red?        red?    icon        fg_dark                     sec2
+format-warn     = "%{B#282A2E F#A54242}%{B#A54242 F#282A2E}<ramp>%{F#282A2E}<label-warn>%{F#454A4F}"
+
+label       = %temperature-c%
+label-warn  = %temperature-c%
+
+;; Note: pragmatapro (currently) has 5 icon increments.
+;; Also, I'm reusing icons since the icons are divvied evenly between 0-70C...
+;; and my x270 idles at ~50C. Otherwise the icons would  look  artificially 'high'
+;; icon 1/5
+ramp-0 = ""
+ramp-1 = ""
+;; icon 2/5
+ramp-2 = ""
+ramp-3 = ""
+ramp-4 = ""
+;; icon 3/5
+ramp-5 = ""
+;; icon 4/5
+ramp-6 = ""
+;; icon 5/5
+ramp-7 = ""
+;;;; End Temperature Module ;;;; }}}
+
+;;;; Filesystem Module ;;;; {{{
+[module/filesystem]
+type = internal/fs
+interval = 10
+
+mount-0 = /
+;fixed-values = true
+
+;; NOTE: Set up for easy sec1/sec2 toggling
+;; Color            sec2        sec1        sec1    icon        fg
+label-mounted = "%{B#454A4F F#282A2E}%{B#282A2E F#979997}%{F#C5C8C6}%percentage_used:2%%"
+
+;; Color            sec1        sec2        sec2    icon        fg
+;label-mounted = "%{B#282A2E F#454A4F}%{B#454A4F F#979997}%{F#C5C8C6}%percentage_used:2%%"
+;;;; End Filesystem Module ;;;; }}}
+
+;;;; Backlight Module ;;;; {{{
+[module/backlight]
+type = internal/backlight
+
+; Use the following command to list available cards:
+; $ ls -1 /sys/class/backlight/
+card = intel_backlight
+
+;; NOTE: Set up for easy sec1/sec2 toggling
+;; Color    sec2        sec1        sec1    icon        fg
+;label = "%{B#454A4F F#282A2E}%{B#282A2E F#979997}%{F#C5C8C6}%percentage%%"
+
+;; Color    sec1        sec2        sec2    icon        fg
+label = "%{B#282A2E F#454A4F}%{B#454A4F F#979997}%{F#C5C8C6}%percentage%%"
+;;;; End Backlight Module ;;;; }}}
+
+;;;; Misc Status Check Script Module ;;;; {{{
+[module/misc_status]
+type = custom/script
+interval = 15
+exec = $HOME/.config/polybar/scripts/misc_status_check.sh
+
+;; NOTE: Set up for easy sec1/sec2 toggling
+;; Color    sec2        sec1        sec1    icon        fg
+;label = "%{B#454A4F F#282A2E}%{B#282A2E F#979997} %{F#C5C8C6}%output%"
+
+;; Color    sec1        sec2        sec2    icon        fg
+label = "%{B#282A2E F#454A4F}%{B#454A4F F#979997} %{F#C5C8C6}%output%"
+;;;; End Misc Status Check Script Module ;;;; }}}
+
+;;;; Mail Check Script Module ;;;; {{{
+[module/mail]
+type = custom/script
+interval = 60
+exec = $HOME/.config/polybar/scripts/mail_check.sh
+
+;; NOTE: Set up for easy sec1/sec2 toggling
+;; NOTE: this script provides its foreground colors
+;; Color    sec2        sec1        sec1
+label = "%{B#454A4F F#282A2E}%{B#282A2E}%output%"
+
+;; Color    sec1        sec2        sec2
+;label = "%{B#282A2E F#454A4F}%{B#454A4F}%output%"
+;;;; End Mail Check Script Module ;;;; }}}
+
+;;;; RSS Check Script Module ;;;; {{{
+[module/rss]
+type = custom/script
+interval = 60
+exec = $HOME/.config/polybar/scripts/rss_check.sh
+
+;; NOTE: Set up for easy sec1/sec2 toggling
+;; Color    sec2        sec1        sec1    icon        fg
+;label = "%{B#454A4F F#282A2E}%{B#282A2E F#979997}%{F#C5C8C6}%output%"
+
+;; Color    sec1        sec2        sec2    icon        fg
+label = "%{B#282A2E F#454A4F}%{B#454A4F F#979997}%{F#C5C8C6}%output%"
+;;;; End RSS Check Script Module ;;;; }}}
+
+;;;; TMB Check Script Module ;;;; {{{
+;; Thinkpad Multi Battery
+[module/tmb]
+type = custom/script
+interval = 60
+exec = $HOME/.config/polybar/scripts/tmb_check.sh
+
+;; NOTE: Colors set in script, toggle section in script.
+label = "%output%"
+;;;; End TMB Check Script Module ;;;; }}}
+
+;;;; UDate Script Module ;;;; {{{
+;; This is a replacement for the builtin date.
+;; This has a UTC toggle, done in a way that also allows for a i3 binding to toggle.
+
+[module/udate]
+type = custom/script
+;interval = 1
+interval = 5
+exec = $HOME/.config/polybar/scripts/udate_check.sh
+
+;; NOTE: Colors set in script, toggle section in script.
+label = "%output%"
+
+## Toggles. There is also an i3 binding of this.
+## NOTE: Using script as raw awk command was erroring out here.
+click-left = $HOME/.config/polybar/scripts/udate_toggle.sh
+click-right = $HOME/.config/polybar/scripts/udate_toggle.sh
+;;;; End UDate Script Module ;;;; }}}
+
+;;;; MMPD Check Script Module ;;;; {{{
+;; Multi Music Player Display
+;; The Output has a min 0 max 50 char limit inplace
+[module/mmpd]
+type = custom/script
+interval = 10
+exec = $HOME/.config/polybar/scripts/mmpd_check.sh
+
+;; NOTE: I suggest this one looks best as m_bg_sec1
+;; NOTE: Set up for easy sec1/sec2 toggling
+;; Color    sec2        sec1        sec1    icon        fg
+label = "%{B#454A4F F#282A2E}%{B#282A2E F#979997}%{F#C5C8C6}%output:0:40:…%"
+
+;; Color    sec1        sec2        sec2    icon        fg
+;label = "%{B#282A2E F#454A4F}%{B#454A4F F#979997}%{F#C5C8C6}%output:0:40:...%"
+;;;; End MMPD Check Script Module ;;;; }}}
+
+;;;; Ext IP Check Script Module ;;;; {{{
+[module/ext_ip]
+type = custom/script
+interval = 15
+exec = $HOME/.config/polybar/scripts/ext_ip_check.sh
+
+;; NOTE: Set up for easy sec1/sec2 toggling
+;; Color    sec2        sec1        sec1    icon        fg
+label = "%{B#454A4F F#282A2E}%{B#282A2E F#979997}%{F#C5C8C6}%output%"
+
+;; Color    sec1        sec2        sec2    icon        fg
+;label = "%{B#282A2E F#454A4F}%{B#454A4F F#979997}%{F#C5C8C6}%output%"
+
+## Toggles. There is also an i3 binding of this.
+## NOTE: Using script as raw awk command was erroring out here.
+click-left = $HOME/.config/polybar/scripts/ip_toggle.sh
+click-right = $HOME/.config/polybar/scripts/ip_toggle.sh
+;;;; End Ext Ip Check Script Module ;;;; }}}
+;;; End Module Section ;;; }}}
+
+
+[settings]
+screenchange-reload = true
+
+
+[global/wm]
+margin-top    = 0
+margin-bottom = 0
