@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 ## This is my (demuredemeanor) polybar script for checking miscellaneous statuses.
 ## Checks:
 ##      gpg key/smartcard cached

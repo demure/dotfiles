@@ -18,7 +18,7 @@ UTC_DATE="$(date -u '+%F')"
 
 
 ## Set time output based on toggle status
-if [ "${UTC_TOGGLE}" == 1 ]; then
+if [ "${UTC_TOGGLE}" = 1 ]; then
     TIME="${UTC_TIME}"
     DATE="${UTC_DATE}"
   else

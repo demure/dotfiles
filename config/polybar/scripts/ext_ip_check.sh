@@ -25,7 +25,7 @@ if [ -s "${TEMP_FILE}" ]; then
         EXT_IP="$(cat "${TEMP_FILE}")"
 
         ## Catch bad state
-        if [ "${EXT_IP}" == "" ]; then
+        if [ "${EXT_IP}" = "" ]; then
             UPDATE=1
         fi
       else
@@ -47,16 +47,16 @@ fi
 
 
 ## Set error icon
-if [ "${EXT_IP}" == "err" ]; then
+if [ "${EXT_IP}" = "err" ]; then
     EXT_IP=""
 fi
 
 
 ## Set no-connection icon, and save space if local and ext match.
 LOCAL_IP="$(ip address show up scope global | awk '/inet[^6]/ {match($2, /(.*)\/.*/, m); print m[1]}')"
-if [ "${LOCAL_IP}" == "" ]; then
+if [ "${LOCAL_IP}" = "" ]; then
     EXT_IP="×"
-  elif [ "${LOCAL_IP}" == "${EXT_IP}" ]; then
+  elif [ "${LOCAL_IP}" = "${EXT_IP}" ]; then
     EXT_IP="same"
 fi
 
