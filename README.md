@@ -73,7 +73,7 @@ stow -t ~ laptop  ## gui programs
 * Got around to updating stow dir to reflect current software. (still needs some work) **16NOV2018**  
 * Spent a lot of time refactory my prompt command's git **14MAR2019**  
 * Had to get fancy with i3 volume bindings as HDMI output caused sink changes **18JUN2019**  
-* Moved from lemonbar to polybar. Thanks are a lot cleaner and easier to tinker with now. **14JUL2019**  
+* Moved from lemonbar to polybar. Things are a lot cleaner and easier to tinker with now. **14JUL2019**  
     * lemonbar files moved to `retired_confs` dir.
 
 
