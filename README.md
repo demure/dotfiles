@@ -85,7 +85,7 @@ stow -t ~ laptop  ## gui programs
 **PS.** If you happen to have advice, I certainly would be interested in ways to improve my setup.  
 If you do wish to contact me, I guess [twitter] is an ok way (spam mitigation)  
 
-###### Last edit 18JUN2019 ######
+###### Last edit 15JUl2019 ######
 
 
 [github]: https://gitorious.org/demure/dotfiles
