@@ -8,6 +8,7 @@
 ;;      TODO: show one, and only one (eth vs wlan), when no internet.
 ;;          NOTE: may have good-enough solution via ext-ip showing lack of connect.
 ;; TODO: weechat highlight module?
+;; TODO: fix spacing after %{O} format is fixed.
 
 
 ;;; Colors Block ;;; {{{
@@ -74,7 +75,7 @@ font-3 = "Noto Sans Mono CJK JP:size=10;3"
 
 modules-left   = i3 title end_indicator_left
 ;modules-center =
-modules-right  = end_indicator_right mmpd rss mail misc_status wlan eth ext_ip tmb cpu memory filesystem temperature volume backlight udate
+modules-right  = end_indicator_right mmpd rss mail misc_status wlan eth net_use ext_ip tmb cpu memory filesystem temperature volume backlight udate
 ;;;; End Main Bar ;;;; }}}
 
 ;;;; Tray Bar ;;;; {{{
@@ -94,7 +95,7 @@ tray-scale = 1.0
 ;;; End Bar Section ;;; }}}
 
 ;;; Module Section ;;; {{{
-;;; Indicator Modules ;;;; {{{
+;;;; Indicator Modules ;;;; {{{
 ;; Colors:
 ;; Name         BG          HEX         FG          HEX
 ;; Content      m_bg_sec3   #60676E     m_bg_wsp    #8C9440
@@ -173,7 +174,7 @@ format-prefix = "%{B#454A4F F#B5BD68}  %{B#1D1F21 F#454A4F}"
 format-background = ${colors.m_bg}
 format-foreground = ${colors.m_fg}
 
-label = "%title:0:40:…%"
+label = " %title:0:40:…% "
 label-maxlen = 50
 
 label-empty = Empty
@@ -214,11 +215,11 @@ interface = wlp3s0
 interval  = 1.0
 
 ;; NOTE: Set up for easy sec1/sec2 toggling
-;; Color                sec2    sec1        sec1    icon        fg                  icon            fg                  sec1        sec2        sec2    icon        fg                  sec2        icon        fg
-label-connected = "%{B#454A4F F#282A2E}%{B#282A2E F#979997}%{F#C5C8C6}%local_ip%%{F#979997} %{F#C5C8C6}%signal:2%%%{B#282A2E F#454A4F}%{B#454A4F F#979997}%{F#C5C8C6}%downspeed%%{B#454A4F F#979997}%{F#C5C8C6}%upspeed%"
+;; Color                sec2    sec1        sec1    icon        fg                  icon            fg
+label-connected = "%{B#454A4F F#282A2E}%{B#282A2E F#979997}%{F#C5C8C6}%local_ip%%{F#979997} %{F#C5C8C6}%signal:2%%"
 
-;; Color                sec1    sec2        sec2    icon        fg                  icon            fg                  sec2        sec1        sec1    icon        fg                  sec1        icon        fg
-;label-connected = "%{B#282A2E F#454A4F}%{B#454A4F F#979997}%{F#C5C8C6}%local_ip%%{F#979997} %{F#C5C8C6}%signal:2%%%{B#454A4F F#282A2E}%{B#282A2E F#979997}%{F#C5C8C6}%downspeed%%{B#282A2E F#979997}%{F#C5C8C6}%upspeed%"
+;; Color                sec1    sec2        sec2    icon        fg                  icon            fg
+;label-connected = "%{B#282A2E F#454A4F}%{B#454A4F F#979997}%{F#C5C8C6}%local_ip%%{F#979997} %{F#C5C8C6}%signal:2%%"
 
 format-disconnected =
 ;;;; End wlan module ;;;; }}}
@@ -230,11 +231,11 @@ interface = enp0s31f6
 interval = 1.0
 
 ;; NOTE: Set up for easy sec1/sec2 toggling
-;; Color                sec2    sec1        sec1    icon        fg                  sec1        sec2        sec2    icon        fg                  sec2        icon        fg
-label-connected = "%{B#454A4F F#282A2E}%{B#282A2E F#979997}%{F#C5C8C6}%local_ip%%{B#282A2E F#454A4F}%{B#454A4F F#979997}%{F#C5C8C6}%downspeed%%{B#454A4F F#979997}%{F#C5C8C6}%upspeed%"
+;; Color                sec2    sec1        sec1    icon        fg
+label-connected = "%{B#454A4F F#282A2E}%{B#282A2E F#979997}%{F#C5C8C6}%local_ip%"
 
-;; Color                sec1    sec2        sec2    icon        fg                  sec2        sec1        sec1    icon        fg                  sec1        icon        fg
-;label-connected = "%{B#282A2E F#454A4F}%{B#454A4F F#979997}%{F#C5C8C6}%local_ip%%{B#454A4F F#282A2E}%{B#282A2E F#979997}%{F#C5C8C6}%downspeed%%{B#282A2E F#979997}%{F#C5C8C6}%upspeed%"
+;; Color                sec1    sec2        sec2    icon        fg
+;label-connected = "%{B#282A2E F#454A4F}%{B#454A4F F#979997}%{F#C5C8C6}%local_ip%"
 
 format-disconnected =
 ;;;; End eth Module ;;;; }}}
@@ -435,6 +436,16 @@ label = "%{B#454A4F F#282A2E}%{B#282A2E F#979997}%{F#C5C8C6}%output%"
 click-left = $HOME/.config/polybar/scripts/ip_toggle.sh
 click-right = $HOME/.config/polybar/scripts/ip_toggle.sh
 ;;;; End Ext Ip Check Script Module ;;;; }}}
+
+;;;; Net Use Check Script Module ;;;; {{{
+[module/net_use]
+type = custom/script
+exec = $HOME/.config/polybar/scripts/net_use_check.sh
+tail = true
+;; Note: colors provided by script
+label = "%output%"
+;;;; Net Use Check Script Module ;;;; }}}
+
 ;;; End Module Section ;;; }}}
 
 
