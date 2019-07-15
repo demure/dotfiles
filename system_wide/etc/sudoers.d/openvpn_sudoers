@@ -1,0 +1,3 @@
+## Lets me control systemd openvpn, and makes vpn-start menu simple
+demure ALL=(ALL) NOPASSWD: /usr/sbin/service openvpn stop, /usr/sbin/service openvpn start, /usr/sbin/openvpn /etc/openvpn/*
+
