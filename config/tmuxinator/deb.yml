@@ -1,6 +1,6 @@
-# ~/.tmuxinator/comp.yml
+# ~/.tmuxinator/deb.yml
 
-name: comp
+name: deb
 root: ~/
 
 # Optional tmux socket
