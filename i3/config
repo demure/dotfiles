@@ -244,16 +244,16 @@ workspace_auto_back_and_forth yes
         ### End Launch Term ### }}}
 
         ### Screen Shots ### {{{
-        bindsym $mod+Home exec --no-startup-id exec scrot -m        ## Backup binding
-        bindsym Print exec --no-startup-id exec scrot -m
-        bindsym XF86Explorer exec --no-startup-id exec scrot -m     ## x260
-        bindsym XF86Favorites exec --no-startup-id exec scrot -m    ## x270
+        bindsym $mod+Home exec --no-startup-id exec scrot -m -e 'mv $f ~/temp/'         ## Backup binding
+        bindsym Print exec --no-startup-id exec scrot -m -e 'mv $f ~/temp/'
+        bindsym XF86Explorer exec --no-startup-id exec scrot -m -e 'mv $f ~/temp/'      ## x260
+        bindsym XF86Favorites exec --no-startup-id exec scrot -m -e 'mv $f ~/temp/'     ## x270
         ## Note: you need to click on the window, after key combo, to capture it.
         ## Note: Needs to have startup ip, as interacts with GUI
-        bindsym $mod+Shift+Home exec --no-startup-id scrot -s       ## Backup binding
-        bindsym Shift+Print exec --no-startup-id scrot -s
-        bindsym Shift+XF86Explorer exec --no-startup-id scrot -s    ## x260
-        bindsym Shift+XF86Favorites exec --no-startup-id scrot -s   ## x270
+        bindsym $mod+Shift+Home exec --no-startup-id scrot -s -e 'mv $f ~/temp/'        ## Backup binding
+        bindsym Shift+Print exec --no-startup-id scrot -s -e 'mv $f ~/temp/'
+        bindsym Shift+XF86Explorer exec --no-startup-id scrot -s -e 'mv $f ~/temp/'     ## x260
+        bindsym Shift+XF86Favorites exec --no-startup-id scrot -s -e 'mv $f ~/temp/'    ## x270
         ### End Screen Shots ### }}}
 
         ### Rofi Bindings ### {{{
