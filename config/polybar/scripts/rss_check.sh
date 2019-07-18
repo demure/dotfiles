@@ -5,7 +5,7 @@
 
 ## Possible locations. Prioritise 'oldschool' location.
 RSS_PATH1="${HOME}/.newsboat/cache.db"
-RSS_PATH2="${HOME}/.config/newsboat/cache.db"
+RSS_PATH2="${HOME}/.local/share/newsboat/cache.db"
 
 
 ## Check unread count
