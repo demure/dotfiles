@@ -48,6 +48,10 @@ alignment top_left
 gap_x 10
 gap_y 10
 
+## Set monitor
+## 0 for main/primary?
+xinerama_head 0
+
 ## stuff after ‘TEXT’ will be formatted on screen
 ## Displays from auth and syslog
 TEXT

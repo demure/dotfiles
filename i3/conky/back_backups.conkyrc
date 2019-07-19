@@ -48,6 +48,10 @@ alignment top_right
 gap_x 10
 gap_y 10
 
+## Set monitor
+## 0 for main/primary?
+xinerama_head 0
+
 ## stuff after ‘TEXT’ will be formatted on screen
 ## This summarizes the backup pass/fail state.
 ## Written to display 'fail' if periodicity not in log, though will look odd.
