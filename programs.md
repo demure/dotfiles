@@ -50,6 +50,7 @@
 | Notes                | terminal_velocity / tv3 | txt                       |
 | Firmware Updates     | fwupd                   |                           |
 | Task Spooling        | tsp                     |                           |
+| Remove exif data     | exiv2                   |                           |
 
 
 ### CLI programs that preform a GUI Function ###
