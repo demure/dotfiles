@@ -3,10 +3,6 @@
 ; This is a port of my fancy powerline-esk lemonbar to polybar, in hopes of making things simpler :)
 
 
-;; TODO: Write own network script, will allow for:
-;;      TODO: toggle for hiding local IP
-;;      TODO: show one, and only one (eth vs wlan), when no internet.
-;;          NOTE: may have good-enough solution via ext-ip showing lack of connect.
 ;; TODO: weechat highlight module?
 ;; TODO: fix spacing after %{O} format is fixed.
 
@@ -127,6 +123,7 @@ type = custom/text
 content  = %{B#1D1F21 F#60676E}%{B#60676E F#454A4F}
 ;;;; End Indicator Modules ;;;; }}}
 
+;;; Builtins
 ;;;; i3 Workspace Module ;;;; {{{
 ;; Colors:
 ;; Name                 BG          HEX         FG          HEX
@@ -296,6 +293,7 @@ card = intel_backlight
 label = "%{B#282A2E F#454A4F}%{B#454A4F F#979997}%{F#C5C8C6}%percentage%%"
 ;;;; End Backlight Module ;;;; }}}
 
+;;; Scripts
 ;;;; Misc Status Check Script Module ;;;; {{{
 [module/misc_status]
 type = custom/script
@@ -439,7 +437,6 @@ tail = true
 ;; Color    sec1        sec2        sec2    fg
 label = "%{B#282A2E F#454A4F}%{B#454A4F F#C5C8C6}%output%"
 ;;;; Net Use Check Script Module ;;;; }}}
-
 ;;; End Module Section ;;; }}}
 
 
