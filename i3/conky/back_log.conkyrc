@@ -57,6 +57,6 @@ xinerama_head 0
 TEXT
 $color
 ${color grey90}AUTH ${hr 2}$color
-${execi 30 tail -n10 /var/log/auth.log | fold -w 300}
+${execi 30 (tail -n10 /var/log/auth.log 2>/dev/null || journalctl -qn 10 SYSLOG_FACILITY=10) | fold -w 300}
 ${color grey90}SYSLOG ${hr 2}$color
-${execi 30 tail -n30 /var/log/syslog | fold -w300}
+${execi 30 (tail -n30 /var/log/syslog 2>/dev/null || journalctl -qn 30 SYSLOG_FACILITY=3) | fold -w 300}
