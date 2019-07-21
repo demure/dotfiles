@@ -10,7 +10,7 @@
 
 ## Variables
 TEMP_FILE="/tmp/i3_polybar_ext_ip_${USER}"
-TOGGLE_FILE="/tmp/i3_polybar_ip_toggle_${USER}"
+TOGGLE_SHOW_FILE="/tmp/i3_polybar_ip_toggle_${USER}"
 WAIT="660"      ## In seconds. dyndns requires a minimum of 10 min between requests.
 CUR_TIME="$(date +%s)"
 UPDATE=0        ## Default to no update
@@ -52,8 +52,9 @@ if [ "${EXT_IP}" = "err" ]; then
 fi
 
 
-## Set no-connection icon, and save space if local and ext match.
-LOCAL_IP="$(ip address show up scope global | awk '/inet[^6]/ {match($2, /(.*)\/.*/, m); print m[1]}')"
+## Set no-connection output, and save space if local and ext match.
+## Contains docker, qemu, tun/tap interface mitigation
+LOCAL_IP="$(ip address show up scope global | awk '/inet[^6]/&&!/(docker|virbr|tun|tap)[0-9]+$/ {match($2, /(.*)\/.*/, m); print m[1]}')"
 if [ "${LOCAL_IP}" = "" ]; then
     EXT_IP="×"
   elif [ "${LOCAL_IP}" = "${EXT_IP}" ]; then
@@ -61,11 +62,12 @@ if [ "${LOCAL_IP}" = "" ]; then
 fi
 
 
-## Check Toggle State
-if [ -s "${TOGGLE_FILE}" ]; then
-    TOGGLE="$(cat "${TOGGLE_FILE}")"
+## Check Toggle Show State
+if [ -s "${TOGGLE_SHOW_FILE}" ]; then
+    TOGGLE_SHOW="$(cat "${TOGGLE_SHOW_FILE}")"
 
-    if [ "${TOGGLE}" -eq 1 ]; then
+    if [ "${TOGGLE_SHOW}" -eq 1 ]; then
+        ## Hide External IP
         EXT_IP=""
     fi
 fi

@@ -29,7 +29,7 @@ fi
 
 ## Format for bar
 ## NOTE: there is a literal space at the end due to a current bug with the %{O} format
-STATUS="%{B#454A4F F#282A2E}%{B#282A2E F#979997}%{F#C5C8C6}${DATE}%{F#B5BD68}%{B#B5BD68 F#282A2E}${TIME} "
+STATUS="%{B#454A4F F#282A2E}%{B#282A2E F#979997} %{F#C5C8C6}${DATE}%{F#B5BD68}%{B#B5BD68 F#282A2E}${TIME} "
 
 
 ## Return results

@@ -75,7 +75,7 @@ font-3 = "Noto Sans Mono CJK JP:size=10;3"
 
 modules-left   = i3 title end_indicator_left
 ;modules-center =
-modules-right  = end_indicator_right mmpd rss mail misc_status wlan eth net_use ext_ip tmb cpu memory filesystem temperature volume backlight udate
+modules-right  = end_indicator_right mmpd rss mail misc_status local_ip net_use ext_ip tmb cpu memory filesystem temperature volume backlight udate
 ;;;; End Main Bar ;;;; }}}
 
 ;;;; Tray Bar ;;;; {{{
@@ -207,38 +207,6 @@ interval = 3
 ;; Color    sec1        sec2        sec2    icon        fg
 label = "%{B#282A2E F#454A4F}%{B#454A4F F#979997}%{F#C5C8C6}%percentage_used:2%%"
 ;;;; End Memory Module ;;;; }}}
-
-;;;; wlan Module ;;;; {{{
-[module/wlan]
-type      = internal/network
-interface = wlp3s0
-interval  = 1.0
-
-;; NOTE: Set up for easy sec1/sec2 toggling
-;; Color                sec2    sec1        sec1    icon        fg                  icon            fg
-label-connected = "%{B#454A4F F#282A2E}%{B#282A2E F#979997}%{F#C5C8C6}%local_ip%%{F#979997} %{F#C5C8C6}%signal:2%%"
-
-;; Color                sec1    sec2        sec2    icon        fg                  icon            fg
-;label-connected = "%{B#282A2E F#454A4F}%{B#454A4F F#979997}%{F#C5C8C6}%local_ip%%{F#979997} %{F#C5C8C6}%signal:2%%"
-
-format-disconnected =
-;;;; End wlan module ;;;; }}}
-
-;;;; eth Module ;;;; {{{
-[module/eth]
-type = internal/network
-interface = enp0s31f6
-interval = 1.0
-
-;; NOTE: Set up for easy sec1/sec2 toggling
-;; Color                sec2    sec1        sec1    icon        fg
-label-connected = "%{B#454A4F F#282A2E}%{B#282A2E F#979997}%{F#C5C8C6}%local_ip%"
-
-;; Color                sec1    sec2        sec2    icon        fg
-;label-connected = "%{B#282A2E F#454A4F}%{B#454A4F F#979997}%{F#C5C8C6}%local_ip%"
-
-format-disconnected =
-;;;; End eth Module ;;;; }}}
 
 ;;;; Volume Module ;;;; {{{
 [module/volume]
@@ -418,6 +386,26 @@ label = "%{B#454A4F F#282A2E}%{B#282A2E F#979997}%{F#C5C8C6}%output:0:40:�
 ;label = "%{B#282A2E F#454A4F}%{B#454A4F F#979997}%{F#C5C8C6}%output:0:40:...%"
 ;;;; End MMPD Check Script Module ;;;; }}}
 
+;;;; Local IP Check Script Module ;;;; {{{
+[module/local_ip]
+type = custom/script
+interval = 15
+exec = $HOME/.config/polybar/scripts/local_ip_check.sh
+
+;; NOTE: Icon colors handled in script
+;; NOTE: Set up for easy sec1/sec2 toggling
+;; Color    sec2        sec1        sec1    fg
+label = "%{B#454A4F F#282A2E}%{B#282A2E F#C5C8C6}%output%"
+
+;; Color    sec1        sec2        sec2    fg
+;label = "%{B#282A2E F#454A4F}%{B#454A4F F#C5C8C6}%output%"
+
+## Toggles. There is also an i3 binding of this.
+## NOTE: Using script as raw awk command was erroring out here.
+click-left = $HOME/.config/polybar/scripts/ipv6_toggle.sh
+click-right = $HOME/.config/polybar/scripts/ipv6_toggle.sh
+;;;; End Loca Ip Check Script Module ;;;; }}}
+
 ;;;; Ext IP Check Script Module ;;;; {{{
 [module/ext_ip]
 type = custom/script
@@ -442,8 +430,14 @@ click-right = $HOME/.config/polybar/scripts/ip_toggle.sh
 type = custom/script
 exec = $HOME/.config/polybar/scripts/net_use_check.sh
 tail = true
-;; Note: colors provided by script
-label = "%output%"
+
+;; NOTE: Icon and highlight colors handled in script
+;; NOTE: Set up for easy sec1/sec2 toggling
+;; Color    sec2        sec1        sec1    fg
+;label = "%{B#454A4F F#282A2E}%{B#282A2E F#C5C8C6}%output%"
+
+;; Color    sec1        sec2        sec2    fg
+label = "%{B#282A2E F#454A4F}%{B#454A4F F#C5C8C6}%output%"
 ;;;; Net Use Check Script Module ;;;; }}}
 
 ;;; End Module Section ;;; }}}

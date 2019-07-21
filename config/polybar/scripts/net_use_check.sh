@@ -1,6 +1,7 @@
 #!/bin/bash
 ## Forked from https://github.com/polybar/polybar-scripts/blob/master/polybar-scripts/network-traffic/network-traffic.sh
 
+
 print_bytes() {
     if [ "$1" -eq 0 ] || [ "$1" -lt 1000 ]; then
         bytes=" 0"
@@ -13,36 +14,19 @@ print_bytes() {
     echo "$bytes"
 }
 
+
 ## Variables
-#INTERVAL=10
 INTERVAL=2
 INTERFACES="enp0s31f6 wlp3s0"
 
 declare -A bytes
 
-### Color Vars ### {{{
-## polybar segment color
-## Toggle Segment Color (1 or 2)
-POLY_SEG=2
 
 ## Declare colors
-M_BG_SEG1="#282A2E"
-M_BG_SEG2="#454A4F"
-
 M_FG="#C5C8C6"
 M_FG_ICON="#979997"
 
 M_HI="#F0C674"      ## byellow
-
-## Enact Toggle
-if [ ${POLY_SEG} -eq 1 ]; then
-    BG="${M_BG_SEG1}"
-    OBG="${M_BG_SEG2}"
-  else
-    BG="${M_BG_SEG2}"
-    OBG="${M_BG_SEG1}"
-fi
-### End Color Vars ### }}}
 
 
 for interface in ${INTERFACES}; do
@@ -70,7 +54,7 @@ while true; do
     done
 
     ## Return results
-    echo "%{B${OBG} F${BG}}%{B${BG} F${M_FG_ICON}}%{F${M_FG}}$(print_bytes ${down})%{F${M_FG_ICON}}%{F${M_FG}}$(print_bytes ${up})"
+    echo "%{F${M_FG_ICON}}%{F${M_FG}}$(print_bytes ${down})%{F${M_FG_ICON}}%{F${M_FG}}$(print_bytes ${up})"
 
     ## Delay next run
     sleep ${INTERVAL}
