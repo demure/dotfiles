@@ -536,11 +536,8 @@ exec --no-startup-id compton -b
 exec --no-startup-id srandrd autorandr
 exec --no-startup-id srandrd $HOME/projects/personal/scripts/hdmi_sound_toggle.sh
 exec --no-startup-id srandrd $HOME/.config/polybar/scripts/polybar_start.sh
+exec --no-startup-id srandrd $HOME/.config/i3/conky/start_conky.sh
 exec --no-startup-id nitrogen --restore
-exec --no-startup-id conky -qc $HOME/.i3/conky/back_log.conkyrc
-exec --no-startup-id conky -qc $HOME/.i3/conky/back_backups.conkyrc
-exec --no-startup-id conky -qc $HOME/.i3/conky/back_cal.conkyrc
-exec --no-startup-id conky -qc $HOME/.i3/conky/back_task.conkyrc
 exec --no-startup-id xss-lock -- i3lock -e -c 2E3436
 exec --no-startup-id udiskie
 exec --no-startup-id redshift
@@ -554,9 +551,10 @@ exec --no-startup-id clipster -d
 ## Note to self, removed hard coded ~/.mpd from mpd-dynamic
 exec --no-startup-id mpd && mpd-dynamic
 #exec --no-startup-id i3-msg "workspace $ws7; exec /usr/bin/spacefm"
-exec --no-startup-id i3-msg "workspace $ws3; exec $HOME/bin/qutebrowser"
-exec --no-startup-id i3-msg "workspace $ws1; exec /usr/bin/urxvt"
+exec --no-startup-id i3-msg "workspace $ws3; exec qutebrowser"
+exec --no-startup-id i3-msg "workspace $ws1; exec kitty"
 exec --no-startup-id sleep 30 && pkill -USR1 redshift
 exec --no-startup-id sleep 15 && autorandr -c
 exec --no-startup-id sleep 15 && $HOME/projects/personal/scripts/hdmi_sound_toggle.sh
+exec --no-startup-id sleep 15 && $HOME/.config/i3/conky/start_conky.sh
 ### End Exec Programs ### }}}
