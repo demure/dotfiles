@@ -47,8 +47,8 @@ example:
 
 ```
 cd path_to_dotfiles_clone/GNU_Stow
-stow -t ~ main    ## main programs
-stow -t ~ laptop  ## gui programs
+stow -t ~ cli     ## main programs
+stow -t ~ gui     ## gui programs
 ```
 
 **NOTE:** `-t PATH` is used as the stow 'packages' are recessed.  
