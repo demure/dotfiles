@@ -20,7 +20,7 @@ root: ~/
 
 windows:
   - yay: yay
-  - mutt: neomutt
+  - mail: neomutt
   - rss: newsboat
   - file: ranger
   - shell:
