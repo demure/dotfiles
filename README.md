@@ -75,6 +75,7 @@ stow -t ~ gui     ## gui programs
 * Had to get fancy with i3 volume bindings as HDMI output caused sink changes **18JUN2019**  
 * Moved from lemonbar to polybar. Things are a lot cleaner and easier to tinker with now. **14JUL2019**  
     * lemonbar files moved to `retired_confs` dir.
+* Moved markdown docs/notes to a docs dir. **24JUL2019**
 
 
 ### Plans: ###
@@ -85,7 +86,7 @@ stow -t ~ gui     ## gui programs
 **PS.** If you happen to have advice, I certainly would be interested in ways to improve my setup.  
 If you do wish to contact me, I guess [twitter] is an ok way (spam mitigation)  
 
-###### Last edit 15JUl2019 ######
+###### Last edit 24JUl2019 ######
 
 
 [github]: https://gitorious.org/demure/dotfiles
