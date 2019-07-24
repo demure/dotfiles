@@ -83,6 +83,9 @@
         \,$TMPDIR/pass.?*/?*.txt
         \,/tmp/pass.?*/?*.txt
         \ set nobackup nowritebackup noswapfile noundofile
+
+    "" auto resize slits on window resize
+    autocmd VimResized * wincmd =
 """ End Commands at Start """ }}}
 
 """ Plugins """ {{{
