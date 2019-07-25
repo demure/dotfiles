@@ -35,6 +35,7 @@ so ~/.subbash/${HOSTNAME}_profile       ## configuration per OS linux/OSX
 ## This is last, so it can override everything.
 # Less fighting with mini installs.
 so ~/.subbash/bashrc.local              ## machine specific config. not tracked
+so ~/.bashrc.local                      ## machine specific config. not tracked
 ### End Overrides ### }}}
 
 return 0                                ## Return 0, so it doesn't show
