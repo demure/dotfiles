@@ -9,9 +9,9 @@
 
 ### Docs ### {{{
 ## MS Word Documents
-application/msword; ~/.mutt/view_attachment.sh %s "-" & sleep 5;  test=test -n "$DISPLAY"
+application/msword; ~/.config/neomutt/view_attachment.sh %s "-" & sleep 5;  test=test -n "$DISPLAY"
 application/msword; antiword %s
-application/vnd.openxmlformats-officedocument.wordprocessingml.document; ~/.mutt/view_attachment.sh %s "-" & sleep 5;  test=test -n "$DISPLAY"
+application/vnd.openxmlformats-officedocument.wordprocessingml.document; ~/.config/neomutt/view_attachment.sh %s "-" & sleep 5;  test=test -n "$DISPLAY"
 ### End Docs ### }}}
 
 ### Images ### {{{
@@ -20,7 +20,7 @@ image/*;    cacaview %s
 ### End Images ### }}}
 
 ### PDFs ### {{{
-application/pdf;            ~/.mutt/view_attachment.sh %s pdf;      test=test -n "$DISPLAY"
+application/pdf;            ~/.config/neomutt/view_attachment.sh %s pdf;      test=test -n "$DISPLAY"
 ## Check this once you have a good pdf email
 application/pdf;            pdftohtml -q %s - | w3m -T text/html;   copiousoutput
 application/postscript;     zathura %s;                             test=test -n "$DISPLAY"
@@ -37,12 +37,12 @@ audio/*;    mpv %s >/dev/null;
 
 ### Text/HTML ### {{{
 text/plain;     less %s;    edit=vim;   compose=vim;    needsterminal
-text/html;      ~/.mutt/view_attachment.sh %s html;     test=test -n "$DISPLAY"
+text/html;      ~/.config/neomutt/view_attachment.sh %s html;     test=test -n "$DISPLAY"
 ## Disabled for security
 #text/html;      w3m %s;     nametemplate=%s.html;       needsterminal
 #text/html;      w3m -v -F -T text/html -dump %s;        copiousoutput
 #text/html;      elinks -dump -dump-color-mode 3 %s;     copiousoutput
-text/rtf;       ~/.mutt/view_attachment.sh %s rtf
+text/rtf;       ~/.config/neomutt/view_attachment.sh %s rtf
 text/xml;
 text/*;         less %s;    edit=vim;   compose=vim;    needsterminal
 ### End Text ### }}}
@@ -67,7 +67,7 @@ application/x-7z-compressed-tar;    7z l %s;        copiousoutput
 ### End vcard ### }}}
 
 ### Unidentified files ### {{{
-application/octet-stream;   ~/.mutt/view_attachment.sh %s "-"
+application/octet-stream;   ~/.config/neomutt/view_attachment.sh %s "-"
 ### End Unidentified ### }}}
 
 ### notes
