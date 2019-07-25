@@ -22,7 +22,7 @@
 ui = blinkenlights
 ## ui = quiet
 accounts = emu,sdf,gmail,vps
-pythonfile=~/.mutt/offlineimap.py
+pythonfile=~/.config/neomutt/offlineimap.py
 fsync = False
 ### End Main ### }}}
 
