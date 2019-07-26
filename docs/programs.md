@@ -24,7 +24,7 @@
 | RSS Client           | newsboat                |                           |
 | Hex Editor           | dhex                    | *                         |
 | Hex Editor           | hexcurse                | *                         |
-| Hex Editor           | bci                     | *                         |
+| Hex Editor           | bvi                     | *                         |
 | Terminal Multiplexer | tmux                    |                           |
 | tmux profiles        | tmuxinator              |                           |
 | smtp                 | msmtp                   |                           |
@@ -39,6 +39,8 @@
 | Disk Usage           | ncdu                    |                           |
 | File Browser         | ranger                  |                           |
 | Package Manager      | aptitude                |                           |
+| Package Manager      | yay                     |                           |
+| Package Manager      | vpm                     |                           |
 | Version Control      | git                     |                           |
 | Calandar             | khal                    |                           |
 | Music Player         | cmus                    | Many, Stream              |
