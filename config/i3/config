@@ -530,7 +530,7 @@ exec_always --no-startup-id $HOME/.config/polybar/scripts/polybar_start.sh
 exec --no-startup-id [ "$(xrandr | grep -o eDP1)" = "eDP1" ] && xrandr --output eDP1 --primary
 exec --no-startup-id [ -e $HOME/.Xmodmap ] && xmodmap $HOME/.Xmodmap
 ## Set pulseaudio bell sound, and set volume
-exec --no-startup-id pactl upload-sample /usr/share/sounds/freedesktop/stereo/bell.oga bell && pactl load-module module-x11-bell sample=bell && xset b 75
+exec --no-startup-id pactl upload-sample ~/.config/notice_beeps/tick.ogg bell && pactl load-module module-x11-bell sample=bell && xset b 75
 exec --no-startup-id compton -b
 ## autorandr needs profiles already added
 exec --no-startup-id srandrd autorandr
