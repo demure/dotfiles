@@ -1,0 +1,6 @@
+#!/bin/bash
+## Screen lock on lid close for void.
+## Requires acpid installed and running so tht /etc/acpid/handler.sh calls zzz on lid close
+
+xset s activate
+sleep 1
