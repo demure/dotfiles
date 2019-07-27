@@ -131,7 +131,8 @@ host *
     User demure
     Port 22
     ## Disabled to speed up connections
-    GSSAPIAuthentication no
+    ## Default should be off anyway
+    #GSSAPIAuthentication no
     ## https://pthree.org/2013/05/30/openssh-keys-and-the-drunken-bishop/
     VisualHostKey yes
     ## Speed up subsequent connections
