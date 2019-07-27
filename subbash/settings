@@ -4,63 +4,9 @@
 # legacy repo http://github.com/demure/dotfiles
 # vim:set syntax=sh:
 
-### MA Settings ### {{{
-if [ ${HOSTNAME} == 'ma.sdf.org' ]; then
-    export PATH=/usr/pkg/bin:/usr/local/bin:/usr/bin:/bin
-    export TZ=EST5EDT
-    #source /etc/bash_completion.d/git      ## Add git completion
-
-    ## Interactive Test
-    if [[ $- == *i* ]]; then
-        alias bb='bboard'
-        unalias svi
-    fi
-
-    __ssh_agent
-fi
-### End MA Settings ### }}}
-
-### For pi ### {{{
-if [ ${HOSTTYPE} == 'arm' ]; then
-    #source /etc/bash_completion.d/git      ## Add git completion
-
-    ## Interactive Test
-    if [[ $- == *i* ]]; then
-        alias ls='ls --color=auto'
-        alias vi='vim'
-        alias vnc='vncserver :1 -geometry 1024x700 -depth 24'
-    fi
-
-    __ssh_agent
-fi
-### End For pi ### }}}
-
-### For Debian Including Laptop and Netbook ### {{{
-if [[ ${MACHTYPE} == 'x86_64-pc-linux-gnu' || ${MACHTYPE} == 'i486-pc-linux-gnu' ]]; then
-    ## Interactive Test
-    if [[ $- == *i* ]]; then
-        alias ls='ls --color=auto'
-        alias vi='vim'
-        alias mp='mpv'
-        alias qmp='tsp mpv'
-        alias mpp='mp --no-ytdl --fs=no --geometry=50%'     ## for podcasts
-        alias ssht='sshuttle --dns -vr ma 0/0'
-        #alias hdmi-mirror='xrandr --output HDMI1 --mode 1360x768'
-        #alias hdmi-second='xrandr --output HDMI1 --mode 1360x768 --right-of LVDS1'
-        alias hdmi-off='xrandr --output HDMI1 --off'
-        alias xc="xclip -selection c"
-    fi
-
-    if [ ${HOSTNAME} == "moving-computer-of-doom" ]; then
-        alias borg_pass='export BORG_PASSPHRASE="$(pass cli/borg)"'
-        export BORG_REPO='ssh://demure@10.0.0.10:500/mnt/borg/doom-x270'
-    fi
-    __ssh_agent
-fi
-### End For Debian ### }}}
-
 ### For SDF Main Cluster ### {{{
-if [[ "${MACHTYPE}" == "x86_64--netbsd" && "${OSTYPE}" == "netbsd" ]]; then
+## Since there are a bunch of hosts, there would be too many host conf files
+if [[ "${OSTYPE}" == "netbsd" ]]; then
     #LSCOLORS='exfxcxdxbxegedabagacad'
     export TZ=EST5EDT
     export PATH=/usr/pkg/bin:/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/sbin:${HOME}/projects/personal/scripts:${HOME}/bin:${HOME}/.local/bin:/usr/local/games:/usr/games
@@ -68,19 +14,8 @@ if [[ "${MACHTYPE}" == "x86_64--netbsd" && "${OSTYPE}" == "netbsd" ]]; then
     ## Interactive Test
     if [[ $- == *i* ]]; then
         alias help='/usr/local/bin/help'
-        alias bb='bboard'
-        alias cdircd='cd /sys/pkg/etc/unrealircd/'
         unalias svi
         #alias ls='colorls -G'
     fi
 fi
 ### End For SDF Main Cluster ### }}}
-
-### For OpenWrt ### {{{
-    if [ "${MACHTYPE}" == "mips-openwrt-linux-gnu" ]; then
-        alias opkgup="eval \$(opkg list_installed | sed 's/ - .*//' | sed 's/^/opkg upgrade /')"
-    fi
-### End For OpenWrt ### }}}
-
-### Testing ### {{{
-### End Testing ### }}}

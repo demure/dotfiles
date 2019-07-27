@@ -10,12 +10,15 @@ so() { [ -s $1 ] && source $1; }
 
 #so ~/.subbash/profile                  ## main configuration
 
+### Agents ### {{{
+## These are outside of the function conf to skip the interactive check
+so ~/.subbash/sshagent                  ## SSH agent, have before export
+so ~/.subbash/sshgpgagent               ## SSH GPG agent, have before export
+### End Agents ### }}}
 
 so ~/.subbash/export                    ## Exports
 so ~/.subbash/shopt                     ## Shopts
 so ~/.subbash/installcheck              ## Checks for installs, $MISSING_PROGRAMS
-so ~/.subbash/sshagent                  ## SSH agent, have before settings
-so ~/.subbash/sshgpgagent               ## SSH GPG agent, have before settings
 
 ### Interactive ### {{{
 if [[ $- == *i* ]]; then
@@ -29,8 +32,8 @@ fi
 so ~/.subbash/settings                  ## Machine dependent settings
 
 ### Overrides ### {{{
-## Easy per box conf for tracking
-so ~/.subbash/${HOSTNAME}_profile       ## configuration per OS linux/OSX
+## Easy per host conf for tracking
+so ~/.subbash/hosts/${HOSTNAME}_conf    ## configuration per OS linux/OSX
 
 ## This is last, so it can override everything.
 # Less fighting with mini installs.

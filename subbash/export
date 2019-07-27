@@ -21,45 +21,17 @@ export PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/pkg/bin:/usr/local/bin:/usr/local
     ### End History Settings ### }}}
 ### End Bash Exports ### }}}
 
-### Fortune At Login ### {{{
-## Tests for fortune, root, interactive shell, and dumb term
-if [ $(command -v fortune) ] && [ ${UID} != '0' ] && [[ $- == *i* ]] && [ ${TERM} != 'dumb' ]; then
-    fortune -a
+### SSH Agents ### {{{
+if [ -s "${HOME}/.ssh/id_ed25519" ] || [ -s "${HOME}/.ssh/id_rsa" ]; then
+    ## If there is a ssh key, load key for ssh
+    __ssh_agent
   else
-    MISSING_ITEMS+="fortune, "
-fi
-### End Fortune ### }}}
-
-### Memo At Login ### {{{
-## Tests for memo, root, interactive shell, and dumb term
-# http://www.getmemo.org/index.html
-if [ $(command -v memo) ] && [ ${UID} != '0' ] && [[ $- == *i* ]] && [ ${TERM} != 'dumb' ]; then
-    ## If it has been four or more hours, show.
-    if [ -e ${HOME}/.memo ] && [ "$(date +%s)" -ge "$(echo $(stat --printf=%Y ${HOME}/.memo) + 14400 | bc)" ]; then
-        memo -u 2>/dev/null
-        touch ${HOME}/.memo
+    if [ "$(gpg -K | awk 'BEGIN {AK=0} /^ssb>?\s/ {if($4=="[A]"){AK=1}} END {print AK}')" -eq 1 ]; then
+        ## If no ssh key, and if there is a gpg auth key, load gpg key for ssh
+        __ssh_gpg_agent
     fi
-  else
-    MISSING_ITEMS+="memo, "
 fi
-### End Memo ### }}}
-
-### Taskwarrior At Login ### {{{
-## Tests for task, root, interactive shell, and dumb term
-# http://taskwarrior.org/
-if [ $(command -v task) ] && [ ${UID} != '0' ] && [[ $- == *i* ]] && [ ${TERM} != 'dumb' ]; then
-    ## Don't try to show if term is too small
-    if [ $(tput cols) -ge 90  ]; then
-        ## If it has been four or more hours, show.
-        if [ -e ${HOME}/.task/pending.data ] && [ "$(date +%s)" -ge "$(echo $(stat --printf=%Y ${HOME}/.task/pending.data) + 14400 | bc)" ]; then
-            task limit:5 2>/dev/null
-            touch ${HOME}/.task/pending.data
-        fi
-    fi
-  else
-    MISSING_ITEMS+="taskwarrior, "
-fi
-### End Taskwarrior ### }}}
+### End SSH Agents ### }}}
 
 ### Grep Options ### {{{
 ## So, this code is because even though GREP_OPTIONS are 'dead',
@@ -85,22 +57,6 @@ if [ ${grep_test} == "ge" ]; then
 fi
 ### End Grep Options ### }}}
 
-### Nethack Conf ### {{{
-if [ -f ${HOME}/.nethackrc ]; then
-    export NETHACKOPTIONS=~/.nethackrc
-  else
-    MISSING_ITEMS+="nethackrc, "
-fi
-### End Nethack ### }}}
-
-### Slash'em Conf ### {{{
-if [ -f ${HOME}/.slashemrc ]; then
-    export SLASHEMOPTIONS=~/.slashemrc
-  else
-    MISSING_ITEMS+="slashemrc, "
-fi
-### End Slash'em ### }}}
-
 ### z Jump Around ### {{{
 if [ $(command -v z.sh) ] && [ ${UID} != '0' ] && [[ $- == *i* ]] && [ ${TERM} != 'dumb' ]; then
     ## debian
@@ -113,6 +69,67 @@ if [ $(command -v z.sh) ] && [ ${UID} != '0' ] && [[ $- == *i* ]] && [ ${TERM} !
 fi
 ### End z Jump Around ### }}}
 
+### MOTD Stuff ### {{{
+    ### Fortune At Login ### {{{
+    ## Tests for fortune, root, interactive shell, and dumb term
+    if [ $(command -v fortune) ] && [ ${UID} != '0' ] && [[ $- == *i* ]] && [ ${TERM} != 'dumb' ]; then
+        fortune -a
+      else
+        MISSING_ITEMS+="fortune, "
+    fi
+    ### End Fortune ### }}}
+
+    ### Memo At Login ### {{{
+    ## Tests for memo, root, interactive shell, and dumb term
+    # http://www.getmemo.org/index.html
+    if [ $(command -v memo) ] && [ ${UID} != '0' ] && [[ $- == *i* ]] && [ ${TERM} != 'dumb' ]; then
+        ## If it has been four or more hours, show.
+        if [ -e ${HOME}/.memo ] && [ "$(date +%s)" -ge "$(echo $(stat --printf=%Y ${HOME}/.memo) + 14400 | bc)" ]; then
+            memo -u 2>/dev/null
+            touch ${HOME}/.memo
+        fi
+      else
+        MISSING_ITEMS+="memo, "
+    fi
+    ### End Memo ### }}}
+
+    ### Taskwarrior At Login ### {{{
+    ## Tests for task, root, interactive shell, and dumb term
+    # http://taskwarrior.org/
+    if [ $(command -v task) ] && [ ${UID} != '0' ] && [[ $- == *i* ]] && [ ${TERM} != 'dumb' ]; then
+        ## Don't try to show if term is too small
+        if [ $(tput cols) -ge 90  ]; then
+            ## If it has been four or more hours, show.
+            if [ -e ${HOME}/.task/pending.data ] && [ "$(date +%s)" -ge "$(echo $(stat --printf=%Y ${HOME}/.task/pending.data) + 14400 | bc)" ]; then
+                task limit:5 2>/dev/null
+                touch ${HOME}/.task/pending.data
+            fi
+        fi
+      else
+        MISSING_ITEMS+="taskwarrior, "
+    fi
+    ### End Taskwarrior ### }}}
+### End MOTD Stuff ### }}}
+
+### Game Confs ### {{{
+    ### Nethack Conf ### {{{
+    if [ -f ${HOME}/.nethackrc ]; then
+        export NETHACKOPTIONS=~/.nethackrc
+      else
+        MISSING_ITEMS+="nethackrc, "
+    fi
+    ### End Nethack ### }}}
+
+    ### Slash'em Conf ### {{{
+    if [ -f ${HOME}/.slashemrc ]; then
+        export SLASHEMOPTIONS=~/.slashemrc
+      else
+        MISSING_ITEMS+="slashemrc, "
+    fi
+    ### End Slash'em ### }}}
+### End Game Confs ### }}}
+
+## This section is here for reminding people why you shouldn't force the TERM
 #   ### TERM color ### {{{
 #   ## Disabled, as forcing is kind of bad >_>
 #   ## http://blog.sanctum.geek.nz/term-strings/

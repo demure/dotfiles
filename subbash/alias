@@ -17,14 +17,8 @@ alias filetree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 
 ## From http://xmodulo.com/useful-bash-aliases-functions.html
 alias listen="lsof -P -i -n"
 
-## not sure this is still needed, but might $DISPLAY
-alias reset_display='export DISPLAY=$(tmux showenv|grep ^DISPLAY|cut -d = -f 2)'
-
 ## Make ed more usable, command mode is now ':' like vi
 alias ed='ed -p:'
-
-## Preserve user conf while sudoing vim
-alias svi='sudo -E vim'
 
 ## Delete duplicate lines from file name augment
 alias deldup="awk '!x[$0]++' "
@@ -42,12 +36,12 @@ alias rsy1='rsync -avSPRh'
 alias rsy2='rsync -rltDvSPRh'
 ### End rsync Aliases ### }}}
 
-### qmv ### {{{
+### rename utils Aliases ### {{{
 if [[ $(command -v qmv) ]]; then
     ## Makes qmv more usable, and regex-able
     alias qm='qmv --format=destination-only'
 fi
-### End qmv ### }}}
+### End rename utils Aliases ### }}}
 
 ### pinfo ### {{{
 if [[ $(command -v pinfo) ]]; then
@@ -66,3 +60,52 @@ if [[ $(command -v docker) ]]; then
     alias dl='docker ps -l -q'
 fi
 ### End Docker ### }}}
+
+### Vim Aliases ### {{{
+if [[ $(command -v vim) ]]; then
+    ## set vi to call vim
+    alias vi='vim'
+
+    ## Preserve user conf while sudoing vim
+    alias svi='sudo -E vim'
+fi
+### End Vim Aliases ### }}}
+
+### mpv Aliases ### {{{
+if [[ $(command -v mpv) ]]; then
+    ## set vi to call vim
+    alias mp='mpv'
+    alias qmp='tsp mpv'
+fi
+### End mpv Aliases ### }}}
+
+### xclip Aliases ### {{{
+if [[ $(command -v xclip) ]]; then
+    ## make piping to clipboard simple
+        alias xc="xclip -selection c"
+fi
+### End xclip Aliases ### }}}
+
+### ls Color Test ### {{{
+## Tries home cut down on possible large dirs
+ls --color=auto ${HOME} &>/dev/null
+if [ $? ]; then
+    alias ls='ls --color=auto'
+fi
+### End ls Color Test ### }}}
+
+### Update All opkg ### {{{
+## Tries home cut down on possible large dirs
+## TODO: move to awk
+if [[ $(command -v opkg) ]]; then
+    ## This is useful on systems like openwrt
+    alias opkgup="eval \$(opkg list_installed | sed 's/ - .*//' | sed 's/^/opkg upgrade /')"
+fi
+### End Update All opkg ### }}}
+
+### bboard alias ### {{{
+if [[ $(command -v bboard) ]]; then
+    ## lazy alias for sdf's bboard
+    alias bb='bboard'
+fi
+### End board alias ### }}}

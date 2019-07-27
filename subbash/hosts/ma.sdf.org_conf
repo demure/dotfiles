@@ -1,0 +1,11 @@
+##### My (demuredemeanor) configs for ma.sdf.org
+# Uses tabstop=4; shiftwidth=4 tabs; foldmarker={{{,}}};
+# https://notabug.org/demure/dotfiles/
+# legacy repo http://github.com/demure/dotfiles
+# vim:set syntax=sh:
+
+export PATH=/usr/pkg/bin:/usr/local/bin:/usr/bin:/bin
+export TZ=EST5EDT
+#source /etc/bash_completion.d/git      ## Add git completion
+
+unalias svi 2>/dev/null
