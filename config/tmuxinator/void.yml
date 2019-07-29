@@ -1,0 +1,15 @@
+# ~/.tmuxinator/void.yml
+
+name: void
+root: ~/
+
+windows:
+  - vpm:
+      layout: even-horizontal
+      panes:
+        - sudo -s
+        - 
+  - mail: neomutt
+  - rss: newsboat
+  - file: ranger
+  - shell:
