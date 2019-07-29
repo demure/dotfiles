@@ -6,4 +6,4 @@
 
 ## Set up borg for laptop
 export BORG_PASSCOMMAND="pass cli/borg"
-export BORG_REPO='ssh://demure@10.0.0.10:500/mnt/borg/doom-x270'
+export BORG_REPO='ssh://demure@10.0.0.10:500/mnt/borg/doom-x270-void'
