@@ -1,1 +1,0 @@
-KERNEL=="card0", SUBSYSTEM=="drm", ACTION=="change", RUN+="/usr/local/sbin/hdmi_sound_toggle.sh"
