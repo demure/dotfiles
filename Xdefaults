@@ -109,3 +109,6 @@ URxvt.keysym.M-C-Down:   resize-font:smaller
 URxvt.keysym.M-C-Left:   resize-font:reset
 URxvt.keysym.M-C-Right:  resize-font:show
 !!! End Font Bindings !!! }}}
+
+!! For wm
+Xcursor.theme: Vanilla-DMZ-AA
