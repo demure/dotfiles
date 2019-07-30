@@ -58,14 +58,16 @@ fi
 ### End Grep Options ### }}}
 
 ### z Jump Around ### {{{
-if [ $(command -v z.sh) ] && [ ${UID} != '0' ] && [[ $- == *i* ]] && [ ${TERM} != 'dumb' ]; then
-    ## debian
-    source $(command -v z.sh)
-  elif [ -r "/usr/share/z/z.sh" ] && [ ${UID} != '0' ] && [[ $- == *i* ]] && [ ${TERM} != 'dumb' ]; then
-    ## arch
-    source /usr/share/z/z.sh
-  else
-    MISSING_ITEMS+="z_jump, "
+if [ ${UID} != '0' ] && [[ $- == *i* ]] && [ ${TERM} != 'dumb' ]; then
+    if [ $(command -v z.sh) ]; then
+        ## debian
+        source $(command -v z.sh)
+      elif [ -r "/usr/share/z/z.sh" ]; then
+        ## arch
+        source /usr/share/z/z.sh
+      else
+        MISSING_ITEMS+="z_jump, "
+    fi
 fi
 ### End z Jump Around ### }}}
 
