@@ -93,7 +93,7 @@ This file helps keep track of my various cronjobs.
 
 ## Keeps inspircd ssl up to date
 0   */6 *   *   *   root    /bin/cp /etc/letsencrypt/live/demu.red/*.pem ~inspircd/inspircd/run/conf/le-ssl/¬
-1   */6 *   *   *   root    /bin/chown inspircd:inspircd ~inspircd/inspircd/rung/conf/le-ssl/*¬
+1   */6 *   *   *   root    /bin/chown inspircd:inspircd ~inspircd/inspircd/run/conf/le-ssl/*¬
 
 ## Weechat relay stuff
 0   */6 *   *   *   root    /bin/cat /etc/letsencrypt/live/demu.red/privkey.pem /etc/letsencrypt/live/demu.red/fullchain.pem > ~demure/.weechat/ssl/le_relay.pem
