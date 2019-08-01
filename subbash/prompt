@@ -179,6 +179,16 @@ function __prompt_command() {
         fi
         ### End Git Status ### }}}
 
+        ### z.sh _z running ### {{{
+        ## Add z.sh to prompt command, since I have a fancy one and I source exports too early.
+        ## https://github.com/rupa/z
+
+        ## Test if _z function exists
+        if [ "$(type -t _z)" = "function" ]; then
+            (_z --add "$(command pwd '$_Z_RESOLVE_SYMLINKS' 2>/dev/null)" 2>/dev/null &)
+        fi
+        ### End z.sh _z running ### }}}
+
         PS1+=" ${PSCol}-> ${RCol}"          ## End of PS1
     fi
 }
