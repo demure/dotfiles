@@ -538,7 +538,7 @@ exec --no-startup-id compton -b
 exec --no-startup-id srandrd autorandr
 exec --no-startup-id srandrd $HOME/projects/personal/scripts/hdmi_sound_toggle.sh
 exec --no-startup-id srandrd $HOME/.config/polybar/scripts/start_polybar.sh
-exec --no-startup-id srandrd $HOME/.config/i3/conky/start_conky.sh
+exec --no-startup-id srandrd $HOME/.config/conky/start_conky.sh
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id xss-lock -- i3lock -e -c 2E3436
 exec --no-startup-id udiskie
@@ -558,5 +558,5 @@ exec --no-startup-id i3-msg "workspace $ws1; exec kitty"
 exec --no-startup-id sleep 30 && pkill -USR1 redshift
 exec --no-startup-id sleep 15 && autorandr -c
 exec --no-startup-id sleep 15 && $HOME/projects/personal/scripts/hdmi_sound_toggle.sh
-exec --no-startup-id sleep 15 && $HOME/.config/i3/conky/start_conky.sh
+exec --no-startup-id sleep 15 && $HOME/.config/conky/start_conky.sh
 ### End Exec Programs ### }}}
