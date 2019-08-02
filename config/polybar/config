@@ -321,6 +321,9 @@ label = "%{B#454A4F F#282A2E}%{B#282A2E}%output%"
 
 ;; Color    sec1        sec2        sec2
 ;label = "%{B#282A2E F#454A4F}%{B#454A4F}%output%"
+
+click-left = $HOME/projects/personal/scripts/offlineimap_neomutt_hook.sh &
+click-right = $HOME/projects/personal/scripts/offlineimap_neomutt_hook.sh &
 ;;;; End Mail Check Script Module ;;;; }}}
 
 ;;;; RSS Check Script Module ;;;; {{{
