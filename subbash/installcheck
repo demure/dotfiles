@@ -32,7 +32,7 @@ done
 ### End CLI ### }}}
 
 ### GUI ### {{{
-GUI_LIST=(rofi mcomix zathura feh scrot calibre i3lock xbacklight \
+GUI_LIST=(rofi mcomix zathura feh scrot calibre i3lock xbacklight xfd\
 libreoffice chromium gparted xss-lock urxvt zeal i3 font-manager gimp \
 baobab gvim nitrogen touchegg unclutter autorandr srandrd neato compton xrdb \
 notify-send qtpass youtube-dl screenkey inkscape qutebrowser clipster xcalib \
