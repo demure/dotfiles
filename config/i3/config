@@ -317,7 +317,7 @@ workspace_auto_back_and_forth yes
         ## Toggle xss-lock, used for lock on idle
         bindsym Shift+l exec --no-startup-id "pkill xss-lock || xss-lock -- i3block -e -c 2E3436 &", mode "default"
         ## Toggle screen off on idle
-        bindsym p exec --no-startup-id "$HOME/projects/scripts/toggler.sh powersave", mode "default"
+        bindsym p exec --no-startup-id "$HOME/projects/personal/scripts/toggler.sh powersave", mode "default"
 
         ## back to normal: Enter or Escape
         bindsym Return mode "default"
