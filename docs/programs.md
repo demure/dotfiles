@@ -53,6 +53,7 @@
 | Firmware Updates     | fwupd                   |                           |
 | Task Spooling        | tsp                     |                           |
 | Remove exif data     | exiv2                   |                           |
+| Merge PDFs           | pdfunite                | pdf                       |
 
 
 ### CLI programs that preform a GUI Function ###
