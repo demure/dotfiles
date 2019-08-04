@@ -1,0 +1,18 @@
+directory: ~/Music
+library: ~/Music/library.db
+plugins: fetchart mbsync scrub embedart
+paths:
+    albumtype:soundtrack: Soundtracks/$album-$year/$track-$title
+    default: $albumartist/$album%aunique{}-$year/$track-$title
+    singleton: Non-Album/$artist/$title
+    comp: Compilations/$album%aunique{}/$track-$title
+replace:
+    '[\\/]': _
+    '^\.': _
+    '[\x00-\x1f]': _
+    '[<>:"\?\*\|]': _
+    '\.$': _
+    '\s+$': ''
+    '^\s+': ''
+    '^-': _
+    '\s': _
