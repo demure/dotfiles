@@ -131,6 +131,12 @@ fi
     ### End Slash'em ### }}}
 ### End Game Confs ### }}}
 
+### Figlet Fonts ### {{{
+if [ -d "${HOME}/.config/figfonts" ]; then
+    export FIGLET_FONTDIR="${HOME}/.config/figfonts"
+fi
+### End Figlet Fonts ### }}}
+
 ## This section is here for reminding people why you shouldn't force the TERM
 #   ### TERM color ### {{{
 #   ## Disabled, as forcing is kind of bad >_>
