@@ -97,16 +97,16 @@ host tmw2
 
 ### Local Places ### {{{
 host comp doom
-    hostName moving-computer-of-doom.local
+    hostName moving-computer-of-doom.lan
 
 host tiny
-    HostName tiny-server-of-doom.local
+    HostName tiny-server-of-doom.lan
 
 host net
-    HostName moving-netbook-of-doom.local
+    HostName moving-netbook-of-doom.lan
 
 host device
-    HostName moving-device-of-doom.local
+    HostName moving-device-of-doom.lan
     User mobile
 
 host route
