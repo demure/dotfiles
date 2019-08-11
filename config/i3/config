@@ -208,26 +208,17 @@ workspace_auto_back_and_forth yes
         ### End Brightness Bindings ### }}}
 
         ### Pulse Audio Controls ### {{{
-        ## Disabled old volume bindings after amixer started acting up
-        ##bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q set Master 5%+          ## Increase sound volume
-        ##bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id amixer -q set Master 1%+    ## Fine increase sound volume
-        ##bindsym $mod+XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%  ## Able to softvol increase
-        ##bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 5%-          ## Decrease sound volume
-        ##bindsym Shift+XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 1%-    ## Fine decrease sound volume
-        ##bindsym $mod+XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%  ## Able to softvol decrease
-        ##bindsym XF86AudioMute exec --no-startup-id amixer -q set Master toggle              ## mute sound
-
         ## Softvol increase possible with pactl
-        ## NOTE: due to HDMI output connect/disconnects causing sink number changes, sink '0' is now a command substitution
-        bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $(pactl list sinks short | cut -f 1) +5%           ## Increase sound volume
-        bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $(pactl list sinks short | cut -f 1) +1%     ## Fine increase sound volume
-        bindsym $mod+XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $(pactl list sinks short | cut -f 1) 100%     ## Set volume to "100%"
-        bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $(pactl list sinks short | cut -f 1) -5%           ## Decrease sound volume
-        bindsym Shift+XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $(pactl list sinks short | cut -f 1) -1%     ## Fine decrease sound volume
-        bindsym $mod+XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $(pactl list sinks short | cut -f 1) 50%      ## Set volume to "50%"
+        ## NOTE: due to HDMI output connect/disconnects causing sink number changes, sink '0' is now <strike>a command substitution<strike> @DEFAULT_SINK@
+        bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%          ## Increase sound volume
+        bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +1%    ## Fine increase sound volume
+        bindsym $mod+XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ 100%    ## Set volume to "100%"
+        bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%          ## Decrease sound volume
+        bindsym Shift+XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -1%    ## Fine decrease sound volume
+        bindsym $mod+XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ 50%     ## Set volume to "50%"
 
-        bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $(pactl list sinks short | cut -f 1) toggle                 ## mute sound
-        bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 1 toggle            ## mute mic
+        bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle                ## mute sound
+        bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute 1 toggle                        ## mute mic
         ### End Pulse Audio ### }}}
 
         ### Toggle redshift ### {{{
