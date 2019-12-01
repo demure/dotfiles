@@ -1,6 +1,6 @@
 directory: ~/Music
 library: ~/Music/library.db
-plugins: fetchart mbsync scrub embedart
+plugins: fetchart mbsync scrub embedart chroma
 paths:
     albumtype:soundtrack: Soundtracks/$album-$year/$track-$title
     default: $albumartist/$album%aunique{}-$year/$track-$title
