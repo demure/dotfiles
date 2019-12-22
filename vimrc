@@ -233,7 +233,7 @@ if $USER != 'mobile'
         """ End Airline Conf """ }}}
 
         """ Hardtime Conf """ {{{
-        let g:hardtime_default_on = 1
+        let g:hardtime_default_on = 0
         let g:hardtime_ignore_buffer_patterns = [ "CustomPatt[ae]rn", "NERD.*", "Task.*" ]
         nmap <leader>n :HardTimeToggle<CR>
         """ End Hardtime """ }}}
