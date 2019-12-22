@@ -4,15 +4,15 @@
 # legacy repo http://github.com/demure/dotfiles
 # vim:set syntax=sh:
 
-# Add check for key exists first
-# Add check -> Y/N for ssh_env existing? might not need, if using __ssh_agent right
+## Add check for key exists first
+## Add check -> Y/N for ssh_env existing? might not need, if using __ssh_agent right
+## Re-add root/sudo check now that logname is dead?
+
+## Note: logname is dead https://unix.stackexchange.com/questions/347889/a-proper-replacement-for-the-logname-utility
 
 ## SSH Agent
 function __ssh_agent() {
     local SSH_ENV="${HOME}/.ssh/environment"
-    local U_CHECK="$(logname 2>/dev/null)"
-    logname &>/dev/null
-    local F_CHECK="$?"
 
     function __start_agent {
         echo "Initialising new SSH agent..."
@@ -24,16 +24,14 @@ function __ssh_agent() {
     }
 
     ## Source SSH settings, if applicable
-    if [ ${F_CHECK} == 0 ] && { [ "${U_CHECK}" == "${USER}" ] || [ "${U_CHECK}" == "logname: no login name" ] ;}; then
-        if [ -f "${SSH_ENV}" ]; then
-            . "${SSH_ENV}" > /dev/null
-            ps -ef 2>/dev/null | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
-                pstree -up ${USER} 2>/dev/null | grep ${SSH_AGENT_PID} | grep ^ssh-agent > /dev/null || {
-                    __start_agent;
-                }
+    if [ -f "${SSH_ENV}" ]; then
+        . "${SSH_ENV}" > /dev/null
+        ps -ef 2>/dev/null | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || {
+            pstree -up ${USER} 2>/dev/null | grep ${SSH_AGENT_PID} | grep ^ssh-agent > /dev/null || {
+                __start_agent;
             }
-          else
-            __start_agent;
-        fi
+        }
+        else
+        __start_agent;
     fi
 }
