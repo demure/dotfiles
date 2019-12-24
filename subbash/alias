@@ -89,7 +89,7 @@ fi
 ### ls Color Test ### {{{
 ## Tries home cut down on possible large dirs
 ls --color=auto ${HOME} &>/dev/null
-if [ $? ]; then
+if [ $? == 0 ]; then
     alias ls='ls --color=auto'
 fi
 ### End ls Color Test ### }}}
