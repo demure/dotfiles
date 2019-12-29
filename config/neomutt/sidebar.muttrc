@@ -41,9 +41,21 @@ bind index,pager    "\e[1;2A"   sidebar-prev-new
 
 ### Sidebar Mailboxes ### {{{
 ## Mailboxes, which will be shown in the sidebar.
-mailboxes +sdf      +sdf/INBOX      +sdf/Drafts     +sdf/Sent       +sdf/Trash
-mailboxes +gmail    +gmail/INBOX    +gmail/archive  +gmail/People   +gmail/Orders   +gmail/Bulletin     +gmail/drafts   +gmail/sent     +gmail/trash
-mailboxes +vps      +vps/INBOX      +vps/Drafts     +vps/Sent       +vps/Trash
-mailboxes +emu      +emu/INBOX      +emu/archive    +emu/drafts     +emu/sent       +emu/trash
-mailboxes "+-- local -----------"   /var/spool/mail/$USER
+## NOTE: due to https://github.com/neomutt/neomutt/issues/1901
+## requires a `mkdir -p ~/.mail/{_sdf,_gmail,_vps,_emu}/{cur,new,tmp}` or crashes
+
+#mailboxes +sdf      +sdf/INBOX      +sdf/Drafts     +sdf/Sent       +sdf/Trash
+#mailboxes +gmail    +gmail/INBOX    +gmail/archive  +gmail/People   +gmail/Orders   +gmail/Bulletin     +gmail/drafts   +gmail/sent     +gmail/trash
+#mailboxes +vps      +vps/INBOX      +vps/Drafts     +vps/Sent       +vps/Trash
+#mailboxes +emu      +emu/INBOX      +emu/archive    +emu/drafts     +emu/sent       +emu/trash
+#mailboxes "=-- local -----------"   /var/spool/mail/$USER
+
+named-mailboxes "sdf" ='_sdf'
+mailboxes +sdf/INBOX      +sdf/Drafts     +sdf/Sent       +sdf/Trash
+named-mailboxes "gmail" ='_gmail'
+mailboxes +gmail/INBOX    +gmail/archive  +gmail/People   +gmail/Orders   +gmail/Bulletin     +gmail/drafts   +gmail/sent     +gmail/trash
+named-mailboxes "vps" ='_vps'
+mailboxes +vps/INBOX      +vps/Sent       +vps/Trash
+named-mailboxes "emu" ='_emu'
+mailboxes +emu/INBOX      +emu/archive    +emu/drafts     +emu/sent       +emu/trash
 ### End Sidebar Mailboxes ### }}}M#

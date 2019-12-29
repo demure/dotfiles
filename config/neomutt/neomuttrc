@@ -63,7 +63,7 @@ source "~/.config/neomutt/compose.muttrc"
 #source "~/.config/neomutt/alias"
 source "~/.config/neomutt/crypto.muttrc"
 source "~/.config/neomutt/sidebar.muttrc"
-source "~/.config/neomutt/notmuch.muttrc"
+#source "~/.config/neomutt/notmuch.muttrc"
 
 ## can use this to sources files that might not be there, like aliases
 #source `FILE=$HOME/.muttaliases; if [ ! -s "$FILE" ]; then FILE=/dev/null;fi;echo "$FILE"`
