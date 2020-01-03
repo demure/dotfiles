@@ -1,0 +1,75 @@
+## shaarli site config
+
+server {
+    listen 80;
+    listen [::]:80;
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    server_name pic.demu.red;
+    root /var/www/shaarli;
+
+    access_log /var/log/nginx/shaarli_access.log;
+    error_log /var/log/nginx/shaarli_error.log;
+
+    ## Disable all methods besides HEAD, GET and POST.
+    if ($request_method !~ ^(GET|HEAD|POST)$ ) {
+        return 444;
+    }
+
+    index index.php index.html;
+
+    ## Include certbot fix
+    include /etc/nginx/snippets/nginx.well-known.conf;
+
+    ## Include ssl
+    include /etc/nginx/snippets/nginx.ssl.conf;
+
+    ### Deny Stuffs ### {{{
+        ## Protect specific TXT and config files
+        location ~ /(\.|readme.html|readme.md|changelog.txt|changelog.md|contributing.txt|contributing.md|license.txt|license.md|legalnotice|privacy.txt|privacy.md|security.txt|security.md|sample-.*txt)
+        {
+            deny all;
+        }
+
+        ## Protect .git files
+        location ~ /\.git/ {
+            access_log off;
+            log_not_found off;
+            deny all;
+        }
+    ### End Deny Stuffs ### }}}
+
+    location ~* \.(?:ico|css|js|gif|jpe?g|png)$ {
+        expires    max;
+        add_header Pragma public;
+        add_header Cache-Control "public, must-revalidate, proxy-revalidate";
+    }
+
+    ## Try all locations and relay to index.php as a fallback.
+    location / {
+        try_files $uri /index.php$is_args$args;
+
+        location ~ /(tpl|plugins|cache) {
+            access_log off;
+        }
+    }
+
+    ## Relay all index.php requests to fastcgi.
+    location ~ ^(.+\.php)(.*)$ {
+        fastcgi_pass unix:/var/run/php/php7.3-fpm.sock;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+        access_log off;     ## It spams a bit.
+    }
+
+    ## Error Redirects
+    error_page 403 /error.html;
+    error_page 404 /error.html;
+    error_page 405 /error.html;
+    error_page 500 501 502 503 504 /error.html;
+
+    location = /error.html {
+        root /var/www/error;
+        internal;
+    }
+}
