@@ -2,7 +2,7 @@
 # Uses tabstop=4; shiftwidth=4 tabs; foldmarker={{{,}}};
 # https://notabug.org/demure/dotfiles/
 # legacy repo http://github.com/demure/dotfiles
-# vim:set syntax=sh:
+# vim:set syntax=bash:
 
 ## This Changes The PS1
 export PROMPT_COMMAND=__prompt_command      # Func to gen PS1 after CMDs
@@ -100,77 +100,85 @@ function __prompt_command() {
         ### Add Git Status ### {{{
         ## Inspired by http://www.terminally-incoherent.com/blog/2013/01/14/whats-in-your-bash-prompt/
         if [[ $(command -v git) ]]; then
-            local GStatus="$(git status --porcelain=2 -b 2>/dev/null | tr '\n' ':')"
+            ## $GSP: git status porcelain
+            local GSP="$(git status --porcelain=2 --branch 2>/dev/null)"
 
-            if [ -n "${GStatus}" ]; then
+            if [ -n "${GSP}" ]; then
                 ### Fetch Time Check ### {{{
                 local LAST=$(stat -c %Y $(git rev-parse --git-dir 2>/dev/null)/FETCH_HEAD 2>/dev/null)
                 if [ -n "${LAST}" ]; then
-                    local TIME=$(echo $(date +"%s") - ${LAST} | bc)
+                    local TIME=$(echo $(($(date +"%s") - ${LAST})))
                     ## Check if more than 60 minutes since last
                     if [ "${TIME}" -gt "3600" ]; then
-                        git fetch 2>/dev/null
-                        PS1+=' +'
-                        ## Refresh var
-                        local GStatus="$(git status --porcelain=2 -b 2>/dev/null | tr '\n' ':')"
+                        GF=1    ## Git Fetch True
                     fi
+                  else
+                    GF=1        ## Git Fetch True
+                fi
+                if [ -n "${GF}" ] && [ "${GF}" == "1" ]; then
+                    git fetch 2>/dev/null
+                    PS1+=' +'
+                    ## Refresh var
+                    local GSP="$(git status --porcelain=2 --branch 2>/dev/null)"
                 fi
                 ### End Fetch Check ### }}}
 
-                ### Test For Changes ### {{{
-                local GChanges="$(echo ${GStatus} | tr ':' '\n' | awk 'BEGIN {C=0} /^[12] .M/ {C++} END {print C}')"
-                if [ "${GChanges}" == "0" ]; then
-                    local GitColor=$Gre
+                ### Branch Indicator Color ### {{{
+                ## GSP Change Color; Reuses GSP Modified code
+                local GSPcc="$(grep -c "^[12] .M" <<< "${GSP}")"
+                if [ "${GSPcc}" == "0" ]; then
+                    local GBC=$Gre                  ## Branch Color
                   else
-                    local GitColor=$Red
+                    local GBC=$Red                  ## Branch Color
                 fi
-                ### End Test Changes ### }}}
+                ### End Branch Indicator Color ### }}}
 
                 ### Find Branch ### {{{
-                local GBranch="$(echo ${GStatus} | awk 'match($0,/# branch.head [^ :]+/) {print substr($0,RSTART+14,RLENGTH-14)}')"
-                if [ -n "${GBranch}" ]; then
-                    GBranch="[${GBranch}]"              ## Add brackets for final output. Will now test against brackets as well.
-                    if [ "${GBranch}" == "[master]" ]; then
-                        local GBranch="[M]"             ## Because why waste space
+                ## GSP Current Branch; branch name in 3rd spot
+                local GSPcb="$(awk '/branch.head/ {print $3}' <<< "${GSP}")"
+                if [ -n "${GSPcb}" ]; then
+                    GSPcb="[${GSPcb}]"              ## Add brackets for final output. Will now test against brackets as well.
+                    if [ "${GSPcb}" == "[master]" ]; then
+                        local GSPcb="[M]"           ## Because why waste space
                     fi
+
                     ## Test if in detached head state, and set output to first 8char of hash
-                    if [ "${GBranch}" == "[(detached)]" ]; then
-                        GBranch="($(echo ${GStatus} | awk 'match($0,/branch.oid [0-9a-fA-F]+/) {print substr($0,RSTART+11,RLENGTH-11)}' | cut -c1-8))"
+                    if [ "${GSPcb}" == "[(detached)]" ]; then
+                        local GSPcb="$(awk '/branch.oid/ {print substr($3,0,8)}' <<< "${GSP}")"
                     fi
                   else
                     ## Note: No braces applied to emphasis that there is an issue, and that you aren't in a branch named "ERROR".
-                    local GBranch="ERROR"               ## It could happen?
+                    local GSPcb="ERROR"             ## It could happen?
                 fi
                 ### End Branch ### }}}
 
-                PS1+=" ${GitColor}${GBranch}${RCol}"    ## Add result to prompt
+                PS1+=" ${GBC}${GSPcb}${RCol}"       ## Add result to prompt
 
                 ### Find Commit Status ### {{{
-                ## Test Modified and Untracked for "0"
-                # local GDel="$(echo ${GStat} | tr ':' '\n' | grep -c "^[ MARC]D")"
-
-                ## Add 0 to knock off the '+'
-                local GAhead="$(echo ${GStatus} | awk 'match($0,/# branch.ab \+[0-9]+ \-[0-9]+/) {split(substr($0,RSTART+12,RLENGTH-12),s," "); V=s[1]+0} END {if(V>0){print V}}')"
-                if [ -n "${GAhead}" ]; then
-                    PS1+="${Gre}↑${RCol}${GAhead}"      ## Ahead
+                ## GSP Commit Ahead; 3rd spot; Knock off leading symbol; Check exist and gt 0
+                local GSPca="$(awk '/branch.ab/ {print substr($3,2)}' <<< "${GSP}")"
+                if [ -n "${GSPca}" ] && [ "${GSPca}" -gt 0 ]; then
+                    PS1+="${Gre}↑${RCol}${GSPca}"   ## Ahead
                 fi
 
-                ## Needs a `git fetch`
-                ## Multiply by -1 to remove the '-'
-                local GBehind="$(echo ${GStatus} | awk 'match($0,/# branch.ab \+[0-9]+ \-[0-9]+/) {split(substr($0,RSTART+12,RLENGTH-12),s," "); V=s[2]*-1} END {if(V>0){print V}}')"
-                if [ -n "${GBehind}" ]; then
-                    PS1+="${Red}↓${RCol}${GBehind}"     ## Behind
+                ## Needs a `git fetch` to be accurate
+                ## GSP Commit Behind; 4rd spot; Knock off leading symbol; Check exist and gt 0
+                local GSPcb="$(awk '/branch.ab/ {print substr($4,2)}' <<< "${GSP}")"
+                if [ -n "${GSPcb}" ] && [ "${GSPcb}" -gt 0 ]; then
+                    PS1+="${Red}↓${RCol}${GSPcb}"   ## Behind
                 fi
 
-                ## "[ MARC]" comes from https://git-scm.com/docs/git-status
-                local GModified="$(echo ${GStatus} | tr ':' '\n' | awk 'BEGIN {C=0} /^[12] .M/ {C++} END {print C}')"
-                if [ "${GModified}" -gt "0" ]; then
-                    PS1+="${Pur}≠${RCol}${GModified}"   ## Modified
+                ## Read about "[ MARC]" from https://git-scm.com/docs/git-status
+                ## GSP Modified
+                local GSPm="$(grep -c "^[12] .M" <<< "${GSP}")"
+                if [ "${GSPm}" -gt "0" ]; then
+                    PS1+="${Pur}≠${RCol}${GSPm}"    ## Modified
                 fi
 
-                local GUntracked="$(echo ${GStatus} | tr ':' '\n' | awk 'BEGIN {C=0} /^\?/ {C++} END {print C}')"
-                if [ "${GUntracked}" -gt "0" ]; then
-                    PS1+="${Yel}?${RCol}${GUntracked}"  ## Untracked
+                ## GSP Untracked
+                local GSPu="$(grep -c "^?" <<< "${GSP}")"
+                if [ "${GSPu}" -gt "0" ]; then
+                    PS1+="${Yel}?${RCol}${GSPu}"    ## Untracked
                 fi
                 ### End Commit Status ### }}}
             fi
