@@ -102,28 +102,29 @@
 
 ### GUI ###
 
-|----------------------|---------------|-------------------------|
-| Purpose              | Name          | Filetypes               |
-|----------------------|---------------|-------------------------|
-| Comic Reader         | mcomix        | cbr, cbz, rar, zip, etc |
-| File Browser         |               |                         |
-| Terminal Emulator    | urxvt         |                         |
-| Terminal Emulator    | kitty         |                         |
-| Editor               | gvim          | txt, etc                |
-| Bloated Web Browser  | Chromium      | http                    |
-| Keybound Web Browser | qutebrowser   | http                    |
-| GUI Email Client     | icedove       |                         |
-| Documentation Viewer | zeal          |                         |
-| Font Viewer          | font-manager  |                         |
-| Disk Usage           | baobab        |                         |
-| Hex Editor           | bless         | *                       |
-| Hex Editor           | wxHexEditor   | *                       |
-| Poke Finding         | gameconqueror |                         |
-| Word Proccessor      | libreoffice   | Many                    |
-| Spread Sheet         | libreoffice   | Many                    |
-| Presentation         | libreoffice   | Many                    |
-| Ebook Manager        | calibre       | Many                    |
-| Password Manager     | qtpass        |                         |
-| Image Manipulation   | gimp          | Many                    |
-| Vectors              | inkscape      | Many                    |
-| Calculator           | SpeedCrunch   |                         |
+|------------------------|---------------|-------------------------|
+| Purpose                | Name          | Filetypes               |
+|------------------------|---------------|-------------------------|
+| Comic Reader           | mcomix        | cbr, cbz, rar, zip, etc |
+| File Browser           |               |                         |
+| Terminal Emulator      | urxvt         |                         |
+| Terminal Emulator      | kitty         |                         |
+| Editor                 | gvim          | txt, etc                |
+| Bloated Web Browser    | Chromium      | http                    |
+| Keybound Web Browser   | qutebrowser   | http                    |
+| GUI Email Client       | icedove       |                         |
+| Documentation Viewer   | zeal          |                         |
+| Font Viewer            | font-manager  |                         |
+| Disk Usage             | baobab        |                         |
+| Hex Editor             | bless         | *                       |
+| Hex Editor             | wxHexEditor   | *                       |
+| Poke Finding           | gameconqueror |                         |
+| Word Proccessor        | libreoffice   | Many                    |
+| Spread Sheet           | libreoffice   | Many                    |
+| Presentation           | libreoffice   | Many                    |
+| Ebook Manager          | calibre       | Many                    |
+| Password Manager       | qtpass        |                         |
+| Image Manipulation     | gimp          | Many                    |
+| Vectors                | inkscape      | Many                    |
+| Calculator             | SpeedCrunch   |                         |
+| Video Editor (dashcam) | avidemu       | Many                    |
