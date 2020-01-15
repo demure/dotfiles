@@ -175,6 +175,24 @@ function __prompt_command() {
                     PS1+="${Pur}≠${RCol}${GSPm}"    ## Modified
                 fi
 
+                ## GSP Deleted
+                local GSPd="$(grep -c "^[12] D" <<< "${GSP}")"
+                if [ "${GSPd}" -gt "0" ]; then
+                    PS1+="${Red}✖${RCol}${GSPd}"    ## Deleted
+                fi
+
+                ## GSP Added
+                local GSPa="$(grep -c "^[12] A" <<< "${GSP}")"
+                if [ "${GSPa}" -gt "0" ]; then
+                    PS1+="${Gre}✚${RCol}${GSPa}"    ## Added
+                fi
+
+                ## GSP Renamed
+                local GSPr="$(grep -c "^[12] R" <<< "${GSP}")"
+                if [ "${GSPr}" -gt "0" ]; then
+                    PS1+="${Blu}☇${RCol}${GSPr}"    ## Renamed
+                fi
+
                 ## GSP Untracked
                 local GSPu="$(grep -c "^?" <<< "${GSP}")"
                 if [ "${GSPu}" -gt "0" ]; then
