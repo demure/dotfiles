@@ -31,7 +31,7 @@ set signature           = "~/.config/neomutt/sig"                 ## My signatur
 set wait_key = no           ## Shut up, mutt
 set mbox_type = Maildir     ## Mailbox type
 #set timeout = 3             ## Idle time before scanning
-set timeout = 600           ## Idle time before scanning
+set timeout = 1200          ## Idle time before scanning
 #set mail_check = 0          ## Minimum time between scans
 set mail_check = 5          ## Minimum time between scans
 unset move                  ## Gmail does that
