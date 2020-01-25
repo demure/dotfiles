@@ -544,7 +544,7 @@ exec --no-startup-id clipster -d
 ## Note to self, removed hard coded ~/.mpd from mpd-dynamic
 exec --no-startup-id mpd && mpd-dynamic
 #exec --no-startup-id i3-msg "workspace $ws7; exec /usr/bin/spacefm"
-exec --no-startup-id i3-msg "workspace $ws3; exec qutebrowser"
+#exec --no-startup-id i3-msg "workspace $ws3; exec qutebrowser"
 exec --no-startup-id i3-msg "workspace $ws1; exec kitty"
 exec --no-startup-id sleep 30 && pkill -USR1 redshift
 exec --no-startup-id sleep 15 && autorandr -c
