@@ -137,6 +137,12 @@ if [ -d "${HOME}/.config/figfonts" ]; then
 fi
 ### End Figlet Fonts ### }}}
 
+### Ensure Unicode ### {{{
+if [ -z "${LANG}" ]; then
+    export LANG="en_US.UTF-8"
+fi
+### Ensure Unicode ### }}}
+
 ## This section is here for reminding people why you shouldn't force the TERM
 #   ### TERM color ### {{{
 #   ## Disabled, as forcing is kind of bad >_>
