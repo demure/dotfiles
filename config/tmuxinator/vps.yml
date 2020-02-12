@@ -11,11 +11,4 @@ windows:
   #- log: lnav -r /var/log/nginx/access.log /var/log/nginx/error.log /var/log/fail2ban.log
   ## Uses less ram, and does the needed job
   - log:  lnav /var/log/nginx/access.log /var/log/nginx/access.log.1 /var/log/nginx/access.log.2.gz /var/log/nginx/error.log /var/log/nginx/error.log.1 /var/log/nginx/error.log.2.gz /var/log/fail2ban.log /var/log/fail2ban.log.1 /var/log/fail2ban.log.2.gz
-
-  #- editor:
-      #layout: main-vertical
-      #panes:
-        #- vim
-        #- guard
-  #- server: bundle exec rails s
-  #- logs: tail -f log/development.log
+  - task: vit
