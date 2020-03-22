@@ -101,7 +101,7 @@ workspace_auto_back_and_forth yes
         ## kill focused window
         bindsym $mod+Shift+q kill
 
-        ### Sticky Windows, good for picture in picture
+        ### Sticky Windows, good for picture in picture (shows floating window on all workspaces)
         bindsym $mod+Shift+s sticky toggle
 
         ### Split Orientation ### {{{
@@ -534,15 +534,14 @@ exec --no-startup-id nitrogen --restore
 exec --no-startup-id xss-lock -l -- i3lock -fnec 2E3436
 exec --no-startup-id udiskie
 exec --no-startup-id redshift
-#exec --no-startup-id dropbox start
 exec --no-startup-id syncthing -no-browser
 exec --no-startup-id touchegg
 exec --no-startup-id unclutter
 exec --no-startup-id clipster -d
-## Having wonkyness with default python being python2.7
-#exec --no-startup-id python3 /usr/local/sbin/clipster -d
 ## Note to self, removed hard coded ~/.mpd from mpd-dynamic
 exec --no-startup-id mpd && mpd-dynamic
+## shift + numlock for mouse mode num pad, see https://linuxreviews.org/HOWTO_use_the_numeric_keyboard_keys_as_mouse_in_XOrg
+exec --no-startup-id setxkbmap -option keypad:pointerkeys
 #exec --no-startup-id i3-msg "workspace $ws7; exec /usr/bin/spacefm"
 #exec --no-startup-id i3-msg "workspace $ws3; exec qutebrowser"
 exec --no-startup-id i3-msg "workspace $ws1; exec kitty"
