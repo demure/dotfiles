@@ -26,7 +26,7 @@ if [ -s "${HOME}/.ssh/id_ed25519" ] || [ -s "${HOME}/.ssh/id_rsa" ]; then
     ## If there is a ssh key, load key for ssh
     __ssh_agent
   else
-    if [ "$(gpg -K | awk 'BEGIN {AK=0} /^ssb>?\s/ {if($4=="[A]"){AK=1}} END {print AK}')" -eq 1 ]; then
+    if [ "$(gpg -K 2>/dev/null | awk 'BEGIN {AK=0} /^ssb>?\s/ {if($4=="[A]"){AK=1}} END {print AK}')" -eq 1 ]; then
         ## If no ssh key, and if there is a gpg auth key, load gpg key for ssh
         __ssh_gpg_agent
     fi
