@@ -521,6 +521,8 @@ workspace_auto_back_and_forth yes
 ## Start polybar
 exec_always --no-startup-id $HOME/.config/polybar/scripts/start_polybar.sh
 exec --no-startup-id [ "$(xrandr | grep -o eDP1)" = "eDP1" ] && xrandr --output eDP1 --primary
+## shift + numlock for mouse mode num pad, see https://linuxreviews.org/HOWTO_use_the_numeric_keyboard_keys_as_mouse_in_XOrg
+#exec --no-startup-id setxkbmap -option keypad:pointerkeys
 exec --no-startup-id [ -e $HOME/.Xmodmap ] && xmodmap $HOME/.Xmodmap
 ## Set pulseaudio bell sound, and set volume
 exec --no-startup-id pactl upload-sample ~/.config/notice_beeps/tick.ogg bell && pactl load-module module-x11-bell sample=bell && xset b 75
@@ -540,8 +542,6 @@ exec --no-startup-id unclutter
 exec --no-startup-id clipster -d
 ## Note to self, removed hard coded ~/.mpd from mpd-dynamic
 exec --no-startup-id mpd && mpd-dynamic
-## shift + numlock for mouse mode num pad, see https://linuxreviews.org/HOWTO_use_the_numeric_keyboard_keys_as_mouse_in_XOrg
-exec --no-startup-id setxkbmap -option keypad:pointerkeys
 #exec --no-startup-id i3-msg "workspace $ws7; exec /usr/bin/spacefm"
 #exec --no-startup-id i3-msg "workspace $ws3; exec qutebrowser"
 exec --no-startup-id i3-msg "workspace $ws1; exec kitty"
