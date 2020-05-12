@@ -89,7 +89,7 @@ fi
 ### ls Color Test ### {{{
 ## Tries home cut down on possible large dirs
 ls --color=auto ${HOME} &>/dev/null
-if [ $? == 0 ]; then
+if [ ${PIPESTATUS[-1]} == 0 ]; then
     alias ls='ls --color=auto'
 fi
 ### End ls Color Test ### }}}

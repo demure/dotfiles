@@ -8,7 +8,7 @@
 export PROMPT_COMMAND=__prompt_command      # Func to gen PS1 after CMDs
 
 function __prompt_command() {
-    local EXIT="$?"                         # This needs to be first
+    local EXIT=${PIPESTATUS[-1]}            # This needs to be first
     PS1=""
 
     ### Colors to Vars ### {{{
@@ -36,7 +36,6 @@ function __prompt_command() {
         local PSOpt=""                      ## Above, and fixes repeat issue
 
         if [ ${EXIT} != 0 ]; then
-            ## can add `kill -l $?` to test to filter backgrounded
             PS1+="${Red}${EXIT}${RCol}"     ## Add exit code, if non 0
         fi
 
@@ -78,7 +77,7 @@ function __prompt_command() {
 
         ### Check Jobs ### {{{
         type jobs &>/dev/null
-        if [ $? == "0" ]; then
+        if [ ${PIPESTATUS[-1]} == 0 ]; then
             ## Backgrounded running jobs
             local BKGJBS=$(jobs -r | wc -l | tr -d ' ')
             if [ ${BKGJBS} -gt 2 ]; then
