@@ -1,22 +1,22 @@
-## irpg site config
+## YOURLS site config
 
 server {
     listen 80;
     listen [::]:80;
     listen 443 ssl;
     listen [::]:443 ssl;
-    server_name irpg.demu.red;
-    root /var/www/irpg;
+    server_name up.demu.red;
+    root /var/www/up;
 
-    access_log /var/log/nginx/irpg_access.log;
-    error_log /var/log/nginx/irpg_error.log;
+    access_log /var/log/nginx/up_access.log;
+    error_log /var/log/nginx/up_error.log;
 
     ## Disable all methods besides HEAD, GET and POST.
     if ($request_method !~ ^(GET|HEAD|POST)$ ) {
         return 444;
     }
 
-    index idlerpg.html index.php index.html;
+    index index.php index.html /_h5ai/public/index.php;
 
     ## Include certbot fix
     include /etc/nginx/snippets/nginx.well-known.conf;
@@ -40,8 +40,6 @@ server {
     ### End Deny Stuffs ### }}}
 
     location / {
-        #try_files $uri $uri/ idlerpg.html =404;
-        try_files $uri /idlerpg.html;
 
         location ~ ^(.+\.php)(.*)$ {
             fastcgi_split_path_info ^(.+\.php)(.*)$;
@@ -53,19 +51,22 @@ server {
             include fastcgi_params;
         }
 
-        location ~ /(php|js|css) {
+        location ~ /_h5ai {
             access_log off;
         }
+
     }
+
+    ## Using h5ai instead https://larsjung.de/h5ai/
+    ## Enable nginx dir index
+    #location / {
+        #autoindex on;
+    #}
 
     ## Error Redirects
-    error_page 403 /error.html;
-    error_page 404 /error.html;
-    error_page 405 /error.html;
-    error_page 500 501 502 503 504 /error.html;
-
-    location = /error.html {
-        root /var/www/error;
-        internal;
-    }
+    # Done on purpose, as the main page is all in one.
+    error_page 403 /index.html;
+    error_page 404 /index.html;
+    error_page 405 /index.html;
+    error_page 500 501 502 503 504 /index.html;
 }

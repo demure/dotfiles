@@ -56,10 +56,10 @@ server {
 
     ## Relay all index.php requests to fastcgi.
     location ~ ^(.+\.php)(.*)$ {
-        fastcgi_pass unix:/var/run/php/php7.3-fpm.sock;
+        fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
         include fastcgi_params;
-        access_log off;     ## It spams a bit.
+        ##access_log off;     ## It spams a bit. ## commented to see any traffic
     }
 
     ## Error Redirects
