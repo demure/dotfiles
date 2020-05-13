@@ -421,6 +421,9 @@ logpath  = /var/log/nginx/access.log
            /var/log/nginx/piwik_access.log
            /var/log/nginx/irpg_access.log
            /var/log/nginx/pit_access.log
+           /var/log/nginx/shaarli_access.log
+           /var/log/nginx/glow_access.log
+           /var/log/nginx/up.log
 maxretry = 1
 ## One Month
 bantime = 2628002
