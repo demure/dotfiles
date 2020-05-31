@@ -33,7 +33,7 @@ path=/home/demure/.mail
 [user]
 name=demure demeanor
 primary_email=demure@sdf.org
-other_email=demuredemeanor@gmail.com;amcbean@emich.edu;
+other_email=demuredemeanor@gmail.com;demure@demu.red;
 #add local/root?
 
 # Configuration for "notmuch new"

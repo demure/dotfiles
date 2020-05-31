@@ -21,7 +21,8 @@
 #ui = ttyui
 ui = blinkenlights
 ## ui = quiet
-accounts = emu,sdf,gmail,vps
+#accounts = emu,sdf,gmail,vps
+accounts = sdf,gmail,vps
 pythonfile=~/.config/neomutt/offlineimap.py
 fsync = False
 ### End Main ### }}}
@@ -127,45 +128,3 @@ folderfilter = lambda folder: folder in ['[Gmail]/Drafts',
                                         ]
 ### End gmail ### }}}
 
-### EMU ### {{{
-[Account emu]
-localrepository = emu-Local
-remoterepository = emu-Remote
-postsynchook = [ -e $HOME/.notmuch-config ] && notmuch new
-
-[Repository emu-Local]
-type = Maildir
-localfolders = ~/.mail/emu
-nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
-                            'sent':    '[Gmail]/Sent Mail',
-                            'flagged': '[Gmail]/Starred',
-                            'trash':   '[Gmail]/Trash',
-                            'archive': '[Gmail]/All Mail',
-                            }.get(folder, folder)
-
-[Repository emu-Remote]
-## This is set due to an annoying error by the exparimental xoauth2
-# https://bbs.archlinux.org/viewtopic.php?id=206424
-auth_mechanisms = GSSAPI, CRAM-MD5, PLAIN, LOGIN
-maxconnections = 1
-type = Gmail
-remoteuser = amcbean@emich.edu
-ssl_version = tls1_2
-ssl = yes
-sslcacertfile = /etc/ssl/certs/ca-certificates.crt
-remotepasseval = get_pass("mail-emu")
-realdelete = True
-nametrans = lambda folder: {'[Gmail]/Drafts':    'drafts',
-                            '[Gmail]/Sent Mail': 'sent',
-                            '[Gmail]/Starred':   'flagged',
-                            '[Gmail]/Trash':     'trash',
-                            '[Gmail]/All Mail':  'archive',
-                            }.get(folder, folder)
-folderfilter = lambda folder: folder in ['[Gmail]/Drafts',
-                                        '[Gmail]/Sent Mail',
-                                        '[Gmail]/Starred',
-                                        '[Gmail]/Trash',
-                                        '[Gmail]/All Mail',
-                                        'INBOX',
-                                        ]
-### End EMU ### }}}

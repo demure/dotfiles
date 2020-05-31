@@ -54,17 +54,4 @@ tls on
 tls_trust_file /etc/ssl/certs/ca-certificates.crt
 ### end gmail ### }}}
 
-### emu ### {{{
-account emu
-host smtp.gmail.com
-port 587
-protocol smtp
-auth on
-passwordeval pass cli/mail-emu
-from amcbean@emich.edu
-user amcbean@emich.edu
-tls on
-tls_trust_file /etc/ssl/certs/ca-certificates.crt
-### End emu ### }}}
-
 account default : sdf
