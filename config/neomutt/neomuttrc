@@ -96,7 +96,6 @@ set spoolfile = "+sdf/INBOX"
 source ~/.config/neomutt/accounts/sdf.muttrc
 
 ## Set account specific options on folder change
-folder-hook emu/*                   source ~/.config/neomutt/accounts/emu.muttrc
 folder-hook gmail/*                 source ~/.config/neomutt/accounts/gmail.muttrc
 folder-hook sdf/*                   source ~/.config/neomutt/accounts/sdf.muttrc
 folder-hook vps/*                   source ~/.config/neomutt/accounts/vps.muttrc
