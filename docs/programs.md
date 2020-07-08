@@ -54,6 +54,7 @@
 | Task Spooling        | tsp                     |                           |
 | Remove exif data     | exiv2                   |                           |
 | Merge PDFs           | pdfunite                | pdf                       |
+| epub reader          | epy                     | epub, fb2                 |
 
 
 ### CLI programs that preform a GUI Function ###

@@ -23,7 +23,7 @@ wireshark aptitude hwmon bc entr gpm tlp sfill vit curl lshw parallel minicom \
 khal scdaemon grep less cmus mpv tmuxinator iw goobook dmidecode gawk bvi \
 pandoc djmount terminal_velocity openvpn resolvconf borg iptraf-ng make acpi \
 termdown cgdb jq ttyd trash-put udiskie mtr tsp fwupdmgr exiv2 z.sh pdfunite \
-unzip rubber)
+unzip rubber epy)
 
 for i in "${CLI_LIST[@]}"; do
     if [[ ! $(command -v ${i}) ]]; then
