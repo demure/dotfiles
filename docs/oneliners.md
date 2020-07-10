@@ -70,3 +70,9 @@ awk '/MemAvailable/ {AVAIL=$2} /MemTotal/ {TOTAL=$2} END {printf "%.0f%\n", (1-A
 ```
 sqlite3 ${rss_path} 'select sum(unread) from rss_item'
 ```
+
+###Cleanup exifgeo data for up.demu,.red
+
+```
+exiftool -p '$filepath $gpslatitude $gpslongitude' -a -gps:all /var/www/up/ 2> /dev/null | awk '{system("exiftool -overwrite_original '-gps*=' "$1" 2>/dev/null")}'
+```
