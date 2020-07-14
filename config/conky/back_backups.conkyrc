@@ -1,64 +1,62 @@
-## Window settings
-own_window yes
-own_window_type override
-own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
-double_buffer yes
+conky.config = {
+    -- Window settings
+    own_window = true,
+    own_window_type = 'override',
+    own_window_class = 'Conky',
+    own_window_hints = undecorated,below,sticky,skip_taskbar,skip_pager,
+    double_buffer = true,
 
-## Compton doesn't like conky transparent, so this is the fix
-## http://conky.pitstop.free.fr/wiki/index.php5?title=Transparency_in_conky_(en)
-own_window_transparent no #yes
-own_window_argb_visual yes
-own_window_argb_value 0
+    -- Compton doesn't like conky transparent, so this is the fix
+    -- http://conky.pitstop.free.fr/wiki/index.php5?title=Transparency_in_conky_(en)
+    own_window_transparent = false,
+    own_window_argb_visual = true,
+    own_window_argb_value = 0,
 
-## Window Size
-minimum_width 1900
-maximum_width 1920
+    -- fiddle with window
+    use_spacer = 'none',
+    use_xft = true,
 
-# fiddle with window
-use_spacer none
-use_xft yes
+    -- Update interval in seconds
+    update_interval = 60.0,
 
-## Update interval in seconds
-update_interval 60.0
+    -- Draw shades?
+    draw_shades = false,
 
-## Minimum size of text area
-# minimum_size 250 5
-
-## Draw shades?
-draw_shades no
-
-## Text stuff
-draw_outline no # amplifies text if yes
-draw_borders no
-font PragmataPro:size=7
-uppercase no
+    -- Text stuff
+    draw_outline = false, -- # amplifies text if true
+    draw_borders = false,
+    font = 'PragmataPro:size=7',
+    uppercase = false,
 
 
-## Default colors and also border colors, grey90 == #e5e5e5
-default_color grey
+    -- Default colors and also border colors, grey90 == #e5e5e5
+    default_color = 'grey',
 
-## Text alignment, other possible values are commented
-#alignment top_left
-alignment top_right
-#alignment bottom_left
-#alignment bottom_right
+    -- Text alignment, other possible values are commented
+    -- #alignment = 'top_left',
+    alignment = 'top_right',
+    -- #alignment = 'bottom_left',
+    -- #alignment = 'bottom_right',
 
-## Gap between borders of screen and text
-## The default size is a bit large
-gap_x 10
-gap_y 10
+    -- Gap between borders of screen and text
+    -- The default size is a bit large
+    gap_x = 10,
+    gap_y = 10,
 
-## Set monitor
-## 0 for main/primary?
-xinerama_head 0
+    -- Set monitor
+    -- 0 for main/primary?
+    xinerama_head = 0,
+}
 
-## stuff after ‘TEXT’ will be formatted on screen
-## This summarizes the backup pass/fail state.
-## Written to display 'fail' if periodicity not in log, though will look odd.
-## For some reason 'monthly' can't be regexed... though it worked before fixing fail state.
-## As such, 'month' is intentional.
-TEXT
+--[[
+-- This summarizes the backup pass/fail state.
+-- Written to display 'fail' if periodicity not in log, though will look odd.
+-- For some reason 'monthly' can't be regexed... though it worked before fixing fail state.
+-- As such, 'month' is intentional.
+]]
+conky.text = [[
 $color
 ${color grey90}Backups ${hr 2}$color
-${alignr}${exec awk -v count=$(wc -l < $HOME/.config/borg/log) 'BEGIN {PASS=0; LC=0; LPASS=0} {if($3=="passed"){LPASS="☑ " $4 " " $1 " " $2}; if(NR > count-6){if($3=="passed"){PASS=1}};++LC} END {if(PASS==0){print LPASS}}' $HOME/.config/borg/log}
-${alignr}${exec awk -v count=$(wc -l < $HOME/.config/borg/log) '{if(NR > count-6){if($3=="passed"){print "☑",$3,$1,$2} else {print "⚠",$4,$1,$2}}};' $HOME/.config/borg/log}
+${exec awk -v count=$(wc -l < $HOME/.config/borg/log) 'BEGIN {PASS=0; LC=0; LPASS=0} {if($3=="passed"){LPASS="☑ " $4 " " $1 " " $2}; if(NR > count-6){if($3=="passed"){PASS=1}};++LC} END {if(PASS==0){print LPASS}}' $HOME/.config/borg/log}
+${exec awk -v count=$(wc -l < $HOME/.config/borg/log) '{if(NR > count-6){if($3=="passed"){print "☑",$3,$1,$2} else {print "⚠",$4,$1,$2}}};' $HOME/.config/borg/log}
+]];
