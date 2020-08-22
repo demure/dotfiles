@@ -323,7 +323,7 @@ label = "%{B#454A4F F#282A2E}%{B#282A2E}%output%"
 ;label = "%{B#282A2E F#454A4F}%{B#454A4F}%output%"
 
 click-left = $HOME/projects/personal/scripts/offlineimap_neomutt_hook.sh &
-click-right = $HOME/projects/personal/scripts/offlineimap_neomutt_hook.sh &
+;click-right = $HOME/projects/personal/scripts/offlineimap_neomutt_hook.sh &
 ;;;; End Mail Check Script Module ;;;; }}}
 
 ;;;; RSS Check Script Module ;;;; {{{
@@ -367,7 +367,7 @@ label = "%output%"
 ## Toggles. There is also an i3 binding of this.
 ## NOTE: Using script as raw awk command was erroring out here.
 click-left = $HOME/.config/polybar/scripts/udate_toggle.sh
-click-right = $HOME/.config/polybar/scripts/udate_toggle.sh
+;click-right = $HOME/.config/polybar/scripts/udate_toggle.sh
 ;;;; End UDate Script Module ;;;; }}}
 
 ;;;; MMPD Check Script Module ;;;; {{{
@@ -404,7 +404,7 @@ label = "%{B#454A4F F#282A2E}%{B#282A2E F#C5C8C6}%output%"
 ## Toggles. There is also an i3 binding of this.
 ## NOTE: Using script as raw awk command was erroring out here.
 click-left = $HOME/.config/polybar/scripts/ipv6_toggle.sh
-click-right = $HOME/.config/polybar/scripts/ipv6_toggle.sh
+;click-right = $HOME/.config/polybar/scripts/ipv6_toggle.sh
 ;;;; End Loca Ip Check Script Module ;;;; }}}
 
 ;;;; Ext IP Check Script Module ;;;; {{{
@@ -423,7 +423,7 @@ label = "%{B#454A4F F#282A2E}%{B#282A2E F#979997}%{F#C5C8C6}%output%"
 ## Toggles. There is also an i3 binding of this.
 ## NOTE: Using script as raw awk command was erroring out here.
 click-left = $HOME/.config/polybar/scripts/ip_toggle.sh
-click-right = $HOME/.config/polybar/scripts/ip_toggle.sh
+;click-right = $HOME/.config/polybar/scripts/ip_toggle.sh
 ;;;; End Ext Ip Check Script Module ;;;; }}}
 
 ;;;; Net Use Check Script Module ;;;; {{{
