@@ -1,9 +1,7 @@
 ## Account Settings
 set from        = "demure@demu.red"
 set sendmail    = "/usr/bin/msmtp -a vps"
-set my_account  = "vps"         ## This is for an offlineimap macro
-## Temp, waiting on https://github.com/neomutt/neomutt/issues/658
-macro index \Co     "<shell-escape>offlineimap -a vps<enter>" "run offlineimap to sync current inbox."
+macro index \Co     "<shell-escape>mbsync vps<enter>" "run mbsync for current account."
 
 ## Default inbox
 set spoolfile   = "+vps/INBOX"

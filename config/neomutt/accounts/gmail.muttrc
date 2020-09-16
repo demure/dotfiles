@@ -1,19 +1,17 @@
 ## Account Settings
 set from        = demuredemeanor@gmail.com"
 set sendmail    = "/usr/bin/msmtp -a gmail"
-set my_account  = "gmail"       ## This is for an offlineimap macro
-## Temp, waiting on https://github.com/neomutt/neomutt/issues/658
-macro index \Co     "<shell-escape>offlineimap -a gmail<enter>" "run offlineimap to sync current inbox."
+macro index \Co     "<shell-escape>mbsync gmail<enter>" "run mbsync for current account."
 
 ## Default inbox
 set spoolfile   = "+gmail/INBOX"
 
 ## Other special folders
-set mbox        = "+gmail/Archives"
-set postponed   = "+gmail/drafts"
-set record      = "+gmail/sent"
+#set mbox        = "+gmail/Archive"
+set postponed   = "+gmail/Drafts"
+set record      = "+gmail/Sent"
 unset trash
-set trash       = "+gmail/trash"
+set trash       = "+gmail/Trash"
 
 ## Color border
 color status cyan black
@@ -25,4 +23,4 @@ bind editor ^T complete
 set query_command = "goobook query '%s'"
 
 ## Attempting archive binding
-macro index,pager S '<save-message>+gmail/archive<enter>'
+#macro index,pager S '<save-message>+gmail/Archive<enter>'

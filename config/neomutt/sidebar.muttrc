@@ -52,7 +52,7 @@ bind index,pager    "\e[1;2A"   sidebar-prev-new
 named-mailboxes "sdf" ='_sdf'
 mailboxes +sdf/INBOX      +sdf/Drafts     +sdf/Sent       +sdf/Trash
 named-mailboxes "gmail" ='_gmail'
-mailboxes +gmail/INBOX    +gmail/archive  +gmail/People   +gmail/Orders   +gmail/Bulletin     +gmail/drafts   +gmail/sent     +gmail/trash
+mailboxes +gmail/INBOX    +gmail/People   +gmail/Orders   +gmail/Bulletin   +gmail/aha      +gmail/Drafts   +gmail/Sent     +gmail/Spam     +gmail/Trash
 named-mailboxes "vps" ='_vps'
-mailboxes +vps/INBOX      +vps/Sent       +vps/Trash
+mailboxes +vps/INBOX      +vps/Sent       +vps/Junk       +vps/Trash
 ### End Sidebar Mailboxes ### }}}M#

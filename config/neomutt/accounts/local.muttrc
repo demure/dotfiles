@@ -1,8 +1,6 @@
 ## Account Settings
 set from        = ${USER}@${HOSTNAME}"
 set sendmail    = "/usr/bin/msmtp -a local"
-set my_account  = "local"       ## This is for an offlineimap macro
-## Temp, waiting on https://github.com/neomutt/neomutt/issues/658
 bind index \Co noop
 
 ## Default inbox

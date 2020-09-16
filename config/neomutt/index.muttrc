@@ -34,10 +34,7 @@ bind index <space>  collapse-thread
 macro index \Cr     "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
 
 ## Sync email
-macro index O       "<shell-escape>offlineimap<enter>"           "run offlineimap to sync all mail"
-#macro index o       "<shell-escape>offlineimap -qf INBOX<enter>" "run offlineimap to sync all inboxes."
-## Disabled, waiting on https://github.com/neomutt/neomutt/issues/658
-#macro index \Co     "<shell-escape>offlineimap -a $my_account -f INBOX -u quiet &>/dev/null<enter>" "run offlineimap to sync current inbox."
+macro index O       "<shell-escape>mbsync --quiet --all <enter>"    "run mbsync for all accounts"
 
 ## Saner copy/move dialogs
 macro index C       "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
