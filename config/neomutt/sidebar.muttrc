@@ -13,8 +13,9 @@ set sidebar_divider_char = '│'      ## Pretty line-drawing character
 set sidebar_short_path              ## Shorten mailbox names
 set sidebar_delim_chars = "/"       ## Delete mailbox name up to the last / character
 set mail_check_stats                ## Need for sidebar_format's %N
-## '%B' mailbox name;   '%?F? [%F]?' If flag, show flag;    '%* ' pad spaces;   '%?N?%N/?' if new, show new with '/' char; '%?S?%S?' if size, show size.
-set sidebar_format = '%B%?F? [%F]?%* %?N?%N/?%?S?%S?'
+## '%B' mailbox name... replaced iwth %D for descriptive;   '%?F? [%F]?' If flag, show flag;    '%* ' pad spaces;   '%?N?%N/?' if new, show new with '/' char; '%?S?%S?' if size, show size.
+#set sidebar_format = '%B%?F? [%F]?%* %?N?%N/?%?S?%S?'
+set sidebar_format = '%D%?F? [%F]?%* %?N?%N/?%?S?%S?'
 set sidebar_folder_indent           ## Indent folders whose names we've shortened
 #set sidebar_indent_string="  "      ## Indent with two spaces
 ### End Sidebar Settings ### }}}
