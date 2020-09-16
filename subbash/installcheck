@@ -14,7 +14,7 @@ MISSING_GUI=""
 
 ### CLI ### {{{
 CLI_LIST=(docker pinfo qmv vim w3m neomutt tmux ncdu pass stow notmuch msmtp \
-offlineimap urlview htop aircrack-ng mosh nmap sshuttle fusermount exfatfsck \
+mbsync urlview htop aircrack-ng mosh nmap sshuttle fusermount exfatfsck \
 qemu-io pianobar cacaview scanmem hexcurse lsof pidof apt-listbugs tomb xset \
 pinentry-curses pinentry-tty ranger rfkill sshfs tree unar wget iotop parted \
 caff fail2ban-client wicd-curses rsync weechat diff file find gpg gpg2 nc \

@@ -28,7 +28,7 @@
 | Terminal Multiplexer | tmux                    |                           |
 | tmux profiles        | tmuxinator              |                           |
 | smtp                 | msmtp                   |                           |
-| imap                 | offlineimap             |                           |
+| imap                 | mbsync (isync)          |                           |
 | Process Info         | htop                    |                           |
 | Port Mapping         | nmap                    |                           |
 | Pandora              | pianobar                | Note: w/ control-pianobar |
