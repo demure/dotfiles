@@ -13,6 +13,9 @@ Function du {
   gci . | %{$f=$_; gci -r -file $_.FullName | measure-object -property length -sum | select  @{Name="Name"; Expression={$f}}, @{Name="Sum (MB)"; Expression={"{0:N3}" -f ($_.sum / 1MB) }}, Sum } | sort Sum -desc |format-table -Property Name,"Sum (MB)", Sum -autosize
 }
 
+## Mute Function
+Function Toggle-Mute(){$wshShell = new-object -com wscript.shell;$wshShell.SendKeys([char]173)}
+
 ## Admin test
 Function Test-IsAdmin {
 
