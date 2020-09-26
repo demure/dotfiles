@@ -1,0 +1,133 @@
+### SDF Section ### {{{
+IMAPStore sdf-remote
+Host mab.sdf.org
+Port 993
+User demure
+PassCmd "pass cli/mail-sdf-imap"
+AuthMechs LOGIN
+SSLType IMAPS
+## Note: Use `openssl s_client -connect mab.sdf.org:993 -showcerts` to get cert to paste into .pem
+CertificateFile ~/.config/cert/mab.sdf.org.pem
+
+MaildirStore sdf-local
+Subfolders Verbatim
+Path ~/.mail/sdf/
+Inbox ~/.mail/sdf/INBOX
+Flatten .
+
+Channel sdf
+Expunge Both
+Far :sdf-remote:
+Near :sdf-local:
+Patterns *
+Create Both
+SyncState *
+##MaxMessages $maxmes
+ExpireUnread no
+### End SDF Section ### }}}
+
+### Gmail Section ### {{{
+IMAPStore gmail-remote
+Host imap.gmail.com
+Port 993
+User demuredemeanor@gmail.com
+PassCmd "pass cli/mail-gmail"
+AuthMechs LOGIN
+SSLType IMAPS
+##CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+MaildirStore gmail-local
+Subfolders Verbatim
+Path ~/.mail/gmail/
+Inbox ~/.mail/gmail/INBOX
+Flatten .
+
+### Gmail Channels ### {{{
+Channel gmail-main
+Expunge Both
+Far :gmail-remote:
+Near :gmail-local:
+Pattern INBOX aha Bulletin Orders People
+Create Both
+SyncState *
+ExpireUnread no
+
+Channel gmail-sent
+Expunge Both
+Far :gmail-remote:"[Gmail]/Sent Mail"
+Near :gmail-local:Sent
+Create Both
+SyncState *
+ExpireUnread no
+
+Channel gmail-drafts
+Expunge Both
+Far :gmail-remote:"[Gmail]/Drafts"
+Near :gmail-local:Drafts
+Create Both
+SyncState *
+ExpireUnread no
+
+Channel gmail-spam
+Expunge Both
+Far :gmail-remote:"[Gmail]/Spam"
+Near :gmail-local:Spam
+Create Both
+SyncState *
+ExpireUnread no
+
+Channel gmail-trash
+Expunge Both
+Far :gmail-remote:"[Gmail]/Trash"
+Near :gmail-local:Trash
+Create Both
+SyncState *
+ExpireUnread no
+### End Gmail Channels ### }}}
+
+group gmail
+Channel gmail-main
+Channel gmail-sent
+Channel gmail-drafts
+Channel gmail-spam
+Channel gmail-trash
+
+#Channel gmail
+#Expunge Both
+#Far :gmail-remote:
+#Near :gmail-local:
+### Exclude everything under the internal [Gmail] folder, except the interesting folders
+##Patterns * ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/All Mail" "[Gmail]/Trash" "[Gmail]/Spam" "[Gmail]/Drafts"
+##Patterns * ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Trash" "[Gmail]/Spam" "[Gmail]/Drafts"
+#Patterns INBOX People Orders aha Bulletin ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Trash" "[Gmail]/Spam" "[Gmail]/Drafts"
+#Create Both
+#SyncState *
+###MaxMessages $maxmes
+#ExpireUnread no
+### End Gmail Section ### }}}
+
+### VPS Section ### {{{
+IMAPStore vps-remote
+Host mail.gandi.net
+Port 993
+User demure@demu.red
+PassCmd "pass cli/mail-vps"
+AuthMechs LOGIN
+SSLType IMAPS
+
+MaildirStore vps-local
+Subfolders Verbatim
+Path ~/.mail/vps/
+Inbox ~/.mail/vps/INBOX
+Flatten .
+
+Channel vps
+Expunge Both
+Far :vps-remote:
+Near :vps-local:
+Patterns *
+Create Both
+SyncState *
+##MaxMessages $maxmes
+ExpireUnread no
+### End VPS Section ### }}}
