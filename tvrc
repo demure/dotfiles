@@ -1,0 +1,4 @@
+[DEFAULT]
+editor = vim
+extension = .txt
+notes_dir = ~/Notes
