@@ -86,6 +86,17 @@
 
     "" auto resize slits on window resize
     autocmd VimResized * wincmd =
+
+    "" auto detech csv files
+    if exists("did_load_csvfiletype")
+        finish
+    endif
+    let did_load_csvfiletype=1
+
+    augroup filetypedetect
+        au! BufRead,BufNewFile *.csv,*.dat  setfiletype csv
+    augroup END
+
 """ End Commands at Start """ }}}
 
 """ Plugins """ {{{
