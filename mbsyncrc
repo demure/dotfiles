@@ -91,19 +91,6 @@ Channel gmail-sent
 Channel gmail-drafts
 Channel gmail-spam
 Channel gmail-trash
-
-#Channel gmail
-#Expunge Both
-#Far :gmail-remote:
-#Near :gmail-local:
-### Exclude everything under the internal [Gmail] folder, except the interesting folders
-##Patterns * ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/All Mail" "[Gmail]/Trash" "[Gmail]/Spam" "[Gmail]/Drafts"
-##Patterns * ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Trash" "[Gmail]/Spam" "[Gmail]/Drafts"
-#Patterns INBOX People Orders aha Bulletin ![Gmail]* "[Gmail]/Sent Mail" "[Gmail]/Trash" "[Gmail]/Spam" "[Gmail]/Drafts"
-#Create Both
-#SyncState *
-###MaxMessages $maxmes
-#ExpireUnread no
 ### End Gmail Section ### }}}
 
 ### VPS Section ### {{{
