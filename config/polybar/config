@@ -221,6 +221,9 @@ label-muted     = "%{B#454A4F F#DE935F}%{B#DE935F F#282A2E}%{F#282A2E}%per
 ;label-volume    = "%{B#282A2E F#454A4F}%{B#454A4F F#979997}%{F#C5C8C6}%percentage:2%%"
 ;; Color            sec1        yellow?     yellow? icon        fg_dark                     sec2
 ;label-muted     = "%{B#282A2EF F#DE935F}%{B#DE935F F#282A2E}%{F#282A2E}%percentage:2%%%{F#454A4F}"
+
+; Right and Middle click
+click-right = pavucontrol
 ;;;; End Volume Module ;;;; }}}
 
 ;;;; Temperature Module ;;;; {{{

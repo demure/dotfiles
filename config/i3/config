@@ -483,7 +483,7 @@ workspace_auto_back_and_forth yes
 ### Window Treatments ### {{{
     ## (adding "(?i)" means ignore case)
     ### Program Floating ### {{{
-    for_window [class="mpv|feh|Pinentry|Gnome-calculator"] floating enable
+    for_window [class="mpv|feh|Pinentry|Gnome-calculator|Pavucontrol"] floating enable
     for_window [title="Steam - Update*|Steam - Self Updater|Event Tester|termdown"] floating enable
 
     ## Make wicd-curses and terminal_velocity pop up bigger, and centered
