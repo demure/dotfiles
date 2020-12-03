@@ -71,6 +71,7 @@
 | Screen Cast Terminal | ttyd      |           |
 | Eye Strain           | redshift  |           |
 | Trash                | trash-put |           |
+|----------------------|-----------|-----------|
 
 
 ### WM Environment Related ###
@@ -99,6 +100,7 @@
 | automount             | udiskie     |           |
 | Network               | wicd        |           |
 | Eye Strain            | redshift    |           |
+|-----------------------|-------------|-----------|
 
 
 ### GUI ###
@@ -129,3 +131,5 @@
 | Vectors                | inkscape      | Many                    |
 | Calculator             | SpeedCrunch   |                         |
 | Video Editor (dashcam) | avidemu       | Many                    |
+| Remote Desktop Client  | remmina       |                         |
+|------------------------|---------------|-------------------------|
