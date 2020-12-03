@@ -283,6 +283,7 @@ label-mounted = "%{B#454A4F F#282A2E}%{B#282A2E F#979997}%{F#C5C8C6}%perce
 ;;;; Backlight Module ;;;; {{{
 [module/backlight]
 type = internal/backlight
+; NOTE: uses %{A} for redshift toggle
 
 ; Use the following command to list available cards:
 ; $ ls -1 /sys/class/backlight/
@@ -290,10 +291,10 @@ card = intel_backlight
 
 ;; NOTE: Set up for easy sec1/sec2 toggling
 ;; Color    sec2        sec1        sec1    icon        fg
-;label = "%{B#454A4F F#282A2E}%{B#282A2E F#979997}%{F#C5C8C6}%percentage%%"
+;label = "%{B#454A4F F#282A2E}%{B#282A2E F#979997}%{A3:pkill -USR1 redshift:}%{F#C5C8C6}%percentage%%%{A}"
 
 ;; Color    sec1        sec2        sec2    icon        fg
-label = "%{B#282A2E F#454A4F}%{B#454A4F F#979997}%{F#C5C8C6}%percentage%%"
+label = "%{B#282A2E F#454A4F}%{B#454A4F F#979997}%{A3:pkill -USR1 redshift:}%{F#C5C8C6}%percentage%%%{A}"
 ;;;; End Backlight Module ;;;; }}}
 
 ;;; Scripts
@@ -406,8 +407,8 @@ label = "%{B#454A4F F#282A2E}%{B#282A2E F#C5C8C6}%output%"
 
 ## Toggles. There is also an i3 binding of this.
 ## NOTE: Using script as raw awk command was erroring out here.
-click-left = $HOME/.config/polybar/scripts/ipv6_toggle.sh
-;click-right = $HOME/.config/polybar/scripts/ipv6_toggle.sh
+;click-left = $HOME/.config/polybar/scripts/ipv6_toggle.sh
+click-right = $HOME/.config/polybar/scripts/ipv6_toggle.sh
 ;;;; End Loca Ip Check Script Module ;;;; }}}
 
 ;;;; Ext IP Check Script Module ;;;; {{{
@@ -425,8 +426,8 @@ label = "%{B#454A4F F#282A2E}%{B#282A2E F#979997}%{F#C5C8C6}%output%"
 
 ## Toggles. There is also an i3 binding of this.
 ## NOTE: Using script as raw awk command was erroring out here.
-click-left = $HOME/.config/polybar/scripts/ip_toggle.sh
-;click-right = $HOME/.config/polybar/scripts/ip_toggle.sh
+;click-left = $HOME/.config/polybar/scripts/ip_toggle.sh
+click-right = $HOME/.config/polybar/scripts/ip_toggle.sh
 ;;;; End Ext Ip Check Script Module ;;;; }}}
 
 ;;;; Net Use Check Script Module ;;;; {{{
