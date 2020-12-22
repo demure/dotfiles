@@ -54,5 +54,6 @@ conky.config = {
 conky.text = [[
 $color
 ${color grey90}Calendar ${hr 2}$color
-${exec khal --no-color calendar today 30d | head -n 15}
+#${exec khal --no-color calendar today 30d | head -n 15}
+${exec khal --no-color calendar today 30d --format "{start-time}-{end-time} {title}{repeat-symbol}" | head -n 15}
 ]];
