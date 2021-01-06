@@ -55,6 +55,8 @@ function __prompt_command() {
         elif [ ${HOSTTYPE} == 'arm' ]; then
             local PSCol="$Gre"              #@ For pi
             local PSOpt="${SHost} "
+        elif [ ${OSTYPE} == 'linux-android' ]; then
+            local PSCol="$Gre"              #@ For Android Termux`
         elif [[ ${MACHTYPE} =~ arm-apple-darwin ]]; then
             local PSCol="$Gre"              ## For iOS
         elif [ ${MACHTYPE} == 'i486-pc-linux-gnu' ]; then
@@ -68,7 +70,12 @@ function __prompt_command() {
             local PSOpt="\h "
           else
             local PSCol="${Pur}"            ## Un-designated catch-all
-            local PSOpt="\h "
+            if [ ! ${HOSTNAME} == 'localhost' ]; then
+                local PSOpt="\h "
+              else
+                PSOS="$(awk -F '=' '/^ID=/ {print $2}' /etc/*release)"
+                local PSOpt="[${PSOS}] "
+            fi
             MISSING_ITEMS+="machine-prompt, "
         fi
         ### End Machine Test ### }}}
