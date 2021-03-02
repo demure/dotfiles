@@ -241,6 +241,8 @@ if $USER != 'mobile'
         let g:bufferline_echo = 0
         "" Remove default mode indicator
         set noshowmode
+        "" Populate powerline symols
+        let g:airline_powerline_fonts = 1
         """ End Airline Conf """ }}}
 
         """ Hardtime Conf """ {{{
