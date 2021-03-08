@@ -90,3 +90,10 @@ function mm() {
     mpv --no-video --ytdl-format=bestaudio ytdl://ytsearch10:"$@"
 }
 ### End Mpv Search ### }}}
+
+### Remove gps exif ### {{{
+## Iterates over contents of current dir
+function exifclean() {
+    exiftool -p '$filepath $gpslatitude $gpslongitude' -a -gps:all * 2> /dev/null | awk '{system("exiftool -overwrite_original '-gps*=' "$1" 2>/dev/null")}'
+}
+### Remove gps exif ### }}}
