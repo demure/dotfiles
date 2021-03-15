@@ -64,7 +64,7 @@ settings:
   tabs.mode_on_change:
     global: restore
   url.default_page:
-    global: about:blank
+    global: file:///home/demure/.config/qutebrowser/start.html
   url.searchengines:
     global:
       DEFAULT: https://www.google.com/search?q={}
