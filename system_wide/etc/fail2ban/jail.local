@@ -180,6 +180,21 @@ action = %(action_)s
 # JAILS
 #
 
+### WeeChat Relay ### {{{
+[weechat-relay]
+
+enabled     = true
+maxretry    = 5
+## 12 hour
+bantime     = 43200
+## 20 min
+findtime    = 2400
+port        = 0:21,23:499,501:65535
+logpath     = /home/demure/.weechat/logs/core.weechat.weechatlog
+
+
+### End WeeChat Relay ### }}}
+
 ### SSH Servers ### {{{
 #
 # SSH servers
@@ -188,19 +203,15 @@ action = %(action_)s
 ### ssh ### {{{
 [sshd]
 
-enabled  = true
-maxretry = 3
-## one hour
-#bantime  = 3600
-## ten minutes
-#findtime = 600
+enabled     = true
+maxretry    = 3
 ## One Week
 bantime     = 604800
 ## Four days
 findtime    = 345600
-#port     = 500,8080
-port     = 0:21,23:65535
-logpath  = %(sshd_log)s
+#port        = 500,8080
+port        = 0:21,23:65535
+logpath     = %(sshd_log)s
 
 
 [sshd-bad-protocol]
