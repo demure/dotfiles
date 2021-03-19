@@ -16,8 +16,8 @@ settings:
         <Alt+p>: spawn --userscript password_fill
   colors.webpage.darkmode.enabled:
     global: true
-  colors.webpage.prefers_color_scheme_dark:
-    global: true
+  colors.webpage.preferred_color_scheme:
+    global: dark
   content.notifications:
     global: false
   content.register_protocol_handler:
