@@ -63,6 +63,8 @@ settings:
     global: true
   tabs.mode_on_change:
     global: restore
+  tabs.select_on_remove:
+    global: last-used
   url.default_page:
     global: file:///home/demure/.config/qutebrowser/start.html
   url.searchengines:
