@@ -135,11 +135,14 @@ content  = %{B#1D1F21 F#60676E}%{B#60676E F#454A4F}
 
 [module/i3]
 type                = internal/i3
-format              = <label-state>
+format              = <label-state> <label-mode>
 ;index-sort          = true
 wrapping-scroll     = true
 strip-wsnumbers     = false
 ;;;pin-workspaces  = true
+
+;; i3 mode
+label-mode = "%{B#A54242 F#B5BD68}%{B#A54242 F#282A2E}%mode%%{B#B5BD68 F#A54242}"
 
 ;; This section is not using label-NAME-(fore|back)ground, and instead is
 ;; literally declaring colors. This allows nice powerline transitions.
