@@ -55,6 +55,9 @@
 | Remove exif data     | exiv2                   |                           |
 | Merge PDFs           | pdfunite                | pdf                       |
 | epub reader          | epy                     | epub, fb2                 |
+| record term as SVG   | termtosvg               |                           |
+| Term image viewing   | timg                    | many                      |
+|----------------------|-------------------------|---------------------------|
 
 
 ### CLI programs that preform a GUI Function ###
