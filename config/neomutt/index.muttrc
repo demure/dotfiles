@@ -34,7 +34,7 @@ bind index <space>  collapse-thread
 macro index \Cr     "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
 
 ## Sync email
-macro index O       "<shell-escape>mbsync --quiet --all <enter>"    "run mbsync for all accounts"
+macro index O       "<shell-escape>mbsync --all <enter><refresh>"    "run mbsync for all accounts"
 
 ## Saner copy/move dialogs
 macro index C       "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"

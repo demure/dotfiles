@@ -1,7 +1,7 @@
 ## Account Settings
 set from        = "demure@demu.red"
 set sendmail    = "/usr/bin/msmtp -a vps"
-macro index \Co     "<shell-escape>mbsync vps<enter>" "run mbsync for current account."
+macro index \Co     "<shell-escape>mbsync vps<enter><refresh>" "run mbsync for current account."
 
 ## Default inbox
 set spoolfile   = "+vps/INBOX"

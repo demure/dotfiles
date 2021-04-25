@@ -1,7 +1,7 @@
 ## Account Settings
 set from        = demuredemeanor@gmail.com"
 set sendmail    = "/usr/bin/msmtp -a gmail"
-macro index \Co     "<shell-escape>mbsync gmail<enter>" "run mbsync for current account."
+macro index \Co     "<shell-escape>mbsync gmail<enter><refresh>" "run mbsync for current account."
 
 ## Default inbox
 set spoolfile   = "+gmail/INBOX"

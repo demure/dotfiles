@@ -1,7 +1,7 @@
 ## Account Settings
 set from        = "demure@sdf.org"
 set sendmail    = "/usr/bin/msmtp -a sdf"
-macro index \Co     "<shell-escape>mbsync sdf<enter>" "run mbsync for current account."
+macro index \Co     "<shell-escape>mbsync sdf<enter><refresh>" "run mbsync for current account."
 
 ## Default inbox
 set spoolfile   = "+sdf/INBOX"
