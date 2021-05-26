@@ -74,6 +74,9 @@
 
     "" vimdiff settings
     if &diff
+        set cursorline
+        map ] ]c
+        map [ [c
         colorscheme slate
     endif
 
@@ -521,8 +524,8 @@ hi! Normal ctermbg=NONE guibg=NONE
     """ End Toggle colorcolumn """ }}}
 
     """ Cross Hairs """ {{{
-    hi CursorLine   cterm=NONE ctermbg=darkgrey ctermfg=white guibg=darkred guifg=white
-    hi CursorColumn cterm=NONE ctermbg=darkgrey ctermfg=white guibg=darkred guifg=white
+    hi CursorLine   cterm=NONE ctermbg=brown ctermfg=white guibg=darkred guifg=white
+    hi CursorColumn cterm=NONE ctermbg=brown ctermfg=white guibg=darkred guifg=white
     nnoremap <Leader>+ :set cursorline! cursorcolumn!<CR>
     """ End Cross Hair """ }}}
 
