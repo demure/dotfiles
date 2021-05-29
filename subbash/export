@@ -10,7 +10,9 @@ export EDITOR=vim           ## Set default editor
 export BROWSER=qutebrowser
 export BROWSERCLI=w3m
 ## Adding PATH junk
-export PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/pkg/bin:/usr/local/bin:/usr/local/sbin:${HOME}/projects/personal/scripts:${HOME}/bin:${HOME}/.local/bin:${HOME}/go/bin:/usr/local/games:/usr/games
+if [ ! -e "${HOME}/.no_path" ]; then
+    export PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/pkg/bin:/usr/local/bin:/usr/local/sbin:${HOME}/projects/personal/scripts:${HOME}/bin:${HOME}/.local/bin:${HOME}/go/bin:/usr/local/games:/usr/games
+fi
 
     ### History Settings ### {{{
     export HISTSIZE=100000                  ## Size of shells hist
