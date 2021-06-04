@@ -29,7 +29,7 @@
         hostName localhost
         Port 2001
 
-    host ddtiny
+    host ddclock
         hostName localhost
         Port 2002
 
@@ -125,6 +125,10 @@ host nas_fs nfs
     hostName 10.0.0.10
     Port 502
     User root
+
+host clock
+    hostName pi-clock.lan
+    User pi
 ### End Local Places ### }}}
 
 ## Default settings, unless overridden above
