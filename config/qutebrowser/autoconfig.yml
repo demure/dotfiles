@@ -18,8 +18,10 @@ settings:
     global: true
   colors.webpage.preferred_color_scheme:
     global: dark
-  content.notifications:
+  content.notifications.enabled:
     global: false
+  content.proxy:
+    global: system
   content.register_protocol_handler:
     https://mail.google.com?extsrc=mailto&url=%25s: false
   downloads.location.directory:
