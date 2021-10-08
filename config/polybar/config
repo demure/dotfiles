@@ -232,7 +232,8 @@ click-right = pavucontrol
 ;;;; Temperature Module ;;;; {{{
 [module/temperature]
 type             = internal/temperature
-thermal-zone     = 0
+;; chose your thermal-zone
+thermal-zone     = 3
 warn-temperature = 70
 
 ;; NOTE: Set up for easy sec1/sec2 toggling
