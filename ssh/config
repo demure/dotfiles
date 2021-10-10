@@ -25,14 +25,6 @@
         #RemoteForward /run/user/1000/gnupg/S.gpg-agent /run/user/1000/gnupg/S.gpg-agent.extra
         RemoteForward /home/demure/.gnupg/S.gpg-agent /run/user/1000/gnupg/S.gpg-agent.extra
 
-    host ddcomp
-        hostName localhost
-        Port 2001
-
-    host ddclock
-        hostName localhost
-        Port 2002
-
     ## for dd to sdf irc
     Host ddirc
     HostName ma.sdf.org
@@ -87,14 +79,17 @@ host sleep
 
 host gnu
     hostName fencepost.gnu.org
-
-host ppc
-    hostName deb.ppc64.club
-
-host tmw2
-    hostName 54.37.11.84
-    Port 1337
 ### End Internet Places ### }}}
+
+### VPN
+host wgvps
+    hostName 10.0.10.1
+
+host wgroute
+    hostName 10.0.10.2
+
+host wgdoom
+    hostName 10.0.10.3
 
 ### Local Places ### {{{
 host comp doom
