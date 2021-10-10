@@ -336,11 +336,12 @@ workspace_auto_back_and_forth yes
         bindsym g exec urxvt -e sudo scanmem ; mode "default"
         bindsym Shift+m exec --no-startup-id sudo /usr/bin/tomb open -k ~/vault.tomb.key ~/vault.tomb -g ; mode "default"
         ## Handles tv3 python3 version too
-        bindsym n exec urxvt --title terminal_velocity -e sh -c "terminal_velocity || $HOME/.local/bin/tv3" ; mode "default"
+        #bindsym n exec urxvt --title terminal_velocity -e sh -c "terminal_velocity || $HOME/.local/bin/tv3" ; mode "default"
+        bindsym n exec urxvt --title terminal_notes -e sh -c "note" ; mode "default"
         bindsym o exec libreoffice ; mode "default"
         bindsym t exec i3-sensible-terminal ; mode "default"
         bindsym v exec $HOME/bin/start-vpn.sh ; mode "default"
-        bindsym w exec urxvt -e wicd-curses ; mode "default"
+        bindsym w exec urxvt -e connman-ncurses ; mode "default"
 
         ## Keeping this as an example
         ## gnome-disks will not launch twice, gparted will. Avoid that.
@@ -493,7 +494,7 @@ workspace_auto_back_and_forth yes
 
     ## Make wicd-curses and terminal_velocity pop up bigger, and centered
     ## Added second criteria to reduce false positives
-    for_window [class="URxvt"] [title="wicd-curses|terminal_velocity|tv3"] floating enable, resize set width 800px height 600px, move position center
+    for_window [class="URxvt"] [title="wicd-curses|connman-ncurses|terminal_notes"] floating enable, resize set width 800px height 600px, move position center
     for_window [class="QtPass"] floating enable, resize set width 800px height 600px, move position center
     ### End Program Floating ### }}}
 
