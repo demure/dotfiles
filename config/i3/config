@@ -440,6 +440,26 @@ workspace_auto_back_and_forth yes
     bindsym $mod+r mode "resize"
     ### End Resize Mode ### }}}
 
+    ### Control spotify via spotify-tui and spotifyd ### {{{
+    mode "control-spotify" {
+        bindsym p exec --no-startup-id spotify-tui playback --toggle, mode "default"
+        bindsym l exec --no-startup-id spotify-tui playback --like, mode "default"
+        bindsym r exec --no-startup-id spotify-tui playback --repeat, mode "default"
+        bindsym s exec --no-startup-id spotify-tui playback --shuffle, mode "default"
+
+        bindsym comma exec --no-startup-id spotify-tui playback --previous, mode "default"
+        bindsym period exec --no-startup-id spotify-tui playback --next, mode "default"
+        bindsym Shift+less exec --no-startup-id spotify-tui playback --previous, mode "default"
+        bindsym Shift+greater exec --no-startup-id spotify-tui playback --next, mode "default"
+
+        ## back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+    }
+
+    bindsym $mod+m mode "control-spotify"
+    ### End Control spotify via spotify-tui and spotifyd ### }}}
+
     ### Control Pianobar Mode ### {{{
     mode "control-pianobar" {
         bindsym p exec --no-startup-id ~/.config/pianobar/control-pianobar.sh play, mode "default"
@@ -460,7 +480,7 @@ workspace_auto_back_and_forth yes
         bindsym Escape mode "default"
     }
 
-    bindsym $mod+m mode "control-pianobar"
+    #bindsym $mod+m mode "control-pianobar"
     ### End Control Pianobar Mode ### }}}
 
     ### Control mpd Mode ### {{{
@@ -548,6 +568,7 @@ exec --no-startup-id unclutter
 exec --no-startup-id clipster -d
 ## Note to self, removed hard coded ~/.mpd from mpd-dynamic
 exec --no-startup-id mpd && mpd-dynamic
+exec --no-startup-id spotifyd
 #exec --no-startup-id i3-msg "workspace $ws7; exec /usr/bin/spacefm"
 #exec --no-startup-id i3-msg "workspace $ws3; exec qutebrowser"
 exec --no-startup-id i3-msg "workspace $ws1; exec kitty"

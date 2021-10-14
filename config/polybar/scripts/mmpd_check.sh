@@ -40,6 +40,11 @@ fi
 if [ "${MMPD_CHECK}" = "none" ] && [ $(command -v audtool) ]; then
     MMPD_CHECK="$(audtool --playback-status --current-song 2>/dev/null | awk 'BEGIN {STATUS=0; INFO=0} {if($0=="playing"||$0=="paused"){STATUS=$0}; if(STATUS=="playing"){INFO=$0}} END {if(INFO!=0){print INFO} else if(STATUS=="paused"){print "audacios: paused"} else {print "none"}}')"
 fi
+
+## spotify-tui
+#if [ "${MMPD_CHECK}" = "none" ] && [ $(command -v spotify-tui) ]; then
+    #MMPD_CHECK="$(pgrep spotifyd >/dev/null && spotify-tui playback --status 2>/dev/null | awk 'BEGIN {PLAY=0} {if($1=="▶"){PLAY=1};if($2=="▶"){PLAY=1}} END {if(PLAY==1){print " " $0} else {print "none"}}')"
+#fi
 ### End Music Player Checks ### }}}
 
 
