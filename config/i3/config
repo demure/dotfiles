@@ -546,7 +546,7 @@ workspace_auto_back_and_forth yes
 ### Exec Programs ### {{{
 ## Start polybar
 exec_always --no-startup-id $HOME/.config/polybar/scripts/start_polybar.sh
-exec --no-startup-id [ "$(xrandr | grep -o eDP1)" = "eDP1" ] && xrandr --output eDP1 --primary
+exec --no-startup-id [ "$(xrandr | grep -o eDP-1)" = "eDP-1" ] && xrandr --output eDP-1 --primary
 ## shift + numlock for mouse mode num pad, see https://linuxreviews.org/HOWTO_use_the_numeric_keyboard_keys_as_mouse_in_XOrg
 #exec --no-startup-id setxkbmap -option keypad:pointerkeys
 exec --no-startup-id [ -e $HOME/.Xmodmap ] && xmodmap $HOME/.Xmodmap

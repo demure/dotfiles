@@ -15,8 +15,8 @@ TOGGLE_IPV6_FILE="/tmp/i3_polybar_ipv6_toggle_${USER}"
 
 ## Get Data
 ## Contains docker, qemu, tun/tap interface mitigation
-LOCAL_IP="$(ip address show up scope global | awk '/inet[^6]/&&!/(docker|virbr|tun|tap)[0-9]+$/ {match($2, /(.*)\/.*/, m); print m[1]}')"
-LOCAL_IPV6="$(ip address show up scope global | awk '/inet6/&&!/(docker|virbr|tun|tap)[0-9]+$/ {match($2, /(.*)\/.*/, m); print m[1]}')"
+LOCAL_IP="$(ip address show up scope global | awk '/inet[^6]/&&!/(docker|virbr|tun|tap|wg)[0-9]+$/ {match($2, /(.*)\/.*/, m); print m[1]}')"
+LOCAL_IPV6="$(ip address show up scope global | awk '/inet6/&&!/(docker|virbr|tun|tap|wg)[0-9]+$/ {match($2, /(.*)\/.*/, m); print m[1]}')"
 WIFI_SIG="$(iwconfig 2>/dev/null | awk '/Link/ {match($2, /\w+=([0-9]+)\/([0-9]+)/, m)} END {if(m[1]!=""&&m[2]!=""){print int((m[1] / m[2]) * 100)}}')"
 
 
