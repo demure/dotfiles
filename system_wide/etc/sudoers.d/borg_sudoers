@@ -1,3 +1,3 @@
 ## Lets me and my cron script preform backups
-demure ALL=(ALL) NOPASSWD: /usr/local/sbin/borg_wrap.sh -q, /usr/local/sbin/borg_wrap.sh
-
+#demure ALL=(ALL) NOPASSWD: /usr/local/sbin/borg_wrap.sh -q, /usr/local/sbin/borg_wrap.sh
+demure ALL=(ALL) NOPASSWD: /bin/borgmatic "", /bin/borgmatic create, /bin/borgmatic check, /bin/borgmatic list, /bin/borgmatic info, /bin/borgmatic --verbosity 1 --files

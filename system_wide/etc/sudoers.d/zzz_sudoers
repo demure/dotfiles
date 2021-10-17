@@ -1,0 +1,3 @@
+## Lets me control wireguard
+demure ALL=(ALL) NOPASSWD: /bin/zzz
+
