@@ -70,6 +70,11 @@
         User ircd
     ### End SDF ### }}}
 
+    ### Tilde ### {{{
+    host team
+        hostName tilde.team
+    ### End Tilde ### }}}
+
 host mdns
     hostName demure.mdns.org
     Port 8080
@@ -81,7 +86,7 @@ host gnu
     hostName fencepost.gnu.org
 ### End Internet Places ### }}}
 
-### VPN
+### VPN ### {{{
 host wgvps
     hostName 10.0.10.1
 
@@ -90,6 +95,7 @@ host wgroute
 
 host wgdoom
     hostName 10.0.10.3
+### End VPN ### }}}
 
 ### Local Places ### {{{
 host comp doom
