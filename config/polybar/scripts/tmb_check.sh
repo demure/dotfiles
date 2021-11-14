@@ -36,9 +36,9 @@ fi
 
 ## Alert Levels
 ## Note: levels higher than 'high' will not be highlighted.
-ALERT_LOW=11
-ALERT_MID=22
-ALERT_HIGH=33
+ALERT_LOW=10
+ALERT_MID=15
+ALERT_HIGH=25
 
 
 ### Batteries ### {{{
