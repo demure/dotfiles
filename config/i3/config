@@ -224,10 +224,11 @@ workspace_auto_back_and_forth yes
         bindsym $mod+XF86AudioMicMute exec --no-startup-id pactl list short sources | awk '/input.*RUNNING/ {system("pactl set-source-mute " $1 " toggle")}'     ## Find and mute mics
 
         ## push to talk
-        bindsym $mod+z exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ 0                        ## Toggle default mic mute
-        bindsym --release $mod+z exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ 1              ## Toggle default mic mute
-        bindsym XF86PickupPhone exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ 0               ## Toggle default mic mute
-        bindsym --release XF86PickupPhone exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ 1     ## Toggle default mic mute
+        bindsym $mod+z exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ 0                        ## Hold to talk
+        bindsym --release $mod+z exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ 1              ## Release to mute
+        bindsym $mod+Shift+z exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ 0                  ## Unmute
+        bindsym XF86PickupPhone exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ 0               ## Hold to talk
+        bindsym --release XF86PickupPhone exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ 1     ## Release to mute
         ### End Pulse Audio ### }}}
 
         ### Toggle redshift ### {{{
