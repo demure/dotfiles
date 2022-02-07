@@ -103,7 +103,7 @@ folder-hook /var/spool/mail/$USER/* source ~/.config/neomutt/accounts/local.mutt
 ### End Account }}}
 
 ## Fetches mbsync mail
-timeout-hook 'push "!~/projects/personal/scripts/neomutt_hook.sh &<enter><refresh>"'
+timeout-hook 'push "!~/projects/personal/scripts/neomutt_hook.sh &<enter><check-stats>"'
 startup-hook 'push "!~/projects/personal/scripts/neomutt_hook.sh &<enter><refresh>"'
 
 ## Warns if replying to multiple recipt email
