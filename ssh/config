@@ -27,12 +27,18 @@
 
     ## for dd to sdf irc
     Host ddirc
-    HostName ma.sdf.org
-    LocalForward 2003 irc.sdf.org:6667
-    User demure
-    ServerAliveCountMax 300
-    ServerAliveInterval 15
+        HostName ma.sdf.org
+        LocalForward 2003 irc.sdf.org:6667
+        User demure
+        ServerAliveCountMax 300
+        ServerAliveInterval 15
     ### End DD ### }}}
+
+    ### lair ### {{{
+    host lair lt
+        hostName lair.tel
+        Port 500
+    ### End lair ### }}}
 
     ### SDF ### {{{
     host ma
