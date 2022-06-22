@@ -5,6 +5,8 @@
 ## Kill old polybars
 pkill polybar
 
+sleep 5
+
 for m in $(xrandr --query | awk '/ connected/ {print $1}'); do
     MONITOR=$m polybar --reload main &
 done
