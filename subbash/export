@@ -7,7 +7,7 @@
 ### Bash Exports ### {{{
 export CLICOLOR="YES"       ## Color 'ls', etc.
 export EDITOR=vim           ## Set default editor
-export BROWSER=qutebrowser
+export BROWSER=chromium
 export BROWSERCLI=w3m
 ## Adding PATH junk
 if [ ! -e "${HOME}/.no_path" ]; then
