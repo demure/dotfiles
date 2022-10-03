@@ -43,7 +43,7 @@ fi
 
 ## Prep wifi signal display, deals with icon color
 if [ "${WIFI_SIG}" != "" ]; then
-    WIFI_SIG="%{F#979997} %{F#C5C8C6}${WIFI_SIG}%"
+    WIFI_SIG="%{F#979997}%{O2}%{O2}%{F#C5C8C6}${WIFI_SIG}%%{O2}"
 fi
 
 
@@ -74,4 +74,4 @@ fi
 
 ## Return results
 ## Deals with icon color.
-echo "%{F#979997}${ICON}%{F#C5C8C6}${LOCAL_IP}${WIFI_SIG}"
+echo "%{F#979997}%{O2}${ICON}%{O2}%{F#C5C8C6}${LOCAL_IP}%{O2}${WIFI_SIG}"

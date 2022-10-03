@@ -6,7 +6,7 @@ STATUS="$(find ${HOME}/.mail/*/INBOX/new -type f 2>/dev/null | wc -l)"
 
 if [ $STATUS -gt 0 ];then
     ## Set text foreground to yellow
-    echo "%{F#DE935F} ${STATUS}"
+    echo "%{F#DE935F}%{O2}%{O2}${STATUS}%{O2}"
 else
-    echo "%{F#979997}"
+    echo "%{F#979997}%{O2}%{O2}"
 fi

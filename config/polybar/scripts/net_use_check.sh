@@ -55,7 +55,7 @@ while true; do
     done
 
     ## Return results
-    echo "%{F${M_FG_ICON}}%{F${M_FG}}$(print_bytes ${down})%{F${M_FG_ICON}}%{F${M_FG}}$(print_bytes ${up})"
+    echo "%{F${M_FG_ICON}}%{O2}%{O2}%{F${M_FG}}$(print_bytes ${down})%{F${M_FG_ICON}}%{O2}%{O2}%{O2}%{F${M_FG}}$(print_bytes ${up})%{O2}"
 
     ## Delay next run
     sleep ${INTERVAL}

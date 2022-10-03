@@ -277,7 +277,7 @@ workspace_auto_back_and_forth yes
         ## awk -v TEMP=/tmp/i3_polybar_ip_toggle_${USER} 'BEGIN {{FILE=getline < TEMP < 0 ? "0" : "1"} {if($0==1){STATE=1} else {STATE=0}} {if(STATE==0){system("echo 1 > "TEMP)} else {system("echo 0 > "TEMP)}} }'
         #bindsym XF86LaunchA exec awk -v TEMP=/tmp/i3_polybar_ip_toggle_${USER} 'BEGIN {{FILE=getline < TEMP < 0 ? "0" : "1"} {if($0==1){STATE=1} else {STATE=0}} {if(STATE==0){system("echo 1 > "TEMP)} else {system("echo 0 > "TEMP)}} }'    ## x260
         #bindsym XF86Display exec awk -v TEMP=/tmp/i3_polybar_ip_toggle_${USER} 'BEGIN {{FILE=getline < TEMP < 0 ? "0" : "1"} {if($0==1){STATE=1} else {STATE=0}} {if(STATE==0){system("echo 1 > "TEMP)} else {system("echo 0 > "TEMP)}} }'    ## x270
-        ### End External IP FOr i3 polybar ### }}}
+        ### End External IP For i3 polybar ### }}}
 
         ### Clipster Clipboard Manager ### {{{
         bindsym $mod+c exec clipster -sc

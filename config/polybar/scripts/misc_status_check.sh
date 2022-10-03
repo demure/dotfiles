@@ -8,8 +8,8 @@
 
 
 ## Possible PragmataPro icons
-## VPN icon:                         
-## screen lock icon:                      
+## VPN icon:                       
+## screen lock icon:                     
 ## powersave icon:                   
 
 
@@ -46,18 +46,18 @@ fi
 
 ## Set lock icon
 if [ $STATUS_LOCK -eq 0 ];then
-    #STATUS+=" "
-    STATUS+=" "
+    #STATUS+=""
+    STATUS+=""
 fi
 
 ## Set powersave icon
 if [ $STATUS_PS -eq 0 ];then
-    STATUS+=" "
+    STATUS+=""
 fi
 
 ## Set VPN icon
 if [ $STATUS_VPN -eq 1 ];then
-    STATUS+=" "
+    STATUS+=""
 fi
 ### End Set Icons ### }}}
 

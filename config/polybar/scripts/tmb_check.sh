@@ -2,10 +2,6 @@
 ## This is my (demuredemeanor) polybar script for checking Thinkpad Multi Battery (TMB).
 ## This script handles both one and two batteries, and in the case of the latter provides a weighted percentage.
 
-## Icon         0         1         2         3          4
-## Bat >=      NA        11        37        63         90
-## Range     0-10     11-36     37-62     63-89     90-100
-
 ### Color Vars ### {{{
 ## polybar segment color
 ## Toggle Segment Color (1 or 2)
@@ -105,7 +101,7 @@ T_ICON=""
 ### Time Formatting ### {{{
 ## Prep Remaining Time, if any
 if [ ${TIME} != "none" ]; then
-    FORM_TIME="%{F${M_FG_ICON}}${T_ICON} %{F${M_FG}}${TIME}"
+    FORM_TIME="%{F${M_FG_ICON}}%{O2}${T_ICON}%{O2}%{F${M_FG}}${TIME}"
 else
     FORM_TIME=""
 fi
@@ -115,16 +111,16 @@ fi
 ## Prep Level Color
 if [ ${PERC} -le ${ALERT_LOW} ]; then
     ## Low (last) Alert
-    STATUS="%{B${OBG} F${BG}}%{B${BG} F${COLOR_LOW}}%{B${COLOR_LOW} F${M_FG_ICON}}${ICON} %{F${M_FG}}${PERC}%%{F${BG}}%{B${BG}}${FORM_TIME}"
+    STATUS="%{B${OBG} F${BG}}%{B${BG} F${COLOR_LOW}}%{B${COLOR_LOW} F${M_FG_ICON}}%{O2}${ICON}%{O2}%{F${M_FG}}${PERC}%%{O2}%{F${BG}}%{B${BG}}${FORM_TIME}%{O2}"
 elif [ ${PERC} -le ${ALERT_MID} ]; then
     ## Med (second) Alert
-    STATUS="%{B${OBG} F${BG}}%{B${BG} F${COLOR_MID}}%{B${COLOR_MID} F${M_FG_ICON}}${ICON} %{F${M_FG}}${PERC}%%{F${BG}}%{B${BG}}${FORM_TIME}"
+    STATUS="%{B${OBG} F${BG}}%{B${BG} F${COLOR_MID}}%{B${COLOR_MID} F${M_FG_ICON}}%{O2}${ICON}%{O2}%{F${M_FG}}${PERC}%%{O2}%{F${BG}}%{B${BG}}${FORM_TIME}%{O2}"
 elif [ ${PERC} -le ${ALERT_HIGH} ]; then
     ## High (first) Alert
-    STATUS="%{B${OBG} F${BG}}%{B${BG} F${COLOR_HIGH}}${ICON} %{F${COLOR_HIGH}}${PERC}%${FORM_TIME}"
+    STATUS="%{B${OBG} F${BG}}%{B${BG} F${COLOR_HIGH}}%{O2}${ICON}%{O2}%{F${COLOR_HIGH}}${PERC}%%{O2}${FORM_TIME}%{O2}"
 else
     ## Normal Output
-    STATUS="%{B${OBG} F${BG}}%{B${BG} F${M_FG_ICON}}${ICON} %{F${M_FG}}${PERC}%${FORM_TIME}"
+    STATUS="%{B${OBG} F${BG}}%{B${BG} F${M_FG_ICON}}%{O2}${ICON}%{O2}%{F${M_FG}}${PERC}%%{O2}${FORM_TIME}%{O2}"
 fi
 ### End Output Formatting ### }}}
 
