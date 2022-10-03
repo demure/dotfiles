@@ -165,7 +165,7 @@ format-suffix       = "%{B#454A4F F#B5BD68}"
 [module/title]
 type = internal/xwindow
 
-format = <label>
+format = "%{O4}<label>%{O4}"
 ;; prefix is needed as otherwise maxlen would be ate up.
 format-prefix = "%{B#454A4F F#B5BD68}%{O4}%{O4}%{B#1D1F21 F#454A4F}"
 ;format-suffix = ""
@@ -173,10 +173,10 @@ format-prefix = "%{B#454A4F F#B5BD68}%{O4}%{O4}%{B#1D1F21 F#454A4F}"
 format-background = ${colors.m_bg}
 format-foreground = ${colors.m_fg}
 
-label = "%{O4}%title:0:40:…%%{O4}"
+label = "%title:0:40:…%"
 label-maxlen = 50
 
-label-empty = Empty
+label-empty = "Empty"
 label-empty-foreground = #707880
 ;;;; End Title Module ;;;; }}}
 
