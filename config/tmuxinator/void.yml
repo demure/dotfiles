@@ -12,4 +12,3 @@ windows:
   - mail: neomutt
   - rss: newsboat
   - file: ranger
-  - shell:
