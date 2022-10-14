@@ -62,14 +62,6 @@
     host sdf
         HostName tty.sdf.org
 
-    host cork
-        hostName ma.sdf.org
-        ProxyCommand corkscrew proxy.example.com 8080 %h %p
-
-    host matiny
-        hostName localhost
-        Port 63753
-
     host ircd
         hostName irc.sdf.org
         Port 222
@@ -105,25 +97,10 @@ host wgdoom
 
 ### Local Places ### {{{
 host comp doom
-    hostName moving-computer-of-doom.lan
-
-host tiny
-    HostName tiny-server-of-doom.lan
-
-host net
-    HostName moving-netbook-of-doom.lan
-
-host device
-    HostName moving-device-of-doom.lan
-    User mobile
+    hostName moving-computer-of-doom.local
 
 host route
     hostName 10.0.0.1
-    Port 500
-    User root
-
-host wifi
-    hostName 10.0.0.2
     Port 500
     User root
 
@@ -132,6 +109,11 @@ host nas_fs nfs
     hostName 10.0.0.10
     Port 502
     User root
+
+host deck
+    hostName deck-of-doom.local
+    Port 500
+    User deck
 
 host clock
     hostName pi-clock.lan
