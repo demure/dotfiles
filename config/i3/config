@@ -40,7 +40,6 @@ workspace_auto_back_and_forth yes
     ## reload the configuration file
     bindsym $mod+Shift+c reload
     ## restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-    ## The pkill is to makke my fancy bar play nice
     bindsym $mod+Shift+r exec i3-msg restart
     ## exit i3 (logs you out of your X session)
     bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
@@ -252,6 +251,7 @@ workspace_auto_back_and_forth yes
         #bindsym XF86Explorer exec --no-startup-id exec scrot -m -e 'mv $f ~/temp/'      ## x260
         #bindsym XF86Favorites exec --no-startup-id exec scrot -m -e 'mv $f ~/temp/'     ## x270
         bindsym XF86Display exec --no-startup-id exec scrot -m -e 'mv $f ~/temp/'       ## xnano
+        bindsym XF86Mail exec --no-startup-id exec scrot -m -e 'mv $f ~/temp/'          ## sofle keyboard
         ## Note: you need to click on the window, after key combo, to capture it.
         ## Note: Needs to have startup ip, as interacts with GUI
         bindsym $mod+Shift+Home exec --no-startup-id scrot -s -e 'mv $f ~/temp/'        ## Backup binding
@@ -259,6 +259,8 @@ workspace_auto_back_and_forth yes
         #bindsym Shift+XF86Explorer exec --no-startup-id scrot -s -e 'mv $f ~/temp/'     ## x260
         #bindsym Shift+XF86Favorites exec --no-startup-id scrot -s -e 'mv $f ~/temp/'    ## x270
         bindsym Shift+XF86Display exec --no-startup-id scrot -s -e 'mv $f ~/temp/'      ## xnano
+        bindsym Shift+XF86Mail exec --no-startup-id scrot -s -e 'mv $f ~/temp/'         ## sofle keyboard
+        bindsym Control+XF86Mail exec --no-startup-id scrot -s -e 'mv $f ~/temp/'       ## sofle keyboard
         ### End Screen Shots ### }}}
 
         ### Rofi Bindings ### {{{
@@ -266,11 +268,12 @@ workspace_auto_back_and_forth yes
         ## start dmenu (a program launcher)
         #bindsym $mod+d exec dmenu_run
         bindsym $mod+p exec rofi -show run
-        bindsym XF86Search exec rofi -show run      ## x260
+        bindsym XF86Search exec rofi -show run      ## sofle keyboard
 
         ### rofi-pass binding
         bindsym $mod+Shift+p exec rofi-pass
-        bindsym Shift+XF86Search exec rofi-pass     ## x260
+        bindsym Shift+XF86Search exec rofi-pass     ## sofle keyboard
+        bindsym Control+XF86Search exec rofi-pass   ## sofle keyboard
         ### End Rofi Bindings ### }}}
 
         ### External IP Toggle For i3 polybar ### {{{
@@ -332,7 +335,7 @@ workspace_auto_back_and_forth yes
     bindsym $mod+End mode "system-control"
     ## x270
     #bindsym XF86Tools mode "system-control"
-    ## x1nano
+    ## x1nano and sofle keyboard
     bindsym XF86Favorites mode "system-control"
     ### End System Control Mode ### }}}
 
@@ -529,6 +532,9 @@ workspace_auto_back_and_forth yes
     for_window [class="URxvt"] [title="wicd-curses|connman-ncurses|terminal_notes"] floating enable, resize set width 800px height 600px, move position center
     for_window [class="QtPass"] floating enable, resize set width 800px height 600px, move position center
     ### End Program Floating ### }}}
+
+    ## Full screen
+    for_window [title="ManaPlus"] fullscreen
 
     ## Disable border
     for_window [class="mpv|URxvt|kitty|(?i)chromium|terminator|qutebrowser|manaplus|(?i)firefox"] border 1pixel
