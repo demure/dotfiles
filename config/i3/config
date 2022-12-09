@@ -246,21 +246,21 @@ workspace_auto_back_and_forth yes
         ### End Launch Term ### }}}
 
         ### Screen Shots ### {{{
-        bindsym $mod+Home exec --no-startup-id exec scrot -m -e 'mv $f ~/temp/'         ## Backup binding
-        bindsym Print exec --no-startup-id exec scrot -m -e 'mv $f ~/temp/'
-        #bindsym XF86Explorer exec --no-startup-id exec scrot -m -e 'mv $f ~/temp/'      ## x260
-        #bindsym XF86Favorites exec --no-startup-id exec scrot -m -e 'mv $f ~/temp/'     ## x270
-        bindsym XF86Display exec --no-startup-id exec scrot -m -e 'mv $f ~/temp/'       ## xnano
-        bindsym XF86Mail exec --no-startup-id exec scrot -m -e 'mv $f ~/temp/'          ## sofle keyboard
+        bindsym $mod+Home exec --no-startup-id exec scrot -m -F '%Y%m%d-%H%M%S_$wx$h_screen.png' -e 'mv $f ~/temp/'         ## Backup binding
+        bindsym Print exec --no-startup-id exec scrot -m -F '%Y%m%d-%H%M%S_$wx$h_screen.png' -e 'mv $f ~/temp/'
+        #bindsym XF86Explorer exec --no-startup-id exec scrot -m -F '%Y%m%d-%H%M%S_$wx$h_screen.png' -e 'mv $f ~/temp/'      ## x260
+        #bindsym XF86Favorites exec --no-startup-id exec scrot -m -F '%Y%m%d-%H%M%S_$wx$h_screen.png' -e 'mv $f ~/temp/'     ## x270
+        bindsym XF86Display exec --no-startup-id exec scrot -m -F '%Y%m%d-%H%M%S_$wx$h_screen.png' -e 'mv $f ~/temp/'       ## xnano
+        bindsym XF86Mail exec --no-startup-id exec scrot -m -F '%Y%m%d-%H%M%S_$wx$h_screen.png' -e 'mv $f ~/temp/'          ## sofle keyboard
         ## Note: you need to click on the window, after key combo, to capture it.
         ## Note: Needs to have startup ip, as interacts with GUI
-        bindsym $mod+Shift+Home exec --no-startup-id scrot -s -e 'mv $f ~/temp/'        ## Backup binding
-        bindsym Shift+Print exec --no-startup-id scrot -s -e 'mv $f ~/temp/'
-        #bindsym Shift+XF86Explorer exec --no-startup-id scrot -s -e 'mv $f ~/temp/'     ## x260
-        #bindsym Shift+XF86Favorites exec --no-startup-id scrot -s -e 'mv $f ~/temp/'    ## x270
-        bindsym Shift+XF86Display exec --no-startup-id scrot -s -e 'mv $f ~/temp/'      ## xnano
-        bindsym Shift+XF86Mail exec --no-startup-id scrot -s -e 'mv $f ~/temp/'         ## sofle keyboard
-        bindsym Control+XF86Mail exec --no-startup-id scrot -s -e 'mv $f ~/temp/'       ## sofle keyboard
+        bindsym $mod+Shift+Home exec --no-startup-id scrot -s -F '%Y%m%d-%H%M%S_$wx$h_screen.png' -e 'mv $f ~/temp/'        ## Backup binding
+        bindsym Shift+Print exec --no-startup-id scrot -s -F '%Y%m%d-%H%M%S_$wx$h_screen.png' -e 'mv $f ~/temp/'
+        #bindsym Shift+XF86Explorer exec --no-startup-id scrot -s -F '%Y%m%d-%H%M%S_$wx$h_screen.png' -e 'mv $f ~/temp/'     ## x260
+        #bindsym Shift+XF86Favorites exec --no-startup-id scrot -s -F '%Y%m%d-%H%M%S_$wx$h_screen.png' -e 'mv $f ~/temp/'    ## x270
+        bindsym Shift+XF86Display exec --no-startup-id scrot -s -F '%Y%m%d-%H%M%S_$wx$h_screen.png' -e 'mv $f ~/temp/'      ## xnano
+        bindsym Shift+XF86Mail exec --no-startup-id scrot -s -F '%Y%m%d-%H%M%S_$wx$h_screen.png' -e 'mv $f ~/temp/'         ## sofle keyboard
+        bindsym Control+XF86Mail exec --no-startup-id scrot -s -F '%Y%m%d-%H%M%S_$wx$h_screen.png' -e 'mv $f ~/temp/'       ## sofle keyboard
         ### End Screen Shots ### }}}
 
         ### Rofi Bindings ### {{{
