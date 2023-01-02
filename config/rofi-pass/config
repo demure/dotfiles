@@ -50,8 +50,8 @@ xdotool_delay=12
 EDITOR='gvim -f'
 
 # Browser
-#BROWSER='xdg-open'
-BROWSER='qutebrowser'
+BROWSER='xdg-open'
+#BROWSER='qutebrowser'
 
 ## Misc settings
 
