@@ -573,9 +573,9 @@ exec --no-startup-id pactl upload-sample ~/.config/notice_beeps/tick.ogg bell &&
 exec --no-startup-id compton -b
 ## autorandr needs profiles already added
 exec --no-startup-id srandrd autorandr
-exec --no-startup-id srandrd $HOME/projects/personal/scripts/hdmi_sound_toggle.sh
-exec --no-startup-id srandrd $HOME/.config/polybar/scripts/start_polybar.sh
-exec --no-startup-id srandrd $HOME/.config/conky/start_conky.sh
+#exec --no-startup-id srandrd $HOME/projects/personal/scripts/hdmi_sound_toggle.sh
+#exec --no-startup-id srandrd $HOME/.config/polybar/scripts/start_polybar.sh
+#exec --no-startup-id srandrd $HOME/.config/conky/start_conky.sh
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id xss-lock -l -- i3lock -fnec 2E3436
 exec --no-startup-id udiskie

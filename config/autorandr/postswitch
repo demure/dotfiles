@@ -1,0 +1,5 @@
+#!/bin/bash
+
+$HOME/projects/personal/scripts/hdmi_sound_toggle.sh
+$HOME/.config/conky/start_conky.sh
+$HOME/.config/polybar/scripts/start_polybar.sh
