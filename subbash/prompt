@@ -105,109 +105,111 @@ function __prompt_command() {
 
         ### Add Git Status ### {{{
         ## Inspired by http://www.terminally-incoherent.com/blog/2013/01/14/whats-in-your-bash-prompt/
-        if [[ $(command -v git) ]]; then
-            ## $GSP: git status porcelain
-            local GSP="$(git status --porcelain=2 --branch 2>/dev/null)"
+        if [ ! -e "${HOME}/.no_git_prompt" ]; then
+            if [[ $(command -v git) ]]; then
+                ## $GSP: git status porcelain
+                local GSP="$(git status --porcelain=2 --branch 2>/dev/null)"
 
-            if [ -n "${GSP}" ]; then
-                ### Fetch Time Check ### {{{
-                local LAST=$(stat -c %Y $(git rev-parse --git-dir 2>/dev/null)/FETCH_HEAD 2>/dev/null)
-                if [ -n "${LAST}" ]; then
-                    local TIME=$(echo $(($(date +"%s") - ${LAST})))
-                    ## Check if more than 60 minutes since last
-                    if [ "${TIME}" -gt "3600" ]; then
-                        local GF=1      ## Git Fetch True
+                if [ -n "${GSP}" ]; then
+                    ### Fetch Time Check ### {{{
+                    local LAST=$(stat -c %Y $(git rev-parse --git-dir 2>/dev/null)/FETCH_HEAD 2>/dev/null)
+                    if [ -n "${LAST}" ]; then
+                        local TIME=$(echo $(($(date +"%s") - ${LAST})))
+                        ## Check if more than 60 minutes since last
+                        if [ "${TIME}" -gt "3600" ]; then
+                            local GF=1      ## Git Fetch True
+                        fi
+                    else
+                        local GF=1          ## Git Fetch True
                     fi
-                  else
-                    local GF=1          ## Git Fetch True
-                fi
-                if [ -n "${GF}" ] && [ "${GF}" == "1" ]; then
-                    git fetch 2>/dev/null
-                    PS1+=' +'
-                    ## Refresh var
-                    local GSP="$(git status --porcelain=2 --branch 2>/dev/null)"
-                fi
-                ### End Fetch Check ### }}}
+                    if [ -n "${GF}" ] && [ "${GF}" == "1" ]; then
+                        git fetch 2>/dev/null
+                        PS1+=' +'
+                        ## Refresh var
+                        local GSP="$(git status --porcelain=2 --branch 2>/dev/null)"
+                    fi
+                    ### End Fetch Check ### }}}
 
-                ### Branch Indicator Color ### {{{
-                ## GSP Change Color; Reuses GSP Modified code
-                local GSPcc="$(grep -c "^[12] .M" <<< "${GSP}")"
-                if [ "${GSPcc}" == "0" ]; then
-                    local GBC=$Gre                  ## Branch Color
-                  else
-                    local GBC=$Red                  ## Branch Color
-                fi
-                ### End Branch Indicator Color ### }}}
+                    ### Branch Indicator Color ### {{{
+                    ## GSP Change Color; Reuses GSP Modified code
+                    local GSPcc="$(grep -c "^[12] .M" <<< "${GSP}")"
+                    if [ "${GSPcc}" == "0" ]; then
+                        local GBC=$Gre                  ## Branch Color
+                    else
+                        local GBC=$Red                  ## Branch Color
+                    fi
+                    ### End Branch Indicator Color ### }}}
 
-                ### Find Branch ### {{{
-                ## GSP Current Branch; branch name in 3rd spot
-                local GSPcb="$(awk '/branch.head/ {print $3}' <<< "${GSP}")"
-                if [ -n "${GSPcb}" ]; then
-                    GSPcb="[${GSPcb}]"              ## Add brackets for final output. Will now test against brackets as well.
-                    if [ "${GSPcb}" == "[master]" ]; then
-                        local GSPcb="[M]"           ## Because why waste space
+                    ### Find Branch ### {{{
+                    ## GSP Current Branch; branch name in 3rd spot
+                    local GSPcb="$(awk '/branch.head/ {print $3}' <<< "${GSP}")"
+                    if [ -n "${GSPcb}" ]; then
+                        GSPcb="[${GSPcb}]"              ## Add brackets for final output. Will now test against brackets as well.
+                        if [ "${GSPcb}" == "[master]" ]; then
+                            local GSPcb="[M]"           ## Because why waste space
+                        fi
+
+                        ## Test if in detached head state, and set output to first 8char of hash
+                        if [ "${GSPcb}" == "[(detached)]" ]; then
+                            local GSPcb="$(awk '/branch.oid/ {print substr($3,0,8)}' <<< "${GSP}")"
+                        fi
+                    else
+                        ## Note: No braces applied to emphasis that there is an issue, and that you aren't in a branch named "ERROR".
+                        local GSPcb="ERROR"             ## It could happen?
+                    fi
+                    ### End Branch ### }}}
+
+                    PS1+=" ${GBC}${GSPcb}${RCol}"       ## Add result to prompt
+
+                    ### Find Commit Status ### {{{
+                    ## GSP Commit Ahead; 3rd spot; Knock off leading symbol; Check exist and gt 0
+                    local GSPca="$(awk '/branch.ab/ {print substr($3,2)}' <<< "${GSP}")"
+                    if [ -n "${GSPca}" ] && [ "${GSPca}" -gt 0 ]; then
+                        PS1+="${Gre}↑${RCol}${GSPca}"   ## Ahead
                     fi
 
-                    ## Test if in detached head state, and set output to first 8char of hash
-                    if [ "${GSPcb}" == "[(detached)]" ]; then
-                        local GSPcb="$(awk '/branch.oid/ {print substr($3,0,8)}' <<< "${GSP}")"
+                    ## Needs a `git fetch` to be accurate
+                    ## GSP Commit Behind; 4rd spot; Knock off leading symbol; Check exist and gt 0
+                    local GSPcb="$(awk '/branch.ab/ {print substr($4,2)}' <<< "${GSP}")"
+                    if [ -n "${GSPcb}" ] && [ "${GSPcb}" -gt 0 ]; then
+                        PS1+="${Red}↓${RCol}${GSPcb}"   ## Behind
                     fi
-                  else
-                    ## Note: No braces applied to emphasis that there is an issue, and that you aren't in a branch named "ERROR".
-                    local GSPcb="ERROR"             ## It could happen?
-                fi
-                ### End Branch ### }}}
 
-                PS1+=" ${GBC}${GSPcb}${RCol}"       ## Add result to prompt
+                    ## Read about "[ MARC]" from https://git-scm.com/docs/git-status
+                    ## GSP Modified
+                    local GSPm="$(grep -c "^[12] .M" <<< "${GSP}")"
+                    if [ "${GSPm}" -gt "0" ]; then
+                        PS1+="${Pur}≠${RCol}${GSPm}"    ## Modified
+                    fi
 
-                ### Find Commit Status ### {{{
-                ## GSP Commit Ahead; 3rd spot; Knock off leading symbol; Check exist and gt 0
-                local GSPca="$(awk '/branch.ab/ {print substr($3,2)}' <<< "${GSP}")"
-                if [ -n "${GSPca}" ] && [ "${GSPca}" -gt 0 ]; then
-                    PS1+="${Gre}↑${RCol}${GSPca}"   ## Ahead
-                fi
+                    ## GSP Deleted
+                    local GSPd="$(grep -c "^[12] D" <<< "${GSP}")"
+                    if [ "${GSPd}" -gt "0" ]; then
+                        PS1+="${Red}✖${RCol}${GSPd}"    ## Deleted
+                    fi
 
-                ## Needs a `git fetch` to be accurate
-                ## GSP Commit Behind; 4rd spot; Knock off leading symbol; Check exist and gt 0
-                local GSPcb="$(awk '/branch.ab/ {print substr($4,2)}' <<< "${GSP}")"
-                if [ -n "${GSPcb}" ] && [ "${GSPcb}" -gt 0 ]; then
-                    PS1+="${Red}↓${RCol}${GSPcb}"   ## Behind
-                fi
+                    ## GSP Added
+                    local GSPa="$(grep -c "^[12] A" <<< "${GSP}")"
+                    if [ "${GSPa}" -gt "0" ]; then
+                        PS1+="${Gre}✚${RCol}${GSPa}"    ## Added
+                    fi
 
-                ## Read about "[ MARC]" from https://git-scm.com/docs/git-status
-                ## GSP Modified
-                local GSPm="$(grep -c "^[12] .M" <<< "${GSP}")"
-                if [ "${GSPm}" -gt "0" ]; then
-                    PS1+="${Pur}≠${RCol}${GSPm}"    ## Modified
-                fi
+                    ## GSP Renamed
+                    local GSPr="$(grep -c "^[12] R" <<< "${GSP}")"
+                    if [ "${GSPr}" -gt "0" ]; then
+                        PS1+="${Blu}☇${RCol}${GSPr}"    ## Renamed
+                    fi
 
-                ## GSP Deleted
-                local GSPd="$(grep -c "^[12] D" <<< "${GSP}")"
-                if [ "${GSPd}" -gt "0" ]; then
-                    PS1+="${Red}✖${RCol}${GSPd}"    ## Deleted
+                    ## GSP Untracked
+                    local GSPu="$(grep -c "^?" <<< "${GSP}")"
+                    if [ "${GSPu}" -gt "0" ]; then
+                        PS1+="${Yel}?${RCol}${GSPu}"    ## Untracked
+                    fi
+                    ### End Commit Status ### }}}
                 fi
-
-                ## GSP Added
-                local GSPa="$(grep -c "^[12] A" <<< "${GSP}")"
-                if [ "${GSPa}" -gt "0" ]; then
-                    PS1+="${Gre}✚${RCol}${GSPa}"    ## Added
-                fi
-
-                ## GSP Renamed
-                local GSPr="$(grep -c "^[12] R" <<< "${GSP}")"
-                if [ "${GSPr}" -gt "0" ]; then
-                    PS1+="${Blu}☇${RCol}${GSPr}"    ## Renamed
-                fi
-
-                ## GSP Untracked
-                local GSPu="$(grep -c "^?" <<< "${GSP}")"
-                if [ "${GSPu}" -gt "0" ]; then
-                    PS1+="${Yel}?${RCol}${GSPu}"    ## Untracked
-                fi
-                ### End Commit Status ### }}}
+            else
+                MISSING_ITEMS+="git-prompt, "
             fi
-          else
-            MISSING_ITEMS+="git-prompt, "
         fi
         ### End Git Status ### }}}
 
