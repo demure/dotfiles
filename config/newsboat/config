@@ -9,7 +9,7 @@ urls-source "ttrss"
 ttrss-url "https://tt.demu.red"
 ttrss-mode multi
 ttrss-login "demure"
-ttrss-password "`pass cli/newsbeuter`"
+ttrss-password "`pass cli/newsboat`"
 
 ttrss-flag-star "s"
 ttrss-flag-publish "p"
