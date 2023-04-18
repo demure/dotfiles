@@ -4,7 +4,8 @@ name: vps
 root: ~/
 
 windows:
-  - apt: sudo aptitude
+  #- apt: sudo aptitude
+  - maint:
   - weechat: weechat
   #- urls: tail -F ~/.weechat/urls.log
   #- rss: newsboat
