@@ -112,3 +112,6 @@ URxvt.keysym.M-C-Right:  resize-font:show
 
 !! For wm
 Xcursor.theme: Vanilla-DMZ-AA
+
+!! UI Scaling
+Xft.dpi: 120
