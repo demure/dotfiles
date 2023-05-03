@@ -18,7 +18,7 @@ print_bytes() {
 ## Variables
 INTERVAL=2
 ## Space delimited list of interfaces: INTERFACES="eth0 wlan0"
-INTERFACES="wlp0s20f3"
+INTERFACES="wlan0"
 
 declare -A bytes
 
