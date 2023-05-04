@@ -6,6 +6,10 @@ root: ~/
 windows:
   #- apt: sudo aptitude
   - maint:
+      layout: even-vertical
+      panes:
+        - sudo -s
+        - 
   - weechat: weechat
   #- urls: tail -F ~/.weechat/urls.log
   #- rss: newsboat

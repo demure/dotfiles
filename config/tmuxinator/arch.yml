@@ -4,7 +4,11 @@ name: arch
 root: ~/
 
 windows:
-  - yay: yay
+  - maint:
+      layout: even-horizontal
+      panes:
+        - sudo -s
+        - 
   - mail: neomutt
   - rss: newsboat
   - file: ranger
