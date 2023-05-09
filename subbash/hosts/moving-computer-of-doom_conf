@@ -7,3 +7,8 @@
 ## Set up borg for laptop
 export BORG_PASSCOMMAND="pass cli/borg"
 export BORG_REPO='ssh://demure@10.0.0.10:500/mnt/borg/x1carb11-arch'
+
+## ranger pics
+if [ -v DISPLAY ]; then
+    alias ranger="ranger --cmd='set preview_images true'"
+fi
