@@ -111,7 +111,7 @@ host nas_fs nfs
     User root
 
 host deck
-    hostName deck-of-doom.local
+    hostName deck-of-doom.lan
     Port 500
     User deck
 
