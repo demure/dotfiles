@@ -46,6 +46,9 @@ function __prompt_command() {
         elif [ ${HOSTNAME} == 'vps-of-doom' ]; then
             local PSCol="$Blu"              ## For VPS
             local PSOpt="${SHost} "
+        elif [ ${HOSTNAME} == 'tablet-of-doom' ]; then
+            local PSCol="$Gre"              ## For tablet
+            local PSOpt="${SHost} "
         elif [ ${HOSTNAME} == 'ma.sdf.org' ]; then
             local PSCol="${Yel}"            #@ For MetaArray
             local PSOpt="\h "
