@@ -144,6 +144,7 @@ if $USER != 'mobile'
             "Plugin 'szw/vim-ctrlspace'         " Super buffer controlness, disabled due to never using
             Plugin 'haya14busa/incsearch.vim'   " Improved incremental searching
             Plugin 'spolu/dwm.vim'              " dwm like split control
+            Plugin 'will133/vim-dirdiff'        " vimdiff dirs
             """ End Interface """ }}}
 
             """ Added Functionality """ {{{
