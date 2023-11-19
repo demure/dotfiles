@@ -112,7 +112,7 @@ host nas_fs nfs
 
 host deck
     hostName deck-of-doom.lan
-    Port 500
+    Port 22
     User deck
 
 host clock
