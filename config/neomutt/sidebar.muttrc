@@ -4,7 +4,8 @@
 # legacy repo http://github.com/demure/dotfiles
 # vim:set syntax=muttrc:
 
-ifndef sidebar finish               ## If not compiled with sidebar, skip
+## Broken in Neomutt 20231221, but at least the cosmetic fake inboxes were fixed
+#ifndef sidebar finish               ## If not compiled with sidebar, skip
 
 ### Sidebar Settings ### {{{
 set sidebar_visible = yes           ## Make the Sidebar visible by default
