@@ -4,18 +4,18 @@ name: vps
 root: ~/
 
 windows:
-  #- apt: sudo aptitude
   - maint:
       layout: even-vertical
       panes:
         - sudo -s
         - 
-  - weechat: weechat
+  - chat: weechat
   #- urls: tail -F ~/.weechat/urls.log
   #- rss: newsboat
   - tuir: tuir
-  #- mail: neomutt
+  - mail: neomutt
   #- log: lnav -r /var/log/nginx/access.log /var/log/nginx/error.log /var/log/fail2ban.log
   ## Uses less ram, and does the needed job
-  - log:  lnav /var/log/nginx/access.log /var/log/nginx/access.log.1 /var/log/nginx/access.log.2.gz /var/log/nginx/error.log /var/log/nginx/error.log.1 /var/log/nginx/error.log.2.gz /var/log/fail2ban.log /var/log/fail2ban.log.1 /var/log/fail2ban.log.2.gz
+  #- log:  lnav /var/log/nginx/access.log /var/log/nginx/access.log.1 /var/log/nginx/access.log.2.gz /var/log/nginx/error.log /var/log/nginx/error.log.1 /var/log/nginx/error.log.2.gz /var/log/fail2ban.log /var/log/fail2ban.log.1 /var/log/fail2ban.log.2.gz
+  - log: lnav -r /var/log/nginx/access.log /var/log/fail2ban.log
   #- task: vit
