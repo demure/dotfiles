@@ -55,5 +55,7 @@ if [ ! -z "${PERC}" ]; then
     esac
 
     #echo -e "${ICON} ${PERC}%\n"
-    echo -e "${ICON} ${PERC}%"
+    echo "${ICON} ${PERC}%"
+else
+    echo -e "\n"
 fi
