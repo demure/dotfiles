@@ -109,3 +109,9 @@ if [[ $(command -v bboard) ]]; then
     alias bb='bboard'
 fi
 ### End board alias ### }}}
+
+### sudo preserve ENV ### {{{
+if [ -e "${HOME}/.sudo_preserve" ]; then
+    alias sudo='sudo -E'
+fi
+### End sudo preserve ENV ### }}}
