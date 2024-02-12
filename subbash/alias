@@ -111,7 +111,7 @@ fi
 ### End board alias ### }}}
 
 ### sudo preserve ENV ### {{{
-if [ -e "${HOME}/.sudo_preserve" ]; then
+if [ -e "${HOME}/.config/dotconf/sudo_preserve" ]; then
     alias sudo='sudo -E'
 fi
 ### End sudo preserve ENV ### }}}

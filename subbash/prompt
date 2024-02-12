@@ -29,6 +29,10 @@ function __prompt_command() {
     local Whi='\[\e[0;37m\]';    local BWhi='\[\e[1;37m\]';    local UWhi='\[\e[4;37m\]';    local IWhi='\[\e[0;97m\]';    local BIWhi='\[\e[1;97m\]';    local On_Whi='\e[47m';    local On_IWhi='\[\e[0;107m\]';
     ### End Color Vars ### }}}
 
+    if [ -e "${HOME}/.config/dotconf/prompt_date" ]; then
+        PS1+="\D{%m%d.%H%M} "
+    fi
+
     if [ ${UID} -eq "0" ];then
         PS1+="${Red}\h \W ->${RCol} "       ## Set prompt for root
       else
@@ -108,7 +112,7 @@ function __prompt_command() {
 
         ### Add Git Status ### {{{
         ## Inspired by http://www.terminally-incoherent.com/blog/2013/01/14/whats-in-your-bash-prompt/
-        if [ ! -e "${HOME}/.no_git_prompt" ]; then
+        if [ ! -e "${HOME}/.config/dotconf/no_git_prompt" ]; then
             if [[ $(command -v git) ]]; then
                 ## $GSP: git status porcelain
                 local GSP="$(git status --porcelain=2 --branch 2>/dev/null)"

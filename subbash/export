@@ -11,7 +11,7 @@ export BROWSER=chromium
 export BROWSERCLI=w3m
 export LESS='-R -M +Gg'     ## Add long prompt to less
 ## Adding PATH junk
-if [ ! -e "${HOME}/.no_path" ]; then
+if [ ! -e "${HOME}/.config/dotconf/no_path" ]; then
     export PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/pkg/bin:/usr/local/bin:/usr/local/sbin:${HOME}/projects/personal/scripts:${HOME}/bin:${HOME}/.local/bin:${HOME}/go/bin:/usr/local/games:/usr/games
 fi
 
@@ -25,7 +25,7 @@ fi
 ### End Bash Exports ### }}}
 
 ### SSH Agents ### {{{
-if [ ! -e "${HOME}/.no_agent" ]; then
+if [ ! -e "${HOME}/.config/dotconf/no_agent" ]; then
     if [ -s "${HOME}/.ssh/id_ed25519" ] || [ -s "${HOME}/.ssh/id_rsa" ]; then
         ## If there is a ssh key, load key for ssh
         __ssh_agent

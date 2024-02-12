@@ -77,6 +77,9 @@ stow -t ~ gui     ## gui programs
     * lemonbar files moved to `retired_confs` dir.  
 * Moved markdown docs/notes to a docs dir. **24JUL2019**  
 * Moved to prioritising $XDG_CONFIG_HOME for dotfiles. **01AUG2019**  
+* BUNCH OF CHANGES HERE, BUT NOT LOGGED HERE...
+* Taught tmux status bar to be nicer for small windows. **20240207**  
+* Moved to `dotconf` framework for override files. **20240212**  
 
 
 ### Plans: ###
