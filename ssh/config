@@ -93,6 +93,9 @@ host wgroute
 
 host wgdoom
     hostName 10.0.10.3
+
+host wgstore
+    hostName 10.0.10.4
 ### End VPN ### }}}
 
 ### Local Places ### {{{
