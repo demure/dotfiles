@@ -1,13 +1,13 @@
 ### SDF Section ### {{{
 IMAPStore sdf-remote
-Host mav.sdf.org
+Host ma.sdf.org
 Port 993
 User demure
 PassCmd "pass cli/mail-sdf-imap"
 AuthMechs LOGIN
 TLSType IMAPS
-## Note: Use `openssl s_client -connect mav.sdf.org:993 -showcerts` to get cert to paste into .pem
-CertificateFile ~/.config/cert/mav.sdf.org.pem
+## Note: Use `openssl s_client -connect ma.sdf.org:993 -showcerts | openssl x509 -outform PEM > ~/.config/cert/ma.sdf.org` to update cert file`
+CertificateFile ~/.config/cert/ma.sdf.org.pem
 
 MaildirStore sdf-local
 Subfolders Verbatim
