@@ -57,24 +57,26 @@
 | epub reader          | epy                     | epub, fb2                 |
 | record term as SVG   | termtosvg               |                           |
 | Term image viewing   | timg                    | many                      |
+| Media Status         | playerctl               |                           |
 |----------------------|-------------------------|---------------------------|
 
 
 ### CLI programs that preform a GUI Function ###
 
-|----------------------|-----------|-----------|
-| Purpose              | Name      | Filetypes |
-|----------------------|-----------|-----------|
-| PDF Viewer           | zathura   | pdf       |
-| Video Player         | mpv       | Many      |
-| Image Viewer         | feh       | Many      |
-| Virtual Machines     | qemu-kvm  |           |
-| Chart Maker          | graphviz  | Many      |
-| Show Keystrokes      | screenkey |           |
-| Screen Cast Terminal | ttyd      |           |
-| Eye Strain           | redshift  |           |
-| Trash                | trash-put |           |
-|----------------------|-----------|-----------|
+|-----------------------|-----------|-----------|
+| Purpose               | Name      | Filetypes |
+|-----------------------|-----------|-----------|
+| PDF Viewer            | zathura   | pdf       |
+| Video Player          | mpv       | Many      |
+| mpv media keys plugin | mpv-mpris |           |
+| Image Viewer          | feh       | Many      |
+| Virtual Machines      | qemu-kvm  |           |
+| Chart Maker           | graphviz  | Many      |
+| Show Keystrokes       | screenkey |           |
+| Screen Cast Terminal  | ttyd      |           |
+| Eye Strain            | redshift  |           |
+| Trash                 | trash-put |           |
+|-----------------------|-----------|-----------|
 
 
 ### WM Environment Related ###
