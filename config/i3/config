@@ -457,67 +457,86 @@ workspace_auto_back_and_forth yes
     bindsym $mod+r mode "resize"
     ### End Resize Mode ### }}}
 
-    ### Control spotify via spotify-tui and spotifyd ### {{{
-    mode "control-spotify" {
-        bindsym p exec --no-startup-id spotify-tui playback --toggle, mode "default"
-        bindsym l exec --no-startup-id spotify-tui playback --like, mode "default"
-        bindsym r exec --no-startup-id spotify-tui playback --repeat, mode "default"
-        bindsym s exec --no-startup-id spotify-tui playback --shuffle, mode "default"
-
-        bindsym comma exec --no-startup-id spotify-tui playback --previous, mode "default"
-        bindsym period exec --no-startup-id spotify-tui playback --next, mode "default"
-        bindsym Shift+less exec --no-startup-id spotify-tui playback --previous, mode "default"
-        bindsym Shift+greater exec --no-startup-id spotify-tui playback --next, mode "default"
+    ### Control playerctl Mode ### {{{
+    mode "control-playerctl" {
+        bindsym space exec --no-startup-id playerctl --ignore-player=chromium play-pause, mode "default"
+        bindsym p exec --no-startup-id playerctl --ignore-player=chromium play, mode "default"
+        bindsym s exec --no-startup-id playerctl --ignore-player=chromium stop, mode "default"
+        bindsym q exec --no-startup-id playerctl --ignore-player=chromium stop, mode "default"
+        bindsym comma exec --no-startup-id playerctl --ignore-player=chromium previous, mode "default"
+        bindsym period exec --no-startup-id playerctl --ignore-player=chromium next, mode "default"
+        bindsym Shift+less exec --no-startup-id playerctl --ignore-player=chromium previous, mode "default"
+        bindsym Shift+greater exec --no-startup-id playerctl --ignore-player=chromium next, mode "default"
 
         ## back to normal: Enter or Escape
         bindsym Return mode "default"
         bindsym Escape mode "default"
     }
 
-    bindsym $mod+m mode "control-spotify"
+    bindsym $mod+m mode "control-playerctl"
+    ### End Control playerctl Mode ### }}}
+
+    ### Control spotify via spotify-tui and spotifyd ### {{{
+    #mode "control-spotify" {
+        #bindsym p exec --no-startup-id spotify-tui playback --toggle, mode "default"
+        #bindsym l exec --no-startup-id spotify-tui playback --like, mode "default"
+        #bindsym r exec --no-startup-id spotify-tui playback --repeat, mode "default"
+        #bindsym s exec --no-startup-id spotify-tui playback --shuffle, mode "default"
+
+        #bindsym comma exec --no-startup-id spotify-tui playback --previous, mode "default"
+        #bindsym period exec --no-startup-id spotify-tui playback --next, mode "default"
+        #bindsym Shift+less exec --no-startup-id spotify-tui playback --previous, mode "default"
+        #bindsym Shift+greater exec --no-startup-id spotify-tui playback --next, mode "default"
+
+        ### back to normal: Enter or Escape
+        #bindsym Return mode "default"
+        #bindsym Escape mode "default"
+    #}
+
+    #bindsym $mod+m mode "control-spotify"
     ### End Control spotify via spotify-tui and spotifyd ### }}}
 
     ### Control Pianobar Mode ### {{{
-    mode "control-pianobar" {
-        bindsym p exec --no-startup-id ~/.config/pianobar/control-pianobar.sh play, mode "default"
-        bindsym q exec --no-startup-id ~/.config/pianobar/control-pianobar.sh quit, mode "default"
-        bindsym h exec --no-startup-id ~/.config/pianobar/control-pianobar.sh history, mode "default"
-        bindsym n exec --no-startup-id ~/.config/pianobar/control-pianobar.sh next, mode "default"
-        bindsym t exec --no-startup-id ~/.config/pianobar/control-pianobar.sh tired, mode "default"
-        bindsym s exec --no-startup-id ~/.config/pianobar/control-pianobar.sh switchstation, mode "default"
-        bindsym \, exec --no-startup-id ~/.config/pianobar/control-pianobar.sh previousstation, mode "default"
-        bindsym . exec --no-startup-id ~/.config/pianobar/control-pianobar.sh nextstation, mode "default"
-        bindsym l exec --no-startup-id ~/.config/pianobar/control-pianobar.sh love, mode "default"
-        bindsym b exec --no-startup-id ~/.config/pianobar/control-pianobar.sh ban, mode "default"
-        bindsym e exec --no-startup-id ~/.config/pianobar/control-pianobar.sh explain, mode "default"
-        bindsym c exec --no-startup-id ~/.config/pianobar/control-pianobar.sh current, mode "default"
+    #mode "control-pianobar" {
+        #bindsym p exec --no-startup-id ~/.config/pianobar/control-pianobar.sh play, mode "default"
+        #bindsym q exec --no-startup-id ~/.config/pianobar/control-pianobar.sh quit, mode "default"
+        #bindsym h exec --no-startup-id ~/.config/pianobar/control-pianobar.sh history, mode "default"
+        #bindsym n exec --no-startup-id ~/.config/pianobar/control-pianobar.sh next, mode "default"
+        #bindsym t exec --no-startup-id ~/.config/pianobar/control-pianobar.sh tired, mode "default"
+        #bindsym s exec --no-startup-id ~/.config/pianobar/control-pianobar.sh switchstation, mode "default"
+        #bindsym \, exec --no-startup-id ~/.config/pianobar/control-pianobar.sh previousstation, mode "default"
+        #bindsym . exec --no-startup-id ~/.config/pianobar/control-pianobar.sh nextstation, mode "default"
+        #bindsym l exec --no-startup-id ~/.config/pianobar/control-pianobar.sh love, mode "default"
+        #bindsym b exec --no-startup-id ~/.config/pianobar/control-pianobar.sh ban, mode "default"
+        #bindsym e exec --no-startup-id ~/.config/pianobar/control-pianobar.sh explain, mode "default"
+        #bindsym c exec --no-startup-id ~/.config/pianobar/control-pianobar.sh current, mode "default"
 
-        ## back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-    }
+        ### back to normal: Enter or Escape
+        #bindsym Return mode "default"
+        #bindsym Escape mode "default"
+    #}
 
     #bindsym $mod+m mode "control-pianobar"
     ### End Control Pianobar Mode ### }}}
 
     ### Control mpd Mode ### {{{
-    mode "control-mpd" {
-        bindsym space exec --no-startup-id mpc -q toggle, mode "default"
-        bindsym p exec --no-startup-id mpc -q play, mode "default"
-        bindsym r exec --no-startup-id mpc -q random, mode "default"
-        bindsym s exec --no-startup-id mpc -q stop, mode "default"
-        bindsym q exec --no-startup-id mpc -q stop, mode "default"
-        bindsym comma exec --no-startup-id mpc -q prev, mode "default"
-        bindsym period exec --no-startup-id mpc -q next, mode "default"
-        bindsym Shift+less exec --no-startup-id mpc -q prev, mode "default"
-        bindsym Shift+greater exec --no-startup-id mpc -q next, mode "default"
+    #mode "control-mpd" {
+        #bindsym space exec --no-startup-id mpc -q toggle, mode "default"
+        #bindsym p exec --no-startup-id mpc -q play, mode "default"
+        #bindsym r exec --no-startup-id mpc -q random, mode "default"
+        #bindsym s exec --no-startup-id mpc -q stop, mode "default"
+        #bindsym q exec --no-startup-id mpc -q stop, mode "default"
+        #bindsym comma exec --no-startup-id mpc -q prev, mode "default"
+        #bindsym period exec --no-startup-id mpc -q next, mode "default"
+        #bindsym Shift+less exec --no-startup-id mpc -q prev, mode "default"
+        #bindsym Shift+greater exec --no-startup-id mpc -q next, mode "default"
 
-        ## back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-    }
+        ### back to normal: Enter or Escape
+        #bindsym Return mode "default"
+        #bindsym Escape mode "default"
+    #}
 
-    bindsym $mod+Shift+m mode "control-mpd"
+    #bindsym $mod+Shift+m mode "control-mpd"
     ### End Control mpd Mode ### }}}
 
     ## xrandr mode?
