@@ -1,0 +1,2 @@
+Aptitude "";
+Aptitude::Allow-Null-Upgrade "true";
