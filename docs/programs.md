@@ -118,7 +118,7 @@
 | Terminal Emulator      | urxvt         |                         |
 | Terminal Emulator      | kitty         |                         |
 | Editor                 | gvim          | txt, etc                |
-| Bloated Web Browser    | Chromium      | http                    |
+| Bloated Web Browser    | firefox       | http                    |
 | Keybound Web Browser   | qutebrowser   | http                    |
 | GUI Email Client       | icedove       |                         |
 | Documentation Viewer   | zeal          |                         |

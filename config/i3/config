@@ -459,14 +459,14 @@ workspace_auto_back_and_forth yes
 
     ### Control playerctl Mode ### {{{
     mode "control-playerctl" {
-        bindsym space exec --no-startup-id playerctl --ignore-player=chromium play-pause, mode "default"
-        bindsym p exec --no-startup-id playerctl --ignore-player=chromium play, mode "default"
-        bindsym s exec --no-startup-id playerctl --ignore-player=chromium stop, mode "default"
-        bindsym q exec --no-startup-id playerctl --ignore-player=chromium stop, mode "default"
-        bindsym comma exec --no-startup-id playerctl --ignore-player=chromium previous, mode "default"
-        bindsym period exec --no-startup-id playerctl --ignore-player=chromium next, mode "default"
-        bindsym Shift+less exec --no-startup-id playerctl --ignore-player=chromium previous, mode "default"
-        bindsym Shift+greater exec --no-startup-id playerctl --ignore-player=chromium next, mode "default"
+        bindsym space exec --no-startup-id playerctl --ignore-player=firefox,chromium play-pause, mode "default"
+        bindsym p exec --no-startup-id playerctl --ignore-player=firefox,chromium play, mode "default"
+        bindsym s exec --no-startup-id playerctl --ignore-player=firefox,chromium stop, mode "default"
+        bindsym q exec --no-startup-id playerctl --ignore-player=firefox,chromium stop, mode "default"
+        bindsym comma exec --no-startup-id playerctl --ignore-player=firefox,chromium previous, mode "default"
+        bindsym period exec --no-startup-id playerctl --ignore-player=firefox,chromium next, mode "default"
+        bindsym Shift+less exec --no-startup-id playerctl --ignore-player=firefox,chromium previous, mode "default"
+        bindsym Shift+greater exec --no-startup-id playerctl --ignore-player=firefox,chromium next, mode "default"
 
         ## back to normal: Enter or Escape
         bindsym Return mode "default"

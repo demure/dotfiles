@@ -10,7 +10,7 @@ PLAYER_CHECK="none"
 ## Verify program exists
 if [ "${PLAYER_CHECK}" = "none" ] && [ $(command -v playerctl) ]; then
     #PLAYER_CHECK="$(playerctl --player=%any,chromium metadata --format '{{ artist }} - {{ title }}' 2>/dev/null)"
-    PLAYER_CHECK="$(playerctl --player=%any,chromium metadata --format '{{ artist }} - {{ title }} {{ status }}' 2>/dev/null | awk '{STATE=$NF; $NF=""; if(STATE!="Stopped"){if(STATE=="Paused"){print STATE " - " $0}else{print $0}}}' )"
+    PLAYER_CHECK="$(playerctl --player=%any,firefox,chromium metadata --format '{{ artist }} - {{ title }} {{ status }}' 2>/dev/null | awk '{STATE=$NF; $NF=""; if(STATE!="Stopped"){if(STATE=="Paused"){print STATE " - " $0}else{print $0}}}' )"
 fi
 
 ## If no music, return fancy none icon
