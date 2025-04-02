@@ -47,6 +47,9 @@ function __prompt_command() {
         local SHost="$(echo $HOSTNAME | awk 'match($0,/^[a-zA-Z0-9]+/) {print substr($0,RSTART,RLENGTH)}')"
         if [ ${HOSTNAME} == 'moving-computer-of-doom' ]; then
             local PSCol="$Cya"              ## For Main Computer
+        elif [ ${HOSTNAME} == 'pocket' ]; then
+            local PSCol="$Cya"              ## For UMPC
+            local PSOpt="${SHost} "
         elif [ ${HOSTNAME} == 'vps-of-doom' ]; then
             local PSCol="$Blu"              ## For VPS
             local PSOpt="${SHost} "
