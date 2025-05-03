@@ -1,0 +1,53 @@
+# wofi-pass configuration file
+
+# This file is sourced by wofi-pass and can override the
+# default values for global variables from wofi-pass.
+# All variables that can be changed are listed below.
+# The listed variables are commented out, because
+# the value is set to default and thus does not need to be changed.
+#
+# If you change other variables that are used by wofi-pass,
+# you do so at your own risk.
+
+## COMMON
+
+# path to pass storage files
+#PASSWORD_STORE_DIR="${HOME}/.password-store"
+
+# default autotype format
+#WOFI_PASS_AUTOTYPE=":username :tab :password"
+
+# autotype delay time in seconds
+#WOFI_PASS_DELAY=2
+
+# automatic enter after autotype output
+#WOFI_PASS_AUTO_ENTER="false"
+
+## COMMANDS
+
+# command for put the output to clipboard
+#CMD_COPY="wl-copy"
+
+# command for type out the output
+#CMD_TYPE="wtype -"
+
+## PASS FIELDS
+
+# field for username used for autotype functionality
+#PASS_FIELD_USERNAME="username"
+PASS_FIELD_USERNAME="login"
+
+## HOTKEYS
+
+# Select the username field directly
+#HOTKEY_USERNAME=Alt-u
+
+# Select the password field directly
+#HOTKEY_PASSWORD=Alt-p
+
+# Select the autotype field directly
+#HOTKEY_AUTOTYPE=Alt-a
+
+# Select the OTP field directly
+#HOTKEY_OTP=Alt-o
+
