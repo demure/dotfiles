@@ -1,0 +1,7 @@
+[options]
+fullscreen=1
+
+[keybindings]
+d { command(trash $1); }
+, { goto_file_relative(-1); }
+. { goto_file_relative(1); }
