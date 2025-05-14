@@ -59,26 +59,25 @@
             //"custom/left-arrow-dark",
         "custom/power"
     ],
-     //Modules configuration
-     "sway/workspaces": {
-         "disable-scroll": true,
-         "all-outputs": true,
-         "warp-on-scroll": false,
-         //"format": "{name}: {icon}",
-         "format": "{name} {icon}",
-         "format-icons": {
-             "1": "",
-             "2": "",
-             //"3": "",
-             "3": "",
-             //"4": "",
-             //"5": "",
-             "urgent": "",
-             //"focused": "",
-             //"default": ""
-             "default": ""
-         }
-     },
+    //Modules configuration
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "warp-on-scroll": false,
+        "format": "{name} {icon}",
+        "format-icons": {
+            "1": "",
+            "2": "",
+            //"3": "",
+            "3": "",
+            //"4": "",
+            //"5": "",
+            "urgent": "",
+            //"focused": "",
+            //"default": ""
+            "default": ""
+        }
+    },
     "custom/left-arrow-dark": {
         "format": "",
         "tooltip": false
@@ -187,7 +186,8 @@
     "backlight": {
         // "device": "acpi_video1",
         "format": "{percent}% {icon}",
-        "format-icons": ["", "", "", "", "", "", "", "", ""]
+        //"format-icons": ["", "", "", "", "", "", "", "", ""]
+        "format-icons": ["󰫃", "󰫄", "󰫅", "󰫆", "󰫇", "󰫈"]  
     },
     "battery": {
         "states": {
@@ -202,7 +202,8 @@
         "format-alt": "{time} {icon}",
         // "format-good": "", // An empty format will hide the module
         // "format-full": "",
-        "format-icons": ["", "", "", "", ""]
+        //"format-icons": ["", "", "", "", ""]
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
     },
     //"battery#bat2": {
         //"bat": "BAT2"
