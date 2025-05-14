@@ -25,7 +25,11 @@ set $menu wofi -G --show=run
 set $locker swaylock -f -F -c 2E3436 && sleep 1
 
 ## try to force lock on lid close...
-bindswitch --reload --locked lid:on exec $lock
+bindswitch --reload --locked lid:on exec $locker
+
+## Lock on demand
+## Looks like I would have to remove the hjkl default arrow bindings to use...
+#bindsym $mod+l $locker
 
 font pango:monospace 8
 titlebar_padding 1 1
