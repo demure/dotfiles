@@ -84,7 +84,8 @@ exec syncthing
 ### End Exec Programs ### }}}
 
 ### Exec Per Workspace Programs ### {{{
-exec swaymsg "workspace 1; exec kitty;"
+#exec swaymsg "workspace 1; exec kitty;"
+exec swaymsg "workspace 1; exec foot;"
 ### End Exec Per Workspace Programs ### }}}
 
 
