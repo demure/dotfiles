@@ -25,7 +25,8 @@ set $menu wofi -G --show=run
 set $locker swaylock -f -F -c 2E3436 && sleep 1
 
 ## try to force lock on lid close...
-bindswitch --reload --locked lid:on exec $locker
+## Kill off gpg agent as it isnt recovering sleep power down.
+bindswitch --reload --locked lid:on exec bash -c "$locker; gpgconf --kill gpg-agent"
 
 ## Lock on demand
 ## Looks like I would have to remove the hjkl default arrow bindings to use...
@@ -330,8 +331,8 @@ bindsym $mod+Mod1+Right move workspace to output right
         bindsym h exec $locker && systemctl hibernate, mode "default"
         bindsym e exec swaynag -t warning -m 'Are you sure you want to exit sway?' -B 'Yes, exit sway' 'swaymsg exit'
 
-        ## Set brightness to my default of 20% (for pocket4)
-        bindsym b exec brightnessctl set 20%, mode "default"
+        ## Set brightness to my default of 30% (for pocket4)
+        bindsym b exec brightnessctl set 30%, mode "default"
 
         ## Return to default mode
         bindsym Return mode "default"

@@ -47,7 +47,7 @@ Channel gmail-main
 Expunge Both
 Far :gmail-remote:
 Near :gmail-local:
-Pattern INBOX aha Bulletin Orders People
+Pattern INBOX Bulletin Orders People
 Create Both
 SyncState *
 ExpireUnread no
