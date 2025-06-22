@@ -402,6 +402,7 @@ bar {
 for_window [class = "Pqiv"] floating enable
 for_window [class = "Pinentry-gtk"] floating enable
 for_window [app_id = "gamescope"] floating enable
+for_window [app_id = "mpv"] floating enable
 
 
 include /etc/sway/config.d/*
