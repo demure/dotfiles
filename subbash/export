@@ -26,7 +26,7 @@ fi
 
 ### SSH Agents ### {{{
 if [ ! -e "${HOME}/.config/dotconf/no_agent" ]; then
-    if [ -s "${HOME}/.ssh/id_ed25519" ] || [ -s "${HOME}/.ssh/id_rsa" ]; then
+    if [ -s "${HOME}/.ssh/id_ed25519" ] || [ -s "${HOME}/.ssh/id_ecdsa" ] || [ -s "${HOME}/.ssh/id_rsa" ]; then
         ## If there is a ssh key, load key for ssh
         __ssh_agent
     else
