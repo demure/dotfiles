@@ -4,6 +4,7 @@ New-Alias -Name vim -Value 'C:\Program Files (x86)\vim\vim82\vim.exe'
 
 ## readline
 Set-PSReadLineOption -EditMode Emacs
+Set-PSReadLineOption -HistorySearchCursorMovesToEnd
 Set-PSReadlineKeyHandler -Key Tab -Function Complete
 Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
