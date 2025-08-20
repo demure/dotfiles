@@ -49,31 +49,23 @@ function __prompt_command() {
             local PSCol="$Cya"              ## For Main Computer
         elif [ ${HOSTNAME} == 'pocket' ]; then
             local PSCol="$Cya"              ## For UMPC
-            local PSOpt="${SHost} "
+            local PSOpt="\h "
         elif [ ${HOSTNAME} == 'vps-of-doom' ]; then
             local PSCol="$Blu"              ## For VPS
             local PSOpt="${SHost} "
-        elif [ ${HOSTNAME} == 'tablet-of-doom' ]; then
-            local PSCol="$Gre"              ## For tablet
-            local PSOpt="${SHost} "
         elif [ ${HOSTNAME} == 'ma.sdf.org' ]; then
-            local PSCol="${Yel}"            #@ For MetaArray
+            local PSCol="${Yel}"            ## For sdf MetaArray
             local PSOpt="\h "
         elif [ ${HOSTNAME} == 'fencepost.gnu.org' ]; then
             local PSCol="${On_Pur}"         ## For Gnu
             local PSOpt="\h "
         elif [ ${HOSTTYPE} == 'arm' ]; then
-            local PSCol="$Gre"              #@ For pi
+            local PSCol="$Gre"              ## For pi
             local PSOpt="${SHost} "
         elif [ ${OSTYPE} == 'linux-android' ]; then
             local PSCol="$Gre"              #@ For Android Termux`
-        elif [[ ${MACHTYPE} =~ arm-apple-darwin ]]; then
-            local PSCol="$Gre"              ## For iOS
-        elif [ ${MACHTYPE} == 'i486-pc-linux-gnu' ]; then
-            local PSCol="$BBla"             ## For Netbook
-            local PSOpt="${SHost} "
         elif [[ "${MACHTYPE}" == "x86_64--netbsd" && "${OSTYPE}" == "netbsd" ]]; then
-            local PSCol="${Yel}"            ## For Main Cluster
+            local PSCol="${Yel}"            ## For sdf Main Cluster
             local PSOpt="\h "
         elif [ "${MACHTYPE}" == "mips-openwrt-linux-gnu" ]; then
             local PSCol="${On_Pur}"         ## For OpenWrt

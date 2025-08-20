@@ -70,6 +70,9 @@ if [ ${UID} != '0' ] && [[ $- == *i* ]] && [ ${TERM} != 'dumb' ]; then
       elif [ -r "/usr/share/z/z.sh" ]; then
         ## arch
         source /usr/share/z/z.sh
+      elif [ -r "${HOME}/.subbash/z.sh" ]; then
+        ## fallback copy of z.sh from 20231209
+        source /usr/share/z/z.sh
       else
         MISSING_ITEMS+="z_jump, "
     fi
