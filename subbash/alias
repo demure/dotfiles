@@ -23,8 +23,8 @@ alias ed='ed -p:'
 ## Delete duplicate lines from file name augment
 alias deldup="awk '!x[$0]++' "
 
-## Shortcut for wicd-curses
-alias wic='wicd-curses'
+## Color ip results
+alias ip="ip --color=auto"
 ### End Misc Aliases ### }}}
 
 ### rsync Aliases ### {{{
