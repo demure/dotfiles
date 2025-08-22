@@ -96,6 +96,10 @@ host wgdoom
 
 host wgstore
     hostName 10.0.10.4
+
+host wgkvm
+    hostName 10.0.10.8
+    Port 500
 ### End VPN ### }}}
 
 ### Local Places ### {{{
