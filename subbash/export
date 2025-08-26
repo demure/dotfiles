@@ -46,7 +46,8 @@ grep_test="$(grep --version 2>/dev/null | awk 'BEGIN {VER=0; CUT=2.20} /^grep/ N
 
 if [ ${grep_test} == "ge" ]; then
     ## If new, do it the way grep says to
-    alias grep='grep --color=auto --exclude-dir=.cvs --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn'
+    #alias grep='grep --color=auto --exclude-dir=.cvs --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn'
+    alias grep='grep --color=always --exclude-dir=.cvs --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn'
   else
     ## If old, use GREP_OPTIONS, as --exclude may not exist, and annoying errors!
     if echo hello | grep --color=auto l >/dev/null 2>&1; then
