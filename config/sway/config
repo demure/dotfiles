@@ -87,7 +87,7 @@ exec syncthing
 
 ### Auto Rotate ### {{{
 ## pocket settings
-swaymsg input NVTK0603:00 map_to_output dDP-1
+#swaymsg input NVTK0603:00 map_to_output dDP-1
 exec rot8 --invert-xy yx
 ### End Auto Rotate ### }}}
 
