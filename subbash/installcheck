@@ -51,7 +51,7 @@ W_GUI_LIST=(mcomix zathura calibre libreoffice gparted zeal font-manager \
 gimp baobab gvim touchegg neato notify-send qtpass youtube-dl yt-dlp \
 inkscape qutebrowser pinentry-gtk2 sgt-signpost kitty firefox speedcrunch \
 playerctl sway swaylock wofi wofi-pass wev wshowkeys grim grimshot swayimg \
-nwg-displays shikane wpaperd wvkbd-mobintl cliphist pqiv)
+nwg-displays shikane wpaperd wvkbd-mobintl cliphist pqiv rot8)
 
 for i in "${W_GUI_LIST[@]}"; do
     if [[ ! $(command -v ${i}) ]]; then

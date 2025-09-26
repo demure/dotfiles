@@ -75,7 +75,7 @@ exec_always killall swayidle; swayidle -w \
 
 ### Exec Programs ### {{{
 exec wl-paste --watch cliphist store
-exec sway-accel-rotate
+#exec sway-accel-rotate
 exec shikane
 exec wpaperd -d
 exec nm-applet
@@ -83,6 +83,14 @@ exec blueman-applet
 exec udiskie
 exec syncthing
 ### End Exec Programs ### }}}
+
+
+### Auto Rotate ### {{{
+## pocket settings
+swaymsg input NVTK0603:00 map_to_output dDP-1
+exec rot8 --invert-xy yx
+### End Auto Rotate ### }}}
+
 
 ### Exec Per Workspace Programs ### {{{
 #exec swaymsg "workspace 1; exec kitty;"
