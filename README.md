@@ -33,11 +33,15 @@ I am in the *long* process of revamping all of my files, adding useful plugins,
 organizing snippets, improving comments, and trying making one conf work for  
 all my systems (when/where possible).  
 
-**NOTE:** While I am currently continuing to maintain the [github] repo,  
-<strike>I have moved to [gitorious].</strike> Repo link in top comments, of most comment-able confs.  
-With the death of gitorious, I am currently using [notabug].  
+If you like what you see here, you may like my blog as well, [demu.red] -- though its been a while since I've posted.  
 
-You may like my blog as well, [demu.red].  
+
+### Repo: ###
+[tildegit] is now the primary location my dotfiles live.  
+
+For historical purposes I still push into the [github] and [notabug] instance.  
+This is mostly due to wanting to keep off github, [gitorious] dying, and notabug's webui becoming spotty.  
+
 
 
 ### Install: ###
@@ -54,32 +58,19 @@ stow -t ~ gui     ## gui programs
 **NOTE:** `-t PATH` is used as the stow 'packages' are recessed.  
 
 
-### Improved: ###
-
-* I think my vimrc has improved a good deal ^__^  
-    * It will now auto install Vundle if missing, and create undo/backup/swap paths **8APR2013**  
-    * Now updated for new vundle syntax **16NOV2014**  
-* My PS1 is much simpl.... Err, neater? **25APR2013**  
-    * The machine test is much more consise, and the git check quite useful  
-* Bashrc is now broken up into sub sourced files, much more orginzation potential **26MAY2013**  
-* <strike>Moved to the spectrwm window manager **~18MAY2014** </strike>  
-* Killed off my laptop's useless menu key, and now have a `SUPER_R` **21MAY2014**  
-* Added test and variable for missing items in bash **12NOV2014**  
-* Decided to declare my `$PATH` with everything I want **12NOV2014**  
-* Added a MISSING_ITEMS to check if disabled things disabled **13NOV2014**  
-* Added [GNU Stow] for installing **06MAR2014**  
-* Added mutt with multiple accounts, using offlineimap, not-much, and msmtp **25AUG2015**  
-* Moved to i3 window manager<strike>, and set up a sweet lemonbar</strike> **30JAN2016**  
-* Got around to updating stow dir to reflect current software. (still needs some work) **16NOV2018**  
-* Spent a lot of time refactory my prompt command's git **14MAR2019**  
-* Had to get fancy with i3 volume bindings as HDMI output caused sink changes **18JUN2019**  
-* Moved from lemonbar to polybar. Things are a lot cleaner and easier to tinker with now. **14JUL2019**  
-    * lemonbar files moved to `retired_confs` dir.  
-* Moved markdown docs/notes to a docs dir. **24JUL2019**  
-* Moved to prioritising $XDG_CONFIG_HOME for dotfiles. **01AUG2019**  
-* BUNCH OF CHANGES HERE, BUT NOT LOGGED HERE...
-* Taught tmux status bar to be nicer for small windows. **20240207**  
-* Moved to `dotconf` framework for override files. **20240212**  
+### Notable Setups: ###
+* bash  
+  * bashrc is now broken up into sub sourced files, much more orginzation potential  
+  * Fancy PS1  
+    * `dotconf` framework for override files  
+* vim  
+  * auto install Vundle if missing  
+* tmux  
+  * Nested instance binding/mode  
+  * Binding to 'mark' window names, for workflow tracking  
+  * Fancy status  
+* ssh  
+  * <3 ssh conf file  
 
 
 ### Plans: ###
@@ -88,14 +79,15 @@ stow -t ~ gui     ## gui programs
 
 <BR>
 **PS.** If you happen to have advice, I certainly would be interested in ways to improve my setup.  
-If you do wish to contact me, I guess [twitter] is an ok way (spam mitigation)  
-
-###### Last edit 2019-08-01 ######
+If you do wish to contact me I am on IRC on sdf, tilde, and libera  
 
 
+###### Last edit 2025-09-30 ######
+
+
+[demu.red]: http://demu.red
+[tildegit]: https://tildegit.org/demure/dotfiles
 [github]: https://gitorious.org/demure/dotfiles
-[gitorious]: https://gitorious.org/demure/dotfiles
+[gitorious]: https://en.wikipedia.org/wiki/Gitorious
 [notabug]: https://notabug.org/demure/dotfiles/
 [GNU Stow]: https://www.gnu.org/software/stow/
-[twitter]: https://twitter.com/demure
-[demu.red]: http://demu.red
