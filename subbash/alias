@@ -25,6 +25,9 @@ alias deldup="awk '!x[$0]++' "
 
 ## Color ip results
 alias ip="ip --color=auto"
+
+## Video resolution check
+alias vidres="ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=s=x:p=0"
 ### End Misc Aliases ### }}}
 
 ### rsync Aliases ### {{{
