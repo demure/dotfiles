@@ -153,6 +153,14 @@
             }
         ]
     },
+    "sway/window": {
+        "format": "{}",
+        "max-length": 50,
+        "rewrite": {
+            "(.*)Mozilla Firefox Private Browsing": "Private Browsing",
+            "(.*) - zsh": "> [$1]"
+        }
+    },
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
@@ -245,16 +253,18 @@
     },
     "battery": {
         "states": {
-            // "good": 95,
             "warning": 30,
             "critical": 15
+        },
+        "events": {
+            "on-discharging-warning": "notify-send -u normal 'Low Battery'",
+            "on-discharging-critical": "notify-send -u critical 'Very Low Battery'"
         },
         "format": "{icon} {capacity}%",
         "format-full": "{icon} {capacity}%",
         "format-charging": "󰊘 {capacity}%",
         "format-plugged": " {capacity}%",
         "format-alt": "{icon} {time}",
-        // "format-good": "", // An empty format will hide the module
         //"format-icons": ["", "", "", "", ""]
         "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
     },
