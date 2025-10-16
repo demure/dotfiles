@@ -1,8 +1,9 @@
 #### My (demuredemeanor) sub source gpg-ssh-agent script
-# Uses tabstop=4; shiftwidth=4 tabs; foldmarker={{{,}}};
-# https://notabug.org/demure/dotfiles/
-# legacy repo http://github.com/demure/dotfiles
 # vim:set syntax=sh:
+# Uses tabstop=4; shiftwidth=4 tabs; foldmarker={{{,}}};
+# https://tildegit.org/demure/dotfiles
+# legacy https://notabug.org/demure/dotfiles
+# legacy repo http://github.com/demure/dotfiles
 
 ## SSH GPG Agent
 function __ssh_gpg_agent() {

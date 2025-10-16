@@ -1,7 +1,8 @@
 #!/bin/sh
 ##### My (demuredemeanor) .xinitrc
 # Uses shiftwidth=4 for tabs; foldmarker={{{,}}} for folds;
-# https://notabug.org/demure/dotfiles/
+# https://tildegit.org/demure/dotfiles
+# legacy https://notabug.org/demure/dotfiles
 # legacy repo http://github.com/demure/dotfiles
 
 ## Fix my sound? damn pusle per user

@@ -1,7 +1,8 @@
 #!/bin/bash
 ##### My (demuredemeanor) script for multiple conkys at the same time
 # Uses tabstop=4; shiftwidth=4 tabs; foldmarker={{{,}}};
-# https://notabug.org/demure/dotfiles/
+# https://tildegit.org/demure/dotfiles
+# legacy https://notabug.org/demure/dotfiles
 # legacy repo http://github.com/demure/dotfiles
 
 

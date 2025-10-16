@@ -2,7 +2,8 @@
 ##### My (demuredemeanor) attempt to codify my formatting
 # vim: set expandtab ts=4 sw=4: ## Since this is markdown
 # Uses shiftwidth=4 for tabs; foldmarker={{{,}}} for folds;
-# https://notabug.org/demure/dotfiles/
+# https://tildegit.org/demure/dotfiles
+# legacy https://notabug.org/demure/dotfiles
 # legacy repo http://github.com/demure/dotfiles
 -->
 

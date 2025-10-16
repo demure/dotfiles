@@ -1,8 +1,9 @@
 ##### My (demuredemeanor) muttrc sub notmuch config
-# Uses tabstop=4; shiftwidth=4 tabs; foldmarker={{{,}}};
-# https://notabug.org/demure/dotfiles
-# legacy repo http://github.com/demure/dotfiles
 # vim:set syntax=muttrc:
+# Uses tabstop=4; shiftwidth=4 tabs; foldmarker={{{,}}};
+# https://tildegit.org/demure/dotfiles
+# legacy https://notabug.org/demure/dotfiles
+# legacy repo http://github.com/demure/dotfiles
 
 ## notmuch
 set nm_default_uri="notmuch:///home/demure/.mail"  ## path to the maildir

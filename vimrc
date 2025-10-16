@@ -3,7 +3,8 @@
 """"""""vim: set tabstop=4 shiftwidth=4:
 "" Above is an attempt at a modeline, which seems to have a issue
 "" where long pastes get a new line...
-"" https://notabug.org/demure/dotfiles/
+"" https://tildegit.org/demure/dotfiles
+"" legacy https://notabug.org/demure/dotfiles
 "" legacy repo http://github.com/demure/dotfiles
 
 """ Commands at Start """ {{{

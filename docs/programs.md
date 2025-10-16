@@ -1,7 +1,8 @@
 <!--
 ##### My (demuredemeanor) attempt to list what programs I use
 # vim: set expandtab ts=4 sw=4: ## Since this is markdown
-# https://notabug.org/demure/dotfiles/
+# https://tildegit.org/demure/dotfiles
+# legacy https://notabug.org/demure/dotfiles
 # legacy repo http://github.com/demure/dotfiles
 -->
 

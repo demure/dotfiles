@@ -1,8 +1,9 @@
 #### My (demuredemeanor) configs for moving-computer-of-doom
-# Uses tabstop=4; shiftwidth=4 tabs; foldmarker={{{,}}};
-# https://notabug.org/demure/dotfiles/
-# legacy repo http://github.com/demure/dotfiles
 # vim:set syntax=sh:
+# Uses tabstop=4; shiftwidth=4 tabs; foldmarker={{{,}}};
+# https://tildegit.org/demure/dotfiles
+# legacy https://notabug.org/demure/dotfiles
+# legacy repo http://github.com/demure/dotfiles
 
 ## Set up borg for laptop
 export BORG_PASSCOMMAND="pass cli/borg"

@@ -1,8 +1,9 @@
 ##### My (demuredemeanor) muttrc sub sidebar config
-# Uses tabstop=4; shiftwidth=4 tabs; foldmarker={{{,}}};
-# https://notabug.org/demure/dotfiles
-# legacy repo http://github.com/demure/dotfiles
 # vim:set syntax=muttrc:
+# Uses tabstop=4; shiftwidth=4 tabs; foldmarker={{{,}}};
+# https://tildegit.org/demure/dotfiles
+# legacy https://notabug.org/demure/dotfiles
+# legacy repo http://github.com/demure/dotfiles
 
 ## Broken in Neomutt 20231221, but at least the cosmetic fake inboxes were fixed
 #ifndef sidebar finish               ## If not compiled with sidebar, skip

@@ -1,8 +1,9 @@
 ##### My (demuredemeanor) muttrc sub crypto config
-# Uses tabstop=4; shiftwidth=4 tabs; foldmarker={{{,}}};
-# https://notabug.org/demure/dotfiles
-# legacy repo http://github.com/demure/dotfiles
 # vim:set syntax=muttrc:
+# Uses tabstop=4; shiftwidth=4 tabs; foldmarker={{{,}}};
+# https://tildegit.org/demure/dotfiles
+# legacy https://notabug.org/demure/dotfiles
+# legacy repo http://github.com/demure/dotfiles
 
 set pgp_use_gpg_agent           = yes
 set pgp_sign_as                 = 5FEC76218436521FE0B05D119A5C2AE96907C3D1
