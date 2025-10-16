@@ -69,6 +69,7 @@ stow -t ~ gui     ## gui programs
   * Nested instance binding/mode  
   * Binding to 'mark' window names, for workflow tracking  
   * Fancy status  
+  * Dynamic padding removal from status, if too little space due to high window count  
 * ssh  
   * <3 ssh conf file  
 
