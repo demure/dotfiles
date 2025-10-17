@@ -75,11 +75,15 @@ if [ $? != 0 ]; then
     tmux send-keys -t ${WINDOW} "ssh -t ${WINDOW} 'tmux attach -t 0 || tmux new'" C-m
     tmux rename-window -t ${SESSION}:${NUM} "be"
 
-    WINDOW='carthage'
+    WINDOW='car'
     NUM=12
     tmux new-window -t ${SESSION}:${NUM} -n ${WINDOW}
     tmux send-keys -t ${WINDOW} "ssh -t ${WINDOW} 'tmux attach -t 0 || tmux new'" C-m
-    tmux rename-window -t ${SESSION}:${NUM} "car"
+
+    WINDOW='con'
+    NUM=13
+    tmux new-window -t ${SESSION}:${NUM} -n ${WINDOW}
+    tmux send-keys -t ${WINDOW} "ssh -t ${WINDOW} 'tmux attach -t 0 || tmux new'" C-m
 fi
 
 
