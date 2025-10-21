@@ -47,6 +47,7 @@
   * vim /etc/ly/config.ini
   * systemctl restart ly
   * After a few weeks, gtk darkmode broke... Added `export GTK_THEME=Adwaita:dark` to `/etc/ly/wsetup.sh` 
+    * ensure gnome-theme-extra is installed even though we dont gnome...
 
 * warbar
   * fix hight
