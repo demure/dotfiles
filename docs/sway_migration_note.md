@@ -1,14 +1,7 @@
 ## TODO
-* setup waybar
-* get ssh gpg working
-* update dotfiles
 * use nwg-displays to setup default monitors for workspaces?
-* update weechat url open
 * adjust on screen keyboard layout/profile?
-* add equivalents of i3wm settings
-* add equivalents of i3wm bindings
 * look into a cli command to invert screen colors in wayland
-* binding to set default brightness level
 * termdown countdown binding
 * flip display output horizontally binding
 * comic reader that is better with touch screens than mcomix
