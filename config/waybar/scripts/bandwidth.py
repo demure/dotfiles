@@ -34,7 +34,15 @@ def format_size(size):
     while size > kilo:
         size /= kilo
         power += 1
-    return f"{size:3.0f} {power_labels[power]}"
+    ## forcing kilo to be smallest display
+    if size < kilo and size > 0:
+        # size = 1
+        size /= kilo
+        power = 1
+        return f"{size:.1f} {power_labels[power]}".lstrip('0')
+    else:
+        return f"{size:3.0f} {power_labels[power]}"
+    # return f"{size:3.0f} {power_labels[power]}"
 
 
 def main():
