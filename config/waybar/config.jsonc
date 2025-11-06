@@ -10,6 +10,8 @@
     // Choose the order of the modules
     "modules-left": [
         "sway/workspaces",
+            "custom/right-arrow-dark",
+            "custom/right-arrow-cap-light",
         "sway/mode",
         "sway/scratchpad",
         "privacy",
@@ -20,7 +22,7 @@
     ],
     "modules-right": [
             // This double arrow is intentional
-            "custom/left-arrow-light",
+            "custom/left-arrow-cap-light",
             "custom/left-arrow-dark",
         "idle_inhibitor",
             "custom/left-arrow-light",
@@ -91,6 +93,14 @@
         "format": "",
         "tooltip": false
     },
+    "custom/left-arrow-cap-light": {
+        "format": "",
+        "tooltip": false
+    },
+    "custom/left-arrow-cap-dark": {
+        "format": "",
+        "tooltip": false
+    },
     "custom/right-arrow-dark": {
         "format": "",
         "tooltip": false
@@ -99,8 +109,16 @@
         "format": "",
         "tooltip": false
     },
+    "custom/right-arrow-cap-light": {
+        "format": "",
+        "tooltip": false
+    },
+    "custom/right-arrow-cap-dark": {
+        "format": "",
+        "tooltip": false
+    },
     "sway/mode": {
-        "format": " <span style=\"italic\">{}</span>"
+        "format": "󰽘 <span style=\"italic\">{}</span>"
     },
     "sway/scratchpad": {
         "format": "{icon} {count}",
@@ -142,7 +160,7 @@
                 "tooltip-icon-size": 24
             }
         ],
-        "ignore-monitor": true,
+        //"ignore-monitor": true,
         "ignore": [
             {
                 "type": "audio-in",

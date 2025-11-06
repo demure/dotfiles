@@ -70,6 +70,18 @@ window#waybar.hidden {
     background: @color_m_bg_sec1;
     font-size: 12px;
 }
+#custom-right-arrow-cap-dark,
+#custom-left-arrow-cap-dark {
+    color: @color_m_bg_sec1;
+    background: @color_m_bg;
+    font-size: 12px;
+}
+#custom-right-arrow-cap-light,
+#custom-left-arrow-cap-light {
+    color: @color_m_bg_sec2;
+    background: @color_m_bg;
+    font-size: 12px;
+}
 
 /*
 window#waybar.empty {
@@ -89,6 +101,10 @@ window#waybar.solo {
     /*border: none;*/
 /*}*/
 
+#workspaces {
+    background-color: @color_m_bg_sec1;
+    /*background-color: @color_m_bg_sec2;*/
+}
 
 button {
     /* Use box-shadow instead of border so the text isn't offset */
@@ -130,7 +146,7 @@ button:hover {
     /*box-shadow: inset 0 -3px #ffffff;*/
 }
 
-/* This section all uses the last {} */ 
+/* This section all uses the last {} */
 #mode,
 #scratchpad,
 #custom-media,
@@ -139,6 +155,7 @@ button:hover {
 #custom-bandwidth,
 #network,
 #pulseaudio,
+#pulseaudio#mic,
 #backlight,
 #cpu,
 #memory,
@@ -156,7 +173,8 @@ button:hover {
 
 #window,
 #workspaces {
-    margin: 0 4px;
+    /*margin: 0 4px;*/
+    margin: 0 0 0 0;
 }
 
 /* If workspaces is the leftmost module, omit left margin */
