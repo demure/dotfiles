@@ -112,6 +112,9 @@
 * syslog-ng
   * https://wiki.archlinux.org/title/Syslog-ng#syslog-ng_and_systemd_journal
 
+* mpv
+  * mpv-mpris for playerctl
+
 ## new programs
 * sway
 * swaylock
