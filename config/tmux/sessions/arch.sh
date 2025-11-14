@@ -28,13 +28,8 @@ if [ $? != 0 ]; then
     tmux new-window -t ${SESSION}:${NUM} -n ${WINDOW}
     tmux send-keys -t ${WINDOW} "neomutt" C-m
 
-    WINDOW='rss'
-    NUM=3
-    tmux new-window -t ${SESSION}:${NUM} -n ${WINDOW}
-    tmux send-keys -t ${WINDOW} "newsboat" C-m
-
     WINDOW='file'
-    NUM=4
+    NUM=3
     tmux new-window -t ${SESSION}:${NUM} -n ${WINDOW}
     tmux send-keys -t ${WINDOW} "ranger" C-m
 fi
