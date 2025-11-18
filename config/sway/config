@@ -113,8 +113,8 @@ exec swaymsg "workspace 1; exec foot;"
 # Read `man 5 sway-input` for more information about this section.
 input "type:keyboard" xkb_options caps:escape
 
-## hide cursor after time
-seat seat0 hide_cursor 3000
+## hide cursor after time, milliseconds
+seat seat0 hide_cursor 30000
 
 ## NOTE: use `swaymsg -t get_inputs` to see input devices IDs
 
