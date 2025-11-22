@@ -259,7 +259,7 @@ if iCanHazVundle == 1
             """ End Hardtime """ }}}
 
             """ Syntastic Conf """ {{{
-            let g:syntastic_auto_loc_list=1
+            ""let g:syntastic_auto_loc_list=1
             """ End Syntastic """ }}}
 
             """ Vim-CtrlSpace Conf """ {{{
