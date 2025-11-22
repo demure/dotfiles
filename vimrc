@@ -262,6 +262,10 @@ if iCanHazVundle == 1
             ""let g:syntastic_auto_loc_list=1
             """ End Syntastic """ }}}
 
+            """ ALE Syntax Checker Conf """ {{{
+            let g:ale_open_list = 1
+            """ End ALE Syntax Checker """ }}}
+
             """ Vim-CtrlSpace Conf """ {{{
             "" https://github.com/szw/vim-ctrlspace
             "" Make work with airline
