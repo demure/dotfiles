@@ -131,7 +131,7 @@ if iCanHazVundle == 1
             ""Add your bundles here
                 """ Style """ {{{
                 Plugin 'altercation/vim-colors-solarized'   " Solarized theme
-                Plugin 'syntax-highlighting-for-tintinttpp' " Tintin++ syntax
+                "Plugin 'syntax-highlighting-for-tintinttpp' " Tintin++ syntax
                 Plugin 'bling/vim-airline'                  " Even better than powerline/neatstatus
                 Plugin 'nathanaelkane/vim-indent-guides'    " vim-indent-guides default binding: <Leader>ig
                 Plugin 'kien/rainbow_parentheses.vim'       " Colorize parentheses and similar chars
@@ -155,7 +155,8 @@ if iCanHazVundle == 1
                 Plugin 'scrooloose/nerdcommenter'   " Make commenting easy
                 Plugin 'YankRing.vim'               " Improves copy/paste
                 Plugin 'tpope/vim-fugitive'         " git from vim
-                Plugin 'scrooloose/syntastic'       " Code syntax checker
+                ""Plugin 'scrooloose/syntastic'       " Code syntax checker
+                Plugin 'dense-analysis/ale'         " Code syntax checker, replacing dead syntastic
                 "Plugin 'SearchComplete'            " Disabled due to killing UP arrow in search
                 Plugin 'Lokaltog/vim-easymotion'    " <prefix><prefix>motion
                 Plugin 'chrisbra/csv.vim'           " Good CVS file handling
