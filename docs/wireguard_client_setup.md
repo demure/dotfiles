@@ -73,3 +73,15 @@ systemctl enable wg-quick@wg0.service
 systemctl daemon-reload
 systemctl start wg-quick@wg0.service
 ```
+
+
+### Client DNS - Use VPS PiHole
+'''NOTE:''' depending on the setup, skip this and do it on the network stack side.
+
+Add the following to the "[Interface]" section to force PiHole DNS usage.
+
+```
+DNS = 99.0.99.1
+DNSDefaultRoute=true
+Domains=~.
+```
