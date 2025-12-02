@@ -1,6 +1,13 @@
+## Multiple profile file locations exist, based on context...
+## https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles?view=powershell-7.5
+##
+## I keep a copy in both:
+## /Users/USER/Documents/WindowsPowerShell/Profile.ps1
+## /Users/USER/Documents/WindowsPowerShell/Microsoft.Powershell_profile.ps1
+
 ## vim
-New-Alias -Name vi -Value 'C:\Program Files (x86)\vim\vim82\vim.exe'
-New-Alias -Name vim -Value 'C:\Program Files (x86)\vim\vim82\vim.exe'
+New-Alias -Force -Name vi -Value 'C:\Program Files\vim\vim91\vim.exe'
+New-Alias -Force -Name vim -Value 'C:\Program Files\vim\vim91\vim.exe'
 
 ## readline
 Set-PSReadLineOption -EditMode Emacs
