@@ -37,6 +37,9 @@ if [ $? != 0 ]; then
     NUM=4
     tmux new-window -t ${SESSION}:${NUM} -n ${WINDOW}
     tmux send-keys -t ${WINDOW} "ranger" C-m
+
+    ## Return to first window
+    tmux select-window -t 1
 fi
 
 

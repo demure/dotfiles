@@ -67,6 +67,9 @@ if [ $? != 0 ]; then
     NUM=10
     tmux new-window -t ${SESSION}:${NUM} -n ${WINDOW}
     tmux send-keys -t ${WINDOW} "ssh -t ${WINDOW} 'tmux attach -t 0 || tmux new'" C-m
+
+    ## Return to first window
+    tmux select-window -t 1
 fi
 
 
