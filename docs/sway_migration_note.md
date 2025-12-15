@@ -118,8 +118,8 @@
 ## new programs
 * sway
 * swaylock
-* wofi to replace rofi
-* wofi-pass
+* wofi to replace rofi -- rofi 2.0.0 added wayland support
+* wofi-pass -- rofi 2.0.0 added wayland support
   * wtype
 * wev
 * wshowkeys
