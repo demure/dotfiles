@@ -78,9 +78,6 @@ host mdns
     hostName demure.mdns.org
     Port 8080
 
-host sleep
-    hostName sleepermud.net
-
 host gnu
     hostName fencepost.gnu.org
 ### End Internet Places ### }}}
@@ -95,11 +92,8 @@ host wgroute
 host wgdoom
     hostName 10.0.10.3
 
-host wgstore
-    hostName 10.0.10.4
-
 host wgpocket
-    hostName 10.0.10.7
+    hostName 10.0.10.4
 
 host wgkvm
     hostName 10.0.10.8
@@ -107,6 +101,10 @@ host wgkvm
 
 host wgtn wgtruenas
     hostName 10.0.10.12
+
+host wgha wghomeassistant
+    homeName 10.0.10.29
+    User root
 ### End VPN ### }}}
 
 ### Local Places ### {{{
@@ -118,20 +116,16 @@ host route
     Port 500
     User root
 
-## NAS container for easy rsync
-host nas_fs nfs
-    hostName 10.0.0.10
-    Port 502
-    User root
-
-host deck
-    hostName deck-of-doom.lan
-    Port 22
-    User deck
+host kodi libreelec
+    hostName 10.0.0.9
 
 host clock
     hostName pi-clock.lan
     User pi
+
+host ha homeassistant
+    hostName 10.0.0.29
+    User root
 ### End Local Places ### }}}
 
 ## Default settings, unless overridden above
