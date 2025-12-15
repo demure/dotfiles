@@ -103,7 +103,7 @@ host wgtn wgtruenas
     hostName 10.0.10.12
 
 host wgha wghomeassistant
-    homeName 10.0.10.29
+    hostName 10.0.10.29
     User root
 ### End VPN ### }}}
 
