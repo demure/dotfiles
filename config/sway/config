@@ -303,17 +303,17 @@ bindsym $mod+Mod1+Right move workspace to output right
 
 
     ## wofi bindings
-    #bindsym $mod+Shift+p exec wofi-pass -t
-    #bindsym Shift+XF86Search exec wofi-pass -t  ## sofle keyboard
+    bindsym $mod+Shift+p exec wofi-pass -t
+    bindsym Shift+XF86Search exec wofi-pass -t  ## sofle keyboard
     #bindsym $mod+c exec cliphist list | wofi -S dmenu | cliphist decode | wl-copy
     ## Backup if rofi fails
     bindsym $mod+Ctrl+p exec wofi -G --show=run
 
     ## rofi bindings (v2.0.0 added wayland support)
     bindsym $mod+c exec cliphist list | rofi -dmenu | cliphist decode | wl-copy
-    bindsym $mod+Shift+p exec rofi-pass
-    bindsym Shift+XF86Search exec rofi-pass     ## sofle keyboard
-    bindsym Ctrl+XF86Search exec rofi-pass      ## sofle keyboard
+    #bindsym $mod+Shift+p exec rofi-pass
+    #bindsym Shift+XF86Search exec rofi-pass     ## sofle keyboard
+    #bindsym Ctrl+XF86Search exec rofi-pass      ## sofle keyboard
 
 
 ### Sway Modes ### {{{
