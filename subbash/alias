@@ -55,7 +55,8 @@ fi
 ### End pinfo ### }}}
 
 ### Git Aliases ### {{{
-alias git_force_reset='git fetch --all && git reset --hard origin/master'
+#alias git_force_reset='git fetch --all && git reset --hard origin/master'
+alias git_force_reset='git fetch --all && git reset --hard origin/master || git reset --hard origin/main'
 ### End Git Aliases ### }}}
 
 ### Docker ### {{{

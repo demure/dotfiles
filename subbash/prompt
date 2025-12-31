@@ -151,6 +151,9 @@ function __prompt_command() {
                         if [ "${GSPcb}" == "[master]" ]; then
                             local GSPcb="[M]"           ## Because why waste space
                         fi
+                        if [ "${GSPcb}" == "[main]" ]; then
+                            local GSPcb="[m]"           ## Because why waste space
+                        fi
 
                         ## Test if in detached head state, and set output to first 8char of hash
                         if [ "${GSPcb}" == "[(detached)]" ]; then
