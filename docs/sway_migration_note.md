@@ -39,6 +39,7 @@
   * disable search suggestions above history...
     * Show search suggestions ahead of browsing history in address bar results, uncheck
   * fullscreen videos into just the tile: full-screen-api.ignore-widgets
+  * disable ai, browser.ml.enable false
 
 * shikane setup
 
