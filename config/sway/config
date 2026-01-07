@@ -65,10 +65,11 @@ hide_edge_borders smart
 ### End Idle Configuration ### }}}
 
 ## Handing locking.
-## Turns off screen first. Then later locks. Also tries to lock before sleep.
+## Turns off screen first. dpms for external displays. Then later locks. Also tries to lock before sleep.
 ## Using exec_always so that reloading changes work.
 exec_always killall swayidle; swayidle -w \
     timeout 300 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+    timeout 300 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
     timeout 600 'swaylock -f -F -c 2E3436' \
     before-sleep 'swaylock -f -F -c 2E3436' \
     lock 'swaylock -f -F -c 2E3436'
