@@ -95,16 +95,19 @@ host wgdoom
 host wgpocket
     hostName 10.0.10.4
 
-host wgkvm
-    hostName 10.0.10.8
-    Port 500
-
 host wgtn wgtruenas
     hostName 10.0.10.12
+
+host wgde wgdesk
+    hostName 10.0.10.14
 
 host wgha wghomeassistant
     hostName 10.0.10.29
     User root
+
+host wgkvm
+    hostName 10.0.10.100
+    Port 500
 ### End VPN ### }}}
 
 ### Local Places ### {{{

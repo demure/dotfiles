@@ -59,6 +59,7 @@
 | record term as SVG   | termtosvg               |                           |
 | Term image viewing   | timg                    | many                      |
 | Media Status         | playerctl               |                           |
+| wrangle outputs      | rlwrap                  |                           |
 |----------------------|-------------------------|---------------------------|
 
 
