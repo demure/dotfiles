@@ -51,6 +51,9 @@ function __prompt_command() {
         elif [ ${HOSTNAME} == 'pocket' ]; then
             local PSCol="$Cya"              ## For UMPC
             local PSOpt="\h "
+        elif [ ${HOSTNAME} == 'desk' ]; then
+            local PSCol="$Cya"              ## For Desk Computer
+            local PSOpt="\h "
         elif [ ${HOSTNAME} == 'vps-of-doom' ]; then
             local PSCol="$Blu"              ## For VPS
             local PSOpt="${SHost} "
