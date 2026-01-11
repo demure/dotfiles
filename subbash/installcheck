@@ -20,10 +20,10 @@ cacaview scanmem hexcurse lsof pidof tomb xset pinentry-curses pinentry-tty \
 ranger rfkill sshfs tree unar wget iotop parted caff fail2ban-client rsync \
 weechat diff file find gpg gpg2 nc lnav cheat dfc newsboat task redshift git \
 xdotool clamscan iftop syncthing wireshark hwmon bc entr gpm tlp sfill vit \
-curl lshw parallel minicom khal scdaemon grep less cmus mpv tmuxinator iw \
+curl lshw parallel minicom khal scdaemon grep less cmus mpv iw unrar 7zip \
 dmidecode gawk bvi pandoc djmount openvpn resolvconf borg iptraf-ng make jq \
 acpi termdown cgdb ttyd trash-put udiskie mtr tsp fwupdmgr exiv2 z.sh unzip \
-pdfunite rubber epy tuir urlscan rlwrap)
+pdfunite rubber epy tuir urlscan rlwrap timg gzip)
 
 for i in "${CLI_LIST[@]}"; do
     if [[ ! $(command -v ${i}) ]]; then
@@ -52,7 +52,7 @@ W_GUI_LIST=(mcomix zathura calibre libreoffice gparted zeal font-manager \
 gimp baobab gvim touchegg neato notify-send qtpass youtube-dl yt-dlp \
 inkscape qutebrowser pinentry-gtk2 sgt-signpost kitty firefox speedcrunch \
 playerctl sway swaylock wofi wofi-pass wev wshowkeys grim grimshot swayimg \
-nwg-displays shikane wpaperd wvkbd-mobintl cliphist pqiv rot8)
+nwg-displays shikane wpaperd wvkbd-mobintl cliphist pqiv rot8 rofi waybar)
 
 for i in "${W_GUI_LIST[@]}"; do
     if [[ ! $(command -v ${i}) ]]; then
