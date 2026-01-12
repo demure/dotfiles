@@ -355,9 +355,9 @@ bindsym $mod+Mod1+Right move workspace to output right
         bindsym b exec brightnessctl set 30%, mode "default"
 
         ## One minute timer, big
-        bindsym t exec foot -F -f "PragmataPro Mono Liga:size=70" -e termdown -WBb -c 10 -1 5 -t TIME 1m, mode "default"
+        bindsym t exec foot -T termdown -F -f "PragmataPro Mono Liga:size=70" termdown -WBb -c 10 -q 5 -t TIME 1m, mode "default"
         ## One minute timer, small (regular)
-        bindsym Shift+t exec foot termdown -WBb -c 10 -q 5 -t TIME 1m, mode "default"
+        bindsym Shift+t exec foot -T termdown termdown -WBb -c 10 -q 5 -t TIME 1m, mode "default"
 
         ## Return to default mode
         bindsym Return mode "default"
