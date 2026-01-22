@@ -14,6 +14,7 @@
 |----------------------|-------------------------|---------------------------|
 | Editor               | vim                     | txt, etc                  |
 | Web Browser          | w3m                     | http                      |
+| Web Browser          | chawan (cha)            | http, sixel images        |
 | Batch Rename         | qmv                     | Note: from renameutils    |
 | System Clipboard     | clipster                |                           |
 | Email Client         | neomutt                 |                           |
