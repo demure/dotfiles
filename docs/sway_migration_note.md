@@ -2,7 +2,6 @@
 * use nwg-displays to setup default monitors for workspaces?
 * adjust on screen keyboard layout/profile?
 * look into a cli command to invert screen colors in wayland
-* termdown countdown binding
 * flip display output horizontally binding
 * comic reader that is better with touch screens than mcomix
 * look into wayland middle click scrolling
@@ -155,6 +154,7 @@
 * imv (pqiv is not 1:1 in wayland for me)
 * displaylink
   * linux-headers
+* exfatprogs (for exfat mounting)
 
 
 ## old programs
