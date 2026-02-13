@@ -83,7 +83,7 @@ exec wpaperd -d
 exec nm-applet
 exec blueman-applet
 exec udiskie
-exec syncthing
+exec syncthing --no-browser
 ### End Exec Programs ### }}}
 
 
