@@ -166,6 +166,7 @@
 * sheepshaver
 * epy
 * qutebrowser
+* cronie
 
 
 ## References
