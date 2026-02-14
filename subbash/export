@@ -92,7 +92,7 @@ fi
     ### Fortune At Login ### {{{
     ## Tests for fortune, root, interactive shell, and dumb term
     if [ $(command -v fortune) ] && [ ${UID} != '0' ] && [[ $- == *i* ]] && [ ${TERM} != 'dumb' ]; then
-        fortune -a
+        fortune
       else
         MISSING_ITEMS+="fortune, "
     fi
