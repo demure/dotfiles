@@ -29,21 +29,15 @@ This file helps keep track of my various cronjobs.
 ```
 ## Clean up vim backups/undos that are haven't been modified in over 60 days
 0 */12 * * * find $HOME/.vim/back/ $HOME/.vim/undo/ -maxdepth 1 -type f -mtime +60 -delete
-
-## borgbackup wrapper
-0 */1 * * * sudo /usr/local/sbin/borg_wrap.sh -q
-
-## Update calendars for khal
-0 */12 * * * /usr/bin/vdirsyncer sync &>/dev/null
-
 ```
 
 
 ### Laptop ###
 #### User `crontab -e` ###
 ```
-## Run reverse ssh script
-*/10 * * * * $HOME/projects/personal/scripts/cron_key.sh "$HOME/projects/personal/scripts/reverse_ssh.sh"
+## borgbackup wrapper¬
+0 4,6,8,10,12,14,16,18 * * * sudo borgmatic create¬
+0 0,2,20,22 * * * sudo borgmatic¬
 
 ## Clean up pianobar album art dir
 0 */6 * * * find $HOME/.config/pianobar/albumart/ -maxdepth 1 -type f -mtime +60 -delete
@@ -53,16 +47,6 @@ This file helps keep track of my various cronjobs.
 ### VPS ###
 #### User `crontab -e` ###
 ```
-## Copy irpg data to idle rpg website
-0 */1 * * * cp /irpg/quest.txt /irpg/modifiers.txt /irpg/irpg.db /var/www/irpg/data/
-
-## Make sure irpg is up
-* */2 * * * /irpg/irpg_wrapper.sh
-
-## Make sure there is a tunnel to sdf's ircd
-## NOTE: not currently needed due to oline vhost.
-#*/10 * * * * $HOME/projects/personal/scripts/cron_key.sh "$HOME/projects/personal/scripts/sdf_tun_ssh.sh"
-
 ## Update pit.demu.red
 0 */2 * * * $HOME/projects/personal/scripts/endlessh_scoreboard.py
 
