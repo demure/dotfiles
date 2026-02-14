@@ -35,9 +35,9 @@ This file helps keep track of my various cronjobs.
 ### Laptop ###
 #### User `crontab -e` ###
 ```
-## borgbackup wrapper¬
-0 4,6,8,10,12,14,16,18 * * * sudo borgmatic create¬
-0 0,2,20,22 * * * sudo borgmatic¬
+## borgbackup wrapper
+0 4,6,8,10,12,14,16,18 * * * sudo borgmatic create
+0 0,2,20,22 * * * sudo borgmatic
 
 ## Clean up pianobar album art dir
 0 */6 * * * find $HOME/.config/pianobar/albumart/ -maxdepth 1 -type f -mtime +60 -delete
