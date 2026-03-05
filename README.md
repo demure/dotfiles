@@ -44,19 +44,8 @@ For historical purposes I still push into the [github] and [notabug] instance.
 This is mostly due to wanting to keep off github, [gitorious] dying, and notabug's webui becoming spotty.  
 
 
-
 ### Install: ###
-
-Aside from installing by hand, you could use [GNU Stow].  
-example:  
-
-```
-cd path_to_dotfiles_clone/GNU_Stow
-stow -t ~ cli     ## main programs
-stow -t ~ gui     ## gui programs
-```
-
-**NOTE:** `-t PATH` is used as the stow 'packages' are recessed.  
+Aside from installing by hand, I have some quick scripts in install for different targets.  
 
 
 ### Notable Setups: ###
@@ -84,7 +73,7 @@ stow -t ~ gui     ## gui programs
 If you do wish to contact me I am on IRC on sdf, tilde, and libera  
 
 
-###### Last edit 2025-09-30 ######
+###### Last edit 2026-03-05 ######
 
 
 [demu.red]: http://demu.red
@@ -92,4 +81,3 @@ If you do wish to contact me I am on IRC on sdf, tilde, and libera
 [github]: https://gitorious.org/demure/dotfiles
 [gitorious]: https://en.wikipedia.org/wiki/Gitorious
 [notabug]: https://notabug.org/demure/dotfiles/
-[GNU Stow]: https://www.gnu.org/software/stow/

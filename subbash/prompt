@@ -60,9 +60,6 @@ function __prompt_command() {
         elif [ ${HOSTNAME} == 'ma.sdf.org' ]; then
             local PSCol="${Yel}"            ## For sdf MetaArray
             local PSOpt="\h "
-        elif [ ${HOSTNAME} == 'fencepost.gnu.org' ]; then
-            local PSCol="${On_Pur}"         ## For Gnu
-            local PSOpt="\h "
         elif [ ${HOSTTYPE} == 'arm' ]; then
             local PSCol="$Gre"              ## For pi
             local PSOpt="${SHost} "
@@ -71,14 +68,11 @@ function __prompt_command() {
         elif [[ "${MACHTYPE}" == "x86_64--netbsd" && "${OSTYPE}" == "netbsd" ]]; then
             local PSCol="${Yel}"            ## For sdf Main Cluster
             local PSOpt="\h "
-        elif [ "${MACHTYPE}" == "mips-openwrt-linux-gnu" ]; then
-            local PSCol="${On_Pur}"         ## For OpenWrt
-            local PSOpt="\h "
-          else
+        else
             local PSCol="${Pur}"            ## Un-designated catch-all
             if [ ! ${HOSTNAME} == 'localhost' ]; then
                 local PSOpt="\h "
-              else
+            else
                 PSOS="$(awk -F '=' '/^ID=/ {print $2}' /etc/*release)"
                 local PSOpt="[${PSOS}] "
             fi
