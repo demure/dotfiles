@@ -44,9 +44,32 @@ function __prompt_command() {
             PS1+="${Red}${EXIT}${RCol}"     ## Add exit code, if non 0
         fi
 
-        ### Machine Test ### {{{
+        ### Prompt Tailoring ### {{{
         local SHost="$(echo $HOSTNAME | awk 'match($0,/^[a-zA-Z0-9]+/) {print substr($0,RSTART,RLENGTH)}')"
-        if [ ${HOSTNAME} == 'moving-computer-of-doom' ]; then
+
+        if [ -e "${HOME}/.config/dotconf/prompt_color" ]; then
+            local PSOpt="\h "
+            case $(<${HOME}/.config/dotconf/prompt_color) in
+                "black") PSCol="$Bla" ;;
+                "red") PSCol="$Red" ;;
+                "green") PSCol="$Gre" ;;
+                "yellow") PSCol="$Yel" ;;
+                "blue") PSCol="$Blu" ;;
+                "purple") PSCol="$Pur" ;;
+                "cyan") PSCol="$Cya" ;;
+                "white") PSCol="$Whi" ;;
+                "bold black") PSCol="$BBla" ;;
+                "bold red") PSCol="$BRed" ;;
+                "bold green") PSCol="$BGre" ;;
+                "bold yellow") PSCol="$BYel" ;;
+                "bold blue") PSCol="$BBlu" ;;
+                "bold purple") PSCol="$BPur" ;;
+                "bold cyan") PSCol="$BCya" ;;
+                "bold white") PSCol="$BWhi" ;;
+                *) PSOpt+="bad_color " ;;
+            esac
+        ## Host Test
+        elif [ ${HOSTNAME} == 'moving-computer-of-doom' ]; then
             local PSCol="$Cya"              ## For Main Computer
         elif [ ${HOSTNAME} == 'pocket' ]; then
             local PSCol="$Cya"              ## For UMPC
@@ -78,7 +101,7 @@ function __prompt_command() {
             fi
             MISSING_ITEMS+="machine-prompt, "
         fi
-        ### End Machine Test ### }}}
+        ### End Prompt Tailoring ### }}}
 
         PS1+="${PSCol}${PSOpt}\W${RCol}"    ## Current working dir
 

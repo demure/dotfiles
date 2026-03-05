@@ -44,6 +44,7 @@ fi
 touch ${HOME}/.config/dotconf/no_git_prompt
 touch ${HOME}/.config/dotconf/no_path
 touch ${HOME}/.config/dotconf/prompt_date
+echo "green" > ${HOME}/.config/dotconf/prompt_color
 
 
 ## Notes on manual next steps

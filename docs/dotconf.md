@@ -30,12 +30,13 @@ The existence of these files will be checked in `${HOME}/.config/dotconf/`
 ### Extras ###
 The existence of these files will be checked in `${HOME}/.config/dotconf/`
 
-|---------------|-----------------------------|
-| File          | Purpose                     |
-|---------------|-----------------------------|
-| prompt_date   | add date to PS1             |
-| sudo_preserve | preserve user ENV with sudo |
-|---------------|-----------------------------|
+|---------------|------------------------------------------|
+| File          | Purpose                                  |
+|---------------|------------------------------------------|
+| prompt_date   | add date to PS1                          |
+| sudo_preserve | preserve user ENV with sudo              |
+| prompt_color  | cat a supported color name into the file |
+|---------------|------------------------------------------|
 
 
 ### bashrc.local ###
