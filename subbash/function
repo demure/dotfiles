@@ -103,7 +103,7 @@ function exifclean() {
 ## An aproximation of Notational Velocity and Terminal Velocity
 ## gensub currently replacing
 function note() {
-    if [ $@ != "" ]; then
+    if [[ $@ != "" ]]; then
         echo "No augments accepted in this function!"
         return 2
     fi
