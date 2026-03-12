@@ -28,7 +28,7 @@ if [ -d ${PARENT_DIR}/.git  ]; then
         ln -sf ${PARENT_DIR}/${c} ${HOME}/.${c}
     done
 
-    ln -sf ${PARENT_DIR}/${c} ${HOME}/.bash_login
+    ln -sf ${PARENT_DIR}/bashrc ${HOME}/.bash_login
 
     confs=(tmux)
     for c in "${confs}"; do
@@ -44,6 +44,7 @@ fi
 touch ${HOME}/.config/dotconf/no_git_prompt
 touch ${HOME}/.config/dotconf/no_path
 touch ${HOME}/.config/dotconf/prompt_date
+echo "green" > ${HOME}/.config/dotconf/prompt_color
 
 
 ## Disable vim plugins

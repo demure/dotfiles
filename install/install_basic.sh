@@ -27,7 +27,7 @@ if [ -d ${PARENT_DIR}/.git  ]; then
         ln -sf ${PARENT_DIR}/${c} ${HOME}/.${c}
     done
 
-    ln -sf ${PARENT_DIR}/${c} ${HOME}/.bash_login
+    ln -sf ${PARENT_DIR}/bashrc ${HOME}/.bash_login
 
     confs=(tmux)
     for c in "${confs}"; do
