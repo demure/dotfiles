@@ -8,6 +8,7 @@
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 PARENT_DIR=$( echo ${SCRIPT_DIR} | awk -F'/' 'BEGIN{OFS=FS} {$NF=""; print}' | sed 's/\/$//' )
 
+
 ## Prevent running as root for safety
 if [ ${UID} == 0 ]; then
     echo "Do not run this as root."
@@ -22,14 +23,14 @@ mkdir -p $HOME/.config/dotconf
 
 ## Link configs into place
 if [ -d ${PARENT_DIR}/.git  ]; then
-    confs=(inputrc vimrc subbash bashrc)
+    confs=( inputrc vimrc subbash bashrc )
     for c in "${confs}"; do
         ln -sf ${PARENT_DIR}/${c} ${HOME}/.${c}
     done
 
     ln -sf ${PARENT_DIR}/bashrc ${HOME}/.bash_login
 
-    confs=(tmux)
+    confs=( tmux )
     for c in "${confs}"; do
         ln -sf ${PARENT_DIR}/config/${c} ${HOME}/.config/${c}
     done
