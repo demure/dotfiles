@@ -14,7 +14,7 @@ MISSING_CLI=""
 MISSING_GUI=""
 
 ### CLI ### {{{
-CLI_LIST=(pinfo qmv vim w3m neomutt tmux ncdu pass notmuch msmtp \
+CLI_LIST=(pinfo qmv vim w3m neomutt tmux ncdu pass notmuch msmtp rg yazi \
 mbsync urlview htop aircrack-ng mosh nmap fusermount exfatfsck fzf qemu-io \
 cacaview scanmem hexcurse lsof pidof tomb xset pinentry-curses pinentry-tty \
 ranger rfkill sshfs tree unar wget iotop parted caff fail2ban-client rsync \
