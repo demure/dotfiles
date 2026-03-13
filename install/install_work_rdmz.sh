@@ -24,14 +24,14 @@ mkdir -p $HOME/.config/dotconf
 ## Link configs into place
 if [ -d ${PARENT_DIR}/.git  ]; then
     confs=( inputrc vimrc subbash bashrc )
-    for c in "${confs}"; do
+    for c in "${confs[@]}"; do
         ln -sf ${PARENT_DIR}/${c} ${HOME}/.${c}
     done
 
     ln -sf ${PARENT_DIR}/bashrc ${HOME}/.bash_login
 
     confs=( tmux )
-    for c in "${confs}"; do
+    for c in "${confs[@]}"; do
         ln -sf ${PARENT_DIR}/config/${c} ${HOME}/.config/${c}
     done
 else
