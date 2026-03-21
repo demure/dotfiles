@@ -106,7 +106,7 @@ function note() {
     ## Original Oneliner
     #pushd ~/Notes 1>/dev/null && vim $(fzf -i --cycle --reverse --preview-window=down --preview='cat {}' --print-query | gawk 'END{if($0 !~ /.txt$/){$0=gensub(" ","_","g",$0) ".txt"}; print $0}'); popd 1>/dev/null
 
-    if [[ $@ != "" ]]; then
+    if [ $# -ne 0 ]; then
         echo "No augments accepted in this function!"
         return 2
     fi
@@ -125,3 +125,26 @@ function note() {
     popd 1>/dev/null
 }
 ### End Note ### }}}
+
+### rfv ### {{{
+## rfv (ripgrep fzf vim) -- A fancy search using ripgrep with a second round of interaction and preview in fzf with the resulting file and line opened in vim
+function rfv() {
+    if [ $# -gt 2 ]; then
+        echo "Max of two augment accepted!"
+        echo "rfv string [path]"
+        return 2
+    fi
+
+    if [ $# -eq 0 ]; then
+        SEARCH="."
+    else
+        SEARCH="$@"
+    fi
+
+    if [[ ! $(command -v rg) ]]; then echo "rg not found!"; return 2; fi
+    if [[ ! $(command -v fzf) ]]; then echo "fzf not found!"; return 2; fi
+    if [[ ! $(command -v vim) ]]; then echo "vim not found!"; return 2; fi
+
+    rg --color=always --line-number --no-heading --ignore-case ${SEARCH} | fzf --cycle --reverse --ansi --delimiter=: --nth=1.. --preview 'FILE=$(echo {} | cut -d: -f1); LINE=$(echo {} | cut -d: -f2); sed --quiet $((${LINE} - 5 > 1 ? ${LINE} - 5 : 1)),$((${LINE} + 5))p $FILE' --preview-window 'up:11' --bind "enter:become(vim +{2} {1})"
+}
+### End rfv ### }}}
