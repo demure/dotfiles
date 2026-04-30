@@ -13,20 +13,17 @@ set show-all-if-ambiguous on
 set completion-map-case on
 ## Disable more-like pager of completion list
 set page-completions off
-## Steps through list, can give n first
-"\t": menu-complete
+## menu Steps through list, can give n first
+#"\t": menu-complete
+"\t": complete
+"\e[Z": menu-complete
+## Add trailing / to symlink dirs in menu-complete
+set mark-symlinked-directories on
 ## Colored completion based on filetype
 set colored-stats on
 ## When completing in middle of word, don't dupe matching text after word
 set skip-completed-text on
-## Show filetype info in completion suggestions, like ls -F output
-set visible-stats on
-
-## Shift-TAB to menu-complete backwards
-# cf. http://www.tikirobot.net/wp/2006/03/29/reverse-menu-complete-in-bash/
-#   \C-y:"\M--\C-i"
-
-## Append symbol for file, in tab completion
+## Show filetype info in completion suggestions, like ls -F output. Appends symbol.
 set visible-stats on
 ### End Completion Stuffs ### }}}
 
@@ -65,6 +62,4 @@ set bell-style audible
 ### End Bell ### }}}
 
 ### Testing ### {{{
-    ## Add missing / when tab-completing symbolic links to dirs
-#   set mark-symlinked-directories on
 ### End Testing ### }}}
