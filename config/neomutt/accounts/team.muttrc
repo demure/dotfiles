@@ -1,0 +1,25 @@
+## Account Settings
+set from        = "demure@tilde.team"
+set sendmail    = "/usr/bin/msmtp -a team"
+macro index \Co     "<shell-escape>mbsync team<enter><refresh>" "run mbsync for current account."
+
+## Default inbox
+set spoolfile   = "+team/INBOX"
+
+## Other special folders
+set mbox        = "+team/INBOX"
+set postponed   = "+team/Drafts"
+set record      = "+team/Sent"
+unset trash
+set trash       = "+team/Trash"
+
+## Color border
+color status green black
+
+## Contacts
+bind editor <Tab> complete      ## default Mutt setting
+bind editor ^T complete-query   ## default Mutt setting
+unset query_command             ## default Mutt setting
+
+## Unbind archive
+bind index,pager S noop

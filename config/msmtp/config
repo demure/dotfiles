@@ -55,4 +55,17 @@ tls on
 tls_trust_file /etc/ssl/certs/ca-certificates.crt
 ### end gmail ### }}}
 
-account default : sdf
+### team ### {{{
+account team
+host smtp.tilde.team
+port 587
+protocol smtp
+auth on
+passwordeval pass cli/mail-team
+from demure@tilde.team
+user demure
+tls on
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+### End team ### }}}
+
+account default : gmail

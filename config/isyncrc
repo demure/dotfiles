@@ -118,3 +118,29 @@ SyncState *
 ##MaxMessages $maxmes
 ExpireUnread no
 ### End VPS Section ### }}}
+
+### team Section ### {{{
+IMAPStore team-remote
+Host imap.tilde.team
+Port 993
+User demure
+PassCmd "pass cli/mail-team"
+AuthMechs LOGIN
+TLSType IMAPS
+
+MaildirStore team-local
+Subfolders Verbatim
+Path ~/.mail/team/
+Inbox ~/.mail/team/INBOX
+Flatten .
+
+Channel team
+Expunge Both
+Far :team-remote:
+Near :team-local:
+Patterns *
+Create Both
+SyncState *
+##MaxMessages $maxmes
+ExpireUnread no
+### End team Section ### }}}
