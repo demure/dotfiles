@@ -72,6 +72,9 @@
     ### Tilde ### {{{
     host team
         hostName tilde.team
+
+    host bteam
+        hostName bsd.tilde.team
     ### End Tilde ### }}}
 
 host mdns
