@@ -33,10 +33,15 @@ if [ $? != 0 ]; then
     tmux new-window -t ${SESSION}:${NUM} -n ${WINDOW}
     tmux send-keys -t ${WINDOW} "neomutt" C-m
 
-    WINDOW='file'
+    WINDOW='team'
     NUM=4
     tmux new-window -t ${SESSION}:${NUM} -n ${WINDOW}
-    tmux send-keys -t ${WINDOW} "ranger" C-m
+    tmux send-keys -t ${WINDOW} "ssh -t ${WINDOW} 'tmux attach -t 0 || tmux new'" C-m
+
+    WINDOW='yazi'
+    NUM=5
+    tmux new-window -t ${SESSION}:${NUM} -n ${WINDOW}
+    tmux send-keys -t ${WINDOW} "yazi" C-m
 
     ## Return to first window and pane
     tmux select-window -t 1
