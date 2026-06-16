@@ -15,6 +15,7 @@ set sidebar_divider_char = '│'      ## Pretty line-drawing character
 set sidebar_short_path              ## Shorten mailbox names
 set sidebar_delim_chars = "/"       ## Delete mailbox name up to the last / character
 set mail_check_stats                ## Need for sidebar_format's %N
+set mail_check_stats_interval = 30  ## Interval of stats poll
 ## '%B' mailbox name... replaced iwth %D for descriptive;   '%?F? [%F]?' If flag, show flag;    '%* ' pad spaces;   '%?N?%N/?' if new, show new with '/' char; '%?S?%S?' if size, show size.
 #set sidebar_format = '%B%?F? [%F]?%* %?N?%N/?%?S?%S?'
 set sidebar_format = '%D%?F? [%F]?%* %?N?%N/?%?S?%S?'
