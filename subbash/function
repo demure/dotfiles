@@ -148,3 +148,35 @@ function rfv() {
     rg --color=always --line-number --no-heading --ignore-case ${SEARCH} | fzf --cycle --reverse --ansi --delimiter=: --nth=1.. --preview 'FILE=$(echo {} | cut -d: -f1); LINE=$(echo {} | cut -d: -f2); sed --quiet $((${LINE} - 5 > 1 ? ${LINE} - 5 : 1)),$((${LINE} + 5))p $FILE' --preview-window 'up:11' --bind "enter:become(vim +{2} {1})"
 }
 ### End rfv ### }}}
+
+### virustotal Hash Lookup ### {{{
+## Gets hash of file and looks it up on virustotal
+function vthl() {
+    if [ ! -f ${HOME}/.config/vthl ]; then
+        echo "Not ${HOME}/.config/vthl with api key found"
+        return 2
+    else
+        API_KEY="$(cat ${HOME}/.config/vthl)"
+        if [[ ! "${API_KEY}" =~ ^[a-fA-F0-9]{64}$ ]]; then
+            echo "Bad api key in ${HOME}/.config/vthl"
+            return 2
+        fi
+    fi
+
+    if [ $# -ne 1 ]; then
+        echo "Max of one augment accepted!"
+        echo "vthl [path/to/file]"
+        return 2
+    fi
+
+    FILE="$@"
+    FILE_HASH="$(sha256sum ${FILE})"
+
+    if [ $? -ne 0 ]; then
+        echo "Bad file path"
+        return 2
+    fi
+
+    curl --request GET --url https://www.virustotal.com/api/v3/files/${FILE_HASH%% *} --header "x-apikey: ${API_KEY}" --header 'accept: application/json' | jq -r '[.data.attributes.popular_threat_classification.suggested_threat_label], [.data.attributes.last_analysis_stats | "Malicious: \(.malicious) | Undetected: \(.undetected)"]' | jq -r '.[]'
+}
+### End virustotal Hash Lookup ### }}}
