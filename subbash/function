@@ -177,6 +177,6 @@ function vthl() {
         return 2
     fi
 
-    curl --request GET --url https://www.virustotal.com/api/v3/files/${FILE_HASH%% *} --header "x-apikey: ${API_KEY}" --header 'accept: application/json' | jq -r '[.data.attributes.popular_threat_classification.suggested_threat_label], [.data.attributes.last_analysis_stats | "Malicious: \(.malicious) | Undetected: \(.undetected)"]' | jq -r '.[]'
+    curl --no-progress-meter --request GET --url https://www.virustotal.com/api/v3/files/${FILE_HASH%% *} --header "x-apikey: ${API_KEY}" --header 'accept: application/json' | jq -r '[.data.attributes.popular_threat_classification.suggested_threat_label], [.data.attributes.last_analysis_stats | "Malicious: \(.malicious) | Undetected: \(.undetected)"]' | jq -r '.[]'
 }
 ### End virustotal Hash Lookup ### }}}
