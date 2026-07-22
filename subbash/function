@@ -153,7 +153,7 @@ function rfv() {
 ## Gets hash of file and looks it up on virustotal
 function vthl() {
     if [ ! -f ${HOME}/.config/vthl ]; then
-        echo "Not ${HOME}/.config/vthl with api key found"
+        echo "No ${HOME}/.config/vthl file with api key found"
         return 2
     else
         API_KEY="$(cat ${HOME}/.config/vthl)"
@@ -164,7 +164,7 @@ function vthl() {
     fi
 
     if [ $# -ne 1 ]; then
-        echo "Max of one augment accepted!"
+        echo "Expects one augment!"
         echo "vthl [path/to/file]"
         return 2
     fi
