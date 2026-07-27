@@ -43,6 +43,11 @@ if [ $? != 0 ]; then
     tmux new-window -t ${SESSION}:${NUM} -n ${WINDOW}
     tmux send-keys -t ${WINDOW} "yazi" C-m
 
+    WINDOW='desk'
+    NUM=6
+    tmux new-window -t ${SESSION}:${NUM} -n ${WINDOW}
+    tmux send-keys -t ${WINDOW} "ssh -t wgdesk 'tmux attach -t arch || ~/.config/tmux/sessions/arch.sh'" C-m
+
     ## Return to first window and pane
     tmux select-window -t 1
     tmux select-pane -t 1
