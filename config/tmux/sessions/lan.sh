@@ -22,52 +22,52 @@ if [ $? != 0 ]; then
     #tmux new-window -t ${SESSION}:1 -n 'pi'
     tmux rename-window -t ${SESSION}:${NUM} ${WINDOW}
     #tmux send-keys -t ${WINDOW} "ssh -t ${WINDOW} 'tmux attach -t 0 || tmux new'" C-m
-    tmux send-keys -t ${WINDOW} "ssh -t ${WINDOW} 'tmux attach -t 0 || tmux new' || echo -e '\ntmux disconnected' \$(date '+Y-%m-%d %H:%M:%S')" C-m
+    tmux send-keys -t ${WINDOW} "ssh -t ${WINDOW} 'tmux attach -t 0 || tmux new' || echo -e '\ntmux disconnected' \$(date '+%Y-%m-%d %H:%M:%S')" C-m
 
     WINDOW='ex'
     NUM=2
     tmux new-window -t ${SESSION}:${NUM} -n ${WINDOW}
-    tmux send-keys -t ${WINDOW} "ssh -t ${WINDOW} 'tmux attach -t 0 || tmux new' || echo -e '\ntmux disconnected' \$(date '+Y-%m-%d %H:%M:%S')" C-m
+    tmux send-keys -t ${WINDOW} "ssh -t ${WINDOW} 'tmux attach -t 0 || tmux new' || echo -e '\ntmux disconnected' \$(date '+%Y-%m-%d %H:%M:%S')" C-m
 
     WINDOW='pr'
     NUM=3
     tmux new-window -t ${SESSION}:${NUM} -n ${WINDOW}
-    tmux send-keys -t ${WINDOW} "ssh -t ${WINDOW} 'tmux attach -t 0 || tmux new' || echo -e '\ntmux disconnected' \$(date '+Y-%m-%d %H:%M:%S')" C-m
+    tmux send-keys -t ${WINDOW} "ssh -t ${WINDOW} 'tmux attach -t 0 || tmux new' || echo -e '\ntmux disconnected' \$(date '+%Y-%m-%d %H:%M:%S')" C-m
 
     WINDOW='so'
     NUM=4
     tmux new-window -t ${SESSION}:${NUM} -n ${WINDOW}
-    tmux send-keys -t ${WINDOW} "ssh -t ${WINDOW} 'tmux attach -t 0 || tmux new' || echo -e '\ntmux disconnected' \$(date '+Y-%m-%d %H:%M:%S')" C-m
+    tmux send-keys -t ${WINDOW} "ssh -t ${WINDOW} 'tmux attach -t 0 || tmux new' || echo -e '\ntmux disconnected' \$(date '+%Y-%m-%d %H:%M:%S')" C-m
 
     WINDOW='ta'
     NUM=5
     tmux new-window -t ${SESSION}:${NUM} -n ${WINDOW}
-    tmux send-keys -t ${WINDOW} "ssh -t ${WINDOW} 'tmux attach -t 0 || tmux new' || echo -e '\ntmux disconnected' \$(date '+Y-%m-%d %H:%M:%S')" C-m
+    tmux send-keys -t ${WINDOW} "ssh -t ${WINDOW} 'tmux attach -t 0 || tmux new' || echo -e '\ntmux disconnected' \$(date '+%Y-%m-%d %H:%M:%S')" C-m
 
     WINDOW='sh'
     NUM=6
     tmux new-window -t ${SESSION}:${NUM} -n ${WINDOW}
-    tmux send-keys -t ${WINDOW} "ssh -t ${WINDOW} 'tmux attach -t 0 || tmux new' || echo -e '\ntmux disconnected' \$(date '+Y-%m-%d %H:%M:%S')" C-m
+    tmux send-keys -t ${WINDOW} "ssh -t ${WINDOW} 'tmux attach -t 0 || tmux new' || echo -e '\ntmux disconnected' \$(date '+%Y-%m-%d %H:%M:%S')" C-m
 
     WINDOW='lc'
     NUM=7
     tmux new-window -t ${SESSION}:${NUM} -n ${WINDOW}
-    tmux send-keys -t ${WINDOW} "ssh -t ${WINDOW} 'tmux attach -t 0 || tmux new' || echo -e '\ntmux disconnected' \$(date '+Y-%m-%d %H:%M:%S')" C-m
+    tmux send-keys -t ${WINDOW} "ssh -t ${WINDOW} 'tmux attach -t 0 || tmux new' || echo -e '\ntmux disconnected' \$(date '+%Y-%m-%d %H:%M:%S')" C-m
 
     WINDOW='ld'
     NUM=8
     tmux new-window -t ${SESSION}:${NUM} -n ${WINDOW}
-    tmux send-keys -t ${WINDOW} "ssh -t ${WINDOW} 'tmux attach -t 0 || tmux new' || echo -e '\ntmux disconnected' \$(date '+Y-%m-%d %H:%M:%S')" C-m
+    tmux send-keys -t ${WINDOW} "ssh -t ${WINDOW} 'tmux attach -t 0 || tmux new' || echo -e '\ntmux disconnected' \$(date '+%Y-%m-%d %H:%M:%S')" C-m
 
     WINDOW='le'
     NUM=9
     tmux new-window -t ${SESSION}:${NUM} -n ${WINDOW}
-    tmux send-keys -t ${WINDOW} "ssh -t ${WINDOW} 'tmux attach -t 0 || tmux new' || echo -e '\ntmux disconnected' \$(date '+Y-%m-%d %H:%M:%S')" C-m
+    tmux send-keys -t ${WINDOW} "ssh -t ${WINDOW} 'tmux attach -t 0 || tmux new' || echo -e '\ntmux disconnected' \$(date '+%Y-%m-%d %H:%M:%S')" C-m
 
     WINDOW='su'
     NUM=10
     tmux new-window -t ${SESSION}:${NUM} -n ${WINDOW}
-    tmux send-keys -t ${WINDOW} "ssh -t ${WINDOW} 'tmux attach -t 0 || tmux new' || echo -e '\ntmux disconnected' \$(date '+Y-%m-%d %H:%M:%S')" C-m
+    tmux send-keys -t ${WINDOW} "ssh -t ${WINDOW} 'tmux attach -t 0 || tmux new' || echo -e '\ntmux disconnected' \$(date '+%Y-%m-%d %H:%M:%S')" C-m
 
     ## Return to first window and pane
     tmux select-window -t 1
