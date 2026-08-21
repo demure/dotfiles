@@ -75,6 +75,9 @@
 
     host bteam
         hostName bsd.tilde.team
+
+    host steam
+        hostName srv.tilde.team
     ### End Tilde ### }}}
 
 host mdns
