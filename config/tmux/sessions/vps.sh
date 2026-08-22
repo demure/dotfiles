@@ -36,17 +36,18 @@ if [ $? != 0 ]; then
     WINDOW='team'
     NUM=4
     tmux new-window -t ${SESSION}:${NUM} -n ${WINDOW}
-    tmux send-keys -t ${WINDOW} "ssh -t ${WINDOW} 'tmux attach -t 0 || tmux new'" C-m
+    tmux send-keys -t ${WINDOW} "ssh -t ${WINDOW} 'tmux attach -t team || ~/.config/tmux/sessions/team.sh' || echo -e '\ntmux disconnected' \$(date '+%Y-%m-%d %H:%M:%S')" C-m
 
     WINDOW='yazi'
     NUM=5
     tmux new-window -t ${SESSION}:${NUM} -n ${WINDOW}
     tmux send-keys -t ${WINDOW} "yazi" C-m
 
-    WINDOW='desk'
+    WINDOW='wgdesk'
     NUM=6
     tmux new-window -t ${SESSION}:${NUM} -n ${WINDOW}
-    tmux send-keys -t ${WINDOW} "ssh -t wgdesk 'tmux attach -t arch || ~/.config/tmux/sessions/arch.sh'" C-m
+    tmux send-keys -t ${WINDOW} "ssh -t ${WINDOW} 'tmux attach -t arch || ~/.config/tmux/sessions/arch.sh' || echo -e '\ntmux disconnected' \$(date '+%Y-%m-%d %H:%M:%S')" C-m
+    tmux rename-window -t ${SESSION}:${NUM} "desk"
 
     ## Return to first window and pane
     tmux select-window -t 1
