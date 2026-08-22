@@ -19,7 +19,7 @@ if [ $? != 0 ]; then
     ## Create windows
     WINDOW='steam'
     NUM=1
-    tmux new-window -t ${SESSION}:${NUM} -n ${WINDOW}
+    tmux rename-window -t ${SESSION}:${NUM} ${WINDOW}
     tmux send-keys -t ${WINDOW} "ssh ${WINDOW}" C-m
     tmux rename-window -t ${SESSION}:${NUM} "srv"
 
@@ -31,8 +31,7 @@ if [ $? != 0 ]; then
 
     WINDOW='maint'
     NUM=3
-    tmux rename-window -t ${SESSION}:${NUM} ${WINDOW}
-    tmux split-window -t ${SESSION}:${NUM} -h
+    tmux new-window -t ${SESSION}:${NUM} -n ${WINDOW}
 
     ## Return to first window and pane
     tmux select-window -t 1
