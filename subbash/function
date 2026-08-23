@@ -152,13 +152,13 @@ function rfv() {
 ### virustotal Hash Lookup ### {{{
 ## Gets hash of file and looks it up on virustotal
 function vthl() {
-    if [ ! -f ${HOME}/.config/vthl ]; then
-        echo "No ${HOME}/.config/vthl file with api key found"
+    if [ ! -f ${HOME}/.config/api_keys/virustotal ]; then
+        echo "No ${HOME}/.config/api_keys/virustotal file with api key found"
         return 2
     else
-        API_KEY="$(cat ${HOME}/.config/vthl)"
+        API_KEY="$(cat ${HOME}/.config/api_keys/virustotal)"
         if [[ ! "${API_KEY}" =~ ^[a-fA-F0-9]{64}$ ]]; then
-            echo "Bad api key in ${HOME}/.config/vthl"
+            echo "Bad api key in ${HOME}/.config/api_keys/virustotal"
             return 2
         fi
     fi
@@ -180,3 +180,54 @@ function vthl() {
     curl --no-progress-meter --request GET --url https://www.virustotal.com/api/v3/files/${FILE_HASH%% *} --header "x-apikey: ${API_KEY}" --header 'accept: application/json' | jq -r '[.data.attributes.popular_threat_classification.suggested_threat_label], [.data.attributes.last_analysis_stats | "Malicious: \(.malicious) | Undetected: \(.undetected)"]' | jq -r '.[]'
 }
 ### End virustotal Hash Lookup ### }}}
+
+### Usercheck Email Look ### {{{
+## Looks up if email is a burner on UserCheck
+function ucel() {
+    if [ ! -f ${HOME}/.config/api_keys/usercheck ]; then
+        echo "No ${HOME}/.config/api_keys/usercheck file with api key found"
+        return 2
+    else
+        API_KEY="$(cat ${HOME}/.config/api_keys/usercheck)"
+        if [[ ! "${API_KEY}" =~ ^prd_[a-zA-Z0-9]{28}$ ]]; then
+            echo "Bad api key in ${HOME}/.config/api_keys/usercheck"
+            return 2
+        fi
+    fi
+
+    if [ $# -ne 1 ]; then
+        echo "Expects one augment!"
+        echo "ucel [email]"
+        return 2
+    fi
+
+    STRING="$@"
+    EMAIL=0
+    DOMAIN=0
+
+    ## email regex source https://colinhacks.com/essays/reasonable-email-regex
+    ## email ^(?!\.)(?!.*\.\.)([a-z0-9_'+\-\.]*)[a-z0-9_+\-]@([a-z0-9][a-z0-9\-]*\.)+[a-z]{2,}$
+    ## email fixed for bash ^([a-z0-9_'+\-\.]*)[a-z0-9_+\-]@([a-z0-9][a-z0-9\-]*\.)+[a-z]{2,}$
+    ## domain ^([a-z0-9][a-z0-9\-]*\.)+[a-z]{2,}$
+
+
+    REG_EMAIL="^([a-z0-9_'+\-\.]*)[a-z0-9_+\-]@([a-z0-9][a-z0-9\-]*\.)+[a-z]{2,}$"
+    REG_DOMAIN="^([a-z0-9][a-z0-9\-]*\.)+[a-z]{2,}$"
+
+    if [[ "${STRING}" =~ ${REG_EMAIL} ]]; then EMAIL=1; fi
+    if [[ "${STRING}" =~ ${REG_DOMAIN} ]]; then DOMAIN=1; fi
+
+    if [ ${EMAIL} == 0 ] && [ ${DOMAIN} == 0 ]; then
+        echo "Bad Email/Domain String!"
+        return 2
+    fi
+
+    if [ ${EMAIL} == 1 ]; then
+        curl --no-progress-meter --request GET --url "https://api.usercheck.com/email/${STRING}" --header "Authorization: Bearer ${API_KEY}" | jq -r '"Disposable:\t\(.disposable) \nPublic Domain:\t\(.public_domain) \nRelay Domian:\t\(.relay_domain) \nFree Subdomain:\t\(.free_subdomain) \nAlias:\t\t\(.alias) \nRole Account:\t\(.role_account) \nSpam:\t\t\(.spam)"'
+    fi
+
+    if [ ${DOMAIN} == 1 ]; then
+        curl --no-progress-meter --request GET --url "https://api.usercheck.com/domain/${STRING}" --header "Authorization: Bearer ${API_KEY}" | jq -r '"Disposable:\t\(.disposable) \nPublic Domain:\t\(.public_domain) \nRelay Domian:\t\(.relay_domain) \nFree Subdomain:\t\(.free_subdomain) \nAlias:\t\t\(.alias) \nRole Account:\t\(.role_account) \nSpam:\t\t\(.spam)"'
+    fi
+}
+### End Usercheck Email Look ### }}}
