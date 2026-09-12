@@ -32,12 +32,13 @@ alias vidres="ffprobe -v error -select_streams v:0 -show_entries stream=width,he
 ### End Misc Aliases ### }}}
 
 ### rsync Aliases ### {{{
+## NOTE: I am now just using `rsync -haP` manually, possibly swapping progress for `--info=progress2`
 ## Old rsync alias
-alias rsy='rsync -avrSPXRh'
+#alias rsy='rsync -avrSPXRh'
 ## Good for sending dirs from server to remote server
-alias rsy1='rsync -avSPRh'
+#alias rsy1='rsync -avSPRh'
 ## This one is for copying off the network shares.
-alias rsy2='rsync -rltDvSPRh'
+#alias rsy2='rsync -rltDvSPRh'
 ### End rsync Aliases ### }}}
 
 ### rename utils Aliases ### {{{
