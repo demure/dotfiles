@@ -86,6 +86,11 @@ if [ $? != 0 ]; then
     tmux new-window -t ${SESSION}:${NUM} -n ${WINDOW}
     tmux send-keys -t ${WINDOW} "ssh -t ${WINDOW} 'tmux attach -t 0 || tmux new' || echo -e '\ntmux disconnected' \$(date '+%Y-%m-%d %H:%M:%S')" C-m
 
+    WINDOW='oa'
+    NUM=14
+    tmux new-window -t ${SESSION}:${NUM} -n ${WINDOW}
+    tmux send-keys -t ${WINDOW} "ssh -t ${WINDOW} 'tmux attach -t 0 || tmux new' || echo -e '\ntmux disconnected' \$(date '+%Y-%m-%d %H:%M:%S')" C-m
+
     ## Return to first window and pane
     tmux select-window -t 1
     tmux select-pane -t 1
