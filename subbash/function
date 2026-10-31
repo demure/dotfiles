@@ -223,10 +223,12 @@ function ucel() {
     fi
 
     if [ ${EMAIL} == 1 ]; then
+        echo -e "\n"
         curl --no-progress-meter --request GET --url "https://api.usercheck.com/email/${STRING}" --header "Authorization: Bearer ${API_KEY}" | jq -r '"Disposable:\t\(.disposable) \nPublic Domain:\t\(.public_domain) \nRelay Domian:\t\(.relay_domain) \nFree Subdomain:\t\(.free_subdomain) \nAlias:\t\t\(.alias) \nRole Account:\t\(.role_account) \nSpam:\t\t\(.spam)"'
     fi
 
     if [ ${DOMAIN} == 1 ]; then
+        echo -e "\n"
         curl --no-progress-meter --request GET --url "https://api.usercheck.com/domain/${STRING}" --header "Authorization: Bearer ${API_KEY}" | jq -r '"Disposable:\t\(.disposable) \nPublic Domain:\t\(.public_domain) \nRelay Domian:\t\(.relay_domain) \nFree Subdomain:\t\(.free_subdomain) \nAlias:\t\t\(.alias) \nRole Account:\t\(.role_account) \nSpam:\t\t\(.spam)"'
     fi
 }
