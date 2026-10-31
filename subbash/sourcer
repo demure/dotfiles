@@ -11,15 +11,18 @@ so() { [ -s $1 ] && source $1; }
 
 #so ~/.subbash/profile                  ## main configuration
 
+
 ### Agents ### {{{
 ## These are outside of the function conf to skip the interactive check
 so ~/.subbash/sshagent                  ## SSH agent, have before export
 so ~/.subbash/sshgpgagent               ## SSH GPG agent, have before export
 ### End Agents ### }}}
 
+
 so ~/.subbash/export                    ## Exports
 so ~/.subbash/shopt                     ## Shopts
 so ~/.subbash/installcheck              ## Checks for installs, $MISSING_PROGRAMS
+
 
 ### Interactive ### {{{
 if [[ $- == *i* ]]; then
@@ -29,8 +32,6 @@ if [[ $- == *i* ]]; then
 fi
 ### End Interactive ### }}}
 
-## This needs to be after Interactive, to override
-so ~/.subbash/settings                  ## Machine dependent settings
 
 ### Overrides ### {{{
 ## Easy per host conf for tracking
