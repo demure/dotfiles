@@ -5,12 +5,14 @@
 # legacy https://notabug.org/demure/dotfiles
 # legacy repo http://github.com/demure/dotfiles
 
+
 ### Bash Exports ### {{{
 export CLICOLOR="YES"       ## Color 'ls', etc.
 export EDITOR=vim           ## Set default editor
 export BROWSER=firefox
 export BROWSERCLI=w3m
 export LESS='-R -M +Gg'     ## Add long prompt to less
+
 ## Adding PATH junk
 if [ ! -e "${HOME}/.config/dotconf/no_path" ]; then
     #export PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/pkg/bin:/usr/local/bin:/usr/local/sbin:${HOME}/projects/personal/scripts:${HOME}/bin:${HOME}/.local/bin:${HOME}/go/bin:/usr/local/games:/usr/games
@@ -25,6 +27,7 @@ fi
     export HISTIGNORE='ls:bg:fg:history'    ## Hist ignores exact match
     ### End History Settings ### }}}
 ### End Bash Exports ### }}}
+
 
 ### SSH Agents ### {{{
 if [ ! -e "${HOME}/.config/dotconf/no_agent" ]; then
@@ -46,6 +49,7 @@ if [ ! -e "${HOME}/.config/dotconf/no_agent" ]; then
     fi
 fi
 ### End SSH Agents ### }}}
+
 
 ### Grep Options ### {{{
 ## So, this code is because even though GREP_OPTIONS are 'dead',
@@ -72,6 +76,7 @@ if [ ${grep_test} == "ge" ]; then
 fi
 ### End Grep Options ### }}}
 
+
 ### z Jump Around ### {{{
 if [ ${UID} != '0' ] && [[ $- == *i* ]] && [ ${TERM} != 'dumb' ]; then
     if [ $(command -v z.sh) ]; then
@@ -89,6 +94,7 @@ if [ ${UID} != '0' ] && [[ $- == *i* ]] && [ ${TERM} != 'dumb' ]; then
 fi
 ### End z Jump Around ### }}}
 
+
 ### MOTD Stuff ### {{{
     ### Fortune At Login ### {{{
     ## Tests for fortune, root, interactive shell, and dumb term
@@ -99,19 +105,6 @@ fi
     fi
     ### End Fortune ### }}}
 
-    ### Memo At Login ### {{{
-    ## Tests for memo, root, interactive shell, and dumb term
-    # http://www.getmemo.org/index.html
-    if [ $(command -v memo) ] && [ ${UID} != '0' ] && [[ $- == *i* ]] && [ ${TERM} != 'dumb' ]; then
-        ## If it has been four or more hours, show.
-        if [ -e ${HOME}/.memo ] && [ "$(date +%s)" -ge "$(echo $(stat --printf=%Y ${HOME}/.memo) + 14400 | bc)" ]; then
-            memo -u 2>/dev/null
-            touch ${HOME}/.memo
-        fi
-      else
-        MISSING_ITEMS+="memo, "
-    fi
-    ### End Memo ### }}}
 
     ### Taskwarrior At Login ### {{{
     ## Tests for task, root, interactive shell, and dumb term
@@ -131,6 +124,7 @@ fi
     ### End Taskwarrior ### }}}
 ### End MOTD Stuff ### }}}
 
+
 ### Game Confs ### {{{
     ### Nethack Conf ### {{{
     if [ -f ${HOME}/.nethackrc ]; then
@@ -149,11 +143,13 @@ fi
     ### End Slash'em ### }}}
 ### End Game Confs ### }}}
 
+
 ### Figlet Fonts ### {{{
 if [ -d "${HOME}/.config/figfonts" ]; then
     export FIGLET_FONTDIR="${HOME}/.config/figfonts"
 fi
 ### End Figlet Fonts ### }}}
+
 
 ### Ensure Unicode ### {{{
 if [ -z "${LANG}" ]; then
@@ -163,7 +159,8 @@ fi
 if [ -z "${LANGUAGE}" ]; then
     export LANGUAGE="en_US.UTF-8"
 fi
-### Ensure Unicode ### }}}
+### End Ensure Unicode ### }}}
+
 
 ## This section is here for reminding people why you shouldn't force the TERM
 #   ### TERM color ### {{{
