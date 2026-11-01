@@ -5,6 +5,7 @@
 # legacy https://notabug.org/demure/dotfiles
 # legacy repo http://github.com/demure/dotfiles
 
+
 ### Extract Function ### {{{
 ## Extract most types of compressed files
 function extract {
@@ -31,6 +32,7 @@ function extract {
 }
 ### End Extract ### }}}
 
+
 ### Man Function ### {{{
 ## Color man pages with less (is a `most` way too...)
 man() {
@@ -46,16 +48,19 @@ man() {
 }
 ### End Man ### }}}
 
+
 ### Git Files Hist Function ### {{{
 function git_files_hist() {
 git log --pretty=%h | while read hash; do git ls-tree -r ${hash} | awk '{print $4}'; done | sort -u
 }
 ### End Git Hist ### }}}
 
+
 ### Backup File ### {{{
 # http://xmodulo.com/useful-bash-aliases-functions.html
 backup() { cp "$1"{,.bak};}
 ### End Backup ### }}}
+
 
 ### IP Look Up ### {{{
 ipinfo() {
@@ -85,12 +90,14 @@ ipapi() {
 }
 ### End IP Look Up ### }}}
 
+
 ### Mpv Search Youtube ### {{{
 ## mm "search terms"
 function mm() {
     mpv --no-video --ytdl-format=bestaudio ytdl://ytsearch10:"$@"
 }
 ### End Mpv Search ### }}}
+
 
 ### Remove gps exif ### {{{
 ## Iterates over contents of current dir
@@ -99,6 +106,7 @@ function exifclean() {
 }
 ### Remove gps exif ### }}}
 
+
 ### Note ### {{{
 ## An aproximation of Notational Velocity and Terminal Velocity
 ## gensub currently replacing
@@ -106,34 +114,22 @@ function note() {
     ## Original Oneliner
     #pushd ~/Notes 1>/dev/null && vim $(fzf -i --cycle --reverse --preview-window=down --preview='cat {}' --print-query | gawk 'END{if($0 !~ /.txt$/){$0=gensub(" ","_","g",$0) ".txt"}; print $0}'); popd 1>/dev/null
 
-    if [ $# -ne 0 ]; then
-        echo "No augments accepted in this function!"
-        return 2
-    fi
-
+    if [ $# -ne 0 ]; then echo "No augments accepted in this function!"; return 2; fi
     pushd ~/Notes 1>/dev/null
-    if [ $? -ne 0 ]; then
-        echo "Notes dir not found!"
-        return 2
-    fi
+    if [ $? -ne 0 ]; then echo "Notes dir not found!"; return 2; fi
 
     local EDIT_NOTE=$(fzf -i --cycle --reverse --preview-window=down --preview='cat {}' --print-query | gawk 'END{if($0 !~ /.txt$/){$0=gensub(" ","_","g",$0) ".txt"}; print $0}')
-    if [[ ${EDIT_NOTE} != ".txt" ]]; then
-        vim ${EDIT_NOTE}
-    fi
+    if [[ ${EDIT_NOTE} != ".txt" ]]; then vim ${EDIT_NOTE}; fi
 
     popd 1>/dev/null
 }
 ### End Note ### }}}
 
+
 ### rfv ### {{{
 ## rfv (ripgrep fzf vim) -- A fancy search using ripgrep with a second round of interaction and preview in fzf with the resulting file and line opened in vim
 function rfv() {
-    if [ $# -gt 2 ]; then
-        echo "Max of two augment accepted!"
-        echo "rfv string [path]"
-        return 2
-    fi
+    if [ $# -gt 2 ]; then echo "Max of two augment accepted!"; echo "rfv string [path]"; return 2; fi
 
     if [ $# -eq 0 ]; then
         SEARCH="."
@@ -149,6 +145,7 @@ function rfv() {
 }
 ### End rfv ### }}}
 
+
 ### virustotal Hash Lookup ### {{{
 ## Gets hash of file and looks it up on virustotal
 function vthl() {
@@ -157,29 +154,20 @@ function vthl() {
         return 2
     else
         API_KEY="$(cat ${HOME}/.config/api_keys/virustotal)"
-        if [[ ! "${API_KEY}" =~ ^[a-fA-F0-9]{64}$ ]]; then
-            echo "Bad api key in ${HOME}/.config/api_keys/virustotal"
-            return 2
-        fi
+        if [[ ! "${API_KEY}" =~ ^[a-fA-F0-9]{64}$ ]]; then echo "Bad api key in ${HOME}/.config/api_keys/virustotal"; return 2; fi
     fi
 
-    if [ $# -ne 1 ]; then
-        echo "Expects one augment!"
-        echo "vthl [path/to/file]"
-        return 2
-    fi
+    if [ $# -ne 1 ]; then echo "Expects one augment!"; echo "vthl [path/to/file]"; return 2; fi
 
     FILE="$@"
     FILE_HASH="$(sha256sum ${FILE})"
 
-    if [ $? -ne 0 ]; then
-        echo "Bad file path"
-        return 2
-    fi
+    if [ $? -ne 0 ]; then echo "Bad file path"; return 2; fi
 
     curl --no-progress-meter --request GET --url https://www.virustotal.com/api/v3/files/${FILE_HASH%% *} --header "x-apikey: ${API_KEY}" --header 'accept: application/json' | jq -r '[.data.attributes.popular_threat_classification.suggested_threat_label], [.data.attributes.last_analysis_stats | "Malicious: \(.malicious) | Undetected: \(.undetected)"]' | jq -r '.[]'
 }
 ### End virustotal Hash Lookup ### }}}
+
 
 ### Usercheck Email Look ### {{{
 ## Looks up if email is a burner on UserCheck
@@ -189,17 +177,10 @@ function ucel() {
         return 2
     else
         API_KEY="$(cat ${HOME}/.config/api_keys/usercheck)"
-        if [[ ! "${API_KEY}" =~ ^prd_[a-zA-Z0-9]{28}$ ]]; then
-            echo "Bad api key in ${HOME}/.config/api_keys/usercheck"
-            return 2
-        fi
+        if [[ ! "${API_KEY}" =~ ^prd_[a-zA-Z0-9]{28}$ ]]; then echo "Bad api key in ${HOME}/.config/api_keys/usercheck"; return 2; fi
     fi
 
-    if [ $# -ne 1 ]; then
-        echo "Expects one augment!"
-        echo "ucel [email]"
-        return 2
-    fi
+    if [ $# -ne 1 ]; then echo "Expects one augment!"; echo "ucel [email]"; return 2; fi
 
     STRING="$@"
     EMAIL=0
@@ -216,11 +197,7 @@ function ucel() {
 
     if [[ "${STRING}" =~ ${REG_EMAIL} ]]; then EMAIL=1; fi
     if [[ "${STRING}" =~ ${REG_DOMAIN} ]]; then DOMAIN=1; fi
-
-    if [ ${EMAIL} == 0 ] && [ ${DOMAIN} == 0 ]; then
-        echo "Bad Email/Domain String!"
-        return 2
-    fi
+    if [ ${EMAIL} == 0 ] && [ ${DOMAIN} == 0 ]; then echo "Bad Email/Domain String!"; return 2; fi
 
     if [ ${EMAIL} == 1 ]; then
         echo -e "\n"
@@ -233,3 +210,46 @@ function ucel() {
     fi
 }
 ### End Usercheck Email Look ### }}}
+
+
+### Git Bundle Export ###
+function git_bundle_export() {
+    if [ ! $# -eq 1 ]; then echo "Expects git clone URI!"; return 2; fi
+    if [[ ! $(command -v git) ]]; then echo "git not found!"; return 2; fi
+
+    STRING="$@"
+    REG_URI="^(?:git@|https?:\/\/|git:\/\/|ssh:\/\/)([^\/\s]+)(?:\/|:)([^\/\s]+)\/([^\/\s]+?)(?:\.git)?$"
+
+    if [[ "${STRING}" =~ ${REG_URI} ]]; then URI=1; fi
+    if [ ${URI} == 0 ]; then echo "Bad URI String!"; return 2; fi
+
+    ## make bundle with all branches
+    git clone --mirror ${STRING}
+    cd $(basename ${STRING})
+    git bundle create ../$(basename "$PWD").bundle --all
+    cd ..
+    rm -rf $(basename ${STRING})
+    realpath .
+}
+### End Git Bundle Export ###
+
+
+### Git Bundle Import ###
+function git_bundle_import() {
+    if [ ! $# -eq 1 ]; then echo "Expects git clone URI!"; return 2; fi
+    if [[ ! $(command -v git) ]]; then echo "git not found!"; return 2; fi
+
+    STRING="$@"
+    REG_URI="^(?:git@|https?:\/\/|git:\/\/|ssh:\/\/)([^\/\s]+)(?:\/|:)([^\/\s]+)\/([^\/\s]+?)(?:\.git)?$"
+
+    if [[ "${STRING}" =~ ${REG_URI} ]]; then URI=1; fi
+    if [ ${URI} == 0 ]; then echo "Bad URI String!"; return 2; fi
+
+    ## import the bundle
+    git clone ${STRING}
+    cd $(basename ${STRING} | sed 's/\.git$//')
+    git fetch --update-head-ok ../$(basename "$PWD").git.bundle '*:*'
+    git push --all
+    git push --tags
+}
+### End Git Bundle Import ###
