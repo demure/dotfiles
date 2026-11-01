@@ -5,6 +5,7 @@
 # legacy https://notabug.org/demure/dotfiles
 # legacy repo http://github.com/demure/dotfiles
 
+
 ## SSH GPG Agent
 function __ssh_gpg_agent() {
     unset SSH_AGENT_PID

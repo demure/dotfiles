@@ -5,6 +5,7 @@
 # legacy https://notabug.org/demure/dotfiles
 # legacy repo http://github.com/demure/dotfiles
 
+
 ### Misc Aliases ### {{{
 ## Remove OS X 'junk' files
 alias rmds='find . -name ".DS_Store" -depth -exec rm -i {} \;'
@@ -31,6 +32,7 @@ alias ip="ip --color=auto"
 alias vidres="ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=s=x:p=0"
 ### End Misc Aliases ### }}}
 
+
 ### rsync Aliases ### {{{
 ## NOTE: I am now just using `rsync -haP` manually, possibly swapping progress for `--info=progress2`
 ## Old rsync alias
@@ -41,12 +43,14 @@ alias vidres="ffprobe -v error -select_streams v:0 -show_entries stream=width,he
 #alias rsy2='rsync -rltDvSPRh'
 ### End rsync Aliases ### }}}
 
+
 ### rename utils Aliases ### {{{
 if [[ $(command -v qmv) ]]; then
     ## Makes qmv more usable, and regex-able
     alias qm='qmv --format=destination-only'
 fi
 ### End rename utils Aliases ### }}}
+
 
 ### pinfo ### {{{
 if [[ $(command -v pinfo) ]]; then
@@ -55,10 +59,12 @@ if [[ $(command -v pinfo) ]]; then
 fi
 ### End pinfo ### }}}
 
+
 ### Git Aliases ### {{{
 #alias git_force_reset='git fetch --all && git reset --hard origin/master'
 alias git_force_reset='git fetch --all && git reset --hard origin/master || git reset --hard origin/main'
 ### End Git Aliases ### }}}
+
 
 ### Docker ### {{{
 if [[ $(command -v docker) ]]; then
@@ -66,6 +72,7 @@ if [[ $(command -v docker) ]]; then
     alias dl='docker ps -l -q'
 fi
 ### End Docker ### }}}
+
 
 ### Vim Aliases ### {{{
 if [[ $(command -v vim) ]]; then
@@ -77,6 +84,7 @@ if [[ $(command -v vim) ]]; then
 fi
 ### End Vim Aliases ### }}}
 
+
 ### mpv Aliases ### {{{
 if [[ $(command -v mpv) ]]; then
     ## set vi to call vim
@@ -85,12 +93,14 @@ if [[ $(command -v mpv) ]]; then
 fi
 ### End mpv Aliases ### }}}
 
+
 ### xclip Aliases ### {{{
 if [[ $(command -v xclip) ]]; then
     ## make piping to clipboard simple
         alias xc="xclip -selection c"
 fi
 ### End xclip Aliases ### }}}
+
 
 ### ls Color Test ### {{{
 ## Tries home cut down on possible large dirs
@@ -99,6 +109,7 @@ if [ ${PIPESTATUS[-1]} == 0 ]; then
     alias ls='ls --color=auto'
 fi
 ### End ls Color Test ### }}}
+
 
 ### Update All opkg ### {{{
 ## Tries home cut down on possible large dirs
@@ -109,12 +120,14 @@ if [[ $(command -v opkg) ]]; then
 fi
 ### End Update All opkg ### }}}
 
+
 ### bboard alias ### {{{
 if [[ $(command -v bboard) ]]; then
     ## lazy alias for sdf's bboard
     alias bb='bboard'
 fi
 ### End board alias ### }}}
+
 
 ### sudo preserve ENV ### {{{
 if [ -e "${HOME}/.config/dotconf/sudo_preserve" ]; then

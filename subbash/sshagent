@@ -11,6 +11,7 @@
 
 ## Note: logname is dead https://unix.stackexchange.com/questions/347889/a-proper-replacement-for-the-logname-utility
 
+
 ## SSH Agent
 function __ssh_agent() {
     local SSH_ENV="${HOME}/.ssh/environment"

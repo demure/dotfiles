@@ -5,6 +5,7 @@
 # legacy https://notabug.org/demure/dotfiles
 # legacy repo http://github.com/demure/dotfiles
 
+
 export PATH=/usr/pkg/bin:/usr/local/bin:/usr/bin:/bin
 export TZ=EST5EDT
 #source /etc/bash_completion.d/git      ## Add git completion

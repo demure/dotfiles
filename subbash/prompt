@@ -5,12 +5,14 @@
 # legacy https://notabug.org/demure/dotfiles
 # legacy repo http://github.com/demure/dotfiles
 
+
 ## This Changes The PS1
 export PROMPT_COMMAND=__prompt_command      # Func to gen PS1 after CMDs
 
 function __prompt_command() {
     local EXIT=${PIPESTATUS[-1]}            # This needs to be first
     PS1=""
+
 
     ### Colors to Vars ### {{{
     ## Inspired by http://wiki.archlinux.org/index.php/Color_Bash_Prompt#List_of_colors_for_prompt_and_Bash
@@ -30,6 +32,7 @@ function __prompt_command() {
     local Whi='\[\e[0;37m\]';    local BWhi='\[\e[1;37m\]';    local UWhi='\[\e[4;37m\]';    local IWhi='\[\e[0;97m\]';    local BIWhi='\[\e[1;97m\]';    local On_Whi='\e[47m';    local On_IWhi='\[\e[0;107m\]';
     ### End Color Vars ### }}}
 
+
     if [ -e "${HOME}/.config/dotconf/prompt_date" ]; then
         PS1+="\D{%m%d.%H%M} "
     fi
@@ -43,6 +46,7 @@ function __prompt_command() {
         if [ ${EXIT} != 0 ]; then
             PS1+="${Red}${EXIT}${RCol}"     ## Add exit code, if non 0
         fi
+
 
         ### Prompt Tailoring ### {{{
         local SHost="$(echo $HOSTNAME | awk 'match($0,/^[a-zA-Z0-9]+/) {print substr($0,RSTART,RLENGTH)}')"
@@ -103,7 +107,9 @@ function __prompt_command() {
         fi
         ### End Prompt Tailoring ### }}}
 
+
         PS1+="${PSCol}${PSOpt}\W${RCol}"    ## Current working dir
+
 
         ### Check Jobs ### {{{
         type jobs &>/dev/null
@@ -125,6 +131,7 @@ function __prompt_command() {
             fi
         fi
         ### End Jobs ### }}}
+
 
         ### Add Git Status ### {{{
         ## Inspired by http://www.terminally-incoherent.com/blog/2013/01/14/whats-in-your-bash-prompt/
@@ -153,6 +160,7 @@ function __prompt_command() {
                     fi
                     ### End Fetch Check ### }}}
 
+
                     ### Branch Indicator Color ### {{{
                     ## GSP Change Color; Reuses GSP Modified code
                     local GSPcc="$(grep -c "^[12] .M" <<< "${GSP}")"
@@ -162,6 +170,7 @@ function __prompt_command() {
                         local GBC=$Red                  ## Branch Color
                     fi
                     ### End Branch Indicator Color ### }}}
+
 
                     ### Find Branch ### {{{
                     ## GSP Current Branch; branch name in 3rd spot
@@ -185,7 +194,9 @@ function __prompt_command() {
                     fi
                     ### End Branch ### }}}
 
+
                     PS1+=" ${GBC}${GSPcb}${RCol}"       ## Add result to prompt
+
 
                     ### Find Commit Status ### {{{
                     ## GSP Commit Ahead; 3rd spot; Knock off leading symbol; Check exist and gt 0
@@ -238,6 +249,7 @@ function __prompt_command() {
             fi
         fi
         ### End Git Status ### }}}
+
 
         ### z.sh _z running ### {{{
         ## Add z.sh to prompt command, since I have a fancy one and I source exports too early.

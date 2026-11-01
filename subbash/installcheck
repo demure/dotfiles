@@ -5,6 +5,7 @@
 # legacy https://notabug.org/demure/dotfiles
 # legacy repo http://github.com/demure/dotfiles
 
+
 ## NOTE: not using ',' as I want to be able to:
 # $(sudo aptitude install $MISSING_PROGRAMS)
 # or more reasonably:
@@ -12,6 +13,8 @@
 
 MISSING_CLI=""
 MISSING_GUI=""
+MISSING_FONT=""
+
 
 ### CLI ### {{{
 CLI_LIST=(pinfo qmv vim w3m neomutt tmux ncdu pass notmuch msmtp rg yazi \
@@ -32,6 +35,7 @@ for i in "${CLI_LIST[@]}"; do
 done
 ### End CLI ### }}}
 
+
 ### X GUI ### {{{
 X_GUI_LIST=(rofi mcomix zathura feh scrot calibre i3lock xbacklight xfd \
 libreoffice gparted xss-lock urxvt zeal i3 font-manager gimp \
@@ -47,6 +51,7 @@ for i in "${X_GUI_LIST[@]}"; do
 done
 ### End X GUI ### }}}
 
+
 ### W GUI ### {{{
 W_GUI_LIST=(mcomix zathura calibre libreoffice gparted zeal font-manager \
 gimp baobab gvim touchegg neato notify-send qtpass youtube-dl yt-dlp \
@@ -61,6 +66,9 @@ for i in "${W_GUI_LIST[@]}"; do
 done
 ### End GUI ### }}}
 
-### Font ### {{{
 
+### Font ### {{{
+if [ ! -f ${HOME}/.fonts/PragmataProR.ttf ]; then
+    MISSING_FONT="PragmataPro"
+fi
 ### End Font ### }}}

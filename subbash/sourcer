@@ -7,6 +7,7 @@
 
 ## Inspired by https://github.com/gmarik/dotfiles/blob/master/.bash/bashrc
 
+
 so() { [ -s $1 ] && source $1; }
 
 #so ~/.subbash/profile                  ## main configuration
@@ -42,5 +43,6 @@ so ~/.subbash/hosts/${HOSTNAME}_conf    ## configuration per OS linux/OSX
 so ~/.subbash/bashrc.local              ## machine specific config. not tracked
 so ~/.bashrc.local                      ## machine specific config. not tracked
 ### End Overrides ### }}}
+
 
 return 0                                ## Return 0, so it doesn't show
