@@ -227,6 +227,8 @@ function git_bundle_export() {
     git clone --mirror ${STRING}
     cd $(basename ${STRING})
     git bundle create ../$(basename "$PWD").bundle --all
+
+    ## cleanup
     cd ..
     rm -rf $(basename ${STRING})
     echo -e "\n"
@@ -252,5 +254,9 @@ function git_bundle_import() {
     git fetch --update-head-ok ../$(basename "$PWD").git.bundle '*:*'
     git push --all
     git push --tags
+
+    ## cleanup
+    cd ..
+    rm -rf $(basename ${STRING} | sed 's/\.git$//')
 }
 ### End Git Bundle Import ### }}}
