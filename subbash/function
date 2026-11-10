@@ -212,7 +212,7 @@ function ucel() {
 ### End Usercheck Email Look ### }}}
 
 
-### Git Bundle Export ###
+### Git Bundle Export ### {{{
 function git_bundle_export() {
     if [ ! $# -eq 1 ]; then echo "Expects git clone URI!"; return 2; fi
     if [[ ! $(command -v git) ]]; then echo "git not found!"; return 2; fi
@@ -221,7 +221,7 @@ function git_bundle_export() {
     REG_URI="^(?:git@|https?:\/\/|git:\/\/|ssh:\/\/)([^\/\s]+)(?:\/|:)([^\/\s]+)\/([^\/\s]+?)(?:\.git)?$"
 
     if [[ "${STRING}" =~ ${REG_URI} ]]; then URI=1; fi
-    if [ ${URI} == 0 ]; then echo "Bad URI String!"; return 2; fi
+    if [[ ${URI} == 0 ]]; then echo "Bad URI String!"; return 2; fi
 
     ## make bundle with all branches
     git clone --mirror ${STRING}
@@ -229,12 +229,13 @@ function git_bundle_export() {
     git bundle create ../$(basename "$PWD").bundle --all
     cd ..
     rm -rf $(basename ${STRING})
+    echo -e "\n"
     realpath .
 }
-### End Git Bundle Export ###
+### End Git Bundle Export ### }}}
 
 
-### Git Bundle Import ###
+### Git Bundle Import ### {{{
 function git_bundle_import() {
     if [ ! $# -eq 1 ]; then echo "Expects git clone URI!"; return 2; fi
     if [[ ! $(command -v git) ]]; then echo "git not found!"; return 2; fi
@@ -243,7 +244,7 @@ function git_bundle_import() {
     REG_URI="^(?:git@|https?:\/\/|git:\/\/|ssh:\/\/)([^\/\s]+)(?:\/|:)([^\/\s]+)\/([^\/\s]+?)(?:\.git)?$"
 
     if [[ "${STRING}" =~ ${REG_URI} ]]; then URI=1; fi
-    if [ ${URI} == 0 ]; then echo "Bad URI String!"; return 2; fi
+    if [[ ${URI} == 0 ]]; then echo "Bad URI String!"; return 2; fi
 
     ## import the bundle
     git clone ${STRING}
@@ -252,4 +253,4 @@ function git_bundle_import() {
     git push --all
     git push --tags
 }
-### End Git Bundle Import ###
+### End Git Bundle Import ### }}}
